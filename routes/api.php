@@ -75,6 +75,7 @@ Route::post('forgot_password',[RegisterController::class, 'forgot_password']);
     Route::post('demo', [CaseManagementController::class, 'demo']);
     Route::post('getToken', [CaseManagementController::class, 'get_token']);
     Route::post('getAllStates', [CaseManagementController::class, 'getAllStates']);
+    Route::post('getCitiesFromGivenState', [CaseManagementController::class, 'getCitiesFromGivenState']);
     //end of md api
     
 

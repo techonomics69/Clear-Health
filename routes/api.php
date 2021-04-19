@@ -74,9 +74,10 @@ Route::post('forgot_password',[RegisterController::class, 'forgot_password']);
     Route::post('create_patient', [CaseManagementController::class, 'create_patient']);
     Route::post('demo', [CaseManagementController::class, 'demo']);
     Route::post('getToken', [CaseManagementController::class, 'get_token']);
-    Route::post('searchStateDetail', [CaseManagementController::class, 'searchStateDetail']);
+    Route::post('searchStateDetail', [CaseManagementController::class, 'searchStateDetail']);//search state data
     Route::get('getAllStates', [CaseManagementController::class, 'getAllStates']);
     Route::post('getCitiesFromGivenState', [CaseManagementController::class, 'getCitiesFromGivenState']);
+    Route::post('SearchCitiesFromGivenState', [CaseManagementController::class, 'SearchCitiesFromGivenState']);//search city data
     //end of md api
     
 

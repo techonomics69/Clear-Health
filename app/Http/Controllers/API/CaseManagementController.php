@@ -388,6 +388,8 @@ public function create_patient(Request $request)
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
+
+
     $state_id = $request['state_id'];
     $search_city = $request['search_city'];
 

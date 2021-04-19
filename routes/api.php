@@ -66,16 +66,16 @@ Route::post('forgot_password',[RegisterController::class, 'forgot_password']);
     Route::post('addCheckoutAddress', [CheckoutController::class, 'addCheckoutAddress']);
     Route::post('getCheckoutdetail', [CheckoutController::class, 'getCheckoutdetail']);
     Route::post('getCheckoutAddress', [CheckoutController::class, 'getCheckoutAddress']);
-
-    Route::post('create_patient', [CaseManagementController::class, 'create_patient']);
     Route::get('getUpsellProductDetails', [ProductController::class, 'getUpsellProductDetails']);
 
 
+    //MD API
 
-
-
+    Route::post('create_patient', [CaseManagementController::class, 'create_patient']);
     Route::post('demo', [CaseManagementController::class, 'demo']);
     Route::post('getToken', [CaseManagementController::class, 'get_token']);
+    Route::post('getAllStates', [CaseManagementController::class, 'getAllStates']);
+    //end of md api
     
 
     Route::group(['middleware' => 'auth:api'], function(){});

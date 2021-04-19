@@ -39,72 +39,72 @@ class CaseManagementController extends BaseController
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-        $case = CaseManagement::OrderBy('id','desc')->first();
-        $query = 'insert';
-        if(!empty($data['user_id'])):
-            $caseUser = CaseManagement::where('user_id', $data['user_id'])->OrderBy('id','desc')->first();
-            if(!empty($caseUser)):
-                if($caseUser->case_status != 'completed'):            
-                    $query = 'update';
-                endif;
-            endif;
+      $data = $request->all();
+      $case = CaseManagement::OrderBy('id','desc')->first();
+      $query = 'insert';
+      if(!empty($data['user_id'])):
+        $caseUser = CaseManagement::where('user_id', $data['user_id'])->OrderBy('id','desc')->first();
+        if(!empty($caseUser)):
+          if($caseUser->case_status != 'completed'):            
+            $query = 'update';
+          endif;
         endif;
-        
-        if($query == 'insert'):
-            if(!empty($case)):
-                $year = substr($case->ref_id, 3, -9);
-                $current_year = date("Y");
-                if(!empty($case->ref_id) && ($year == $current_year)):
-                    $id = number_format(substr($case->ref_id, 8)) + 1;
-                    $ref_number = str_pad($id,8,'0',STR_PAD_LEFT);
-                endif;
-            else:
-                $ref_number = "00000001";
-            endif;
-            $ref_id = "CH-".date("Y")."-".$ref_number;
-            $data['ref_id'] = $ref_id;
-            
-            if(empty($data['user_id'])):
-                if(isset($data['token']) && !empty($data['token'])):
+      endif;
 
-                    $data['user_id'] = (new Parser())->parse($data['token'])->getClaims()['sub']->getValue();
-
-                endif;  
-            endif;     
-            try{
-                $validator = Validator::make($data, [
-                    'user_id' => 'required',
-                ]);
-                if($validator->fails()){
-                    return $this->sendError('Validation Error.', $validator->errors()->all());       
-                }
-                    $quizAns = CaseManagement::create($data);
-                
-                return $this->sendResponse($data, 'Case Created Successfully');
-            }catch(\Exception $ex){
-                return $this->sendError('Server error',array($ex->getMessage()));
-            }
-        else:                               
-            try{    
-            
-                if($data['case_status'] == '/zipcode'):
-                    unset($data['case_status']);
-                endif;
-                $sendData = CaseManagement::where('user_id', $data['user_id'])->OrderBy('id','desc')->first();           
-                if(!empty($caseUser)):
-                    $caseUpdate = $caseUser->update($data);
-                else:
-                    return $this->sendError('Server error', array('Case Not Found'));
-                endif;
-
-                return $this->sendResponse($sendData, 'Case Updated Successfully');
-            }catch(\Exception $ex){
-                return $this->sendError('Server error',array($ex->getMessage()));
-            }
+      if($query == 'insert'):
+        if(!empty($case)):
+          $year = substr($case->ref_id, 3, -9);
+          $current_year = date("Y");
+          if(!empty($case->ref_id) && ($year == $current_year)):
+            $id = number_format(substr($case->ref_id, 8)) + 1;
+          $ref_number = str_pad($id,8,'0',STR_PAD_LEFT);
         endif;
+      else:
+        $ref_number = "00000001";
+      endif;
+      $ref_id = "CH-".date("Y")."-".$ref_number;
+      $data['ref_id'] = $ref_id;
 
+      if(empty($data['user_id'])):
+        if(isset($data['token']) && !empty($data['token'])):
+
+          $data['user_id'] = (new Parser())->parse($data['token'])->getClaims()['sub']->getValue();
+
+      endif;  
+    endif;     
+    try{
+      $validator = Validator::make($data, [
+        'user_id' => 'required',
+      ]);
+      if($validator->fails()){
+        return $this->sendError('Validation Error.', $validator->errors()->all());       
+      }
+      $quizAns = CaseManagement::create($data);
+
+      return $this->sendResponse($data, 'Case Created Successfully');
+    }catch(\Exception $ex){
+      return $this->sendError('Server error',array($ex->getMessage()));
     }
+  else:                               
+    try{    
+
+      if($data['case_status'] == '/zipcode'):
+        unset($data['case_status']);
+      endif;
+      $sendData = CaseManagement::where('user_id', $data['user_id'])->OrderBy('id','desc')->first();           
+      if(!empty($caseUser)):
+        $caseUpdate = $caseUser->update($data);
+      else:
+        return $this->sendError('Server error', array('Case Not Found'));
+      endif;
+
+      return $this->sendResponse($sendData, 'Case Updated Successfully');
+    }catch(\Exception $ex){
+      return $this->sendError('Server error',array($ex->getMessage()));
+    }
+  endif;
+
+}
 
     /**
      * Display the specified resource.
@@ -114,16 +114,16 @@ class CaseManagementController extends BaseController
      */
     public function show($id)
     {
-        try{ 
-            $caseUser = CaseManagement::where('user_id', $id)->OrderBy('id','desc')->first();
-            if(is_null($caseUser)):
-                return $this->sendError('Server error', array('Case Not Found'));
-            else:
-                return $this->sendResponse($caseUser, 'Data recieved Successfully');
-            endif;            
-        }catch(\Exception $ex){
-            return $this->sendError('Server error',array($ex->getMessage()));
-        }
+      try{ 
+        $caseUser = CaseManagement::where('user_id', $id)->OrderBy('id','desc')->first();
+        if(is_null($caseUser)):
+          return $this->sendError('Server error', array('Case Not Found'));
+        else:
+          return $this->sendResponse($caseUser, 'Data recieved Successfully');
+        endif;            
+      }catch(\Exception $ex){
+        return $this->sendError('Server error',array($ex->getMessage()));
+      }
     }
 
     /**
@@ -156,7 +156,7 @@ class CaseManagementController extends BaseController
      * @return \Illuminate\Http\Response
      */
 
-    public function demo()
+/*    public function demo()
     {
 
 $curl = curl_init();
@@ -197,79 +197,79 @@ $response = curl_exec($curl);
 curl_close($curl);
 echo $response;
 
-    }
-
-    
-    public function get_token(){
-        $curl = curl_init();
-
-        curl_setopt_array($curl, array(
-          CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/auth/token',
-          CURLOPT_RETURNTRANSFER => true,
-          CURLOPT_ENCODING => '',
-          CURLOPT_MAXREDIRS => 10,
-          CURLOPT_TIMEOUT => 0,
-          CURLOPT_FOLLOWLOCATION => true,
-          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-          CURLOPT_CUSTOMREQUEST => 'POST',
-          CURLOPT_POSTFIELDS =>'{
-            "grant_type": "client_credentials",
-            "client_id": "c7a20a90-4db9-42e4-860a-7f41c2a8a0b1",
-            "client_secret": "xBsQsgLFhYIFNlKwhJW3wClOmNuJ4WQDX0n8475C",
-            "scope": "*"
-        }',
-        CURLOPT_HTTPHEADER => array(
-            'Content-Type: application/json',
-            'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
-        ),
-    ));
-
-        $response = curl_exec($curl);
-
-        curl_close($curl);
-        return $response;
-    }
+}*/
 
 
+public function get_token(){
+  $curl = curl_init();
 
-     public function create_patient(Request $request)
-    {
-      $r = $this->get_token();
-      $token_data = json_decode($r);
+  curl_setopt_array($curl, array(
+    CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/auth/token',
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => '',
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => 'POST',
+    CURLOPT_POSTFIELDS =>'{
+      "grant_type": "client_credentials",
+      "client_id": "c7a20a90-4db9-42e4-860a-7f41c2a8a0b1",
+      "client_secret": "xBsQsgLFhYIFNlKwhJW3wClOmNuJ4WQDX0n8475C",
+      "scope": "*"
+    }',
+    CURLOPT_HTTPHEADER => array(
+      'Content-Type: application/json',
+      'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+    ),
+  ));
 
-      $token = $token_data->access_token;
+  $response = curl_exec($curl);
 
-      $input = json_encode($request->all());
+  curl_close($curl);
+  return $response;
+}
 
-      $input_data = $request->all();
 
 
-      
+public function create_patient(Request $request)
+{
+  $r = $this->get_token();
+  $token_data = json_decode($r);
 
-      $curl = curl_init();
+  $token = $token_data->access_token;
 
-      curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/patients',
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => '',
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => 'POST',
-        CURLOPT_POSTFIELDS =>$input,
-        CURLOPT_HTTPHEADER => array(
-          'Content-Type: application/json',
-          'Authorization: Bearer '. $token
-        ),
-      ));
+  $input = json_encode($request->all());
 
-      $response = curl_exec($curl);
+  $input_data = $request->all();
+
+
+
+
+  $curl = curl_init();
+
+  curl_setopt_array($curl, array(
+    CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/patients',
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => '',
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => 'POST',
+    CURLOPT_POSTFIELDS =>$input,
+    CURLOPT_HTTPHEADER => array(
+      'Content-Type: application/json',
+      'Authorization: Bearer '. $token
+    ),
+  ));
+
+  $response = curl_exec($curl);
 
      /* echo "<pre>";
       print_r( $response);
       echo "<pre>";*/
-     
+
 
       $Patient_data = json_decode($response);
 
@@ -303,13 +303,13 @@ echo $response;
        print_r($input_data);
        echo "<pre>";
        exit();*/
-      
-      $md_patient_data = Mdpatient::create($input_data);
+
+       $md_patient_data = Mdpatient::create($input_data);
 
             //$info = curl_getinfo($curl);
 
-      if(curl_exec($curl) == false)
-      {
+       if(curl_exec($curl) == false)
+       {
         echo 'Curl error: ' . curl_error($curl);
               //return $this->sendResponse($response, 'Patient Created Successfully1'); 
       }
@@ -318,5 +318,46 @@ echo $response;
        return $this->sendResponse($response,$input_data,'Patient Created Successfully'); 
      }
    }
+
+
+   public function getAllStates(Request $request){
+
+    echo "<pre>";
+    print_r($request->all());
+    echo "<pre>";
+    exit();
+
+    
+    $r = $this->get_token();
+    $token_data = json_decode($r);
+    $token = $token_data->access_token;
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/metadata/states?search=California',
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'GET',
+      CURLOPT_HTTPHEADER => array(
+        'Authorization: '.$token,
+        'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+      ),
+    ));
+
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+    echo $response;
+
+
+
+
+
+  }
 
 }

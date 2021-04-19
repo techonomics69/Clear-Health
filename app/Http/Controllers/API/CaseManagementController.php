@@ -321,21 +321,16 @@ public function create_patient(Request $request)
 
 
    public function getAllStates(Request $request){
-
-    echo "<pre>";
-    print_r($request->all());
-    echo "<pre>";
-    exit();
-
-    
     $r = $this->get_token();
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
+    $search = $request['search_state'];
+
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/metadata/states?search=California',
+      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/metadata/states?search='.$search,
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => '',
       CURLOPT_MAXREDIRS => 10,
@@ -352,7 +347,9 @@ public function create_patient(Request $request)
     $response = curl_exec($curl);
 
     curl_close($curl);
-    echo $response;
+    //echo $response;
+
+    return $this->sendResponse($response,'State data recieved successfully');
 
 
 

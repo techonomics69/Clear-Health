@@ -349,7 +349,7 @@ public function create_patient(Request $request)
     curl_close($curl);
     //echo $response;
 
-    return $this->sendResponse($response,'State data recieved successfully');
+    return $this->sendResponse(json_decode($response),'State data recieved successfully');
 
 
 

@@ -386,9 +386,9 @@ public function create_patient(Request $request)
     $response = curl_exec($curl);
 
     curl_close($curl);
-    echo $response;
+    //echo $response;
 
-    return $this->sendResponse(json_decode($response),'State data recieved successfully');
+    return $this->sendResponse(json_decode($response),'City data recieved successfully');
 
 
 

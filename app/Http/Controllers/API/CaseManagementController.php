@@ -466,7 +466,7 @@ public function create_patient(Request $request)
 
     $documents = $request->file('file');
 
-     if(!empty($documents)){
+     /*if(!empty($documents)){
 
           $file =  $documents->getClientOriginalName();
           $doc_file_name =  time().'-'.$file;
@@ -485,7 +485,7 @@ public function create_patient(Request $request)
           $input['file'] = $doc_file_name;
 
           //Ipledgehistory::insert($input);
-        }
+        }*/
 
     //$file_temp_name = $documents->getfileName();
     //$file_temp_path = $documents->getpathName();

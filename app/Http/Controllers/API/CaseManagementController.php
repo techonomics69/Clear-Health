@@ -459,10 +459,10 @@ public function create_patient(Request $request)
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
-    echo "<pre>";
+   /* echo "<pre>";
     print_r($request->all());
     echo "<pre>";
-    exit();
+    exit();*/
 
     $documents = $request->file('file');
 
@@ -511,9 +511,9 @@ public function create_patient(Request $request)
       CURLOPT_FOLLOWLOCATION => true,
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => 'POST',
-      //CURLOPT_POSTFIELDS => array('name' => 'face - left side','file'=> new CURLFILE('/C:/Users/sai/Pictures/dummy.pdf')), 
+      CURLOPT_POSTFIELDS => array('name' => 'face - left side','file'=> new CURLFILE('/C:/Users/sai/Pictures/dummy.pdf')), 
 
-      CURLOPT_POSTFIELDS => $input,
+      //CURLOPT_POSTFIELDS => $input,
 
       CURLOPT_HTTPHEADER => array(
         'Content: multipart/form-data;',

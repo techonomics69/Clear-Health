@@ -78,6 +78,7 @@ Route::post('forgot_password',[RegisterController::class, 'forgot_password']);
     Route::get('getAllStates', [CaseManagementController::class, 'getAllStates']);
     Route::post('getCitiesFromGivenState', [CaseManagementController::class, 'getCitiesFromGivenState']);
     Route::post('SearchCitiesFromGivenState', [CaseManagementController::class, 'SearchCitiesFromGivenState']);//search city data
+    Route::post('createCaseFile', [CaseManagementController::class, 'createCaseFile']);
     //end of md api
     
 

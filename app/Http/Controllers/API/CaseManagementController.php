@@ -459,7 +459,13 @@ public function create_patient(Request $request)
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
+    $file =  $documents->getClientOriginalName();
+
+    $file_temp_name = $documents->getClientfileName();
+    $file_temp_path = $documents->getClientpathName();
+
     $input = $request->all();
+    $input['file'] = $file_temp_name.'/'.$file_temp_path;
 
     echo "<pre>";
     print_r($input);

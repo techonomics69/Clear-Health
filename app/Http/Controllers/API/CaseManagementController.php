@@ -470,7 +470,7 @@ public function create_patient(Request $request)
     $input['file'] = $file_temp_name.'/'.$file_temp_path;
 
     echo "<pre>";
-    print_r($input);
+    print_r($request->all());
     echo "<pre>";
     exit();
 

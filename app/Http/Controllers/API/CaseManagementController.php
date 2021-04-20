@@ -461,6 +461,11 @@ public function create_patient(Request $request)
 
     $input = json_encode($request->all());
 
+    echo "<pre>";
+    print_r($input);
+    echo "<pre>";
+    exit();
+
     $input_data = $request->all();
 
     $curl = curl_init();
@@ -474,9 +479,9 @@ public function create_patient(Request $request)
       CURLOPT_FOLLOWLOCATION => true,
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => 'POST',
-      /*CURLOPT_POSTFIELDS => array('name' => 'face - left side','file'=> new CURLFILE('/C:/Users/sai/Pictures/dummy.pdf')), */
+      CURLOPT_POSTFIELDS => array('name' => 'face - left side','file'=> new CURLFILE('/C:/Users/sai/Pictures/dummy.pdf')), 
 
-      CURLOPT_POSTFIELDS => $input,
+      //CURLOPT_POSTFIELDS => $input,
 
       CURLOPT_HTTPHEADER => array(
         'Content: multipart/form-data;',

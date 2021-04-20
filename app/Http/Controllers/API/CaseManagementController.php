@@ -459,7 +459,7 @@ public function create_patient(Request $request)
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
-    $documents = $request->file('files');
+    $documents = $request->file('file');
 
     $file =  $documents->getClientOriginalName();
 

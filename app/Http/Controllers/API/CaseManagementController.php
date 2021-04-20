@@ -459,7 +459,7 @@ public function create_patient(Request $request)
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
-    $input = json_encode($request->all());
+    $input = $request->all();
 
     echo "<pre>";
     print_r($input);

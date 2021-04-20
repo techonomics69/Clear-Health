@@ -487,10 +487,10 @@ public function create_patient(Request $request)
     $response = curl_exec($curl);
 
     curl_close($curl);
-    //echo $response;
+    echo $response;
 
 
-    return $this->sendResponse(json_decode($response),'File Created Successfully');
+    //return $this->sendResponse(json_decode($response),'File Created Successfully');
 
   }
 

@@ -459,12 +459,36 @@ public function create_patient(Request $request)
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
+    echo "<pre>";
+    print_r($request->all());
+    echo "<pre>";
+    exit();
+
     $documents = $request->file('file');
 
-    $file =  $documents->getClientOriginalName();
+     if(!empty($documents)){
 
-    $file_temp_name = $documents->getfileName();
-    $file_temp_path = $documents->getpathName();
+          $file =  $documents->getClientOriginalName();
+          $doc_file_name =  time().'-'.$file;
+          //$doc_file_name = time() . '-' . $doc->getClientOriginalExtension();
+
+          if (!file_exists(public_path('/MD_Case_files'))) {
+            File::makeDirectory(public_path('/MD_Case_files'), 0777, true, true);
+          }
+
+          $destinationPath = public_path('/MD_Case_files');
+          $documents->move($destinationPath, $doc_file_name);
+
+          //$input = array();
+         
+          $file_path = 'public/ipledgeimports/' .$file;
+          $input['file'] = $doc_file_name;
+
+          //Ipledgehistory::insert($input);
+        }
+
+    //$file_temp_name = $documents->getfileName();
+    //$file_temp_path = $documents->getpathName();
 
     $input = $request->all();
     /*$input['file'] = $file_temp_name.'/'.$file_temp_path;

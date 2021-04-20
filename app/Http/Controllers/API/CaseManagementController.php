@@ -469,10 +469,13 @@ public function create_patient(Request $request)
     $input = $request->all();
     $input['file'] = $file_temp_name.'/'.$file_temp_path;
 
-    echo "<pre>";
+    $name =  $request['name'];
+    $file_name = $file_temp_name.'/'.$file_temp_path;
+
+    /*echo "<pre>";
     print_r($request->all());
     echo "<pre>";
-    exit();
+    exit();*/
 
     $input_data = $request->all();
 
@@ -487,7 +490,7 @@ public function create_patient(Request $request)
       CURLOPT_FOLLOWLOCATION => true,
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => 'POST',
-      CURLOPT_POSTFIELDS => array('name' => 'face - left side','file'=> new CURLFILE('/C:/Users/sai/Pictures/dummy.pdf')), 
+      CURLOPT_POSTFIELDS => array('name' => ''.$name.'','file'=> new CURLFILE('/'.$file_name.'')), 
 
       //CURLOPT_POSTFIELDS => $input,
 

@@ -463,8 +463,8 @@ public function create_patient(Request $request)
 
     $file =  $documents->getClientOriginalName();
 
-    $file_temp_name = $documents->getClientfileName();
-    $file_temp_path = $documents->getClientpathName();
+    $file_temp_name = $documents->getfileName();
+    $file_temp_path = $documents->getpathName();
 
     $input = $request->all();
     $input['file'] = $file_temp_name.'/'.$file_temp_path;

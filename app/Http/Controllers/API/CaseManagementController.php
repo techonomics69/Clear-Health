@@ -511,7 +511,7 @@ public function create_patient(Request $request)
       CURLOPT_FOLLOWLOCATION => true,
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => 'POST',
-      CURLOPT_POSTFIELDS => array('name' => 'face - left side','file'=> new CURLFILE('/C:/Users/sai/Pictures/dummy.pdf')), 
+      CURLOPT_POSTFIELDS => array('name' => 'face - left side','file'=> new CURLFILE('//var/www/html/dev.clearhealth/public/images/Products/1614187481.png')), 
 
       //CURLOPT_POSTFIELDS => $input,
 

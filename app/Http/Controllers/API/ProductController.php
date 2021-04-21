@@ -109,6 +109,13 @@ class ProductController extends BaseController
     public function getUpsellProductDetails()
     {
         $upsellproduct = Product::where('upsell','Yes')->first();
+
+        echo "<pre>";
+        print_r($upsellproduct);
+        echo "<pre>";
+        exit();
+
+        //url('/admin/home')
   
         if (is_null($upsellproduct)) {
             return $this->sendError('Upsell Product Not Found.');

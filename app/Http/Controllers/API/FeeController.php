@@ -22,7 +22,12 @@ class FeeController extends BaseController
 
     public function getFees(Request $request){
         $fee_type = $request->fee_type;
-        $fees = Fees::where('status','1')->where('fee_type',$fee_type)->first();
+        $fees = Fees::where('status','1')->where('fee_type',$fee_type)->get();
+
+        echo "<pre>";
+        print_r($fees);
+        echo "<pre>";
+        exit();
 
         $total_amount = 0;
         foreach( $fees as $key=>$fee){

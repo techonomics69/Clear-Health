@@ -47,12 +47,12 @@
                                             {!! Form::text('question', null, ['placeholder' => 'Question', 'class' => 'form-control']); !!}
                                         </div>
                                     </div>     
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        {{-- <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Answer</strong>
                                 {!! Form::text('option', null, array('placeholder' => 'Answer','class' => 'form-control')) !!}
                             </div>                            
-                        </div>
+                        </div> --}}
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Option Type</strong>

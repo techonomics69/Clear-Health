@@ -24,11 +24,6 @@ class FeeController extends BaseController
         $fee_type = $request->fee_type;
         $fees = Fees::where('status','1')->where('fee_type',$fee_type)->get();
 
-        echo "<pre>";
-        print_r($fees);
-        echo "<pre>";
-        exit();
-
         $total_amount = 0;
         foreach( $fees as $key=>$fee){
             $total_amount += $fee['amount'];

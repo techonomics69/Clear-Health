@@ -28,7 +28,7 @@ class QuizController extends BaseController
         $quiz = Quiz::find($id);
         $quiz['sub_questions'] = Quiz::join('sub_question_answer', 'quizzes.id', '=', 'sub_question_answer.question_id')         
             ->select('sub_question_answer.*','quizzes.question')
-            ->where('quizzes.sub_question','=','No')
+            ->where('quizzes.sub_question','=','Yes')
             ->orderBy('sub_question_answer.id','ASC')
             ->get();
 

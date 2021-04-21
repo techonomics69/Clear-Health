@@ -28,6 +28,6 @@ class CreateSubQuestionAnswerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sub_question_answer');
+        //Schema::dropIfExists('sub_question_answer');
     }
 }

@@ -30,7 +30,7 @@ class QuizController extends BaseController
             ->select('sub_question_answer.*')
             ->where('quizzes.sub_question','=','No')
             ->orderBy('sub_question_answer.id','ASC')
-            ->get();
+            ->get()->toArray();
 
             echo "<pre>";
             print_r($data);

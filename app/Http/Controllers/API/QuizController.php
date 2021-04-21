@@ -26,12 +26,17 @@ class QuizController extends BaseController
     public function show($id)
     {
         $quiz = Quiz::find($id);
-       /* $data = DB::table('quizzes')
-            ->join('sub_question_answer', 'refurbishment.purchase_inquiry', '=', 'purchaseinquires.id')         
+        $data = DB::table('quizzes')
+            ->join('sub_question_answer', 'quizzes.id', '=', 'sub_question_answer.parent_question_id')         
             ->select('sub_question_answer.*')
-            ->where('refurbishment.vehicle_send','=',0)
-            ->orderBy('refurbishment.id','DESC')
-            ->get();*/
+            ->where('quizzes.sub_question','=','No')
+            ->orderBy('sub_question_answer.id','ASC')
+            ->get();
+
+            echo "<pre>";
+            print_r($data);
+            echo "<pre>";
+            exit();
 
   
         if (is_null($quiz)) {

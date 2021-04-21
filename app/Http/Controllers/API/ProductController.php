@@ -109,13 +109,11 @@ class ProductController extends BaseController
     public function getUpsellProductDetails()
     {
         $upsellproduct = Product::where('upsell','Yes')->first();
-
         $upsellproduct['image'] = url('/public/images/Products/').$upsellproduct['image'];
   
         if (is_null($upsellproduct)) {
             return $this->sendError('Upsell Product Not Found.');
         }
-   
         return $this->sendResponse($upsellproduct, 'Product Retrieved Successfully.');
     }
 }

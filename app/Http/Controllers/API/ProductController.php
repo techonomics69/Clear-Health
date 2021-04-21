@@ -110,10 +110,7 @@ class ProductController extends BaseController
     {
         $upsellproduct = Product::where('upsell','Yes')->first();
 
-        echo "<pre>";
-        print_r($upsellproduct);
-        echo "<pre>";
-        exit();
+        $upsellproduct[''] = url('/public/images/Products').$upsellproduct['image'];
 
         //url('/admin/home')
   

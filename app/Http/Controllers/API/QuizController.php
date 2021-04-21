@@ -26,7 +26,7 @@ class QuizController extends BaseController
     public function show($id)
     {
         $quiz = Quiz::find($id);
-        $data = Quiz::join('sub_question_answer', 'quizzes.id', '=', 'sub_question_answer.parent_question_id')         
+        /*$quiz['sub_questions'] = Quiz::join('sub_question_answer', 'quizzes.id', '=', 'sub_question_answer.parent_question_id')         
             ->select('sub_question_answer.*')
             ->where('quizzes.sub_question','=','No')
             ->orderBy('sub_question_answer.id','ASC')
@@ -35,7 +35,7 @@ class QuizController extends BaseController
             echo "<pre>";
             print_r($data);
             echo "<pre>";
-            exit();
+            exit();*/
 
   
         if (is_null($quiz)) {

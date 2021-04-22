@@ -123,9 +123,9 @@ class ProductController extends BaseController
         $skincareplan = Product::where('used_for_plan','Yes')->first();
         $skincareplan['image'] = url('/public/images/Products/').'/'.$skincareplan['image'];
   
-        if (is_null($upsellproduct)) {
+        if (is_null($skincareplan)) {
             return $this->sendError('Skin Care Plan Not Found.');
         }
-        return $this->sendResponse($upsellproduct, 'Skin Care Plan Retrieved Successfully.');
+        return $this->sendResponse($skincareplan, 'Skin Care Plan Retrieved Successfully.');
     }
 }

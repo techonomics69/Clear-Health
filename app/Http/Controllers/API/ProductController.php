@@ -120,7 +120,7 @@ class ProductController extends BaseController
 
     public function getskincareplan()
     {
-        $skincareplan = Product::where('used_for_plan','Yes')->get->toArray();
+        $skincareplan = Product::where('used_for_plan','Yes')->get()->toArray();
         $skincareplan['image'] = url('/public/images/Products/').'/'.$skincareplan['image'];
   
         if (is_null($skincareplan)) {

@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Quiz;
 use App\Models\QuizCategory;
+use App\Models\SubQuestionAnswer;
 use Session;
+use DB;
 
 class QuizController extends Controller
 {
@@ -31,8 +33,9 @@ class QuizController extends Controller
         $category = QuizCategory::pluck('name', 'id')->toArray();
         foreach ($category as $key => $value) {
             $quiz[$key][] = Quiz::where('category_id', $key)->OrderBy('id', 'ASC')->get();
+            $quizOrder[$key] = Quiz::where('category_id', $key)->OrderBy('id', 'ASC')->get()->pluck('order')->toArray();
         }
-        return view('quiz.index', compact('quiz','category'))->with('i', ($request->input('page', 1) -1) * 5);
+        return view('quiz.index', compact('quiz','category','quizOrder'))->with('i', ($request->input('page', 1) -1) * 5);
     }
 
     /**
@@ -43,8 +46,9 @@ class QuizController extends Controller
     public function create()
     {
         $category = QuizCategory::where('status','1')->pluck('name', 'id')->toArray();
+        $question = DB::table("quizzes")->pluck('question','id');
+        return view('quiz.create', compact('category','question'));
 
-        return view('quiz.create', compact('category'));
     }
 
     /**
@@ -55,13 +59,36 @@ class QuizController extends Controller
      */
     public function store(Request $request)
     {
+
         $this->validate($request, [
-            'question' => 'required',  
-            'status' => 'required|not_in:0',         
+            'question' => 'required',
+            'sub_heading' =>'required',  
+            'status' => 'required|not_in:0',
+            'sub_question' => 'required',
+            'option' => 'required', 
+            'parent_question' => 'required',
+            'option_answer' => 'required',
+            'product_recommendation' => 'required',
+            'recommendation_product' => 'required',       
         ]);
 
-        $quiz = Quiz::create($request->all());
-                
+        //$quiz = Quiz::create($request->all());
+
+        $quiz = Quiz::create([
+            'question' => $request->input('question'),
+            'sub_heading' => $request->input('sub_heading'),
+            'status' => $request->input('status'), 
+            'option' => $request->input('option'),
+            'sub_question'=> $request->input('sub_question'),
+            'category_id' => $request->input('category_id') ,
+            'use_for_recommendation' => $request->input('product_recommendation'),
+            'recommendation_product' => $request->input('recommendation_product')
+        ]);
+
+            $quizzes =SubQuestionAnswer::create(['question_id' => $quiz['id'],
+                'parent_question_id' => $request->input('parent_question'),
+                'option_select'=>$request->input('option_answer') ]); 
+
         toastr()->success('Quiz created successfully');
 
         Session::put('que_current_tab', $request['category_id']);
@@ -137,4 +164,30 @@ class QuizController extends Controller
         toastr()->success('Question deleted successfully');
         return redirect()->route('quiz.index');
     }
+
+    public function orderUpdate(Request $request)
+    {
+        $ids=$request['id'];
+        foreach ($ids as $key => $value) 
+            {
+        $update = array('order'=>$value);
+        $order = Quiz::where('id',$key)->update($update);
+            }
+    } 
+   
+    public function option(Request $request)
+        {
+
+        $option = DB::table("quizzes")->select('option')->where("id",$request->id)->first("option");
+        $options = explode(',',$option->option);  
+
+        //print_r($option1);
+        return response()->json($options);
+        // $option = Quiz::where("question", $request->question)->pluck("option");
+        } 
+        public function option_store(Request $request)
+        {
+
+
+        } 
 }

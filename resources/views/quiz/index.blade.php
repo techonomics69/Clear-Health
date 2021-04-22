@@ -2,6 +2,7 @@
 
 @section('title', 'clearHealth | Questions')
 @section('content')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 <div class="app-content content">
 @if ($message = Session::get('success'))
@@ -14,8 +15,7 @@
 	#question-tab-menu li a.active{
 		background-color: #43bfc1;
 		color: #ffffff;
-	}
-	
+	}	
 </style>
 
 @if(session()->has('que_current_tab'))
@@ -82,14 +82,19 @@
 										<tr>
 											<th width="60px">No</th>
 											<th>Name</th>
+											<th>Order</th>
 											<th width="200px">Action</th>
 										</tr>
 										</thead>
-										<tbody>					
+										<tbody>		
+
 											@foreach ($loopdata as $key => $data)
 											<tr>
 												<td>{{ ++$i }}</td>
 												<td>{{ $data->question }}</td>
+
+												<!-- <input type="hidden" id="{{ $data->id }}" value="{{ $data->order }}" class="orderval">  -->
+												<td><input type="text" id="{{ $data->id }}" value="{{ $data->order}}" class="order"/></td>												
 												<td>
 												<div class="d-flex">
 													<a class="icons edit-icon" href="{{ route('quiz.show',$data->id) }}">
@@ -100,26 +105,38 @@
 														<i class="fa fa-edit"></i>
 													</a>
 													@endcan
-													@can('quiz-delete')							
+													<!-- @can('quiz-delete')							
 													{!! Form::open(['method' => 'DELETE','route' => ['quiz.destroy', $data->id],'style'=>'display:inline']) !!}
 														<a class="icons edit-icon quiz_delete" href="#" id="{{$data->id}}" onclick="deleteQuiz({{$data->id}})">
 															<i class="fa fa-trash" aria-hidden="true"></i>
 														</a>
 														<button type="submit" class="btn btn-danger btn_delete{{$data->id}}" style="display:none;">Delete</button>
 													{!! Form::close() !!}
-													@endcan	
+													@endcan	 -->
 					                            </div>						
 												</td>
 											</tr>
+
 											@endforeach
 										@endforeach
+
 										</tbody>
 									</table>
 								</div>
+								 <div class="col-md-6 col-sm-6 col-xs-12">
+								<div class="col-xs-12 col-sm-12 col-md-12 text-right">
+                            <a href="{{ route('quiz.index') }}">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            </a>
+                    			<button type="button" class="btn btn-secondry" data-dismiss="modal" id="form{{$active+1}}">Submit</button>
+                        </div>
 							</div>
+</div>
 					  </div>  
+
 					  	<?php $active++ ?>
 					  	@endforeach
+
 					</div>
 				</section>
 			</div>
@@ -139,7 +156,7 @@
 		});
 	});
 	
-	function deleteQuiz(e){
+	/*function deleteQuiz(e){
        swal({
         title: "Are you sure want to delete?",
         text: "If you delete this Quiz, it's not recoverable ",
@@ -153,7 +170,30 @@
 				 $('.btn_delete'+e)[0].click();    
             } 
         });
-	};
+	};*/
+
+
+$(document).ready(function(){
+	$('#form1').click(function(e){
+		var ids = [];
+		$(".order").each(function(){
+		ids[$(this).attr('id')] = $(this).val();
+  	});
+	json = Object.assign({}, ids);
+	//console.log(json);
+	$.ajax({ 
+        	type:"POST",         
+        	url:"{{ route('orderUpdate.update') }}",
+        	data:{
+        	"_token": "{{ csrf_token() }}",
+        	"id": json
+        	}, 
+        	success: function(response){
+           	toastr.success('Order Updated');
+      	}
+    	});
+		});
+	});
 </script>
 @endsection
 

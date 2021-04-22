@@ -189,7 +189,10 @@ Route::group(['middleware' => ['auth']],function(){
     Route::get('admin/quiz/show/{id}', [QuizController::class, 'show'])->name('quiz.show');
     Route::get('admin/quiz/edit/{id}', [QuizController::class, 'edit'])->name('quiz.edit');
     Route::patch('admin/quiz/update/{id}', [QuizController::class, 'update'])->name('quiz.update');
-    Route::delete('admin/quiz/destroy/{id}', [QuizController::class, 'destroy'])->name('quiz.destroy');     
+    Route::delete('admin/quiz/destroy/{id}', [QuizController::class, 'destroy'])->name('quiz.destroy');
+    Route::post('admin/quiz/orderUpdate', [QuizController::class, 'orderUpdate'])->name('orderUpdate.update');
+    Route::get('admin/quiz/option', [QuizController::class, 'option'])->name('quiz.option');
+         
 // Quiz Category Routes
     Route::get('admin/quizCategory', [QuizCategoryController::class, 'index'])->name('quizCategory.index');
     Route::get('admin/quizCategory/create', [QuizCategoryController::class, 'create'])->name('quizCategory.create');

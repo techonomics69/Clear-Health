@@ -95,12 +95,12 @@ class CheckoutController extends BaseController
                     'patient_firstname' => 'required',
                     'patient_lastname' => 'required',
                     'addressline1' => 'required',
-                    'addressline2' => 'required',
+                    'addressline2' => '',
                     'city' => 'required',
                     'state' => 'required',
                     'zipcode' => 'required',
                     'email' => 'required',
-                    'phone' => 'required',
+                    'phone' => '',
                     'address_type'=> 'required',
                 ]);
                 if($validator->fails()){

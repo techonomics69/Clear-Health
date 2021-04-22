@@ -121,7 +121,12 @@ class ProductController extends BaseController
     public function getskincareplan()
     {
         $skincareplan = Product::where('used_for_plan','Yes')->get()->toArray();
-        $skincareplan['image'] = url('/public/images/Products/').'/'.$skincareplan['image'];
+
+        foreach($skincareplan as $key=>$val){
+            $val['image'] = url('/public/images/Products/').'/'.$val['image'];
+
+        }
+        
   
         if (is_null($skincareplan)) {
             return $this->sendError('Skin Care Plan Not Found.');

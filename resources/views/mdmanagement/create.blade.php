@@ -21,7 +21,7 @@
                         <div class="breadcrumb-wrapper col-12 d-flex">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="">Dashboard</a></li>
-                                <li class="breadcrumb-item active">Create Md Management</li>
+                                <li class="breadcrumb-item active">Create Md </li>
                             </ol>
                         </div>
                 </div>

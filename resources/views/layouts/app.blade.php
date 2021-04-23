@@ -557,7 +557,7 @@ data-open="click" data-menu="vertical-menu" data-col="2-columns">
                 @endcanany
 
                 @canany(['quiz-list','quiz-create', 'quiz-edit', 'quiz-delete','quizCategory-list','quizCategory-create','quizCategory-edit','quizCategory-delete'])
-                <li class="nav-item sub-menu has-sub quiz-sub-menu {{ Request::is('admin/quiz*') ? 'active' : '' }}">
+                <li class="nav-item sub-menu has-sub faq-sub-menu {{ Request::is('admin/quiz*') ? 'active' : '' }}">
                   <a class="menu-item" href="#">
                     
                   <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 512 512" width="20"><path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 405.332031c-11.777344 0-21.332031-9.554687-21.332031-21.332031s9.554687-21.332031 21.332031-21.332031 21.332031 9.554687 21.332031 21.332031-9.554687 21.332031-21.332031 21.332031zm33.769531-135.636719c-7.550781 3.476563-12.4375 11.09375-12.4375 19.394532v9.578125c0 11.773437-9.535156 21.332031-21.332031 21.332031s-21.332031-9.558594-21.332031-21.332031v-9.578125c0-24.898438 14.632812-47.722656 37.226562-58.15625 21.738281-10.003906 37.4375-36.566406 37.4375-49.601563 0-29.394531-23.914062-53.332031-53.332031-53.332031s-53.332031 23.9375-53.332031 53.332031c0 11.777344-9.539063 21.335938-21.335938 21.335938s-21.332031-9.558594-21.332031-21.335938c0-52.925781 43.070312-96 96-96s96 43.074219 96 96c0 28.824219-25.003906 71.191407-62.230469 88.363281zm0 0"/></svg>
@@ -643,40 +643,40 @@ data-open="click" data-menu="vertical-menu" data-col="2-columns">
                     <ul class="menu-content">
                         <li class="sub-menu mdmanagement-list ">
                           <a href="{{ route('mdmanagement.index') }}">
-                            Md Management List
+                            Md List
                           </a>                          
                         </li>
                         <li class="sub-menu  mdmanagement-create">
                           <a href="{{ route('mdmanagement.create') }}">
-                            Md Management Create
+                            Md Create
                           </a>                          
                         </li>                                                               
                     </ul> 
                 </li>
                
                 <!-- -->
-
-
-                 <li class="nav-item sub-menu has-sub order-management-sub-menu {{ Request::is('admin/ordermanagement*') ? 'active' : '' }}">
+<!---->
+ <li class="nav-item sub-menu has-sub mdmanagement-sub-menu {{ Request::is('admin/mdmanagement*') ? 'active' : '' }}">
                   <a class="menu-item" href="#">
                   <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" enable-background="new 0 0 511.938 511.938" height="20" viewBox="0 0 511.938 511.938" width="20"><g><path d="m217.941 11.378h73.482v88.591h-73.482z"/><path d="m217.941 134.067h73.482v45.448h-73.482z"/><path d="m27.275 134.067v162.625c10.57 2.002 20.58 7.315 28.39 15.793l56.29 61.1c.144.157.298.303.445.458v-12.434c0-26.147 21.272-47.418 47.418-47.418h78.825c9.787 1.106 35.702-13.721 44.638-17.274 37.94-17.638 81.122-16.941 118.472 1.912l22.715 11.538c6.361-20.427 24.622-35.225 46.112-35.225h13.471v-141.075h-158.53v62.497c0 9.416-7.633 17.049-17.049 17.049h-107.58c-9.416 0-17.049-7.633-17.049-17.049v-62.497z"/><path d="m325.521 99.969h158.529v-64.943c0-13.061-8.798-23.648-19.651-23.648h-138.878z"/><path d="m470.578 309.24c-7.956 0-14.428 7.637-14.428 17.024v152.404c0 9.387 6.473 17.024 14.428 17.024h26.931c7.956 0 14.429-7.637 14.429-17.024v-152.404c0-9.387-6.473-17.024-14.429-17.024z"/><path d="m183.844 11.378h-140.238c-9.019 0-16.331 8.799-16.331 19.653v68.938h156.569z"/><path d="m30.587 335.588c-15.064-15.064-40.707 4.627-26.378 22.147l76.792 93.094c26.07 31.604 64.519 49.73 105.488 49.73h86.856c32.255 0 64.519-3.788 95.895-11.259l52.813-12.631v-129.284l-35.704-18.136c-27.936-14.101-60.279-14.623-88.693-1.412l-30.367 14.118c-8.912 4.143-18.818 6.333-28.646 6.333h-78.825c-7.345 0-13.321 5.975-13.321 13.321v25.827h153.113c9.416 0 17.049 7.633 17.049 17.049s-7.633 17.049-17.049 17.049h-156.062c-19.78.239-42.502-9.027-56.671-24.845z"/></g></svg>
                    <span class="menu-title siebartext" data-i18n="">Order Management</span> 
                                              
                   </a>
                     <ul class="menu-content">
-                        <li class="sub-menu order-management-list ">
+                        <li class="sub-menu mdmanagement-list ">
                          <a href="{{ route('ordermanagement.index') }}">
                             Order Management List
                           </a>                          
                         </li>
-                        {{--  <li class="sub-menu  mdmanagement-create">
+                        <!-- <li class="sub-menu  mdmanagement-create">
                           <a href="{{ route('mdmanagement.create') }}">
                             Md Management Create
                           </a>                          
-                        </li>   --}}                                                              
+                        </li>  -->                                                              
                     </ul> 
                 </li>
 
+<!---->
                 <!-- -->
                 {{--   @canany(['quiz-list','quiz-create', 'quiz-edit', 'quiz-delete','quizCategory-list','quizCategory-create','quizCategory-edit','quizCategory-delete']) --}}
                 <li class="nav-item sub-menu has-sub ipledgeimports-sub-menu {{-- {{ Request::is('admin/ipledgeimports') ? 'active' : '' }} --}}">
@@ -984,28 +984,6 @@ data-open="click" data-menu="vertical-menu" data-col="2-columns">
                     }
                   }
 
-                   else if(pagename == "quiz"){
-                      if(splitUrl[splitUrl.length-1]=="create"){
-                        $(".quiz-sub-menu").addClass('open active');
-                          $(".quiz-create").addClass('active');
-                      }
-                      else{
-                      $(".quiz-sub-menu").addClass('open active');
-                          $(".quiz-list").addClass('active');
-                        }
-                  }
-
-                   else if(pagename == "quizCategory"){
-                      if(splitUrl[splitUrl.length-1]=="create"){
-                        $(".quiz-sub-menu").addClass('open active');
-                          $(".quiz-category-create").addClass('active');
-                      }
-                      else{
-                      $(".quiz-sub-menu").addClass('open active');
-                          $(".quiz-category-list").addClass('active');
-                        }
-                  }
-
                   else if(pagename == "ipledgeimports"){
                   if(splitUrl[splitUrl.length-1]=="create"){
                     $(".ipledgeimports-sub-menu").addClass('open active');
@@ -1025,17 +1003,6 @@ data-open="click" data-menu="vertical-menu" data-col="2-columns">
                   else{
                   $(".casemanagement-sub-menu").addClass('open active');
                       $(".casemanagement-list").addClass('active');
-                    }
-                  }
-
-                  else if(pagename == "ordermanagement"){
-                  if(splitUrl[splitUrl.length-1]=="show"){
-                    /*$(".casemanagement-sub-menu").addClass('open active');
-                      $(".casemanagement-create").addClass('active');*/
-                  }
-                  else{
-                  $(".order-management-sub-menu").addClass('open active');
-                      $(".order-management-list").addClass('active');
                     }
                   }
 

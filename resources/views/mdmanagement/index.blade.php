@@ -19,7 +19,7 @@
                             <div class="breadcrumb-wrapper col-12 d-flex">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{url('/admin/dashboard')}}">Dashboard</a></li>
-                                    <li class="breadcrumb-item active">Md Management List</li>
+                                    <li class="breadcrumb-item active">Md List</li>
                                 </ol>
                             </div>
                     </div>
@@ -27,7 +27,7 @@
                 <div class="content-header-right col-md-6 col-12 mb-2">
                         <div class="pull-right">
                                      
-                            <a class="btn btn-secondry" href="{{ route('mdmanagement.create') }}"><i class="fa fa-plus" aria-hidden="true"></i> Create New Md Management</a>
+                            <a class="btn btn-secondry" href="{{ route('mdmanagement.create') }}"><i class="fa fa-plus" aria-hidden="true"></i> Create New Md </a>
                        
                         </div>
                 </div>

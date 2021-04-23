@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'clearHealth | QuizCategories')
+@section('title', 'clearHealth | QuestionCategories')
 @section('content')
 
 <div class="app-content content">
@@ -14,12 +14,12 @@
 <div class="content-wrapper">
 	<div class="content-header row">
 				<div class="content-header-left col-md-6 col-12 mb-2">
-					<h3 class="content-header-title mb-0">QuizCategories</h3>
+					<h3 class="content-header-title mb-0">Question Categories</h3>
 					<div class="row breadcrumbs-top">
 							<div class="breadcrumb-wrapper col-12 d-flex">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="{{url('/admin/dashboard')}}">Dashboard</a></li>
-									<li class="breadcrumb-item active">QuizCategories List</li>
+									<li class="breadcrumb-item active">Question Categories List</li>
 								</ol>
 							</div>
 					</div>
@@ -27,7 +27,7 @@
 				<div class="content-header-right col-md-6 col-12 mb-2">
 						<div class="pull-right">
 						@can('quizCategory-create')					
-							<a class="btn btn-secondry" href="{{ route('quizCategory.create') }}"><i class="fa fa-plus" aria-hidden="true"></i> Create New Quiz Category</a>
+							<a class="btn btn-secondry" href="{{ route('quizCategory.create') }}"><i class="fa fa-plus" aria-hidden="true"></i> Create New Question Category</a>
 						@endcan	
 						</div>
 				</div>

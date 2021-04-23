@@ -61,14 +61,15 @@ class QuizController extends Controller
 
         $this->validate($request, [
             'question' => 'required',
-            'sub_heading' =>'required',  
-            'status' => 'required|not_in:0',
-            'sub_question' => 'required',
-            'option' => 'required', 
-            'parent_question' => 'required',
-            'option_answer' => 'required',
-            'product_recommendation' => 'required',
-            'recommendation_product' => 'required',       
+            'option' => 'required',
+            'status' => 'required|not_in:0', 
+            //'category' => 'required',
+            //'sub_heading' =>'required',  
+            //'sub_question' => 'required',
+            //'parent_question' => 'required',
+            //'option_answer' => 'required',
+            //'product_recommendation' => 'required',
+            //'recommendation_product' => 'required',       
         ]);
 
         //$quiz = Quiz::create($request->all());

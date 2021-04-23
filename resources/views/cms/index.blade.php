@@ -58,7 +58,7 @@
 							<tr>
 								<th width="60px">No</th>
 								<th>Title</th>
-								<th>URL</th>
+								<!-- <th>URL</th> -->
 								<th>Status</th>					
 								<th width="200px">Action</th>
 							</tr>
@@ -68,7 +68,7 @@
 							<tr>
 								<td>{{ ++$i }}</td>
 								<td>{{ $cms_value->title }}</td>
-								<td>{{ $cms_value->url }}</td>
+								<!-- <td>{{ $cms_value->url }}</td> -->
 								<td>
 									@if($cms_value->status == 1)
 										<span class="badge badge-success">On</span>

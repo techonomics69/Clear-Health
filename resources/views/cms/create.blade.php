@@ -58,7 +58,7 @@
                                 <div class="col-md-4 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <strong>URL:</strong>
-                                    <span class="required">*</span>
+                                    <!-- <span class="required">*</span> -->
                                     {!! Form::text('url', null, array('placeholder' => 'URL','class' => 'form-control')) !!}
                                 </div>
                                 </div>

@@ -53,7 +53,7 @@ class CmsController extends Controller
         $regex = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
         $this->validate($request, [
             'title' => 'required',
-            'url' => ['regex:'.$regex,'nullable'],
+           /* 'url' => ['regex:'.$regex,'nullable'],*/
             'meta_title' => 'required',
             'meta_description' => 'required',
             'meta_keyword' => 'required',
@@ -112,7 +112,7 @@ class CmsController extends Controller
         $regex = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
         $this->validate($request, [
             'title' => 'required',
-            'url' => ['regex:'.$regex,'nullable'],
+            /*'url' => ['regex:'.$regex,'nullable'],*/
             'meta_title' => 'required',
             'meta_description' => 'required',
             'meta_keyword' => 'required',

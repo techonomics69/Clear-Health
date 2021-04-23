@@ -45,8 +45,8 @@
             {{ $quiz->question }}
         </div>
         <div class="form-group">
-            <strong>Answer:</strong>
-            {{ $quiz->answer }}
+            <strong>Sub Heading:</strong>
+            {{ $quiz->sub_heading }}
         </div>
         <div class="form-group">
             <strong>Option Type:</strong>
@@ -54,7 +54,19 @@
         </div>
         <div class="form-group">
             <strong>Option:</strong>
-            {{ $quiz->option }}
+            {{ $quiz->option}}
+        </div>
+        <div class="form-group">
+            <strong>Sub Question:</strong>
+            @foreach ($question_select as $question)
+            {{ $question->question}}
+            @endforeach
+        </div>
+        <div class="form-group">
+            <strong>Sub Question Option:</strong>
+            @foreach ($question_select as $options)
+            {{ $options->option_select }}
+            @endforeach
         </div>
         <div class="form-group">
             <strong>Status:</strong>

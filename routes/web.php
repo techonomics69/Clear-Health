@@ -235,6 +235,8 @@ Route::group(['middleware' => ['auth']],function(){
     Route::patch('admin/mdmanagement/update/{id}', [MdManagementController::class, 'update'])->name('mdmanagement.update');
     Route::delete('admin/mdmanagement/destroy/{id}', [MdManagementController::class, 'destroy'])->name('mdmanagement.destroy');
 
+    //Order Managment
+    Route::get('admin/ordermanagement', [OrderManagementController::class, 'index'])->name('ordermanagement.index');
 
 });
 

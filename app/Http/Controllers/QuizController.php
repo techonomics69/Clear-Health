@@ -48,7 +48,6 @@ class QuizController extends Controller
         $category = QuizCategory::where('status','1')->pluck('name', 'id')->toArray();
         $question = DB::table("quizzes")->pluck('question','id');
         return view('quiz.create', compact('category','question'));
-
     }
 
     /**
@@ -85,7 +84,7 @@ class QuizController extends Controller
             'recommendation_product' => $request->input('recommendation_product')
         ]);
 
-            $quizzes =SubQuestionAnswer::create(['question_id' => $quiz['id'],
+        $quizzes =SubQuestionAnswer::create(['question_id' => $quiz['id'],
                 'parent_question_id' => $request->input('parent_question'),
                 'option_select'=>$request->input('option_answer') ]); 
 
@@ -105,8 +104,12 @@ class QuizController extends Controller
     public function show($id)
     {
         $quiz = Quiz::find($id);
+        $question_select = SubQuestionAnswer::where('question_id',$quiz->id)
+        ->join('quizzes','quizzes.id', '=', 'sub_question_answer.parent_question_id')
+        ->select('sub_question_answer.option_select','quizzes.question')->get();
+
         //$tags = Tag::pluck('tag', 'id')->toArray();
-        return view('quiz.show',compact('quiz'));
+        return view('quiz.show',compact('quiz','question_select'));
     }
 
     /**
@@ -118,18 +121,22 @@ class QuizController extends Controller
     public function edit($id)
     {
         $quiz = Quiz::find($id);
+        //$select_option = explode(',',  $quiz->option);
+        $question = DB::table("quizzes")->pluck('question','id');
+        $question_select = SubQuestionAnswer::join('quizzes','quizzes.id', '=', 'sub_question_answer.question_id')
+                    ->select('sub_question_answer.*')->get();
+
         $category = QuizCategory::where('status','1')->pluck('name', 'id')->toArray();
-        return view('quiz.edit',compact('category','quiz'));
+        return view('quiz.edit',compact('category','quiz','question','question_select'));
     }
 
     /**
      * Update the specified resource in storage.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+   public function update(Request $request, $id)
     {
         $this->validate($request, [
             'question' => 'required',  
@@ -137,8 +144,10 @@ class QuizController extends Controller
         ]); 
         
         $quiz = Quiz::find($id);
-        
-        $quiz->update($request->all());  
+
+        $quiz->update($request->all());
+
+        $quizzes = SubQuestionAnswer::where('question_id',$quiz->id)->update(['parent_question_id'=>$request['parent_question'],'option_select'=>$request['option_answer']]); 
 
         Session::put('que_current_tab', $request['category_id']);     
                 
@@ -180,14 +189,7 @@ class QuizController extends Controller
 
         $option = DB::table("quizzes")->select('option')->where("id",$request->id)->first("option");
         $options = explode(',',$option->option);  
-
-        //print_r($option1);
         return response()->json($options);
-        // $option = Quiz::where("question", $request->question)->pluck("option");
         } 
-        public function option_store(Request $request)
-        {
-
-
-        } 
+ 
 }

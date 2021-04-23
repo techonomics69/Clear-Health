@@ -48,10 +48,10 @@
                                         </div>
                                     </div>     
                                     <div class="col-xs-12 col-sm-12 col-md-12">
-                            <!-- <div class="form-group">
-                                <strong>Answer</strong>
-                                {!! Form::text('answer', null, array('placeholder' => 'Answer','class' => 'form-control')) !!}
-                            </div> -->                            
+                            <div class="form-group">
+                                <strong>Sub Heading</strong>
+                                {!! Form::text('sub_heading', null, array('placeholder' => 'sub_heading','class' => 'form-control')) !!}
+                            </div>                            
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
@@ -96,8 +96,68 @@
                                     {!! Form::select('category_id', ['0'=>'Please Select'] + $category, null, ['class' => 'form-control']) !!}
                                 </div>
                             </div>                               
-                                                              
-                          
+                               
+                               <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <strong>Is this Sub Question?</strong>
+                                    <span class="required">*</span>
+                        <strong>YES</strong> <input type="radio" name="sub_question" class="sub_que" id="{{ $quiz->sub_question}}" value="{{ $quiz->sub_question}}"  <?php if($quiz->sub_question == 'Yes') { echo "checked = checked";}?> onclick="show1();" />
+                            
+                        <strong>NO</strong> <input type="radio" name="sub_question" id="{{ $quiz->sub_question}}" value="{{ $quiz->sub_question}}" <?php if($quiz->sub_question == 'No') { echo "checked = checked";}?>  onclick="show1();" />
+                                </div>
+                            </div>
+                             <!-- <div class="col-xs-12 col-sm-12 col-md-12"> -->
+                              
+                        <div id="div1" class="hide" style="display: none">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group" >
+                                    <strong>Display Parent Question</strong>
+                                    <span class="required">*</span>
+                                    <select class="form-control" name="parent_question" id="parent_question">
+                                        <option value="" class="form-control">Select Question</option>
+                                        @foreach ($question as $key => $questions)
+                                        <option value="{{ $key }}" class="form-control" <?php if( $question_select[0]->question_id == $key ) { echo "selected = selected"; }?> > {{ $questions }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div> 
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <strong>Options</strong>
+                                    <span class="required">*</span>
+                                    <select name="option_answer" id="option_answer" class="form-control">
+                                         @foreach ($question_select as $que)
+                                    <option value="{{ $que->option_select }}" class="form-control"> {{ $que->option_select }} </option> 
+                                      @endforeach 
+                                    </select>
+                                    
+                                </div>
+                            </div>
+</div>                       
+<!-- </div> -->
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <strong>Is this question used for Product Recommendation?</strong>
+                                    <span class="required">*</span>
+    <strong>YES</strong> <input type="radio" class="product_rec" id="{{ $quiz->use_for_recommendation}}" name="product_recommendation" value="{{ $quiz->use_for_recommendation}}"  <?php if( $quiz->use_for_recommendation == 'Yes') { echo "checked = checked";}?>   onclick="show2();" />
+                                    
+    <strong>NO</strong> <input type="radio" name="product_recommendation" id="{{ $quiz->use_for_recommendation}}" value="{{ $quiz->use_for_recommendation}}" <?php if( $quiz->use_for_recommendation == 'No') { echo "checked = checked";}?> onclick="show2();" />
+                                  </div>
+                            </div>
+
+                        <div class="col-md-6 col-sm-6 col-xs-12 hide" id="div2" style="display: none">
+                                <div class="form-group">
+                                    <strong>Product Recommendation</strong>
+                                    <span class="required">*</span>
+                                    <select class="form-control" name="recommendation_product">
+                                    <option value="{{ $quiz->recommendation_product }}" class="form-control"> {{ $quiz->recommendation_product }} </option> 
+                                    <option value="Accutane">Accutane</option>
+                                    <option value="Topical Cream">Topical Cream</option>
+                                   
+                                </select>
+                                </div>
+                            </div>                               
+                         
                             <div class="col-xs-12 col-sm-12 col-md-12 text-right">
                                 <a href="{{ route('quiz.index') }}">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -134,10 +194,30 @@
   </div>
 </div>
 @section('scriptsection') 
-<script type="text/javascript">   
+<script type="text/javascript"> 
+
+//alert($(".sub_que").val());
+var sub_que = $(".sub_que").val();
+
+    if(sub_que == 'Yes'){
+    document.getElementById('div1').style.display ='block';
+    }else{
+    document.getElementById('div1').style.display = 'none';
+    }
+
     $('form').submit(function(){
         $(this).find('button[type=submit]').prop('disabled', true);
     });
+
+//alert($(".product_rec").val());
+var product_rec = $('.product_rec').val();
+
+    if(product_rec == 'Yes'){
+         document.getElementById('div2').style.display ='block';
+     }else{
+        document.getElementById('div2').style.display = 'none';
+     }
+
     $(function() {
         $('#optionType').change(function(){
             if($(this).val() == 'number'){
@@ -147,5 +227,45 @@
             }
         });
     });
+
+/*function show1()
+{
+    alert($(".sub_que").val());
+    if($(this).val() == 'Yes'){
+    document.getElementById('div1').style.display ='block';
+    }else{
+    document.getElementById('div1').style.display = 'none';
+    }
+}*/
+
+
+
+$(document).ready(function () { 
+
+    $('#parent_question').change(function(){
+    var parent_question = $(this).val();
+ 
+    if(parent_question){
+        $.ajax({
+           type:"GET",
+           url:"{{ route('quiz.option') }}?id="+parent_question,
+           success:function(res){               
+            if(res){
+                $("#option_answer").empty();
+                $("#option_answer").append('<option>Select Options</option>');
+                $.each(res,function(key,value){
+                    $("#option_answer").append('<option value="'+value+'">'+value+'</option>');
+                }); 
+            }else{
+               $("#option_answer").empty();
+            }
+           }
+        });
+    }else{
+        $("#option_answer").empty();
+    }      
+   });
+});
+
 </script>
 @endsection

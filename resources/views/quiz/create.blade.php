@@ -97,7 +97,7 @@
                         <div id="div1" class="hide row" style="display: none">
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group" >
-                                    <strong>Display Parent Question</strong>
+                                    <strong>Select Parent Question</strong>
                                     <span class="required">*</span>
                                     <select class="form-control" name="parent_question" id="parent_question">
                                         <option value="" class="form-control">Select Question</option>

@@ -115,9 +115,6 @@ class MdManagementController extends Controller
         $mdmanagement = Mdmanagement::find($id);
 
         $this->validate($request, [
-            'name' => 'required|unique:md_managment,name',
-            'status' => 'required|not_in:0',
-            'language_id' => 'required|not_in:0',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',         
         ]);
         

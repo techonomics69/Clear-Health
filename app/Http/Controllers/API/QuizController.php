@@ -35,11 +35,7 @@ class QuizController extends BaseController
  $quiz['sub_questions'] = $sub_questions;
  foreach($sub_questions as $key=>$value){
        $subquestion  = Quiz::select('question')->find($value['question_id']);
-
- echo "<pre>";
-            print_r($subquestion);
-            echo "<pre>";
-            exit();
+       $quiz['sub_questions']['sub_que']= $subquestion['question'];
  }
            
 

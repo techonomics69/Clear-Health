@@ -74,7 +74,7 @@
                                                                                        
                    </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 text-right">
-                            <a href="">
+                            <a href="{{ route('mdmanagement.index') }}">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                             </a>
                             <button type="submit" class="btn btn-secondry" data-dismiss="modal">Submit</button>

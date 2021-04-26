@@ -53,7 +53,7 @@
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <!-- BEGIN Custom CSS-->
   <link rel="stylesheet" type="text/css" href="{{ asset('theme/assets/css/style.css') }}">
-  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> -->
 
   <style type="text/css">
     .swal-icon.swal-icon--custom{ width: 80px }
@@ -492,7 +492,7 @@ data-open="click" data-menu="vertical-menu" data-col="2-columns">
                 @endcanany
 
                  @canany(['customer-list', 'customer-create', 'customer-edit', 'customer-delete'])
-                <li class="nav-item sub-menu has-sub product-sub-menu {{ Request::is('admin/customer*') ? 'active' : '' }}">
+                <li class="nav-item sub-menu has-sub customer-sub-menu {{ Request::is('admin/customer*') ? 'active' : '' }}">
                   <a class="menu-item" href="#">
                   <svg xmlns="http://www.w3.org/2000/svg" id="Capa_1" enable-background="new 0 0 512 512" height="20" viewBox="0 0 512 512" width="20"><g><circle cx="256" cy="119.631" r="87"/><circle cx="432" cy="151.63" r="55"/><circle cx="80" cy="151.63" r="55"/><path d="m134.19 256.021c-21.65-17.738-41.257-15.39-66.29-15.39-37.44 0-67.9 30.28-67.9 67.49v109.21c0 16.16 13.19 29.3 29.41 29.3 70.026 0 61.59 1.267 61.59-3.02 0-77.386-9.166-134.137 43.19-187.59z"/><path d="m279.81 241.03c-43.724-3.647-81.729.042-114.51 27.1-54.857 43.94-44.3 103.103-44.3 175.48 0 19.149 15.58 35.02 35.02 35.02 211.082 0 219.483 6.809 232-20.91 4.105-9.374 2.98-6.395 2.98-96.07 0-71.226-61.673-120.62-111.19-120.62z"/><path d="m444.1 240.63c-25.17 0-44.669-2.324-66.29 15.39 51.965 53.056 43.19 105.935 43.19 187.59 0 4.314-7.003 3.02 60.54 3.02 16.8 0 30.46-13.61 30.46-30.34v-108.17c0-37.21-30.46-67.49-67.9-67.49z"/></g></svg>
                    <span class="menu-title siebartext" data-i18n="">Customers</span> 
@@ -521,12 +521,12 @@ data-open="click" data-menu="vertical-menu" data-col="2-columns">
                                              
                   </a>
                     <ul class="menu-content">
-                        <li class="sub-menu product-list ">
+                        <li class="sub-menu product-list {{ Request::is('admin/products') ? 'active' : '' }}">
                           <a href="{{ route('products.index') }}">
                             Products List
                           </a>                          
                         </li>
-                        <li class="sub-menu  product-create">
+                        <li class="sub-menu  product-create {{ Request::is('admin/products/create') ? 'active' : '' }} ">
                           <a href="{{ route('products.create') }}">
                             Product Create
                           </a>                          
@@ -656,14 +656,14 @@ data-open="click" data-menu="vertical-menu" data-col="2-columns">
                
                 <!-- -->
 <!---->
- <li class="nav-item sub-menu has-sub mdmanagement-sub-menu {{ Request::is('admin/mdmanagement*') ? 'active' : '' }}">
+ <li class="nav-item sub-menu has-sub ordermanagement-sub-menu {{ Request::is('admin/ordermanagement*') ? 'active' : '' }}">
                   <a class="menu-item" href="#">
                   <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" enable-background="new 0 0 511.938 511.938" height="20" viewBox="0 0 511.938 511.938" width="20"><g><path d="m217.941 11.378h73.482v88.591h-73.482z"/><path d="m217.941 134.067h73.482v45.448h-73.482z"/><path d="m27.275 134.067v162.625c10.57 2.002 20.58 7.315 28.39 15.793l56.29 61.1c.144.157.298.303.445.458v-12.434c0-26.147 21.272-47.418 47.418-47.418h78.825c9.787 1.106 35.702-13.721 44.638-17.274 37.94-17.638 81.122-16.941 118.472 1.912l22.715 11.538c6.361-20.427 24.622-35.225 46.112-35.225h13.471v-141.075h-158.53v62.497c0 9.416-7.633 17.049-17.049 17.049h-107.58c-9.416 0-17.049-7.633-17.049-17.049v-62.497z"/><path d="m325.521 99.969h158.529v-64.943c0-13.061-8.798-23.648-19.651-23.648h-138.878z"/><path d="m470.578 309.24c-7.956 0-14.428 7.637-14.428 17.024v152.404c0 9.387 6.473 17.024 14.428 17.024h26.931c7.956 0 14.429-7.637 14.429-17.024v-152.404c0-9.387-6.473-17.024-14.429-17.024z"/><path d="m183.844 11.378h-140.238c-9.019 0-16.331 8.799-16.331 19.653v68.938h156.569z"/><path d="m30.587 335.588c-15.064-15.064-40.707 4.627-26.378 22.147l76.792 93.094c26.07 31.604 64.519 49.73 105.488 49.73h86.856c32.255 0 64.519-3.788 95.895-11.259l52.813-12.631v-129.284l-35.704-18.136c-27.936-14.101-60.279-14.623-88.693-1.412l-30.367 14.118c-8.912 4.143-18.818 6.333-28.646 6.333h-78.825c-7.345 0-13.321 5.975-13.321 13.321v25.827h153.113c9.416 0 17.049 7.633 17.049 17.049s-7.633 17.049-17.049 17.049h-156.062c-19.78.239-42.502-9.027-56.671-24.845z"/></g></svg>
                    <span class="menu-title siebartext" data-i18n="">Order Management</span> 
                                              
                   </a>
                     <ul class="menu-content">
-                        <li class="sub-menu mdmanagement-list ">
+                        <li class="sub-menu ordermanagement-list ">
                          <a href="{{ route('ordermanagement.index') }}">
                             Order Management List
                           </a>                          
@@ -951,6 +951,17 @@ data-open="click" data-menu="vertical-menu" data-col="2-columns">
                     }
                   }
 
+                 else if(pagename == "customer"){
+                  if(splitUrl[splitUrl.length-1]=="create"){
+                    $(".customer-sub-menu").addClass('open active');
+                      $(".customer-create").addClass('active');
+                  }
+                  else{
+                  $(".customer-menu").addClass('open active');
+                      $(".customer-list").addClass('active');
+                    }
+                  }
+
                   else if(pagename == "roles"){
                   if(splitUrl[splitUrl.length-1]=="create"){
                     $(".role-sub-menu").addClass('open active');
@@ -1015,6 +1026,27 @@ data-open="click" data-menu="vertical-menu" data-col="2-columns">
                   else{
                   $(".cms-sub-menu").addClass('open active');
                       $(".cms-list").addClass('active');
+                    }
+                  }
+                   else if(pagename == "mdmanagement"){
+                  if(splitUrl[splitUrl.length-1]=="create"){
+                    $(".mdmanagement-sub-menu").addClass('open active');
+                      $(".mdmanagement-create").addClass('active');
+                  }
+                  else{
+                  $(".mdmanagement-sub-menu").addClass('open active');
+                      $(".mdmanagement-list").addClass('active');
+                    }
+                  }
+                  
+                  else if(pagename == "ordermanagement"){
+                  if(splitUrl[splitUrl.length-1]=="create"){
+                    $(".ordermanagement-sub-menu").addClass('open active');
+                      $(".ordermanagement-create").addClass('active');
+                  }
+                  else{
+                  $(".ordermanagement-sub-menu").addClass('open active');
+                      $(".ordermanagement-list").addClass('active');
                     }
                   }
 
@@ -1110,5 +1142,5 @@ data-open="click" data-menu="vertical-menu" data-col="2-columns">
 }
   </style>
           </body>
-          <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <!--   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> -->
           </html>

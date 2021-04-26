@@ -85,7 +85,7 @@ class CustomerController extends Controller
             'gender'=>$request->gender,
             'role'=>$request->roles,
             'temp_password'=>$tempPass,
-             'role'=>'19',
+            'role'=>'19',
             'status'=>isset($request->is_active) ? 1 : 0
           ));
         $user->assignRole(19);
@@ -133,8 +133,9 @@ class CustomerController extends Controller
     {
         $user = User::find($id);
         $this->validate($request, [
-            // 'name' => 'required',            
-            'email' => 'required|unique:users,email,'.$user->id,           
+            // 'name' => 'required',
+            'email' => 'required|email|unique:users,email,'.$user->id,           
+            //'email' => 'required|unique:users,email,'.$user->id,           
         ]);
     
         $input = $request->all();

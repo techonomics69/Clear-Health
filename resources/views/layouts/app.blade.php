@@ -961,7 +961,7 @@ data-open="click" data-menu="vertical-menu" data-col="2-columns">
                       $(".customer-list").addClass('active');
                     }
                   }
-
+ 
                   else if(pagename == "roles"){
                   if(splitUrl[splitUrl.length-1]=="create"){
                     $(".role-sub-menu").addClass('open active');

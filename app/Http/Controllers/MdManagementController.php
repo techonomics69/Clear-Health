@@ -31,6 +31,7 @@ class MdManagementController extends Controller
         //$arrayName = array(['language_id']);
         $mdmanagement = Mdmanagement::all();
 
+
         foreach ($mdmanagement as $mdmanagementkey => $mdmanagementvalue) {
             $language_ids = explode(',',$mdmanagementvalue->language_id);
             $languages = Language::whereIn('id',$language_ids)->select('name')->get()->toArray();
@@ -42,23 +43,21 @@ class MdManagementController extends Controller
 
     public function create()
     {
-        $language = Language::pluck('name','id')->toArray();
+        $language = Language::pluck('name', 'id')->toArray();
         return view('mdmanagement.create',compact('language'));        
     }
 
     public function store(Request $request)
-    {   
-            $language_id =  implode(",",$request->language_id);
-            $request['language_id']=$language_id;
-
+    {               
             $this->validate($request, [
             'name' => 'required|unique:md_managment,name',
             'status' => 'required',
-            'language_id' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
-                        
+            //'language' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',                        
         ]);
 
+        $language_id =  implode(",",$request->language_id);
+        $request['language_id']=$language_id;
 
         $imageName = time().'.'.$request->image->extension();
 

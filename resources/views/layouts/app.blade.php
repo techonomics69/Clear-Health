@@ -499,12 +499,12 @@ data-open="click" data-menu="vertical-menu" data-col="2-columns">
                                              
                   </a>
                     <ul class="menu-content">
-                        <li class="sub-menu customer-list {{ Request::is('admin/customer') ? 'active' : '' }}">
+                        <li class="sub-menu customer-list">
                           <a href="{{ route('customers.index') }}">
                             Customers List
                           </a>                          
                         </li>
-                        <li class="sub-menu  customer-create {{ Request::is('admin/customer/create') ? 'active' : '' }}">
+                        <li class="sub-menu  customer-create">
                           <a href="{{ route('customers.create') }}">
                             Customer Create
                           </a>                          

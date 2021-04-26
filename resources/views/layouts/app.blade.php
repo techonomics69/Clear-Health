@@ -53,7 +53,7 @@
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <!-- BEGIN Custom CSS-->
   <link rel="stylesheet" type="text/css" href="{{ asset('theme/assets/css/style.css') }}">
-  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> -->
 
   <style type="text/css">
     .swal-icon.swal-icon--custom{ width: 80px }
@@ -1110,5 +1110,5 @@ data-open="click" data-menu="vertical-menu" data-col="2-columns">
 }
   </style>
           </body>
-          <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <!--   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> -->
           </html>

@@ -37,7 +37,7 @@ class QuizController extends BaseController
        $subquestion  = Quiz::select('question')->find($value['question_id']);
 
  echo "<pre>";
-            print_r($data);
+            print_r($subquestion);
             echo "<pre>";
             exit();
  }

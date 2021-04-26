@@ -109,20 +109,18 @@ class MdManagementController extends Controller
 
     public function update(Request $request, $id)
     {
-         
+         $language_id =  implode(",",$request->language_id);
+         $request['language_id']=$language_id;
        
         $mdmanagement = Mdmanagement::find($id);
 
         $this->validate($request, [
-            //'name' => 'required|unique:md_managment,name',
-            //'status' => 'required|not_in:0',
-            //'language_id' => 'required|not_in:0',
+            'name' => 'required|unique:md_managment,name',
+            'status' => 'required|not_in:0',
+            'language_id' => 'required|not_in:0',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',         
         ]);
-
-        $language_id =  implode(",",$request->language_id);
-        $request['language_id']=$language_id;
-
+        
         if(!empty($request->image)):
             $imageName = time().'.'.$request->image->extension();
 

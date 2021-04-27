@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\API\BaseController as BaseController;
 use Illuminate\Http\Request;
 use App\Models\QuizAnswer;
+use App\Models\Quiz;
 use Validator;
 use Exception;
 use Lcobucci\JWT\Parser;

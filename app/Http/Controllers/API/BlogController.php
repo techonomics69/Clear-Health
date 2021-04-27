@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Models\Blog;
+use App\Models\Tag;
 use DB;
 use URL;
 use Validator;
@@ -57,6 +58,18 @@ class BlogController extends BaseController
                     }
                 }
                 $blogs[$key]['body'] = $bodyText;
+                $tags = Tag::pluck('tag', 'id')->toArray();
+                $tagId = explode(",",$value->tags);
+                $tagArray = [];
+                foreach ($tags as $tagkey => $tagvalue) {
+                    foreach ($tagId as $tagidkey => $tagidvalue) {
+                        if($tagidvalue == $tagkey){
+                            array_push($tagArray, $tagvalue);
+                        }
+                    }
+                }
+                $tagname = implode(", ",$tagArray);
+                $blogs[$key]['tagname'] = $tagname;
             }
         }
         

@@ -490,7 +490,7 @@ public function create_patient(Request $request)
     //$file_temp_name = $documents->getfileName();
     //$file_temp_path = $documents->getpathName();
 
-    $input = $request->all();
+        $input = $request->all();
     /*$input['file'] = $file_temp_name.'/'.$file_temp_path;
 
     echo "<pre>";
@@ -528,6 +528,42 @@ public function create_patient(Request $request)
 
 
     //return $this->sendResponse(json_decode($response),'File Created Successfully');
+
+  }
+
+  public function getPharmacies(Request $request){
+    $r = $this->get_token();
+    $token_data = json_decode($r);
+    $token = $token_data->access_token;
+
+    $zip = $request['zipcode'];
+
+    //$input = json_encode($request->all());
+
+    //$input_data = $request->all();
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/pharmacies?zip='.$zip,
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'GET',
+      CURLOPT_HTTPHEADER => array(
+        'Authorization: Bearer '.$token,
+        'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+      ),
+    ));
+
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+    return $this->sendResponse(json_decode($response),'Pharmacies Recieved Successfully');
+
 
   }
 

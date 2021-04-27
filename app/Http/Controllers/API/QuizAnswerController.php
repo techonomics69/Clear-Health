@@ -151,4 +151,16 @@ class QuizAnswerController extends BaseController
         }
 
     }
+
+    public function ProductRecommend(Request $request)
+    {
+        try{
+            $recommendation = Quiz::where('use_for_recommendation', 'yes')->get(); 
+            return $this->sendResponse($recommendation, 'Product recommendation successfully.');   
+            }
+            catch(\Exception $ex){
+            return $this->sendError('Server error', array($ex->getMessage()));
+         }
+    
+        }
 }

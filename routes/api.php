@@ -68,7 +68,7 @@ Route::post('forgot_password',[RegisterController::class, 'forgot_password']);
     Route::post('getCheckoutAddress', [CheckoutController::class, 'getCheckoutAddress']);
     Route::get('getUpsellProductDetails', [ProductController::class, 'getUpsellProductDetails']);
     Route::get('getskincareplan', [ProductController::class, 'getskincareplan']);
-
+    Route::post('ProductRecommend',[QuizAnswerController::class, 'ProductRecommend']);
 
     //MD API
 

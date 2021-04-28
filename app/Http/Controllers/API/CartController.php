@@ -151,6 +151,7 @@ class CartController extends BaseController
                 $data[$key]['product_image'] = $value->product->image;
                 $data[$key]['product_price'] = $value->product->price;
                 $data[$key]['product_category'] = $value->product->category->name;
+                $data[$key]['order_type'] = ($value->order_type != '') ? $value->order_type : "";
             }
             return $this->sendResponse($data, 'Item retrieved successfully.');
         }catch(\Exception $ex){

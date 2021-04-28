@@ -14,7 +14,7 @@ class AddFieldOrderTypeInCartsTablee extends Migration
     public function up()
     {
         Schema::table('carts', function (Blueprint $table) {
-         $table->string('order_type')->nullable()->after('quantity');
+         $table->string('order_type')->nullable()->after('quantity')->comment = "prescribed/non_prescribed";
         });
     }
 

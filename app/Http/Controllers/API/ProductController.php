@@ -17,7 +17,7 @@ class ProductController extends BaseController
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::where('product_active', '1')->get();
          foreach ($products as $key => $value) {
             $value->category_name = $value->category->name;
         }
@@ -103,15 +103,5 @@ class ProductController extends BaseController
         /*$product->delete();
    
         return $this->sendResponse([], 'Product deleted successfully.');*/
-    }
-    public function ProductActive(Request $request)
-    {
-        try{
-            $productactive = Product::where('product_active', '1')->get(); 
-            return $this->sendResponse($productactive, 'Product Active successfully.');   
-            }
-        catch(\Exception $ex){
-            return $this->sendError('Server error', array($ex->getMessage()));
-         }
     }
 }

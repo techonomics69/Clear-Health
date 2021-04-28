@@ -53,7 +53,6 @@ Route::post('forgot_password',[RegisterController::class, 'forgot_password']);
     Route::post('getQuizAnswer', [QuizAnswerController::class, 'getAnswerByUserQuestionCaseID']);
     Route::get('quizCategory', [QuizController::class ,'getQuizCategoryList']);
 	Route::post('user/update/{id}', [UserController::class, 'update_user']);
-    Route::get('user/{id}', [UserController::class, 'show']);
     Route::get('userlist', [UserController::class, 'userlist']);
     Route::post('sendmail', [UserController::class, 'sendmail']); 
     Route::post('addParentdetails', [UserController::class, 'addParentdetails']);
@@ -64,25 +63,8 @@ Route::post('forgot_password',[RegisterController::class, 'forgot_password']);
     Route::resource('caseManagement', CaseManagementController::class);
     Route::post('createOrder', [CheckoutController::class, 'store']);
     Route::post('addCheckoutAddress', [CheckoutController::class, 'addCheckoutAddress']);
-    Route::post('getCheckoutdetail', [CheckoutController::class, 'getCheckoutdetail']);
-    Route::post('getCheckoutAddress', [CheckoutController::class, 'getCheckoutAddress']);
-    Route::get('getUpsellProductDetails', [ProductController::class, 'getUpsellProductDetails']);
-    Route::get('getskincareplan', [ProductController::class, 'getskincareplan']);
     Route::post('ProductRecommend',[QuizAnswerController::class, 'ProductRecommend']);
-
-    //MD API
-
-    Route::post('create_patient', [CaseManagementController::class, 'create_patient']);
-    Route::post('demo', [CaseManagementController::class, 'demo']);
-    Route::post('getToken', [CaseManagementController::class, 'get_token']);
-    Route::post('searchStateDetail', [CaseManagementController::class, 'searchStateDetail']);//search state data
-    Route::get('getAllStates', [CaseManagementController::class, 'getAllStates']);
-    Route::post('getCitiesFromGivenState', [CaseManagementController::class, 'getCitiesFromGivenState']);
-    Route::post('SearchCitiesFromGivenState', [CaseManagementController::class, 'SearchCitiesFromGivenState']);//search city data
-    Route::post('createCaseFile', [CaseManagementController::class, 'createCaseFile']);
-    Route::post('getPharmacies', [CaseManagementController::class, 'getPharmacies']);
-    //end of md api
-    
+    Route::post('ProductActive',[ProductController::class, 'ProductActive']);
 
     Route::group(['middleware' => 'auth:api'], function(){});
 //});

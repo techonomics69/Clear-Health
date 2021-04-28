@@ -99,7 +99,16 @@
             <strong>Weight:</strong>
             {{ $product->weight }} {{ $product->weight_unit }}
         </div>
-
+<div class="form-group">
+            <strong>Product Status:</strong>
+            @if($product->product_active =='1')   
+                <span class="badge badge-success">Active</span>
+            @elseif($product->product_active =='2')
+                <span class="badge badge-danger">InActive</span>
+            @else
+                <span class="badge badge-danger">Do Not Show</span>
+            @endif
+        </div>
         <div class="form-group">
             <strong>Image:</strong>
             <img src="{{ asset('public/images/Products/'.$product->image) }}" alt="Product Image" title="Product Image" width="200px">            

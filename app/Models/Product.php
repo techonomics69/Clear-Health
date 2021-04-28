@@ -15,7 +15,7 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'detail', 'status', 'available_date', 'category_id', 'retails_price', 'detail', 'quantity', 'min_quantity_alert', 'image', 'url', 'price', 'weight', 'weight_unit','short_description'
+        'name', 'detail', 'status', 'available_date', 'category_id', 'retails_price', 'detail', 'quantity', 'min_quantity_alert', 'image', 'url', 'price', 'weight', 'weight_unit','short_description','upsell','product_active',
     ];
 
     public function category()

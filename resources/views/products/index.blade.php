@@ -9,7 +9,15 @@
     <p>{{ $message }}</p>
 </div>
 @endif
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
 
+</body>
+</html>
 
 <div class="content-wrapper">
     <div class="content-header row">
@@ -34,7 +42,7 @@
             </div>
 <div class="row">
     <div class="col-lg-12">
-        <section class="card" >
+        <section class="card">
 
             <!-- <div class="col-lg-12 margin-tb card-header ">
                 <div class="pull-left">
@@ -81,15 +89,14 @@
                             <span class="badge badge-danger">Out Of Stock</span>
                         @endif
                     </td>
-                    <td>
+                   <td>
                     <?php if($product->upsell == 'Yes') { ?>
-                       <input type="radio" name="yes" id="{{$product->id}}" value="YES" onchange="enableTxt(this)" checked="checked">
+                       <input type="radio" name="yes" id="{{$product->id}}" value="YES" onchange="enableTxt(this)" checked="checked"></td>
 
                     <?php } else { ?>
-                    <input type="radio" name="yes" id="{{$product->id}}" value="YES" onchange="enableTxt(this)">
+                    <input type="radio" name="yes" id="{{$product->id}}" value="YES" onchange="enableTxt(this)"></td>
                     <?php }?>
-                    </td>
-                    
+                     
                     <td>{{ number_format($product->price, 2, '.', ',') }}</td>
                     <td>
                         <a class="icons edit-icon" href="{{ route('products.show',$product->id) }}">
@@ -99,7 +106,7 @@
                         <a class="icons edit-icon" href="{{ route('products.edit',$product->id) }}">
                             <i class="fa fa-edit"></i>
                         </a>  
-                        @endcan
+                        @endcan                                                                                                                                                                                    
                         @can('product-delete')                          
                         {!! Form::open(['method' => 'DELETE','route' => ['products.destroy', $product->id],'style'=>'display:inline']) !!}
                             <a class="icons edit-icon product_delete" href="#" id="{{$product->id}}" onclick="deleteProduct({{$product->id}})">
@@ -123,7 +130,7 @@
 @endsection
 
 @section('scriptsection')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
 <script>
     $.noConflict();
     jQuery( document ).ready(function( $ ) {
@@ -147,7 +154,8 @@
             } 
         });
     };
-</script>
+</script> 
+
 <script>
     function enableTxt(elem) {
     var id = $(elem).attr("id");
@@ -161,7 +169,7 @@
         "id": id
         }, 
         success: function(response){
-            toastr.success('Upsell Upadated');
+        toastr.success('Upsell Upadated');
       }
     });
 }

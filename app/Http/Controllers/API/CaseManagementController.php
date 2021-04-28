@@ -554,7 +554,7 @@ public function create_patient(Request $request)
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => 'GET',
       CURLOPT_HTTPHEADER => array(
-        'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJjN2EyMGE5MC00ZGI5LTQyZTQtODYwYS03ZjQxYzJhOGEwYjEiLCJqdGkiOiIwMzZiOWI5NGUxZTBjNjUwZmQ1MTM5ZmJlNDgwNTNkNzM0MTdmMjU0ZGZmNDlkYTljNWM5NDEyNWNhOTg4ZDI1NjFlNzkzYzI5Y2IzZmU0MSIsImlhdCI6MTYxOTYwMzQ4My4xOTIwMDgsIm5iZiI6MTYxOTYwMzQ4My4xOTIwMTEsImV4cCI6MTYxOTY4OTg4My4xODAxOTMsInN1YiI6IiIsInNjb3BlcyI6WyIqIl19.PRuTNdecz0_w7q_4rW2u-kNHiFt4nEtFj8gcp3h1-fzocrTjMRWdtOHFV7EwRdbRt8WvNonSe_TMjQqM0KBBXwfXbmGEgaugzN9fFa-PqsQ3XJKoSyvrbc2AmxWw_gOOqlkRTkN7FuXpsCV8SksEjDHynHbMJbMETe6F5_0rdZj8EPpp68IQpOjjPF594cxmlLc7NFpB6jDqFTicSRpawTustHA0V3AoR2x1pQOYolQT0Dog1hT9v5LiqYalNPnOBnUiPkqDo8a30wXn4zpenfhzbWp63PkFLD_RfKSeK8kS2dLqryw_eA-juqZ8daxEVn5uyVOUTr39PZQAyHAjk9LAni4W3T_CgtT6H42BmzzLVcMm_w1xL3TW6Ao3CP4EovrK8VGmnDQwE0yMp-s92AAIPW1E_CgB-J7BORaGG0I5Fmqj5f986JgLZd-FhPLyjHxIVAtTvlqdmUBtEPtuf5b3STxy725kEQMktn1zE_V6HmrnWPOa3P-3vhicGFdEMeU33Tp7uZDS8_0DUa5xZYhTAiIJEUQpxiUQTbQISLi9KFmKFAElJAj-oY06ROtlNT-cx1Bn4R_UeSt-sVoi8AqyHSzXjifB5cMsctobSyIQhSAJUIKDnEFHGR4bXkQQ2u0uuqt-awPVaC2kDFxzN68k4DIdeTPH5LLnbSix5m4',
+        'Authorization: Bearer '.$token,
         'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
       ),
     ));
@@ -566,5 +566,44 @@ public function create_patient(Request $request)
 
 
   }
+
+
+  public function getPharmacyById(Request $request){
+    $r = $this->get_token();
+    $token_data = json_decode($r);
+    $token = $token_data->access_token;
+
+    $pharmacy_id = $request['pharmacy_id'];
+
+    //$input = json_encode($request->all());
+
+    //$input_data = $request->all();
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/pharmacies/'.$pharmacy_id,
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'GET',
+      CURLOPT_HTTPHEADER => array(
+        'Authorization: Bearer '.$token,
+      ),
+    ));
+
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+
+
+    return $this->sendResponse(json_decode($response),'Pharmacy Recieved Successfully');
+
+
+  }
+
 
 }

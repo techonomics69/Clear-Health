@@ -76,7 +76,8 @@ Route::post('forgot_password',[RegisterController::class, 'forgot_password']);
     Route::post('getCitiesFromGivenState', [CaseManagementController::class, 'getCitiesFromGivenState']);
     Route::post('SearchCitiesFromGivenState', [CaseManagementController::class, 'SearchCitiesFromGivenState']);//search city data
     Route::post('createCaseFile', [CaseManagementController::class, 'createCaseFile']);
-    Route::post('getPharmacies', [CaseManagementController::class, 'getPharmacies']);
+    Route::post('getPharmacies', [CaseManagementController::class, 'getPharmacies']); 
+    Route::post('getPharmacyById', [CaseManagementController::class, 'getPharmacyById']);
     //end of md api
 
     Route::group(['middleware' => 'auth:api'], function(){});

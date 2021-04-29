@@ -104,4 +104,33 @@ class ProductController extends BaseController
    
         return $this->sendResponse([], 'Product deleted successfully.');*/
     }
+
+
+    public function getUpsellProductDetails()
+    {
+        $upsellproduct = Product::where('upsell','Yes')->first();
+        $upsellproduct['image'] = url('/public/images/Products/').'/'.$upsellproduct['image'];
+  
+        if (is_null($upsellproduct)) {
+            return $this->sendError('Upsell Product Not Found.');
+        }
+        return $this->sendResponse($upsellproduct, 'Product Retrieved Successfully.');
+    }
+
+
+    public function getskincareplan()
+    {
+        $skincareplan = Product::where('used_for_plan','Yes')->OrderBy('plan_id', 'ASC')->get();
+
+        foreach($skincareplan as $key=>$val){
+            $val['image'] = url('/public/images/Products/').'/'.$val['image'];
+
+        }
+        
+  
+        if (is_null($skincareplan)) {
+            return $this->sendError('Skin Care Plan Not Found.');
+        }
+        return $this->sendResponse($skincareplan, 'Skin Care Plan Retrieved Successfully.');
+    }
 }

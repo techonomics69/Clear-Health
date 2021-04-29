@@ -142,7 +142,33 @@ class CartController extends BaseController
     public function getCartByUser($id)
     {
         try{
-            $cart = Cart::where('user_id', $id)->get();
+            $cart = Cart::where('user_id', $id)->where('order_type', '!=', 'Prescribed')->get();
+
+            foreach ($cart as $key => $value) {
+                
+                $data[$key]['id'] = $value->id;
+                $data[$key]['id'] = $value->pharmacy_pickup;
+                $data[$key]['product_id'] = $value->product->id;
+                $data[$key]['product_name'] = $value->product->name;
+                $data[$key]['product_quantity'] = $value->quantity;
+                $data[$key]['product_image'] = $value->product->image;
+                $data[$key]['product_price'] = $value->product->price;
+                $data[$key]['product_category'] = $value->product->category->name;
+
+
+            }
+            return $this->sendResponse($data, 'Item retrieved successfully.');
+        }catch(\Exception $ex){
+            return $this->sendError('Server error', array($ex->getMessage()));
+        }
+
+    }
+
+    public function getCartByUserPrescribed($id)
+    {
+        try{
+            $cart = Cart::where('user_id', $id)->where('order_type', 'Prescribed')->get();
+
             foreach ($cart as $key => $value) {
                 $data[$key]['id'] = $value->id;
                 $data[$key]['product_id'] = $value->product->id;
@@ -151,7 +177,6 @@ class CartController extends BaseController
                 $data[$key]['product_image'] = $value->product->image;
                 $data[$key]['product_price'] = $value->product->price;
                 $data[$key]['product_category'] = $value->product->category->name;
-                $data[$key]['order_type'] = ($value->order_type != '') ? $value->order_type : "";
             }
             return $this->sendResponse($data, 'Item retrieved successfully.');
         }catch(\Exception $ex){

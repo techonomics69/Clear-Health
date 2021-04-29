@@ -147,7 +147,7 @@ class CartController extends BaseController
             foreach ($cart as $key => $value) {
                 
                 $data[$key]['id'] = $value->id;
-                $data[$key]['id'] = $value->pharmacy_pickup;
+                $data[$key]['pharmacy_pickup'] = $value->pharmacy_pickup;
                 $data[$key]['product_id'] = $value->product->id;
                 $data[$key]['product_name'] = $value->product->name;
                 $data[$key]['product_quantity'] = $value->quantity;
@@ -168,13 +168,10 @@ class CartController extends BaseController
     {
         try{
             $cart = Cart::where('user_id', $id)->where('order_type','Prescribed')->get();
-            echo "<pre>";
-            print_r($cart);
-            echo "<pre>";
-            exit();
-
+            $data = array();
             foreach ($cart as $key => $value) {
                 $data[$key]['id'] = $value->id;
+                $data[$key]['pharmacy_pickup'] = $value->pharmacy_pickup;
                 $data[$key]['product_id'] = $value->product->id;
                 $data[$key]['product_name'] = $value->product->name;
                 $data[$key]['product_quantity'] = $value->quantity;

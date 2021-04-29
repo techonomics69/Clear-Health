@@ -35,6 +35,7 @@ Route::post('login', [RegisterController::class, 'login']);
 Route::post('forgot_password',[RegisterController::class, 'forgot_password']);
      
 //Route::middleware('auth:api')->group( function () {
+    Route::resource('checkout',CheckoutController::class);
     Route::resource('products', ProductController::class);
     Route::resource('blogs', BlogController::class);
     Route::get('getalltags',[BlogController::class, 'getAllTags']);

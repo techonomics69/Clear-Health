@@ -13,7 +13,12 @@ class CheckoutController extends BaseController
 {
         public function index()
     {
-        //
+      $order = checkout::join('users', 'users.id', '=', 'checkout.user_id')
+            ->join('carts','carts.id', '=', 'checkout.cart_id')
+            ->join('products', 'products.id', '=', 'carts.product_id')
+            ->select('users.name', 'users.mobile', 'products.name AS product_name' , 'carts.product_cart_price', 'checkout.total_amount','checkout.case_id','checkout.created_at')->get();
+            
+        return $this->sendResponse($order, 'Order retrieved successfully.');
     }
 
     /**

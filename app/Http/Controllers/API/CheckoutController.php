@@ -6,6 +6,9 @@ use App\Http\Controllers\API\BaseController as BaseController;
 use Illuminate\Http\Request;
 use App\Models\Checkout;
 use App\Models\Checkoutaddress;
+use App\Models\User;
+use App\Models\Product;
+use App\Models\Cart;
 use Validator;
 use Exception;
 

@@ -149,6 +149,7 @@ class CartController extends BaseController
                 $data[$key]['id'] = $value->id;
                 $data[$key]['pharmacy_pickup'] = $value->pharmacy_pickup;
                 $data[$key]['product_id'] = $value->product->id;
+                $data[$key]['order_type'] = $value->order_type;
                 $data[$key]['product_name'] = $value->product->name;
                 $data[$key]['product_quantity'] = $value->quantity;
                 $data[$key]['product_image'] = $value->product->image;
@@ -173,6 +174,7 @@ class CartController extends BaseController
                 $data[$key]['id'] = $value->id;
                 $data[$key]['pharmacy_pickup'] = $value->pharmacy_pickup;
                 $data[$key]['product_id'] = $value->product->id;
+                 $data[$key]['order_type'] = $value->order_type;
                 $data[$key]['product_name'] = $value->product->name;
                 $data[$key]['product_quantity'] = $value->quantity;
                 $data[$key]['product_image'] = $value->product->image;

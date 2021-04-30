@@ -54,6 +54,7 @@ Route::post('forgot_password',[RegisterController::class, 'forgot_password']);
     Route::post('getQuizAnswer', [QuizAnswerController::class, 'getAnswerByUserQuestionCaseID']);
     Route::get('quizCategory', [QuizController::class ,'getQuizCategoryList']);
 	Route::post('user/update/{id}', [UserController::class, 'update_user']);
+    Route::get('user/{id}', [UserController::class, 'show']);
     Route::get('userlist', [UserController::class, 'userlist']);
     Route::post('sendmail', [UserController::class, 'sendmail']); 
     Route::post('addParentdetails', [UserController::class, 'addParentdetails']);

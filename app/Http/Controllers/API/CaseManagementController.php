@@ -8,6 +8,8 @@ use App\Models\CaseManagement;
 use App\Models\Mdpatient;
 use Validator;
 use Exception;
+use App\Models\QuizAnswer;
+use App\Models\Quiz;
 
 class CaseManagementController extends BaseController
 {
@@ -601,6 +603,60 @@ public function create_patient(Request $request)
 
 
     return $this->sendResponse(json_decode($response),'Pharmacy Recieved Successfully');
+
+
+  }
+
+
+
+
+  public function CreateCase(Request $request){
+    $r = $this->get_token();
+    $token_data = json_decode($r);
+    $token = $token_data->access_token;
+
+    $user_id = $request['user_id'];
+    $case_id = $request['case_id'];
+
+
+
+    $answer = QuizAnswer::where('user_id', $request['user_id'])->where('case_id', $request['case_id'])->get();
+
+
+    echo "<pre>";
+    print_r($answer);
+    echo "<pre>";
+    exit();
+            if(!empty($answer)){
+                 return $this->sendResponse($answer, 'Answer retrieved successfully.');
+            }/*S*/
+
+    //$input = json_encode($request->all());
+
+    //$input_data = $request->all();
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/pharmacies/'.$pharmacy_id,
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'GET',
+      CURLOPT_HTTPHEADER => array(
+        'Authorization: Bearer '.$token,
+      ),
+    ));
+
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+
+
+    return $this->sendResponse(json_decode($response),'Case Created Successfully');
 
 
   }

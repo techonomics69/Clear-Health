@@ -10,6 +10,8 @@ use Validator;
 use Exception;
 use App\Models\QuizAnswer;
 use App\Models\Quiz;
+use App\Models\User;
+use App\Models\Parentdetail;
 
 class CaseManagementController extends BaseController
 {
@@ -619,41 +621,84 @@ public function create_patient(Request $request)
     $case_id = $request['case_id'];
 
 
-
-    $answer = QuizAnswer::where('user_id', $request['user_id'])->where('case_id', $request['case_id'])->get();
-
-
+    $patient_id = User::select('md_patient_id')->where('user_id', $request['user_id'])->first();
     echo "<pre>";
-    print_r($answer);
+    print_r($patient_id);
     echo "<pre>";
     exit();
-            if(!empty($answer)){
-                 return $this->sendResponse($answer, 'Answer retrieved successfully.');
-            }/*S*/
+    $answer = QuizAnswer::where('user_id', $request['user_id'])->where('case_id', $request['case_id'])->get()->toArray();
+
+
+
 
     //$input = json_encode($request->all());
 
     //$input_data = $request->all();
 
+
+
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/pharmacies/'.$pharmacy_id,
+      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases',
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => '',
       CURLOPT_MAXREDIRS => 10,
       CURLOPT_TIMEOUT => 0,
       CURLOPT_FOLLOWLOCATION => true,
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => 'GET',
-      CURLOPT_HTTPHEADER => array(
-        'Authorization: Bearer '.$token,
-      ),
-    ));
+      CURLOPT_CUSTOMREQUEST => 'POST',
+      CURLOPT_POSTFIELDS =>'{
+        "patient_id": "755b8cd2-9abd-4016-b76f-f23f44d75e20",
+        "case_files": [
+        ],
+        "case_prescriptions": [
+        {
+          "partner_medication_id": "b1215ab5-c3f9-4299-bcb0-fbbb7131334e",
+          "refills": "",
+          "quantity": "",
+          "days_supply": "",
+          "directions": "",
+          "dispense_unit_id": 4,
+          "preferred_pharmacy_id": ""
+          },
+          {
+            "refills": "",
+            "quantity": "",
+            "days_supply": "",
+            "directions": "",
+            "partner_compound_id": "ea90ed3c-0973-4fa5-9d63-f996f245a906",
+            "dispense_unit_id": "",
+            "preferred_pharmacy_id": ""
+          }
+          ],
+          "case_questions": [
+          {
+            "question": "Are you pregnant?",
+            "answer": "true",
+            "type": "boolean",
+            "important": true
+            },
+            {
+              "question": "Do you have any health issues? If yes, which ones?",
+              "answer": "Yes, high blood pressure.",
+              "type": "string",
+              "important": false
+            }
+            ]
+          }',
+          CURLOPT_HTTPHEADER => array(
+            'Content-Type: application/json',
+            'Authorization: Bearer '.$token,
+            'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+          ),
+        ));
 
     $response = curl_exec($curl);
 
     curl_close($curl);
+    echo $response;
+
 
 
     return $this->sendResponse(json_decode($response),'Case Created Successfully');

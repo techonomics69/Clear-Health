@@ -617,16 +617,84 @@ public function create_patient(Request $request)
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
+
     $user_id = $request['user_id'];
     $case_id = $request['case_id'];
 
+    $product_type = $request['product_type'];
+    $product_name = $request['product_name'];
+    $quantity = $request['quantity'];
 
-    $patient_id = User::select('md_patient_id')->where('id', $request['user_id'])->first();
-    echo "<pre>";
-    print_r($patient_id);
-    echo "<pre>";
-    exit();
+
+    $patient_data = User::select('md_patient_id')->where('id', $request['user_id'])->first();
+    
+    $patient_id = $patient_data['md_patient_id'];
+
     $answer = QuizAnswer::where('user_id', $request['user_id'])->where('case_id', $request['case_id'])->get()->toArray();
+
+
+    if($product_type =="Topicals"){
+
+      $days_supply = "60 Days";
+      $refills = "1";
+      $directions = "xyz";
+
+
+      $DispensUnitId = $this->getDispensUnitId();
+
+      $curl = curl_init();
+
+      curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/compounds/search?name=acid',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'GET',
+        CURLOPT_HTTPHEADER => array(
+          'Authorization: Bearer '.$token,
+          'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+        ),
+      ));
+
+      $response = curl_exec($curl);
+
+      curl_close($curl);
+      $compounds= $response;
+
+
+
+
+    }else{
+      $days_supply = "30 Days";
+      $refills = "0";
+      $directions = "";
+
+      $curl = curl_init();
+
+      curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name='.$product_name.'&strength='.$quantity,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'GET',
+        CURLOPT_HTTPHEADER => array(
+          'Authorization: Bearer .'.$token,
+          'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+        ),
+      ));
+
+      $response = curl_exec($curl);
+
+      curl_close($curl);
+      $medications = $response;
+
+    }
 
 
 
@@ -649,7 +717,7 @@ public function create_patient(Request $request)
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => 'POST',
       CURLOPT_POSTFIELDS =>'{
-        "patient_id": "755b8cd2-9abd-4016-b76f-f23f44d75e20",
+        "patient_id": "'.$patient_id.'",
         "case_files": [
         ],
         "case_prescriptions": [
@@ -702,6 +770,32 @@ public function create_patient(Request $request)
 
 
     return $this->sendResponse(json_decode($response),'Case Created Successfully');
+
+
+  }
+
+  public function getDispensUnitId(){
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/dispense-units?name=kit',
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'GET',
+      CURLOPT_HTTPHEADER => array(
+        'Authorization: Bearer '.$token,
+        'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+      ),
+    ));
+
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+    return $response;
 
 
   }

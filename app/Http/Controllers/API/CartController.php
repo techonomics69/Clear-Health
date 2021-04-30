@@ -143,7 +143,7 @@ class CartController extends BaseController
     {
         try{
             $cart = Cart::where('user_id', $id)->where('order_type', '!=', 'Prescribed')->get();
-
+                $data=array();
             foreach ($cart as $key => $value) {
                 
                 $data[$key]['id'] = $value->id;

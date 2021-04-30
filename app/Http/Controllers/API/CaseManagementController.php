@@ -621,7 +621,7 @@ public function create_patient(Request $request)
     $case_id = $request['case_id'];
 
 
-    $patient_id = User::select('md_patient_id')->where('user_id', $request['user_id'])->first();
+    $patient_id = User::select('md_patient_id')->where('id', $request['user_id'])->first();
     echo "<pre>";
     print_r($patient_id);
     echo "<pre>";

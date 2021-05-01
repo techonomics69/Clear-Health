@@ -141,7 +141,8 @@ class QuizController extends Controller
     {
         $this->validate($request, [
             'question' => 'required',  
-            'status' => 'required|not_in:0',          
+            'status' => 'required|not_in:0',
+            'category_id' => 'required|not_in:0',          
         ]); 
         
         $quiz = Quiz::find($id);

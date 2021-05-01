@@ -66,7 +66,7 @@ class UserController extends Controller
             'address' => 'required',            
             'state' => 'required',            
             'city' => 'required',            
-            'pincode' => 'required|numeric|digits:6',
+            'pincode' => 'required|numeric|digits:5',
             'passwords' => 'required|same:confirm-password|between:5,15',
         ],[
             'pincode.required' => 'The Zipcode field is required.',

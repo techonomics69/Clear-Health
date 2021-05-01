@@ -123,7 +123,7 @@ class QuizController extends Controller
     {
         $quiz = Quiz::find($id);
         $question = DB::table("quizzes")->pluck('question','id');
-        $question_select = SubQuestionAnswer::join('quizzes','quizzes.id', '=', 'sub_question_answer.question_id')
+        $question_select = SubQuestionAnswer::where('question_id',$quiz->id)->join('quizzes','quizzes.id', '=', 'sub_question_answer.parent_question_id')
                     ->select('sub_question_answer.*')->get();
 
         $category = QuizCategory::where('status','1')->pluck('name', 'id')->toArray();

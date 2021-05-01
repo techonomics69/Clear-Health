@@ -77,7 +77,7 @@ class QuizController extends Controller
         $quiz = Quiz::create([
             'question' => $request->input('question'),
             'sub_heading' => $request->input('sub_heading'),
-            'status' => $request->input('status'), 
+            'status' => $request->input('status'),
             'option_type' => $request->input('option_type'),
             'option' => $request->input('option'),
             'sub_question'=> $request->input('sub_question'),
@@ -110,7 +110,6 @@ class QuizController extends Controller
         ->join('quizzes','quizzes.id', '=', 'sub_question_answer.parent_question_id')
         ->select('sub_question_answer.option_select','quizzes.question')->get();
 
-        //$tags = Tag::pluck('tag', 'id')->toArray();
         return view('quiz.show',compact('quiz','question_select'));
     }
 
@@ -123,7 +122,6 @@ class QuizController extends Controller
     public function edit($id)
     {
         $quiz = Quiz::find($id);
-        //$select_option = explode(',',  $quiz->option);
         $question = DB::table("quizzes")->pluck('question','id');
         $question_select = SubQuestionAnswer::join('quizzes','quizzes.id', '=', 'sub_question_answer.question_id')
                     ->select('sub_question_answer.*')->get();

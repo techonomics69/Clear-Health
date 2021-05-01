@@ -15,24 +15,24 @@
 </div>
 @endif
 <div class="content-wrapper">
-		<div class="content-header row">
-			<div class="content-header-left col-md-6 col-12 mb-2">
-				<h3 class="content-header-title mb-0">Question</h3>
-				<div class="row breadcrumbs-top">
-						<div class="breadcrumb-wrapper col-12 d-flex">
-							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="{{url('/admin/dashboard')}}">Dashboard</a></li>
-								<li class="breadcrumb-item active"> Create Question</li>
-							</ol>
-						</div>
-				</div>
-			</div>
-			<div class="content-header-right col-md-6 col-12 mb-2">
+        <div class="content-header row">
+            <div class="content-header-left col-md-6 col-12 mb-2">
+                <h3 class="content-header-title mb-0">Question</h3>
+                <div class="row breadcrumbs-top">
+                        <div class="breadcrumb-wrapper col-12 d-flex">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{{url('/admin/dashboard')}}">Dashboard</a></li>
+                                <li class="breadcrumb-item active"> Create Question</li>
+                            </ol>
+                        </div>
+                </div>
+            </div>
+            <div class="content-header-right col-md-6 col-12 mb-2">
             <div class="pull-right">
                         <a class="btn btn-secondry" href="{{ route('quiz.index') }}"> Back</a>
                     </div>
-			</div>
-		</div>
+            </div>
+        </div>
 <div class="content-body">
     <div class="row">
         <div class="col-lg-12">
@@ -40,7 +40,7 @@
                  <!-- <header class="card-header">
                    <h3 class="main-title-heading">Create New Category</h3> 
                     <div class="pull-right">
-                        <a class="btn btn-primary" href="{{-- {{ route('categories.index') }} --}}"> Back</a>
+                        <a class="btn btn-primary" href="{{ route('categories.index') }}"> Back</a>
                     </div>
                 </header>  -->
                 <div class="card-body">
@@ -94,7 +94,7 @@
                                 </div>
                             </div>
                        <!--  <div class="col-xs-12 col-sm-12 col-md-12"> -->
-                        <div id="div1" class="hide row" style="display: none">
+                        <div id="div1" class="hide" style="display: none">
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group" >
                                     <strong>Select Parent Question</strong>
@@ -117,16 +117,16 @@
                             </div>
                         </div>
 <!-- </div> -->
-                            <div class="col-xs-12 col-sm-12 col-md-12">
+                            <!-- <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <strong>Is this question used for Product Recommendation?</strong>
                                     <span class="required">*</span>
                                     <strong>YES</strong> <input type="radio" name="product_recommendation" value="Yes" onclick="show3();" />
                                     <strong>NO</strong> <input type="radio" name="product_recommendation" value="No" onclick="show4();" />
                                   </div>
-                            </div>
+                            </div> -->
 
-                        <div class="col-md-6 col-sm-6 col-xs-12 hide" id="div2" style="display: none">
+                        <!-- <div class="col-md-6 col-sm-6 col-xs-12 hide" id="div2" style="display: none">
                                 <div class="form-group">
                                     <strong>Product Recommendation</strong>
                                     <span class="required">*</span>
@@ -136,7 +136,7 @@
                                     <option value="Topical Cream">Topical Cream</option>
                                 </select>
                                 </div>
-                            </div>
+                            </div> -->
                         <div class="col-xs-12 col-sm-12 col-md-12 text-right">
                             <a href="{{ route('quiz.index') }}">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -168,12 +168,12 @@ function show1(){
 function show2(){
   document.getElementById('div1').style.display = 'none';
 }
-function show3(){
+/*function show3(){
   document.getElementById('div2').style.display ='block';
 }
 function show4(){
   document.getElementById('div2').style.display = 'none';
-}
+}*/
 
 
 $(document).ready(function () { 

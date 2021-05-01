@@ -116,7 +116,7 @@
                                     <select class="form-control" name="parent_question" id="parent_question">
                                         <option value="" class="form-control">Select Question</option>
                                         @foreach ($question as $key => $questions)
-                                        <option value="{{ $key }}" class="form-control" <?php if( $question_select[0]->parent_question_id == $key ) { echo "selected = selected"; }?> > {{ $questions }}</option>
+                                        <option value="{{ $key }}" class="form-control" <?php if( $question_select[0]->parent_question_id == $key ) { echo "selected = selected"; }?> > {{ $questions }} </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -135,17 +135,17 @@
                             </div>
 </div>                       
 <!-- </div> -->
-                            <div class="col-xs-12 col-sm-12 col-md-12">
+                            <!-- <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <strong>Is this question used for Product Recommendation?</strong>
                                     <span class="required">*</span>
-    <strong>YES</strong> <input type="radio" class="product_rec" id="{{ $quiz->use_for_recommendation}}" name="product_recommendation" value="{{ $quiz->use_for_recommendation}}"  <?php if( $quiz->use_for_recommendation == 'Yes') { echo "checked = checked";}?>   onclick="show2();" />
+    <strong>YES</strong> <input type="radio" class="product_rec" id="{{ $quiz->use_for_recommendation}}" name="product_recommendation" value="{{ $quiz->use_for_recommendation}}"  <?php //if( $quiz->use_for_recommendation == 'Yes') { //echo "checked = checked";}?>   onclick="show2();" />
                                     
-    <strong>NO</strong> <input type="radio" name="product_recommendation" id="{{ $quiz->use_for_recommendation}}" value="{{ $quiz->use_for_recommendation}}" <?php if( $quiz->use_for_recommendation == 'No') { echo "checked = checked";}?> onclick="show2();" />
+    <strong>NO</strong> <input type="radio" name="product_recommendation" id="{{ $quiz->use_for_recommendation}}" value="{{ $quiz->use_for_recommendation}}" <?php //if( $quiz->use_for_recommendation == 'No') { //echo "checked = checked";}?> onclick="show2();" />
                                   </div>
-                            </div>
+                            </div> -->
 
-                        <div class="col-md-6 col-sm-6 col-xs-12 hide" id="div2" style="display: none">
+                        <!-- <div class="col-md-6 col-sm-6 col-xs-12 hide" id="div2" style="display: none">
                                 <div class="form-group">
                                     <strong>Product Recommendation</strong>
                                     <span class="required">*</span>
@@ -156,7 +156,7 @@
                                    
                                 </select>
                                 </div>
-                            </div>                               
+                            </div>  -->                              
                          
                             <div class="col-xs-12 col-sm-12 col-md-12 text-right">
                                 <a href="{{ route('quiz.index') }}">
@@ -210,13 +210,13 @@ var sub_que = $(".sub_que").val();
     });
 
 //alert($(".product_rec").val());
-var product_rec = $('.product_rec').val();
+/*var product_rec = $('.product_rec').val();
 
     if(product_rec == 'Yes'){
          document.getElementById('div2').style.display ='block';
      }else{
         document.getElementById('div2').style.display = 'none';
-     }
+     }*/
 
     $(function() {
         $('#optionType').change(function(){

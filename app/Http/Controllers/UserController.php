@@ -70,7 +70,7 @@ class UserController extends Controller
             'passwords' => 'required|same:confirm-password|between:5,15',
         ],[
             'pincode.required' => 'The Zipcode field is required.',
-            'pincode.between' => 'The Zipcode must be 6 digit number.',
+            'pincode.between' => 'The Zipcode must be 5 digit number.',
             'passwords.required' => 'The Password field is required.',
             'passwords.same' => 'The password and confirm-password must match.',
             'passwords.between' => 'The password must be between 5 and 15 characters.'
@@ -158,7 +158,7 @@ class UserController extends Controller
             'pincode' => 'required|numeric|digits:5'
         ],[
             'pincode.required' => 'The Zipcode field is required.',
-            'pincode.digits' => 'The Zipcode must be 6 digit number.'
+            'pincode.digits' => 'The Zipcode must be 5 digit number.'
         ]);
     
         $input = $request->all();

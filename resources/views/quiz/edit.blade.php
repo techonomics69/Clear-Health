@@ -116,7 +116,7 @@
                                     <select class="form-control" name="parent_question" id="parent_question">
                                         <option value="" class="form-control">Select Question</option>
                                         @foreach ($question as $key => $questions)
-                                        <option value="{{ $key }}" class="form-control" <?php if( $question_select[0]->question_id == $key ) { echo "selected = selected"; }?> > {{ $questions }}</option>
+                                        <option value="{{ $key }}" class="form-control" <?php if( $question_select[0]->parent_question_id == $key ) { echo "selected = selected"; }?> > {{ $questions }}</option>
                                         @endforeach
                                     </select>
                                 </div>

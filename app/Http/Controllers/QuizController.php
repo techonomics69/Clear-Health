@@ -79,7 +79,7 @@ class QuizController extends Controller
             'question' => $request->input('question'),
             'sub_heading' => $request->input('sub_heading'),
             'status' => $request->input('status'),
-            'option_type' => $request->input('option_type'),
+            'options_type' => $request->input('options_type'),
             'option' => $request->input('option'),
             'sub_question'=> $request->input('sub_question'),
             'category_id' => $request->input('category_id') ,

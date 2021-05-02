@@ -100,11 +100,6 @@ class CartController extends BaseController
     public function update(Request $request, $id)
     {
         $data = $request->all();
-        
-        if(isset($data['token']) && !empty($data['token'])):
-            $data['user_id'] = (new Parser())->parse($data['token'])->getClaims()['sub']->getValue();
-        endif; 
-
         try{
             $cart = Cart::find($id); 
             if(!empty($cart)):

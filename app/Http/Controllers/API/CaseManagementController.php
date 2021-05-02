@@ -206,7 +206,6 @@ echo $response;
 
 public function get_token(){
   $curl = curl_init();
-
   curl_setopt_array($curl, array(
     CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/auth/token',
     CURLOPT_RETURNTRANSFER => true,

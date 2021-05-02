@@ -53,11 +53,11 @@ class RegisterController extends BaseController
                 if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
                     $user = Auth::user(); 
                     $success['token'] =  $user->createToken('MyApp')->accessToken;
-                    $success['email'] =  substr($user->email, 0,5)."...";    
+                    $success['email'] =  $user->email;    
                     $success['user_id'] =  $user->id;    
                 }else{
                     $success['token'] =  $user->createToken('MyApp')->accessToken;
-                    $success['email'] =  substr($user->email, 0,5)."...";
+                    $success['email'] =  $user->email;
                     $success['user_id'] =  $user->id;
                 }
                 

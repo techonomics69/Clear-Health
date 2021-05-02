@@ -38,4 +38,9 @@ class QuizController extends BaseController
         $quizCategory = QuizCategory::where('status','1')->get();
         return $this->sendResponse($quizCategory,'Quiz Category Retrived successfully');
     }
+
+    public function getQuizByOrderAndCategory(Request $request){
+        $quiz = Quiz::where('order', $request->order)->where('category_id', $request->category_id)->first();
+        return $this->sendResponse($quiz,'Question Retrived successfully');
+    }
 }

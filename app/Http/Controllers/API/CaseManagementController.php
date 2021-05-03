@@ -688,11 +688,7 @@ public function create_patient(Request $request)
     curl_close($curl);
     echo $response;
 
-
-
     return $this->sendResponse(json_decode($response),'Case Created Successfully');
-
-
   }
 
 

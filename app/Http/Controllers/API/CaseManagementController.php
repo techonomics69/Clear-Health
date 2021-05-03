@@ -646,11 +646,10 @@ public function create_patient(Request $request)
 
       $DispensUnitId = $this->getDispensUnitId();
 
-      echo "<pre>";
-      print_r(json_decode($DispensUnitId));
-      echo "<pre>";
-
-      $DispensUnitId= $DispensUnitId[0]->dispense_unit_id;
+  
+     $DispensUnitId=json_decode($DispensUnitId));
+      
+     $DispensUnitId= $DispensUnitId[0]->dispense_unit_id;
       
 
       $curl = curl_init();

@@ -631,6 +631,11 @@ public function create_patient(Request $request)
 
     $answer = QuizAnswer::where('user_id', $request['user_id'])->where('case_id', $request['case_id'])->get()->toArray();
 
+    echo "<pre>";
+    print_r($answer);
+    echo "<pre>";
+   
+
 
     if($product_type =="Topicals"){
 
@@ -663,13 +668,16 @@ public function create_patient(Request $request)
       curl_close($curl);
       $compounds= $response;
 
-
+         echo "<pre>";
+    print_r($$compounds);
+    echo "<pre>";
+   
 
 
     }else{
       $days_supply = "30 Days";
       $refills = "0";
-      $directions = "";
+      $directions = "ASDASD";
 
       $curl = curl_init();
 
@@ -692,6 +700,11 @@ public function create_patient(Request $request)
 
       curl_close($curl);
       $medications = $response;
+
+      echo "<pre>";
+      print_r($medications);
+      echo "</pre>";
+
 
     }
 
@@ -768,7 +781,7 @@ public function create_patient(Request $request)
 
 
 
-    return $this->sendResponse(json_decode($response),'Case Created Successfully');
+    //return $this->sendResponse(json_decode($response),'Case Created Successfully');
 
 
   }

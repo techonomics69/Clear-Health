@@ -646,6 +646,11 @@ public function create_patient(Request $request)
 
       $DispensUnitId = $this->getDispensUnitId();
 
+      echo "<pre>";
+      print_r($DispensUnitId);
+      echo "<pre>";
+      
+
       $curl = curl_init();
 
       curl_setopt_array($curl, array(
@@ -671,9 +676,7 @@ public function create_patient(Request $request)
          echo "<pre>";
     print_r($compounds);
     echo "<pre>";
-   
-
-
+  
     }else{
       $days_supply = "30 Days";
       $refills = "0";

@@ -669,7 +669,7 @@ public function create_patient(Request $request)
       $compounds= $response;
 
          echo "<pre>";
-    print_r($$compounds);
+    print_r($compounds);
     echo "<pre>";
    
 

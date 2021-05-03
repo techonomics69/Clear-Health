@@ -649,7 +649,7 @@ public function create_patient(Request $request)
       $DispensUnitId = $this->getDispensUnitId();
 
   echo "<pre>";
-  print_r(json_decode($DispensUnitId));
+  print_r($DispensUnitId);
   echo "<pre>";
   exit();
       $DispensUnitId = json_decode($DispensUnitId);

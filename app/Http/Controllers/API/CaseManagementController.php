@@ -647,8 +647,10 @@ public function create_patient(Request $request)
       $DispensUnitId = $this->getDispensUnitId();
 
       echo "<pre>";
-      print_r($DispensUnitId);
+      print_r(json_decode($DispensUnitId));
       echo "<pre>";
+
+      $DispensUnitId= $DispensUnitId['dispense_unit_id'];
       
 
       $curl = curl_init();
@@ -674,7 +676,7 @@ public function create_patient(Request $request)
       $compounds= $response;
 
          echo "<pre>";
-    print_r($compounds);
+    print_r(json_decode($compounds));
     echo "<pre>";
   
     }else{

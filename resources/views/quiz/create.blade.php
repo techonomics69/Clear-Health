@@ -117,16 +117,16 @@
                             </div>
                         </div>
 <!-- </div> -->
-                            <!-- <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <strong>Is this question used for Product Recommendation?</strong>
                                     <span class="required">*</span>
                                     <strong>YES</strong> <input type="radio" name="product_recommendation" value="Yes" onclick="show3();" />
                                     <strong>NO</strong> <input type="radio" name="product_recommendation" value="No" onclick="show4();" />
                                   </div>
-                            </div> -->
+                            </div>
 
-                        <!-- <div class="col-md-6 col-sm-6 col-xs-12 hide" id="div2" style="display: none">
+                        <div class="col-md-6 col-sm-6 col-xs-12 hide" id="div2" style="display: none">
                                 <div class="form-group">
                                     <strong>Product Recommendation</strong>
                                     <span class="required">*</span>
@@ -136,7 +136,7 @@
                                     <option value="Topical Cream">Topical Cream</option>
                                 </select>
                                 </div>
-                            </div> -->
+                            </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 text-right">
                             <a href="{{ route('quiz.index') }}">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -168,12 +168,12 @@ function show1(){
 function show2(){
   document.getElementById('div1').style.display = 'none';
 }
-/*function show3(){
+function show3(){
   document.getElementById('div2').style.display ='block';
 }
 function show4(){
   document.getElementById('div2').style.display = 'none';
-}*/
+}
 
 
 $(document).ready(function () { 

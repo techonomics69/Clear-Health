@@ -623,6 +623,8 @@ public function create_patient(Request $request)
     $product_type = $request['product_type'];
     $product_name = $request['product_name'];
     $quantity = $request['quantity'];
+    $preferred_pharmacy_id = $request['preferred_pharmacy_id'];
+
 
 
     $patient_data = User::select('md_patient_id')->where('id', $request['user_id'])->first();
@@ -647,9 +649,9 @@ public function create_patient(Request $request)
       $DispensUnitId = $this->getDispensUnitId();
 
   
-     $DispensUnitId=json_decode($DispensUnitId);
+      $DispensUnitId=json_decode($DispensUnitId);
       
-     $DispensUnitId= $DispensUnitId[0]->dispense_unit_id;
+      $DispensUnitId= $DispensUnitId[0]->dispense_unit_id;
       
 
       $curl = curl_init();
@@ -672,11 +674,21 @@ public function create_patient(Request $request)
       $response = curl_exec($curl);
 
       curl_close($curl);
+
       $compounds= $response;
 
-         echo "<pre>";
-    print_r(json_decode($compounds));
-    echo "<pre>";
+      $compounds = json_decode($compounds);
+
+      $partner_compound_id = $compounds[0]->partner_compound_id;
+
+      $medication_compound_data = array();
+      $medication_compound_data['partner_compound_id'] = $partner_compound_id;
+      $medication_compound_data['refills'] = $refills;
+      $medication_compound_data['quantity'] = $quantity;
+      $medication_compound_data['days_supply'] = $days_supply;
+      $medication_compound_data['directions'] = $directions;
+      $medication_compound_data['dispense_unit_id'] = $DispensUnitId;
+      $medication_compound_data['preferred_pharmacy_id'] = $preferred_pharmacy_id;
   
     }else{
       $days_supply = "30 Days";
@@ -703,16 +715,30 @@ public function create_patient(Request $request)
       $response = curl_exec($curl);
 
       curl_close($curl);
+
       $medications = $response;
 
-      echo "<pre>";
-      print_r($medications);
-      echo "</pre>";
+      $medications = json_decode($medications)
 
+      $DispensUnitId = $medications[0]->dispense_unit_id;
+
+      $medication_compound_data = array();
+      $medication_compound_data['partner_medication_id'] = $partner_compound_id;
+      $medication_compound_data['refills'] = $refills;
+      $medication_compound_data['quantity'] = $quantity;
+      $medication_compound_data['days_supply'] = $days_supply;
+      $medication_compound_data['directions'] = $directions;
+      $medication_compound_data['dispense_unit_id'] = $DispensUnitId;
+      $medication_compound_data['preferred_pharmacy_id'] = $preferred_pharmacy_id;
 
     }
 
+     $medication_compound_data = json_encode($medication_compound_data);
 
+     echo "<pre>";
+     print_r($medication_compound_data);
+     echo "<pre>";
+     exit();
 
 
     //$input = json_encode($request->all());
@@ -736,26 +762,7 @@ public function create_patient(Request $request)
         "patient_id": "'.$patient_id.'",
         "case_files": [
         ],
-        "case_prescriptions": [
-        {
-          "partner_medication_id": "b1215ab5-c3f9-4299-bcb0-fbbb7131334e",
-          "refills": "",
-          "quantity": "",
-          "days_supply": "",
-          "directions": "",
-          "dispense_unit_id": 4,
-          "preferred_pharmacy_id": ""
-          },
-          {
-            "refills": "",
-            "quantity": "",
-            "days_supply": "",
-            "directions": "",
-            "partner_compound_id": "ea90ed3c-0973-4fa5-9d63-f996f245a906",
-            "dispense_unit_id": "",
-            "preferred_pharmacy_id": ""
-          }
-          ],
+        "case_prescriptions": $medication_compound_data,
           "case_questions": [
           {
             "question": "Are you pregnant?",

@@ -162,9 +162,7 @@ class CaseManagementController extends BaseController
 
 /*    public function demo()
     {
-
 $curl = curl_init();
-
 curl_setopt_array($curl, array(
   CURLOPT_URL => 'http://103.101.59.95/dev.clearhealth/api/create_patient',
   CURLOPT_RETURNTRANSFER => true,
@@ -195,12 +193,9 @@ curl_setopt_array($curl, array(
     'Content-Type: application/json'
   ),
 ));
-
 $response = curl_exec($curl);
-
 curl_close($curl);
 echo $response;
-
 }*/
 
 
@@ -470,23 +465,18 @@ public function create_patient(Request $request)
     $documents = $request->file('file');
 
      /*if(!empty($documents)){
-
           $file =  $documents->getClientOriginalName();
           $doc_file_name =  time().'-'.$file;
           //$doc_file_name = time() . '-' . $doc->getClientOriginalExtension();
-
           if (!file_exists(public_path('/MD_Case_files'))) {
             File::makeDirectory(public_path('/MD_Case_files'), 0777, true, true);
           }
-
           $destinationPath = public_path('/MD_Case_files');
           $documents->move($destinationPath, $doc_file_name);
-
           //$input = array();
          
           $file_path = 'public/ipledgeimports/' .$file;
           $input['file'] = $doc_file_name;
-
           //Ipledgehistory::insert($input);
         }*/
 
@@ -495,7 +485,6 @@ public function create_patient(Request $request)
 
         $input = $request->all();
     /*$input['file'] = $file_temp_name.'/'.$file_temp_path;
-
     echo "<pre>";
     print_r($input);
     echo "<pre>";
@@ -646,11 +635,10 @@ public function create_patient(Request $request)
 
       $DispensUnitId = $this->getDispensUnitId();
 
-      echo "<pre>";
-      print_r(json_decode($DispensUnitId));
-      echo "<pre>";
-
-      $DispensUnitId= $DispensUnitId['dispense_unit_id'];
+  
+     $DispensUnitId=json_decode($DispensUnitId));
+      
+     $DispensUnitId= $DispensUnitId[0]->dispense_unit_id;
       
 
       $curl = curl_init();

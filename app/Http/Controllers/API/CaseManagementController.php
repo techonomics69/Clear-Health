@@ -650,7 +650,7 @@ public function create_patient(Request $request)
       print_r(json_decode($DispensUnitId));
       echo "<pre>";
 
-      $DispensUnitId= $DispensUnitId['dispense_unit_id'];
+      $DispensUnitId= $DispensUnitId[0]->dispense_unit_id;
       
 
       $curl = curl_init();

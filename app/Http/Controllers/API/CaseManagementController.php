@@ -718,7 +718,7 @@ public function create_patient(Request $request)
 
       $medications = $response;
 
-      $medications = json_decode($medications)
+      $medications = json_decode($medications);
 
       $DispensUnitId = $medications[0]->dispense_unit_id;
 

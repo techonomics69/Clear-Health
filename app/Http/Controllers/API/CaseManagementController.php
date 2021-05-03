@@ -787,6 +787,10 @@ public function create_patient(Request $request)
   }
 
   public function getDispensUnitId(){
+
+    $r = $this->get_token();
+    $token_data = json_decode($r);
+    $token = $token_data->access_token;
     $curl = curl_init();
 
     curl_setopt_array($curl, array(

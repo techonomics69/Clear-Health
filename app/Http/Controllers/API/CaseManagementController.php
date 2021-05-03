@@ -201,6 +201,7 @@ echo $response;
 
 public function get_token(){
   $curl = curl_init();
+
   curl_setopt_array($curl, array(
     CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/auth/token',
     CURLOPT_RETURNTRANSFER => true,
@@ -605,101 +606,16 @@ public function create_patient(Request $request)
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
-
     $user_id = $request['user_id'];
     $case_id = $request['case_id'];
 
-    $product_type = $request['product_type'];
-    $product_name = $request['product_name'];
-    $quantity = $request['quantity'];
 
-
-    $patient_data = User::select('md_patient_id')->where('id', $request['user_id'])->first();
-    
-    $patient_id = $patient_data['md_patient_id'];
-
+    $patient_id = User::select('md_patient_id')->where('id', $request['user_id'])->first();
+    echo "<pre>";
+    print_r($patient_id);
+    echo "<pre>";
+    exit();
     $answer = QuizAnswer::where('user_id', $request['user_id'])->where('case_id', $request['case_id'])->get()->toArray();
-
-    echo "<pre>";
-    print_r($answer);
-    echo "<pre>";
-   
-
-
-    if($product_type =="Topicals"){
-
-      $days_supply = "60 Days";
-      $refills = "1";
-      $directions = "xyz";
-
-
-      $DispensUnitId = $this->getDispensUnitId();
-
-  
-     $DispensUnitId=json_decode($DispensUnitId));
-      
-     $DispensUnitId= $DispensUnitId[0]->dispense_unit_id;
-      
-
-      $curl = curl_init();
-
-      curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/compounds/search?name=acid',
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => '',
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => 'GET',
-        CURLOPT_HTTPHEADER => array(
-          'Authorization: Bearer '.$token,
-          'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
-        ),
-      ));
-
-      $response = curl_exec($curl);
-
-      curl_close($curl);
-      $compounds= $response;
-
-         echo "<pre>";
-    print_r(json_decode($compounds));
-    echo "<pre>";
-  
-    }else{
-      $days_supply = "30 Days";
-      $refills = "0";
-      $directions = "ASDASD";
-
-      $curl = curl_init();
-
-      curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name='.$product_name.'&strength='.$quantity,
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => '',
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => 'GET',
-        CURLOPT_HTTPHEADER => array(
-          'Authorization: Bearer .'.$token,
-          'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
-        ),
-      ));
-
-      $response = curl_exec($curl);
-
-      curl_close($curl);
-      $medications = $response;
-
-      echo "<pre>";
-      print_r($medications);
-      echo "</pre>";
-
-
-    }
 
 
 
@@ -722,7 +638,7 @@ public function create_patient(Request $request)
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => 'POST',
       CURLOPT_POSTFIELDS =>'{
-        "patient_id": "'.$patient_id.'",
+        "patient_id": "755b8cd2-9abd-4016-b76f-f23f44d75e20",
         "case_files": [
         ],
         "case_prescriptions": [
@@ -774,37 +690,7 @@ public function create_patient(Request $request)
 
 
 
-    //return $this->sendResponse(json_decode($response),'Case Created Successfully');
-
-
-  }
-
-  public function getDispensUnitId(){
-
-    $r = $this->get_token();
-    $token_data = json_decode($r);
-    $token = $token_data->access_token;
-    $curl = curl_init();
-
-    curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/dispense-units?name=kit',
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_ENCODING => '',
-      CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 0,
-      CURLOPT_FOLLOWLOCATION => true,
-      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => 'GET',
-      CURLOPT_HTTPHEADER => array(
-        'Authorization: Bearer '.$token,
-        'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
-      ),
-    ));
-
-    $response = curl_exec($curl);
-
-    curl_close($curl);
-    return $response;
+    return $this->sendResponse(json_decode($response),'Case Created Successfully');
 
 
   }

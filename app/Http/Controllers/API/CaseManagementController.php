@@ -601,7 +601,7 @@ public function create_patient(Request $request)
 
 
 
-    public function CreateCase(Request $request){
+  public function CreateCase(Request $request){
     $r = $this->get_token();
     $token_data = json_decode($r);
     $token = $token_data->access_token;
@@ -619,7 +619,7 @@ public function create_patient(Request $request)
    /* echo "<pre>";
     print_r($request->all());
     echo "<pre>";*/
-   
+
 
 
     $patient_data = User::select('md_patient_id')->where('id', $request['user_id'])->first();
@@ -641,23 +641,23 @@ public function create_patient(Request $request)
       $userquestion[$key]['answer'] = $value['answer'];
 
       if($value['options_type'] == "radio"){
-         $userquestion[$key]['type']= "boolean";
-      }else{
-         $userquestion[$key]['type']= "string";
-      }
+       $userquestion[$key]['type']= "boolean";
+     }else{
+       $userquestion[$key]['type']= "string";
+     }
      
-      $userquestion[$key]['important']= true;
-    }
+     $userquestion[$key]['important']= true;
+   }
    
-    $userquestion = json_encode($userquestion);
+   $userquestion = json_encode($userquestion);
 
     /*echo "<pre>";
     print_r($userquestion);
     echo "<pre>";*/
-  
+
 
     //end of code to get user's question answer
-   
+
     
 
     if($product_type =="Topicals"){
@@ -709,7 +709,7 @@ public function create_patient(Request $request)
       $medication_compound_data[0]['directions'] = $directions;
       $medication_compound_data[0]['dispense_unit_id'] = $DispensUnitId;
       $medication_compound_data[0]['preferred_pharmacy_id'] = $preferred_pharmacy_id;
-  
+
     }else{
       $days_supply = "30";
       $refills = "0";
@@ -753,62 +753,81 @@ public function create_patient(Request $request)
 
     }
 
-     $medication_compound_data = json_encode($medication_compound_data);
+    $medication_compound_data = json_encode($medication_compound_data);
 
      /*echo "<pre>";
      print_r($medication_compound_data);
      echo "<pre>";
      exit();*/
-   
 
-
-    //$input = json_encode($request->all());
-
-    //$input_data = $request->all();
 
      $input_md_data = '{"patient_id": '.$patient_id.',"case_files": [],"case_prescriptions": '.$medication_compound_data.',"case_questions": '.$userquestion.'}';
 
-      /*echo "<pre>";
-      print_r($input_md_data);
-      echo "<pre>";
-      exit()*/;
+    
 
-    $curl = curl_init();
+      $curl = curl_init();
 
-    curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases',
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_ENCODING => '',
-      CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 0,
-      CURLOPT_FOLLOWLOCATION => true,
-      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => 'POST',
-      CURLOPT_POSTFIELDS =>'{
-        "patient_id": '.$patient_id.',
-        "case_files": [
-        ],
-        "case_prescriptions": '.$medication_compound_data.',
+      curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS =>'{
+          "patient_id": '.$patient_id.',
+          "case_files": [
+          ],
+          "case_prescriptions": '.$medication_compound_data.',
           "case_questions": '.$userquestion.'
-          }',
-          CURLOPT_HTTPHEADER => array(
-            'Content-Type: application/json',
-            'Authorization: Bearer '.$token,
-            'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
-          ),
-        ));
+        }',
+        CURLOPT_HTTPHEADER => array(
+          'Content-Type: application/json',
+          'Authorization: Bearer '.$token,
+          'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+        ),
+      ));
 
-    $response = curl_exec($curl);
+      $response = curl_exec($curl);
 
-    /*echo "<pre>";
-    print_r($response);
-    echo "<pre>";
-    exit();*/
+      $case_data = json_decode($response);
+
+       echo "<pre>";
+      print_r($case_data);
+      echo "<pre>";
+    
+       $input_data['partner_id'] = '45af5944-4ad1-4269-b2b2-a2d4164e591d';//$Patient_data['partner_id'];
+       $input_data['first_name'] = 'Greha';//$Patient_data['first_name'];
+       $input_data['last_name'] = 'Thomas';//$Patient_data['last_name'];
+       $input_data['email'] = 'grethoms@gmail.com';//$Patient_data['email'];
+       $input_data['gender'] = 0 ;//$Patient_data['gender'];
+       $input_data['phone_number'] = '812-349-9879';//$Patient_data['phone_number'];
+       $input_data['phone_type'] = 2;//$Patient_data['phone_type'];
+       $input_data['date_of_birth'] = '2000-12-11';//$Patient_data['date_of_birth'];
+       $input_data['active'] = 1;//$Patient_data['active'];
+       $input_data['weight'] = 60;//$Patient_data['weight'];
+       $input_data['height'] = 190;//$Patient_data['height'];
+       $input_data['dosespot_sync_status'] = 'pending';//$Patient_data['dosespot_sync_status'];
+       $input_data['patient_id'] = '755b8cd2-9abd-4016-b76f-f23f44d75e20';//$Patient_data['patient_id'];
+       $input_data['gender_label'] = 'Male';//$Patient_data['gender_label'];
+       $input_data['address'] = '1901 1st Avenue, New York, NY 10029';//$Patient_data['address']->address;
+       $input_data['zip_code'] = '34535';//$Patient_data['address']->zip_code;
+       $input_data['city_id'] = '0b56b7a1-dae8-4bf8-a44f-4cb808115a6c';//$Patient_data['address']->city_id;
+       $input_data['city_name'] = 'Lake California';//$Patient_data['address']['city']->name;
+       $input_data['state_name'] = 'California';//$Patient_data['address']['city']->state->name;
+       $input_data['state_abbreviation'] = 'CA';//$Patient_data['address']['city']->state->abbreviation;
+
+
+      /* echo "<pre>";
+       print_r($input_data);
+       echo "<pre>";
+       exit();*/
+
+    $md_patient_data = Mdpatient::create($input_data);
 
     curl_close($curl);
-    //echo $response;
-
-
 
     return $this->sendResponse(json_decode($response),'Case Created Successfully');
 

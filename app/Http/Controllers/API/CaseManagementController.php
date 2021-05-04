@@ -779,11 +779,11 @@ public function create_patient(Request $request)
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => 'POST',
       CURLOPT_POSTFIELDS =>'{
-        "patient_id": $patient_id,
+        "patient_id": '.$patient_id.',
         "case_files": [
         ],
-        "case_prescriptions": $medication_compound_data,
-          "case_questions": $userquestion
+        "case_prescriptions": '.$medication_compound_data.',
+          "case_questions": '.$userquestion.'
           }',
           CURLOPT_HTTPHEADER => array(
             'Content-Type: application/json',
@@ -791,11 +791,6 @@ public function create_patient(Request $request)
             'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
           ),
         ));
-
-    echo "<pre>";
-    print_r( CURLOPT_POSTFIELDS);
-    echo "<pre>";
-    exit();
 
     $response = curl_exec($curl);
 

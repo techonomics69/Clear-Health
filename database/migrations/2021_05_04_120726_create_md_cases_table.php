@@ -18,7 +18,7 @@ class CreateMdCasesTable extends Migration
             $table->string('prioritized_at')->nullable();
             $table->string('prioritized_reason')->nullable();
             $table->string('cancelled_at')->nullable();
-            $table->timestamp('created_at'); 
+            $table->timestamp('md_created_at'); 
             $table->string('support_reason')->nullable();
             $table->string('case_id');
             $table->string('status');

@@ -625,7 +625,8 @@ public function create_patient(Request $request)
 
     $userquestion = array();
     foreach($answer as $key=>$value){
-
+      $userquestion[$key]['question'] = $value['question'];
+      $userquestion[$key]['answer'] = $value['answer'];
       $userquestion[$key]['type']= $value['options_type'];
       $userquestion[$key]['important']= "true";
     }
@@ -733,7 +734,7 @@ public function create_patient(Request $request)
      echo "<pre>";
      print_r($medication_compound_data);
      echo "<pre>";
-     exit();
+   
 
 
     //$input = json_encode($request->all());

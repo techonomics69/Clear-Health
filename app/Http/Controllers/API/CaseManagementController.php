@@ -624,7 +624,7 @@ public function create_patient(Request $request)
 
     $patient_data = User::select('md_patient_id')->where('id', $request['user_id'])->first();
     
-    $patient_id = $patient_data['md_patient_id'];
+    $patient_id = '"'.$patient_data['md_patient_id'].'"';
 
     /*echo "<pre>";
     print_r($patient_id);
@@ -779,7 +779,7 @@ public function create_patient(Request $request)
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => 'POST',
       CURLOPT_POSTFIELDS =>'{
-        "patient_id": "'.$patient_id.'",
+        "patient_id": $patient_id,
         "case_files": [
         ],
         "case_prescriptions": $medication_compound_data,

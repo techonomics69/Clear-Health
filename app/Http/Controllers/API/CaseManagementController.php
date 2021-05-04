@@ -616,10 +616,20 @@ public function create_patient(Request $request)
     $preferred_pharmacy_id = $request['preferred_pharmacy_id'];
 
 
+    echo "<pre>";
+    print_r($request->all());
+    echo "<pre>";
+   
+
 
     $patient_data = User::select('md_patient_id')->where('id', $request['user_id'])->first();
     
     $patient_id = $patient_data['md_patient_id'];
+
+    echo "<pre>";
+    print_r($patient_id);
+    echo "<pre>";
+    
 
     //code to get user's question answer
 
@@ -634,6 +644,11 @@ public function create_patient(Request $request)
     }
    
     $userquestion = json_encode($userquestion);
+
+    echo "<pre>";
+    print_r($userquestion);
+    echo "<pre>";
+  
 
     //end of code to get user's question answer
    
@@ -734,9 +749,9 @@ public function create_patient(Request $request)
 
      $medication_compound_data = json_encode($medication_compound_data);
 
-    /* echo "<pre>";
+     echo "<pre>";
      print_r($medication_compound_data);
-     echo "<pre>";*/
+     echo "<pre>";
    
 
 

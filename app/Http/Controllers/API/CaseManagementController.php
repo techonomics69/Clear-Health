@@ -702,13 +702,13 @@ public function create_patient(Request $request)
       $partner_compound_id = $compounds[0]->partner_compound_id;
 
       $medication_compound_data = array();
-      $medication_compound_data['partner_compound_id'] = $partner_compound_id;
-      $medication_compound_data['refills'] = $refills;
-      $medication_compound_data['quantity'] = $quantity;
-      $medication_compound_data['days_supply'] = $days_supply;
-      $medication_compound_data['directions'] = $directions;
-      $medication_compound_data['dispense_unit_id'] = $DispensUnitId;
-      $medication_compound_data['preferred_pharmacy_id'] = $preferred_pharmacy_id;
+      $medication_compound_data[0]['partner_compound_id'] = $partner_compound_id;
+      $medication_compound_data[0]['refills'] = $refills;
+      $medication_compound_data[0]['quantity'] = $quantity;
+      $medication_compound_data[0]['days_supply'] = $days_supply;
+      $medication_compound_data[0]['directions'] = $directions;
+      $medication_compound_data[0]['dispense_unit_id'] = $DispensUnitId;
+      $medication_compound_data[0]['preferred_pharmacy_id'] = $preferred_pharmacy_id;
   
     }else{
       $days_supply = "30";
@@ -743,13 +743,13 @@ public function create_patient(Request $request)
       $DispensUnitId = $medications[0]->dispense_unit_id;
 
       $medication_compound_data = array();
-      $medication_compound_data['partner_medication_id'] = $partner_compound_id;
-      $medication_compound_data['refills'] = $refills;
-      $medication_compound_data['quantity'] = $quantity;
-      $medication_compound_data['days_supply'] = $days_supply;
-      $medication_compound_data['directions'] = $directions;
-      $medication_compound_data['dispense_unit_id'] = $DispensUnitId;
-      $medication_compound_data['preferred_pharmacy_id'] = $preferred_pharmacy_id;
+      $medication_compound_data[0]['partner_medication_id'] = $partner_compound_id;
+      $medication_compound_data[0]['refills'] = $refills;
+      $medication_compound_data[0]['quantity'] = $quantity;
+      $medication_compound_data[0]['days_supply'] = $days_supply;
+      $medication_compound_data[0]['directions'] = $directions;
+      $medication_compound_data[0]['dispense_unit_id'] = $DispensUnitId;
+      $medication_compound_data[0]['preferred_pharmacy_id'] = $preferred_pharmacy_id;
 
     }
 

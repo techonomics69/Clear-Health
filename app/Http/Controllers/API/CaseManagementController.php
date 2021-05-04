@@ -621,13 +621,19 @@ public function create_patient(Request $request)
     
     $patient_id = $patient_data['md_patient_id'];
 
-    $answer = QuizAnswer::join('quizzes', 'quizzes.id', '=', 'quiz_answers.question_id')->where('quiz_answers.user_id', $request['user_id'])->where('quiz_answers.case_id', $request['case_id'])->select('quiz_answers.*', 'quizzes.question')->get()->toArray();
+    $answer = QuizAnswer::join('quizzes', 'quizzes.id', '=', 'quiz_answers.question_id')->where('quiz_answers.user_id', $request['user_id'])->where('quiz_answers.case_id', $request['case_id'])->select( 'quizzes.question','quiz_answers.answer','quizzes.options_type')->get()->toArray();
 
-    echo "<pre>";
-    print_r($answer);
-    echo "<pre>";
+    $userquestion = array();
+    foreach($answer as $key=>$value){
+
+      $userquestion[$key]['type']= $value['options_type'];
+      $userquestion[$key]['important']= "true";
+    }
    
-
+    echo "<pre>";
+    print_r($userquestion);
+    echo "<pre>";
+    
 
     if($product_type =="Topicals"){
 

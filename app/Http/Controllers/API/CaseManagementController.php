@@ -601,23 +601,137 @@ public function create_patient(Request $request)
 
 
 
-  public function CreateCase(Request $request){
+    public function CreateCase(Request $request){
     $r = $this->get_token();
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
+
     $user_id = $request['user_id'];
     $case_id = $request['case_id'];
 
+    $product_type = $request['product_type'];
+    $product_name = $request['product_name'];
+    $quantity = $request['quantity'];
+    $preferred_pharmacy_id = $request['preferred_pharmacy_id'];
 
-    $patient_id = User::select('md_patient_id')->where('id', $request['user_id'])->first();
-    echo "<pre>";
-    print_r($patient_id);
-    echo "<pre>";
-    exit();
+
+
+    $patient_data = User::select('md_patient_id')->where('id', $request['user_id'])->first();
+    
+    $patient_id = $patient_data['md_patient_id'];
+
     $answer = QuizAnswer::where('user_id', $request['user_id'])->where('case_id', $request['case_id'])->get()->toArray();
 
+    echo "<pre>";
+    print_r($answer);
+    echo "<pre>";
+   
 
+
+    if($product_type =="Topicals"){
+
+      $days_supply = "60 Days";
+      $refills = "1";
+      $directions = "xyz";
+
+
+      $DispensUnitId = $this->getDispensUnitId();
+
+  echo "<pre>";
+  print_r($DispensUnitId);
+  echo "<pre>";
+  exit();
+      $DispensUnitId = json_decode($DispensUnitId);
+      
+      $DispensUnitId= $DispensUnitId[0]->dispense_unit_id;
+      
+
+      $curl = curl_init();
+
+      curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/compounds/search?name=acid',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'GET',
+        CURLOPT_HTTPHEADER => array(
+          'Authorization: Bearer '.$token,
+          'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+        ),
+      ));
+
+      $response = curl_exec($curl);
+
+      curl_close($curl);
+
+      $compounds= $response;
+
+      $compounds = json_decode($compounds);
+
+      $partner_compound_id = $compounds[0]->partner_compound_id;
+
+      $medication_compound_data = array();
+      $medication_compound_data['partner_compound_id'] = $partner_compound_id;
+      $medication_compound_data['refills'] = $refills;
+      $medication_compound_data['quantity'] = $quantity;
+      $medication_compound_data['days_supply'] = $days_supply;
+      $medication_compound_data['directions'] = $directions;
+      $medication_compound_data['dispense_unit_id'] = $DispensUnitId;
+      $medication_compound_data['preferred_pharmacy_id'] = $preferred_pharmacy_id;
+  
+    }else{
+      $days_supply = "30 Days";
+      $refills = "0";
+      $directions = "ASDASD";
+
+      $curl = curl_init();
+
+      curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name='.$product_name.'&strength='.$quantity,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'GET',
+        CURLOPT_HTTPHEADER => array(
+          'Authorization: Bearer .'.$token,
+          'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+        ),
+      ));
+
+      $response = curl_exec($curl);
+
+      curl_close($curl);
+
+      $medications = $response;
+
+      $medications = json_decode($medications);
+
+      $DispensUnitId = $medications[0]->dispense_unit_id;
+
+      $medication_compound_data = array();
+      $medication_compound_data['partner_medication_id'] = $partner_compound_id;
+      $medication_compound_data['refills'] = $refills;
+      $medication_compound_data['quantity'] = $quantity;
+      $medication_compound_data['days_supply'] = $days_supply;
+      $medication_compound_data['directions'] = $directions;
+      $medication_compound_data['dispense_unit_id'] = $DispensUnitId;
+      $medication_compound_data['preferred_pharmacy_id'] = $preferred_pharmacy_id;
+
+    }
+
+     $medication_compound_data = json_encode($medication_compound_data);
+
+     echo "<pre>";
+     print_r($medication_compound_data);
+     echo "<pre>";
+     exit();
 
 
     //$input = json_encode($request->all());
@@ -638,29 +752,10 @@ public function create_patient(Request $request)
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => 'POST',
       CURLOPT_POSTFIELDS =>'{
-        "patient_id": "755b8cd2-9abd-4016-b76f-f23f44d75e20",
+        "patient_id": "'.$patient_id.'",
         "case_files": [
         ],
-        "case_prescriptions": [
-        {
-          "partner_medication_id": "b1215ab5-c3f9-4299-bcb0-fbbb7131334e",
-          "refills": "",
-          "quantity": "",
-          "days_supply": "",
-          "directions": "",
-          "dispense_unit_id": 4,
-          "preferred_pharmacy_id": ""
-          },
-          {
-            "refills": "",
-            "quantity": "",
-            "days_supply": "",
-            "directions": "",
-            "partner_compound_id": "ea90ed3c-0973-4fa5-9d63-f996f245a906",
-            "dispense_unit_id": "",
-            "preferred_pharmacy_id": ""
-          }
-          ],
+        "case_prescriptions": $medication_compound_data,
           "case_questions": [
           {
             "question": "Are you pregnant?",
@@ -684,9 +779,45 @@ public function create_patient(Request $request)
         ));
 
     $response = curl_exec($curl);
+
     curl_close($curl);
     echo $response;
-    return $this->sendResponse(json_decode($response),'Case Created Successfully');
+
+
+
+    //return $this->sendResponse(json_decode($response),'Case Created Successfully');
+
+
+  }
+
+  public function getDispensUnitId(){
+
+    $r = $this->get_token();
+    $token_data = json_decode($r);
+    $token = $token_data->access_token;
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/dispense-units?name=kit',
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'GET',
+      CURLOPT_HTTPHEADER => array(
+        'Authorization: Bearer '.$token,
+        'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+      ),
+    ));
+
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+    return $response;
+
+
   }
 
 

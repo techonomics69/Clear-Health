@@ -632,7 +632,7 @@ public function create_patient(Request $request)
     }
    
     echo "<pre>";
-    print_r($userquestion);
+    print_r(json_encode($userquestion));
     echo "<pre>";
     
 

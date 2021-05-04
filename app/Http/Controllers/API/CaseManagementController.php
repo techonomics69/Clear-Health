@@ -755,10 +755,10 @@ public function create_patient(Request $request)
 
      $medication_compound_data = json_encode($medication_compound_data);
 
-     echo "<pre>";
+     /*echo "<pre>";
      print_r($medication_compound_data);
      echo "<pre>";
-     exit();
+     exit();*/
    
 
 
@@ -768,10 +768,10 @@ public function create_patient(Request $request)
 
      $input_md_data = '{"patient_id": '.$patient_id.',"case_files": [],"case_prescriptions": '.$medication_compound_data.',"case_questions": '.$userquestion.'}';
 
-      echo "<pre>";
+      /*echo "<pre>";
       print_r($input_md_data);
       echo "<pre>";
-      exit();
+      exit()*/;
 
     $curl = curl_init();
 
@@ -800,17 +800,17 @@ public function create_patient(Request $request)
 
     $response = curl_exec($curl);
 
-    echo "<pre>";
+    /*echo "<pre>";
     print_r($response);
     echo "<pre>";
-    exit();
+    exit();*/
 
     curl_close($curl);
     //echo $response;
 
 
 
-    //return $this->sendResponse(json_decode($response),'Case Created Successfully');
+    return $this->sendResponse(json_decode($response),'Case Created Successfully');
 
 
   }

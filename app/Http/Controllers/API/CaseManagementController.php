@@ -794,8 +794,13 @@ public function create_patient(Request $request)
 
     $response = curl_exec($curl);
 
+    echo "<pre>";
+    print_r($response);
+    echo "<pre>";
+    exit();
+
     curl_close($curl);
-    echo $response;
+    //echo $response;
 
 
 

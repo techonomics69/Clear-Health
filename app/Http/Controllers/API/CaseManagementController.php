@@ -616,9 +616,9 @@ public function create_patient(Request $request)
     $preferred_pharmacy_id = $request['preferred_pharmacy_id'];
 
 
-    echo "<pre>";
+   /* echo "<pre>";
     print_r($request->all());
-    echo "<pre>";
+    echo "<pre>";*/
    
 
 
@@ -626,9 +626,9 @@ public function create_patient(Request $request)
     
     $patient_id = $patient_data['md_patient_id'];
 
-    echo "<pre>";
+    /*echo "<pre>";
     print_r($patient_id);
-    echo "<pre>";
+    echo "<pre>";*/
     
 
     //code to get user's question answer
@@ -651,9 +651,9 @@ public function create_patient(Request $request)
    
     $userquestion = json_encode($userquestion);
 
-    echo "<pre>";
+    /*echo "<pre>";
     print_r($userquestion);
-    echo "<pre>";
+    echo "<pre>";*/
   
 
     //end of code to get user's question answer
@@ -662,7 +662,7 @@ public function create_patient(Request $request)
 
     if($product_type =="Topicals"){
 
-      $days_supply = "60 Days";
+      $days_supply = "60";
       $refills = "1";
       $directions = "xyz";
 
@@ -711,7 +711,7 @@ public function create_patient(Request $request)
       $medication_compound_data['preferred_pharmacy_id'] = $preferred_pharmacy_id;
   
     }else{
-      $days_supply = "30 Days";
+      $days_supply = "30";
       $refills = "0";
       $directions = "ASDASD";
 
@@ -755,9 +755,9 @@ public function create_patient(Request $request)
 
      $medication_compound_data = json_encode($medication_compound_data);
 
-     echo "<pre>";
+    /* echo "<pre>";
      print_r($medication_compound_data);
-     echo "<pre>";
+     echo "<pre>";*/
    
 
 

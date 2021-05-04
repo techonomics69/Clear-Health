@@ -792,6 +792,11 @@ public function create_patient(Request $request)
           ),
         ));
 
+    echo "<pre>";
+    print_r( CURLOPT_POSTFIELDS);
+    echo "<pre>";
+    exit();
+
     $response = curl_exec($curl);
 
     curl_close($curl);

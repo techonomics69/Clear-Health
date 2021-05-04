@@ -825,7 +825,7 @@ public function create_patient(Request $request)
        echo "<pre>";
        exit();*/
 
-    $md_patient_data = Mdpatient::create($input_data);
+    //$md_patient_data = Mdpatient::create($input_data);
 
     curl_close($curl);
 

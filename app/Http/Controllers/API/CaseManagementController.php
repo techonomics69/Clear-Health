@@ -621,6 +621,8 @@ public function create_patient(Request $request)
     
     $patient_id = $patient_data['md_patient_id'];
 
+    //code to get user's question answer
+
     $answer = QuizAnswer::join('quizzes', 'quizzes.id', '=', 'quiz_answers.question_id')->where('quiz_answers.user_id', $request['user_id'])->where('quiz_answers.case_id', $request['case_id'])->select( 'quizzes.question','quiz_answers.answer','quizzes.options_type')->get()->toArray();
 
     $userquestion = array();
@@ -631,9 +633,10 @@ public function create_patient(Request $request)
       $userquestion[$key]['important']= "true";
     }
    
-    echo "<pre>";
-    print_r(json_encode($userquestion));
-    echo "<pre>";
+    $userquestion = json_encode($userquestion);
+
+    //end of code to get user's question answer
+   
     
 
     if($product_type =="Topicals"){
@@ -731,9 +734,9 @@ public function create_patient(Request $request)
 
      $medication_compound_data = json_encode($medication_compound_data);
 
-     echo "<pre>";
+    /* echo "<pre>";
      print_r($medication_compound_data);
-     echo "<pre>";
+     echo "<pre>";*/
    
 
 
@@ -759,20 +762,7 @@ public function create_patient(Request $request)
         "case_files": [
         ],
         "case_prescriptions": $medication_compound_data,
-          "case_questions": [
-          {
-            "question": "Are you pregnant?",
-            "answer": "true",
-            "type": "boolean",
-            "important": true
-            },
-            {
-              "question": "Do you have any health issues? If yes, which ones?",
-              "answer": "Yes, high blood pressure.",
-              "type": "string",
-              "important": false
-            }
-            ]
+          "case_questions": $userquestion
           }',
           CURLOPT_HTTPHEADER => array(
             'Content-Type: application/json',

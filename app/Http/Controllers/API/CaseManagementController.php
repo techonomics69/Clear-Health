@@ -639,8 +639,14 @@ public function create_patient(Request $request)
     foreach($answer as $key=>$value){
       $userquestion[$key]['question'] = $value['question'];
       $userquestion[$key]['answer'] = $value['answer'];
-      $userquestion[$key]['type']= $value['options_type'];
-      $userquestion[$key]['important']= "true";
+
+      if($value['options_type'] == "radio"){
+         $userquestion[$key]['type']= "boolean";
+      }else{
+         $userquestion[$key]['type']= "string";
+      }
+     
+      $userquestion[$key]['important']= true;
     }
    
     $userquestion = json_encode($userquestion);

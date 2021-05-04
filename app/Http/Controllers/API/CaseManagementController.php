@@ -621,7 +621,7 @@ public function create_patient(Request $request)
     
     $patient_id = $patient_data['md_patient_id'];
 
-    $answer = QuizAnswer::where('user_id', $request['user_id'])->where('case_id', $request['case_id'])->get()->toArray();
+    $answer = QuizAnswer::join('quizzes', 'quizzes.id', '=', 'quiz_answers.question_id')->where('quiz_answers.user_id', $request['user_id'])->where('quiz_answers.case_id', $request['case_id'])->select('quiz_answers.*', 'quizzes.question')->get()->toArray();
 
     echo "<pre>";
     print_r($answer);
@@ -638,10 +638,6 @@ public function create_patient(Request $request)
 
       $DispensUnitId = $this->getDispensUnitId();
 
-  echo "<pre>";
-  print_r($DispensUnitId);
-  echo "<pre>";
-  exit();
       $DispensUnitId = json_decode($DispensUnitId);
       
       $DispensUnitId= $DispensUnitId[0]->dispense_unit_id;

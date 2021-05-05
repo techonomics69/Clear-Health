@@ -864,6 +864,7 @@ public function create_patient(Request $request)
     $md_id = $request['md_id'];
     $case_id = $request['case_id'];
     $name = $request['name'];
+    $status = 1;
 
     $input = $request->all();
 

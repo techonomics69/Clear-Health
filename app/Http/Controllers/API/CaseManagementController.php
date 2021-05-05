@@ -12,6 +12,7 @@ use App\Models\QuizAnswer;
 use App\Models\Quiz;
 use App\Models\User;
 use App\Models\Parentdetail;
+use App\Models\Mdcases;
 
 class CaseManagementController extends BaseController
 {
@@ -761,7 +762,7 @@ public function create_patient(Request $request)
      exit();*/
 
 
-     $input_md_data = '{"patient_id": '.$patient_id.',"case_files": [],"case_prescriptions": '.$medication_compound_data.',"case_questions": '.$userquestion.'}';
+   /*  $input_md_data = '{"patient_id": '.$patient_id.',"case_files": [],"case_prescriptions": '.$medication_compound_data.',"case_questions": '.$userquestion.'}';*/
 
     
 
@@ -794,31 +795,18 @@ public function create_patient(Request $request)
 
       $case_data = json_decode($response);
 
-       echo "<pre>";
-      print_r($case_data);
-      echo "<pre>";
-      exit();
+       
     
-       $input_data['prioritized_at'] = $case_data[''];//$Patient_data['partner_id'];
-       $input_data['first_name'] = 'Greha';//$Patient_data['first_name'];
-       $input_data['last_name'] = 'Thomas';//$Patient_data['last_name'];
-       $input_data['email'] = 'grethoms@gmail.com';//$Patient_data['email'];
-       $input_data['gender'] = 0 ;//$Patient_data['gender'];
-       $input_data['phone_number'] = '812-349-9879';//$Patient_data['phone_number'];
-       $input_data['phone_type'] = 2;//$Patient_data['phone_type'];
-       $input_data['date_of_birth'] = '2000-12-11';//$Patient_data['date_of_birth'];
-       $input_data['active'] = 1;//$Patient_data['active'];
-       $input_data['weight'] = 60;//$Patient_data['weight'];
-       $input_data['height'] = 190;//$Patient_data['height'];
-       $input_data['dosespot_sync_status'] = 'pending';//$Patient_data['dosespot_sync_status'];
-       $input_data['patient_id'] = '755b8cd2-9abd-4016-b76f-f23f44d75e20';//$Patient_data['patient_id'];
-       $input_data['gender_label'] = 'Male';//$Patient_data['gender_label'];
-       $input_data['address'] = '1901 1st Avenue, New York, NY 10029';//$Patient_data['address']->address;
-       $input_data['zip_code'] = '34535';//$Patient_data['address']->zip_code;
-       $input_data['city_id'] = '0b56b7a1-dae8-4bf8-a44f-4cb808115a6c';//$Patient_data['address']->city_id;
-       $input_data['city_name'] = 'Lake California';//$Patient_data['address']['city']->name;
-       $input_data['state_name'] = 'California';//$Patient_data['address']['city']->state->name;
-       $input_data['state_abbreviation'] = 'CA';//$Patient_data['address']['city']->state->abbreviation;
+       $input_data['prioritized_at'] = $case_data->prioritized_at;
+       $input_data['prioritized_reason'] = $case_data->prioritized_reason;
+       $input_data['cancelled_at'] = $case_data->prioritized_reason;
+       $input_data['md_created_at'] = $case_data->created_at;
+       $input_data['support_reason'] = $case_data->created_at;
+       $input_data['case_id'] = $case_data->created_at;
+       $input_data['status'] = $case_data->created_at;
+       $input_data['user_id'] = $user_id;
+       $input_data['system_case_id'] = $case_id;
+       
 
 
       /* echo "<pre>";
@@ -826,7 +814,7 @@ public function create_patient(Request $request)
        echo "<pre>";
        exit();*/
 
-    //$md_patient_data = Mdpatient::create($input_data);
+    $md_case_data = Mdcases::create($input_data);
 
     curl_close($curl);
 

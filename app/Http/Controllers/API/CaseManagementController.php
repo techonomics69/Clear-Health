@@ -14,6 +14,7 @@ use App\Models\User;
 use App\Models\Parentdetail;
 use App\Models\Mdcases;
 use App\Models\Mdmanagement;
+use File;
 
 class CaseManagementController extends BaseController
 {

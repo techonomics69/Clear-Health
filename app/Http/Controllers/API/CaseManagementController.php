@@ -494,7 +494,7 @@ public function create_patient(Request $request)
     echo "<pre>";
     exit();*/
 
-    $input_data = $request->all();
+    /*$input_data = $request->all();
 
     $curl = curl_init();
 
@@ -524,6 +524,33 @@ public function create_patient(Request $request)
     print_r($response);
     echo "<pre>";
     exit();
+*/
+
+    <?php
+
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/files',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'POST',
+  CURLOPT_POSTFIELDS => array('name' => 'face - left side','file'=> new CURLFILE('/C:/Users/sai/Downloads/Diabetes-Management-Panel-Results.jpg')),
+  CURLOPT_HTTPHEADER => array(
+    'Content: multipart/form-data;',
+    'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJjN2EyMGE5MC00ZGI5LTQyZTQtODYwYS03ZjQxYzJhOGEwYjEiLCJqdGkiOiI2YzY4ZTY5YmU2MjRhMDI4NDkwM2FlYzEyZDY1Y2RiMzA2NDNjNjAwNWIwZWUyMjU5MzM1ODliNTk1NWY0YzhlZTJjZTNhN2U1NDRiNTFiNCIsImlhdCI6MTYyMDIwMTE0Ni44NDEwMywibmJmIjoxNjIwMjAxMTQ2Ljg0MTAzMywiZXhwIjoxNjIwMjg3NTQ2LjgzNTA3OSwic3ViIjoiIiwic2NvcGVzIjpbIioiXX0.nQgsM6LmOo51-G3is3mTIJBeLps21bmnro3reeINJVBQtGaDdyE1O-HNwUvIOL-PkgaVtVAXCO-dPHPKAufurI6SULs4ZGLbgb4vVzqrU-nc_t44ugnY5sLom67ZUHO_F1tqO-a3hbjgvCH0K4_gpwGiaLFRYu7DZIncKy1c4tXkKh2DEurcHOd9WhPvNgly8EtVv1hokdbz_KIwd4IrEmJh8hIES-OA65sGxNOzCFzy_hlz3YdXLRijO0tdsk3lHumjJRjP13p5fe9KZS46feZTmLg7Ct20yKQLNUwwz44kB8o7GB3q9nNs9oWtI13BLjehXbLwMm2oUtK66sUHfLwvY-qMnMrk2h-ANXg9BQ-9ubSIl93ibUY6JwQibDt-6kUxqF04x42cGlILExJJZPTg3Y_8zkCju2-cABG-Mj67GUh_AjhqsH5XvNyYnfPB1viR-sbNR5k-3HB6WHO0ZoG4cIQ-cBHcauVGRnTMCWMZXKxlHGzm2rS_sm3UASVMnLhcPsSCLZAZgNXXriBO9nxF30u_t9R6lFIykaNL1MGz_07EiMej-bvatAeWWi5iCD6xUXY3HVmsA-1Ix4Ae2pbF3KqxgJSjR0eHVsefyYBV57PdB29vv0TdD89Iya-aV3wmlaNczQSRNXAjCQCf45tnUn4vFgOJByXsd7kUdJU',
+    'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+  ),
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+echo $response;
 
 
     //return $this->sendResponse(json_decode($response),'File Created Successfully');

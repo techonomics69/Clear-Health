@@ -874,7 +874,7 @@ public function create_patient(Request $request)
       $md_case_data = Mdcases::create($input);
     }
    
-   return $this->sendResponse($input),'MD Details Added Successfully');
+   return $this->sendResponse($input,'MD Details Added Successfully');
     
 
   }

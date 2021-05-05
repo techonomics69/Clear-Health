@@ -868,6 +868,7 @@ public function create_patient(Request $request)
 
     $input = $request->all();
     $input['status'] = $status;
+    $input['image'] = "";
 
     $mdmanagement_data = Mdmanagement::where('case_id', $case_id)->first();
     if(!empty($mdmanagement_data)){

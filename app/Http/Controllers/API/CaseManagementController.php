@@ -506,7 +506,7 @@ public function create_patient(Request $request)
       CURLOPT_FOLLOWLOCATION => true,
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => 'POST',
-      CURLOPT_POSTFIELDS => array('name' => 'face - left side','file'=> new CURLFILE('/C:/Users/sai/Pictures/dummy.pdf')), 
+      CURLOPT_POSTFIELDS => array('name' => 'blood work','file'=> new CURLFILE('http://103.101.59.95/dev.clearhealth/public/images/Diabetes-Management-Panel-Results.jpg')), 
 
       //CURLOPT_POSTFIELDS => $input,
 

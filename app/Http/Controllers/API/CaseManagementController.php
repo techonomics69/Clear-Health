@@ -13,6 +13,7 @@ use App\Models\Quiz;
 use App\Models\User;
 use App\Models\Parentdetail;
 use App\Models\Mdcases;
+use App\Models\Mdmanagement;
 
 class CaseManagementController extends BaseController
 {
@@ -850,6 +851,31 @@ public function create_patient(Request $request)
     curl_close($curl);
     return $response;
 
+
+  }
+
+  public function getMdDetails(Request $request){
+
+    /*$r = $this->get_token();
+    $token_data = json_decode($r);
+    $token = $token_data->access_token;*/
+
+
+    $md_id = $request['md_id'];
+    $case_id = $request['case_id'];
+    $name = $request['name'];
+
+    $input = $request->all();
+
+    $mdmanagement_data = Mdmanagement::where('case_id', $case_id)->first();
+    if(!empty($mdmanagement_data)){
+      $mdmanagement_data->update($input);
+    }else{
+      $md_case_data = Mdcases::create($input);
+    }
+   
+   return $this->sendResponse($input),'MD Details Added Successfully');
+    
 
   }
 

@@ -86,7 +86,8 @@ Route::post('forgot_password',[RegisterController::class, 'forgot_password']);
     Route::post('createCaseFile', [CaseManagementController::class, 'createCaseFile']);
     Route::post('getPharmacies', [CaseManagementController::class, 'getPharmacies']); 
     Route::post('getPharmacyById', [CaseManagementController::class, 'getPharmacyById']);
-     Route::post('CreateCase', [CaseManagementController::class, 'CreateCase']);
+    Route::post('CreateCase', [CaseManagementController::class, 'CreateCase']);
+    Route::post('getMdDetails', [CaseManagementController::class, 'getMdDetails']);
     //end of md api
 
     Route::group(['middleware' => 'auth:api'], function(){});

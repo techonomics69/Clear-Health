@@ -873,7 +873,7 @@ public function create_patient(Request $request)
     if(!empty($mdmanagement_data)){
       $mdmanagement_data->update($input);
     }else{
-      $md_case_data = Mdcases::create($input);
+      $md_case_data = Mdmanagement::create($input);
     }
    
    return $this->sendResponse($input,'MD Details Added Successfully');

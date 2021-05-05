@@ -797,8 +797,9 @@ public function create_patient(Request $request)
        echo "<pre>";
       print_r($case_data);
       echo "<pre>";
+      exit();
     
-       $input_data['partner_id'] = '45af5944-4ad1-4269-b2b2-a2d4164e591d';//$Patient_data['partner_id'];
+       $input_data['prioritized_at'] = $case_data[''];//$Patient_data['partner_id'];
        $input_data['first_name'] = 'Greha';//$Patient_data['first_name'];
        $input_data['last_name'] = 'Thomas';//$Patient_data['last_name'];
        $input_data['email'] = 'grethoms@gmail.com';//$Patient_data['email'];

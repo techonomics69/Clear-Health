@@ -525,8 +525,7 @@ public function create_patient(Request $request)
     echo "<pre>";
     exit();
 */
-
-    <?php
+ 
 
 $curl = curl_init();
 

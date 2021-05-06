@@ -463,7 +463,7 @@ public function create_patient(Request $request)
 
     $documents = $request->file('file');
     echo "<pre>";
-    print_r($_POST);
+    print_r($_FILES);
     echo "<pre>";
     exit();
 

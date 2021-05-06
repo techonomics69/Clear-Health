@@ -468,10 +468,10 @@ public function create_patient(Request $request)
 
     $documents = $request->file('file');
 
-    echo "<pre>";
+    /*echo "<pre>";
     print_r($documents);
     echo "<pre>";
-    exit();
+    exit();*/
 
      if(!empty($documents)){
           $file =  $documents->getClientOriginalName();
@@ -489,20 +489,21 @@ public function create_patient(Request $request)
         }
 
     //$file_temp_name = $documents->getfileName();
-    //$file_temp_path = $documents->getpathName();
+    $file_temp_path = $documents->getpathName();
+    $file_mimeType = $documents->mimeType();
 
-        $input = $request->all();
-    /*$input['file'] = $file_temp_name.'/'.$file_temp_path;
+    $input = $request->all();
+
     echo "<pre>";
-    print_r($input);
+    print_r($file_mimeType);
     echo "<pre>";
-    exit();*/
+    exit();
 
     $input_data = $request->all();
 
     $fields = [
     'name' => 'face - left side',
-    'file' => new \CurlFile($filePath, 'image/png', 'filename.png')
+    'file' => new \CurlFile($file_temp_path,$file_mimeType, $doc_file_name)
 ];
 
     $curl = curl_init();

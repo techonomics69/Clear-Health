@@ -519,11 +519,11 @@ public function create_patient(Request $request)
     $response = curl_exec($curl);
 
    
-
+/*
     echo "<pre>";
     print_r(curl_getinfo($curl));
     echo "<pre>";
-    exit();
+    exit();*/
 
     if($errno = curl_errno($ch)) {
     $error_message = curl_strerror($errno);

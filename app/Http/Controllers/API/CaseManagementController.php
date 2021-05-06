@@ -462,10 +462,7 @@ public function create_patient(Request $request)
     $token = $token_data->access_token;
 
     $documents = $request->file('file');
-    echo "<pre>";
-    print_r($_FILES);
-    echo "<pre>";
-    exit();
+   
 
     if(!empty($documents)){
       $file =  $documents->getClientOriginalName();
@@ -489,7 +486,7 @@ public function create_patient(Request $request)
 
     $input = $request->all();
 
-    /*echo "<pre>";
+    echo "<pre>";
     print_r($file_mimeType);
     echo "<pre>";
     echo "<pre>";
@@ -498,7 +495,10 @@ public function create_patient(Request $request)
     echo "<pre>";
     print_r($doc_file_name);
     echo "<pre>";
-    exit();*/
+    echo "<pre>";
+    print_r($file_temp_path);
+    echo "<pre>";
+    exit();
 
     $input_data = $request->all();
 

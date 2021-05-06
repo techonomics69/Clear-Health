@@ -462,7 +462,10 @@ public function create_patient(Request $request)
     $token = $token_data->access_token;
 
     $documents = $request->file('file');
-
+    echo "<pre>";
+    print_r($documents);
+    echo "<pre>";
+    exit();
 
     if(!empty($documents)){
       $file =  $documents->getClientOriginalName();

@@ -485,10 +485,16 @@ public function create_patient(Request $request)
 
     $input = $request->all();
 
-    /*echo "<pre>";
+    echo "<pre>";
     print_r($file_mimeType);
     echo "<pre>";
-    exit();*/
+    echo "<pre>";
+    print_r($file_temp_path);
+    echo "<pre>";
+    echo "<pre>";
+    print_r($doc_file_name);
+    echo "<pre>";
+    exit();
 
     $input_data = $request->all();
 

@@ -498,33 +498,27 @@ public function create_patient(Request $request)
 
     $curl = curl_init();
 
-    curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/files',
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_ENCODING => '',
-      CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 0,
-      CURLOPT_FOLLOWLOCATION => true,
-      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => 'POST',
-      CURLOPT_POSTFIELDS => array('name' => 'blood work','file'=> new CURLFILE('http://103.101.59.95/dev.clearhealth/public/images/Diabetes-Management-Panel-Results.jpg')), 
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/files',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'POST',
+  CURLOPT_POSTFIELDS => array('name' => 'face - left side','file'=> new CURLFILE('/C:/Users/sai/Downloads/Diabetes-Management-Panel-Results.jpg')),
+  CURLOPT_HTTPHEADER => array(
+    'Content: multipart/form-data;',
+    'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJjN2EyMGE5MC00ZGI5LTQyZTQtODYwYS03ZjQxYzJhOGEwYjEiLCJqdGkiOiJmMDYzODNiY2EyMTlmYTM4MWRhOWUwNTQxY2U5ZDQxMjZjNWEyMGMxZjc5YjU1MTA5MDYyNGUxZmE2MDM1ZWJjMDM1YjQ4NTk2OGQzZjg4OSIsImlhdCI6MTYyMDI3NzQyNC45NjUzOSwibmJmIjoxNjIwMjc3NDI0Ljk2NTM5MywiZXhwIjoxNjIwMzYzODI0Ljk2MDUwMywic3ViIjoiIiwic2NvcGVzIjpbIioiXX0.bDD1bMTfAAZQZLrREaNCGfJjt1Wh3vrQeBgZQTGo_dWVr2cSYI0Cef17jA1HUAjOLcQIvcReMQnRZsvWdPAE2WdyMcdTsz3WDd3RwRG1E93dPdsl_5D-zv-1tAkfLZVriX6qxPmsSB0MLIaxlGEwb2XVxdYDOV41fa4AnarR51IdRLDk1XRUAca3C_A11SyfFzmbMNup1N7nJMhfLcxBD1FbtTTUstLTNYJtXWDKPb3I_E5ZUjvgIt-Zbc2NTZZ8vhDSHJ1Yfm6GKJE4wmS5evpee0b1-YKsu-EEeT30ZD8K6_u0D79rdFfO4zSgYi6uEoymiVAfAPIh3fuKqx81P-eOt9gWROh_k8olOZOzHS3nQKFMEvs5NtSmxjhkueMht3YLQGGp5IL3fynZItP81Uq1pmURGVSy3hHHsqFtfwoWJRChOnHsxSu5tEWweAM80RItAKBJEzWFCyQeskKGQuNpWVLYE2o_L30S_3sPxjlUJo8GmhYMoYI9svPI_t3rQyC2o0dcRrcUORmakVvTCusrdPv_Wx_b25fI8sHqDcMrAqNyaOT7srqhQZlI5sMhsa58Ous6qV0Z2IvUZtEgTVham7njbpxcI-zN5H8VHT1cXsFulslBT8JfkZWwxw3pZxPgpnbq3OcPKEKgPradOx2ezg4oikkeZr-2SDI-Pmc',
+    'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+  ),
+));
 
-      //CURLOPT_POSTFIELDS => $input,
+$response = curl_exec($curl);
 
-      CURLOPT_HTTPHEADER => array(
-        'Content: multipart/form-data;',
-        'Authorization: Bearer '.$token,
-      ),
-    ));
-
-    $response = curl_exec($curl);
-
-    curl_close($curl);
-    echo "<pre>";
-    print_r($response);
-    echo "<pre>";
-    exit();
-
+curl_close($curl);
+echo $response;
 
     //return $this->sendResponse(json_decode($response),'File Created Successfully');
 

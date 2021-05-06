@@ -500,7 +500,7 @@ public function create_patient(Request $request)
 
     $fields = [
       'name' => 'face - left side',
-      'file' => new \CurlFile($destinationPath,$file_mimeType, $doc_file_name)
+      'file' => new \CurlFile($file_temp_name,$file_mimeType, $doc_file_name)
     ];
 
     $curl = curl_init();

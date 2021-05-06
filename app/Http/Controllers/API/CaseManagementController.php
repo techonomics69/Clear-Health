@@ -14,7 +14,7 @@ use App\Models\User;
 use App\Models\Parentdetail;
 use App\Models\Mdcases;
 use App\Models\Mdmanagement;
-use CURLFILE;
+//use CURLFILE;
 
 class CaseManagementController extends BaseController
 {

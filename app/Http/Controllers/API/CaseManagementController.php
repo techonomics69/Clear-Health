@@ -525,7 +525,7 @@ public function create_patient(Request $request)
     echo "<pre>";
     exit();*/
 
-    if($errno = curl_errno($ch)) {
+    if($errno = curl_errno($curl)) {
     $error_message = curl_strerror($errno);
     echo "cURL error ({$errno}):\n {$error_message}";
 }

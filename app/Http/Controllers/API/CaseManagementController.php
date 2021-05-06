@@ -461,18 +461,9 @@ public function create_patient(Request $request)
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
-   /* echo "<pre>";
-    print_r($request->all());
-    echo "<pre>";
-    exit();*/
-
     $documents = $request->file('file');
 
-    /*echo "<pre>";
-    print_r($documents);
-    echo "<pre>";
-    exit();*/
-
+   
      if(!empty($documents)){
           $file =  $documents->getClientOriginalName();
           $doc_file_name =  time().'-'.$file;

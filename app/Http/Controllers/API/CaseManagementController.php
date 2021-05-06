@@ -479,22 +479,22 @@ public function create_patient(Request $request)
       $input['file'] = $doc_file_name;
     }
 
-    //$file_temp_name = $documents->getfileName();
+    $file_temp_name = $documents->getfileName();
     $file_temp_path = $documents->getpathName();
     $file_mimeType = $documents->getClientMimeType();
 
     $input = $request->all();
 
-   /* echo "<pre>";
+    echo "<pre>";
     print_r($file_mimeType);
     echo "<pre>";
     echo "<pre>";
-    print_r($file_temp_path);
+    print_r($file_temp_name);
     echo "<pre>";
     echo "<pre>";
     print_r($doc_file_name);
     echo "<pre>";
-    exit();*/
+    exit();
 
     $input_data = $request->all();
 

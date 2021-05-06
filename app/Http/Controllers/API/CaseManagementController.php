@@ -462,6 +462,7 @@ public function create_patient(Request $request)
     $token = $token_data->access_token;
 
     $documents = $request->file('file');
+    $name = $request->name;
    
 
     if(!empty($documents)){
@@ -503,8 +504,10 @@ public function create_patient(Request $request)
     $input_data = $request->all();
 
     $fields = [
-      'name' => 'face - left side',
-      'file' => new \CurlFile($file_temp_path,$file_mimeType, $doc_file_name)
+      'name' => $name,
+      //'file' => new \CurlFile($file_temp_path,$file_mimeType, $doc_file_name)
+
+      'file' => new \CurlFile('/var/www/html/dev.clearhealth/public/MD_Case_files/insurancedoc.jpg')
     ];
 
     $curl = curl_init();

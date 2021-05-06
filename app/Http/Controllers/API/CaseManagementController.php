@@ -481,7 +481,7 @@ public function create_patient(Request $request)
 
     //$file_temp_name = $documents->getfileName();
     $file_temp_path = $documents->getpathName();
-    $file_mimeType = $documents->mimeType();
+    $file_mimeType = $documents->getClientMimeType();
 
     $input = $request->all();
 

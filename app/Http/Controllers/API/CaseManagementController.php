@@ -486,7 +486,7 @@ public function create_patient(Request $request)
 
     $input = $request->all();
 
-    echo "<pre>";
+    /*echo "<pre>";
     print_r($file_mimeType);
     echo "<pre>";
     echo "<pre>";
@@ -498,13 +498,13 @@ public function create_patient(Request $request)
     echo "<pre>";
     print_r($file_temp_path);
     echo "<pre>";
-    exit();
+    exit();*/
 
     $input_data = $request->all();
 
     $fields = [
       'name' => 'face - left side',
-      'file' => new \CurlFile($file_temp_name,$file_mimeType, $doc_file_name)
+      'file' => new \CurlFile($file_temp_path,$file_mimeType, $doc_file_name)
     ];
 
     $curl = curl_init();

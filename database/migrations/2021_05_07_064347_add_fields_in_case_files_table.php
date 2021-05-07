@@ -17,6 +17,11 @@ class AddFieldsInCaseFilesTable extends Migration
             $table->string('system_case_id')->after('mime_type');
             $table->string('system_file')->after('system_case_id');           
             $table->integer('user_id')->after('system_file');
+            $table->integer('md_file_name')->after('user_id');
+            $table->integer('md_mime_type')->after('md_file_name');
+            $table->integer('md_url')->after('md_mime_type');
+            $table->integer('md_url_thumbnail')->after('md_url');
+            $table->integer('md_file_id')->after('md_url_thumbnail');
         });
     }
 

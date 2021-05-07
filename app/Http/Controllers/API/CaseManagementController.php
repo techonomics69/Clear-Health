@@ -531,30 +531,25 @@ public function create_patient(Request $request)
 
     $curl1 = curl_init();
 
-    curl_setopt_array($curl1, array(
-      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/files/'.$case_file_data->file_id,
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_ENCODING => '',
-      CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 0,
-      CURLOPT_FOLLOWLOCATION => true,
-      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => 'POST',
-      CURLOPT_HTTPHEADER => array(
-        'Authorization: Bearer '.$token,
-        'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
-      ),
-    ));
+curl_setopt_array($curl1, array(
+  CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/a291868a-1e93-4de6-9a33-932f4b885fb9/files/3581bcdb-74c7-480e-9852-6cc0d4e73d28',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'POST',
+  CURLOPT_HTTPHEADER => array(
+    'Authorization: Bearer '.$token,
+    'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+  ),
+));
 
-    $response1 = curl_exec($curl1);
+$response1 = curl_exec($curl1);
 
-    curl_close($curl1);
-
-    echo "<pre>";
-    print_r($response1);
-    echo "<pre>";
-    exit();
-      //echo $response;
+//curl_close($curl);
+echo $response1;
 
     //end of code to attach file to case_id
 

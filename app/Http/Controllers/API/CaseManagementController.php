@@ -532,7 +532,7 @@ public function create_patient(Request $request)
     $curl1 = curl_init();
 
 curl_setopt_array($curl1, array(
-  CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/a291868a-1e93-4de6-9a33-932f4b885fb9/files/3581bcdb-74c7-480e-9852-6cc0d4e73d28',
+  CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/files/'.$case_file_data->file_id,
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => '',
   CURLOPT_MAXREDIRS => 10,

@@ -468,8 +468,7 @@ public function create_patient(Request $request)
     if(!empty($documents)){
       $file =  $documents->getClientOriginalName();
       $doc_file_name =  time().'-'.$file;
-      //$doc_file_name =  $file;
-          //$doc_file_name = time() . '-' . $doc->getClientOriginalExtension();
+      
       if (!file_exists(public_path('/MD_Case_files'))) {
         File::makeDirectory(public_path('/MD_Case_files'),0777,true,true);
       }
@@ -477,8 +476,7 @@ public function create_patient(Request $request)
       $documents->move($destinationPath, $doc_file_name);
 
       chmod($destinationPath."/".$doc_file_name, 0777);
-          //$input = array();
-
+          
       $file_path = 'public/MD_Case_files/' .$file;
       $input['file'] = $doc_file_name;
     }
@@ -518,22 +516,15 @@ public function create_patient(Request $request)
 
     $response = curl_exec($curl);
 
-   
-/*
-    echo "<pre>";
-    print_r(curl_getinfo($curl));
-    echo "<pre>";
-    exit();*/
+   /* if($errno = curl_errno($curl)) {
+      $error_message = curl_strerror($errno);
+      echo "cURL error ({$errno}):\n {$error_message}";
+    }*/
 
-    if($errno = curl_errno($curl)) {
-    $error_message = curl_strerror($errno);
-    echo "cURL error ({$errno}):\n {$error_message}";
-}
-
-    //curl_close($curl);
+    curl_close($curl);
     echo $response;
 
-    //return $this->sendResponse(json_decode($response),'File Created Successfully');
+    return $this->sendResponse(json_decode($response),'File Created Successfully');
 
   }
 

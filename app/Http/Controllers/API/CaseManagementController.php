@@ -513,7 +513,7 @@ public function create_patient(Request $request)
       'name' => $name,
       //'file' => new \CurlFile($file_temp_path,$file_mimeType, $doc_file_name)
 
-      'file' => new \CurlFile('/var/www/html/dev.clearhealth/public/MD_Case_files/insurancedoc.jpg')
+      'file' => new \CurlFile('/home/it_idol_dev/Projects/var/www/html/dev.clearhealth/public/MD_Case_files/Diabetes-Management-Panel-Results.jpg')
     ];
 
     $curl = curl_init();

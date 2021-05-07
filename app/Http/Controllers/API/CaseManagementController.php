@@ -475,11 +475,11 @@ public function create_patient(Request $request)
       }
       $destinationPath = public_path('/MD_Case_files');
       $documents->move($destinationPath, $doc_file_name);
-
+/*
       echo "<pre>";
       print_r($destinationPath."/".$doc_file_name);
       echo "<pre>";
-      exit();
+      exit();*/
       chmod($destinationPath."/".$doc_file_name, 0777);
           //$input = array();
 

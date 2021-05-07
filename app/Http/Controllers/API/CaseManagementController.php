@@ -14,6 +14,7 @@ use App\Models\User;
 use App\Models\Parentdetail;
 use App\Models\Mdcases;
 use App\Models\Mdmanagement;
+use App\Models\CaseFiles;
 use File;
 
 class CaseManagementController extends BaseController
@@ -268,17 +269,9 @@ public function create_patient(Request $request)
 
   $response = curl_exec($curl);
 
-     /* echo "<pre>";
-      print_r( $response);
-      echo "<pre>";*/
-
 
       $Patient_data = json_decode($response);
 
-       /*echo "<pre>";
-      print_r( $response);
-      echo "<pre>";
-    */
        $input_data['partner_id'] = '45af5944-4ad1-4269-b2b2-a2d4164e591d';//$Patient_data['partner_id'];
        $input_data['first_name'] = 'Greha';//$Patient_data['first_name'];
        $input_data['last_name'] = 'Thomas';//$Patient_data['last_name'];
@@ -300,11 +293,6 @@ public function create_patient(Request $request)
        $input_data['state_name'] = 'California';//$Patient_data['address']['city']->state->name;
        $input_data['state_abbreviation'] = 'CA';//$Patient_data['address']['city']->state->abbreviation;
 
-
-      /* echo "<pre>";
-       print_r($input_data);
-       echo "<pre>";
-       exit();*/
 
        $md_patient_data = Mdpatient::create($input_data);
 
@@ -463,7 +451,9 @@ public function create_patient(Request $request)
 
     $documents = $request->file('file');
     $name = $request->name;
-   
+    $user_id = $request->user_id;
+    $case_id = $request->case_id;
+    $system_case_id = $request->system_case_id;
 
     if(!empty($documents)){
       $file =  $documents->getClientOriginalName();
@@ -478,12 +468,11 @@ public function create_patient(Request $request)
       chmod($destinationPath."/".$doc_file_name, 0777);
           
       $file_path = 'public/MD_Case_files/' .$file;
-      $input['file'] = $doc_file_name;
     }
 
-    $file_temp_name = $documents->getfileName();
-    $file_temp_path = $documents->getpathName();
-    $file_mimeType = $documents->getClientMimeType();
+    //$file_temp_name = $documents->getfileName();
+    //$file_temp_path = $documents->getpathName();
+    //$file_mimeType = $documents->getClientMimeType();
 
     $input = $request->all();
 
@@ -522,6 +511,22 @@ public function create_patient(Request $request)
     }*/
 
     curl_close($curl);
+
+    $case_file_data = json_decode($response);
+
+       $input_data['name'] = $case_file_data->name;
+       $input_data['mime_type'] = $case_file_data->mime_type;
+       $input_data['url'] = $case_file_data->url;
+       $input_data['url_thumbnail'] = $case_file_data->url_thumbnail;
+       $input_data['file_id'] = $case_file_data->file_id;
+       $input_data['case_id'] = $case_id;
+       $input_data['system_file'] = $file_path;
+       $input_data['user_id'] = $user_id;
+       $input_data['system_case_id'] = $system_case_id;
+       
+
+    $case_file_data = CaseFiles::create($input_data);
+
 
     return $this->sendResponse(json_decode($response),'File Created Successfully');
 

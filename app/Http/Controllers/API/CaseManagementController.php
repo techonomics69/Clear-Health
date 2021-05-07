@@ -471,7 +471,7 @@ public function create_patient(Request $request)
       $doc_file_name =  $file;
           //$doc_file_name = time() . '-' . $doc->getClientOriginalExtension();
       if (!file_exists(public_path('/MD_Case_files'))) {
-        File::makeDirectory(public_path('/MD_Case_files'), ,0777 true, true);
+        File::makeDirectory(public_path('/MD_Case_files'),0777,true,true);
       }
       $destinationPath = public_path('/MD_Case_files');
       $documents->move($destinationPath, $doc_file_name);

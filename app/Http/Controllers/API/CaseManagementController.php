@@ -474,8 +474,6 @@ public function create_patient(Request $request)
     //$file_temp_path = $documents->getpathName();
     //$file_mimeType = $documents->getClientMimeType();
 
-    $input = $request->all();
-
     $input_data = $request->all();
 
     $fields = [
@@ -515,6 +513,7 @@ public function create_patient(Request $request)
     $case_file_data = json_decode($response);
 
        $input_data['name'] = $case_file_data->name;
+       $input_data['file'] = $doc_file_name;
        $input_data['mime_type'] = $case_file_data->mime_type;
        $input_data['url'] = $case_file_data->url;
        $input_data['url_thumbnail'] = $case_file_data->url_thumbnail;

@@ -117,7 +117,7 @@ class MdManagementController extends Controller
             //'name' => 'required|unique:md_managment,name',
             //'status' => 'required|not_in:0',
             'language_id' => 'required|not_in:0',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',         
+            //'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',         
         ]);
 
         $language_id =  implode(",",$request->language_id);

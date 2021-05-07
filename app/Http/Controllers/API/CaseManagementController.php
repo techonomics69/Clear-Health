@@ -524,8 +524,7 @@ public function create_patient(Request $request)
        $input_data['system_case_id'] = $system_case_id;
        
 
-    $case_file_data = CaseFiles::create($input_data);
-
+   
 
     //attach file to case_id
 
@@ -548,13 +547,24 @@ curl_setopt_array($curl1, array(
 
 $response1 = curl_exec($curl1);
 
-//curl_close($curl);
-echo $response1;
+$md_case_file_data = json_decode($response1);
+
+$input_data['md_file_name'] = $md_case_file_data->name;
+$input_data['md_mime_type'] = $md_case_file_data->mime_type;
+$input_data['md_url'] = $md_case_file_data->url;
+$input_data['md_url_thumbnail'] = $md_case_file_data->url_thumbnail;
+$input_data['md_file_id'] = $md_case_file_data->file_id;
+
+ $case_file_data = CaseFiles::create($input_data);
+
+
+curl_close($curl1);
+
 
     //end of code to attach file to case_id
 
 
-    return $this->sendResponse(json_decode($response),'File Created Successfully');
+    return $this->sendResponse($case_file_data,'File Created Successfully');
 
   }
 

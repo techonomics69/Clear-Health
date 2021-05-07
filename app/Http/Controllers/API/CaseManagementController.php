@@ -707,7 +707,7 @@ curl_close($curl1);
     if($product_type =="Topicals"){
 
       $days_supply = "60";
-      $refills = "1";
+      $refills = "11";
       $directions = "xyz";
 
 

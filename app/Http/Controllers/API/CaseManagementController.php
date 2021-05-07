@@ -476,10 +476,6 @@ public function create_patient(Request $request)
       $destinationPath = public_path('/MD_Case_files');
       $documents->move($destinationPath, $doc_file_name);
 
-      /*echo "<pre>";
-      print_r($destinationPath."/".$doc_file_name);
-      echo "<pre>";
-      exit();*/
       chmod($destinationPath."/".$doc_file_name, 0777);
           //$input = array();
 
@@ -493,27 +489,12 @@ public function create_patient(Request $request)
 
     $input = $request->all();
 
-    /*echo "<pre>";
-    print_r($file_mimeType);
-    echo "<pre>";
-    echo "<pre>";
-    print_r($file_temp_name);
-    echo "<pre>";
-    echo "<pre>";
-    print_r($doc_file_name);
-    echo "<pre>";
-    echo "<pre>";
-    print_r($file_temp_path);
-    echo "<pre>";
-    exit();*/
-
     $input_data = $request->all();
 
     $fields = [
       'name' => $name,
       //'file' => new \CurlFile($file_temp_path,$file_mimeType, $doc_file_name)
-
-      'file' => new \CurlFile('/home/it_idol_dev/Projects/var/www/html/dev.clearhealth/public/MD_Case_files/Diabetes-Management-Panel-Results.jpg')
+      'file' => new \CurlFile($destinationPath."/".$doc_file_name)
     ];
 
     $curl = curl_init();

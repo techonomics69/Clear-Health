@@ -467,8 +467,8 @@ public function create_patient(Request $request)
 
     if(!empty($documents)){
       $file =  $documents->getClientOriginalName();
-      //$doc_file_name =  time().'-'.$file;
-      $doc_file_name =  $file;
+      $doc_file_name =  time().'-'.$file;
+      //$doc_file_name =  $file;
           //$doc_file_name = time() . '-' . $doc->getClientOriginalExtension();
       if (!file_exists(public_path('/MD_Case_files'))) {
         File::makeDirectory(public_path('/MD_Case_files'),0777,true,true);

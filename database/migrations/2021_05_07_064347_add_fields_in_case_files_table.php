@@ -14,9 +14,9 @@ class AddFieldsInCaseFilesTable extends Migration
     public function up()
     {
         Schema::table('case_files', function (Blueprint $table) {
-            $table->string('system_case_id');
-            $table->string('system_file');           
-            $table->integer('user_id');
+            $table->string('system_case_id')->after('mime_type');
+            $table->string('system_file')->after('system_case_id');           
+            $table->integer('user_id')->after('system_file');
         });
     }
 

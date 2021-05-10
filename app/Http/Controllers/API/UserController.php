@@ -130,10 +130,7 @@ public function addParentdetails(Request $request)
 
             $user = User::find($id);
 
-            echo "<pre>";
-            print_r($user);
-            echo "<pre>";
-            exit();
+           
            /* $validator = Validator::make($request->all(), [     
                // 'email' => 'required|unique:users,email,'.$user->id,
                 //'zipcode' => 'numeric|digits:6'
@@ -143,6 +140,11 @@ public function addParentdetails(Request $request)
                 }*/
         
             $input = $request->all();
+
+            echo "<pre>";
+            print_r($input);
+            echo "<pre>";
+            exit();
             
             $user->update($input);
             

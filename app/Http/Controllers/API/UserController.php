@@ -128,7 +128,7 @@ public function addParentdetails(Request $request)
     public function updateVerifiedByVouch(Request $request, $id){
         try{
 
-            $user = User::find($id);
+            //$user = User::find($id);
 
            
            /* $validator = Validator::make($request->all(), [     
@@ -141,7 +141,9 @@ public function addParentdetails(Request $request)
         
             $input = $request->all();
             
-            $data = $user->update($input)->toSql();
+            //$data = $user->update($input);
+
+            $data = User::whereId($id)->update($input);
 
             echo "<pre>";
             print_r($data);

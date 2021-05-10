@@ -945,7 +945,7 @@ public function create_patient(Request $request)
 
     $casefiles_details = CaseFiles::select('*')->where('case_id', $case_id)->where('md_file_id',$file_id)->get();
 
-    unlink($destinationPath.'/'.$casefiles_details['file']);
+    unlink($destinationPath.'/'.$casefiles_details[0]['file']);
 
     $casefiles = CaseFiles::find($casefiles_details[0]['id']);
     $casefiles->delete();

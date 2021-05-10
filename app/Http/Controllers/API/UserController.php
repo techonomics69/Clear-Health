@@ -140,15 +140,10 @@ public function addParentdetails(Request $request)
                 }*/
         
             $input = $request->all();
-
-            echo "<pre>";
-            print_r($input);
-            echo "<pre>";
-            exit();
             
-            $user->update($input);
+            $data = $user->update($input);
             
-            return $this->sendResponse(array(), 'User Status Updated Successfully');
+            return $this->sendResponse($data, 'User Status Updated Successfully');
         }catch(\Exception $ex){
              return $this->sendError('Server error',array($ex->getMessage()));
         }

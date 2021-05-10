@@ -88,6 +88,7 @@ Route::post('forgot_password',[RegisterController::class, 'forgot_password']);
     Route::post('getPharmacyById', [CaseManagementController::class, 'getPharmacyById']);
     Route::post('CreateCase', [CaseManagementController::class, 'CreateCase']);
     Route::post('getMdDetails', [CaseManagementController::class, 'getMdDetails']);
+    Route::post('detach_file_from_case', [CaseManagementController::class, 'detach_file_from_case']);
     //end of md api
 
     Route::post('user/update_vouch_status/{id}', [UserController::class, 'updateVerifiedByVouch']);

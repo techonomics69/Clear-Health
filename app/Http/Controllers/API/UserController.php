@@ -130,7 +130,9 @@ public function addParentdetails(Request $request)
             $input = $request->all();
 
             $data = User::whereId($id)->update($input);
-            return $this->sendResponse($data, 'User Status Updated Successfully');
+
+            $user = User::find($id);
+            return $this->sendResponse($user, 'User Status Updated Successfully');
         }catch(\Exception $ex){
              return $this->sendError('Server error',array($ex->getMessage()));
         }

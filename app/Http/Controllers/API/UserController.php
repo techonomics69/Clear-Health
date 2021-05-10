@@ -127,29 +127,9 @@ public function addParentdetails(Request $request)
 
     public function updateVerifiedByVouch(Request $request, $id){
         try{
-
-            //$user = User::find($id);
-
-           
-           /* $validator = Validator::make($request->all(), [     
-               // 'email' => 'required|unique:users,email,'.$user->id,
-                //'zipcode' => 'numeric|digits:6'
-            ]);*/
-            /*if($validator->fails()){
-                    return $this->sendError('Validation Error.', $validator->errors()->all());       
-                }*/
-        
             $input = $request->all();
-            
-            //$data = $user->update($input);
 
             $data = User::whereId($id)->update($input);
-
-            echo "<pre>";
-            print_r($data);
-            echo "<pre>";
-            exit();
-            
             return $this->sendResponse($data, 'User Status Updated Successfully');
         }catch(\Exception $ex){
              return $this->sendError('Server error',array($ex->getMessage()));

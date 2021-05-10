@@ -943,35 +943,42 @@ public function create_patient(Request $request)
 
     $casefiles_details = CaseFiles::select('*')->where('case_id', $case_id)->where('md_file_id',$file_id)->get();
 
-    unlink($destinationPath.'/'.$casefiles_details[0]['file']);
+    if(!empty($casefiles_details) && count($casefiles_details)>0){
 
-    $casefiles = CaseFiles::find($casefiles_details[0]['id']);
-    $casefiles->delete();
+            unlink($destinationPath.'/'.$casefiles_details[0]['file']);
 
-    $curl = curl_init();
+            $casefiles = CaseFiles::find($casefiles_details[0]['id']);
+            $casefiles->delete();
 
-    curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/files/'.$file_id,
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_ENCODING => '',
-      CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 0,
-      CURLOPT_FOLLOWLOCATION => true,
-      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => 'DELETE',
-      CURLOPT_HTTPHEADER => array(
-        'Authorization: Bearer '.$token,
-        'Cookie: __cfduid=da01d92d82d19a6cccebfdc9852303eb81620627650'
-      ),
-    ));
+            $curl = curl_init();
 
-    $response = curl_exec($curl);
+            curl_setopt_array($curl, array(
+              CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/files/'.$file_id,
+              CURLOPT_RETURNTRANSFER => true,
+              CURLOPT_ENCODING => '',
+              CURLOPT_MAXREDIRS => 10,
+              CURLOPT_TIMEOUT => 0,
+              CURLOPT_FOLLOWLOCATION => true,
+              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+              CURLOPT_CUSTOMREQUEST => 'DELETE',
+              CURLOPT_HTTPHEADER => array(
+                'Authorization: Bearer '.$token,
+                'Cookie: __cfduid=da01d92d82d19a6cccebfdc9852303eb81620627650'
+              ),
+            ));
 
-    curl_close($curl);
-    // $response;
+            $response = curl_exec($curl);
 
-   
-   return $this->sendResponse($response,'File Detach Successfully');
+            curl_close($curl);
+            // $response;
+
+           
+           return $this->sendResponse($response,'File Detach Successfully');
+
+    }else{
+      return $this->sendResponse(array(),'File not Exist.');
+    }
+
     
 
   }

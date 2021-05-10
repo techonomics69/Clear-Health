@@ -936,6 +936,8 @@ public function create_patient(Request $request)
 
     $file_id = $request['md_file_id'];
     $case_id = $request['md_case_id'];
+
+    $destinationPath = public_path('/MD_Case_files');
   
     $input = $request->all();
 

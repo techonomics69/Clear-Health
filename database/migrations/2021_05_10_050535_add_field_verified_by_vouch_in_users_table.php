@@ -14,7 +14,7 @@ class AddFieldVerifiedByVouchInUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('verified_by_vouch')->after('status')->comment="pending,success,failed  ";
+            $table->string('verified_by_vouch')->after('status')->default('pending')->comment="pending,success,failed  ";
         });
     }
 

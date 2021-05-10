@@ -141,7 +141,12 @@ public function addParentdetails(Request $request)
         
             $input = $request->all();
             
-            $data = $user->update($input);
+            $data = $user->update($input)->toSql();
+
+            echo "<pre>";
+            print_r($data);
+            echo "<pre>";
+            exit();
             
             return $this->sendResponse($data, 'User Status Updated Successfully');
         }catch(\Exception $ex){

@@ -941,27 +941,12 @@ public function create_patient(Request $request)
   
     $input = $request->all();
 
-    
-
     $casefiles_details = CaseFiles::select('*')->where('case_id', $case_id)->where('md_file_id',$file_id)->get();
 
     unlink($destinationPath.'/'.$casefiles_details[0]['file']);
 
     $casefiles = CaseFiles::find($casefiles_details[0]['id']);
     $casefiles->delete();
-
-    echo "<pre>";
-    print_r($casefiles);
-    echo "<pre>";
-    
-   
-
-  /*  $mdmanagement_data = Mdmanagement::where('case_id', $case_id)->first();
-    if(!empty($mdmanagement_data)){
-      $mdmanagement_data->update($input);
-    }else{
-      $md_case_data = Mdmanagement::create($input);
-    }*/
 
     $curl = curl_init();
 
@@ -981,8 +966,6 @@ public function create_patient(Request $request)
     ));
 
     $response = curl_exec($curl);
-
-
 
     curl_close($curl);
     // $response;

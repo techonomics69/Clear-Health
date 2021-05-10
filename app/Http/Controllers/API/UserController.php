@@ -113,7 +113,7 @@ public function addParentdetails(Request $request)
 
 }
 
-public function getParentdetails(Request $request){
+    public function getParentdetails(Request $request){
         $parentdata = Parentdetail::where('user_id',$request['user_id'])->first();
         return $this->sendResponse($parentdata,'Parentdetail Retrived successfully');
     }
@@ -123,6 +123,27 @@ public function getParentdetails(Request $request){
     {
         $user = User::find($id);
         return $this->sendResponse($user,'user Retrived successfully');
+    }
+
+    public function updateVerifiedByVouch(Request $request, $id){
+        try{
+            $user = User::find($id);
+           /* $validator = Validator::make($request->all(), [     
+               // 'email' => 'required|unique:users,email,'.$user->id,
+                //'zipcode' => 'numeric|digits:6'
+            ]);*/
+            /*if($validator->fails()){
+                    return $this->sendError('Validation Error.', $validator->errors()->all());       
+                }*/
+        
+            $input = $request->all();
+            
+            $user->update($input);
+            
+            return $this->sendResponse(array(), 'User Status Updated Successfully');
+        }catch(\Exception $ex){
+             return $this->sendError('Server error',array($ex->getMessage()));
+        }
     }
 
 }

@@ -90,6 +90,8 @@ Route::post('forgot_password',[RegisterController::class, 'forgot_password']);
     Route::post('getMdDetails', [CaseManagementController::class, 'getMdDetails']);
     //end of md api
 
+    Route::post('user/update_vouch_status/{id}', [UserController::class, 'updateVerifiedByVouch']);
+
     Route::group(['middleware' => 'auth:api'], function(){});
     
 //});

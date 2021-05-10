@@ -948,7 +948,7 @@ public function create_patient(Request $request)
     echo "<pre>";
     print_r($casefiles_details);
     echo "<pre>";
-    echo $destinationPath.'/'.$casefiles_details['file'];
+    echo $destinationPath.'/'.$casefiles_details[0]['file'];
     exit();
 
 

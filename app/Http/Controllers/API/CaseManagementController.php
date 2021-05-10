@@ -945,15 +945,15 @@ public function create_patient(Request $request)
 
     $casefiles_details = CaseFiles::select('*')->where('case_id', $case_id)->where('md_file_id',$file_id)->get();
 
-    echo "<pre>";
-    print_r($casefiles_details);
-    echo "<pre>";
-    echo $destinationPath.'/'.$casefiles_details[0]['file'];
-    exit();
-
-
-
     unlink($destinationPath.'/'.$casefiles_details['file']);
+
+    $casefiles = CaseFiles::find($casefiles_details[0]['id']);
+    $casefiles->delete();
+
+    echo "<pre>";
+    print_r($casefiles);
+    echo "<pre>";
+    
    
 
   /*  $mdmanagement_data = Mdmanagement::where('case_id', $case_id)->first();

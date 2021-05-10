@@ -941,7 +941,7 @@ public function create_patient(Request $request)
 
     
 
-    $casefiles_details = CaseFiles::select('*')->where('case_id', $case_id)->where('md_file_id',$file_id)->get()->toArray();
+    $casefiles_details = CaseFiles::select('*')->where('case_id', $case_id)->where('md_file_id',$file_id)->get();
 
     echo "<pre>";
     print_r($casefiles_details);

@@ -530,35 +530,35 @@ public function create_patient(Request $request)
 
     $curl1 = curl_init();
 
-curl_setopt_array($curl1, array(
-  CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/files/'.$case_file_data->file_id,
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_ENCODING => '',
-  CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 0,
-  CURLOPT_FOLLOWLOCATION => true,
-  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => 'POST',
-  CURLOPT_HTTPHEADER => array(
-    'Authorization: Bearer '.$token,
-    'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
-  ),
-));
+    curl_setopt_array($curl1, array(
+      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/files/'.$case_file_data->file_id,
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'POST',
+      CURLOPT_HTTPHEADER => array(
+        'Authorization: Bearer '.$token,
+        'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+      ),
+    ));
 
-$response1 = curl_exec($curl1);
+    $response1 = curl_exec($curl1);
 
-$md_case_file_data = json_decode($response1);
+    $md_case_file_data = json_decode($response1);
 
-$input_data['md_file_name'] = $md_case_file_data->name;
-$input_data['md_mime_type'] = $md_case_file_data->mime_type;
-$input_data['md_url'] = $md_case_file_data->url;
-$input_data['md_url_thumbnail'] = $md_case_file_data->url_thumbnail;
-$input_data['md_file_id'] = $md_case_file_data->file_id;
+    $input_data['md_file_name'] = $md_case_file_data->name;
+    $input_data['md_mime_type'] = $md_case_file_data->mime_type;
+    $input_data['md_url'] = $md_case_file_data->url;
+    $input_data['md_url_thumbnail'] = $md_case_file_data->url_thumbnail;
+    $input_data['md_file_id'] = $md_case_file_data->file_id;
 
- $case_file_data = CaseFiles::create($input_data);
+     $case_file_data = CaseFiles::create($input_data);
 
 
-curl_close($curl1);
+    curl_close($curl1);
 
 
     //end of code to attach file to case_id
@@ -611,6 +611,8 @@ curl_close($curl1);
     $token = $token_data->access_token;
 
     $pharmacy_id = $request['pharmacy_id'];
+
+    $quiz= QuizAnswer::join('quizzes','quiz_answers.question_id', '=', 'quizzes.id')->select('quiz_answers.*','quizzes.question','quizzes.category_id')->where('case_id', $user_case_management_data['id'])->OrderBy('id', 'ASC')->get();
 
     //$input = json_encode($request->all());
 
@@ -921,6 +923,69 @@ curl_close($curl1);
     }
    
    return $this->sendResponse($input,'MD Details Added Successfully');
+    
+
+  }
+
+
+  public function detach_file_from_case(Request $request){
+
+    $r = $this->get_token();
+    $token_data = json_decode($r);
+    $token = $token_data->access_token;
+
+    $file_id = $request['md_file_id'];
+    $case_id = $request['md_case_id'];
+  
+    $input = $request->all();
+
+    
+
+    $casefiles_details = CaseFiles::select('*')->where('case_id', $case_id)->where('md_file_id',$file_id)->get()->toArray();
+
+    echo "<pre>";
+    print_r($casefiles_details);
+    echo "<pre>";
+    exit();
+
+
+
+    unlink("uploads/".$image->image_name);
+   
+
+  /*  $mdmanagement_data = Mdmanagement::where('case_id', $case_id)->first();
+    if(!empty($mdmanagement_data)){
+      $mdmanagement_data->update($input);
+    }else{
+      $md_case_data = Mdmanagement::create($input);
+    }*/
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/files/'.$file_id,
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'DELETE',
+      CURLOPT_HTTPHEADER => array(
+        'Authorization: Bearer '.$token,
+        'Cookie: __cfduid=da01d92d82d19a6cccebfdc9852303eb81620627650'
+      ),
+    ));
+
+    $response = curl_exec($curl);
+
+
+
+    curl_close($curl);
+    // $response;
+
+   
+   return $this->sendResponse($response,'File Detach Successfully');
     
 
   }

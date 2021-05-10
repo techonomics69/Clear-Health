@@ -946,11 +946,12 @@ public function create_patient(Request $request)
     echo "<pre>";
     print_r($casefiles_details);
     echo "<pre>";
+    echo $destinationPath.'/'.$casefiles_details['file'];
     exit();
 
 
 
-    unlink("uploads/".$image->image_name);
+    unlink($destinationPath.'/'.$casefiles_details['file']);
    
 
   /*  $mdmanagement_data = Mdmanagement::where('case_id', $case_id)->first();

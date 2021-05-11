@@ -570,11 +570,11 @@ data-open="click" data-menu="vertical-menu" data-col="2-columns">
                             Question's List
                           </a>                          
                         </li>
-                        <li class="sub-menu quiz-create">
+                        {{-- <li class="sub-menu quiz-create">
                           <a href="{{ route('quiz.create') }}">
                             Question Create
                           </a>                          
-                        </li>
+                        </li> --}}
                         @canany(['quizCategory-list', 'quizCategory-edit', 'quizCategory-delete'])
                         <li class="sub-menu quiz-category-list {{ Request::is('admin/quizcategory') ? 'active' : '' }} ">
                           <a href="{{ route('quizCategory.index') }}">

@@ -24,7 +24,7 @@ class FeeController extends BaseController
         $fee_type = $request->fee_type;
         $fees = Fees::where('status','1')->where('fee_type',$fee_type)->get();
         $minimum_shipping_amount = Fees::where('status','1')->where('fee_type','minimum_shipping_amount')->get();
-        echo $minimum_shipping_amount;
+        echo $minimum_shipping_amount.'123456';
         die();
         $total_amount = 0;
         foreach( $fees as $key=>$fee){
@@ -33,7 +33,7 @@ class FeeController extends BaseController
 
         $fees['fee_total_amount'] = $total_amount;
 
-        if($fees['product_type'] == "Non Prescribed")
+        if($product_type == "Non Prescribed")
         {
             if($total_amount >$minimum_shipping_amount)
             {

@@ -50,13 +50,15 @@ class FeeController extends BaseController
             else
             {
                 $shipping_fee = Fees::where('status','1')->where('fee_type','shipping_fee')->get();
+                $shipping_fee=$shipping_fee['amount'];
             }
+
         }else{
 
         }
         //$fees['order_total_amount'] = $order_total_amount;
-        $fees['shiping_fee'] = $shipping_fee;
-        $fees['minimum_shipping_amount'] = $minimum_shipping_amount;
+        $fees['shiping_fee'] = $shipping_fee['amount'];
+        //$fees['minimum_shipping_amount'] = $minimum_shipping_amount;
 
         return $this->sendResponse($fees,'Fees Retrived successfully');
     }

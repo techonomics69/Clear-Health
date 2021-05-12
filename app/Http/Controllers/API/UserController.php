@@ -132,11 +132,40 @@ public function addParentdetails(Request $request)
             $data = User::whereId($id)->update($input);
 
             $user = User::find($id);
-            return $this->sendResponse($user, 'User Status Updated Successfully');
+
+            if($data == 1){
+                    return $this->sendResponse($user, 'User Status Updated Successfully');
+            }else{
+
+              return $this->sendResponse($user, 'Something went wrong!');  
+            }
+            
         }catch(\Exception $ex){
              return $this->sendError('Server error',array($ex->getMessage()));
         }
     }
 
+    public function getVouchedDetails(Request $request, $id){
+        try{
+            $input = $request->all();
+
+            $user = User::find($id);
+
+            echo "<pre>";
+            print_r($user);
+            echo "<pre>";
+            exit();
+
+            if($data == 1){
+                    return $this->sendResponse($user, 'User Status Updated Successfully');
+            }else{
+                
+              return $this->sendResponse($user, 'Something went wrong!');  
+            }
+            
+        }catch(\Exception $ex){
+             return $this->sendError('Server error',array($ex->getMessage()));
+        }
+    }
 }
 

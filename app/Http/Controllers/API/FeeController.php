@@ -50,9 +50,9 @@ class FeeController extends BaseController
             else
             {
                 $shipping_fee = Fees::where('status','1')->where('fee_type','shipping_fee')->get();
-                /*echo "<pre>";
+                echo "<pre>";
                 print_r($shipping_fee);
-                echo "</pre>";*/
+                echo "</pre>";
                 $shipping_fee=$shipping_fee['amount'];
             }
 

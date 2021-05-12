@@ -43,4 +43,10 @@ class QuizController extends BaseController
         $quiz = Quiz::where('order', $request->order)->where('category_id', $request->category_id)->first();
         return $this->sendResponse($quiz,'Question Retrived successfully');
     }
+
+    public function getQuestionListOfGeneral(Request $request){
+        $quiz = Quiz::where('status','1')->where('category_id', 7)->OrderBy('order','ASC')->get();
+        
+        return $this->sendResponse($quiz, 'General Question retrieved successfully.');
+    }
 }

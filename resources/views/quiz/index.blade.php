@@ -94,16 +94,16 @@
 												<td>{{ $data->question }}</td>
 
 												<!-- <input type="hidden" id="{{ $data->id }}" value="{{ $data->order }}" class="orderval">  -->
-												<td><input type="text" id="{{ $data->id }}" value="{{ $data->order}}" class="order"/></td>												
+												<td><input type="text" id="{{ $data->id }}" value="{{ $data->order}}" class="order" readonly="readonly" /></td>												
 												<td>
 												<div class="d-flex">
 													<a class="icons edit-icon" href="{{ route('quiz.show',$data->id) }}">
 														<i class="fa fa-eye"></i>
 													</a>		
 													@can('quiz-edit')					 
-													<a class="icons edit-icon" href="{{ route('quiz.edit',$data->id) }}">
+													<!--<a class="icons edit-icon" href="{{ route('quiz.edit',$data->id) }}">
 														<i class="fa fa-edit"></i>
-													</a>
+													</a>-->
 													@endcan
 													 <!-- @can('quiz-delete')							
 													{!! Form::open(['method' => 'DELETE','route' => ['quiz.destroy', $data->id],'style'=>'display:inline']) !!}

@@ -51,6 +51,7 @@ Route::post('forgot_password',[RegisterController::class, 'forgot_password']);
     Route::resource('quizAnswer', QuizAnswerController::class);
     Route::get('quizAnswer/user/{id}', [QuizAnswerController::class, 'getAnswerByUser']);
     Route::post('questionByOrderAndCategory', [QuizController::class, 'getQuizByOrderAndCategory']);
+    Route::get('getQuestionListOfGeneral', [QuizController::class, 'getQuestionListOfGeneral']);
     Route::get('quizAnswer/question/{id}', [QuizAnswerController::class, 'getAnswerByQuestion']);
     Route::post('getQuizAnswer', [QuizAnswerController::class, 'getAnswerByUserQuestionCaseID']);
     Route::get('quizCategory', [QuizController::class ,'getQuizCategoryList']);

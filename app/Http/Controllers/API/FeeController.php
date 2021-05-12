@@ -22,9 +22,10 @@ class FeeController extends BaseController
 
     public function getFees(Request $request){
         $fee_type = $request->fee_type;
-
         $fees = Fees::where('status','1')->where('fee_type',$fee_type)->get();
- $minimum_shipping_amount = Fees::where('status','1')->where('fee_type','minimum_shipping_amount')->get();
+        $minimum_shipping_amount = Fees::where('status','1')->where('fee_type','minimum_shipping_amount')->get();
+        echo $minimum_shipping_amount;
+        die();
         $total_amount = 0;
         foreach( $fees as $key=>$fee){
             $total_amount += $fee['amount'];
@@ -39,7 +40,7 @@ class FeeController extends BaseController
                 $shiping_fee=0;
             }
             else{
-    $shipping_fee = Fees::where('status','1')->where('fee_type','shipping_fee')->get();
+                $shipping_fee = Fees::where('status','1')->where('fee_type','shipping_fee')->get();
             }
         }
 

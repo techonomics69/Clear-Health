@@ -14,8 +14,8 @@ class ChangeUrlThumbnailAndMdUrlThumbnailTypeInCaseRilesTable extends Migration
     public function up()
     {
         Schema::table('case_files', function (Blueprint $table) {
-            $table->string('url_thumbnail')->nullable();
-            $table->string('md_url_thumbnail')->nullable();
+            $table->string('url_thumbnail')->nullable()->change();
+            $table->string('md_url_thumbnail')->nullable()->change();
         });
     }
 

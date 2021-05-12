@@ -22,28 +22,29 @@ class FeeController extends BaseController
 
     public function getFees(Request $request){
         $fee_type = $request->fee_type;
-        $fees = Fees::where('status','1')->where('fee_type',$fee_type)->get();
 
+        $fees = Fees::where('status','1')->where('fee_type',$fee_type)->get();
+ $minimum_shipping_amount = Fees::where('status','1')->where('fee_type','minimum_shipping_amount')->get();
         $total_amount = 0;
         foreach( $fees as $key=>$fee){
             $total_amount += $fee['amount'];
         }
 
-        $fees['fee_total_amount'] = 40;
-        $fees['fee_type'] = $fee_type;
-        $fees['product_type'] = 'Prescribed';
+        $fees['fee_total_amount'] = $total_amount;
 
-        if($fees['product_type'] == "Prescribed")
+        if($fees['product_type'] == "Non Prescribed")
         {
-            if($total_amount >30)
+            if($total_amount >$minimum_shipping_amount)
             {
-                echo "Free shiping";
+                $shiping_fee=0;
             }
             else{
-                echo "charge";
+    $shipping_fee = Fees::where('status','1')->where('fee_type','shipping_fee')->get();
             }
-            
         }
+
+        $fees['shiping_fee'] = $shiping_fee;
+        $fees['minimum_shipping_amount'] = $minimum_shipping_amount;
 
         return $this->sendResponse($fees,'Fees Retrived successfully');
     }

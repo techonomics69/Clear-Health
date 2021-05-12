@@ -272,41 +272,41 @@ public function create_patient(Request $request)
 
       $Patient_data = json_decode($response);
 
-       $input_data['partner_id'] = '45af5944-4ad1-4269-b2b2-a2d4164e591d';//$Patient_data['partner_id'];
-       $input_data['first_name'] = 'Greha';//$Patient_data['first_name'];
-       $input_data['last_name'] = 'Thomas';//$Patient_data['last_name'];
-       $input_data['email'] = 'grethoms@gmail.com';//$Patient_data['email'];
-       $input_data['gender'] = 0 ;//$Patient_data['gender'];
-       $input_data['phone_number'] = '812-349-9879';//$Patient_data['phone_number'];
-       $input_data['phone_type'] = 2;//$Patient_data['phone_type'];
-       $input_data['date_of_birth'] = '2000-12-11';//$Patient_data['date_of_birth'];
-       $input_data['active'] = 1;//$Patient_data['active'];
-       $input_data['weight'] = 60;//$Patient_data['weight'];
-       $input_data['height'] = 190;//$Patient_data['height'];
-       $input_data['dosespot_sync_status'] = 'pending';//$Patient_data['dosespot_sync_status'];
-       $input_data['patient_id'] = '755b8cd2-9abd-4016-b76f-f23f44d75e20';//$Patient_data['patient_id'];
-       $input_data['gender_label'] = 'Male';//$Patient_data['gender_label'];
-       $input_data['address'] = '1901 1st Avenue, New York, NY 10029';//$Patient_data['address']->address;
-       $input_data['zip_code'] = '34535';//$Patient_data['address']->zip_code;
-       $input_data['city_id'] = '0b56b7a1-dae8-4bf8-a44f-4cb808115a6c';//$Patient_data['address']->city_id;
-       $input_data['city_name'] = 'Lake California';//$Patient_data['address']['city']->name;
-       $input_data['state_name'] = 'California';//$Patient_data['address']['city']->state->name;
-       $input_data['state_abbreviation'] = 'CA';//$Patient_data['address']['city']->state->abbreviation;
+       $input_data['partner_id'] = $Patient_data['partner_id'];
+       $input_data['first_name'] = $Patient_data['first_name'];
+       $input_data['last_name'] =  $Patient_data['last_name'];
+       $input_data['email'] =  $Patient_data['email'];
+       $input_data['gender'] = $Patient_data['gender'];
+       $input_data['phone_number'] = $Patient_data['phone_number'];
+       $input_data['phone_type'] = $Patient_data['phone_type'];
+       $input_data['date_of_birth'] = $Patient_data['date_of_birth'];
+       $input_data['active'] = $Patient_data['active'];
+       $input_data['weight'] = $Patient_data['weight'];
+       $input_data['height'] = $Patient_data['height'];
+       $input_data['dosespot_sync_status'] = $Patient_data['dosespot_sync_status'];
+       $input_data['patient_id'] = $Patient_data['patient_id'];
+       $input_data['gender_label'] = $Patient_data['gender_label'];
+       $input_data['address'] = $Patient_data['address']->address;
+       $input_data['zip_code'] = $Patient_data['address']->zip_code;
+       $input_data['city_id'] = $Patient_data['address']->city_id;
+       $input_data['city_name'] = $Patient_data['address']['city']->name;
+       $input_data['state_name'] = $Patient_data['address']['city']->state->name;
+       $input_data['state_abbreviation'] = $Patient_data['address']['city']->state->abbreviation;
 
 
        $md_patient_data = Mdpatient::create($input_data);
 
             //$info = curl_getinfo($curl);
 
-       if(curl_exec($curl) == false)
+       /*if(curl_exec($curl) == false)
        {
         echo 'Curl error: ' . curl_error($curl);
               //return $this->sendResponse($response, 'Patient Created Successfully1'); 
       }
       else
-      {
+      {*/
        return $this->sendResponse($response,$input_data,'Patient Created Successfully'); 
-     }
+     //}
    }
 
 

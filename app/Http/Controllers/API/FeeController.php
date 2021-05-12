@@ -28,7 +28,7 @@ class FeeController extends BaseController
         $minimum_shipping_amount = Fees::where('status','1')->where('fee_type','minimum_shipping_amount')->get();
         /*echo $minimum_shipping_amount.'123457';
         die();*/
-        
+
         $total_amount = 0;
         foreach( $fees as $key=>$fee){
             $total_amount += $fee['amount'];
@@ -50,7 +50,7 @@ class FeeController extends BaseController
 
         }
         //$fees['order_total_amount'] = $order_total_amount;
-        $fees['shiping_fee'] = $shipping_fee;
+        //$fees['shiping_fee'] = $shipping_fee;
         $fees['minimum_shipping_amount'] = $minimum_shipping_amount;
 
         return $this->sendResponse($fees,'Fees Retrived successfully');

@@ -40,7 +40,7 @@ class FeeController extends BaseController
         {
             if($order_total_amount > $minimum_shipping_amount)
             {
-                $shipping_fee=0;
+                $order_total_amount=0;
             }
             else{
                 $shipping_fee = Fees::where('status','1')->where('fee_type','shipping_fee')->get();

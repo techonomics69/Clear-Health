@@ -22,6 +22,7 @@ class FeeController extends BaseController
 
     public function getFees(Request $request){
         $fee_type = $request->fee_type;
+        $fee_amount = $request->amount;
         $fees = Fees::where('status','1')->where('fee_type',$fee_type)->get();
         $minimum_shipping_amount = Fees::where('status','1')->where('fee_type','minimum_shipping_amount')->get();
         //echo $minimum_shipping_amount.'123456';
@@ -35,13 +36,16 @@ class FeeController extends BaseController
 
         if($product_type == "Non Prescribed")
         {
-            if($total_amount >$minimum_shipping_amount)
+            if($fee_amount > $minimum_shipping_amount)
             {
                 $shiping_fee=0;
             }
             else{
                 $shipping_fee = Fees::where('status','1')->where('fee_type','shipping_fee')->get();
             }
+        }
+        else{
+
         }
 
         $fees['shiping_fee'] = $shiping_fee;

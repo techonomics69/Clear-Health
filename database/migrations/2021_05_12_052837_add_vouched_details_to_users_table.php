@@ -14,7 +14,7 @@ class AddVouchedDetailsToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->text('vouched_details')->after('status');
+            $table->text('vouched_details')->after('status')->nullable();
         });
     }
 

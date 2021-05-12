@@ -272,6 +272,10 @@ public function create_patient(Request $request)
 
       $Patient_data = json_decode($response);
 
+      echo "<pre>";
+      print_r($Patient_data);
+      echo "<pre>";
+      exit();
        $input_data['partner_id'] = $Patient_data['partner_id'];
        $input_data['first_name'] = $Patient_data['first_name'];
        $input_data['last_name'] =  $Patient_data['last_name'];

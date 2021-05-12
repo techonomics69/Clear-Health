@@ -40,12 +40,9 @@ class FeeController extends BaseController
 
         if($product_type == "Non Prescribed")
         {
-            /*echo '123457';
-            die();*/
-
             if($order_total_amount > $minimum_shipping_amount)
             {
-                $shipping_fee=0;
+                $shipping_fee=[0]['amount'];
             }
             else
             {
@@ -53,10 +50,8 @@ class FeeController extends BaseController
                 /*echo "<pre>";
                 print_r($shipping_fee);
                 echo "</pre>";*/
-                $shipping_fee=$shipping_fee[0]['amount'];
+                $shipping_fee = $shipping_fee[0]['amount'];
             }
-
-        }else{
 
         }
         //$fees['order_total_amount'] = $order_total_amount;

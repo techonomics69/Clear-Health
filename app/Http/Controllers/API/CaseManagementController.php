@@ -270,12 +270,10 @@ public function create_patient(Request $request)
   $response = curl_exec($curl);
 
 
-      $Patient_data = json_decode($response);
+       $Patient_data = json_decode($response);
 
-      /*echo "<pre>";
-      print_r($Patient_data);
-      echo "<pre>";
-      exit();*/
+       if(!empty($Patient_data)){
+
        $input_data['partner_id'] = $Patient_data->partner_id;
        $input_data['first_name'] = $Patient_data->first_name;
        $input_data['last_name'] =  $Patient_data->last_name;
@@ -311,6 +309,12 @@ public function create_patient(Request $request)
       {*/
        return $this->sendResponse($input_data,'Patient Created Successfully'); 
      //}
+
+       }else{
+          return $this->sendResponse(array(),'Something went wrong!');
+       }
+       
+       
    }
 
 

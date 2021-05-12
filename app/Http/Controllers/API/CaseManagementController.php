@@ -309,7 +309,7 @@ public function create_patient(Request $request)
       }
       else
       {*/
-       return $this->sendResponse($response,$input_data,'Patient Created Successfully'); 
+       return $this->sendResponse($input_data,'Patient Created Successfully'); 
      //}
    }
 

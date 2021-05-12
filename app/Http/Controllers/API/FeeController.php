@@ -43,11 +43,11 @@ class FeeController extends BaseController
             {
                 $order_total_amount=0;
             }
-            else{
+            else
+            {
                 $shipping_fee = Fees::where('status','1')->where('fee_type','shipping_fee')->get();
             }
-        }
-        else{
+        }else{
 
         }
         //$fees['order_total_amount'] = $order_total_amount;

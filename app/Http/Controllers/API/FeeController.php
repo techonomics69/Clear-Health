@@ -40,7 +40,7 @@ class FeeController extends BaseController
 
         if($product_type == "Non Prescribed")
         {
-            /*echo  $minimum_shipping_amount.'123457';
+            /*echo '123457';
             die();*/
 
             if($order_total_amount > $minimum_shipping_amount)

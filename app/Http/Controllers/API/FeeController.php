@@ -1,13 +1,13 @@
 <?php
-   
+
 namespace App\Http\Controllers\API;
-   
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Models\Fees;
 use Validator;
 
-   
+
 class FeeController extends BaseController
 {
     /**
@@ -17,7 +17,7 @@ class FeeController extends BaseController
      */
     public function index(Request $request, $category)
     {
-       
+
     }
 
     public function getFees(Request $request){
@@ -44,7 +44,7 @@ class FeeController extends BaseController
             }
             else
             {
-                "test"
+                echo "test";
             }
         }
 

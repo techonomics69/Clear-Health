@@ -991,7 +991,7 @@ public function create_patient(Request $request)
 
   }
 
-  public function createFile(){
+  public function createMessageFile(){
     $r = $this->get_token();
     $token_data = json_decode($r);
     $token = $token_data->access_token;
@@ -1016,8 +1016,6 @@ public function create_patient(Request $request)
           
       $file_path = 'public/Message_files/' .$file;
     }
-
-
 
     $input_data = $request->all();
 
@@ -1046,6 +1044,8 @@ public function create_patient(Request $request)
     ));
 
     $response = curl_exec($curl);
+
+    return $response;
 
   }
 

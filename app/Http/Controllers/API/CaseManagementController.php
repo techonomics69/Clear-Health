@@ -15,6 +15,8 @@ use App\Models\Parentdetail;
 use App\Models\Mdcases;
 use App\Models\Mdmanagement;
 use App\Models\CaseFiles;
+use App\Models\CaseFiles;
+use App\Models\CaseFiles;
 use File;
 
 class CaseManagementController extends BaseController
@@ -1045,8 +1047,26 @@ public function create_patient(Request $request)
 
     $response = curl_exec($curl);
 
-    return $response;
+    $message_file_data = json_decode($response);
+    $input_data = array();
+    $input_data['name'] = $message_file_data->name;
+    $input_data['mime_type'] = $message_file_data->mime_type;
+    $input_data['url'] = $message_file_data->url;
+    $input_data['url_thumbnail'] = $message_file_data->url_thumbnail;
+    $input_data['file_id'] = $message_file_data->file_id;
 
+     $case_file_data = CaseFiles::create($input_data);
+
+  }
+
+  public function createMessage(){
+    $r = $this->get_token();
+    $token_data = json_decode($r);
+    $token = $token_data->access_token;
+
+    $user_id = $request->user_id;
+    $case_id = $request->case_id;
+    $system_case_id = $request->system_case_id;
   }
 
 

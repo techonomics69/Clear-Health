@@ -1,13 +1,13 @@
 <?php
-   
+
 namespace App\Http\Controllers\API;
-   
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Models\Fees;
 use Validator;
 
-   
+
 class FeeController extends BaseController
 {
     /**
@@ -17,7 +17,7 @@ class FeeController extends BaseController
      */
     public function index(Request $request, $category)
     {
-       
+
     }
 
     public function getFees(Request $request){
@@ -31,7 +31,22 @@ class FeeController extends BaseController
 
         $fees['fee_total_amount'] = $total_amount;
         $fees['fee_type'] = $fee_type;
-        $fees['product_type'] = 'Prescribed';
+        $product_type['product_type'] = 'Prescribed';
+
+        if($product_type == "Non Prescribed")
+        {
+            if($total_amount >30)
+            {
+                echo "Free shiping";
+            }
+            else{
+                echo "charge";
+            }
+            else
+            {
+                echo "test";
+            }
+        }
 
         return $this->sendResponse($fees,'Fees Retrived successfully');
     }

@@ -49,7 +49,7 @@ class FeeController extends BaseController
 
         }
         $fees['shiping_fee'] = $shipping_fee;
-        $fees['minimum_shipping_amount'] = $minimum_shipping_amount;
+        $fees['minimum_shipping_amount'] = $minimum_shipping_amount[0]['amount'];
 
         return $this->sendResponse($fees,'Fees Retrived successfully');
     }

@@ -151,16 +151,16 @@ public function addParentdetails(Request $request)
 
             $user = User::find($id);
 
-            echo "<pre>";
-            print_r($user);
-            echo "<pre>";
-            exit();
+            
+            $vouched_details = json_decode($user['vouched_details']);
+            
+            
 
-            if($data == 1){
-                    return $this->sendResponse($user, 'User Status Updated Successfully');
+            if(!empty($user) && count($user)>0){
+                    return $this->sendResponse($vouched_details, 'Users vouched details retrived successfully');
             }else{
                 
-              return $this->sendResponse($user, 'Something went wrong!');  
+              return $this->sendResponse($user, 'NO data found!');  
             }
             
         }catch(\Exception $ex){

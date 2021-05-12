@@ -30,6 +30,8 @@ class FeeController extends BaseController
         }
 
         $fees['fee_total_amount'] = $total_amount;
+        $fees['fee_type'] = $fee_type;
+        $fees['product_type'] = 'Prescribed';
 
         return $this->sendResponse($fees,'Fees Retrived successfully');
     }

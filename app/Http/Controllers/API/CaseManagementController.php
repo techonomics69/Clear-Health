@@ -272,30 +272,30 @@ public function create_patient(Request $request)
 
       $Patient_data = json_decode($response);
 
-      echo "<pre>";
+      /*echo "<pre>";
       print_r($Patient_data);
       echo "<pre>";
-      exit();
-       $input_data['partner_id'] = $Patient_data['partner_id'];
-       $input_data['first_name'] = $Patient_data['first_name'];
-       $input_data['last_name'] =  $Patient_data['last_name'];
-       $input_data['email'] =  $Patient_data['email'];
-       $input_data['gender'] = $Patient_data['gender'];
-       $input_data['phone_number'] = $Patient_data['phone_number'];
-       $input_data['phone_type'] = $Patient_data['phone_type'];
-       $input_data['date_of_birth'] = $Patient_data['date_of_birth'];
-       $input_data['active'] = $Patient_data['active'];
-       $input_data['weight'] = $Patient_data['weight'];
-       $input_data['height'] = $Patient_data['height'];
-       $input_data['dosespot_sync_status'] = $Patient_data['dosespot_sync_status'];
-       $input_data['patient_id'] = $Patient_data['patient_id'];
-       $input_data['gender_label'] = $Patient_data['gender_label'];
-       $input_data['address'] = $Patient_data['address']->address;
-       $input_data['zip_code'] = $Patient_data['address']->zip_code;
-       $input_data['city_id'] = $Patient_data['address']->city_id;
-       $input_data['city_name'] = $Patient_data['address']['city']->name;
-       $input_data['state_name'] = $Patient_data['address']['city']->state->name;
-       $input_data['state_abbreviation'] = $Patient_data['address']['city']->state->abbreviation;
+      exit();*/
+       $input_data['partner_id'] = $Patient_data->partner_id;
+       $input_data['first_name'] = $Patient_data->first_name;
+       $input_data['last_name'] =  $Patient_data->last_name;
+       $input_data['email'] =  $Patient_data->email;
+       $input_data['gender'] = $Patient_data->gender;
+       $input_data['phone_number'] = $Patient_data->phone_number;
+       $input_data['phone_type'] = $Patient_data->phone_type;
+       $input_data['date_of_birth'] = $Patient_data->date_of_birth;
+       $input_data['active'] = $Patient_data->active;
+       $input_data['weight'] = $Patient_data->weight;
+       $input_data['height'] = $Patient_data->height;
+       $input_data['dosespot_sync_status'] = $Patient_data->dosespot_sync_status;
+       $input_data['patient_id'] = $Patient_data->patient_id;
+       $input_data['gender_label'] = $Patient_data->gender_label;
+       $input_data['address'] = $Patient_data->address->address;
+       $input_data['zip_code'] = $Patient_data->address->zip_code;
+       $input_data['city_id'] = $Patient_data->address->city_id;
+       $input_data['city_name'] = $Patient_data->address->city->name;
+       $input_data['state_name'] = $Patient_data->address->city->state->name;
+       $input_data['state_abbreviation'] = $Patient_data->address->city->state->abbreviation;
 
 
        $md_patient_data = Mdpatient::create($input_data);

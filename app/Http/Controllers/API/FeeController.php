@@ -31,6 +31,7 @@ class FeeController extends BaseController
         die();*/
 
         $total_amount = 0;
+
         foreach( $fees as $key=>$fee){
             $total_amount += $fee['amount'];
         }
@@ -39,6 +40,9 @@ class FeeController extends BaseController
 
         if($product_type == "Non Prescribed")
         {
+
+            echo '123457';
+        die();
             if($order_total_amount > $minimum_shipping_amount)
             {
                 $shipping_fee=0;

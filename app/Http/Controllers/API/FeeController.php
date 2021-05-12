@@ -40,7 +40,6 @@ class FeeController extends BaseController
 
         if($product_type == "Non Prescribed")
         {
-
             echo '123457';
             die();
 

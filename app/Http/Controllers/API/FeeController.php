@@ -31,9 +31,9 @@ class FeeController extends BaseController
 
         $fees['fee_total_amount'] = $total_amount;
         $fees['fee_type'] = $fee_type;
-        $product_type['product_type'] = 'Prescribed';
+        $fees['product_type'] = 'Prescribed';
 
-        if($product_type == "Non Prescribed")
+        if($fees['product_type'] == "Prescribed")
         {
             if($total_amount >30)
             {

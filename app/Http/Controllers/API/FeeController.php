@@ -53,7 +53,7 @@ class FeeController extends BaseController
                 /*echo "<pre>";
                 print_r($shipping_fee);
                 echo "</pre>";*/
-                $shipping_fee=$shipping_fee[2]['amount'];
+                $shipping_fee=$shipping_fee[0]['amount'];
             }
 
         }else{

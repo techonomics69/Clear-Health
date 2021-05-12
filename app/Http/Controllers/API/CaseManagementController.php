@@ -991,5 +991,63 @@ public function create_patient(Request $request)
 
   }
 
+  public function createFile(){
+    $r = $this->get_token();
+    $token_data = json_decode($r);
+    $token = $token_data->access_token;
+
+    $documents = $request->file('file');
+    $name = $request->name;
+    $user_id = $request->user_id;
+    $case_id = $request->case_id;
+    $system_case_id = $request->system_case_id;
+
+    if(!empty($documents)){
+      $file =  $documents->getClientOriginalName();
+      $doc_file_name =  time().'-'.$file;
+      
+      if (!file_exists(public_path('/Message_files'))) {
+        File::makeDirectory(public_path('/Message_files'),0777,true,true);
+      }
+      $destinationPath = public_path('/Message_files');
+      $documents->move($destinationPath, $doc_file_name);
+
+      chmod($destinationPath."/".$doc_file_name, 0777);
+          
+      $file_path = 'public/Message_files/' .$file;
+    }
+
+
+
+    $input_data = $request->all();
+
+    $fields = [
+      'name' => $name,
+      'file' => new \CurlFile($destinationPath."/".$doc_file_name)
+    ];
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/files',
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'POST',
+      CURLOPT_POSTFIELDS =>  $fields,
+      CURLOPT_HTTPHEADER => array(
+        'Content: multipart/form-data;',
+        'Authorization: Bearer '.$token,
+        'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+      ),
+    ));
+
+    $response = curl_exec($curl);
+
+  }
+
 
 }

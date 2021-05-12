@@ -156,7 +156,7 @@ public function addParentdetails(Request $request)
             
             
 
-            if(!empty($user) && count($user)>0){
+            if(!empty($user)){
                     return $this->sendResponse($vouched_details, 'Users vouched details retrived successfully');
             }else{
                 

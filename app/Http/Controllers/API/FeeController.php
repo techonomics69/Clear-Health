@@ -42,10 +42,7 @@ class FeeController extends BaseController
             else{
                 echo "charge";
             }
-            else
-            {
-                echo "test";
-            }
+            
         }
 
         return $this->sendResponse($fees,'Fees Retrived successfully');

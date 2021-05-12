@@ -93,7 +93,7 @@ Route::post('forgot_password',[RegisterController::class, 'forgot_password']);
     //end of md api
 
     Route::post('user/update_vouch_status/{id}', [UserController::class, 'updateVerifiedByVouch']);
-    Route::post('user/vouch_details/{id}', [UserController::class, 'getVouchedDetails']);
+    Route::get('user/vouch_details/{id}', [UserController::class, 'getVouchedDetails']);
 
 
     Route::group(['middleware' => 'auth:api'], function(){});

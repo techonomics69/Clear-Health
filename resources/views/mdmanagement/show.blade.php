@@ -64,7 +64,7 @@
 
         <div class="form-group">
             <strong>Image:</strong>
-            <img src="{{ asset('public/images/mdmanagement/'.$mdmanagement->image) }}" alt="Mdmanagement Image" title="Mdmanagement Image" width="200px">            
+            <img src="{{ asset('public/images/Mdmanagement/'.$mdmanagement->image) }}" alt="Mdmanagement Image" title="Mdmanagement Image" width="200px">            
         </div>
         
     </div>

@@ -22,14 +22,14 @@ class FeeController extends BaseController
 
     public function getFees(Request $request){
         $fee_type = $request->fee_type;
-        $order_total_amount = $request->order_total_amount;
-        $product_type = $request->product_type;
+        //$order_total_amount = $request->order_total_amount;
+        //$product_type = $request->product_type;
         $fees = Fees::where('status','1')->where('fee_type',$fee_type)->get()->toArray();
        /*echo "<pre>";
 print_r($fees);
 echo "</pre>";
 exit();*/
-        $minimum_shipping_amount = Fees::where('status','1')->where('fee_type','minimum_shipping_amount')->get();
+        //$minimum_shipping_amount = Fees::where('status','1')->where('fee_type','minimum_shipping_amount')->get();
 
         $total_amount = 0;
 
@@ -39,7 +39,7 @@ exit();*/
 
         $fees['fee_total_amount'] = $total_amount;
 
-        if($product_type == "Non Prescribed")
+        /*if($product_type == "Non Prescribed")
         {
             if($order_total_amount > $minimum_shipping_amount[0]['amount'])
             {
@@ -51,9 +51,9 @@ exit();*/
                 $shipping_fee = $shipping_fee[0]['amount'];
             }
 
-        }
-        $fees['shipping_fee'] = $shipping_fee;
-        $fees['minimum_shipping_amount'] = $minimum_shipping_amount[0]['amount'];
+        }*/
+       /* $fees['shipping_fee'] = $shipping_fee;
+        $fees['minimum_shipping_amount'] = $minimum_shipping_amount[0]['amount'];*/
 
         return $this->sendResponse($fees,'Fees Retrived successfully');
     }

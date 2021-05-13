@@ -25,10 +25,7 @@ class FeeController extends BaseController
         //$order_total_amount = $request->order_total_amount;
         //$product_type = $request->product_type;
         $fees = Fees::where('status','1')->where('fee_type',$fee_type)->first();
-       /*echo "<pre>";
-print_r($fees);
-echo "</pre>";
-exit();*/
+
         //$minimum_shipping_amount = Fees::where('status','1')->where('fee_type','minimum_shipping_amount')->get();
 
         $total_amount = 0;

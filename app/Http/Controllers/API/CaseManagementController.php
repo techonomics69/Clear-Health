@@ -15,8 +15,8 @@ use App\Models\Parentdetail;
 use App\Models\Mdcases;
 use App\Models\Mdmanagement;
 use App\Models\CaseFiles;
-use App\Models\CaseFiles;
-use App\Models\CaseFiles;
+//use App\Models\CaseFiles;
+//use App\Models\CaseFiles;
 use File;
 
 class CaseManagementController extends BaseController

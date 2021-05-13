@@ -24,8 +24,8 @@ class FeeController extends BaseController
         $fee_type = $request->fee_type;
         $order_total_amount = $request->order_total_amount;
         $product_type = $request->product_type;
-        $fees = Fees::where('status','1')->where('fee_type',$fee_type)->first()->toArray();
-      /* echo "<pre>";
+        $fees = Fees::where('status','1')->where('fee_type',$fee_type)->get()->toArray();
+       /*echo "<pre>";
 print_r($fees);
 echo "</pre>";
 exit();*/

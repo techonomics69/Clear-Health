@@ -71,6 +71,12 @@
 												case "topical_refilled":
 												$type ="Topical Refilled";
 												break;
+												case "minimum_shipping_amount":
+												$type ="Minimum Shipping Amount";
+												break;
+												case "shipping_fee":
+												$type ="Shipping Fee";
+												break;
 												default:
 												$type = "Topical";
 											}

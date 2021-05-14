@@ -1147,7 +1147,7 @@ public function create_patient(Request $request)
    $caseUpdate  =  MdMessages::where('md_case_id',$case_id)->where('case_message_id',$case_message_id)->update(['read_at' => $read_at]);
 
     if($caseUpdate == 1){
-      return $this->sendResponse($message_data,'Message created successfully');
+      return $this->sendResponse($data,'Message created successfully');
     }else{
       return $this->sendResponse(array(),'Something went wrong');
     }

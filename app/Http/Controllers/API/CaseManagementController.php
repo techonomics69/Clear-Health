@@ -967,11 +967,6 @@ public function create_patient(Request $request)
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
-    echo "<pre>";
-    print_r($token);
-    echo "<pre>";
-    exit();
-
     $documents = $request->file('file');
     $name = $request->name;
     $user_id = $request->user_id;
@@ -979,11 +974,6 @@ public function create_patient(Request $request)
     $system_case_id = $request->system_case_id;
 
     if(!empty($documents)){
-
-      echo "<pre>";
-      print_r($documents);
-      echo "<pre>";
-      exit();
       $file =  $documents->getClientOriginalName();
       $doc_file_name =  time().'-'.$file;
       

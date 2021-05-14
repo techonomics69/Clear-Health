@@ -1136,13 +1136,15 @@ public function create_patient(Request $request)
     
     $data = json_decode($response);
 
-    $MdMessages = MdMessages::where('md_case_id',$case_id)->where('case_message_id',$case_message_id)->get();
+    //$MdMessages = MdMessages::where('md_case_id',$case_id)->where('case_message_id',$case_message_id)->get();
 
 
     $read_at = $data->read_at;
 
 
-    $caseUpdate = $MdMessages->update($read_at);
+    //$caseUpdate = $MdMessages->update($read_at);
+
+   $caseUpdate  =  MdMessages::where('md_case_id',$case_id)->where('case_message_id',$case_message_id)->update(['read_at' => $read_at]);
 
     if($caseUpdate == 1){
       return $this->sendResponse($message_data,'Message created successfully');

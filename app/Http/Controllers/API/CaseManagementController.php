@@ -1112,6 +1112,15 @@ public function create_patient(Request $request)
     $case_id = $request['case_id'];
     $case_message_id = $request['case_message_id'];
 
+    echo "<pre>";
+    print_r($case_id);
+    echo "<pre>";
+    
+    echo "<pre>";
+    print_r($case_message_id);
+    echo "<pre>";
+    exit();
+
     $curl = curl_init();
 
     curl_setopt_array($curl, array(

@@ -1056,12 +1056,6 @@ public function create_patient(Request $request)
 
     $postfields = json_encode($postfields);
 
-    echo "<pre>";
-    print_r($postfields);
-    echo "<pre>";
-    exit();
-
-
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
@@ -1073,16 +1067,10 @@ public function create_patient(Request $request)
       CURLOPT_FOLLOWLOCATION => true,
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => 'POST',
-      CURLOPT_POSTFIELDS =>'{
-        "from": "patient",
-        "text": "Hi clinician!",
-        "prioritized": true,
-        "prioritized_reason": "He needs the prescription for tomorrow.",
-        "message_files": ["a2bd9332-5f55-48bf-af26-c5fb2d43532f","b9c0f024-e7ef-46dc-9a75-bb574afde2a8","1c19cb18-f599-4556-9089-091fec373b91"]
-      }',
+      CURLOPT_POSTFIELDS =>$postfields,
       CURLOPT_HTTPHEADER => array(
         'Content-Type: application/json',
-        'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJjN2EyMGE5MC00ZGI5LTQyZTQtODYwYS03ZjQxYzJhOGEwYjEiLCJqdGkiOiJmOTJhMjdiNjdlODA5ZmVkODQwNDdjNjU5YTg3ODY5MmNjZDNkMGVlNWY4ZTUyZGIwMTk3MGRmZTkzMGM0ODdmN2Q2ODJkNTI5NDhjNzBhZCIsImlhdCI6MTYyMDk3MTMyNy4zMzk0NDQsIm5iZiI6MTYyMDk3MTMyNy4zMzk0NDYsImV4cCI6MTYyMTA1NzcyNy4zMzM3MjIsInN1YiI6IiIsInNjb3BlcyI6WyIqIl19.Nv9yzGrZ3XHDf42k5yX1nxHEhVFJj-6sUslwMx-inwftWgBdW98cGRJ6tkY54RxAOTrTic02mKa3gvW5XdKtm2ctyOmW3ESf5aVRHsRjupFrbO5IHogGbePdtQsl84gUayLC97HTMQkHpEGxRlQB4gMeG1skk9E2F2o76pqn0oTSXZISdtagOnV93aaLlRS2eLUkRMRhzEG1IW58F7Mah3m2-73RAjXJAw05r6B5pS5EAbyYYa961JG8-KgQK01UffrO81qIhqt7qv1PJ_1GxiWkGf_Fth3E_bv9D8RwdeTIAQSwtGuKfoQQsRMkoa0U-9NpdmEobPpH8_PE8sMyjqRulRUF0paLdP0u6_6nB3DH1YtXUoeCEd1LPW5Nn8I9PwzTa9rj_ycW1gdYzCJFOsNlY3yvHJoQV6TFcmw_1zHuQms8Qqqotui9czVGjL-QClAv0wfPRmXGjmwNWTUdY8rw4ewn67boIF74_fZs07ZYUp8mLxLQv59U226dv-Jq86KQR3GLu4NcwTx50O8ECTYHW_wNzynCZTCcBgoUL1V3wCMG9Yk7nlNVhZfMJacQTKOHbzMZ51Ca2nmc1DMKmpnubQRDHZsZGO7ccwnX51SBH1qixnV3GpLQm-psus6ZVvvCyzpxt2le6qxfU9AYODTOH1tv2rxes27idOcg8Ls',
+        'Authorization: Bearer '.$token,
         'Cookie: __cfduid=da01d92d82d19a6cccebfdc9852303eb81620627650'
       ),
     ));
@@ -1090,7 +1078,27 @@ public function create_patient(Request $request)
     $response = curl_exec($curl);
 
     curl_close($curl);
-    echo $response;
+    
+    $message_data = json_decode($response);
+    $input_data = array();
+
+    $input_data['md_case_id'] = $case_id;
+    $input_data['system_file'] = $file_path;
+    $input_data['user_id'] = $user_id;
+    $input_data['case_id'] = $system_case_id;
+    $input_data['text'] = $message_data->text;
+    $input_data['from'] = $message_data->from;
+    $input_data['channel'] = $message_data->channel;
+    $input_data['prioritized_at'] = $message_data->prioritized_at;
+    $input_data['prioritized_reason'] = $message_data->prioritized_reason;
+    $input_data['message_created_at'] = $message_data->created_at;
+    $input_data['case_message_id'] = $message_data->case_message_id;
+    $input_data['message_files_ids'] = json_encode($file_ids);
+    $input_data['clinician  '] = $message_data->clinician ;
+
+    $message_data = MdMessages::create($input_data);
+
+    return $this->sendResponse($message_data,'Message created successfully');
 
 
    // end of code to get files ids

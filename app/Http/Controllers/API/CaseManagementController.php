@@ -1137,7 +1137,7 @@ public function create_patient(Request $request)
 
     $MdMessages = MdMessages::where('case_id',$case_id)->where('case_message_id',$case_message_id)->first();
 
-    $read_at = $response->read_at;
+    $read_at = $data->read_at;
 
     $caseUpdate = $MdMessages->update($read_at);
 

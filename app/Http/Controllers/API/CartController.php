@@ -139,7 +139,7 @@ class CartController extends BaseController
         try{
             //$cart = Cart::where('user_id', $id)->where('order_type', '!=', 'Prescribed')->get();
 
-            $cart = Cart::where('user_id', $id)->where('order_type', null)->get();
+            $cart = Cart::where('user_id', $id)->where('order_type', null)->where('status','pending')->get();
                 $data=array();
             foreach ($cart as $key => $value) {
                 
@@ -165,7 +165,7 @@ class CartController extends BaseController
     public function getCartByUserPrescribed($id)
     {
         try{
-            $cart = Cart::where('user_id', $id)->where('order_type','Prescribed')->OrderBy('id','desc')->get();
+            $cart = Cart::where('user_id', $id)->where('order_type','Prescribed')->where('status','pending')->OrderBy('id','desc')->get();
             $data = array();
             foreach ($cart as $key => $value) {
                 $data[$key]['id'] = $value->id;

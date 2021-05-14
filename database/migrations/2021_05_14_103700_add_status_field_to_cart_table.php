@@ -14,7 +14,7 @@ class AddStatusFieldToCartTable extends Migration
     public function up()
     {
         Schema::table('carts', function (Blueprint $table) {
-            $table->string('status')->nullable()->after('order_type');
+            $table->string('status')->default('pending')->after('order_type');
         });
     }
 

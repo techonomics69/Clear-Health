@@ -1047,10 +1047,7 @@ public function create_patient(Request $request)
     //code to get files ids
     $file_ids = MdMessageFiles::where('user_id', $user_id)->where('md_case_id', $case_id  )->select('file_id')->get()->toArray();
 
-    echo "<pre>";
-    print_r($file_ids);
-    echo "<pre>";
-    exit();
+    
 
     /*foreach($file_ids as $key=>$value){
       $file_ids[$key]['question'] = $value['question'];
@@ -1066,6 +1063,10 @@ public function create_patient(Request $request)
    }*/
    
    $file_ids = json_encode($file_ids);
+   echo "<pre>";
+    print_r($file_ids);
+    echo "<pre>";
+    exit();
 
    // end of code to get files ids
   }

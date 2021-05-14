@@ -1030,7 +1030,7 @@ public function create_patient(Request $request)
     $input_data['file_id'] = $message_file_data->file_id;
 
     $message_file_data = MdMessageFiles::create($input_data);
-    
+
     return $this->sendResponse($message_file_data,'File created successfully');
 
   }
@@ -1040,12 +1040,17 @@ public function create_patient(Request $request)
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
-    $user_id = $request->user_id;
-    $case_id = $request->case_id;
-    $system_case_id = $request->system_case_id;
+    $user_id = $request['user_id'];
+    $case_id = $request['case_id'];
+    $system_case_id = $request['system_case_id'];
 
     //code to get files ids
-    $file_ids = MdMessageFiles::where('user_id', $user_id)->where('case_id', $md_case_id  )->select('file_id')->get()->toArray();
+    $file_ids = MdMessageFiles::where('user_id', $user_id)->where('md_case_id', $case_id  )->select('file_id')->get()->toArray();
+
+    echo "<pre>";
+    print_r($file_ids);
+    echo "<pre>";
+    exit();
 
     /*foreach($file_ids as $key=>$value){
       $file_ids[$key]['question'] = $value['question'];

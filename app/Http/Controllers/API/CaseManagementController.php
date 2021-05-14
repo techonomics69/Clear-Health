@@ -315,7 +315,7 @@ public function create_patient(Request $request)
      }else{
       return $this->sendResponse(array(),'Something went wrong!');
     }
-}
+  }
 
 
   public function searchStateDetail(Request $request){
@@ -1047,26 +1047,53 @@ public function create_patient(Request $request)
     //code to get files ids
     $file_ids = MdMessageFiles::where('user_id', $user_id)->where('md_case_id', $case_id  )->pluck('file_id');
 
-    
+    $file_ids = json_encode($file_ids);
 
-    /*foreach($file_ids as $key=>$value){
-      $file_ids[$key]['question'] = $value['question'];
-      $file_ids[$key]['answer'] = $value['answer'];
+    $postfields = array();
+    $postfields['from'] = $request['from'];;
+    $postfields['text'] = $request['text']; ;
+    $postfields['prioritized'] = $request['prioritized']; ;
+    $postfields['prioritized_reason'] = $request['prioritized_reason'];;
+    $postfields['message_files'] = $file_ids;
 
-      if($value['options_type'] == "radio"){
-       $userquestion[$key]['type']= "boolean";
-     }else{
-       $userquestion[$key]['type']= "string";
-     }
-     
-     $userquestion[$key]['important']= true;
-   }*/
-   
-   $file_ids = json_encode($file_ids);
-   echo "<pre>";
-    print_r($file_ids);
+    $postfields = json_encode($file_ids);
+
+    echo "<pre>";
+    print_r($postfields);
     echo "<pre>";
     exit();
+
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/messages',
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'POST',
+      CURLOPT_POSTFIELDS =>'{
+        "from": "patient",
+        "text": "Hi clinician!",
+        "prioritized": true,
+        "prioritized_reason": "He needs the prescription for tomorrow.",
+        "message_files": ["a2bd9332-5f55-48bf-af26-c5fb2d43532f","b9c0f024-e7ef-46dc-9a75-bb574afde2a8","1c19cb18-f599-4556-9089-091fec373b91"]
+      }',
+      CURLOPT_HTTPHEADER => array(
+        'Content-Type: application/json',
+        'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJjN2EyMGE5MC00ZGI5LTQyZTQtODYwYS03ZjQxYzJhOGEwYjEiLCJqdGkiOiJmOTJhMjdiNjdlODA5ZmVkODQwNDdjNjU5YTg3ODY5MmNjZDNkMGVlNWY4ZTUyZGIwMTk3MGRmZTkzMGM0ODdmN2Q2ODJkNTI5NDhjNzBhZCIsImlhdCI6MTYyMDk3MTMyNy4zMzk0NDQsIm5iZiI6MTYyMDk3MTMyNy4zMzk0NDYsImV4cCI6MTYyMTA1NzcyNy4zMzM3MjIsInN1YiI6IiIsInNjb3BlcyI6WyIqIl19.Nv9yzGrZ3XHDf42k5yX1nxHEhVFJj-6sUslwMx-inwftWgBdW98cGRJ6tkY54RxAOTrTic02mKa3gvW5XdKtm2ctyOmW3ESf5aVRHsRjupFrbO5IHogGbePdtQsl84gUayLC97HTMQkHpEGxRlQB4gMeG1skk9E2F2o76pqn0oTSXZISdtagOnV93aaLlRS2eLUkRMRhzEG1IW58F7Mah3m2-73RAjXJAw05r6B5pS5EAbyYYa961JG8-KgQK01UffrO81qIhqt7qv1PJ_1GxiWkGf_Fth3E_bv9D8RwdeTIAQSwtGuKfoQQsRMkoa0U-9NpdmEobPpH8_PE8sMyjqRulRUF0paLdP0u6_6nB3DH1YtXUoeCEd1LPW5Nn8I9PwzTa9rj_ycW1gdYzCJFOsNlY3yvHJoQV6TFcmw_1zHuQms8Qqqotui9czVGjL-QClAv0wfPRmXGjmwNWTUdY8rw4ewn67boIF74_fZs07ZYUp8mLxLQv59U226dv-Jq86KQR3GLu4NcwTx50O8ECTYHW_wNzynCZTCcBgoUL1V3wCMG9Yk7nlNVhZfMJacQTKOHbzMZ51Ca2nmc1DMKmpnubQRDHZsZGO7ccwnX51SBH1qixnV3GpLQm-psus6ZVvvCyzpxt2le6qxfU9AYODTOH1tv2rxes27idOcg8Ls',
+        'Cookie: __cfduid=da01d92d82d19a6cccebfdc9852303eb81620627650'
+      ),
+    ));
+
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+    echo $response;
+
 
    // end of code to get files ids
   }

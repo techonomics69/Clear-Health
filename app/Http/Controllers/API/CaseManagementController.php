@@ -1135,7 +1135,7 @@ public function create_patient(Request $request)
     
     $data = json_decode($response);
 
-    $MdMessages = MdMessages::where('case_id',$case_id)->where('case_message_id',$case_message_id)->first();
+    $MdMessages = MdMessages::where('case_id',$case_id)->where('case_message_id',$case_message_id)->toSql();
 
 echo "<pre>";
 print_r($MdMessages);

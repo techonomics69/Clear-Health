@@ -1083,7 +1083,6 @@ public function create_patient(Request $request)
     $input_data = array();
 
     $input_data['md_case_id'] = $case_id;
-    $input_data['system_file'] = $file_path;
     $input_data['user_id'] = $user_id;
     $input_data['case_id'] = $system_case_id;
     $input_data['text'] = $message_data->text;

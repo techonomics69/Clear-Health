@@ -15,8 +15,8 @@ use App\Models\Parentdetail;
 use App\Models\Mdcases;
 use App\Models\Mdmanagement;
 use App\Models\CaseFiles;
-//use App\Models\CaseFiles;
-//use App\Models\CaseFiles;
+use App\Models\MdMessages;
+use App\Models\MdMessageFiles;
 use File;
 
 class CaseManagementController extends BaseController
@@ -272,33 +272,33 @@ public function create_patient(Request $request)
   $response = curl_exec($curl);
 
 
-       $Patient_data = json_decode($response);
+  $Patient_data = json_decode($response);
 
-       if(!empty($Patient_data)){
+  if(!empty($Patient_data)){
 
-       $input_data['partner_id'] = $Patient_data->partner_id;
-       $input_data['first_name'] = $Patient_data->first_name;
-       $input_data['last_name'] =  $Patient_data->last_name;
-       $input_data['email'] =  $Patient_data->email;
-       $input_data['gender'] = $Patient_data->gender;
-       $input_data['phone_number'] = $Patient_data->phone_number;
-       $input_data['phone_type'] = $Patient_data->phone_type;
-       $input_data['date_of_birth'] = $Patient_data->date_of_birth;
-       $input_data['active'] = $Patient_data->active;
-       $input_data['weight'] = $Patient_data->weight;
-       $input_data['height'] = $Patient_data->height;
-       $input_data['dosespot_sync_status'] = $Patient_data->dosespot_sync_status;
-       $input_data['patient_id'] = $Patient_data->patient_id;
-       $input_data['gender_label'] = $Patient_data->gender_label;
-       $input_data['address'] = $Patient_data->address->address;
-       $input_data['zip_code'] = $Patient_data->address->zip_code;
-       $input_data['city_id'] = $Patient_data->address->city_id;
-       $input_data['city_name'] = $Patient_data->address->city->name;
-       $input_data['state_name'] = $Patient_data->address->city->state->name;
-       $input_data['state_abbreviation'] = $Patient_data->address->city->state->abbreviation;
+   $input_data['partner_id'] = $Patient_data->partner_id;
+   $input_data['first_name'] = $Patient_data->first_name;
+   $input_data['last_name'] =  $Patient_data->last_name;
+   $input_data['email'] =  $Patient_data->email;
+   $input_data['gender'] = $Patient_data->gender;
+   $input_data['phone_number'] = $Patient_data->phone_number;
+   $input_data['phone_type'] = $Patient_data->phone_type;
+   $input_data['date_of_birth'] = $Patient_data->date_of_birth;
+   $input_data['active'] = $Patient_data->active;
+   $input_data['weight'] = $Patient_data->weight;
+   $input_data['height'] = $Patient_data->height;
+   $input_data['dosespot_sync_status'] = $Patient_data->dosespot_sync_status;
+   $input_data['patient_id'] = $Patient_data->patient_id;
+   $input_data['gender_label'] = $Patient_data->gender_label;
+   $input_data['address'] = $Patient_data->address->address;
+   $input_data['zip_code'] = $Patient_data->address->zip_code;
+   $input_data['city_id'] = $Patient_data->address->city_id;
+   $input_data['city_name'] = $Patient_data->address->city->name;
+   $input_data['state_name'] = $Patient_data->address->city->state->name;
+   $input_data['state_abbreviation'] = $Patient_data->address->city->state->abbreviation;
 
 
-       $md_patient_data = Mdpatient::create($input_data);
+   $md_patient_data = Mdpatient::create($input_data);
 
             //$info = curl_getinfo($curl);
 
@@ -312,15 +312,13 @@ public function create_patient(Request $request)
        return $this->sendResponse($input_data,'Patient Created Successfully'); 
      //}
 
-       }else{
-          return $this->sendResponse(array(),'Something went wrong!');
-       }
-       
-       
-   }
+     }else{
+      return $this->sendResponse(array(),'Something went wrong!');
+    }
+}
 
 
-   public function searchStateDetail(Request $request){
+  public function searchStateDetail(Request $request){
     $r = $this->get_token();
     $token_data = json_decode($r);
     $token = $token_data->access_token;
@@ -476,7 +474,7 @@ public function create_patient(Request $request)
       $documents->move($destinationPath, $doc_file_name);
 
       chmod($destinationPath."/".$doc_file_name, 0777);
-          
+
       $file_path = 'public/MD_Case_files/' .$file;
     }
 
@@ -522,19 +520,19 @@ public function create_patient(Request $request)
 
     $case_file_data = json_decode($response);
 
-       $input_data['name'] = $case_file_data->name;
-       $input_data['file'] = $doc_file_name;
-       $input_data['mime_type'] = $case_file_data->mime_type;
-       $input_data['url'] = $case_file_data->url;
-       $input_data['url_thumbnail'] = $case_file_data->url_thumbnail;
-       $input_data['file_id'] = $case_file_data->file_id;
-       $input_data['case_id'] = $case_id;
-       $input_data['system_file'] = $file_path;
-       $input_data['user_id'] = $user_id;
-       $input_data['system_case_id'] = $system_case_id;
-       
+    $input_data['name'] = $case_file_data->name;
+    $input_data['file'] = $doc_file_name;
+    $input_data['mime_type'] = $case_file_data->mime_type;
+    $input_data['url'] = $case_file_data->url;
+    $input_data['url_thumbnail'] = $case_file_data->url_thumbnail;
+    $input_data['file_id'] = $case_file_data->file_id;
+    $input_data['case_id'] = $case_id;
+    $input_data['system_file'] = $file_path;
+    $input_data['user_id'] = $user_id;
+    $input_data['system_case_id'] = $system_case_id;
 
-   
+
+
 
     //attach file to case_id
 
@@ -565,7 +563,7 @@ public function create_patient(Request $request)
     $input_data['md_url_thumbnail'] = $md_case_file_data->url_thumbnail;
     $input_data['md_file_id'] = $md_case_file_data->file_id;
 
-     $case_file_data = CaseFiles::create($input_data);
+    $case_file_data = CaseFiles::create($input_data);
 
 
     curl_close($curl1);
@@ -662,7 +660,6 @@ public function create_patient(Request $request)
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
-
     $user_id = $request['user_id'];
     $case_id = $request['case_id'];
 
@@ -671,21 +668,9 @@ public function create_patient(Request $request)
     $quantity = $request['quantity'];
     $preferred_pharmacy_id = $request['preferred_pharmacy_id'];
 
-
-   /* echo "<pre>";
-    print_r($request->all());
-    echo "<pre>";*/
-
-
-
     $patient_data = User::select('md_patient_id')->where('id', $request['user_id'])->first();
     
     $patient_id = '"'.$patient_data['md_patient_id'].'"';
-
-    /*echo "<pre>";
-    print_r($patient_id);
-    echo "<pre>";*/
-    
 
     //code to get user's question answer
 
@@ -706,28 +691,24 @@ public function create_patient(Request $request)
    }
    
    $userquestion = json_encode($userquestion);
-
-    /*echo "<pre>";
-    print_r($userquestion);
-    echo "<pre>";*/
-
-
     //end of code to get user's question answer
 
-    
-
-    if($product_type =="Topicals"){
-
-      $days_supply = "60";
-      $refills = "11";
-      $directions = "xyz";
 
 
-      $DispensUnitId = $this->getDispensUnitId();
+   if($product_type =="Topicals"){
+
+    $days_supply = "60";
+    $refills = "11";
+    $directions = "xyz";
+
+
+      /*$DispensUnitId = $this->getDispensUnitId();
 
       $DispensUnitId = json_decode($DispensUnitId);
       
-      $DispensUnitId= $DispensUnitId[0]->dispense_unit_id;
+      $DispensUnitId= $DispensUnitId[0]->dispense_unit_id;*/
+
+      $DispensUnitId = 8;
       
 
       $curl = curl_init();
@@ -811,63 +792,51 @@ public function create_patient(Request $request)
 
     $medication_compound_data = json_encode($medication_compound_data);
 
-     /*echo "<pre>";
-     print_r($medication_compound_data);
-     echo "<pre>";
-     exit();*/
 
-
-   /*  $input_md_data = '{"patient_id": '.$patient_id.',"case_files": [],"case_prescriptions": '.$medication_compound_data.',"case_questions": '.$userquestion.'}';*/
+    /*  $input_md_data = '{"patient_id": '.$patient_id.',"case_files": [],"case_prescriptions": '.$medication_compound_data.',"case_questions": '.$userquestion.'}';*/
 
     
 
-      $curl = curl_init();
+    $curl = curl_init();
 
-      curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases',
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => '',
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => 'POST',
-        CURLOPT_POSTFIELDS =>'{
-          "patient_id": '.$patient_id.',
-          "case_files": [
-          ],
-          "case_prescriptions": '.$medication_compound_data.',
-          "case_questions": '.$userquestion.'
-        }',
-        CURLOPT_HTTPHEADER => array(
-          'Content-Type: application/json',
-          'Authorization: Bearer '.$token,
-          'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
-        ),
-      ));
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases',
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'POST',
+      CURLOPT_POSTFIELDS =>'{
+        "patient_id": '.$patient_id.',
+        "case_files": [
+        ],
+        "case_prescriptions": '.$medication_compound_data.',
+        "case_questions": '.$userquestion.'
+      }',
+      CURLOPT_HTTPHEADER => array(
+        'Content-Type: application/json',
+        'Authorization: Bearer '.$token,
+        'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+      ),
+    ));
 
-      $response = curl_exec($curl);
+    $response = curl_exec($curl);
 
-      $case_data = json_decode($response);
+    $case_data = json_decode($response);
 
-       
+
     
-       $input_data['prioritized_at'] = $case_data->prioritized_at;
-       $input_data['prioritized_reason'] = $case_data->prioritized_reason;
-       $input_data['cancelled_at'] = $case_data->prioritized_reason;
-       $input_data['md_created_at'] = $case_data->created_at;
-       $input_data['support_reason'] = $case_data->support_reason;
-       $input_data['case_id'] = $case_data->case_id;
-       $input_data['status'] = $case_data->status;
-       $input_data['user_id'] = $user_id;
-       $input_data['system_case_id'] = $case_id;
-       
-
-
-      /* echo "<pre>";
-       print_r($input_data);
-       echo "<pre>";
-       exit();*/
+    $input_data['prioritized_at'] = $case_data->prioritized_at;
+    $input_data['prioritized_reason'] = $case_data->prioritized_reason;
+    $input_data['cancelled_at'] = $case_data->prioritized_reason;
+    $input_data['md_created_at'] = $case_data->created_at;
+    $input_data['support_reason'] = $case_data->support_reason;
+    $input_data['case_id'] = $case_data->case_id;
+    $input_data['status'] = $case_data->status;
+    $input_data['user_id'] = $user_id;
+    $input_data['system_case_id'] = $case_id;
 
     $md_case_data = Mdcases::create($input_data);
 
@@ -878,7 +847,7 @@ public function create_patient(Request $request)
 
   }
 
-  public function getDispensUnitId(){
+  /*public function getDispensUnitId(){
 
     $r = $this->get_token();
     $token_data = json_decode($r);
@@ -906,7 +875,7 @@ public function create_patient(Request $request)
     return $response;
 
 
-  }
+  }*/
 
   public function getMdDetails(Request $request){
 
@@ -931,8 +900,8 @@ public function create_patient(Request $request)
     }else{
       $md_case_data = Mdmanagement::create($input);
     }
-   
-   return $this->sendResponse($input,'MD Details Added Successfully');
+
+    return $this->sendResponse($input,'MD Details Added Successfully');
     
 
   }
@@ -948,42 +917,42 @@ public function create_patient(Request $request)
     $case_id = $request['md_case_id'];
 
     $destinationPath = public_path('/MD_Case_files');
-  
+
     $input = $request->all();
 
     $casefiles_details = CaseFiles::select('*')->where('case_id', $case_id)->where('md_file_id',$file_id)->get();
 
     if(!empty($casefiles_details) && count($casefiles_details)>0){
 
-            unlink($destinationPath.'/'.$casefiles_details[0]['file']);
+      unlink($destinationPath.'/'.$casefiles_details[0]['file']);
 
-            $casefiles = CaseFiles::find($casefiles_details[0]['id']);
-            $casefiles->delete();
+      $casefiles = CaseFiles::find($casefiles_details[0]['id']);
+      $casefiles->delete();
 
-            $curl = curl_init();
+      $curl = curl_init();
 
-            curl_setopt_array($curl, array(
-              CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/files/'.$file_id,
-              CURLOPT_RETURNTRANSFER => true,
-              CURLOPT_ENCODING => '',
-              CURLOPT_MAXREDIRS => 10,
-              CURLOPT_TIMEOUT => 0,
-              CURLOPT_FOLLOWLOCATION => true,
-              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-              CURLOPT_CUSTOMREQUEST => 'DELETE',
-              CURLOPT_HTTPHEADER => array(
-                'Authorization: Bearer '.$token,
-                'Cookie: __cfduid=da01d92d82d19a6cccebfdc9852303eb81620627650'
-              ),
-            ));
+      curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/files/'.$file_id,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'DELETE',
+        CURLOPT_HTTPHEADER => array(
+          'Authorization: Bearer '.$token,
+          'Cookie: __cfduid=da01d92d82d19a6cccebfdc9852303eb81620627650'
+        ),
+      ));
 
-            $response = curl_exec($curl);
+      $response = curl_exec($curl);
 
-            curl_close($curl);
+      curl_close($curl);
             // $response;
 
-           
-           return $this->sendResponse($response,'File Detach Successfully');
+
+      return $this->sendResponse($response,'File Detach Successfully');
 
     }else{
       return $this->sendResponse(array(),'File not Exist.');
@@ -1015,7 +984,7 @@ public function create_patient(Request $request)
       $documents->move($destinationPath, $doc_file_name);
 
       chmod($destinationPath."/".$doc_file_name, 0777);
-          
+
       $file_path = 'public/Message_files/' .$file;
     }
 
@@ -1049,13 +1018,18 @@ public function create_patient(Request $request)
 
     $message_file_data = json_decode($response);
     $input_data = array();
+
+    $input_data['md_case_id'] = $case_id;
+    $input_data['system_file'] = $file_path;
+    $input_data['user_id'] = $user_id;
+    $input_data['case_id'] = $system_case_id;
     $input_data['name'] = $message_file_data->name;
     $input_data['mime_type'] = $message_file_data->mime_type;
     $input_data['url'] = $message_file_data->url;
     $input_data['url_thumbnail'] = $message_file_data->url_thumbnail;
     $input_data['file_id'] = $message_file_data->file_id;
 
-     $case_file_data = CaseFiles::create($input_data);
+    $case_file_data = MdMessageFiles::create($input_data);
 
   }
 
@@ -1067,6 +1041,26 @@ public function create_patient(Request $request)
     $user_id = $request->user_id;
     $case_id = $request->case_id;
     $system_case_id = $request->system_case_id;
+
+    //code to get files ids
+    $file_ids = MdMessageFiles::where('user_id', $user_id)->where('case_id', $md_case_id  )->select('file_id')->get()->toArray();
+
+    /*foreach($file_ids as $key=>$value){
+      $file_ids[$key]['question'] = $value['question'];
+      $file_ids[$key]['answer'] = $value['answer'];
+
+      if($value['options_type'] == "radio"){
+       $userquestion[$key]['type']= "boolean";
+     }else{
+       $userquestion[$key]['type']= "string";
+     }
+     
+     $userquestion[$key]['important']= true;
+   }*/
+   
+   $file_ids = json_encode($file_ids);
+
+   // end of code to get files ids
   }
 
 

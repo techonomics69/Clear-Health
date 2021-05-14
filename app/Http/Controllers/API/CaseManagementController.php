@@ -1045,7 +1045,7 @@ public function create_patient(Request $request)
     $system_case_id = $request['system_case_id'];
 
     //code to get files ids
-    $file_ids = MdMessageFiles::where('user_id', $user_id)->where('md_case_id', $case_id  )->select('file_id')->get()->toArray();
+    $file_ids = MdMessageFiles::where('user_id', $user_id)->where('md_case_id', $case_id  )->pluck('file_id');
 
     
 

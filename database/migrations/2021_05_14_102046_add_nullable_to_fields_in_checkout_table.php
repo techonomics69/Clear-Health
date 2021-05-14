@@ -13,7 +13,7 @@ class AddNullableToFieldsInCheckoutTable extends Migration
      */
     public function up()
     {
-        Schema::table('fields_in_checkout', function (Blueprint $table) {
+        Schema::table('checkout', function (Blueprint $table) {
             $table->string('cart_amount')->nullable()->change();
             $table->string('total_amount')->nullable()->change();
             $table->string('patient_firstname')->nullable()->change();

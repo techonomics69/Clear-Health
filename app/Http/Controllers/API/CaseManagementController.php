@@ -1029,7 +1029,9 @@ public function create_patient(Request $request)
     $input_data['url_thumbnail'] = $message_file_data->url_thumbnail;
     $input_data['file_id'] = $message_file_data->file_id;
 
-    $case_file_data = MdMessageFiles::create($input_data);
+    $message_file_data = MdMessageFiles::create($input_data);
+    
+    return $this->sendResponse($message_file_data,'File created successfully');
 
   }
 

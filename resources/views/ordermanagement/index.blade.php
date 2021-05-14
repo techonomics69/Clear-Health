@@ -41,16 +41,16 @@
                         <thead>
                         <tr>
                             <th width="60px">No</th>
-                            <th>Case Id</th>
+                            <th>Order Id</th>
                             <th>User Name</th>
                             <th>Mobile No</th>
                             <th>Product Name</th>
                             <th>Pricing</th>
                             <th>Order Total</th>
                             <th>Order DateTime</th>
-                            <!-- <th>Shipping</th>
-                            <th>Payment</th> 
-                            <th>Status</th> -->
+                            <th>Medication Type</th>
+{{--                             <th>Payment</th> 
+                            <th>Status</th>  --}}
                            <!--  <th width="200px">Action</th> -->
                         </tr>
                         </thead>
@@ -59,13 +59,18 @@
                         @foreach ($order as $key => $order_data)
                         <tr> 
                             <td>{{ $i++ }}</td>
-                            <td>{{ $order_data->case_id }}</td>
+                            <td>{{ $order_data->order_id }}</td>
                             <td>{{ $order_data->name }}</td>
                             <td>{{ $order_data->mobile }}</td>
                             <td>{{ $order_data->product_name }}</td>
                             <td>{{ $order_data->price }}</td>
                             <td>{{ $order_data->total_amount }}</td>
                             <td>{{ $order_data->created_at }}</td>
+                            <td><?php if($order_data->medication_type == 1){
+                                echo "Prescribed";
+                            }else{
+                                echo "Non Prescribed";
+                            } ?></td>
                        
                         <!-- <td>
                             <div class="d-flex">                                

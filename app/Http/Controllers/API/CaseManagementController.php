@@ -1056,7 +1056,7 @@ public function create_patient(Request $request)
     $postfields['prioritized_reason'] = $request['prioritized_reason'];;
     $postfields['message_files'] = $file_ids;
 
-    $postfields = json_encode($file_ids);
+    $postfields = json_encode($postfields);
 
     echo "<pre>";
     print_r($postfields);

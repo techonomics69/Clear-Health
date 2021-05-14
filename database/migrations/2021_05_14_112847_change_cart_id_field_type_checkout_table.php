@@ -14,7 +14,7 @@ class ChangeCartIdFieldTypeCheckoutTable extends Migration
     public function up()
     {
         Schema::table('checkout', function (Blueprint $table) {
-            $table->string('cart_id ')->change();
+            $table->string('cart_id')->change();
         });
     }
 

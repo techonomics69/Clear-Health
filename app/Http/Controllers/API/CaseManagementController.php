@@ -967,6 +967,11 @@ public function create_patient(Request $request)
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
+    echo "<pre>";
+    print_r($token);
+    echo "<pre>";
+    exit();
+
     $documents = $request->file('file');
     $name = $request->name;
     $user_id = $request->user_id;

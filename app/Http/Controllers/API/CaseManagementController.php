@@ -1047,8 +1047,6 @@ public function create_patient(Request $request)
     //code to get files ids
     $file_ids = MdMessageFiles::where('user_id', $user_id)->where('md_case_id', $case_id  )->pluck('file_id');
 
-    $file_ids = json_encode($file_ids);
-
     $postfields = array();
     $postfields['from'] = $request['from'];;
     $postfields['text'] = $request['text']; ;

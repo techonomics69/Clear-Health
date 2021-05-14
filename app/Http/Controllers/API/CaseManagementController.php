@@ -1103,5 +1103,51 @@ public function create_patient(Request $request)
    // end of code to get files ids
   }
 
+  public function setMessageAsRead(){
+
+    $r = $this->get_token();
+    $token_data = json_decode($r);
+    $token = $token_data->access_token;
+
+    $case_id = $request['case_id'];
+    $case_message_id = $request['case_message_id'];
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/messages/'.$case_message_id.'/read',
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'POST',
+      CURLOPT_HTTPHEADER => array(
+        'Authorization: Bearer '.$token,
+        'Cookie: __cfduid=da01d92d82d19a6cccebfdc9852303eb81620627650'
+      ),
+    ));
+
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+    
+    $data = json_decode($response);
+
+    $MdMessages = MdMessages::where('case_id',$case_id)->where('case_message_id',$case_message_id)->first();
+
+    $read_at = $response->read_at;
+
+    $caseUpdate = $MdMessages->update($read_at);
+
+    if($caseUpdate == 1){
+      return $this->sendResponse($message_data,'Message created successfully');
+    }else{
+      return $this->sendResponse(array(),'Something went wrong');
+    }
+
+  }
+
 
 }

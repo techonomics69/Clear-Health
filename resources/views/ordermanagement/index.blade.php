@@ -43,8 +43,8 @@
                             <th width="60px">No</th>
                             <th>Order Id</th>
                             <th>User Name</th>
-                            <th>Mobile No</th>
-                            <th>Product Name</th>
+{{--                             <th>Mobile No</th>
+ --}}                            <th>Product Name</th>
                             <th>Pricing</th>
                             <th>Order Total</th>
                             <th>Order DateTime</th>
@@ -61,7 +61,7 @@
                             <td>{{ $i++ }}</td>
                             <td>{{ $order_data->order_id }}</td>
                             <td>{{ $order_data->name }}</td>
-                            <td>{{ $order_data->mobile }}</td>
+                            {{-- <td>{{ $order_data->mobile }}</td> --}}
                             <td>{{ $order_data->product_name }}</td>
                             <td>{{ $order_data->price }}</td>
                             <td>{{ $order_data->total_amount }}</td>

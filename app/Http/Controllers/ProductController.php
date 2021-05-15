@@ -197,7 +197,7 @@ class ProductController extends Controller
             }
 
             $request->image_detail->move(public_path('images/Products'), $image_detail_Name);  
-            
+            //echo $image_detail_Name;
 
             $oldImg = $path.'/'.$image_detail_Name;
 

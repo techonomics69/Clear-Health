@@ -68,7 +68,7 @@
                             <td>{{ $order_data->price }}</td>
                             <td>{{ $order_data->total_amount }}</td>
                             <td>{{ $order_data->created_at }}</td>
-                            <td><?php if($order_data->medication_type == 1){
+                            <td><?php if($order_data->medication_type == 2){
                                 echo "Prescribed";
                             }else{
                                 echo "Non Prescribed";

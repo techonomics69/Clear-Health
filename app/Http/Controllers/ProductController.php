@@ -205,7 +205,7 @@ class ProductController extends Controller
                 unlink($oldImg);
             endif;
 
-            $data['image_detail'] = $image_detail_Name;
+            $data['image_detail'] = $product->image_detail;
         endif;
 
         $product->update($data);       

@@ -110,8 +110,12 @@
             @endif
         </div>
         <div class="form-group">
-            <strong>Image:</strong>
+            <strong>Image [List]:</strong>
             <img src="{{ asset('public/images/Products/'.$product->image) }}" alt="Product Image" title="Product Image" width="200px">            
+        </div>
+        <div class="form-group">
+            <strong>Image[Detail]:</strong>
+            <img src="{{ asset('public/images/Products/'.$product->image_detail) }}" alt="Product Image" title="Product Image" width="200px">            
         </div>
         
     </div>

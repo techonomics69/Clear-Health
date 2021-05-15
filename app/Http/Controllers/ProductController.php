@@ -59,6 +59,7 @@ class ProductController extends Controller
             'name' => 'required|unique:products,name|regex:/^[\pL\s\-]+$/u',
             'category_id' => 'required|not_in:0',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
+            'image_detail' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
             'retails_price' => 'required|numeric|min:1', 
             'detail' => 'required',
             'quantity' => 'required|numeric|min:1', 
@@ -71,6 +72,7 @@ class ProductController extends Controller
 
         ]);
         $data = $request->all();
+
         if(!empty($request->image)):
             $imageName = time().'.'.$request->image->extension();
 
@@ -84,6 +86,21 @@ class ProductController extends Controller
             
             $data['image'] = $imageName;
         endif;
+
+         if(!empty($request->image_detail)):
+            $image_detail_Name = time().'image_detail'.'.'.$request->image_detail->extension();
+
+        $path = public_path().'/images/Products';
+
+            if (! File::exists($path)) {
+                File::makeDirectory($path, $mode = 0777, true, true);
+            }
+
+            $request->image_detail->move(public_path('images/Products'), $image_detail_Name);            
+            
+            $data['image_detail'] = $image_detail_Name;
+        endif;
+
         $Products = Product::create($data);
                 
         toastr()->success('Product created successfully');
@@ -170,6 +187,26 @@ class ProductController extends Controller
             $data['image'] = $imageName;              
         endif;
 
+        if(!empty($request->image_detail)):
+            $image_detail_Name = time().'image_detail'.'.'.$request->image_detail->extension();
+
+        $path = public_path().'/images/Products';
+
+            if (! File::exists($path)) {
+                File::makeDirectory($path, $mode = 0777, true, true);
+            }
+
+            $request->image_detail->move(public_path('images/Products'), $image_detail_Name);  
+
+            $oldImg = $path.'/'.$product->image_detail;
+
+            if (File::exists($oldImg)) : // unlink or remove previous image from folder
+                unlink($oldImg);
+            endif;
+
+            $data['image_detail'] = $image_detail_Name;
+        endif;
+
         $product->update($data);       
                 
         toastr()->success('Category updated successfully');
@@ -190,7 +227,14 @@ class ProductController extends Controller
 
         // unlink or remove previous image from folder
         $path = public_path().'/images/Products';
+        
+        //Images List
         $oldImg = $path.'/'.$product->image;
+            if (File::exists($oldImg)) : 
+                unlink($oldImg);
+            endif;
+        //Image Detail
+         $oldImg = $path.'/'.$product->image_detail;
             if (File::exists($oldImg)) : 
                 unlink($oldImg);
             endif;

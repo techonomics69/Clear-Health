@@ -190,7 +190,7 @@ class ProductController extends Controller
         if(!empty($request->image_detail)):
             $image_detail_Name = time().'image_detail'.'.'.$request->image_detail->extension();
 
-        $path = public_path().'/images/Products';
+            $path = public_path().'/images/Products';
 
             if (! File::exists($path)) {
                 File::makeDirectory($path, $mode = 0777, true, true);
@@ -200,7 +200,7 @@ class ProductController extends Controller
             //echo $image_detail_Name;
 
             $oldImg = $path.'/'.$product->image_detail;
-
+echo $oldImg;
             if (File::exists($oldImg)) : // unlink or remove previous image from folder
                 unlink($oldImg);
             endif;

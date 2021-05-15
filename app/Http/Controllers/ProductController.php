@@ -197,7 +197,8 @@ class ProductController extends Controller
             }
 
             $request->image_detail->move(public_path('images/Products'), $image_detail_Name);  
-
+            echo $image_detail_Name;
+            
             $oldImg = $path.'/'.$product->image_detail;
 
             if (File::exists($oldImg)) : // unlink or remove previous image from folder

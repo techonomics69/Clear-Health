@@ -42,7 +42,8 @@
                         <tr>
                             <th width="60px">No</th>
                             <th>Order Id</th>
-                            <th>User Name</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
 {{--                             <th>Mobile No</th>
  --}}                            <th>Product Name</th>
                             <th>Pricing</th>
@@ -60,7 +61,8 @@
                         <tr> 
                             <td>{{ $i++ }}</td>
                             <td>{{ $order_data->order_id }}</td>
-                            <td>{{ $order_data->name }}</td>
+                            <td>{{ $order_data->first_name }}</td>
+                            <td>{{ $order_data->last_name }}</td>
                             {{-- <td>{{ $order_data->mobile }}</td> --}}
                             <td>{{ $order_data->product_name }}</td>
                             <td>{{ $order_data->price }}</td>

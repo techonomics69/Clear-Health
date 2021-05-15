@@ -28,7 +28,7 @@
                 </div>
                 <div class="content-header-right col-md-6 col-12 mb-2">
                 <div class="pull-right">
-                        <a class="btn btn-secondry" href="{{ route('products.index') }}"> Back</a>
+                        <a class="btn btn-secondry" href="{{ route('mdmanagement.index') }}"> Back</a>
                     </div>
                 </div> 
             </div>

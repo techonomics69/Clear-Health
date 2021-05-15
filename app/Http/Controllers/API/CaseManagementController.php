@@ -620,8 +620,6 @@ public function create_patient(Request $request)
 
     $pharmacy_id = $request['pharmacy_id'];
 
-    $quiz= QuizAnswer::join('quizzes','quiz_answers.question_id', '=', 'quizzes.id')->select('quiz_answers.*','quizzes.question','quizzes.category_id')->where('case_id', $user_case_management_data['id'])->OrderBy('id', 'ASC')->get();
-
     //$input = json_encode($request->all());
 
     //$input_data = $request->all();

@@ -54,7 +54,7 @@ class CartController extends BaseController
             if($validator->fails()){
                 return $this->sendError('Validation Error.', $validator->errors()->all());       
             }
-            $cart = Cart::where(['user_id' => $data['user_id'], 'product_id' => $data['product_id'],'status' => 'pending')->first();
+            $cart = Cart::where(['user_id' => $data['user_id'], 'product_id' => $data['product_id'],'status' => 'pending'])->first();
             if(!empty($cart)):
                 $newQuantity['quantity'] = $cart->quantity + $data['quantity'];                
                 $cartUpdate = Cart::where('id',$cart->id)->update($newQuantity);

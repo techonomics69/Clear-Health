@@ -1046,10 +1046,10 @@ public function create_patient(Request $request)
     $file_ids = MdMessageFiles::where('user_id', $user_id)->where('md_case_id', $case_id  )->pluck('file_id');
 
     $postfields = array();
-    $postfields['from'] = $request['from'];;
-    $postfields['text'] = $request['text']; ;
-    $postfields['prioritized'] = $request['prioritized']; ;
-    $postfields['prioritized_reason'] = $request['prioritized_reason'];;
+    $postfields['from'] = $request['from'];
+    $postfields['text'] = $request['text']; 
+    $postfields['prioritized'] = $request['prioritized']; 
+    $postfields['prioritized_reason'] = $request['prioritized_reason'];
     $postfields['message_files'] = $file_ids;
 
     $postfields = json_encode($postfields);

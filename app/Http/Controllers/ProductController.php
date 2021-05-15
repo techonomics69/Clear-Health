@@ -201,10 +201,14 @@ class ProductController extends Controller
         chmod($path."/".$image_detail_Name, 0777);
             $oldImg = $path.'/'.$product->image_detail;
 
-echo $oldImg;
-            if (File::exists($oldImg)) : // unlink or remove previous image from folder
+
+if(isset($product->image_detail)&&$product->image_detail !='')
+{
+if (File::exists($oldImg)) : // unlink or remove previous image from folder
                 unlink($oldImg);
             endif;
+}
+            
 
             $data['image_detail'] = $image_detail_Name;
         endif;

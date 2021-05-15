@@ -61,7 +61,8 @@
                         <tr> 
                             <td>{{ $i++ }}</td>
                             <td>{{ $order_data->order_id }}</td>
-                            <td>{{ $order_data->name }}</td>
+                            <td>{{ $order_data->first_name }}</td>
+                            <td>{{ $order_data->last_name }}</td>
                             {{-- <td>{{ $order_data->mobile }}</td> --}}
                             <td>{{ $order_data->product_name }}</td>
                             <td>{{ $order_data->price }}</td>

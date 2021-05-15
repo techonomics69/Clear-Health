@@ -32,7 +32,7 @@ class OrderManagementController extends Controller
   $order = checkout::join('users', 'users.id', '=', 'checkout.user_id')
             ->join('carts','carts.id', '=', 'checkout.cart_id')
             ->join('products', 'products.id', '=', 'carts.product_id')
-            ->select('users.first_name', 'users.last_name','users.mobile', 'products.name AS product_name' , 'products.price', 'checkout.total_amount','checkout.case_id','checkout.created_at','checkout.order_id','checkout.medication_type')->get()->OrderBy('id', 'ASC');
+            ->select('users.first_name', 'users.last_name','users.mobile', 'products.name AS product_name' , 'products.price', 'checkout.total_amount','checkout.case_id','checkout.created_at','checkout.order_id','checkout.medication_type')->get();
     
      return view('ordermanagement.index',compact('order'));
     }

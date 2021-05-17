@@ -56,7 +56,7 @@ foreach($order as $orders) {
 echo "<pre>";
 print_r($product_name);
 echo "</pre>";
-
+die();
 /*foreach ($order as $orderkey => $ordervalue) {  
     //$carts_id = explode(',', $ordervalue->cart_id);
     $product_name = Product::whereIn('id',$ordervalue)->select('name')->get()->toArray();

@@ -44,15 +44,13 @@ class OrderManagementController extends Controller
 
     }*/
 $product_name=array();
+$product_name['product_name']=$order;
 
-//$product_name['product_name']=$order;
-
-
-//$items = array();
-foreach($order as $orders) {
+/*foreach($order as $orders) {
     $product_name[]=$orders;
- //$items[] = $username;
-}
+ 
+}*/
+
 echo "<pre>";
 print_r($product_name);
 echo "</pre>";
@@ -62,14 +60,6 @@ die();
     $product_name = Product::whereIn('id',$ordervalue)->select('name')->get()->toArray();
     $order[$orderkey]->product_name = implode(",", array_column($product_name, "product_id"));
     }*/
-
-/*echo "<pre>";
-print_r($product_name);
-echo "</pre>";
-exit();*/
-
-
-
      return view('ordermanagement.index',compact('order'));
     }
 

@@ -37,9 +37,9 @@ class OrderManagementController extends Controller
             ->select('users.first_name', 'users.last_name','users.mobile', 'products.name AS product_name' , 'products.price', 'checkout.total_amount','checkout.case_id','checkout.created_at','checkout.order_id','checkout.medication_type')->orderBy('order_id', 'DESC')->get();
     
 
-echo "<pre>";
-print_r($order);
-echo "</pre>";
+
+
+ echo implode(" ",$order);
 die();
 
      return view('ordermanagement.index',compact('order'));

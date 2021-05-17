@@ -41,7 +41,7 @@ class OrderManagementController extends Controller
 
     foreach ($order as $orderkey => $ordervalue) {
     $carts_id = explode(',', $ordervalue->cart_id);
-    $carts = Checkout::whereIn('id',$carts_id)->select('product_id')->get()->toArray();
+    $carts = Checkout::whereIn('id',$carts_id)->select('id')->get()->toArray();
     $order[$orderkey]->carts = implode(",", array_column($carts, "cart_id"));
 
 }

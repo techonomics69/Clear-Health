@@ -67,7 +67,7 @@
 
 <td>
 @if(!empty($order_data->carts))
-                            {{ $mdmanagement_data->name}}
+                            {{ $order_data->name}}
                         @endif
                     </td>
 

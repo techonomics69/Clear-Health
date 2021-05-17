@@ -49,8 +49,8 @@ $product_name=array();
 
 
 //$items = array();
-foreach($group_membership as $username) {
-    $product_name[]=$order;
+foreach($order as $orders) {
+    $product_name[]=$orders;
  //$items[] = $username;
 }
 

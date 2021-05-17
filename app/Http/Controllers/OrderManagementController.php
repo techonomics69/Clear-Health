@@ -51,15 +51,17 @@ $product_name['product_name']=$order;
  
 }*/
 
-echo "<pre>";
-print_r($product_name);
-echo "</pre>";
-die();
-/*foreach ($order as $orderkey => $ordervalue) {  
+
+
+    foreach ($order as $orderkey => $ordervalue) {  
     //$carts_id = explode(',', $ordervalue->cart_id);
     $product_name = Product::whereIn('id',$ordervalue)->select('name')->get()->toArray();
     $order[$orderkey]->product_name = implode(",", array_column($product_name, "product_id"));
-    }*/
+    }
+echo "<pre>";
+print_r($order->product_name);
+echo "</pre>";
+die();
      return view('ordermanagement.index',compact('order'));
     }
 

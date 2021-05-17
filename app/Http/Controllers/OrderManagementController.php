@@ -44,7 +44,7 @@ class OrderManagementController extends Controller
 
     }*/
 $product_name=array();
-$product_name['product_name']=$product_name;
+$product_name['product_name']=$order;
 echo "<pre>";
 print_r($product_name);
 echo "</pre>";

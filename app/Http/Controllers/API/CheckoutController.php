@@ -19,7 +19,7 @@ class CheckoutController extends BaseController
       $order = checkout::join('users', 'users.id', '=', 'checkout.user_id')
             ->join('carts','carts.id', '=', 'checkout.cart_id')
             ->join('products', 'products.id', '=', 'carts.product_id')
-            ->select('users.name', 'users.mobile', 'products.name AS product_name' , 'carts.product_price', 'checkout.total_amount','checkout.case_id','checkout.created_at')->get();
+            ->select('users.name', 'users.mobile', 'products.name AS product_name' , 'carts.product_price', 'checkout.total_amount','checkout.case_id','checkout.created_at')orderBy('order_id', 'DESC')->get();
             
         return $this->sendResponse($order, 'Order retrieved successfully.');
     }

@@ -63,10 +63,10 @@ echo "</pre>";
     $order[$orderkey]->product_name = implode(",", array_column($product_name, "product_id"));
     }*/
 
-echo "<pre>";
+/*echo "<pre>";
 print_r($product_name);
 echo "</pre>";
-exit();
+exit();*/
 
 
 

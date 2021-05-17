@@ -53,7 +53,7 @@ foreach ($order as $orderkey => $ordervalue) {
     }
 
 echo "<pre>";
-print_r($product_name);
+print_r($order->product_name);
 echo "</pre>";
 exit();
 

@@ -53,8 +53,9 @@ foreach($order as $orders) {
     $product_name[]=$orders;
  //$items[] = $username;
 }
-
+echo "<pre>";
 print_r($product_name);
+echo "</pre>";
 
 /*foreach ($order as $orderkey => $ordervalue) {  
     //$carts_id = explode(',', $ordervalue->cart_id);

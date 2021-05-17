@@ -38,10 +38,14 @@ class OrderManagementController extends Controller
     
 
 
-/*echo "<pre>";
-print_r (explode(" ",$order));
-echo "</pre>";
-die();*/
+
+foreach ($order as $orderkey => $ordervalue) {
+$carts_id = explode(',', $ordervalue->cart_id){
+    $carts = Checkout::whereIn('',$cart_id)->select()->get()->toArray();
+    $order[$orderkey]->carts = implode(",", array_column($carts, "cart_id"))
+}
+}
+
 
      return view('ordermanagement.index',compact('order'));
     }

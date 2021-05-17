@@ -37,10 +37,9 @@ class OrderManagementController extends Controller
             ->select('users.first_name', 'users.last_name','users.mobile', 'products.name AS product_name' , 'products.price', 'checkout.total_amount','checkout.case_id','checkout.created_at','checkout.order_id','checkout.medication_type')->orderBy('order_id', 'DESC')->get();
     
 
-    foreach ($order as $orderkey => $ordervalue) {
-        
+    foreach ($order as $orderkey => $ordervalue) {  
     $carts_id = explode(',', $ordervalue->cart_id);
-    $carts = Cart::whereIn('product_id',$carts_id)->select('product_id')->get()->toArray();
+    $carts = Product::whereIn('product_id',$carts_id)->select('name')->get()->toArray();
     $order[$orderkey]->carts = implode(",", array_column($carts, "cart_id"));
 
     }

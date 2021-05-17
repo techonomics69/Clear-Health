@@ -44,7 +44,17 @@ class OrderManagementController extends Controller
 
     }*/
 $product_name=array();
-$product_name['product_name']=$order;
+
+//$product_name['product_name']=$order;
+
+
+//$items = array();
+foreach($group_membership as $username) {
+    $product_name[]=$order;
+ //$items[] = $username;
+}
+
+print_r($product_name);
 
 /*foreach ($order as $orderkey => $ordervalue) {  
     //$carts_id = explode(',', $ordervalue->cart_id);

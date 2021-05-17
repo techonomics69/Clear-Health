@@ -37,14 +37,16 @@ class OrderManagementController extends Controller
             ->select('users.first_name', 'users.last_name','users.mobile', 'products.name AS product_name' , 'products.price', 'checkout.total_amount','checkout.case_id','checkout.created_at','checkout.order_id','checkout.medication_type')->orderBy('order_id', 'DESC')->get()->toArray();
     
 
+
+
     /*foreach ($order as $orderkey => $ordervalue) {  
     $carts_id = explode(',', $ordervalue->cart_id);
     $carts = Product::whereIn('id',$carts_id)->select('product_name')->get()->toArray();
     $order[$orderkey]->carts = implode(",", array_column($carts, "cart_id"));
 
     }*/
-$product_name=array();
-$product_name['product_name'] = $order;
+//$product_name=array();
+//$product_name['product_name'] = $order;
 
 /*foreach($order as $orders) {
     $product_name[]=$orders;
@@ -52,11 +54,11 @@ $product_name['product_name'] = $order;
 }*/
 
 
-echo "<pre>";
+/*echo "<pre>";
 print_r($product_name);
 echo "</pre>";
 die();
-
+*/
      return view('ordermanagement.index',compact('order'));
     }
 

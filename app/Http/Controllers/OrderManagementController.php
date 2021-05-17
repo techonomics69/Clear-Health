@@ -45,6 +45,13 @@ class OrderManagementController extends Controller
     }*/
 $product_name=array();
 $product_name['product_name']=$order;
+
+foreach ($order as $orderkey => $ordervalue) {  
+    //$carts_id = explode(',', $ordervalue->cart_id);
+    $product_name = Product::whereIn('id',$ordervalue)->select('product_name')->get()->toArray();
+    $order[$orderkey]->carts = implode(",", array_column($carts, "cart_id"));
+    }
+
 echo "<pre>";
 print_r($product_name);
 echo "</pre>";

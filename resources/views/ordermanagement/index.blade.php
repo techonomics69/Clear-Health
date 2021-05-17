@@ -64,14 +64,7 @@
                             <td>{{ $order_data->first_name }}</td>
                             <td>{{ $order_data->last_name }}</td>
                             {{-- <td>{{ $order_data->mobile }}</td> --}}
-
-<td>
-@if(!empty($order_data->carts))
-                            {{ $order_data->name}}
-                        @endif
-                    </td>
-
-                            <!-- <td>{{ $order_data->product_name }}</td> -->
+                            <td>{{ $order_data->product_name }}</td>
                             <td>{{ $order_data->price }}</td>
                             <td>{{ $order_data->total_amount }}</td>
                             <td>{{ $order_data->created_at }}</td>

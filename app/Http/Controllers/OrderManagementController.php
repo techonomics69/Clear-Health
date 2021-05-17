@@ -43,6 +43,12 @@ class OrderManagementController extends Controller
     $order[$orderkey]->carts = implode(",", array_column($carts, "cart_id"));
 
     }*/
+$product_name=array();
+$product_name['name']=$product_name;
+echo "<pre>";
+print_r($product_name);
+echo "</pre>";
+exit();
 
 
 

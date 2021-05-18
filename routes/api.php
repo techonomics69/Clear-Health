@@ -18,6 +18,7 @@ use App\Http\Controllers\API\CartController;
 use App\Http\Controllers\API\FeeController;
 use App\Http\Controllers\API\CaseManagementController;
 use App\Http\Controllers\API\CheckoutController;
+use App\Http\Controllers\API\AnswerController;
   
 /*
 |--------------------------------------------------------------------------
@@ -98,7 +99,9 @@ Route::post('forgot_password',[RegisterController::class, 'forgot_password']);
     Route::post('user/update_vouch_status/{id}', [UserController::class, 'updateVerifiedByVouch']);
     Route::get('user/vouch_details/{id}', [UserController::class, 'getVouchedDetails']);
 
-
+    //Answer API
+    Route::post('answer',[AnswerController::class, 'answer']);
+    
     Route::group(['middleware' => 'auth:api'], function(){});
     
 //});

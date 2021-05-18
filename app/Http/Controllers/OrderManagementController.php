@@ -34,7 +34,7 @@ class OrderManagementController extends Controller
             //->leftjoin("carts",\DB::raw("FIND_IN_SET(carts.id, checkout.cart_id)") ,">",\DB::raw("'0'"))
             ->join('carts','carts.id', '=', 'checkout.cart_id')
             //->join('products', 'products.id', '=', 'carts.product_id')
-            ->select('users.first_name', 'users.last_name','users.mobile', 'checkout.total_amount','checkout.case_id','checkout.created_at','checkout.order_id','checkout.medication_type')->orderBy('order_id', 'DESC')->get();//'products.name AS product_name' , 'products.price'
+            ->select('users.first_name', 'users.last_name','users.mobile', 'checkout.total_amount','checkout.case_id','checkout.created_at','checkout.order_id','checkout.medication_type','checkout.id')->orderBy('checkout.id', 'DESC')->get();//'products.name AS product_name' , 'products.price'
 
             echo "<pre>";
             print_r($order);

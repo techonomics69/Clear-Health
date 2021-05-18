@@ -12,10 +12,20 @@ class AnswerController extends BaseController
 {
     public function index()
     {
-
+ 
     }
 
-    //answer
+
+    public function getAnswer($id)
+    {
+        try{
+            $answer = Answers::where('user_id', $id)->get();
+            return $this->sendResponse($answer, 'Answer retrieved successfully.');
+        }catch(\Exception $ex){
+            return $this->sendError('Server error', array($ex->getMessage()));
+        }
+    }
+
     public function answer(Request $request)      
     {
         $data = $request->all();
@@ -23,7 +33,7 @@ class AnswerController extends BaseController
 
             $data['user_id'] = (new Parser())->parse($data['token'])->getClaims()['sub']->getValue();
         endif; 
-              
+
     try{
         $validator = Validator::make($data, [
             'user_id' => 'required',

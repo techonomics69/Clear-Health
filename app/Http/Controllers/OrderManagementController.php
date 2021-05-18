@@ -39,7 +39,7 @@ class OrderManagementController extends Controller
             //->leftjoin("carts",\DB::raw("FIND_IN_SET(carts.id, checkout.cart_id)") ,">",\DB::raw("'0'"))
             ->join('carts','carts.id', '=', 'checkout.cart_id')
             //->join('products', 'products.id', '=', 'carts.product_id')
-            ->select('users.first_name', 'users.last_name','users.mobile', 'checkout.total_amount','checkout.case_id','checkout.created_at','checkout.order_id','checkout.medication_type','checkout.id','checkout.cart_id')->orderBy('checkout.id', 'DESC')->get()->toArray();//'products.name AS product_name' , 'products.price'
+            ->select('users.first_name', 'users.last_name','users.mobile', 'checkout.total_amount','checkout.case_id','checkout.created_at','checkout.order_id','checkout.medication_type','checkout.id','checkout.cart_id')->orderBy('checkout.id', 'DESC')->get();//'products.name AS product_name' , 'products.price'
 
 foreach($order as $key=>$val){
     $cart_ids = explode(',', $val['cart_id']);
@@ -52,10 +52,10 @@ foreach($order as $key=>$val){
          $product_name[] = $v['product_name'];  
     }
     
-   $order[$key]['product_name'] = implode(',',$product_name);
+   $order[$key]->product_name = implode(',',$product_name);
 
 }
-   
+
 return view('ordermanagement.index',compact('order'));
 }
 

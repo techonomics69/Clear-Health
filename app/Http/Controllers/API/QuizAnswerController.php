@@ -293,7 +293,7 @@ class QuizAnswerController extends BaseController
              $c = $c1;
 
              
-             if($c == 1){
+            /* if($c == 1){
                 $data = 'Accutane';
              }else if($a+$b>12){
                 $data = 'Accutane';
@@ -303,7 +303,23 @@ class QuizAnswerController extends BaseController
                 }else if($ts1 == 2){
                     $data = 'Topical_high';
                 }
+             }*/
+
+              if($a+$b>=11){
+                $data = 'Accutane';
+             }else if($c == 1){
+                $data = 'Accutane';
+             }else if($a+$b<11 && $c == 1){
+                 $data = 'Accutane';
+             }else{
+                if($ts1 == 1){
+                    $data = 'Topical_low';
+                }else if($ts1 == 2){
+                    $data = 'Topical_high';
+                }
              }
+
+
             return $this->sendResponse($data, 'Product recommendation successfully.');   
            // }
            // catch(\Exception $ex){

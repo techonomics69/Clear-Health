@@ -39,6 +39,11 @@ class OrderManagementController extends Controller
 foreach($order as $key=>$val){
     //$cart_ids = explode(',', $val['cart_id']);
 
+    echo "<pre>";
+    print_r($val);
+    echo "<pre>";
+    exit();
+
    $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('id', $val['cart_id'])->select('products.name AS product_name')->get();//'products.name AS product_name' , 'products.price'
 
     echo "<pre>";

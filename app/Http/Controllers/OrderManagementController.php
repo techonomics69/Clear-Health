@@ -37,11 +37,14 @@ class OrderManagementController extends Controller
             ->select('users.first_name', 'users.last_name','users.mobile', 'checkout.total_amount','checkout.case_id','checkout.created_at','checkout.order_id','checkout.medication_type','checkout.id','checkout.cart_id')->orderBy('checkout.id', 'DESC')->get();//'products.name AS product_name' , 'products.price'
 
 foreach($order as $key=>$val){
-    $cart_ids = explode(',', $val['cart_id']);
+    //$cart_ids = explode(',', $val['cart_id']);
+
+   $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('id', $val['cart_id'])->select('products.name AS product_name')->get();//'products.name AS product_name' , 'products.price'
 
     echo "<pre>";
-    print_r($cart_ids);
+    print_r($product_details);
     echo "<pre>";
+    
     
 
 }exit();

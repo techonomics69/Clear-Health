@@ -44,7 +44,7 @@ foreach($order as $key=>$val){
    $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name')->get();//'products.name AS product_name' , 'products.price'
 
     echo "<pre>";
-    print_r(implode(',',$product_details));
+    print_r(implode(',',$product_details['product_name']));
     echo "<pre>";
     exit();
 

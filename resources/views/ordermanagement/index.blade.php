@@ -44,8 +44,8 @@
                             <th>Order Id</th>
                             <th>First Name</th>
                             <th>Last Name</th>
-{{--                             <th>Mobile No</th>
- --}}                            <th>Product Name</th>
+{{--                        <th>Mobile No</th>
+ --}}                       <th>Product Name</th>
                             <th>Pricing</th>
                             <th>Order Total</th>
                             <th>Order DateTime</th>
@@ -67,7 +67,7 @@
 
                             
                             <td>{{ $order_data->product_name }}</td>
-                            <td>{{ $order_data->price }}</td>
+                            <td>{{ $order_data->product_price }}</td>
                             <td>{{ $order_data->total_amount }}</td>
                             <td>{{ $order_data->created_at }}</td>
                             <td><?php if($order_data->medication_type == 1){

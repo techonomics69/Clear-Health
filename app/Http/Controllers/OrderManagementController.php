@@ -47,7 +47,7 @@ foreach($order as $key=>$val){
 
 }
 
-$order['product_name'] = implode(',',$product_name)
+$order['product_name'] = implode(',',$product_name);
 echo "<pre>";
     print_r($order);
     echo "<pre>";

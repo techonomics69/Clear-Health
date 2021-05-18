@@ -19,7 +19,7 @@ class OrderManagementController extends Controller
      */
     function __construct()
     {
-        
+
     }
     /**
      * Display a listing of the resource.
@@ -49,14 +49,14 @@ foreach($order as $key=>$val){
    $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name')->get();//'products.name AS product_name' , 'products.price'
 
     echo "<pre>";
-    print_r(implode(',',$product_details[0]['product_name']));
+    print_r($product_details[0]['product_name']);
     echo "<pre>";
-    exit();
-
+    
    $product_name[] = $product_details[0]['product_name'] ;
    $order[$key]['product_name'] = implode(',',$product_name);
 
-}
+}exit();
+
 
 
 echo "<pre>";
@@ -70,7 +70,7 @@ return view('ordermanagement.index',compact('order'));
 
 public function create()
 {
-   
+
 }
 
 public function store(Request $request)
@@ -80,21 +80,21 @@ public function store(Request $request)
 
 public function show($id)
 {
-    
+
 }
 
 public function edit($id)
 {
-    
+
 }
 
 public function update(Request $request, $id)
 {
-   
+
 }
 
 public function destroy($id)
 {
-    
+
 }
 }

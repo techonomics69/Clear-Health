@@ -50,7 +50,7 @@ foreach($order as $key=>$val){
 
     foreach( $product_details as $k=>$v){
         echo "<pre>";
-        print_r($v);
+        print_r($v['product_name']);
         echo "<pre>";
         exit();
     }

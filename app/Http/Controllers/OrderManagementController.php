@@ -49,16 +49,12 @@ foreach($order as $key=>$val){
    $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name')->get();//'products.name AS product_name' , 'products.price'
 
     foreach( $product_details as $k=>$v){
-        echo "<pre>";
-        print_r($v['product_name']);
-        echo "<pre>";
-        exit();
+         $product_name[] = $v['product_name']);  
     }
     
-   $product_name[] = $product_details[0]['product_name'] ;
    $order[$key]['product_name'] = implode(',',$product_name);
 
-}exit();
+}
 
 
 

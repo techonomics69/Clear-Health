@@ -55,15 +55,7 @@ foreach($order as $key=>$val){
    $order[$key]['product_name'] = implode(',',$product_name);
 
 }
-
-
-
-echo "<pre>";
-    print_r($order);
-    echo "<pre>";
-exit();
-    
-
+   
 return view('ordermanagement.index',compact('order'));
 }
 

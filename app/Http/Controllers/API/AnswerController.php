@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\API\BaseController as BaseController;
 use Illuminate\Http\Request;
-use App\Models\Answer;
+use App\Models\Answers;
 use Validator;
 use Exception;
 
@@ -22,8 +22,8 @@ class AnswerController extends BaseController
         if(isset($data['token']) && !empty($data['token'])):
 
             $data['user_id'] = (new Parser())->parse($data['token'])->getClaims()['sub']->getValue();
-
-    endif;       
+        endif; 
+              
     try{
         $validator = Validator::make($data, [
             'user_id' => 'required',
@@ -32,8 +32,8 @@ class AnswerController extends BaseController
         if($validator->fails()){
             return $this->sendError('Validation Error.', $validator->errors()->all());       
         }
-        $answer = Answer::create($data);
-        return $this->sendResponse(array(), 'Item Added Successfully');
+        $answer = Answers::create($data);
+        return $this->sendResponse(array(), 'Answer Added Successfully');
     }catch(\Exception $ex){
         return $this->sendError('Server error',array($ex->getMessage()));
     }

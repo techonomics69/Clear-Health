@@ -17,7 +17,7 @@ class AnswerController extends BaseController
     //answer
      public function answer()
     {
-     echo "hello";  
+     
     }
 
 

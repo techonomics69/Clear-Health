@@ -36,10 +36,15 @@ class OrderManagementController extends Controller
             //->join('products', 'products.id', '=', 'carts.product_id')
             ->select('users.first_name', 'users.last_name','users.mobile', 'checkout.total_amount','checkout.case_id','checkout.created_at','checkout.order_id','checkout.medication_type','checkout.id','checkout.cart_id')->orderBy('checkout.id', 'DESC')->get();//'products.name AS product_name' , 'products.price'
 
-            echo "<pre>";
-            print_r($order);
-            echo "<pre>";
-            exit();
+foreach($order as $key=>$val){
+    $cart_ids = explode(',', $val['cart_id']);
+
+    echo "<pre>";
+    print_r($cart_ids);
+    echo "<pre>";
+    
+
+}exit();
     
 
 

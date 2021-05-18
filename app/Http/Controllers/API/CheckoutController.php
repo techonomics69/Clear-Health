@@ -44,6 +44,11 @@ class CheckoutController extends BaseController
     {
         $data = $request->all();
         $last_checkout_id = Checkout::OrderBy('id','desc')->first();
+
+        echo "<pre>";
+        print_r($last_checkout_id);
+        echo "<pre>";
+        exit();
     
         
             if(!empty($last_checkout_id)):

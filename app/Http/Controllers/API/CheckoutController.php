@@ -51,7 +51,7 @@ class CheckoutController extends BaseController
 
                
                 if(!empty($last_checkout_id['order_id']) && ($year == $current_year)):
-                    $id = number_format(substr($last_checkout_id['order_id'], 8)) + 1;
+                    $id = number_format(substr($last_checkout_id['order_id'], 9)) + 1;
 
                         echo "<pre>";
                         print_r($id);

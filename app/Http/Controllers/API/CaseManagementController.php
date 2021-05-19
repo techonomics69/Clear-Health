@@ -599,6 +599,10 @@ public function create_patient(Request $request)
         $search = "";
     }
    
+    echo "<pre>";
+    print_r($search);
+    echo "<pre>";
+    exit();
     //$input = json_encode($request->all());
 
     //$input_data = $request->all();

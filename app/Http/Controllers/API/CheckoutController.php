@@ -57,7 +57,10 @@ class CheckoutController extends BaseController
             else{
                 $order_id = "00000001";
             }
-            
+            echo "<pre>";
+            print_r($order_id);
+            echo "<pre>";
+            exit();
             $order_id = "ORD-".date("Y")."-".$order_id;
             $data['order_id'] = $order_id;
             

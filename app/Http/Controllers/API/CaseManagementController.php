@@ -616,7 +616,10 @@ public function create_patient(Request $request)
         $search = "";
     }
    
-    
+    echo "<pre>";
+    print_r(string urlencode($address));
+    echo "<pre>";
+    exit();
     //$input = json_encode($request->all());
 
     //$input_data = $request->all();
@@ -624,7 +627,7 @@ public function create_patient(Request $request)
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/pharmacies'.string urlencode($search),
+      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/pharmacies'.$search,
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => '',
       CURLOPT_MAXREDIRS => 10,

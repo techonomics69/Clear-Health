@@ -52,22 +52,17 @@ class CheckoutController extends BaseController
                
                 if(!empty($last_checkout_id['order_id']) && ($year == $current_year)):
                     $id = number_format(substr($last_checkout_id['order_id'], 9)) + 1;
-
-                        echo "<pre>";
-                        print_r($id);
-                        echo "<pre>";
-
-                        echo "<pre>";
-                        print_r($last_checkout_id['order_id']);
-                        echo "<pre>";
-                        
-                        exit();
-                    $order_id = str_pad($id,8,'0',STR_PAD_LEFT);
+                    $order_id = str_pad($id,9,'0',STR_PAD_LEFT);
                 endif;
             else:
                 $order_id = "00000001";
             endif;
             $order_id = "ORD-".date("Y")."-".$order_id;
+
+            echo "<pre>";
+            print_r($order_id);
+            echo "<pre>";
+            exit();
             $data['order_id'] = $order_id;
             
             if(empty($data['user_id'])):

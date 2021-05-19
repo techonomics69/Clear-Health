@@ -70,12 +70,15 @@
                                             }else{
                                                 echo "Non Prescribed";
                                             } ?></td>
-                                            
+
                                             <td>
                                                 <div class="d-flex">
-                                                    <a class="icons edit-icon" href="{{ route('casemanagement.show',$case_data['id']) }}">
+                                                    <a class="icons edit-icon" href="#">
                                                         <i class="fa fa-eye"></i>
                                                     </a>
+                                                    <!-- <a class="icons edit-icon" href="{{ route('casemanagement.show',$case_data['id']) }}">
+                                                        <i class="fa fa-eye"></i>
+                                                    </a> -->
 
                                 <!-- <a class="icons edit-icon" href="">
                                     <i class="fa fa-edit"></i>

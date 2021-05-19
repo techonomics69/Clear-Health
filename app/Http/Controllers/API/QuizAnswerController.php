@@ -64,7 +64,7 @@ class QuizAnswerController extends BaseController
      else:
          $quizAns = QuizAnswer::create($data);
      endif;
-     
+
      return $this->sendResponse(array(), 'Answer submitted successfully');
  }catch(\Exception $ex){
     return $this->sendError('Server error',array($ex->getMessage()));
@@ -147,7 +147,7 @@ class QuizAnswerController extends BaseController
          }else{
             return $this->sendResponse($answer =array(), 'No Data Found.');
         }
-        
+
     }catch(\Exception $ex){
         return $this->sendError('Server error', array($ex->getMessage()));
     }
@@ -166,6 +166,11 @@ public function ProductRecommend(Request $request)
 
     $recommendation = json_decode($answer_data[0]['answer']);
 
+    echo "<pre>";
+    print_r($recommendation);
+    echo "<pre>";
+    exit();
+
 
     $a1 = 0;
     $a2 = 0;
@@ -179,7 +184,7 @@ public function ProductRecommend(Request $request)
     foreach ($recommendation as $key => $value) {
 
         if($value->recommendation_product == 'recommendation_1'){
-            
+
          $answer = $value->answer;
 
          if(isset($answer->answer)){
@@ -195,7 +200,7 @@ public function ProductRecommend(Request $request)
         }
     }
     if($value->recommendation_product == 'recommendation_2'){
-        
+
         $answer = $value->answer;
         if(isset($answer->answer)){
             if($answer->answer == 'It doesn’t really bother me'){
@@ -212,7 +217,7 @@ public function ProductRecommend(Request $request)
         }
     }
     if($value->recommendation_product == 'recommendation_3'){
-        
+
 
         $answer = $value->answer;
 
@@ -227,7 +232,7 @@ public function ProductRecommend(Request $request)
         }
     }
     if($value->recommendation_product == 'recommendation_4'){
-        
+
 
         $answer = $value->answer;
 
@@ -292,7 +297,7 @@ public function ProductRecommend(Request $request)
         }
     }
     if($value->recommendation_product == 'recommendation_8'){
-       
+
         $answer = $value->answer;
 
         if(isset($answer->answer)){
@@ -303,8 +308,8 @@ public function ProductRecommend(Request $request)
             }
         }
     }
-    
-    
+
+
 } 
 $a = $a1+$a2+$a3;
 $b = $b1+$b2;

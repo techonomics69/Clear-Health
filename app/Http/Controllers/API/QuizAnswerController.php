@@ -183,6 +183,11 @@ public function ProductRecommend(Request $request)
           echo "in 1";
          $answer = $value->answer;
 
+         echo "<pre>";
+         print_r($answer->answer);
+         echo "<pre>";
+         exit();
+
          if(isset($answer->answer)){
             if($answer->answer == 'Mild– just a few pimples here and there. Mostly whiteheads and blackheads with a few inflamed bumps here and there.'){
                 $a1 = 1;

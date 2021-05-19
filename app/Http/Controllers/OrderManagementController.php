@@ -62,9 +62,14 @@ public function store(Request $request)
 
 }
 
-public function show($id)
+public function show($case_id)
 {
+ $user_case_management_data = CaseManagement::join('users','case_managements.user_id', '=', 'users.id')->select('case_managements.*','users.first_name','users.last_name','users.email')->where('case_managements.id',$case_id)->first();
+        $category = QuizCategory::pluck('name', 'id')->toArray();
+        //foreach ($user_case_management_data as $key => $value) {
+        $quiz= QuizAnswer::join('quizzes','quiz_answers.question_id', '=', 'quizzes.id')->select('quiz_answers.*','quizzes.question','quizzes.category_id')->where('case_id', $user_case_management_data['id'])->OrderBy('id', 'ASC')->get();
 
+        return view('casemanagement.view',compact('user_case_management_data','category','quiz'));
 }
 
 public function edit($id)

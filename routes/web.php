@@ -238,7 +238,6 @@ Route::group(['middleware' => ['auth']],function(){
 
     //Order Management
     Route::get('admin/ordermanagement', [OrderManagementController::class, 'index'])->name('ordermanagement.index');
-    /*Route::get('admin/ordermanagement/show/{case_id}', [OrderManagementController::class, 'show'])->name('ordermanagement.show');*/
     Route::get('admin/ordermanagement/show/{id}', [OrderManagementController::class, 'show'])->name('ordermanagement.show');
 
 

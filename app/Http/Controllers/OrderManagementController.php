@@ -28,12 +28,6 @@ class OrderManagementController extends Controller
      */
     public function index()
     {
-/*
-      $order = checkout::join('users', 'users.id', '=', 'checkout.user_id')
-      ->leftjoin("carts",\DB::raw("FIND_IN_SET(carts.id, checkout.cart_id)") ,">",\DB::raw("'0'"))
-            //->join('carts','carts.id', '=', 'checkout.cart_id')
-      ->join('products', 'products.id', '=', 'carts.product_id')
-      ->select('users.first_name','users.last_name', 'users.mobile', 'products.name AS product_name' , 'products.price','checkout.order_id', 'checkout.total_amount','checkout.case_id','checkout.created_at')->orderBy('checkout.id', 'DESC')->get();*/
 
             $order = checkout::join('users', 'users.id', '=', 'checkout.user_id')
             ->join('carts','carts.id', '=', 'checkout.cart_id')

@@ -184,7 +184,7 @@ public function ProductRecommend(Request $request)
          $answer = $value->answer;
 
          echo "<pre>";
-         print_r($answer->answer);
+         print_r($answer);
          echo "<pre>";
          exit();
 

@@ -20,11 +20,8 @@ class AnswerController extends BaseController
     {
         try{
             $answer = Answers::where('user_id', $request->user_id)->where('case_id', $request->case_id)->get();
-            if(!empty($answer)){
+          
                  return $this->sendResponse($answer, 'Answer retrieved successfully.');
-            }else{
-                return $this->sendResponse($answer =array(), 'No Data Found.');
-            }
         }catch(\Exception $ex){
             return $this->sendError('Server error', array($ex->getMessage()));
         }

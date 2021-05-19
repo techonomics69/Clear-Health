@@ -6,6 +6,7 @@ use App\Http\Controllers\API\BaseController as BaseController;
 use Illuminate\Http\Request;
 use App\Models\QuizAnswer;
 use App\Models\Quiz;
+use App\Models\Answers;
 use Validator;
 use Exception;
 use Lcobucci\JWT\Parser;
@@ -157,7 +158,17 @@ class QuizAnswerController extends BaseController
     {
         //dd($request->all());
        // try{
-            $recommendation = Quiz::where('use_for_recommendation', 'yes')->get();
+
+        $user_id = $request['user_id'];
+        $case_id = $request['case_id'];
+
+            $answer_data = Answers::where('user_id', $user_id)->where('case_id', $case_id)->get();
+
+            echo "<pre>";
+            print_r(json_decode($answer_data));
+            echo "<pre>";
+            exit();
+             $recommendation = Quiz::where('use_for_recommendation', 'yes')->get();
             $a1 = 0;
             $a2 = 0;
             $a3 = 0;

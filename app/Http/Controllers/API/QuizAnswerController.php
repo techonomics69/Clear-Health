@@ -163,18 +163,10 @@ class QuizAnswerController extends BaseController
         $case_id = $request['case_id'];
 
             $answer_data = Answers::where('user_id', $user_id)->where('case_id', $case_id)->get();
+            $recommendation = json_decode($answer_data);
 
-            echo "<pre>";
-            print_r(json_decode($answer_data));
-            echo "<pre>";
-       
-             $recommendation = Quiz::where('use_for_recommendation', 'yes')->get();
+           
 
-            echo "<pre>";
-            print_r($recommendation);
-            echo "<pre>";
-            exit();
-            
             $a1 = 0;
             $a2 = 0;
             $a3 = 0;
@@ -185,6 +177,11 @@ class QuizAnswerController extends BaseController
             $ts2 = 0;
             $data = 'accutane';
             foreach ($recommendation as $key => $value) {
+
+                echo "<pre>";
+                print_r($value);
+                echo "<pre>";
+                exit();
                 if($value->recommendation_product == 'recommendation_1'){
                     //dd($request->case_id);
                     //$a1 = 0;

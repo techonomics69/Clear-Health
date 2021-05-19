@@ -179,13 +179,8 @@ public function ProductRecommend(Request $request)
     $data = 'Accutane';
     foreach ($recommendation as $key => $value) {
 
-            echo "<pre>";
-            print_r( $value);
-            echo "<pre>";
-            exit();
-
         if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_1'){
-
+          die("in 1");
          $answer = $value->answer;
 
          if(isset($answer->answer)){
@@ -201,7 +196,7 @@ public function ProductRecommend(Request $request)
         }
     }
     if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_2'){
-
+die("in 2");
         $answer = $value->answer;
         if(isset($answer->answer)){
             if($answer->answer == 'It doesn’t really bother me'){
@@ -218,7 +213,7 @@ public function ProductRecommend(Request $request)
         }
     }
     if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_3'){
-
+die("in 3");
 
         $answer = $value->answer;
 
@@ -234,7 +229,7 @@ public function ProductRecommend(Request $request)
     }
     if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_4'){
 
-
+die("in 4");
         $answer = $value->answer;
 
         if(isset($answer->answer)){

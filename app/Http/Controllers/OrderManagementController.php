@@ -54,6 +54,7 @@ foreach($order as $key=>$val){
 
 }
 
+
 return view('ordermanagement.index',compact('order'));
 }
 

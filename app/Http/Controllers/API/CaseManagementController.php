@@ -582,9 +582,21 @@ public function create_patient(Request $request)
     $token = $token_data->access_token;
 
     $search = "";
+     $zip = $request['zipcode'];
+     $address = $request['address'];
+
+     echo "<pre>";
+     print_r($zip);
+     echo "<pre>";
+
+      echo "<pre>";
+      print_r( $address);
+      echo "<pre>";
+      exit();
+     exit();
 
   
-    if(isset($request['zipcode'])){
+    if(isset($request['zipcode'] )){
        $zip = $request['zipcode'];
        $search = "?zip=".$zip;
 

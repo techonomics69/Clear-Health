@@ -67,13 +67,8 @@
 
 
 								<li><a class="btn active " data-toggle="tab" href="#profile">Profile</a></li>
-								<li><a class="btn" data-toggle="tab" href="#questionaire">Questionaire </a></li>
-
 								<li><a class="btn" data-toggle="tab" href="#order_summary">Order Summary</a></li>
-
-								<li><a class="btn" data-toggle="tab" href="#rx">RX</a></li>
-								<li><a class="btn" data-toggle="tab" href="#messages">Messages</a></li>
-
+								<li><a class="btn" data-toggle="tab" href="#shipments_shipping_details">Shipments & shipping details</a></li>
 							</ul>
 							<div class="tab-content">
 

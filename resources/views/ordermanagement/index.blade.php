@@ -36,7 +36,7 @@
                         <section class="card" >
                             <div class="row" style="padding: 20px;">
                                 <div class="col-md-12">
-                                   <table class="table table-responsive-md table-striped table-bordered " style="width:100%" id="ordermanagement">
+                                 <table class="table table-responsive-md table-striped table-bordered " style="width:100%" id="ordermanagement">
                                     <thead>
                                         <tr>
                                             <th width="60px">SR No</th>
@@ -70,14 +70,12 @@
                                             <td>
                                                 <?php 
                                                 if($order_data->case_id != '')
-                                                {?>
+                                                    {?>
 
-<div class="d-flex">
-            <a class="icons edit-icon" href="{{ route('ordermanagement.show',$order_data->case_id) }}">
-                                                        <i class="fa fa-eye"></i>
-                                                    </a>
-                                                    
-
+                                                        <div class="d-flex">
+                                                            <a class="icons edit-icon" href="{{ route('ordermanagement.show',$order_data->case_id) }}">
+                                                                <i class="fa fa-eye"></i>
+                                                            </a> 
                                 <!-- <a class="icons edit-icon" href="">
                                     <i class="fa fa-edit"></i>
                                 </a> -->
@@ -86,18 +84,15 @@
                                 </a> -->
                                 <!-- <button type="submit" class="btn btn-danger btn_delete" style="display:none;">Delete</button>  -->                               
                             </div>        
-
-                                              <?php  }
-                                                    ?>
-                                              
-                                                              
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+                        <?php  }
+                        ?>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
+</div>
 </section>
 </div>
 </div>

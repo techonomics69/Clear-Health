@@ -56,6 +56,11 @@ class CheckoutController extends BaseController
                         echo "<pre>";
                         print_r($id);
                         echo "<pre>";
+
+                        echo "<pre>";
+                        print_r($last_checkout_id['order_id']);
+                        echo "<pre>";
+                        
                         exit();
                     $order_id = str_pad($id,8,'0',STR_PAD_LEFT);
                 endif;

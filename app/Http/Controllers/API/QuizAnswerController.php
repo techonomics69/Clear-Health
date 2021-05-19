@@ -166,6 +166,11 @@ public function ProductRecommend(Request $request)
 
     $recommendation = json_decode($answer_data[0]['answer']);
 
+    echo "<pre>";
+    print_r($recommendation);
+    echo "<pre>";
+    exit();
+
 
 
     $a1 = 0;
@@ -176,7 +181,7 @@ public function ProductRecommend(Request $request)
     $c1 = 0;
     $ts1 = 0;
     $ts2 = 0;
-    $data = 'accutane';
+    $data = 'Accutane';
     foreach ($recommendation as $key => $value) {
 
         if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_1'){

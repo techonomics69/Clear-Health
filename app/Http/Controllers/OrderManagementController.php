@@ -6,6 +6,11 @@ use App\Models\Checkout;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Cart;
+use App\Models\CaseManagement;
+use App\Models\QuizCategory;
+use App\Models\QuizAnswer;
+use App\Models\Quiz;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use App\Http\Controllers\Controller;

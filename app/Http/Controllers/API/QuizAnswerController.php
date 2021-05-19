@@ -179,7 +179,7 @@ class QuizAnswerController extends BaseController
             foreach ($recommendation as $key => $value) {
 
                 echo "<pre>";
-                print_r($value);
+                print_r($value->recommendation_product);
                 echo "<pre>";
                 exit();
                 if($value->recommendation_product == 'recommendation_1'){

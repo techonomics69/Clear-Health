@@ -606,20 +606,20 @@ public function create_patient(Request $request)
        $search = "?zip=".$zip;
 
     }else if($address!="" && $zip ==""){
-        $search = "?address=".$address;
+        $search = "?address=".urlencode($address);
 
     }else if($zip!="" && $address != ""){
         $zip = $request['zipcode'];
         $address = $request['address'];
-      $search = "?zip=".$zip."&address=".$address;
+      $search = "?zip=".$zip."&address=".urlencode($address);
     }else{
         $search = "";
     }
    
-    echo "<pre>";
+   /* echo "<pre>";
     print_r(urlencode($address));
     echo "<pre>";
-    exit();
+    exit();*/
     //$input = json_encode($request->all());
 
     //$input_data = $request->all();

@@ -583,18 +583,18 @@ public function create_patient(Request $request)
 
     $search = "";
 
-    if(isset($request['zipcode']) && isset($request['address']) ){
-        $zip = $request['zipcode'];
-        $address = $request['address'];
-      $search = "?zip=".$zip."&address=".$address;
-    }
-    else if(isset($request['zipcode'])){
+  
+    if(isset($request['zipcode'])){
        $zip = $request['zipcode'];
        $search = "?zip=".$zip;
 
     }else if(isset($request['address'])){
        $address = $request['address'];
         $search = "?address=".$address;
+    }else if(isset($request['zipcode']) && isset($request['address']) ){
+        $zip = $request['zipcode'];
+        $address = $request['address'];
+      $search = "?zip=".$zip."&address=".$address;
     }else{
         $search = "";
     }

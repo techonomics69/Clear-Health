@@ -74,7 +74,7 @@ public function show($case_id)
         //foreach ($user_case_management_data as $key => $value) {
         $quiz= QuizAnswer::join('quizzes','quiz_answers.question_id', '=', 'quizzes.id')->select('quiz_answers.*','quizzes.question','quizzes.category_id')->where('case_id', $user_case_management_data['id'])->OrderBy('id', 'ASC')->get();
 
-        return view('casemanagement.view',compact('user_case_management_data','category','quiz'));
+        return view('ordermanagement.view',compact('user_case_management_data','category','quiz'));
 }
 
 public function edit($id)

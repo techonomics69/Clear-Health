@@ -9,7 +9,7 @@
         <p>{{ $message }}</p>
     </div>
     @endif
-
+{{dd($order_data->case_id)}}
 
     <div class="content-wrapper">
         <div class="content-header row">

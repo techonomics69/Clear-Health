@@ -28,28 +28,29 @@ class AnswerController extends BaseController
 
     }
 
-    public function answer(Request $request)      
+     public function answer(Request $request)      
     {
         $data = $request->all();
-        if(isset($data['token']) && !empty($data['token'])):
-
-            $data['user_id'] = (new Parser())->parse($data['token'])->getClaims()['sub']->getValue();
-        endif; 
-
-    try{
-        $validator = Validator::make($data, [
-            'user_id' => 'required',
-            'case_id' => 'required',
-        ]);
-        if($validator->fails()){
-            return $this->sendError('Validation Error.', $validator->errors()->all());       
+        try{
+            $validator = Validator::make($data, [
+                'user_id' => 'required',
+                'case_id' => 'required',
+            ]);
+            if($validator->fails()){
+                return $this->sendError('Validation Error.', $validator->errors()->all());       
+            }
+            $answer = Answers::where('user_id', $data['user_id'])->where('case_id', $data['case_id'])->first();
+            if(isset($answer)){
+                $answerUpdate = Answers::where('id',$answer->id)->update($data);
+                return $this->sendResponse(array(), 'Answer Updated Successfully');
+            }else{
+                $answerInsert = Answers::create($data);
+                return $this->sendResponse(array(), 'Answer Added Successfully');
+            }
+        }catch(\Exception $ex){
+            return $this->sendError('Server error',array($ex->getMessage()));
         }
-        $answer = Answers::create($data);
-        return $this->sendResponse(array(), 'Answer Added Successfully');
-    }catch(\Exception $ex){
-        return $this->sendError('Server error',array($ex->getMessage()));
     }
-}
 
 
 public function create()

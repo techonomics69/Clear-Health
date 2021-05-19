@@ -183,19 +183,16 @@ public function ProductRecommend(Request $request)
           echo "in 1";
          $answer = $value->answer;
 
-         echo "<pre>";
-         print_r($answer);
-         echo "<pre>";
-         exit();
+         
 
-         if(isset($answer->answer)){
-            if($answer->answer == 'just a few pimples here and there. Mostly whiteheads and blackheads with a few inflamed bumps here and there.'){
+         if(isset($answer)){
+            if($answer == 'just a few pimples here and there. Mostly whiteheads and blackheads with a few inflamed bumps here and there.'){
                 $a1 = 1;
-            }else if($answer->answer == 'multiple inflamed pimples with new ones popping up. Acne is inflamed and red.'){
+            }else if($answer == 'multiple inflamed pimples with new ones popping up. Acne is inflamed and red.'){
                 $a1 = 2;
-            }else if($answer->answer == 'a large number of inflamed pimples with some deeper, more painful nodules that do not come to a head. Acne leaves moderate scarring.'){
+            }else if($answer == 'a large number of inflamed pimples with some deeper, more painful nodules that do not come to a head. Acne leaves moderate scarring.'){
                 $a1 = 3;
-            }else if($answer->answer == 'a large number of inflamed pimples with multiple deep, painful nodules that do not come to a head. Acne leaves significant scarring.'){
+            }else if($answer == 'a large number of inflamed pimples with multiple deep, painful nodules that do not come to a head. Acne leaves significant scarring.'){
                 $a1 = 4;
             }
         }
@@ -203,16 +200,16 @@ public function ProductRecommend(Request $request)
     if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_2'){
  echo "in 2";
         $answer = $value->answer;
-        if(isset($answer->answer)){
-            if($answer->answer == 'It doesn’t really bother me'){
+        if(isset($answer)){
+            if($answer == 'It doesn’t really bother me'){
                 $a2 = 1;
-            }else if($answer->answer == 'I do notice that it’s there but it doesn’t prevent me from doing day to day things'){
+            }else if($answer == 'I do notice that it’s there but it doesn’t prevent me from doing day to day things'){
                 $a2 = 2;
-            }else if($answer->answer == 'It bothers me and I do feel self-conscious about it sometimes when other people point it out'){
+            }else if($answer == 'It bothers me and I do feel self-conscious about it sometimes when other people point it out'){
                 $a2 = 3;
-            }else if($answer->answer == 'It bothers me a lot.I sometimes skip out on things because of my acne and it affects my self-esteem.'){
+            }else if($answer == 'It bothers me a lot.I sometimes skip out on things because of my acne and it affects my self-esteem.'){
                 $a2 = 4;
-            }else if($answer->answer == 'My acne is the primary thing that holds back my confidence and I feel like it holds me back from enjoying things as much as I want to.'){
+            }else if($answer == 'My acne is the primary thing that holds back my confidence and I feel like it holds me back from enjoying things as much as I want to.'){
                 $a2 = 5;
             }
         }
@@ -222,12 +219,12 @@ public function ProductRecommend(Request $request)
 
         $answer = $value->answer;
 
-        if(isset($answer->answer)){
+        if(isset($answer)){
             if($answer->answer == 'My acne does not scar'){
                 $a3 = 1;
-            }else if($answer->answer == 'I tend to get dark marks and pigmentation from my acne'){
+            }else if($answer == 'I tend to get dark marks and pigmentation from my acne'){
                 $a3 = 2;
-            }else if($answer->answer == 'My skin does tend to scar and causes depressions and bumps after my acne heals'){
+            }else if($answer == 'My skin does tend to scar and causes depressions and bumps after my acne heals'){
                 $a3 = 3;
             }
         }
@@ -237,8 +234,8 @@ public function ProductRecommend(Request $request)
  echo "in 4";        
  $answer = $value->answer;
 
-        if(isset($answer->answer)){
-            if($answer->answer == 'Yes'){
+        if(isset($answer)){
+            if($answer == 'Yes'){
                 $b1 = 1;
             }
         }
@@ -247,24 +244,24 @@ public function ProductRecommend(Request $request)
  echo "in 5";
         $answer = $value->answer;
 
-        if(isset($answer->answer)){
-            if($answer->answer == 'Topical Retinoids (Differin Retin-A Tazorac etc.)'){
+        if(isset($answer)){
+            if($answer == 'Topical Retinoids (Differin Retin-A Tazorac etc.)'){
                 $b2 = 0;
-            }else if($answer->answer == 'Topical Antibiotics (Benzaclin Duac etc.)'){
+            }else if($answer == 'Topical Antibiotics (Benzaclin Duac etc.)'){
                 $b2 = 0;
-            }else if($answer->answer == 'Combination Antibiotic/Retinoid cream'){
+            }else if($answer == 'Combination Antibiotic/Retinoid cream'){
                 $b2 = 0;
-            }else if($answer->answer == 'Oral Antibiotics (Doxycycline Minocycline Azythromycin etc.)'){
+            }else if($answer == 'Oral Antibiotics (Doxycycline Minocycline Azythromycin etc.)'){
                 $b2 = 0;
-            }else if($answer->answer == 'Oral Contraceptives (Yaz Ortho Tri-Cyclen)'){
+            }else if($answer == 'Oral Contraceptives (Yaz Ortho Tri-Cyclen)'){
                 $b2 = 1;
-            }else if($answer->answer == 'Azelaic Acid (Azelex Finacea)'){
+            }else if($answer == 'Azelaic Acid (Azelex Finacea)'){
                 $b2 = 1;
-            }else if($answer->answer == 'Dapsone (Aczone)'){
+            }else if($answer == 'Dapsone (Aczone)'){
                 $b2 = 1;
-            }else if($answer->answer == 'Accutane (Isotretinoin)'){
+            }else if($answer == 'Accutane (Isotretinoin)'){
                 $b2 = 1;
-            }else if($answer->answer == 'Other'){
+            }else if($answer == 'Other'){
                 $b2 = 1;
             }
         }
@@ -273,8 +270,8 @@ public function ProductRecommend(Request $request)
  echo "in 6";
         $answer = $value->answer;
 
-        if(isset($answer->answer)){
-            if($answer->answer == 'Yes'){
+        if(isset($answer)){
+            if($answer == 'Yes'){
                 $c1 = 1;
             }
         }
@@ -283,16 +280,16 @@ public function ProductRecommend(Request $request)
  echo "in 7";
         $answer = $value->answer;
 
-        if(isset($answer->answer)){
-            if($answer->answer == 'Very Dry'){
+        if(isset($answer)){
+            if($answer == 'Very Dry'){
                 $ts1 = 1;
-            }else if($answer->answer == 'Dry'){
+            }else if($answer == 'Dry'){
                 $ts1 = 1;
-            }else if($answer->answer == 'Combination'){
+            }else if($answer == 'Combination'){
                 $ts1 = 2;
-            }else if($answer->answer == 'Oily'){
+            }else if($answer == 'Oily'){
                 $ts1 = 2;
-            }else if($answer->answer == 'Very Oily'){
+            }else if($answer == 'Very Oily'){
                 $ts1 = 2;
             }
         }
@@ -301,10 +298,10 @@ public function ProductRecommend(Request $request)
  echo "in 8";
         $answer = $value->answer;
 
-        if(isset($answer->answer)){
-            if($answer->answer == 'Yes'){
+        if(isset($answer)){
+            if($answer == 'Yes'){
                 $ts2 = 1;
-            }else if($answer->answer == 'No'){
+            }else if($answer == 'No'){
                 $ts2 = 2;
             }
         }

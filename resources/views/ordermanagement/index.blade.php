@@ -73,7 +73,7 @@
 
                                             <td>
                                                 <div class="d-flex">
-                                                    <a class="icons edit-icon" href="#">
+                                                    <a class="icons edit-icon" href="{{route('casemanagement.show')}}">
                                                         <i class="fa fa-eye"></i>
                                                     </a>
                                                     

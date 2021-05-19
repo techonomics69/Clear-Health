@@ -12,6 +12,7 @@
 
 @foreach ($order as $key => $order_data)
 {{dd($order_data->case_id)}}
+{{dd( $order_data->email )}}
 @endforeach
     <div class="content-wrapper">
         <div class="content-header row">

@@ -598,7 +598,7 @@ public function create_patient(Request $request)
     }
    
    echo "<pre>";
-   print_r( $search = "?zip=".$zip."&address=".$address);
+   print_r('https://api.mdintegrations.xyz/v1/partner/pharmacies'.$search);
    echo "<pre>";
    exit();
    

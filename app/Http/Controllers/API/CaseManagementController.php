@@ -584,24 +584,7 @@ public function create_patient(Request $request)
     $search = "";
      $zip = $request['zipcode'];
      $address = $request['address'];
-
-  
-  /*  if(isset($request['zipcode'] )){
-       $zip = $request['zipcode'];
-       $search = "?zip=".$zip;
-
-    }else if(isset($request['address'])){
-       $address = $request['address'];
-        $search = "?address=".$address;
-    }else if(isset($request['zipcode']) && isset($request['address']) ){
-        $zip = $request['zipcode'];
-        $address = $request['address'];
-      $search = "?zip=".$zip."&address=".$address;
-    }else{
-        $search = "";
-    }*/
    
-
     if($zip!="" && $address == ""){
        $search = "?zip=".$zip;
 
@@ -616,13 +599,6 @@ public function create_patient(Request $request)
         $search = "";
     }
    
-   /* echo "<pre>";
-    print_r(urlencode($address));
-    echo "<pre>";
-    exit();*/
-    //$input = json_encode($request->all());
-
-    //$input_data = $request->all();
 
     $curl = curl_init();
 

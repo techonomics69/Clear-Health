@@ -101,7 +101,7 @@ Route::post('forgot_password',[RegisterController::class, 'forgot_password']);
 
     //Answer API
     Route::post('answer',[AnswerController::class, 'answer']);
-    Route::get('getAnswer/user/{id}',[AnswerController::class,'getAnswer']);
+    Route::post('getAnswer',[AnswerController::class,'getAnswer']);
     
     Route::group(['middleware' => 'auth:api'], function(){});
     

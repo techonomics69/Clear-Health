@@ -617,7 +617,7 @@ public function create_patient(Request $request)
     }
    
     echo "<pre>";
-    print_r(string urlencode($address));
+    print_r(urlencode($address));
     echo "<pre>";
     exit();
     //$input = json_encode($request->all());

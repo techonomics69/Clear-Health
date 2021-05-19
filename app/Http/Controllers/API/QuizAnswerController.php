@@ -168,7 +168,7 @@ class QuizAnswerController extends BaseController
             print_r( $answer_data);
             echo "<pre>";
             exit();*/
-            $recommendation = json_decode($answer_data['answer']);
+            $recommendation = json_decode($answer_data[0]['answer']);
 
            
 

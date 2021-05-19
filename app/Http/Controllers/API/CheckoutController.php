@@ -45,18 +45,19 @@ class CheckoutController extends BaseController
         $data = $request->all();
         $last_checkout_id = Checkout::OrderBy('id','desc')->first();
         
-            if(!empty($last_checkout_id)):
-                 $year = substr($last_checkout_id['order_id'],4, -9);
+            if(!empty($last_checkout_id)){
+                $year = substr($last_checkout_id['order_id'],4, -9);
                  $current_year = date("Y");
-
                
-                if(!empty($last_checkout_id['order_id']) && ($year == $current_year)):
+                if(!empty($last_checkout_id['order_id']) && ($year == $current_year)){
                     $id = number_format(substr($last_checkout_id['order_id'], 9)) + 1;
                     $order_id = str_pad($id,9,'0',STR_PAD_LEFT);
-                endif;
-            else:
+                }
+            }    
+            else{
                 $order_id = "00000001";
-            endif;
+            }
+            
             $order_id = "ORD-".date("Y")."-".$order_id;
             $data['order_id'] = $order_id;
             

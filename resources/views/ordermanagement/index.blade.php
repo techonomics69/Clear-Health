@@ -10,9 +10,6 @@
     </div>
     @endif
 
-@foreach ($order as $key => $order_data)
-{{dd($order_data->case_id)}}
-@endforeach
     <div class="content-wrapper">
         <div class="content-header row">
             <div class="content-header-left col-md-6 col-12 mb-2">
@@ -58,7 +55,8 @@
                                         @foreach ($order as $key => $order_data)
                                         <tr> 
                                             <td>{{ $i++ }}</td>
-                                            <td>{{ $order_data->order_id }}</td>
+                                            <td>{{ $order_data['order_id'] }} </td>
+                                            <!-- <td>{{ $order_data->order_id }}</td> -->
                                             <td>{{ $order_data->case_id }}</td>
 
                                             <td>{{ $order_data->email }}</td>
@@ -75,9 +73,9 @@
 
                                             <td>
                                                 <div class="d-flex">
-            <a class="icons edit-icon" href="{{ route('ordermanagement.show',$order_data->case_id) }}">
+           <!--  <a class="icons edit-icon" href="{{ route('ordermanagement.show',$order_data->case_id) }}">
                                                         <i class="fa fa-eye"></i>
-                                                    </a>
+                                                    </a> -->
                                                     
 
                                 <!-- <a class="icons edit-icon" href="">

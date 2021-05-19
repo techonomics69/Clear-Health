@@ -8,7 +8,9 @@
   <p>{{ $message }}</p>
 </div>
 @endif 
-
+@foreach ($order as $key => $order_data)
+{{dd($order_data->case_id)}}
+@endforeach
 <div class="content-wrapper">
     <div class="content-header row">
       <div class="content-header-left col-md-6 col-12 mb-2">

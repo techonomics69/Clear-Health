@@ -616,10 +616,10 @@ public function create_patient(Request $request)
         $search = "";
     }
    
-    echo "<pre>";
+    /*echo "<pre>";
     print_r('https://api.mdintegrations.xyz/v1/partner/pharmacies'.$search);
     echo "<pre>";
-    exit();
+    exit();*/
     //$input = json_encode($request->all());
 
     //$input_data = $request->all();

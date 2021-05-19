@@ -76,9 +76,7 @@
                                                     <a class="icons edit-icon" href="#">
                                                         <i class="fa fa-eye"></i>
                                                     </a>
-                                                    <!-- <a class="icons edit-icon" href="{{ route('casemanagement.show',$case_data['id']) }}">
-                                                        <i class="fa fa-eye"></i>
-                                                    </a> -->
+                                                    
 
                                 <!-- <a class="icons edit-icon" href="">
                                     <i class="fa fa-edit"></i>

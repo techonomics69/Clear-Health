@@ -170,6 +170,11 @@ class QuizAnswerController extends BaseController
             exit();*/
             $recommendation = json_decode($answer_data[0]['answer']);
 
+            echo "<pre>";
+            print_r($recommendation);
+            echo "<pre>";
+            exit();
+
            
 
             $a1 = 0;
@@ -183,14 +188,13 @@ class QuizAnswerController extends BaseController
             $data = 'accutane';
             foreach ($recommendation as $key => $value) {
 
-                echo "<pre>";
-                print_r($value);
-                echo "<pre>";
-                exit();
                 if($value->recommendation_product == 'recommendation_1'){
                     //dd($request->case_id);
                     //$a1 = 0;
-                    $answer = QuizAnswer::where('user_id', $request->user_id)->where('question_id', $value->id)->where('case_id', $request->case_id)->first();
+                    //$answer = QuizAnswer::where('user_id', $request->user_id)->where('question_id', $value->id)->where('case_id', $request->case_id)->first();
+
+                     $answer = $value->recommendation_product;
+
                     if(isset($answer->answer)){
                         if($answer->answer == 'Mild– just a few pimples here and there. Mostly whiteheads and blackheads with a few inflamed bumps here and there.'){
                             $a1 = 1;

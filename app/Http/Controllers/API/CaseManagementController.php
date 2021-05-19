@@ -616,17 +616,15 @@ public function create_patient(Request $request)
         $search = "";
     }
    
-    /*echo "<pre>";
-    print_r('https://api.mdintegrations.xyz/v1/partner/pharmacies'.$search);
-    echo "<pre>";
-    exit();*/
+    
     //$input = json_encode($request->all());
 
     //$input_data = $request->all();
+
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/pharmacies?zip=92401&address=TNL Car Title Loans 505 N Arrowhead Ave San Bernardino CA 92401 USA',
+      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/pharmacies'.string urlencode($search),
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => '',
       CURLOPT_MAXREDIRS => 10,

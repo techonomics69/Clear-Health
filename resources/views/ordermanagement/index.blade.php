@@ -68,8 +68,12 @@
                                             } ?></td>
 
                                             <td>
-                                                <div class="d-flex">
-            <a class="icons edit-icon" href="{{ route('casemanagement.show',4) }}">
+                                                <?php 
+                                                if($order_data->case_id != '')
+                                                {?>
+
+<div class="d-flex">
+            <a class="icons edit-icon" href="{{ route('casemanagement.show',$order_data->case_id) }}">
                                                         <i class="fa fa-eye"></i>
                                                     </a>
                                                     
@@ -81,7 +85,12 @@
                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                 </a> -->
                                 <!-- <button type="submit" class="btn btn-danger btn_delete" style="display:none;">Delete</button>  -->                               
-                            </div>                      
+                            </div>        
+
+                                              <?php  }
+                                                    ?>
+                                              }
+                                                              
                         </td>
                     </tr>
                     @endforeach

@@ -53,7 +53,8 @@ foreach($order as $key=>$val){
    $order[$key]->product_name = implode(',',$product_name);
 
 }
-echo $order."hello";
+
+
 return view('ordermanagement.index',compact('order'));
 }
 

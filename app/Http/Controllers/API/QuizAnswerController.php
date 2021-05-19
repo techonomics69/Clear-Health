@@ -162,7 +162,7 @@ class QuizAnswerController extends BaseController
         $user_id = $request['user_id'];
         $case_id = $request['case_id'];
 
-            $answer_data = Answers::where('user_id', $user_id)->where('case_id', $case_id)->get();
+            $answer_data = Answers::where('user_id', $user_id)->where('case_id', $case_id)->get()->toArray();
 
             echo "<pre>";
             print_r(json_decode($answer_data));

@@ -40,19 +40,15 @@
                      <table class="table table-responsive-md table-striped table-bordered " style="width:100%" id="ordermanagement">
                         <thead>
                         <tr>
-                            <th width="60px">No</th>
+                            <th width="60px">SR No</th>
                             <th>Order Id</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-{{--                        <th>Mobile No</th>
- --}}                       <th>Product Name</th>
-                          {{--   <th>Pricing</th> --}}
-                            <th>Order Total</th>
-                            <th>Order DateTime</th>
-                            <th>Medication Type</th>
-{{--                             <th>Payment</th> 
-                            <th>Status</th>  --}}
-                           <!--  <th width="200px">Action</th> -->
+                            <th>Case Id</th>
+                            <th>Email</th>
+                            <th>Date</th>
+                            <th>Product Name</th>
+                            <th>Order Type</th>
+                           <!--  <th>Order Status</th> -->
+                            <th width="200px">Action</th>
                         </tr>
                         </thead>
                  <tbody>
@@ -61,35 +57,34 @@
                         <tr> 
                             <td>{{ $i++ }}</td>
                             <td>{{ $order_data->order_id }}</td>
-                            <td>{{ $order_data->first_name }}</td>
-                            <td>{{ $order_data->last_name }}</td>
-                            {{-- <td>{{ $order_data->mobile }}</td> --}}
+                            <td>{{ $order_data->case_id }}</td>
 
-                            
-                            <td>{{ $order_data->product_name }}</td>
-                          {{--   <td>{{ $order_data->product_price }}</td> --}}
-                            <td>{{ $order_data->total_amount }}</td>
+                            <td>{{ $order_data->email }}</td>
                             <td>{{ $order_data->created_at }}</td>
+                            <td>{{ $order_data->product_name }}</td>
+                            
+                           <!-- <td>{{ $order_data->product_price }}</td>  -->
+                           <!--  <td>{{ $order_data->total_amount }}</td> -->
                             <td><?php if($order_data->medication_type == 1){
                                 echo "Prescribed";
                             }else{
                                 echo "Non Prescribed";
                             } ?></td>
                        
-                        <!-- <td>
+                        <td>
                             <div class="d-flex">                                
                                 <a class="icons edit-icon" href="">
                                     <i class="fa fa-eye"></i>
                                 </a>                                                        
-                                <a class="icons edit-icon" href="">
+                                <!-- <a class="icons edit-icon" href="">
                                     <i class="fa fa-edit"></i>
-                                </a>
-                                <a class="icons edit-icon category_delete" href="#" id="" onclick="">
+                                </a> -->
+                                <!-- <a class="icons edit-icon category_delete" href="#" id="" onclick="">
                                     <i class="fa fa-trash" aria-hidden="true"></i>
-                                 </a>
-                                <button type="submit" class="btn btn-danger btn_delete" style="display:none;">Delete</button>                                
+                                 </a> -->
+                                <!-- <button type="submit" class="btn btn-danger btn_delete" style="display:none;">Delete</button>  -->                               
                             </div>                      
-                            </td> -->
+                            </td>
                              </tr>
                         @endforeach
                     </tbody>

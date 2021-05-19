@@ -37,7 +37,7 @@ class OrderManagementController extends Controller
 
             $order = checkout::join('users', 'users.id', '=', 'checkout.user_id')
             ->join('carts','carts.id', '=', 'checkout.cart_id')
-            ->select('users.first_name', 'users.last_name','users.mobile', 'checkout.total_amount','checkout.case_id','checkout.created_at','checkout.order_id','checkout.medication_type','checkout.id','checkout.cart_id','carts.product_price')->orderBy('checkout.id', 'DESC')->get();
+            ->select('users.email','checkout.case_id','checkout.created_at','checkout.order_id','checkout.medication_type','checkout.id','checkout.cart_id','carts.product_price')->orderBy('checkout.id', 'DESC')->get();
 
 foreach($order as $key=>$val){
     $cart_ids = explode(',', $val['cart_id']);

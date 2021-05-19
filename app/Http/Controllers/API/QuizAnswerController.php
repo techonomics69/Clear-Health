@@ -167,12 +167,6 @@ class QuizAnswerController extends BaseController
            
             $recommendation = json_decode($answer_data[0]['answer']);
 
-            echo "<pre>";
-            print_r($recommendation);
-            echo "<pre>";
-            exit();
-
-           
 
             $a1 = 0;
             $a2 = 0;
@@ -190,7 +184,7 @@ class QuizAnswerController extends BaseController
                     //$a1 = 0;
                     //$answer = QuizAnswer::where('user_id', $request->user_id)->where('question_id', $value->id)->where('case_id', $request->case_id)->first();
 
-                     $answer = $value->recommendation_product;
+                     $answer = $value->answer;
 
                     if(isset($answer->answer)){
                         if($answer->answer == 'Mild– just a few pimples here and there. Mostly whiteheads and blackheads with a few inflamed bumps here and there.'){
@@ -206,7 +200,8 @@ class QuizAnswerController extends BaseController
                 }
                 if($value->recommendation_product == 'recommendation_2'){
                     //$a2 = 0;
-                    $answer = QuizAnswer::where('user_id', $request->user_id)->where('question_id', $value->id)->where('case_id', $request->case_id)->first();
+                    //$answer = QuizAnswer::where('user_id', $request->user_id)->where('question_id', $value->id)->where('case_id', $request->case_id)->first();
+                    $answer = $value->answer;
                     if(isset($answer->answer)){
                         if($answer->answer == 'It doesn’t really bother me'){
                             $a2 = 1;
@@ -223,7 +218,10 @@ class QuizAnswerController extends BaseController
                 }
                 if($value->recommendation_product == 'recommendation_3'){
                     //$a3 = 0;
-                    $answer = QuizAnswer::where('user_id', $request->user_id)->where('question_id', $value->id)->where('case_id', $request->case_id)->first();
+                    //$answer = QuizAnswer::where('user_id', $request->user_id)->where('question_id', $value->id)->where('case_id', $request->case_id)->first();
+
+                    $answer = $value->answer;
+
                     if(isset($answer->answer)){
                         if($answer->answer == 'My acne does not scar'){
                             $a3 = 1;
@@ -236,7 +234,10 @@ class QuizAnswerController extends BaseController
                 }
                 if($value->recommendation_product == 'recommendation_4'){
                     //$b1 = 0;
-                    $answer = QuizAnswer::where('user_id', $request->user_id)->where('question_id', $value->id)->where('case_id', $request->case_id)->first();
+                   // $answer = QuizAnswer::where('user_id', $request->user_id)->where('question_id', $value->id)->where('case_id', $request->case_id)->first();
+
+                    $answer = $value->answer;
+
                     if(isset($answer->answer)){
                         if($answer->answer == 'Yes'){
                             $b1 = 1;
@@ -245,7 +246,10 @@ class QuizAnswerController extends BaseController
                 }
                 if($value->recommendation_product == 'recommendation_5'){
                     //$b2 = null;
-                    $answer = QuizAnswer::where('user_id', $request->user_id)->where('question_id', $value->id)->where('case_id', $request->case_id)->first();
+                    //$answer = QuizAnswer::where('user_id', $request->user_id)->where('question_id', $value->id)->where('case_id', $request->case_id)->first();
+
+                    $answer = $value->answer;
+
                     if(isset($answer->answer)){
                         if($answer->answer == 'Topical Retinoids (Differin Retin-A Tazorac etc.)'){
                             $b2 = 0;
@@ -270,7 +274,10 @@ class QuizAnswerController extends BaseController
                 }
                 if($value->recommendation_product == 'recommendation_6'){
                     //$c1 = 0;
-                    $answer = QuizAnswer::where('user_id', $request->user_id)->where('question_id', $value->id)->where('case_id', $request->case_id)->first();
+                    //$answer = QuizAnswer::where('user_id', $request->user_id)->where('question_id', $value->id)->where('case_id', $request->case_id)->first();
+
+                    $answer = $value->answer;
+
                     if(isset($answer->answer)){
                         if($answer->answer == 'Yes'){
                             $c1 = 1;
@@ -279,7 +286,10 @@ class QuizAnswerController extends BaseController
                 }
                 if($value->recommendation_product == 'recommendation_7'){
                     //$ts1 = 0;
-                    $answer = QuizAnswer::where('user_id', $request->user_id)->where('question_id', $value->id)->where('case_id', $request->case_id)->first();
+                    //$answer = QuizAnswer::where('user_id', $request->user_id)->where('question_id', $value->id)->where('case_id', $request->case_id)->first();
+
+                    $answer = $value->answer;
+
                     if(isset($answer->answer)){
                         if($answer->answer == 'Very Dry'){
                             $ts1 = 1;
@@ -296,7 +306,10 @@ class QuizAnswerController extends BaseController
                 }
                 if($value->recommendation_product == 'recommendation_8'){
                     //$ts2 = 0;
-                    $answer = QuizAnswer::where('user_id', $request->user_id)->where('question_id', $value->id)->where('case_id', $request->case_id)->first();
+                    //$answer = QuizAnswer::where('user_id', $request->user_id)->where('question_id', $value->id)->where('case_id', $request->case_id)->first();
+
+                    $answer = $value->answer;
+                    
                     if(isset($answer->answer)){
                         if($answer->answer == 'Yes'){
                             $ts2 = 1;

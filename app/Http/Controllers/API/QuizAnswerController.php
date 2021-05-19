@@ -166,10 +166,6 @@ public function ProductRecommend(Request $request)
 
     $recommendation = json_decode($answer_data[0]['answer']);
 
-    echo "<pre>";
-    print_r($recommendation);
-    echo "<pre>";
-    exit();
 
 
     $a1 = 0;
@@ -183,7 +179,7 @@ public function ProductRecommend(Request $request)
     $data = 'accutane';
     foreach ($recommendation as $key => $value) {
 
-        if($value->recommendation_product == 'recommendation_1'){
+        if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_1'){
 
          $answer = $value->answer;
 
@@ -199,7 +195,7 @@ public function ProductRecommend(Request $request)
             }
         }
     }
-    if($value->recommendation_product == 'recommendation_2'){
+    if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_2'){
 
         $answer = $value->answer;
         if(isset($answer->answer)){
@@ -216,7 +212,7 @@ public function ProductRecommend(Request $request)
             }
         }
     }
-    if($value->recommendation_product == 'recommendation_3'){
+    if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_3'){
 
 
         $answer = $value->answer;
@@ -231,7 +227,7 @@ public function ProductRecommend(Request $request)
             }
         }
     }
-    if($value->recommendation_product == 'recommendation_4'){
+    if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_4'){
 
 
         $answer = $value->answer;
@@ -242,7 +238,7 @@ public function ProductRecommend(Request $request)
             }
         }
     }
-    if($value->recommendation_product == 'recommendation_5'){
+    if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_5'){
 
         $answer = $value->answer;
 
@@ -268,7 +264,7 @@ public function ProductRecommend(Request $request)
             }
         }
     }
-    if($value->recommendation_product == 'recommendation_6'){
+    if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_6'){
 
         $answer = $value->answer;
 
@@ -278,7 +274,7 @@ public function ProductRecommend(Request $request)
             }
         }
     }
-    if($value->recommendation_product == 'recommendation_7'){
+    if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_7'){
 
         $answer = $value->answer;
 
@@ -296,7 +292,7 @@ public function ProductRecommend(Request $request)
             }
         }
     }
-    if($value->recommendation_product == 'recommendation_8'){
+    if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_8'){
 
         $answer = $value->answer;
 

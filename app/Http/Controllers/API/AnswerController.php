@@ -19,7 +19,7 @@ class AnswerController extends BaseController
     public function getAnswer(Request $request)
     {
         try{
-            $answer = Answers::where('user_id', $request->user_id)->where('case_id', $request->case_id)->get();
+            $answer = Answers::where('user_id', $request->user_id)->where('case_id', $request->case_id)->first();
           
                  return $this->sendResponse($answer, 'Answer retrieved successfully.');
         }catch(\Exception $ex){

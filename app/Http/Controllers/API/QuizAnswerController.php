@@ -171,8 +171,6 @@ public function ProductRecommend(Request $request)
     echo "<pre>";
     exit();
 
-
-
     $a1 = 0;
     $a2 = 0;
     $a3 = 0;

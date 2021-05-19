@@ -44,14 +44,14 @@ class CheckoutController extends BaseController
     {
         $data = $request->all();
         $last_checkout_id = Checkout::OrderBy('id','desc')->first();
-        
+        $order_id = "00000001";
             if(!empty($last_checkout_id)){
                 $year = substr($last_checkout_id['order_id'],4, -9);
                  $current_year = date("Y");
                
                 if(!empty($last_checkout_id['order_id']) && ($year == $current_year)){
                     $id = number_format(substr($last_checkout_id['order_id'], 9)) + 1;
-                    $order_id = str_pad($id,9,'0',STR_PAD_LEFT);
+                    $order_id = str_pad($id,8,'0',STR_PAD_LEFT);
                 }
             }    
             else{

@@ -62,7 +62,7 @@ public function store(Request $request)
 
 }
 
-public function show($id)
+public function show($case_id)
 {
  $user_case_management_data = CaseManagement::join('users','case_managements.user_id', '=', 'users.id')->select('case_managements.*','users.first_name','users.last_name','users.email')->where('case_managements.id',$id)->first();
         $category = QuizCategory::pluck('name', 'id')->toArray();

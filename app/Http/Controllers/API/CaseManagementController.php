@@ -585,18 +585,8 @@ public function create_patient(Request $request)
      $zip = $request['zipcode'];
      $address = $request['address'];
 
-     echo "<pre>";
-     print_r($zip);
-     echo "<pre>";
-
-      echo "<pre>";
-      print_r( $address);
-      echo "<pre>";
-      exit();
-     exit();
-
   
-    if(isset($request['zipcode'] )){
+  /*  if(isset($request['zipcode'] )){
        $zip = $request['zipcode'];
        $search = "?zip=".$zip;
 
@@ -609,12 +599,27 @@ public function create_patient(Request $request)
       $search = "?zip=".$zip."&address=".$address;
     }else{
         $search = "";
+    }*/
+   
+
+    if($zip!="" && $address == ""){
+       $search = "?zip=".$zip;
+
+    }else if($address!="" && $zip ==""){
+        $search = "?address=".$address;
+
+    }else if($zip!="" && $address != ""){
+        $zip = $request['zipcode'];
+        $address = $request['address'];
+      $search = "?zip=".$zip."&address=".$address;
+    }else{
+        $search = "";
     }
    
+    /*echo "<pre>";
+    print_r('https://api.mdintegrations.xyz/v1/partner/pharmacies'.$search);
     echo "<pre>";
-    print_r($search);
-    echo "<pre>";
-    exit();
+    exit();*/
     //$input = json_encode($request->all());
 
     //$input_data = $request->all();

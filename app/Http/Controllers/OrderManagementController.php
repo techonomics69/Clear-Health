@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Http\Request;
 
 use App\Models\Checkout;
 use App\Models\User;
@@ -11,9 +12,9 @@ use App\Models\QuizCategory;
 use App\Models\QuizAnswer;
 use App\Models\Quiz;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
-use App\Http\Controllers\Controller;
+
+//use Illuminate\Support\Facades\File;
+//use App\Http\Controllers\Controller;
 
 class OrderManagementController extends Controller
 { 
@@ -48,7 +49,7 @@ class OrderManagementController extends Controller
    foreach( $product_details as $k=>$v){
      $product_name[] = $v['product_name'];  
  }
- 
+
  $order[$key]->product_name = implode(',',$product_name);
 
 }

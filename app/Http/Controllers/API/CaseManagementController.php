@@ -598,7 +598,7 @@ public function create_patient(Request $request)
     }
    
    echo "<pre>";
-   print_r( $search = "?zip=".$zip."&address=".$address;);
+   print_r( $search = "?zip=".$zip."&address=".$address);
    echo "<pre>";
    exit();
    

@@ -623,7 +623,6 @@ public function create_patient(Request $request)
     //$input = json_encode($request->all());
 
     //$input_data = $request->all();
-
     $curl = curl_init();
 
     curl_setopt_array($curl, array(

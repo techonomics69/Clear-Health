@@ -220,7 +220,7 @@ public function ProductRecommend(Request $request)
         $answer = $value->answer;
 
         if(isset($answer)){
-            if($answer->answer == 'My acne does not scar'){
+            if($answer == 'My acne does not scar'){
                 $a3 = 1;
             }else if($answer == 'I tend to get dark marks and pigmentation from my acne'){
                 $a3 = 2;

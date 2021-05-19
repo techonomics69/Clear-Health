@@ -48,6 +48,19 @@ class CheckoutController extends BaseController
             if(!empty($last_checkout_id)):
                  $year = substr($last_checkout_id['order_id'],4, -9);
                  $current_year = date("Y");
+
+                echo "<pre>";
+                print_r($last_checkout_id['order_id']);
+                echo "<pre>";
+
+                echo "<pre>";
+                print_r($year);
+                echo "<pre>";
+
+                echo "<pre>";
+                print_r($current_year);
+                echo "<pre>";
+                exit();
                
                 if(!empty($last_checkout_id['order_id']) && ($year == $current_year)):
                     $id = number_format(substr($last_checkout_id['order_id'], 8)) + 1;

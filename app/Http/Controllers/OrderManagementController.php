@@ -22,10 +22,10 @@ class OrderManagementController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    function __construct()
+    /*function __construct()
     {
 
-    }
+    }*/
     /**
      * Display a listing of the resource.
      *

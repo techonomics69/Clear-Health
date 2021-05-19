@@ -180,9 +180,8 @@ public function ProductRecommend(Request $request)
     foreach ($recommendation as $key => $value) {
 
         if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_1'){
-          echo "in 1";
+          
          $answer = $value->answer;
-
          
 
          if(isset($answer)){
@@ -198,7 +197,7 @@ public function ProductRecommend(Request $request)
         }
     }
     if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_2'){
- echo "in 2";
+
         $answer = $value->answer;
         if(isset($answer)){
             if($answer == 'It doesn’t really bother me'){
@@ -215,8 +214,7 @@ public function ProductRecommend(Request $request)
         }
     }
     if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_3'){
- echo "in 3";
-
+ 
         $answer = $value->answer;
 
         if(isset($answer)){
@@ -230,8 +228,7 @@ public function ProductRecommend(Request $request)
         }
     }
     if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_4'){
-
- echo "in 4";        
+    
  $answer = $value->answer;
 
         if(isset($answer)){
@@ -241,7 +238,7 @@ public function ProductRecommend(Request $request)
         }
     }
     if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_5'){
- echo "in 5";
+ 
         $answer = $value->answer;
 
         if(isset($answer)){
@@ -267,7 +264,7 @@ public function ProductRecommend(Request $request)
         }
     }
     if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_6'){
- echo "in 6";
+ 
         $answer = $value->answer;
 
         if(isset($answer)){
@@ -277,7 +274,7 @@ public function ProductRecommend(Request $request)
         }
     }
     if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_7'){
- echo "in 7";
+ 
         $answer = $value->answer;
 
         if(isset($answer)){
@@ -295,7 +292,7 @@ public function ProductRecommend(Request $request)
         }
     }
     if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_8'){
- echo "in 8";
+ 
         $answer = $value->answer;
 
         if(isset($answer)){
@@ -312,21 +309,6 @@ public function ProductRecommend(Request $request)
 $a = $a1+$a2+$a3;
 $b = $b1+$b2;
 $c = $c1;
-
-echo "<pre>";
-print_r($a);
-echo "<pre>";
-
-
-echo "<pre>";
-print_r($b);
-echo "<pre>";
-
-
-echo "<pre>";
-print_r($c);
-echo "<pre>";
-
 
 
 if($a+$b>=11){

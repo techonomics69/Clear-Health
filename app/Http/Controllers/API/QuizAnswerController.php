@@ -189,13 +189,13 @@ public function ProductRecommend(Request $request)
          exit();
 
          if(isset($answer->answer)){
-            if($answer->answer == 'Mild– just a few pimples here and there. Mostly whiteheads and blackheads with a few inflamed bumps here and there.'){
+            if($answer->answer == 'just a few pimples here and there. Mostly whiteheads and blackheads with a few inflamed bumps here and there.'){
                 $a1 = 1;
-            }else if($answer->answer == 'Moderate– multiple inflamed pimples with new ones popping up. Acne is inflamed and red.'){
+            }else if($answer->answer == 'multiple inflamed pimples with new ones popping up. Acne is inflamed and red.'){
                 $a1 = 2;
-            }else if($answer->answer == 'Moderately Severe– a large number of inflamed pimples with some deeper, more painful nodules that do not come to a head. Acne leaves moderate scarring.'){
+            }else if($answer->answer == 'a large number of inflamed pimples with some deeper, more painful nodules that do not come to a head. Acne leaves moderate scarring.'){
                 $a1 = 3;
-            }else if($answer->answer == 'Severe– a large number of inflamed pimples with multiple deep, painful nodules that do not come to a head. Acne leaves significant scarring.'){
+            }else if($answer->answer == 'a large number of inflamed pimples with multiple deep, painful nodules that do not come to a head. Acne leaves significant scarring.'){
                 $a1 = 4;
             }
         }

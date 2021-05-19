@@ -581,8 +581,24 @@ public function create_patient(Request $request)
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
-    $zip = $request['zipcode'];
+    $search = "";
 
+    if(isset($request['zipcode'] && isset($request['address']) ){
+      $search = "?zip=".$zip."address=".$address;
+    }
+    if(isset($request['zipcode'])){
+       $zip = $request['zipcode'];
+       $search = "?zip=".$zip;
+
+    }else if(isset($request['address'])) ){
+       $address = $request['address'];
+        $search = "?address=".$address;
+    }
+   
+
+   
+
+   
     //$input = json_encode($request->all());
 
     //$input_data = $request->all();
@@ -590,7 +606,7 @@ public function create_patient(Request $request)
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/pharmacies?zip='.$zip,
+      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/pharmacies'.$search,
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => '',
       CURLOPT_MAXREDIRS => 10,

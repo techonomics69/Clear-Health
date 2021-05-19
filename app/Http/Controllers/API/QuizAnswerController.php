@@ -164,10 +164,10 @@ class QuizAnswerController extends BaseController
 
             $answer_data = Answers::where('user_id', $user_id)->where('case_id', $case_id)->get();
 
-            /*echo "<pre>";
+            echo "<pre>";
             print_r( $answer_data);
             echo "<pre>";
-            exit();*/
+            exit();
             $recommendation = json_decode($answer_data[0]['answer']);
 
             echo "<pre>";

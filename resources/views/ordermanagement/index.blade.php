@@ -55,16 +55,12 @@
                                         @foreach ($order as $key => $order_data)
                                         <tr> 
                                             <td>{{ $i++ }}</td>
-                                            <td>{{ $order_data['order_id'] }} </td>
-                                            <!-- <td>{{ $order_data->order_id }}</td> -->
+                                            <td>{{ $order_data->order_id }} </td>
                                             <td>{{ $order_data->case_id }}</td>
-
                                             <td>{{ $order_data->email }}</td>
                                             <td>{{ $order_data->created_at }}</td>
                                             <td>{{ $order_data->product_name }}</td>
-
                                             <!-- <td>{{ $order_data->product_price }}</td>  -->
-                                            <!--  <td>{{ $order_data->total_amount }}</td> -->
                                             <td><?php if($order_data->medication_type == 1){
                                                 echo "Prescribed";
                                             }else{
@@ -73,7 +69,7 @@
 
                                             <td>
                                                 <div class="d-flex">
-            <a class="icons edit-icon" href="{{ route('ordermanagement.show',$order_data['case_id']) }}">
+            <a class="icons edit-icon" href="{{ route('ordermanagement.show',$order_data->case_id) }}">
                                                         <i class="fa fa-eye"></i>
                                                     </a>
                                                     

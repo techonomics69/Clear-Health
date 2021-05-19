@@ -429,10 +429,10 @@
 						<!--end of tab3-->
 
 						<!--tab4-->
-						<div id="rx" class="tab-pane fade in ">
+						<div id="shipments_shipping_details" class="tab-pane fade in ">
 							<div class="row" style="padding: 20px;">
 								<div class="col-md-12">
-									rx details goes here
+									Shipments & shipping details
 								</div>
 							</div>
 						</div> 

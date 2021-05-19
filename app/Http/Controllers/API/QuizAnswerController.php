@@ -180,7 +180,7 @@ public function ProductRecommend(Request $request)
     foreach ($recommendation as $key => $value) {
 
         if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_1'){
-          die("in 1");
+          echo "in 1";
          $answer = $value->answer;
 
          if(isset($answer->answer)){
@@ -196,7 +196,7 @@ public function ProductRecommend(Request $request)
         }
     }
     if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_2'){
-die("in 2");
+ echo "in 2";
         $answer = $value->answer;
         if(isset($answer->answer)){
             if($answer->answer == 'It doesn’t really bother me'){
@@ -213,7 +213,7 @@ die("in 2");
         }
     }
     if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_3'){
-die("in 3");
+ echo "in 3";
 
         $answer = $value->answer;
 
@@ -229,8 +229,8 @@ die("in 3");
     }
     if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_4'){
 
-die("in 4");
-        $answer = $value->answer;
+ echo "in 4";        
+ $answer = $value->answer;
 
         if(isset($answer->answer)){
             if($answer->answer == 'Yes'){
@@ -239,7 +239,7 @@ die("in 4");
         }
     }
     if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_5'){
-
+ echo "in 5";
         $answer = $value->answer;
 
         if(isset($answer->answer)){
@@ -265,7 +265,7 @@ die("in 4");
         }
     }
     if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_6'){
-
+ echo "in 6";
         $answer = $value->answer;
 
         if(isset($answer->answer)){
@@ -275,7 +275,7 @@ die("in 4");
         }
     }
     if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_7'){
-
+ echo "in 7";
         $answer = $value->answer;
 
         if(isset($answer->answer)){
@@ -293,7 +293,7 @@ die("in 4");
         }
     }
     if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_8'){
-
+ echo "in 8";
         $answer = $value->answer;
 
         if(isset($answer->answer)){

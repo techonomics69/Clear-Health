@@ -11,8 +11,7 @@
     @endif
 
 @foreach ($order as $key => $order_data)
-
-{{dd($order_data->product_name)}}
+{{dd($order_data->case_id)}}
 @endforeach
     <div class="content-wrapper">
         <div class="content-header row">

@@ -142,7 +142,7 @@ class CartController extends BaseController
             $cart = Cart::where('user_id', $id)->where('order_type', null)->where('status','pending')->get();
             $data=array();
             foreach ($cart as $key => $value) {
-                
+
                 $data[$key]['id'] = $value->id;
                 $data[$key]['pharmacy_pickup'] = $value->pharmacy_pickup;
                 $data[$key]['product_id'] = $value->product->id;
@@ -204,6 +204,21 @@ class CartController extends BaseController
         }catch(\Exception $ex){
             return $this->sendError('Server error', array($ex->getMessage()));
         }
-
     }
+    public function addonItemUpdate($id)
+    {
+        try{
+            $cart = Cart::where('user_id', $id)->where('order_type','AddOn')->where('status','purchased')->OrderBy('id','desc')->get();
+            if(isset($cart))
+            {
+                $InsertAddon = Cart::create($cart);
+            }else{
+                $UpdateAddon = Cart::update($cart);
+            }
+            return $this->sendResponse($data, 'Item retrieved successfully.');
+        }catch(\Exception $ex){
+            return $this->sendError('Server error', array($ex->getMessage()));
+        }
+    }
+
 }

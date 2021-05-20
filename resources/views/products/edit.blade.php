@@ -47,7 +47,19 @@
                 {!! Form::model($product,array('route' => ['products.update', $product->id],'method'=>'PATCH', 'enctype'=>"multipart/form-data")) !!}
                     <div class="row">
                         
-                     
+                     <div class="col-md-4 col-sm-6 col-xs-12">   
+                                <div class="form-group">
+                                    <strong>Product Name</strong>
+                                    <span class="required">*</span>
+                                    {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 col-xs-12">   
+                                <div class="form-group">
+                                    <strong>Product Sub Title:</strong>
+                                    {!! Form::text('sub_title', null, array('placeholder' => 'Product Sub Title','class' => 'form-control')) !!}
+                                </div>
+                            </div>
                             <div class="col-md-4 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <strong>Status</strong>
@@ -63,13 +75,8 @@
                                     <input type="text" name="available_date" class="form-control available_date" value="{{ date('m/d/Y', strtotime($date)) }}">
                                 </div>
                             </div>
-                            <div class="col-md-4 col-sm-6 col-xs-12">   
-                                <div class="form-group">
-                                    <strong>Name</strong>
-                                    <span class="required">*</span>
-                                    {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
-                                </div>
-                            </div>
+                            
+                            
                             <div class="col-md-4 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <strong>Category</strong>
@@ -84,13 +91,7 @@
                                     {!! Form::number('retails_price', null, array('placeholder' => 'Price (Retail)','class' => 'form-control')) !!}
                                 </div>
                             </div>
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <strong>Product Status:</strong>
-                                    <span class="required">*</span>
-                                    {!! Form::select('product_active', ['0' => 'Please Select', '1' => 'Active', '2' => 'In Active', '3' => 'Do no show'], null, ['class' => 'form-control']); !!}
-                                </div>
-                            </div>
+                            
                             <div class="col-md-12 col-sm-12 col-xs-12">    
                                 <div class="form-group">
                                     <strong>Short Description</strong>
@@ -160,6 +161,13 @@
                                         {!! Form::select('weight_unit', ['Kilogram(kg)'=>'Kilogram(kg)', 'Gram(g)'=>'Gram(g)'], null, ['class' => 'form-control']) !!}
                                     </div>
                                 </div>
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <strong>Product Status:</strong>
+                                    <span class="required">*</span>
+                                    {!! Form::select('product_active', ['0' => 'Please Select', '1' => 'Active', '2' => 'In Active', '3' => 'Do no show'], null, ['class' => 'form-control']); !!}
+                                </div>
+                            </div>
                        
                         <div class="col-xs-12 col-sm-12 col-md-12 text-right">
                             <a href="{{ route('products.index') }}">

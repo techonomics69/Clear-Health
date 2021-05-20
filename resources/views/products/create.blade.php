@@ -46,15 +46,14 @@
                     <div class="row">
                         <div class="col-md-4 col-sm-6 col-xs-12">
                                     <div class="form-group">
-                                        <strong>Name:</strong>
+                                        <strong>Product Name:</strong>
                                         <span class="required">*</span>
                                         {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-sm-6 col-xs-12">
                                 <div class="form-group">
-                                    <strong>Sub Title:</strong>
-                                    <span class="required">*</span>
+                                    <strong>Product Sub Title:</strong>
                                      {!! Form::text('sub_title', null, array('placeholder' => 'Sub Title','class' => 'form-control')) !!}
                                 </div>
                             </div>

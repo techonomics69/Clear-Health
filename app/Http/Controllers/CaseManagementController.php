@@ -200,7 +200,13 @@ class CaseManagementController extends Controller
 }
 
 public function getCaseStatus(){
-    echo "get case status here";
+  
+    $data = CaseManagement::all();
+
+    echo "<pre>";
+    print_r($data);
+    echo "<pre>";
+    exit();
 }
 
 }

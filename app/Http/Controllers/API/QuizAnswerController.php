@@ -169,8 +169,8 @@ public function ProductRecommend(Request $request)
     $a1 = 0;
     $a2 = 0;
     $a3 = 0;
-    $b1 = 0;
-    $b2 = 0;
+    $b1 = 0; 
+    $b2 = [];
     $c1 = 0;
     $ts1 = 0;
     $ts2 = 0;
@@ -237,8 +237,9 @@ public function ProductRecommend(Request $request)
     if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_5'){
  
         $answer = $value->answer;
-$data1 = json_encode($answer);
-        if(isset($answer)){
+        $option = ['Dapsone (Aczone)', 'Topical Retinoids (Differin, Retin-A, Tazorac, etc.)', 'Topical Antibiotics (Benzaclin, Duac, etc.)', 'Azelaic Acid (Azelex, Finacea)', 'Other'];
+        $b2 = array_intersect( $answer, $option ); 
+        /*if(isset($answer)){
             if($answer == 'Benzoyl Peroxide'){
                 $b2 = 0;
             }else if($answer == 'Salicylic Acid'){
@@ -253,8 +254,8 @@ $data1 = json_encode($answer);
                 $b2 = 1;
             }else if($answer == 'Other'){
                 $b2 = 1;
-            }
-        }
+            } 
+        }*/
     }
 
     if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_6'){
@@ -301,7 +302,7 @@ $data1 = json_encode($answer);
 
 } 
 $a = $a1+$a2+$a3;
-$b = $b1+$b2;
+$b = $b1+count($b2);
 $c = $c1;
 
 /*echo '<script>console.log("a-"'.$a."b-".$b."c-".$c.'); </script>';*/
@@ -320,8 +321,7 @@ if($a+$b>=11){
     }
 }
 
-$data = "a=>".$a." b=>".$b." c=>".$c." a1=>".$a1." a2=>".$a2." a3=>".$a3." b1=>".$b1." b2=>".$b2;
-return $this->sendResponse($data1, 'Product recommendation successfully.');   
+return $this->sendResponse($data, 'Product recommendation successfully.');   
            // }
            // catch(\Exception $ex){
           //  return $this->sendError('Server error', array($ex->getMessage()));

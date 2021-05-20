@@ -69,11 +69,11 @@
 
                                            <td>
                                             <?php 
-                                            echo "case id".$order_data->case_id;
+                                            /*echo "case id".$order_data->case_id;
                                             echo "<br>";
-                                            echo "id".$order_data->id;
+                                            echo "id".$order_data->id;*/
                                             ?>
-                                                <!-- <?php 
+                                           <!--  <?php 
                                                 if($order_data->id != '')
                                                 {
                                                     $checkout_id= $order_data->id;
@@ -86,12 +86,12 @@
                                                 }else{
                                                     $case_id= 0;
                                                 }
-                                                ?>
+                                                ?> -->
                                                 <div class="d-flex">
-                                                    <a class="icons edit-icon" href="{{ route('ordermanagement.show',$checkout_id,$case_id) }}">
+                                                    <a class="icons edit-icon" href="{{ route('ordermanagement.show',$order_data->order_id) }}">
                                                         <i class="fa fa-eye"></i>
                                                     </a> 
-                                                </div>   -->   
+                                                </div>  
                                             </td>
                                             </tr>
                                             @endforeach

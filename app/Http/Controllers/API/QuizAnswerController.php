@@ -315,7 +315,7 @@ if($a+$b>=11){
     $data = 'Accutane';
 }else if($c == 1){
     $data = 'Accutane';
-}else if($a+$b<11 && $c == 1){
+}else if(($a+$b<11 && $c == 1)||($a+$b>=11 && $c == 0)){
  $data = 'Accutane';
 }else{
     if($ts1 == 1){

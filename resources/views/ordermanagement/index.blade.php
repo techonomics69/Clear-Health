@@ -68,8 +68,8 @@
                                             } ?></td>
 
                                            <td><?php 
-                                            echo $order_data->case_id;
-                                                echo $order_data->id;
+                                            echo "case id".$order_data->case_id;
+                                            echo "id".$order_data->id;
                                                 ?>
                                                 <!-- <?php  
 

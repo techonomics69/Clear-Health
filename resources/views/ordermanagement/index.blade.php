@@ -74,7 +74,8 @@
                                             echo "id".$order_data->id;*/
                                             ?>
                                                 <?php 
-                                                if($order_data->id != ''){
+                                                if($order_data->id != '')
+                                                {
                                                     $checkout_id= $order_data->id;
                                                 }else{
                                                     $checkout_id = 0;
@@ -83,7 +84,7 @@
                                                 {
                                                     $case_id = $order_data->case_id;
                                                 }else{
-                                                    $case_id=0;
+                                                    $case_id= 0;
                                                 }
                                                 ?>
                                                 <div class="d-flex">

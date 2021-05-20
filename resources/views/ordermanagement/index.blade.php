@@ -68,30 +68,12 @@
                                             } ?></td>
 
                                            <td>
-                                            <?php 
-                                            echo "case id".$order_data->case_id;
-                                            echo "<br>";
-                                            echo "id".$order_data->id;
-                                            ?>
-                                                <!-- <?php 
-                                                if($order_data->id != '')
-                                                {
-                                                    $checkout_id= $order_data->id;
-                                                }else{
-                                                    $checkout_id = 0;
-                                                }
-                                                if($order_data->case_id != '')
-                                                {
-                                                    $case_id = $order_data->case_id;
-                                                }else{
-                                                    $case_id= 0;
-                                                }
-                                                ?>
+                                            
                                                 <div class="d-flex">
-                                                    <a class="icons edit-icon" href="{{ route('ordermanagement.show',$checkout_id,$case_id) }}">
+                                                    <a class="icons edit-icon" href="{{ route('ordermanagement.show',$order_data->id) }}">
                                                         <i class="fa fa-eye"></i>
                                                     </a> 
-                                                </div>   -->   
+                                                </div>  
                                             </td>
                                             </tr>
                                             @endforeach

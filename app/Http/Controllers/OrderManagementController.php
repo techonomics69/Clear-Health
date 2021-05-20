@@ -73,24 +73,20 @@ public function store(Request $request)
 
 }
 
-public function show($id='',$case_id='')
+public function show($id)
 {
     /*echo "<pre>id";
     print_r($id);
    
     echo "</pre>";
     print_r($case_id);*/
-    if($id != ''){
-
-       die("ini");
+    if('medication_type' == 2){
        $order_non_prescribed =  checkout::join('users', 'users.id', '=', 'checkout.user_id')->join('carts','carts.id', '=', 'checkout.cart_id')
        ->select('users.email','checkout.case_id','checkout.created_at','checkout.order_id','checkout.medication_type','checkout.id','checkout.cart_id','carts.product_price','users.first_name','users.last_name','users.email','users.mobile','users.address')->where('checkout.id',$id)->first();
        return view('ordermanagement.view',compact('order_non_prescribed'));
    }  
 
-   if($case_id != '') {
-
-    die("inelse");
+   if('medication_type' == 1) {
     $user_case_management_data = CaseManagement::join('users','case_managements.user_id', '=', 'users.id')->select('case_managements.*','users.first_name','users.last_name','users.email','users.mobile','users.address')->where('case_managements.id',$id)->first(); 
     $category = QuizCategory::pluck('name', 'id')->toArray();
         //foreach ($user_case_management_data as $key => $value) {

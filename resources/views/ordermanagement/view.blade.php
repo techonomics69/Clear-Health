@@ -79,7 +79,7 @@
 													<div class="card-body">
 														<div class="box-block mtb32">
 															<h3 class="font-weight-bold"><span class="text-underline">Basic Information</span></h3>
- @foreach ($order_non_prescribed as $key => $order_data)
+															@foreach ($order_non_prescribed as $key => $order_data)
 															<div class="col-md-6  form-group">
 																<strong>FirstName:</strong>
 																{{$order_data['first_name']}}
@@ -104,7 +104,7 @@
 																<strong>Email: </strong>
 																{{$order_data['address']}}
 															</div>
- @endforeach
+															@endforeach
 														</div>
 													</div>
 												</section>
@@ -244,54 +244,54 @@
  </div>  
  <!-- @endforeach  -->
 
-								</div>
-							</section>
-						</div>
-					</div>
-				<?php } ?>
-			</div>
-		</div>
-		@endsection
+</div>
+</section>
+</div>
+</div>
+<?php } ?>
+</div>
+</div>
+@endsection
 
-		@section('scriptsection')
+@section('scriptsection')
 
-		<script>
-			$.noConflict();
-			jQuery( document ).ready(function( $ ) {
-				$('.c_profile').DataTable({
-					"dom": '<"top"if>rt<"bottom"lp><"clear">',
-					"oSearch": { "bSmart": false, "bRegex": true },
-					"scrollX": true,
-				});
-			});
+<script>
+	$.noConflict();
+	jQuery( document ).ready(function( $ ) {
+		$('.c_profile').DataTable({
+			"dom": '<"top"if>rt<"bottom"lp><"clear">',
+			"oSearch": { "bSmart": false, "bRegex": true },
+			"scrollX": true,
+		});
+	});
 
-			$(document).on('click', '#i_pledge_agreement', function() {
-				$('#i_pledge_agreement_form').submit();
-			});
-		</script>
+	$(document).on('click', '#i_pledge_agreement', function() {
+		$('#i_pledge_agreement_form').submit();
+	});
+</script>
 
 
-		@if (count($errors) > 0)
-		<script type="text/javascript">
-			$('html, body').animate({
-				scrollTop: $("#testreoprtdiv").offset().top
-			}, 2000);
-		</script>
-		@endif
+@if (count($errors) > 0)
+<script type="text/javascript">
+	$('html, body').animate({
+		scrollTop: $("#testreoprtdiv").offset().top
+	}, 2000);
+</script>
+@endif
 
-		@endsection
-		<style>
-			.tab-content h4{
-				font-size:16px;
-			}
-			.tab-content p{
-				font-size:16px;
-				margin-bottom:0;
-			}
-			.inner-section {
-				width: 100%;
+@endsection
+<style>
+	.tab-content h4{
+		font-size:16px;
+	}
+	.tab-content p{
+		font-size:16px;
+		margin-bottom:0;
+	}
+	.inner-section {
+		width: 100%;
 
-			}
-		</style>
+	}
+</style>
 
 

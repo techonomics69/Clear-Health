@@ -69,6 +69,7 @@
 
                                            <td><?php 
                                             echo "case id".$order_data->case_id;
+                                            echo "<br>";
                                             echo "id".$order_data->id;
                                                 ?>
                                                 <!-- <?php  

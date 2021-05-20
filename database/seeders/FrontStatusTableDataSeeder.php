@@ -14,44 +14,44 @@ class FrontStatusTableDataSeeder extends Seeder
      */
     public function run()
     {
-         DB::table('front_status')->insert([
-         	[
-            'status' => 'Default prescription to MD',
-        ],
-        [
-            'status' => 'Awaiting MD assigned',
-        ],
-        [
-            'status' => 'Clinician Assigned',
-        ],
-        [
-            'status' => 'Call  with MD for accutane',
-        ],
-        [
-            'status' => 'Consultation completed',
-        ],
-        [
-            'status' => 'Prerequisites [action items] ',
-        ],
-        [
-            'status' => 'Awaiting Follow UP',
-        ],
-        [
-            'status' => 'Awaiting prescription',
-        ],
-        [
-            'status' => 'Completed',
-        ],
-        [
-            'status' => 'Dosespot confirmed',
-        ],
-        [
-            'status' => 'Curexa-Awaiting shipments',
-        ],
-        [
-            'status' => 'Local pharmacy–Ready for pickup',
-        ]
+    	DB::table('front_status')->insert([
+    		[
+    			'status' => 'Default prescription to MD',
+    		],
+    		[
+    			'status' => 'Awaiting MD assigned',
+    		],
+    		[
+    			'status' => 'Clinician Assigned',
+    		],
+    		[
+    			'status' => 'Call  with MD for accutane',
+    		],
+    		[
+    			'status' => 'Consultation completed',
+    		],
+    		[
+    			'status' => 'Prerequisites [action items] ',
+    		],
+    		[
+    			'status' => 'Awaiting Follow UP',
+    		],
+    		[
+    			'status' => 'Awaiting prescription',
+    		],
+    		[
+    			'status' => 'Completed',
+    		],
+    		[
+    			'status' => 'Dosespot confirmed',
+    		],
+    		[
+    			'status' => 'Curexa-Awaiting shipments',
+    		],
+    		[
+    			'status' => 'Local pharmacy–Ready for pickup',
+    		]
 
-    ]);
+    	]);
     }
 }

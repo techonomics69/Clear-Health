@@ -213,7 +213,7 @@ class CartController extends BaseController
             {
                 $InsertAddon = Cart::create($cart);
             }else{
-                $UpdateAddon = Cart::update($cart);
+                $UpdateAddon = Cart::where('user_id', $id)->update($cart);
             }
             return $this->sendResponse($data, 'Item retrieved successfully.');
         }catch(\Exception $ex){

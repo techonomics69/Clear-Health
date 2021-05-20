@@ -61,6 +61,8 @@
 						</div>
 					</div> --> 
 				</div>
+
+
 				@foreach ($order_non_prescribed as $key => $order_data)
 <?php print_r($order_data); ?>
 

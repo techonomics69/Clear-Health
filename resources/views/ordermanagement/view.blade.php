@@ -102,6 +102,16 @@
 														
 													</div>
 													<div class="col-md-6 form-group">
+														<strong>Phone No: </strong>
+														{{$user_case_management_data['mobile']}}
+														
+													</div>
+													<div class="col-md-6 form-group">
+														<strong>Address: </strong>
+														{{$user_case_management_data['address']}}
+														
+													</div>
+													<div class="col-md-6 form-group">
 														<strong> I pledge ID: </strong>
 														#111111
 														

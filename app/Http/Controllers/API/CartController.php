@@ -208,12 +208,12 @@ class CartController extends BaseController
     public function addonItemUpdate(Request $request, $id)
     {
         $data = $request->all();
-        
+
             try{
                 $cart = Cart::where('user_id', $id)->where('order_type','AddOn')->where('status','pending')->OrderBy('id','desc')->get();
                 if(isset($cart))
                 {
-                    
+                    dd($cart);
                     $UpdateAddon = $cart->update($data);
                 }else {
                    $InsertAddon = Cart::create($data);

@@ -213,17 +213,17 @@ class CartController extends BaseController
             echo "</pre>";
             die();*/
             try{
-        $cart = Cart::where('user_id', $id)->where('order_type','AddOn')->where('status','pending')->OrderBy('id','desc')->get()->toArray();
-            if(isset($cart))
-            {
-                $InsertAddon = Cart::create($data);
-            }else {
-                $UpdateAddon = Cart::where('user_id', $id)update($data);
-            }
-            return $this->sendResponse($data, 'Item retrieved successfully.');
-        }catch(\Exception $ex){
-          return $this->sendError('Server error', array($ex->getMessage()));  
-        }
-    }
+                $cart = Cart::where('user_id', $id)->where('order_type','AddOn')->where('status','pending')->OrderBy('id','desc')->get()->toArray();
+                if(isset($cart))
+                {
+                    $UpdateAddon = $cart->update($data);
+                }else {
+                   $InsertAddon = Cart::create($data);
+               }
+               return $this->sendResponse($data, 'Item retrieved successfully.');
+           }catch(\Exception $ex){
+              return $this->sendError('Server error', array($ex->getMessage()));  
+          }
+      }
 
-}
+  }

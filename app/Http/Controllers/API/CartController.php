@@ -45,28 +45,28 @@ class CartController extends BaseController
 
             $data['user_id'] = (new Parser())->parse($data['token'])->getClaims()['sub']->getValue();
 
-        endif;       
-        try{
-            $validator = Validator::make($data, [
-                'user_id' => 'required',
-                'product_id' => 'required',
-            ]);
-            if($validator->fails()){
-                return $this->sendError('Validation Error.', $validator->errors()->all());       
-            }
-            $cart = Cart::where(['user_id' => $data['user_id'], 'product_id' => $data['product_id'],'status' => 'pending'])->first();
-            if(!empty($cart)):
-                $newQuantity['quantity'] = $cart->quantity + $data['quantity'];                
-                $cartUpdate = Cart::where('id',$cart->id)->update($newQuantity);
-
-            else:
-                $quizAns = Cart::create($data);
-            endif;
-            return $this->sendResponse(array(), 'Item Added Successfully');
-        }catch(\Exception $ex){
-            return $this->sendError('Server error',array($ex->getMessage()));
+    endif;       
+    try{
+        $validator = Validator::make($data, [
+            'user_id' => 'required',
+            'product_id' => 'required',
+        ]);
+        if($validator->fails()){
+            return $this->sendError('Validation Error.', $validator->errors()->all());       
         }
+        $cart = Cart::where(['user_id' => $data['user_id'], 'product_id' => $data['product_id'],'status' => 'pending'])->first();
+        if(!empty($cart)):
+            $newQuantity['quantity'] = $cart->quantity + $data['quantity'];                
+            $cartUpdate = Cart::where('id',$cart->id)->update($newQuantity);
+
+        else:
+            $quizAns = Cart::create($data);
+        endif;
+        return $this->sendResponse(array(), 'Item Added Successfully');
+    }catch(\Exception $ex){
+        return $this->sendError('Server error',array($ex->getMessage()));
     }
+}
 
     /**
      * Display the specified resource.
@@ -140,7 +140,7 @@ class CartController extends BaseController
             //$cart = Cart::where('user_id', $id)->where('order_type', '!=', 'Prescribed')->get();
 
             $cart = Cart::where('user_id', $id)->where('order_type', null)->where('status','pending')->get();
-                $data=array();
+            $data=array();
             foreach ($cart as $key => $value) {
                 
                 $data[$key]['id'] = $value->id;
@@ -171,7 +171,7 @@ class CartController extends BaseController
                 $data[$key]['id'] = $value->id;
                 $data[$key]['pharmacy_pickup'] = $value->pharmacy_pickup;
                 $data[$key]['product_id'] = $value->product->id;
-                 $data[$key]['order_type'] = $value->order_type;
+                $data[$key]['order_type'] = $value->order_type;
                 $data[$key]['product_name'] = $value->product->name;
                 $data[$key]['product_quantity'] = $value->quantity;
                 $data[$key]['product_image'] = $value->product->image;
@@ -193,7 +193,7 @@ class CartController extends BaseController
                 $data[$key]['id'] = $value->id;
                 $data[$key]['pharmacy_pickup'] = $value->pharmacy_pickup;
                 $data[$key]['product_id'] = $value->product->id;
-                 $data[$key]['order_type'] = $value->order_type;
+                $data[$key]['order_type'] = $value->order_type;
                 $data[$key]['product_name'] = $value->product->name;
                 $data[$key]['product_quantity'] = $value->quantity;
                 $data[$key]['product_image'] = $value->product->image;

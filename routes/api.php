@@ -64,7 +64,9 @@ Route::post('forgot_password',[RegisterController::class, 'forgot_password']);
     Route::post('getParentdetails', [UserController::class, 'getParentdetails']);
     Route::resource('cart', CartController::class);
     Route::get('cart/item/{id}',[CartController::class, 'getCartByUser']);
+
     Route::get('cart/prescribeditem/{id}',[CartController::class, 'getCartByUserPrescribed']);
+    
     Route::get('cart/addonitem/{id}',[CartController::class, 'getCartByUserAddOn']);
     Route::post('getFees',[FeeController::class, 'getFees']);
     Route::resource('caseManagement', CaseManagementController::class);

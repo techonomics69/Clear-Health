@@ -319,7 +319,7 @@ if($a+$b>=11){
     }
 }
 
-
+$data = "a=>".$a." b=>".$b." c=>".$c." a1=>".$a1." a2=>".$a2." a3=>".$a3." b1=>".$b1." b2=>".$b2;
 return $this->sendResponse($data, 'Product recommendation successfully.');   
            // }
            // catch(\Exception $ex){

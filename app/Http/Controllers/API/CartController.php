@@ -184,4 +184,26 @@ class CartController extends BaseController
         }
 
     }
+    public function getCartByUserAddOn($id)
+    {
+        try{
+            $cart = Cart::where('user_id', $id)->where('order_type','AddOn')->where('status','purchased')->OrderBy('id','desc')->get();
+            $data = array();
+            foreach ($cart as $key => $value) {
+                $data[$key]['id'] = $value->id;
+                $data[$key]['pharmacy_pickup'] = $value->pharmacy_pickup;
+                $data[$key]['product_id'] = $value->product->id;
+                 $data[$key]['order_type'] = $value->order_type;
+                $data[$key]['product_name'] = $value->product->name;
+                $data[$key]['product_quantity'] = $value->quantity;
+                $data[$key]['product_image'] = $value->product->image;
+                $data[$key]['product_price'] = $value->product->price;
+                $data[$key]['product_category'] = $value->product->category->name;
+            }
+            return $this->sendResponse($data, 'Item retrieved successfully.');
+        }catch(\Exception $ex){
+            return $this->sendError('Server error', array($ex->getMessage()));
+        }
+
+    }
 }

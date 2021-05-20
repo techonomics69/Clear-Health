@@ -40,7 +40,7 @@ class OrderManagementController extends Controller
         ->select('users.email','checkout.case_id','checkout.created_at','checkout.order_id','checkout.medication_type','checkout.id','checkout.cart_id','carts.product_price')->orderBy('checkout.id', 'DESC')->get();
 
         
-
+        
         foreach($order as $key=>$val){
 
             $cart_ids = explode(',', $val['cart_id']);
@@ -56,7 +56,7 @@ class OrderManagementController extends Controller
 }
 
 echo "<pre>";
-        print_r($order)->toArray();
+        print_r($order);
         echo "</pre>";
         die();
 

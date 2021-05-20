@@ -237,8 +237,10 @@ public function ProductRecommend(Request $request)
     if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_5'){
  
         $answer = $value->answer;
-
-        if(isset($answer)){
+        $option = ['Dapsone (Aczone)', 'Topical Retinoids (Differin, Retin-A, Tazorac, etc.)', 'Topical Antibiotics (Benzaclin, Duac, etc.)', 'Azelaic Acid (Azelex, Finacea)', 'Other'];
+        $b2 = array_intersect( $answer, $option ); 
+$data1 = json_encode($answer);
+        /*if(isset($answer)){
             if($answer == 'Benzoyl Peroxide'){
                 $b2 = 0;
             }else if($answer == 'Salicylic Acid'){
@@ -253,9 +255,10 @@ public function ProductRecommend(Request $request)
                 $b2 = 1;
             }else if($answer == 'Other'){
                 $b2 = 1;
-            }
-        }
+            } 
+        }*/
     }
+
     if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_6'){
  
         $answer = $value->answer;
@@ -300,7 +303,8 @@ public function ProductRecommend(Request $request)
 
 } 
 $a = $a1+$a2+$a3;
-$b = $b1+$b2;
+//$b = $b1+$b2;
+$b = 0;
 $c = $c1;
 
 /*echo '<script>console.log("a-"'.$a."b-".$b."c-".$c.'); </script>';*/
@@ -319,7 +323,7 @@ if($a+$b>=11){
     }
 }
 
-$data = "a=>".$a." b=>".$b." c=>".$c." a1=>".$a1." a2=>".$a2." a3=>".$a3." b1=>".$b1." b2=>".$b2;
+$data = "a=>".$a." b=>".$b." c=>".$c." a1=>".$a1." a2=>".$a2." a3=>".$a3." b1=>".$b1." b2=>".json_encode(count($b2));
 return $this->sendResponse($data, 'Product recommendation successfully.');   
            // }
            // catch(\Exception $ex){

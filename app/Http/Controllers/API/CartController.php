@@ -205,10 +205,10 @@ class CartController extends BaseController
             return $this->sendError('Server error', array($ex->getMessage()));
         }
     }
-    public function addonItemUpdate(Request $request $id)
+    public function addonItemUpdate(Request $request, $id)
     {
         $data = $request->all();
-        echo "<pre>";
+            echo "<pre>";
             print_r($data);
             echo "</pre>";
             die();

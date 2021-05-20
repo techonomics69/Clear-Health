@@ -67,8 +67,15 @@
                                                 echo "Non Prescribed";
                                             } ?></td>
 
-                                           <td>
+                                           <td><?php 
+                                            echo $order_data->case_id;
+                                                echo $order_data->id;
+                                                ?>
                                                 <?php  
+
+                                                
+
+                                                
                                                 if($order_data->id != ''){
                                                     $checkout_id= $order_data->id;
                                                 }else{

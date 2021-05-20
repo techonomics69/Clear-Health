@@ -212,6 +212,7 @@ class CartController extends BaseController
             print_r($data);
             echo "</pre>";
             die();*/
+            try{
         $cart = Cart::where('user_id', $id)->where('order_type','AddOn')->where('status','pending')->OrderBy('id','desc')->get()->toArray();
             if(isset($cart))
             {
@@ -223,8 +224,10 @@ class CartController extends BaseController
             }else {
                 $UpdateAddon = Cart::update($data);
             }
-
             return $this->sendResponse($data, 'Item retrieved successfully.');
+        }catch(\Exception $ex){
+          return $this->sendError('Server error', array($ex->getMessage()));  
+        }
     }
 
 }

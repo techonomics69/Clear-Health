@@ -54,9 +54,7 @@
                                         <?php $i=1;?>
                                         @foreach ($order as $key => $order_data)
                                         <tr> 
-                                            <?php echo "<pre>";
-print_r($order_data);
-                                            echo "</pre>";?> 
+                                             
                                             <td>{{ $i++ }}</td>
                                             <td>{{ $order_data->order_id }} </td>
                                             <td>{{ $order_data->case_id }}</td>

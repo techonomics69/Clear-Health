@@ -66,6 +66,7 @@
 						<section class="card" >
 							<ul class="nav nav-tabs" id="casemanagement-tab-menu">
 
+<?php if("medication_type" == 2) {?>
 
 								<li><a class="btn active " data-toggle="tab" href="#profile">Profile</a></li>
 								<li><a class="btn" data-toggle="tab" href="#order_summary">Order Summary</a></li>
@@ -442,6 +443,7 @@
 </div>
 </div>
 </div>
+<?php } ?>
 @endsection
 
 @section('scriptsection')

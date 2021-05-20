@@ -237,7 +237,7 @@ public function ProductRecommend(Request $request)
     if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_5'){
  
         $answer = $value->answer;
-
+$data1 = json_encode($answer);
         if(isset($answer)){
             if($answer == 'Benzoyl Peroxide'){
                 $b2 = 0;
@@ -256,6 +256,7 @@ public function ProductRecommend(Request $request)
             }
         }
     }
+
     if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_6'){
  
         $answer = $value->answer;
@@ -320,7 +321,7 @@ if($a+$b>=11){
 }
 
 $data = "a=>".$a." b=>".$b." c=>".$c." a1=>".$a1." a2=>".$a2." a3=>".$a3." b1=>".$b1." b2=>".$b2;
-return $this->sendResponse($data, 'Product recommendation successfully.');   
+return $this->sendResponse($data1, 'Product recommendation successfully.');   
            // }
            // catch(\Exception $ex){
           //  return $this->sendError('Server error', array($ex->getMessage()));

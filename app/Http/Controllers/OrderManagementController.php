@@ -72,6 +72,10 @@ public function show($id)
 {
    $user_case_management_data = CaseManagement::join('users','case_managements.user_id', '=', 'users.id')->select('case_managements.*','users.first_name','users.last_name','users.email')->where('case_managements.id',$id)->first();
     $order = checkout::join('users', 'users.id', '=', 'checkout.user_id')->select('users.first_name','users.last_name','users.email')->where('checkout.user_id',$id);
+    echo "<pre>";
+    print_r($order);
+    echo "</pre>";
+    die();
 
    /*$category = QuizCategory::pluck('name', 'id')->toArray();*/
         //foreach ($user_case_management_data as $key => $value) {

@@ -61,14 +61,11 @@
 						</div>
 					</div> --> 
 				</div>
-				<?php if("medication_type" == 2) { ?>
+				<?php if("medication_type" == 1) { ?>
 				<div class="row">
 					<div class="col-lg-12">
 						<section class="card" >
 							<ul class="nav nav-tabs" id="casemanagement-tab-menu">
-
-
-
 								<li><a class="btn active " data-toggle="tab" href="#profile">Profile</a></li>
 								<li><a class="btn" data-toggle="tab" href="#order_summary">Order Summary</a></li>
 								<li><a class="btn" data-toggle="tab" href="#shipments_shipping_details">Shipments & shipping details</a></li>
@@ -77,7 +74,7 @@
 </div>
 </div>
 
-<?php } else{ ?> 
+<?php } else { ?> 
 
 <div class="row">
 					<div class="col-lg-12">

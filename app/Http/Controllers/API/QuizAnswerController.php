@@ -310,13 +310,30 @@ $a = $a1+$a2+$a3;
 $b = $b1+$b2;
 $c = $c1;
 
+echo "<pre>";
+print_r($a);
+echo "<pre>";
+
+
+echo "<pre>";
+print_r($b);
+echo "<pre>";
+
+
+echo "<pre>";
+print_r($c);
+echo "<pre>";
+
+
 
 if($a+$b>=11){
     $data = 'Accutane';
 }else if($c == 1){
     $data = 'Accutane';
-}else if(($a+$b<11 && $c == 1)||($a+$b>=11 && $c == 0)){
+}else if($a+$b<11 && $c == 1){
  $data = 'Accutane';
+}else if($a+$b>=11 && $c == 0){
+     $data = 'Accutane';
 }else{
     if($ts1 == 1){
         $data = 'Topical_low';

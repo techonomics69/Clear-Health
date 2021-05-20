@@ -240,7 +240,6 @@ Route::group(['middleware' => ['auth']],function(){
     Route::get('admin/ordermanagement', [OrderManagementController::class, 'index'])->name('ordermanagement.index');
     Route::get('admin/ordermanagement/show/{id}/{case_id}', [OrderManagementController::class, 'show'])->name('ordermanagement.show');
 
-
 });
 
 

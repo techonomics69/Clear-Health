@@ -44,7 +44,7 @@ class OrderManagementController extends Controller
 
             
             $product_name = array();
-   $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name')->get()->toArray();//'products.name AS product_name' , 'products.price'
+   $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name')->get();//'products.name AS product_name' , 'products.price'
 
    foreach( $product_details as $k=>$v){
      $product_name[] = $v['product_name'];  

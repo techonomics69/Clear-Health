@@ -311,6 +311,8 @@ $b = $b1+$b2;
 $c = $c1;
 
 
+
+
 if($a+$b>=11){
     $data = 'Accutane';
 }else if($c == 1){

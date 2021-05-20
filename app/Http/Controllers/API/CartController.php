@@ -216,13 +216,9 @@ class CartController extends BaseController
         $cart = Cart::where('user_id', $id)->where('order_type','AddOn')->where('status','pending')->OrderBy('id','desc')->get()->toArray();
             if(isset($cart))
             {
-            echo "<pre>";
-            print_r($cart);
-            echo "</pre>";
-            die();
                 $InsertAddon = Cart::create($data);
             }else {
-                $UpdateAddon = Cart::update($data);
+                $UpdateAddon = Cart::where('user_id', $id)update($data);
             }
             return $this->sendResponse($data, 'Item retrieved successfully.');
         }catch(\Exception $ex){

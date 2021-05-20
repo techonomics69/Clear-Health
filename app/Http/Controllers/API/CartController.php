@@ -211,7 +211,7 @@ class CartController extends BaseController
             $cart = Cart::where('user_id', $id)->where('order_type','AddOn')->where('status','pending')->OrderBy('id','desc')->get();
 
             echo "<pre>";
-            print_r($cart)
+            print_r($cart);
             echo "</pre>";
             die();
             if(isset($cart))

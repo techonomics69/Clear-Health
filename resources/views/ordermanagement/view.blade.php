@@ -201,7 +201,7 @@
  @endphp
  <!-- Start 2nd tab-->
  <div id="questionaire" class="tab-pane fade in">					    
- 	<!-- @foreach($que as $key => $loopdata) -->
+ 
  	<div class="row" style="padding: 10px;">
  		<div class="col-md-12">
  			<section class="card" >
@@ -242,7 +242,7 @@
  		</div>
  	</div>
  </div>  
- <!-- @endforeach  -->
+ 
 
 </div>
 </section>

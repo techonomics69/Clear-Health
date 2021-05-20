@@ -18,9 +18,6 @@
 
 	</style>
 
-	
-
-
 	<div class="content-wrapper">
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-12 mb-2">
@@ -43,13 +40,11 @@
 						</div>
 					</div> --> 
 				</div>
-
-
 				@foreach ($order_non_prescribed as $key => $order_data)
 <?php echo "Heloo 123";
 print_r($order_data); ?>
 
-				<?php if($order_data->medication_type == 2) { ?>
+				<?php if($order_data['medication_type'] == 2) { ?>
 					<div class="row">
 						<div class="col-lg-12">
 							<section class="card" >

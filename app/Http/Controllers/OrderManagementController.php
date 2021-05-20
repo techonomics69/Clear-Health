@@ -55,10 +55,10 @@ class OrderManagementController extends Controller
 
 }
 
-        echo "<pre>";
+        /*echo "<pre>";
         print_r($order);
         echo "</pre>";
-        die();
+        die();*/
 
 return view('ordermanagement.index',compact('order'));
 }

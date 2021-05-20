@@ -208,7 +208,7 @@ class CartController extends BaseController
     public function addonItemUpdate($id)
     {
         try{
-            $cart = Cart::where('user_id', $id)->where('order_type','AddOn')->where('status','purchased')->OrderBy('id','desc')->get();
+            $cart = Cart::where('user_id', $id)->where('order_type','AddOn')->where('status','pending')->OrderBy('id','desc')->get();
 
             echo "<pre>";
             print_r($cart)

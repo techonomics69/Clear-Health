@@ -61,7 +61,8 @@
 						</div>
 					</div> --> 
 				</div>
-				<?php if("medication_type" == 2) { ?>
+				@foreach ($order_non_prescribed as $key => $order_data)
+				<?php if($order_data->medication_type == 2) { ?>
 					<div class="row">
 						<div class="col-lg-12">
 							<section class="card" >
@@ -79,7 +80,7 @@
 													<div class="card-body">
 														<div class="box-block mtb32">
 															<h3 class="font-weight-bold"><span class="text-underline">Basic Information</span></h3>
-															@foreach ($order_non_prescribed as $key => $order_data)
+															
 															<div class="col-md-6  form-group">
 																<strong>FirstName:</strong>
 																{{$order_data['first_name']}}
@@ -104,7 +105,7 @@
 																<strong>Email: </strong>
 																{{$order_data['address']}}
 															</div>
-															@endforeach
+															
 														</div>
 													</div>
 												</section>
@@ -116,7 +117,7 @@
 							</section>
 						</div>
 					</div>
-
+@endforeach
 				<?php } else { ?> 
 
 					<div class="row">

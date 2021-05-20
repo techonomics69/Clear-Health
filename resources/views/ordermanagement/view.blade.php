@@ -18,27 +18,6 @@
 
 	</style>
 
-	{{-- @if(session()->has('que_current_tab'))
-	@php
-	$current_tab_id = 'home'.session()->get('que_current_tab') ;
-	$activeTab = 1;
-	$active = 1 ;
-
-	// unset($products[$key]);
-	@endphp
-	@else
-	@php
-	$current_tab_id = "";
-	$activeTab = 0 ;
-	$active = 0 ;	
-	@endphp
-	@endif
-
-	@php
-	Session::forget('que_current_tab');
-	@endphp --}}
-
-
 	<div class="content-wrapper">
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-12 mb-2">
@@ -61,12 +40,8 @@
 						</div>
 					</div> --> 
 				</div>
-
-
-				@foreach ($order_non_prescribed as $key => $order_data)
-<?php print_r($order_data); ?>
-
-				<?php if($order_data->medication_type == 2) { ?>
+				
+				<?php if($order_non_prescribed['medication_type'] == 2) { ?>
 					<div class="row">
 						<div class="col-lg-12">
 							<section class="card" >
@@ -87,27 +62,27 @@
 															
 															<div class="col-md-6  form-group">
 																<strong>FirstName:</strong>
-																{{$order_data->first_name}}
+																{{$order_non_prescribed->first_name}}
 															</div>
 
 															<div class="col-md-6 form-group">
 																<strong>LastName: </strong>
-																{{$order_data->last_name}}
+																{{$order_non_prescribed->last_name}}
 															</div>
 
 															<div class="col-md-6 form-group">
 																<strong>Email: </strong>
-																{{$order_data->email}}
+																{{$order_non_prescribed->email}}
 															</div>
 
 															<div class="col-md-6 form-group">
-																<strong>Email: </strong>
-																{{$order_data->mobile}}
+																<strong>Phone no: </strong>
+																{{$order_non_prescribed->mobile}}
 															</div>
 
 															<div class="col-md-6 form-group">
-																<strong>Email: </strong>
-																{{$order_data->address}}
+																<strong>Address: </strong>
+																{{$order_non_prescribed->address}}
 															</div>
 															
 														</div>
@@ -123,7 +98,6 @@
 					</div>
 
 				<?php } else { ?> 
-
 					<div class="row">
 						<div class="col-lg-12">
 							<section class="card" >
@@ -255,7 +229,7 @@
 </div>
 </div>
 <?php } ?>
-@endforeach
+
 </div>
 </div>
 @endsection

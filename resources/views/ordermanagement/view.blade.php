@@ -165,12 +165,12 @@
 
 															<div class="col-md-6 form-group">
 																<strong>Gender: </strong>
-																{{$order_non_prescribed['address']}}
+																{{$user_case_management_data['address']}}
 															</div>
 
 															<div class="col-md-6 form-group">
 																<strong>Physician Details: </strong>
-																{{$order_non_prescribed['pharmacy']}}
+																{{$user_case_management_data['pharmacy']}}
 															</div>
 
 														</div>
@@ -179,7 +179,6 @@
 											</div>
 										</div>
 									</div> 
-									 @endforeach
 									<!--End 1st tab-->
 
 									  <!-- @if(session()->has('que_current_tab'))
@@ -252,6 +251,7 @@
 </div>
 </div>
 <?php } ?>
+@endforeach
 </div>
 </div>
 @endsection

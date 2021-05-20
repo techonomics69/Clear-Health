@@ -73,7 +73,7 @@ public function show($id='',$case_id='')
     if($id != ''){
 
     $non_prescribed =  checkout::join('users', 'users.id', '=', 'checkout.user_id')->join('carts','carts.id', '=', 'checkout.cart_id')
-        ->select('users.email','checkout.case_id','checkout.created_at','checkout.order_id','checkout.medication_type','checkout.id','checkout.cart_id','carts.product_price')->where('checkout.id',$id)->orderBy('checkout.id', 'DESC')->get();
+        ->select('users.email','checkout.case_id','checkout.created_at','checkout.order_id','checkout.medication_type','checkout.id','checkout.cart_id','carts.product_price')->where('checkout.id',$id)->first();
     }else{
         $user_case_management_data = CaseManagement::join('users','case_managements.user_id', '=', 'users.id')->select('case_managements.*','users.first_name','users.last_name','users.email','users.mobile','users.address')->where('case_managements.id',$id)->first(); 
     }
@@ -84,7 +84,7 @@ public function show($id='',$case_id='')
         //foreach ($user_case_management_data as $key => $value) {
 /*$quiz= QuizAnswer::join('quizzes','quiz_answers.question_id', '=', 'quizzes.id')->select('quiz_answers.*','quizzes.question','quizzes.category_id')->where('case_id', $user_case_management_data['id'])->OrderBy('id', 'ASC')->get();*/
 
-return view('ordermanagement.view',compact('user_case_management_data'));
+return view('ordermanagement.view',compact( 'non_prescribed','user_case_management_data'));
 }
 
 public function edit($id)

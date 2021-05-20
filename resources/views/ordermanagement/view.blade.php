@@ -117,7 +117,7 @@
 							</section>
 						</div>
 					</div>
-@endforeach
+
 				<?php } else { ?> 
 
 					<div class="row">
@@ -179,9 +179,11 @@
 											</div>
 										</div>
 									</div> 
+									@endforeach
 									<!--End 1st tab-->
 
 									  <!-- @if(session()->has('que_current_tab'))
+
  @php
     $current_tab_id = 'home'.session()->get('que_current_tab') ;
     $activeTab = 1;

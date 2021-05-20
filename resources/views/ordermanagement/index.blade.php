@@ -55,7 +55,7 @@
                                         @foreach ($order as $key => $order_data)
                                         <tr> 
                                             <?php echo "<pre>";
-print_r($order_data)->toArray();
+print_r($order_data);
                                             echo "</pre>";?> 
                                             <td>{{ $i++ }}</td>
                                             <td>{{ $order_data->order_id }} </td>

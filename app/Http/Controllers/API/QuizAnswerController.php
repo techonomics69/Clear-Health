@@ -166,7 +166,10 @@ public function ProductRecommend(Request $request)
 
     $recommendation = json_decode($answer_data[0]['answer']);
 
-   
+   echo "<pre>";
+   print_r($recommendation);
+   echo "<pre>";
+   exit();
 
     $a1 = 0;
     $a2 = 0;

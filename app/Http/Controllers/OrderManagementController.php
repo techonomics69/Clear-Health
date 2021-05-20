@@ -76,10 +76,10 @@ public function show($id)
     if('madication_type' == 2) {
 
    $order = checkout::join('users', 'users.id', '=', 'checkout.user_id')->where('checkout.user_id',$id)->select('users.first_name','users.last_name','users.email')->get();
-   /*echo "<pre>";
+   echo "<pre>";
    print_r($order);
    echo "</pre>";
-   die();*/
+   die();
    return view('ordermanagement.view',compact('order'));
 }
 

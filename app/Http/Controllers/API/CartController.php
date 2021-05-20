@@ -215,7 +215,7 @@ class CartController extends BaseController
             }else{
                 $UpdateAddon = Cart::where('user_id', $id)->update($cart);
             }
-            return $this->sendResponse($data, 'Item retrieved successfully.');
+            return $this->sendResponse($cart, 'Item retrieved successfully.');
         }catch(\Exception $ex){
             return $this->sendError('Server error', array($ex->getMessage()));
         }

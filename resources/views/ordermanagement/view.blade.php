@@ -53,20 +53,21 @@
 					</div>
 				</div>
 			</div>
-				{{-- <div class="content-header-right col-md-6 col-12 mb-2">
+				 <!-- <div class="content-header-right col-md-6 col-12 mb-2">
 						<div class="pull-right">
 						@can('quiz-create')					
 							<a class="btn btn-secondry" href="{{ route('ipledgeimports.create') }}"><i class="fa fa-plus" aria-hidden="true"></i> Case Management </a>
 						@endcan	
 						</div>
-					</div> --}}
+					</div> --> 
 				</div>
+				<?php if("medication_type" == 2) { ?>
 				<div class="row">
 					<div class="col-lg-12">
 						<section class="card" >
 							<ul class="nav nav-tabs" id="casemanagement-tab-menu">
 
-<?php if("medication_type" == 2) {?>
+
 
 								<li><a class="btn active " data-toggle="tab" href="#profile">Profile</a></li>
 								<li><a class="btn" data-toggle="tab" href="#order_summary">Order Summary</a></li>
@@ -302,7 +303,7 @@
 
 												</div>
 											</section>
-											{{-- <table class="table table-responsive-md table-striped table-bordered c_profile" style="width:100%">
+											 <!-- <table class="table table-responsive-md table-striped table-bordered c_profile" style="width:100%">
 												<thead>
 													<tr>
 														<th>User First Name</th>
@@ -333,7 +334,7 @@
 													</tr>
 
 												</tbody>
-											</table> --}}
+											</table> --> 
 										</div>
 									</div>
 								</div>  
@@ -443,7 +444,9 @@
 </div>
 </div>
 </div>
+
 <?php } ?>
+
 @endsection
 
 @section('scriptsection')

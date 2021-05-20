@@ -79,32 +79,32 @@
 													<div class="card-body">
 														<div class="box-block mtb32">
 															<h3 class="font-weight-bold"><span class="text-underline">Basic Information</span></h3>
-
+ @foreach ($order_non_prescribed as $key => $order_data)
 															<div class="col-md-6  form-group">
 																<strong>FirstName:</strong>
-																{{$order_non_prescribed['first_name']}}
+																{{$order_data['first_name']}}
 															</div>
 
 															<div class="col-md-6 form-group">
 																<strong>LastName: </strong>
-																{{$order_non_prescribed['last_name']}}
+																{{$order_data['last_name']}}
 															</div>
 
 															<div class="col-md-6 form-group">
 																<strong>Email: </strong>
-																{{$order_non_prescribed['email']}}
+																{{$order_data['email']}}
 															</div>
 
 															<div class="col-md-6 form-group">
 																<strong>Email: </strong>
-																{{$order_non_prescribed['mobile']}}
+																{{$order_data['mobile']}}
 															</div>
 
 															<div class="col-md-6 form-group">
 																<strong>Email: </strong>
-																{{$order_non_prescribed['address']}}
+																{{$order_data['address']}}
 															</div>
-
+ @endforeach
 														</div>
 													</div>
 												</section>
@@ -243,7 +243,7 @@
  	</div>
  </div>  
  <!-- @endforeach  -->
- 
+
 								</div>
 							</section>
 						</div>

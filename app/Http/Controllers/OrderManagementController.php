@@ -74,13 +74,14 @@ public function show($id)
 
    if('madication_type' == 2){
      $order = checkout::join('users', 'users.id', '=', 'checkout.user_id')->select('users.first_name','users.last_name','users.email')->where('checkout.user_id',$id)->get();
-   }
-   
-
-    echo "<pre>";
+     echo "<pre>";
     print_r($order);
     echo "</pre>";
     die();
+   }
+   
+
+    
 
    /*$category = QuizCategory::pluck('name', 'id')->toArray();*/
         //foreach ($user_case_management_data as $key => $value) {

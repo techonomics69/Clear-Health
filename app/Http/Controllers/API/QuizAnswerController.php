@@ -164,14 +164,7 @@ public function ProductRecommend(Request $request)
 
     $answer_data = Answers::where('user_id', $user_id)->where('case_id', $case_id)->get();
 
-    echo "<pre>";
-   print_r($answer_data);
-   echo "<pre>";
-   exit();
-
     $recommendation = json_decode($answer_data[0]['answer']);
-
-   
 
     $a1 = 0;
     $a2 = 0;
@@ -187,12 +180,6 @@ public function ProductRecommend(Request $request)
         if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_1'){
           
          $answer = $value->answer;
-
-         echo "<pre>";
-         print_r($answer);
-         echo "<pre>";
-         exit();
-         
 
          if(isset($answer)){
             if($answer == 'just a few pimples here and there. Mostly whiteheads and blackheads with a few inflamed bumps here and there.'){
@@ -315,22 +302,6 @@ public function ProductRecommend(Request $request)
 $a = $a1+$a2+$a3;
 $b = $b1+$b2;
 $c = $c1;
-
-echo "<pre>";
-print_r($a);
-echo "<pre>";
-
-
-echo "<pre>";
-print_r($b);
-echo "<pre>";
-
-
-echo "<pre>";
-print_r($c);
-echo "<pre>";
-
-
 
 if($a+$b>=11){
     $data = 'Accutane';

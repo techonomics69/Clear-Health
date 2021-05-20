@@ -164,12 +164,14 @@ public function ProductRecommend(Request $request)
 
     $answer_data = Answers::where('user_id', $user_id)->where('case_id', $case_id)->get();
 
-    $recommendation = json_decode($answer_data[0]['answer']);
-
-   echo "<pre>";
-   print_r($recommendation);
+    echo "<pre>";
+   print_r($answer_data);
    echo "<pre>";
    exit();
+
+    $recommendation = json_decode($answer_data[0]['answer']);
+
+   
 
     $a1 = 0;
     $a2 = 0;

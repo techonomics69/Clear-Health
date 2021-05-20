@@ -68,26 +68,22 @@
                                             } ?></td>
 
                                             <td>
-                                                <?php  
-                                                if($order_data->id != ''){
-                                                    $checkout_id= $order_data->id;
-                                                }else{
-                                                    $checkout_id = 0;
-                                                }
+                                                <?php
                                                 if($order_data->case_id != '')
-                                                {
-                                                    $case_id = $order_data->case_id;
-                                                }else{
-                                                    $case_id=0;
-                                                }
-                                                ?>
-                                                <div class="d-flex">
-                                                    <a class="icons edit-icon" href="{{ route('ordermanagement.show',$checkout_id,$case_id) }}">
-                                                        <i class="fa fa-eye"></i>
-                                                    </a> 
-                                                </div>        
-                                                
-                                            </td>
+                                                    {?>
+
+                                                        <div class="d-flex">
+                                                            <a class="icons edit-icon" href="{{ route('ordermanagement.show',$order_data->case_id) }}">
+                                                                <i class="fa fa-eye"></i>
+                                                            </a> 
+                                                        </div>        
+                                                    <?php  } else{ ?> <div class="d-flex">
+                                                            <a class="icons edit-icon" href="{{ route('ordermanagement.non_prescribed',$order_data->id) }}">
+                                                                <i class="fa fa-eye"></i>
+                                                            </a> 
+                                                        </div> <?php }
+                                                    ?>
+                                                </td>
                                             </tr>
                                             @endforeach
                                         </tbody>

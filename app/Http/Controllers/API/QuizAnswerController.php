@@ -304,6 +304,7 @@ $data1 = json_encode($answer);
 } 
 $a = $a1+$a2+$a3;
 //$b = $b1+$b2;
+$b = 0;
 $c = $c1;
 
 /*echo '<script>console.log("a-"'.$a."b-".$b."c-".$c.'); </script>';*/

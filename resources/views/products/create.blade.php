@@ -44,6 +44,20 @@
                 <div class="card-body">
                 {!! Form::open(array('route' => 'products.store','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
                     <div class="row">
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <strong>Name:</strong>
+                                        <span class="required">*</span>
+                                        {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <strong>Sub Title:</strong>
+                                    <span class="required">*</span>
+                                     {!! Form::text('sub_title', null, array('placeholder' => 'Sub Title','class' => 'form-control')) !!}
+                                </div>
+                            </div>
                             <div class="col-md-4 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <strong>Status:</strong>
@@ -58,13 +72,7 @@
                                         {!! Form::text('available_date', null, array('placeholder' => 'Available Date','class' => 'form-control available_date', 'readonly' => 'readonly')) !!}
                                     </div>
                                 </div>
-                                <div class="col-md-4 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <strong>Name:</strong>
-                                        <span class="required">*</span>
-                                        {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
-                                    </div>
-                                </div>
+                                
                             <div class="col-md-4 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <strong>Category:</strong>
@@ -86,13 +94,7 @@
                                     {!! Form::select('product_active', ['0' => 'Please Select', '1' => 'Active', '2' => 'In Active', '3' => 'Do no show'], null, ['class' => 'form-control']); !!}
                                 </div>
                             </div>
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <strong>Sub Title:</strong>
-                                    <span class="required">*</span>
-                                     {!! Form::text('sub_title', null, array('placeholder' => 'Sub Title','class' => 'form-control')) !!}
-                                </div>
-                            </div>
+                            
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <strong>Short Description:</strong>

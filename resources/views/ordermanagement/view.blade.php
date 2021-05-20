@@ -76,12 +76,12 @@
 															</div>
 
 															<div class="col-md-6 form-group">
-																<strong>Email: </strong>
+																<strong>Phone no: </strong>
 																{{$order_non_prescribed->mobile}}
 															</div>
 
 															<div class="col-md-6 form-group">
-																<strong>Email: </strong>
+																<strong>Address: </strong>
 																{{$order_non_prescribed->address}}
 															</div>
 															

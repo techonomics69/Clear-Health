@@ -40,9 +40,8 @@ class OrderManagementController extends Controller
         ->select('users.email','checkout.case_id','checkout.created_at','checkout.order_id','checkout.medication_type','checkout.id','checkout.cart_id','carts.product_price')->orderBy('checkout.id', 'DESC')->get();
 
         foreach($order as $key=>$val){
-            $cart_ids = explode(',', $val['cart_id']);
 
-            
+            $cart_ids = explode(',', $val['cart_id']);
             $product_name = array();
    $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name')->get();//'products.name AS product_name' , 'products.price'
 
@@ -53,7 +52,9 @@ class OrderManagementController extends Controller
  $order[$key]->product_name = implode(',',$product_name);
 
 }
-
+echo "<pre>";
+print_r($order);
+echo "</pre>";
 
 return view('ordermanagement.index',compact('order'));
 }

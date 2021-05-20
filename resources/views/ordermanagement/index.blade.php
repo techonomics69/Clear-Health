@@ -68,7 +68,7 @@
                                             } ?></td>
 
                                             <td>
-                                                <?php 
+                                                <?php print_r($order_data->case_id);
                                                 if($order_data->case_id != '')
                                                     {?>
 

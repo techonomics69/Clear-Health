@@ -36,7 +36,7 @@
                         <section class="card" >
                             <div class="row" style="padding: 20px;">
                                 <div class="col-md-12">
-                                 <table class="table table-responsive-md table-striped table-bordered " style="width:100%" id="ordermanagement">
+                                   <table class="table table-responsive-md table-striped table-bordered " style="width:100%" id="ordermanagement">
                                     <thead>
                                         <tr>
                                             <th width="60px">SR No</th>
@@ -76,41 +76,38 @@
                                                             <a class="icons edit-icon" href="{{ route('ordermanagement.show',$order_data->case_id) }}">
                                                                 <i class="fa fa-eye"></i>
                                                             </a> 
-                                <!-- <a class="icons edit-icon" href="">
-                                    <i class="fa fa-edit"></i>
-                                </a> -->
-                                <!-- <a class="icons edit-icon category_delete" href="#" id="" onclick="">
-                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                </a> -->
-                                <!-- <button type="submit" class="btn btn-danger btn_delete" style="display:none;">Delete</button>  -->                               
-                            </div>        
-                        <?php  }
-                        ?>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-</div>
-</section>
-</div>
-</div>
-</div>
-</div>
-@endsection
+                                                        </div>        
+                                                    <?php  } else{ ?> <div class="d-flex">
+                                                            <a class="icons edit-icon" href="{{ route('ordermanagement.non_prescribed',$order_data->case_id) }}">
+                                                                <i class="fa fa-eye"></i>
+                                                            </a> 
+                                                        </div> <?php }
+                                                    ?>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endsection
 
-@section('scriptsection')
+        @section('scriptsection')
 
-<script>
-    $.noConflict();
-    jQuery( document ).ready(function( $ ) {
-        $('#ordermanagement').DataTable({
-            "dom": '<"top"if>rt<"bottom"lp><"clear">',
-            "oSearch": { "bSmart": false, "bRegex": true }
-        });
-    });
-</script>
-@endsection
+        <script>
+            $.noConflict();
+            jQuery( document ).ready(function( $ ) {
+                $('#ordermanagement').DataTable({
+                    "dom": '<"top"if>rt<"bottom"lp><"clear">',
+                    "oSearch": { "bSmart": false, "bRegex": true }
+                });
+            });
+        </script>
+        @endsection
 
 

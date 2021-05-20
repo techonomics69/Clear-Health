@@ -84,7 +84,7 @@
 																<strong>Email: </strong>
 																{{$order_data->address}}
 															</div>
-															@endforeach
+															
 														</div>
 													</div>
 												</section>
@@ -229,7 +229,7 @@
 </div>
 </div>
 <?php } ?>
-
+@endforeach
 </div>
 </div>
 @endsection

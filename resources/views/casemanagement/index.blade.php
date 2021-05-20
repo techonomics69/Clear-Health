@@ -101,7 +101,21 @@
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
     });
 
-    
+    $.ajax({
+            method:"post",
+            url:"{{url('/CaseStatus')}}",
+            data: {
+                "_token": "{{ csrf_token() }}",
+            },
+            dataType: "json",
+            beforeSend: function(){
+          //$(".outer-loader").show();
+        },
+            success:function(res){ 
+                
+                 alert(res);  
+            }
+        });
   });
 </script>
 @endsection

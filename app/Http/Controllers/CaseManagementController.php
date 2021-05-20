@@ -199,4 +199,8 @@ class CaseManagementController extends Controller
     
 }
 
+public function getCaseStatus(){
+    echo "get case status here";
+}
+
 }

@@ -15,6 +15,7 @@ class FrontStatusTableDataSeeder extends Seeder
     public function run()
     {
          DB::table('front_status')->insert([
+         	[
             'status' => 'Default prescription to MD',
         ],
         [
@@ -51,6 +52,6 @@ class FrontStatusTableDataSeeder extends Seeder
             'status' => 'Local pharmacy–Ready for pickup',
         ]
 
-    );
+    ]);
     }
 }

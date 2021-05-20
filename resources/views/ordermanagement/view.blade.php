@@ -62,6 +62,8 @@
 					</div> --> 
 				</div>
 				@foreach ($order_non_prescribed as $key => $order_data)
+<?php print_r($order_data); ?>
+
 				<?php if($order_data->medication_type == 2) { ?>
 					<div class="row">
 						<div class="col-lg-12">

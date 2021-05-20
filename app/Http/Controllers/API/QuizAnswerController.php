@@ -202,13 +202,13 @@ public function ProductRecommend(Request $request)
         if(isset($answer)){
             if($answer == 'It doesn’t really bother me'){
                 $a2 = 1;
-            }else if($answer == 'I do notice that it’s there but it doesn’t prevent me from doing day to day things'){
+            }else if($answer == 'I do notice that it’s there, but it doesn’t prevent me from doing day to day things'){
                 $a2 = 2;
             }else if($answer == 'It bothers me and I do feel self-conscious about it sometimes when other people point it out'){
                 $a2 = 3;
             }else if($answer == 'It bothers me a lot.I sometimes skip out on things because of my acne and it affects my self-esteem.'){
                 $a2 = 4;
-            }else if($answer == 'My acne is the primary thing that holds back my confidence and I feel like it holds me back from enjoying things as much as I want to.'){
+            }else if($answer == 'My acne is the primary thing that holds back my confidence, and I feel like it holds me back from enjoying things as much as I want to.'){
                 $a2 = 5;
             }
         }
@@ -242,21 +242,17 @@ public function ProductRecommend(Request $request)
         $answer = $value->answer;
 
         if(isset($answer)){
-            if($answer == 'Topical Retinoids (Differin Retin-A Tazorac etc.)'){
+            if($answer == 'Benzoyl Peroxide'){
                 $b2 = 0;
-            }else if($answer == 'Topical Antibiotics (Benzaclin Duac etc.)'){
+            }else if($answer == 'Salicylic Acid'){
                 $b2 = 0;
-            }else if($answer == 'Combination Antibiotic/Retinoid cream'){
-                $b2 = 0;
-            }else if($answer == 'Oral Antibiotics (Doxycycline Minocycline Azythromycin etc.)'){
-                $b2 = 0;
-            }else if($answer == 'Oral Contraceptives (Yaz Ortho Tri-Cyclen)'){
-                $b2 = 1;
-            }else if($answer == 'Azelaic Acid (Azelex Finacea)'){
-                $b2 = 1;
             }else if($answer == 'Dapsone (Aczone)'){
+                $b2 = 0;
+            }else if($answer == 'Topical Retinoids (Differin, Retin-A, Tazorac, etc.)'){
+                $b2 = 0;
+            }else if($answer == 'Topical Antibiotics (Benzaclin, Duac, etc.)'){
                 $b2 = 1;
-            }else if($answer == 'Accutane (Isotretinoin)'){
+            }else if($answer == 'Azelaic Acid (Azelex, Finacea)'){
                 $b2 = 1;
             }else if($answer == 'Other'){
                 $b2 = 1;

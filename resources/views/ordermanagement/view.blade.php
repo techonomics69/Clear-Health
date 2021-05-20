@@ -83,27 +83,27 @@
 															
 															<div class="col-md-6  form-group">
 																<strong>FirstName:</strong>
-																{{$order_data['first_name']}}
+																{{$order_data->first_name}}
 															</div>
 
 															<div class="col-md-6 form-group">
 																<strong>LastName: </strong>
-																{{$order_data['last_name']}}
+																{{$order_data->last_name}}
 															</div>
 
 															<div class="col-md-6 form-group">
 																<strong>Email: </strong>
-																{{$order_data['email']}}
+																{{$order_data->email}}
 															</div>
 
 															<div class="col-md-6 form-group">
 																<strong>Email: </strong>
-																{{$order_data['mobile']}}
+																{{$order_data->mobile}}
 															</div>
 
 															<div class="col-md-6 form-group">
 																<strong>Email: </strong>
-																{{$order_data['address']}}
+																{{$order_data->address}}
 															</div>
 															
 														</div>

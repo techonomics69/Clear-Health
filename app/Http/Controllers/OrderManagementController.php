@@ -75,10 +75,11 @@ class OrderManagementController extends Controller
 
     public function show($id)
     {
-        
+
      $order_non_prescribed =  checkout::join('users', 'users.id', '=', 'checkout.user_id')->join('carts','carts.id', '=', 'checkout.cart_id')
      ->select('users.email','checkout.case_id','checkout.created_at','checkout.order_id','checkout.medication_type','checkout.id','checkout.cart_id','carts.product_price','users.first_name','users.last_name','users.email','users.mobile','users.address')->where('checkout.id',$id)->first();
-     
+
+
      $user_case_management_data = CaseManagement::join('users','case_managements.user_id', '=', 'users.id')->select('case_managements.*','users.first_name','users.last_name','users.email','users.mobile','users.address')->where('case_managements.id',$id)->first();
 
      $category = QuizCategory::pluck('name', 'id')->toArray();

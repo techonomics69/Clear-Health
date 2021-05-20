@@ -70,6 +70,9 @@ public function store(Request $request)
 
 public function show($id='',$case_id='')
 {
+    echo "<pre>";
+    print_r($id.$case_id)."123";
+    echo "</pre>";
     if($id != ''){
 
          die("ini");

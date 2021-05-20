@@ -70,6 +70,49 @@
 									<li><a class="btn" data-toggle="tab" href="#order_summary">Order Summary</a></li>
 									<li><a class="btn" data-toggle="tab" href="#shipments_shipping_details">Shipments & shipping details</a></li>
 								</ul>
+								<div class="tab-content">
+									<!--start 1st tab-->
+									<div id="profile" class="tab-pane fade in active show">
+										<div class="row" style="padding: 20px;">
+											<div class="col-md-12">
+												<section class="card">
+													<div class="card-body">
+														<div class="box-block mtb32">
+															<h3 class="font-weight-bold"><span class="text-underline">Basic Information</span></h3>
+
+															<div class="col-md-6  form-group">
+																<strong>FirstName:</strong>
+																{{$order_non_prescribed['first_name']}}
+															</div>
+
+															<div class="col-md-6 form-group">
+																<strong>LastName: </strong>
+																{{$order_non_prescribed['last_name']}}
+															</div>
+
+															<div class="col-md-6 form-group">
+																<strong>Email: </strong>
+																{{$order_non_prescribed['email']}}
+															</div>
+
+															<div class="col-md-6 form-group">
+																<strong>Email: </strong>
+																{{$order_non_prescribed['mobile']}}
+															</div>
+
+															<div class="col-md-6 form-group">
+																<strong>Email: </strong>
+																{{$order_non_prescribed['address']}}
+															</div>
+
+														</div>
+													</div>
+												</section>
+											</div>
+										</div>
+									</div> 
+									<!--End 1st tab--> 
+								</div>
 							</section>
 						</div>
 					</div>
@@ -82,60 +125,173 @@
 								<ul class="nav nav-tabs" id="casemanagement-tab-menu">
 									<li><a class="btn active " data-toggle="tab" href="#profile">Profile</a></li>
 									<li><a class="btn" data-toggle="tab" href="#questions">Questions</a></li>
-										<li><a class="btn" data-toggle="tab" href="#skincare_summary">Skincare Summary </a></li>
-											<li><a class="btn" data-toggle="tab" href="#action_items">Action Items </a></li>
-												<li><a class="btn" data-toggle="tab" href="#messages">Messages</a></li>
-												<li><a class="btn" data-toggle="tab" href="#photos">Photos </a></li>
-												<li><a class="btn" data-toggle="tab" href="#payments">Payments </a></li>
-												<li><a class="btn" data-toggle="tab" href="#shipments_shipping_details">Shipments & shipping details</a></li>
-											</ul>
-										</section>
-									</div>
+									<li><a class="btn" data-toggle="tab" href="#skincare_summary">Skincare Summary </a></li>
+									<li><a class="btn" data-toggle="tab" href="#action_items">Action Items </a></li>
+									<li><a class="btn" data-toggle="tab" href="#messages">Messages</a></li>
+									<li><a class="btn" data-toggle="tab" href="#photos">Photos </a></li>
+									<li><a class="btn" data-toggle="tab" href="#payments">Payments </a></li>
+									<li><a class="btn" data-toggle="tab" href="#shipments_shipping_details">Shipments & shipping details</a></li>
+								</ul>
+								<div class="tab-content">
+									<!--start 1st tab-->
+									<div id="profile" class="tab-pane fade in active show">
+										<div class="row" style="padding: 20px;">
+											<div class="col-md-12">
+												<section class="card">
+													<div class="card-body">
+														<div class="box-block mtb32">
+															<h3 class="font-weight-bold"><span class="text-underline">Basic Information</span></h3>
+															
+															<div class="col-md-6  form-group">
+																<strong>FirstName:</strong>
+																{{$user_case_management_data['first_name']}}
+															</div>
+
+															<div class="col-md-6 form-group">
+																<strong>LastName: </strong>
+																{{$user_case_management_data['last_name']}}
+															</div>
+
+															<div class="col-md-6 form-group">
+																<strong>Email: </strong>
+																{{$user_case_management_data['email']}}
+															</div>
+
+															<div class="col-md-6 form-group">
+																<strong>Mobile: </strong>
+																{{$user_case_management_data['mobile']}}
+															</div>
+
+															<div class="col-md-6 form-group">
+																<strong>Gender: </strong>
+																{{$order_non_prescribed['address']}}
+															</div>
+
+															<div class="col-md-6 form-group">
+																<strong>Physician Details: </strong>
+																{{$order_non_prescribed['pharmacy']}}
+															</div>
+
+														</div>
+													</div>
+												</section>
+											</div>
+										</div>
+									</div> 
+									<!--End 1st tab-->
+
+									  <!-- @if(session()->has('que_current_tab'))
+ @php
+    $current_tab_id = 'home'.session()->get('que_current_tab') ;
+    $activeTab = 1;
+    $active = 1 ;
+   
+   // unset($products[$key]);
+    @endphp
+ @else
+ @php
+ $current_tab_id = "";
+ $activeTab = 0 ;
+ $active = 0 ;	
+ @endphp
+ @endif -->
+
+ @php
+ Session::forget('que_current_tab');
+ @endphp
+ <!-- Start 2nd tab-->
+ <div id="questionaire" class="tab-pane fade in">					    
+ 	<!-- @foreach($que as $key => $loopdata) -->
+ 	<div class="row" style="padding: 10px;">
+ 		<div class="col-md-12">
+ 			<section class="card" >
+ 				<ul class="nav nav-tabs" id="question-tab-menu">
+
+ 					@foreach($category as $key => $data)
+ 					{{-- <li><a class="btn @if($activeTab == 0) active @elseif($current_tab_id == 'home'.$key) active @endif" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li> --}}
+
+ 					<li><a class="btn" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li>
+ 					<?php //$activeTab++ ?> 
+ 					@endforeach
+ 				</ul>
+ 				<div class="tab-content">
+ 					<?php $i=0 ?>
+ 					@foreach($category as $key => $data)
+ 					<div id="home{{$key}}" class="tab-pane fade in @if($i== 0) active show @endif">					    
+ 						@foreach($quiz as $key1 => $que)
+ 						<div class="row" style="padding: 10px;">
+ 							<div class="col-md-12">
+ 								<?php 
+ 								if($que['category_id']== $key){
+
+ 									echo "<h4><strong>Que:".$que['question']."</strong></h4>";
+ 									echo "<p>Ans:".$que['answer']."</p>";
+ 								}
+ 								?>
+
+ 							</div>
+ 						</div>
+ 						<?php $i++ ?>
+ 						@endforeach
+ 					</div> 
+ 					@endforeach 
+ 					
+
+ 				</div>
+ 			</section>
+ 		</div>
+ 	</div>
+ </div>  
+ <!-- @endforeach  -->
+ 
 								</div>
-							<?php } ?>
+							</section>
 						</div>
 					</div>
-					@endsection
+				<?php } ?>
+			</div>
+		</div>
+		@endsection
 
-					@section('scriptsection')
+		@section('scriptsection')
 
-					<script>
-						$.noConflict();
-						jQuery( document ).ready(function( $ ) {
-							$('.c_profile').DataTable({
-								"dom": '<"top"if>rt<"bottom"lp><"clear">',
-								"oSearch": { "bSmart": false, "bRegex": true },
-								"scrollX": true,
-							});
-						});
+		<script>
+			$.noConflict();
+			jQuery( document ).ready(function( $ ) {
+				$('.c_profile').DataTable({
+					"dom": '<"top"if>rt<"bottom"lp><"clear">',
+					"oSearch": { "bSmart": false, "bRegex": true },
+					"scrollX": true,
+				});
+			});
 
-						$(document).on('click', '#i_pledge_agreement', function() {
-							$('#i_pledge_agreement_form').submit();
-						});
-					</script>
+			$(document).on('click', '#i_pledge_agreement', function() {
+				$('#i_pledge_agreement_form').submit();
+			});
+		</script>
 
 
-					@if (count($errors) > 0)
-					<script type="text/javascript">
-						$('html, body').animate({
-							scrollTop: $("#testreoprtdiv").offset().top
-						}, 2000);
-					</script>
-					@endif
+		@if (count($errors) > 0)
+		<script type="text/javascript">
+			$('html, body').animate({
+				scrollTop: $("#testreoprtdiv").offset().top
+			}, 2000);
+		</script>
+		@endif
 
-					@endsection
-					<style>
-						.tab-content h4{
-							font-size:16px;
-						}
-						.tab-content p{
-							font-size:16px;
-							margin-bottom:0;
-						}
-						.inner-section {
-							width: 100%;
+		@endsection
+		<style>
+			.tab-content h4{
+				font-size:16px;
+			}
+			.tab-content p{
+				font-size:16px;
+				margin-bottom:0;
+			}
+			.inner-section {
+				width: 100%;
 
-						}
-					</style>
+			}
+		</style>
 
 

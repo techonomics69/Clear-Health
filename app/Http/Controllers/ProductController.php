@@ -57,6 +57,7 @@ class ProductController extends Controller
             'status' => 'required|not_in:0',
             'available_date' => 'required',
             'name' => 'required|unique:products,name|regex:/^[\pL\s\-]+$/u',
+            'sub_title' => 'required|unique:products,sub_title|regex:/^[\pL\s\-]+$/u',
             'category_id' => 'required|not_in:0',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
             'image_detail' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
@@ -153,7 +154,8 @@ class ProductController extends Controller
         $this->validate($request, [
             'status' => 'required|not_in:0',
             'available_date' => 'required',
-            'name' => 'required|unique:products,name,'.$product->id.'|regex:/^[\pL\s\-]+$/u', 
+            'name' => 'required|unique:products,name,'.$product->id.'|regex:/^[\pL\s\-]+$/u',
+            'sub_title' => 'required|unique:products,sub_title|regex:/^[\pL\s\-]+$/u', 
             'category_id' => 'required|not_in:0',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5000',
             'retails_price' => 'required|numeric|min:1', 

@@ -15,6 +15,7 @@ class CreateFrontStatusTable extends Migration
     {
         Schema::create('front_status', function (Blueprint $table) {
             $table->id();
+            $table->string("status");
             $table->timestamps();
         });
     }

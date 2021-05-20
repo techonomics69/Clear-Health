@@ -244,9 +244,9 @@ public function ProductRecommend(Request $request)
             }else if($answer == 'Salicylic Acid'){
                 $b2 = 0;
             }else if($answer == 'Dapsone (Aczone)'){
-                $b2 = 0;
+                $b2 = 1;
             }else if($answer == 'Topical Retinoids (Differin, Retin-A, Tazorac, etc.)'){
-                $b2 = 0;
+                $b2 = 1;
             }else if($answer == 'Topical Antibiotics (Benzaclin, Duac, etc.)'){
                 $b2 = 1;
             }else if($answer == 'Azelaic Acid (Azelex, Finacea)'){

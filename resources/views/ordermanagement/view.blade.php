@@ -95,7 +95,6 @@
 							<?php } ?>
 						</div>
 					</div>
-				
 					@endsection
 
 					@section('scriptsection')

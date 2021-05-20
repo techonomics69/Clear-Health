@@ -303,7 +303,7 @@ $a = $a1+$a2+$a3;
 $b = $b1+$b2;
 $c = $c1;
 
-echo '<script>console.log("a-"'.$a."b-".$b."c-".$c.'); </script>';
+/*echo '<script>console.log("a-"'.$a."b-".$b."c-".$c.'); </script>';*/
 
 if($a+$b>=11){
     $data = 'Accutane';

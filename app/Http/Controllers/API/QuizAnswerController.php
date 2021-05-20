@@ -169,8 +169,8 @@ public function ProductRecommend(Request $request)
     $a1 = 0;
     $a2 = 0;
     $a3 = 0;
-    $b1 = 0;
-    $b2 = 0;
+    $b1 = 0; 
+    $b2 = [];
     $c1 = 0;
     $ts1 = 0;
     $ts2 = 0;

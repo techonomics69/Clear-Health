@@ -41,8 +41,12 @@
            
            <div class="card-body">
         <div class="form-group">
-            <strong>Name:</strong>
+            <strong>Product Name:</strong>
             {{ $product->name }}
+        </div>
+        <div class="form-group">
+            <strong>Product Sub title</strong>
+            {{$product->sub_title}}
         </div>
         <div class="form-group">
             <strong>Status:</strong>

@@ -179,7 +179,7 @@
 											</div>
 										</div>
 									</div> 
-									@endforeach
+									 @endforeach
 									<!--End 1st tab-->
 
 									  <!-- @if(session()->has('que_current_tab'))

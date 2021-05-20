@@ -70,9 +70,9 @@
                                            <td>
                                                 <?php  
                                                 if($order_data->id != ''){
-                                                    $checkout_id= $order_data->id;
+                                                    $id= $order_data->id;
                                                 }else{
-                                                    $checkout_id = 0;
+                                                    $id = 0;
                                                 }
                                                 if($order_data->case_id != '')
                                                 {
@@ -82,7 +82,7 @@
                                                 }
                                                 ?>
                                                 <div class="d-flex">
-                                                    <a class="icons edit-icon" href="{{ route('ordermanagement.show',$checkout_id,$case_id) }}">
+                                                    <a class="icons edit-icon" href="{{ route('ordermanagement.show',$id,$case_id) }}">
                                                         <i class="fa fa-eye"></i>
                                                     </a> 
                                                 </div>        

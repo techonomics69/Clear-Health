@@ -87,13 +87,6 @@
                                     {!! Form::number('retails_price', null, array('placeholder' => 'Price (Retail)','class' => 'form-control')) !!}
                                 </div>
                             </div>
-                             <div class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <strong>Product Status:</strong>
-                                    <span class="required">*</span>
-                                    {!! Form::select('product_active', ['0' => 'Please Select', '1' => 'Active', '2' => 'In Active', '3' => 'Do no show'], null, ['class' => 'form-control']); !!}
-                                </div>
-                            </div>
                             
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
@@ -163,6 +156,13 @@
                                         {!! Form::select('weight_unit', ['Kilogram(kg)'=>'Kilogram(kg)', 'Gram(g)'=>'Gram(g)'], null, ['class' => 'form-control']) !!}
                                     </div>
                                 </div>
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <strong>Product Status:</strong>
+                                    <span class="required">*</span>
+                                    {!! Form::select('product_active', ['0' => 'Please Select', '1' => 'Active', '2' => 'In Active', '3' => 'Do no show'], null, ['class' => 'form-control']); !!}
+                                </div>
+                            </div>
 
                             
                    </div>

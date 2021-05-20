@@ -71,7 +71,7 @@
                                             echo $order_data->case_id;
                                                 echo $order_data->id;
                                                 ?>
-                                                <?php  
+                                                <!-- <?php  
 
                                                 
 
@@ -92,7 +92,7 @@
                                                     <a class="icons edit-icon" href="{{ route('ordermanagement.show',$checkout_id,$case_id) }}">
                                                         <i class="fa fa-eye"></i>
                                                     </a> 
-                                                </div>        
+                                                </div>   -->      
                                                 
                                             </td>
                                             </tr>

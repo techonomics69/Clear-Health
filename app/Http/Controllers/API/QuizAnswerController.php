@@ -182,6 +182,11 @@ public function ProductRecommend(Request $request)
         if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_1'){
           
          $answer = $value->answer;
+
+         echo "<pre>";
+         print_r($answer);
+         echo "<pre>";
+         exit();
          
 
          if(isset($answer)){

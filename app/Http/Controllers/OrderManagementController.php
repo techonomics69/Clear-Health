@@ -85,14 +85,6 @@ class OrderManagementController extends Controller
         foreach($product_details as $product_key=>$product_value){
            $product_name[] = $product_value['product_name'];  
        }
-
-     /*if(isset($val['medication_type']))
-     {
-        $order_non_prescribed[$key]['medication_type'] = $val['medication_type'];
-     }else{
-        $order_non_prescribed[$key]['medication_type']= '';
-    }*/
-
     $order_non_prescribed[$key]->product_name = implode(',',$product_name);    
 }
 

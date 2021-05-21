@@ -220,15 +220,15 @@ class CartController extends BaseController
                 $UpdateAddon = $cart->update($data);
             } else {
 
-               $InsertAddon = Cart::create($data);
-           }
-           return $this->sendResponse($data, 'Update Data successfully.');
-       }catch(\Exception $ex){
-          return $this->sendError('Server error', array($ex->getMessage()));  
-      }
+             $InsertAddon = Cart::create($data);
+         }
+         return $this->sendResponse($data, 'Update Data successfully.');
+     }catch(\Exception $ex){
+      return $this->sendError('Server error', array($ex->getMessage()));  
   }
-  public function cartRemove(Request $request,$id)
-  {
+}
+public function cartRemove(Request $request,$id)
+{
     $data = $request->all();
 
     try{
@@ -237,14 +237,32 @@ class CartController extends BaseController
 
         if(isset($cart))
         {
-           $deletecart = $cart->delete();  
-        }
+         $deletecart = $cart->delete();  
+     }
         //$cart= $data->delete();
-       return $this->sendResponse($data, 'Item deleted successfully.');
-   }catch(\Exception $ex){
-      return $this->sendError('Server error', array($ex->getMessage()));  
-  }
+     return $this->sendResponse($data, 'Item deleted successfully.');
+ }catch(\Exception $ex){
+  return $this->sendError('Server error', array($ex->getMessage()));  
+}
 }
 
+public function prescribedItemUpdate(Request $request,$id)
+{
+    $data = $request->all();
+    try{
+        $cart = Cart::where('user_id', $id)->where('order_type','Prescribed')->where('status','pending')->OrderBy('id','desc')->first();
+
+        if(isset($cart))
+        {
+            $Updateprescribed = $cart->update($data);
+        } else {
+
+         $Insertprescribed = Cart::create($data);
+     }
+     return $this->sendResponse($data, 'Update Data successfully.');
+ }catch(\Exception $ex){
+  return $this->sendError('Server error', array($ex->getMessage()));  
+}
+}
 
 }

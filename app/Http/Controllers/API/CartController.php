@@ -188,7 +188,7 @@ class CartController extends BaseController
     {
         try{
             $cart = Cart::where('user_id', $id)->where('order_type','AddOn')->where('status','purchased')->OrderBy('id','desc')->first();
-            $data = array();
+            /*$data = array();
             foreach ($cart as $key => $value) {
                 $data[$key]['id'] = $value->id;
                 $data[$key]['pharmacy_pickup'] = $value->pharmacy_pickup;
@@ -199,8 +199,8 @@ class CartController extends BaseController
                 $data[$key]['product_image'] = $value->product->image;
                 $data[$key]['product_price'] = $value->product->price;
                 $data[$key]['product_category'] = $value->product->category->name;
-            }
-            return $this->sendResponse($data, 'Item retrieved successfully.');
+            }*/
+            return $this->sendResponse($cart, 'Item retrieved successfully.');
         }catch(\Exception $ex){
             return $this->sendError('Server error', array($ex->getMessage()));
         }

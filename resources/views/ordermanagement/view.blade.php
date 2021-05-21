@@ -56,8 +56,9 @@
 
 @foreach ($order_non_prescribed as $key => $order_data)
 
-$medication_type=$order_data->medication_type;
+<?php $medication_type=$order_data->medication_type; ?>
 
+<?php echo $medication_type;?>
 @endforeach
 
 <?php 

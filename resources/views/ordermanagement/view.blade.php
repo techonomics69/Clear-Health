@@ -82,7 +82,11 @@
 
 															<div class="col-md-6 form-group">
 																<strong>Address : </strong>
-																{{$order_non_prescribed->address}}
+																{{$order_non_prescribed->addressline1.','}}
+																{{$order_non_prescribed->addressline2.','}}
+																{{$order_non_prescribed->city.','}}
+																{{$order_non_prescribed->state.','}}
+																{{$order_non_prescribed->zipcode}}
 															</div>
 															
 														</div>
@@ -92,6 +96,51 @@
 										</div>
 									</div> 
 									<!--End 1st tab--> 
+									<!--start 2nd tab-->
+									<div id="order_summary" class="tab-pane fade in active show">
+										<div class="row" style="padding: 20px;">
+											<div class="col-md-12">
+												<section class="card">
+													<div class="card-body">
+														<div class="box-block mtb32">
+															<h3 class="font-weight-bold"><span class="text-underline">Order Summary</span></h3>
+															
+															<div class="col-md-6  form-group">
+																<strong>FirstName : </strong>
+																{{$order_non_prescribed->first_name}}
+															</div>
+
+															<div class="col-md-6 form-group">
+																<strong>LastName : </strong>
+																{{$order_non_prescribed->last_name}}
+															</div>
+
+															<div class="col-md-6 form-group">
+																<strong>Email : </strong>
+																{{$order_non_prescribed->email}}
+															</div>
+
+															<div class="col-md-6 form-group">
+																<strong>Phone no : </strong>
+																{{$order_non_prescribed->mobile}}
+															</div>
+
+															<div class="col-md-6 form-group">
+																<strong>Address : </strong>
+																{{$order_non_prescribed->addressline1.','}}
+																{{$order_non_prescribed->addressline2.','}}
+																{{$order_non_prescribed->city.','}}
+																{{$order_non_prescribed->state.','}}
+																{{$order_non_prescribed->zipcode}}
+															</div>
+															
+														</div>
+													</div>
+												</section>
+											</div>
+										</div>
+									</div> 
+									<!-- End 2nd tab-->
 								</div>
 							</section>
 						</div>
@@ -109,7 +158,6 @@
 									<li><a class="btn" data-toggle="tab" href="#messages">Messages</a></li>
 									<li><a class="btn" data-toggle="tab" href="#photos">Photos </a></li>
 									<li><a class="btn" data-toggle="tab" href="#payments">Payments </a></li>
-									<li><a class="btn" data-toggle="tab" href="#shipments_shipping_details">Shipments & shipping details</a></li>
 								</ul>
 								<div class="tab-content">
 									<!--start 1st tab-->

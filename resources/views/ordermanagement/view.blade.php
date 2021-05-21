@@ -55,11 +55,13 @@
 				 if($order_non_prescribed['medication_type'] == 2) {*/ ?>
 
 @foreach ($order_non_prescribed as $key => $order_data)
-<?php echo $order_data->medication_type ; ?>
+
+$medication_type=$order_data->medication_type;
+
 @endforeach
 
 <?php 
-if($order_data->medication_type == 2 ) { ?>
+if($medication_type == 2 ) { ?>
 					<div class="row">
 						<div class="col-lg-12">
 							<section class="card" >

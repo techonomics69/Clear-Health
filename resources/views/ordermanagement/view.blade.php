@@ -58,7 +58,6 @@
 
 <?php $medication_type=$order_data->medication_type; ?>
 
-<?php echo $medication_type;?>
 @endforeach
 
 <?php 

@@ -404,7 +404,7 @@ public function ProductRecommendBasedONTretinoinFormula(Request $request)
 if($ts2 == 0){
     $data = $TretinoinFormula;
 }else{
-    $data ='Azelaic_Acid '
+    $data ='Azelaic_Acid ';
 }
 
 return $this->sendResponse($data, 'Product recommendation successfully.');   

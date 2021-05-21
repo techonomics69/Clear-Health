@@ -105,6 +105,7 @@ Route::post('forgot_password',[RegisterController::class, 'forgot_password']);
 
     Route::post('user/update_vouch_status/{id}', [UserController::class, 'updateVerifiedByVouch']);
     Route::get('user/vouch_details/{id}', [UserController::class, 'getVouchedDetails']);
+    Route::get('add_recomeended_product', [UserController::class, 'add_recomeended_product']);
 
     //Answer API
     Route::post('answer',[AnswerController::class, 'answer']);

@@ -78,7 +78,7 @@ class OrderManagementController extends Controller
         {
             $cart_ids = explode(',', $val['cart_id']);
           
-     } 
+        } 
             $product_name = array();
             $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name')->get();
  
@@ -92,7 +92,6 @@ echo "<pre>";
 die();
          
 }
-
 
      $user_case_management_data = CaseManagement::join('users','case_managements.user_id', '=', 'users.id')
      ->select('case_managements.*','users.first_name','users.last_name','users.email','users.mobile','users.address')

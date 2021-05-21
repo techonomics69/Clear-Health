@@ -162,20 +162,20 @@ class CaseManagementController extends BaseController
 
     public function add_recomeended_product(Request $request)
     {
-        $user_id = $request['user_id'];
-        $case_id = $request['case_id'];
-        $recommended_product = $request['recommended_product'];
+      $user_id = $request['user_id'];
+      $case_id = $request['case_id'];
+      $recommended_product = $request['recommended_product'];
 
-        $data  =  CaseManagement::where('user_id',$user_id)->where('id',$case_id)->update(['recommended_product' => $recommended_product]);
+      $data  =  CaseManagement::where('user_id',$user_id)->where('id',$case_id)->update(['recommended_product' => $recommended_product]);
 
-        if($data!= 1){
-           return $this->sendError('Server error', array('Something went wrong!'));
-         }
-        else{
-          return $this->sendResponse($data, 'Recomended product added successfully');
-        }
-        
+      if($data!= 1){
+       return $this->sendError('Server error', array('Something went wrong!'));
+     }
+     else{
+      return $this->sendResponse($data, 'Recomended product added successfully');
     }
+
+  }
 
     /**
      * Remove the specified resource from storage.
@@ -333,7 +333,7 @@ public function create_patient(Request $request)
      }else{
       return $this->sendResponse(array(),'Something went wrong!');
     }
-}
+  }
 
 
   public function searchStateDetail(Request $request){
@@ -600,100 +600,100 @@ public function create_patient(Request $request)
     $token = $token_data->access_token;
 
     $search = "";
-     $zip = $request['zipcode'];
-     $address = $request['address'];
-   
+    $zip = $request['zipcode'];
+    $address = $request['address'];
+
     if($zip!="" && $address == ""){
-       $search = "?zip=".$zip;
+     $search = "?zip=".$zip;
 
-    }else if($address!="" && $zip ==""){
-        $search = "?address=".urlencode($address);
+   }else if($address!="" && $zip ==""){
+    $search = "?address=".urlencode($address);
 
-    }else if($zip!="" && $address != ""){
-        $zip = $request['zipcode'];
-        $address = $request['address'];
-      $search = "?zip=".$zip."&address=".urlencode($address);
-    }else{
-        $search = "";
-    }
-   
-
-    $curl = curl_init();
-
-    curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/pharmacies'.$search,
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_ENCODING => '',
-      CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 0,
-      CURLOPT_FOLLOWLOCATION => true,
-      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => 'GET',
-      CURLOPT_HTTPHEADER => array(
-        'Authorization: Bearer '.$token,
-        'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
-      ),
-    ));
-
-    $response = curl_exec($curl);
-
-    curl_close($curl);
-    return $this->sendResponse(json_decode($response),'Pharmacies Recieved Successfully');
-
-
+  }else if($zip!="" && $address != ""){
+    $zip = $request['zipcode'];
+    $address = $request['address'];
+    $search = "?zip=".$zip."&address=".urlencode($address);
+  }else{
+    $search = "";
   }
 
 
-  public function getPharmacyById(Request $request){
-    $r = $this->get_token();
-    $token_data = json_decode($r);
-    $token = $token_data->access_token;
+  $curl = curl_init();
 
-    $pharmacy_id = $request['pharmacy_id'];
+  curl_setopt_array($curl, array(
+    CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/pharmacies'.$search,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => '',
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => 'GET',
+    CURLOPT_HTTPHEADER => array(
+      'Authorization: Bearer '.$token,
+      'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+    ),
+  ));
 
-    $curl = curl_init();
+  $response = curl_exec($curl);
 
-    curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/pharmacies/'.$pharmacy_id,
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_ENCODING => '',
-      CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 0,
-      CURLOPT_FOLLOWLOCATION => true,
-      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => 'GET',
-      CURLOPT_HTTPHEADER => array(
-        'Authorization: Bearer '.$token,
-      ),
-    ));
-
-    $response = curl_exec($curl);
-
-    curl_close($curl);
+  curl_close($curl);
+  return $this->sendResponse(json_decode($response),'Pharmacies Recieved Successfully');
 
 
-    return $this->sendResponse(json_decode($response),'Pharmacy Recieved Successfully');
+}
 
 
-  }
+public function getPharmacyById(Request $request){
+  $r = $this->get_token();
+  $token_data = json_decode($r);
+  $token = $token_data->access_token;
+
+  $pharmacy_id = $request['pharmacy_id'];
+
+  $curl = curl_init();
+
+  curl_setopt_array($curl, array(
+    CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/pharmacies/'.$pharmacy_id,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => '',
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => 'GET',
+    CURLOPT_HTTPHEADER => array(
+      'Authorization: Bearer '.$token,
+    ),
+  ));
+
+  $response = curl_exec($curl);
+
+  curl_close($curl);
 
 
-  public function CreateCase(Request $request){
-    $r = $this->get_token();
-    $token_data = json_decode($r);
-    $token = $token_data->access_token;
+  return $this->sendResponse(json_decode($response),'Pharmacy Recieved Successfully');
 
-    $user_id = $request['user_id'];
-    $case_id = $request['case_id'];
 
-    $product_type = $request['product_type'];
-    $product_name = $request['product_name'];
-    $quantity = $request['quantity'];
-    $preferred_pharmacy_id = $request['preferred_pharmacy_id'];
+}
 
-    $patient_data = User::select('md_patient_id')->where('id', $request['user_id'])->first();
-    
-    $patient_id = '"'.$patient_data['md_patient_id'].'"';
+
+public function CreateCase(Request $request){
+  $r = $this->get_token();
+  $token_data = json_decode($r);
+  $token = $token_data->access_token;
+
+  $user_id = $request['user_id'];
+  $case_id = $request['case_id'];
+
+  $product_type = $request['product_type'];
+  $product_name = $request['product_name'];
+  $quantity = $request['quantity'];
+  $preferred_pharmacy_id = $request['preferred_pharmacy_id'];
+
+  $patient_data = User::select('md_patient_id')->where('id', $request['user_id'])->first();
+
+  $patient_id = '"'.$patient_data['md_patient_id'].'"';
 
     //code to get user's question answer
 
@@ -721,35 +721,32 @@ public function create_patient(Request $request)
    $userQueAns = json_decode($answer_data[0]['answer']);
 
    $userquestion = array();
-    foreach($userQueAns as $key=>$value){
-      
-   echo "<pre>";
-   print_r($value);
-   echo "<pre>";
-   exit();
-      $userquestion[$key]['question'] = $value['question'];
-      $userquestion[$key]['answer'] = $value['answer'];
+   foreach($userQueAns as $key=>$value){
+    $userquestion[$key]['question'] = $value->question;
+    $userquestion[$key]['answer'] =($value->answer !="")?$value->answer:"";
 
-      if($value['options_type'] == "radio"){
-       $userquestion[$key]['type']= "boolean";
-     }else{
-       $userquestion[$key]['type']= "string";
-     }
-     
-     $userquestion[$key]['important']= true;
+    if($value->options_type == "radio"){
+     $userquestion[$key]['type']= "boolean";
+   }else{
+     $userquestion[$key]['type']= "string";
    }
-   
-   $userquestion = json_encode($userquestion);
+
+   $userquestion[$key]['important']= true;
+ }
+
+ $userquestion = json_encode($userquestion);
   //end of code to get user's question answer
 
 
 
-   if($product_type =="Topicals"){
+ if($product_type =="Topicals"){
 
-    $days_supply = "60";
-    $refills = "11";
-    $directions = "Take one at the morning and another before bed";
-    $product_name = "";
+  $days_supply = "60";
+  $refills = "11";
+  $directions = "Take one at the morning and another before bed";
+  $product_name = "";
+  $no_substitutions = true,
+  $pharmacy_notes =  "This medication might not be suitable for people with... "
 
 
       /*$DispensUnitId = $this->getDispensUnitId();
@@ -796,12 +793,16 @@ public function create_patient(Request $request)
       $medication_compound_data[0]['directions'] = $directions;
       $medication_compound_data[0]['dispense_unit_id'] = $DispensUnitId;
       $medication_compound_data[0]['preferred_pharmacy_id'] = $preferred_pharmacy_id;
+      $medication_compound_data[0]['no_substitutions'] = $no_substitutions;
+      $medication_compound_data[0]['pharmacy_notes'] = $pharmacy_notes;
 
     }else{
       $days_supply = "30";
       $refills = "0";
       $directions = "Take one at the morning and another before bed";
       $product_name = "Isotretinoin";
+      $no_substitutions = true,
+      $pharmacy_notes =  "This medication might not be suitable for people with... "
 
       $curl = curl_init();
 
@@ -838,6 +839,8 @@ public function create_patient(Request $request)
       $medication_compound_data[0]['directions'] = $directions;
       $medication_compound_data[0]['dispense_unit_id'] = $DispensUnitId;
       $medication_compound_data[0]['preferred_pharmacy_id'] = $preferred_pharmacy_id;
+      $medication_compound_data[0]['no_substitutions'] = $no_substitutions;
+      $medication_compound_data[0]['pharmacy_notes'] = $pharmacy_notes;
 
     }
 
@@ -1197,7 +1200,7 @@ public function create_patient(Request $request)
 
     //$caseUpdate = $MdMessages->update($read_at);
 
-   $caseUpdate  =  MdMessages::where('md_case_id',$case_id)->where('case_message_id',$case_message_id)->update(['read_at' => $read_at]);
+    $caseUpdate  =  MdMessages::where('md_case_id',$case_id)->where('case_message_id',$case_message_id)->update(['read_at' => $read_at]);
 
     if($caseUpdate == 1){
       return $this->sendResponse($data,'Message created successfully');

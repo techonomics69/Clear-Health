@@ -227,7 +227,7 @@ class CartController extends BaseController
   public function cartRemove(Request $request,$id)
   {
     $data = $request->all();
-    dd($data);
+    
     try{
 
         $cart = Cart::where('user_id', $id)->where('order_type','AddOn')->where('status','pending')->get();

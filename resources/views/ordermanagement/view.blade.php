@@ -122,7 +122,7 @@
 
 															<div class="col-md-6 form-group">
 																<strong>Quantity : </strong>
-																{{$order_non_prescribed->email}}
+																{{$order_non_prescribed->quantity}}
 															</div>
 
 															<div class="col-md-6 form-group">

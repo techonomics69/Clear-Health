@@ -215,24 +215,30 @@ class CartController extends BaseController
             if(isset($cart))
             {
                 $UpdateAddon = $cart->update($data);
-            }else {
-             $InsertAddon = Cart::create($data);
-         }
-         return $this->sendResponse($data, 'Update Data successfully.');
-     }catch(\Exception $ex){
-      return $this->sendError('Server error', array($ex->getMessage()));  
+            } else {
+
+               $InsertAddon = Cart::create($data);
+           }
+           return $this->sendResponse($data, 'Update Data successfully.');
+       }catch(\Exception $ex){
+          return $this->sendError('Server error', array($ex->getMessage()));  
+      }
   }
-}
-public function cartRemove(Request $request,$id)
-{
+  public function cartRemove(Request $request,$id)
+  {
     $data = $request->all();
+    dd($data);
     try{
 
         $cart = Cart::where('user_id', $id)->where('order_type','AddOn')->where('status','pending')->get();
 
-        $cart= $data->delete();
-        return $this->sendResponse($cart, 'Item deleted successfully.');
-    }catch(\Exception $ex){
+        if(isset($cart))
+        {
+           $cart= $data->delete();   
+        }
+        //$cart= $data->delete();
+       return $this->sendResponse($data, 'Item deleted successfully.');
+   }catch(\Exception $ex){
       return $this->sendError('Server error', array($ex->getMessage()));  
   }
 }

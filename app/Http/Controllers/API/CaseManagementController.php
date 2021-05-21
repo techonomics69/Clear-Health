@@ -660,8 +660,6 @@ public function create_patient(Request $request)
   }
 
 
-
-
   public function CreateCase(Request $request){
     $r = $this->get_token();
     $token_data = json_decode($r);
@@ -846,6 +844,8 @@ public function create_patient(Request $request)
     $input_data['system_case_id'] = $case_id;
 
     $md_case_data = Mdcases::create($input_data);
+
+    //$case_management  =  CaseManagement::where('id',$case_id)->update(['read_at' => $read_at]);
 
     curl_close($curl);
 

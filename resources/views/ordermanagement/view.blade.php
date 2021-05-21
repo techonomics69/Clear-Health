@@ -17,6 +17,7 @@
 		}
 
 	</style>
+	 {{dd($order_non_prescribed)}}
 
 	<div class="content-wrapper">
 		<div class="content-header row">

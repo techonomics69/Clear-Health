@@ -178,6 +178,34 @@ public function ProductRecommend(Request $request)
     $user_is_pregnant_breastfeeding = 0;
     foreach ($recommendation as $key => $value) {
 
+
+        //logic for female patient 
+        $question = $value->question;
+
+         if($question == "Are you Pregnant?"){
+            if(isset($value->answer)){
+
+                $answer =  $value->answer;
+
+            if($answer == 'Yes'){
+                $user_is_pregnant_breastfeeding = 1;
+                }   
+            }
+        }
+
+         if($question == "Are you breastfeeding?"){
+             if(isset($value->answer)){
+
+                $answer =  $value->answer;
+
+            if($answer == 'Yes'){
+                $user_is_pregnant_breastfeeding = 1;
+                }   
+            }
+         }
+
+        //end of code 
+
         if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_1'){
           
          
@@ -188,15 +216,7 @@ public function ProductRecommend(Request $request)
 
         }
 
-         $question = $value->question;
-
-         if($question == "Are you Pregnant?"){
-            $user_is_pregnant_breastfeeding = 1;
-         }
-
-         if($question == "Are you breastfeeding?"){
-             $user_is_pregnant_breastfeeding = 1;
-         }
+         
 
          if(isset($answer)){
             if($answer == 'just a few pimples here and there. Mostly whiteheads and blackheads with a few inflamed bumps here and there.'){

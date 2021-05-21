@@ -696,10 +696,32 @@ public function CreateCase(Request $request){
   $patient_id = '"'.$patient_data['md_patient_id'].'"';
 
   $recommended_product = CaseManagement::select('recommended_product')->where('id',$case_id)->where('user_id',$user_id)->first();
-echo "<pre>";
-print_r($recommended_product);
-echo "<pre>";
-exit();
+
+  $recommended_product = $recommended_product['recommended_product']);
+
+  if($recommended_product == 'Topical_low'){
+
+     $product_name = "Topical Low";
+
+  }
+
+  if($recommended_product == 'Topical_high'){
+
+     $product_name = "Topical High";
+
+  }
+
+  if($recommended_product == 'Azelaic_Acid'){
+
+     $product_name = "Azelaic Acid";
+
+  }
+  if($recommended_product == 'Accutane'){
+
+     $product_name = "Isotretinoin";
+
+  }
+
     //code to get user's question answer
 
     /*$answer = QuizAnswer::join('quizzes', 'quizzes.id', '=', 'quiz_answers.question_id')->where('quiz_answers.user_id', $request['user_id'])->where('quiz_answers.case_id', $request['case_id'])->select( 'quizzes.question','quiz_answers.answer','quizzes.options_type')->get()->toArray();
@@ -766,7 +788,7 @@ exit();
       $curl = curl_init();
 
       curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/compounds/search?name=acid',
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/compounds/search?name='.$product_name,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
@@ -805,7 +827,7 @@ exit();
       $days_supply = "30";
       $refills = "0";
       $directions = "Take one at the morning and another before bed";
-      $product_name = "Isotretinoin";
+      //$product_name = "Isotretinoin";
       $no_substitutions = "true";
       $pharmacy_notes =  "This medication might not be suitable for people with... ";
 

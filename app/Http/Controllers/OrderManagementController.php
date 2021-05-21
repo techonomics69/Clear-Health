@@ -85,7 +85,7 @@ class OrderManagementController extends Controller
             foreach($product_details as $product_key=>$product_value){
              $product_name[] = $product_key['product_name'];  
              echo "<pre>";
-print_r($product_name[]);
+print_r($product_name);
 echo "<pre>";
 die();
          }

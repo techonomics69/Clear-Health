@@ -132,7 +132,7 @@
 
 															<div class="col-md-6 form-group">
 																<strong>Shipping Fees : </strong>
-																{{$order_non_prescribed->addressline1}}
+																{{$order_non_prescribed->shipping_fee}}
 															</div>
 
 															<div class="col-md-6 form-group">

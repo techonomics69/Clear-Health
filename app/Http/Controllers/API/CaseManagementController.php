@@ -850,6 +850,11 @@ public function CreateCase(Request $request){
 
       $input_md_data = '{"patient_id": '.$patient_id.',"case_files": [],"case_prescriptions": '.$medication_compound_data.',"case_questions": '.$userquestion.'}';
 
+      echo "<pre>";
+      print_r($input_md_data);
+      echo "<pre>";
+      exit();
+
     
 
     $curl = curl_init();

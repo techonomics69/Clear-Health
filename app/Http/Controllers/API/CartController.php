@@ -249,6 +249,8 @@ public function cartRemove(Request $request,$id)
 public function prescribedItemUpdate(Request $request,$id)
 {
     $data = $request->all();
+
+    die("test");
     try{
         $cart = Cart::where('user_id', $id)->where('order_type','Prescribed')->where('status','pending')->OrderBy('id','desc')->first();
 

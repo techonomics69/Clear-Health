@@ -78,7 +78,7 @@ class OrderManagementController extends Controller
 
      $order_non_prescribed =  checkout::join('users', 'users.id', '=', 'checkout.user_id')->join('carts','carts.id', '=', 'checkout.cart_id')
      ->join('checkout_address','checkout_address.id', '=', 'checkout.id')
-     ->select('users.email','checkout.case_id','checkout.created_at','checkout.order_id','checkout.medication_type','checkout.id','checkout.cart_id','carts.product_price','users.first_name','users.last_name','users.email','users.mobile','checkout_address.addressline1','users.first_name','users.last_name','users.email','users.mobile','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode')->where('checkout.id',$id)->first();
+     ->select('users.email','checkout.case_id','checkout.created_at','checkout.order_id','checkout.medication_type','checkout.id','checkout.cart_id','carts.product_price','users.first_name','users.last_name','users.email','users.mobile','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode')->where('checkout.id',$id)->first();
 
 
      $user_case_management_data = CaseManagement::join('users','case_managements.user_id', '=', 'users.id')->select('case_managements.*','users.first_name','users.last_name','users.email','users.mobile','users.address')->where('case_managements.id',$id)->first();

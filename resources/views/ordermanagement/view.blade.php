@@ -96,7 +96,10 @@
 										</div>
 									</div> 
 									<!--End 1st tab--> 
-									<!--start 2nd tab-->
+									
+								</div>
+								<div class="tab-content">
+<!--start 2nd tab-->
 									<div id="order_summary" class="tab-pane fade in active show">
 										<div class="row" style="padding: 20px;">
 											<div class="col-md-12">

@@ -70,8 +70,8 @@
             @endif
         </div>
         <div class="form-group">
-            <strong>Price (Retail):</strong>
-            {{ $product->retails_price }}
+            <strong>Discount Price:</strong>
+            {{ $product->discount_price }}
         </div>
         <div class="form-group">
             <strong>Short Description:</strong>

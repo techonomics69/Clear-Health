@@ -86,9 +86,9 @@
                             </div>
                             <div class="col-md-4 col-sm-6 col-xs-12">   
                                 <div class="form-group">
-                                    <strong>Price (Retail):</strong>
+                                    <strong>Discount Price:</strong>
                                     <span class="required">*</span>
-                                    {!! Form::number('retails_price', null, array('placeholder' => 'Price (Retail)','class' => 'form-control')) !!}
+                                    {!! Form::number('discount_price', null, array('placeholder' => 'Discount Price','class' => 'form-control')) !!}
                                 </div>
                             </div>
                             

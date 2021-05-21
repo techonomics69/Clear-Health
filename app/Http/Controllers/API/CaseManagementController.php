@@ -801,8 +801,8 @@ public function CreateCase(Request $request){
       $refills = "0";
       $directions = "Take one at the morning and another before bed";
       $product_name = "Isotretinoin";
-      $no_substitutions = true,
-      $pharmacy_notes =  "This medication might not be suitable for people with... "
+      $no_substitutions = "true";
+      $pharmacy_notes =  "This medication might not be suitable for people with... ";
 
       $curl = curl_init();
 

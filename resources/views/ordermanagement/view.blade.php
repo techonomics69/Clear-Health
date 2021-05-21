@@ -55,6 +55,9 @@
 				 if($order_non_prescribed['medication_type'] == 2) {*/ ?>
 
 @foreach ($order_non_prescribed as $key => $order_data)
+<?php echo $order_data->medication_type ; ?>
+@endforeach
+
 <?php 
 if($order_data->medication_type == 2 ) { ?>
 					<div class="row">
@@ -298,7 +301,6 @@ if($order_data->medication_type == 2 ) { ?>
 </div>
 </div>
 <?php } ?>
-@endforeach
 </div>
 </div>
 @endsection

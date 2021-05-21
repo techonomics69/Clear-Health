@@ -76,7 +76,9 @@ class OrderManagementController extends Controller
      ->get();
 
        
-       echo  $order_non_prescribed;
+       echo "<pre>";
+        print_r($order_non_prescribed);
+        echo "</pre>";
        exit();
      foreach($order_non_prescribed as $key=>$val)
      {

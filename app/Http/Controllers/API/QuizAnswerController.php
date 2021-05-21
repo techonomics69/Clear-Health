@@ -175,11 +175,22 @@ public function ProductRecommend(Request $request)
     $ts1 = 0;
     $ts2 = 0;
     $data = 'Accutane';
+    $user_is_pregnant_breastfeeding = 0;
     foreach ($recommendation as $key => $value) {
 
         if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_1'){
           
          $answer = $value->answer;
+
+         $question = $value->question;
+
+         if($question == "Are you Pregnant?"){
+            $user_is_pregnant_breastfeeding = 1;
+         }
+
+         if($question == "Are you breastfeeding?"){
+             $user_is_pregnant_breastfeeding = 1;
+         }
 
          if(isset($answer)){
             if($answer == 'just a few pimples here and there. Mostly whiteheads and blackheads with a few inflamed bumps here and there.'){
@@ -305,14 +316,16 @@ $a = $a1+$a2+$a3;
 $b = $b1+count($b2);
 $c = $c1;
 
-/*echo '<script>console.log("a-"'.$a."b-".$b."c-".$c.'); </script>';*/
 
-if($a+$b>=11){
+if($user_is_pregnant_breastfeeding == 1){
+     $data = 'Azelaic_Acid';
+}
+else if($a+$b>=11){
     $data = 'Accutane';
 }else if($c == 1){
     $data = 'Accutane';
 }else if(($a+$b<11 && $c == 1)||($a+$b>=11 && $c == 0)){
- $data = 'Accutane';
+    $data = 'Accutane';
 }else{
     if($ts1 == 1){
         $data = 'Topical_low';

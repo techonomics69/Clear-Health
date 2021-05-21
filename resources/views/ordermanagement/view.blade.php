@@ -82,7 +82,7 @@
 
 															<div class="col-md-6 form-group">
 																<strong>Address : </strong>
-																{{$order_non_prescribed->address}}
+																{{$order_non_prescribed->addressline1..','.addressline2.','}}
 															</div>
 															
 														</div>

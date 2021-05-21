@@ -82,8 +82,11 @@
 
 															<div class="col-md-6 form-group">
 																<strong>Address : </strong>
-																{{$order_non_prescribed->addressline1.','}}
-																{{$order_non_prescribed->addressline2.','}}
+																{{$order_non_prescribed->addressline1','}}
+																{{$order_non_prescribed->addressline2','}}
+																{{$order_non_prescribed->city','}}
+																{{$order_non_prescribed->state','}}
+																{{$order_non_prescribed->zipcode','}}
 															</div>
 															
 														</div>

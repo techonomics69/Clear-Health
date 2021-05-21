@@ -271,7 +271,12 @@ public function ProductRecommend(Request $request)
 
         }
         $option = ['Dapsone (Aczone)', 'Topical Retinoids (Differin, Retin-A, Tazorac, etc.)', 'Topical Antibiotics (Benzaclin, Duac, etc.)', 'Azelaic Acid (Azelex, Finacea)', 'Other'];
-        $b2 = array_intersect( $answer, $option ); 
+        //$b2 = array_intersect( $answer, $option ); 
+
+if(isset($answer) && isset($option)){
+            $b2 = array_intersect( $answer, $option );
+        }
+
         /*if(isset($answer)){
             if($answer == 'Benzoyl Peroxide'){
                 $b2 = 0;

@@ -697,7 +697,7 @@ public function CreateCase(Request $request){
 
   $recommended_product = CaseManagement::select('recommended_product')->where('id',$case_id)->where('user_id',$user_id)->first();
 
-  $recommended_product = $recommended_product['recommended_product']);
+  $recommended_product = $recommended_product['recommended_product'];
 
   if($recommended_product == 'Topical_low'){
 

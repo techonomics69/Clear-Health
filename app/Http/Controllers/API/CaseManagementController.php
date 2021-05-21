@@ -830,9 +830,10 @@ public function CreateCase(Request $request){
       $medications = json_decode($medications);
 
       $DispensUnitId = $medications[0]->dispense_unit_id;
+      $dosespot_medication_id = $medications[0]->dosespot_medication_id;
 
       $medication_compound_data = array();
-      $medication_compound_data[0]['partner_medication_id'] = $partner_compound_id;
+      $medication_compound_data[0]['dosespot_medication_id'] = $dosespot_medication_id;
       $medication_compound_data[0]['refills'] = $refills;
       $medication_compound_data[0]['quantity'] = $quantity;
       $medication_compound_data[0]['days_supply'] = $days_supply;
@@ -847,7 +848,7 @@ public function CreateCase(Request $request){
     $medication_compound_data = json_encode($medication_compound_data);
 
 
-    /*  $input_md_data = '{"patient_id": '.$patient_id.',"case_files": [],"case_prescriptions": '.$medication_compound_data.',"case_questions": '.$userquestion.'}';*/
+      $input_md_data = '{"patient_id": '.$patient_id.',"case_files": [],"case_prescriptions": '.$medication_compound_data.',"case_questions": '.$userquestion.'}';
 
     
 

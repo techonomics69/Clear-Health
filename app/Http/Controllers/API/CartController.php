@@ -166,7 +166,7 @@ class CartController extends BaseController
     {
         try{
             $cart = Cart::where('user_id', $id)->where('order_type','Prescribed')->where('status','pending')->OrderBy('id','desc')->first();
-            $cart->product_name=$cart->product->name;
+            /*$cart->product_name=$cart->product->name;*/
            /* $data = array();
             foreach ($cart as $key => $value) {
                 $data[$key]['id'] = $value->id;

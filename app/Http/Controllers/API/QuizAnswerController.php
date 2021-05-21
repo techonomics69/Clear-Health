@@ -341,4 +341,77 @@ return $this->sendResponse($data, 'Product recommendation successfully.');
         // }
 
 }
+
+public function ProductRecommendBasedONTretinoinFormula(Request $request)
+{
+        //dd($request->all());
+       // try{
+
+    $user_id = $request['user_id'];
+    $case_id = $request['case_id'];
+
+    $answer_data = Answers::where('user_id', $user_id)->where('case_id', $case_id)->get();
+
+    $recommendation = json_decode($answer_data[0]['answer']);
+
+    $ts1 = 0;
+    $ts2 = 0;
+    $data = '';
+    $TretinoinFormula = "Topical_low";
+
+    foreach ($recommendation as $key => $value) {
+
+    if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_7'){
+ 
+        $answer = $value->answer;
+
+        if(isset($answer)){
+            if($answer == 'Very Dry'){
+                $ts1 = 1;
+            }else if($answer == 'Dry'){
+                $ts1 = 1;
+            }else if($answer == 'Combination'){
+                $ts1 = 2;
+            }else if($answer == 'Oily'){
+                $ts1 = 2;
+            }else if($answer == 'Very Oily'){
+                $ts1 = 2;
+            }
+        }
+    }
+    if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_8'){
+ 
+        $answer = $value->answer;
+
+        if(isset($answer)){
+            if($answer == 'Yes'){
+                $ts2 = 1;
+            }else if($answer == 'No'){
+                $ts2 = 0;
+            }
+        }
+    }
+
+
+} 
+
+ if($ts1 == 1){
+        $TretinoinFormula = 'Topical_low';
+ }else if($ts1 == 2){
+        $TretinoinFormula = 'Topical_high';
+ }
+
+if($ts2 == 0){
+    $data = $TretinoinFormula;
+}else{
+    $data ='Azelaic_Acid '
+}
+
+return $this->sendResponse($data, 'Product recommendation successfully.');   
+           // }
+           // catch(\Exception $ex){
+          //  return $this->sendError('Server error', array($ex->getMessage()));
+        // }
+
+}
 }

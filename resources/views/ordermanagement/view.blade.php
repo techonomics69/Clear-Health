@@ -52,7 +52,8 @@
 								</ul>
 								<div class="tab-content">
 									<!--start 1st tab-->
-									<div id="profile" class="tab-pane fade in active show">
+									
+									<div id="profile" class="tab-pane fade in">
 										<div class="row" style="padding: 20px;">
 											<div class="col-md-12">
 												<section class="card">

@@ -165,7 +165,7 @@ class CartController extends BaseController
     public function getCartByUserPrescribed($id)
     {
         try{
-            $cart = Cart::where('user_id', $id)->where('order_type','Prescribed')->where('status','pending')->OrderBy('id','desc')->get();
+            $cart = Cart::where('user_id', $id)->where('order_type','Prescribed')->where('status','pending')->OrderBy('id','desc')->first();
             $data = array();
             foreach ($cart as $key => $value) {
                 $data[$key]['id'] = $value->id;
@@ -187,7 +187,7 @@ class CartController extends BaseController
     public function getCartByUserAddOn($id)
     {
         try{
-            $cart = Cart::where('user_id', $id)->where('order_type','AddOn')->where('status','purchased')->OrderBy('id','desc')->get();
+            $cart = Cart::where('user_id', $id)->where('order_type','AddOn')->where('status','purchased')->OrderBy('id','desc')->frist();
             $data = array();
             foreach ($cart as $key => $value) {
                 $data[$key]['id'] = $value->id;

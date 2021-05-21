@@ -274,6 +274,9 @@ public function ProductRecommend(Request $request)
         //$b2 = array_intersect( $answer, $option ); 
 
 if(isset($answer) && isset($option)){
+            if(!is_array($answer)){
+                $answer = array($answer);
+            }
             $b2 = array_intersect( $answer, $option );
         }
 

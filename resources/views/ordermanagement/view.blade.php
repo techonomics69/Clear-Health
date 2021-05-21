@@ -78,31 +78,31 @@ if($order_data->medication_type == 2 ) { ?>
 															
 															<div class="col-md-6  form-group">
 																<strong>FirstName : </strong>
-																{{$order_non_prescribed->first_name}}
+																{{$order_data->first_name}}
 															</div>
 
 															<div class="col-md-6 form-group">
 																<strong>LastName : </strong>
-																{{$order_non_prescribed->last_name}}
+																{{$order_data->last_name}}
 															</div>
 
 															<div class="col-md-6 form-group">
 																<strong>Email : </strong>
-																{{$order_non_prescribed->email}}
+																{{$order_data->email}}
 															</div>
 
 															<div class="col-md-6 form-group">
 																<strong>Phone no : </strong>
-																{{$order_non_prescribed->mobile}}
+																{{$order_data->mobile}}
 															</div>
 
 															<div class="col-md-6 form-group">
 																<strong>Address : </strong>
-																{{$order_non_prescribed->addressline1.','}}
-																{{$order_non_prescribed->addressline2.','}}
-																{{$order_non_prescribed->city.','}}
-																{{$order_non_prescribed->state.','}}
-																{{$order_non_prescribed->zipcode}}
+																{{$order_data->addressline1.','}}
+																{{$order_data->addressline2.','}}
+																{{$order_data->city.','}}
+																{{$order_data->state.','}}
+																{{$order_data->zipcode}}
 															</div>
 															
 														</div>

@@ -21,7 +21,7 @@
 	<div class="content-wrapper">
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-12 mb-2">
-				<h3 class="content-header-title mb-0">Case Management</h3>
+				<h3 class="content-header-title mb-0">Order Management</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-12 d-flex">
 						<ol class="breadcrumb">
@@ -61,27 +61,27 @@
 															<h3 class="font-weight-bold"><span class="text-underline">Basic Information</span></h3>
 															
 															<div class="col-md-6  form-group">
-																<strong>FirstName:</strong>
+																<strong>FirstName : </strong>
 																{{$order_non_prescribed->first_name}}
 															</div>
 
 															<div class="col-md-6 form-group">
-																<strong>LastName: </strong>
+																<strong>LastName : </strong>
 																{{$order_non_prescribed->last_name}}
 															</div>
 
 															<div class="col-md-6 form-group">
-																<strong>Email: </strong>
+																<strong>Email : </strong>
 																{{$order_non_prescribed->email}}
 															</div>
 
 															<div class="col-md-6 form-group">
-																<strong>Phone no: </strong>
+																<strong>Phone no : </strong>
 																{{$order_non_prescribed->mobile}}
 															</div>
 
 															<div class="col-md-6 form-group">
-																<strong>Address: </strong>
+																<strong>Address : </strong>
 																{{$order_non_prescribed->address}}
 															</div>
 															
@@ -122,32 +122,32 @@
 															<h3 class="font-weight-bold"><span class="text-underline">Basic Information</span></h3>
 															
 															<div class="col-md-6  form-group">
-																<strong>FirstName:</strong>
+																<strong>FirstName : </strong>
 																{{$user_case_management_data['first_name']}}
 															</div>
 
 															<div class="col-md-6 form-group">
-																<strong>LastName: </strong>
+																<strong>LastName : </strong>
 																{{$user_case_management_data['last_name']}}
 															</div>
 
 															<div class="col-md-6 form-group">
-																<strong>Email: </strong>
+																<strong>Email : </strong>
 																{{$user_case_management_data['email']}}
 															</div>
 
 															<div class="col-md-6 form-group">
-																<strong>Mobile: </strong>
+																<strong>Mobile : </strong>
 																{{$user_case_management_data['mobile']}}
 															</div>
 
 															<div class="col-md-6 form-group">
-																<strong>Gender: </strong>
+																<strong>Gender : </strong>
 																{{$user_case_management_data['address']}}
 															</div>
 
 															<div class="col-md-6 form-group">
-																<strong>Physician Details: </strong>
+																<strong>Physician Details : </strong>
 																{{$user_case_management_data['pharmacy']}}
 															</div>
 

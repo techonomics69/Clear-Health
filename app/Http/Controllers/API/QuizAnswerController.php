@@ -357,7 +357,7 @@ public function ProductRecommendBasedONTretinoinFormula(Request $request)
     $ts1 = 0;
     $ts2 = 0;
     $data = '';
-    $TretinoinFormula = "Topical_low";
+    $TretinoinFormula = "";
 
     foreach ($recommendation as $key => $value) {
 

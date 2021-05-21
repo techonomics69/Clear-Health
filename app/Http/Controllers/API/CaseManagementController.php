@@ -17,6 +17,7 @@ use App\Models\Mdmanagement;
 use App\Models\CaseFiles;
 use App\Models\MdMessages;
 use App\Models\MdMessageFiles;
+use App\Models\Answers;
 use File;
 
 class CaseManagementController extends BaseController

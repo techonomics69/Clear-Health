@@ -85,7 +85,7 @@ class OrderManagementController extends Controller
         foreach($product_details as $product_key=>$product_value){
          $product_name[] = $product_value['product_name'];  
      }
-     $order_non_prescribed[$key]->product_name = implode(' , ' ,$product_name);    
+     $order_non_prescribed[$key]->product_name = implode(', ' ,$product_name);    
  }
 
  $user_case_management_data = CaseManagement::join('users','case_managements.user_id', '=', 'users.id')

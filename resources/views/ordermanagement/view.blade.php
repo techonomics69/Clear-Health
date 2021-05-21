@@ -43,10 +43,14 @@
 				</div>
 				
 				<?php 
-				 echo "<pre>";
+
+				foreach($order_non_prescribed as $key=>$val){
+					echo "$key=>$val";
+				}
+				/* echo "<pre>";
 				//print_r($order_non_prescribed);
 				echo $order_non_prescribed->medication_type;
-				echo "<pre>";
+				echo "<pre>";*/
 				die(); 
 
 				 if($order_non_prescribed['medication_type'] == 2) { ?>

@@ -171,7 +171,7 @@ class CaseManagementController extends BaseController
            return $this->sendError('Server error', array('Something went wrong!'));
          }
         else{
-          return $this->sendResponse($caseUser, 'Recomended product added successfully');
+          return $this->sendResponse($data, 'Recomended product added successfully');
         }
         
     }

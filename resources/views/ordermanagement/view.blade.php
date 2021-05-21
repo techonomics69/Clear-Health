@@ -42,7 +42,7 @@
 					</div> --> 
 				</div>
 				
-				<?php  print_r($order_non_prescribed);   if($order_non_prescribed['medication_type'] == 2) { ?>
+				<?php  print_r($order_non_prescribed); die();   if($order_non_prescribed['medication_type'] == 2) { ?>
 					<div class="row">
 						<div class="col-lg-12">
 							<section class="card" >

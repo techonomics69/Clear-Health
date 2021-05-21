@@ -180,7 +180,13 @@ public function ProductRecommend(Request $request)
 
         if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_1'){
           
-         $answer = $value->answer;
+         
+
+        if(isset($value->answer)){
+
+            $answer =  $value->answer;
+
+        }
 
          $question = $value->question;
 
@@ -206,7 +212,11 @@ public function ProductRecommend(Request $request)
     }
     if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_2'){
 
-        $answer = $value->answer;
+         if(isset($value->answer)){
+
+            $answer =  $value->answer;
+
+        }
         if(isset($answer)){
             if($answer == 'It doesn’t really bother me'){
                 $a2 = 1;
@@ -223,7 +233,11 @@ public function ProductRecommend(Request $request)
     }
     if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_3'){
  
-        $answer = $value->answer;
+         if(isset($value->answer)){
+
+            $answer =  $value->answer;
+
+        }
 
         if(isset($answer)){
             if($answer == 'My acne does not scar'){
@@ -237,7 +251,11 @@ public function ProductRecommend(Request $request)
     }
     if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_4'){
     
- $answer = $value->answer;
+         if(isset($value->answer)){
+
+            $answer =  $value->answer;
+
+        }
 
         if(isset($answer)){
             if($answer == 'Yes'){
@@ -247,7 +265,11 @@ public function ProductRecommend(Request $request)
     }
     if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_5'){
  
-        $answer = $value->answer;
+         if(isset($value->answer)){
+
+            $answer =  $value->answer;
+
+        }
         $option = ['Dapsone (Aczone)', 'Topical Retinoids (Differin, Retin-A, Tazorac, etc.)', 'Topical Antibiotics (Benzaclin, Duac, etc.)', 'Azelaic Acid (Azelex, Finacea)', 'Other'];
         $b2 = array_intersect( $answer, $option ); 
         /*if(isset($answer)){
@@ -271,7 +293,11 @@ public function ProductRecommend(Request $request)
 
     if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_6'){
  
-        $answer = $value->answer;
+         if(isset($value->answer)){
+
+            $answer =  $value->answer;
+
+        }
 
         if(isset($answer)){
             if($answer == 'Yes'){
@@ -280,8 +306,14 @@ public function ProductRecommend(Request $request)
         }
     }
     if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_7'){
- 
-        $answer = $value->answer;
+        
+        if(isset($value->answer)){
+
+            $answer =  $value->answer;
+
+        }
+
+        
 
         if(isset($answer)){
             if($answer == 'Very Dry'){
@@ -299,7 +331,11 @@ public function ProductRecommend(Request $request)
     }
     if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_8'){
  
-        $answer = $value->answer;
+        if(isset($value->answer)){
+
+            $answer =  $value->answer;
+
+        }
 
         if(isset($answer)){
             if($answer == 'Yes'){
@@ -363,7 +399,11 @@ public function ProductRecommendBasedONTretinoinFormula(Request $request)
 
     if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_7'){
  
-        $answer = $value->answer;
+       if(isset($value->answer)){
+
+            $answer =  $value->answer;
+
+        }
 
         if(isset($answer)){
             if($answer == 'Very Dry'){
@@ -381,7 +421,11 @@ public function ProductRecommendBasedONTretinoinFormula(Request $request)
     }
     if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_8'){
  
-        $answer = $value->answer;
+        if(isset($value->answer)){
+
+            $answer =  $value->answer;
+
+        }
 
         if(isset($answer)){
             if($answer == 'Yes'){

@@ -79,8 +79,14 @@ class OrderManagementController extends Controller
        foreach($order_non_prescribed as $key=>$val)
        {
         $cart_ids = explode(',', $val['cart_id']);
+        
         $product_name = array();
-        $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->where('carts.id', $cart_ids)->select('products.name AS product_name')->get();
+        $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->where('carts.id', $cart_ids)->select('products.name AS product_name')->get()->toArray();
+
+        echo "<pre>";
+        print_r($product_details);
+        echo "</pre>";
+        exit();
 
         foreach($product_details as $product_key=>$product_value){
            $product_name[] = $product_value['product_name'];  

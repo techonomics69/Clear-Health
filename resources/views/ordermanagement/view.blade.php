@@ -113,7 +113,11 @@
 
 															<div class="col-md-6 form-group">
 																<strong>Product Type : </strong>
-																{{$order_non_prescribed->last_name}}
+																<?php if($order_data->medication_type == 1){
+                                                echo "Prescribed";
+                                            }else{
+                                                echo "Non Prescribed";
+                                            } ?>
 															</div>
 
 															<div class="col-md-6 form-group">

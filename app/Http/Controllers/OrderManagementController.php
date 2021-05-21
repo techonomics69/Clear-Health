@@ -80,8 +80,8 @@ class OrderManagementController extends Controller
        {
         $cart_ids = explode(',', $val['cart_id']);
         $product_name = array();
-        $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->where('carts.id', $cart_ids)->select('products.name AS product_name')->first();
-
+        $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->where('carts.id', $cart_ids)->select('products.name AS product_name')->get();
+        
         echo "<pre>";
         print_r($product_details);
         echo "</pre>";

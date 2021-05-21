@@ -234,7 +234,8 @@ class CartController extends BaseController
 
         if(isset($cart))
         {
-           $deletecart= $cart->delete($data);   
+           $deletecart = $cart->delete();  
+
         }
         //$cart= $data->delete();
        return $this->sendResponse($data, 'Item deleted successfully.');

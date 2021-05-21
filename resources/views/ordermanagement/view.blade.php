@@ -41,7 +41,7 @@
 					</div> --> 
 				</div>
 				
-				<?php if($order_non_prescribed['medication_type'] == 2) { ?>
+				<?php if(isset($order_non_prescribed['medication_type'])&&$order_non_prescribed['medication_type'] == 2) { ?>
 					<div class="row">
 						<div class="col-lg-12">
 							<section class="card" >

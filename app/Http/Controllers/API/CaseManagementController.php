@@ -745,7 +745,7 @@ public function CreateCase(Request $request){
   $refills = "11";
   $directions = "Take one at the morning and another before bed";
   $product_name = "";
-  $no_substitutions = true,
+  $no_substitutions = "true",
   $pharmacy_notes =  "This medication might not be suitable for people with... "
 
 

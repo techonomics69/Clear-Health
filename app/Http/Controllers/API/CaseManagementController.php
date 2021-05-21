@@ -696,7 +696,7 @@ public function create_patient(Request $request)
 
     //code to get user's question answer
 
-    $answer = QuizAnswer::join('quizzes', 'quizzes.id', '=', 'quiz_answers.question_id')->where('quiz_answers.user_id', $request['user_id'])->where('quiz_answers.case_id', $request['case_id'])->select( 'quizzes.question','quiz_answers.answer','quizzes.options_type')->get()->toArray();
+    /*$answer = QuizAnswer::join('quizzes', 'quizzes.id', '=', 'quiz_answers.question_id')->where('quiz_answers.user_id', $request['user_id'])->where('quiz_answers.case_id', $request['case_id'])->select( 'quizzes.question','quiz_answers.answer','quizzes.options_type')->get()->toArray();
 
     $userquestion = array();
     foreach($answer as $key=>$value){
@@ -712,8 +712,19 @@ public function create_patient(Request $request)
      $userquestion[$key]['important']= true;
    }
    
-   $userquestion = json_encode($userquestion);
-    //end of code to get user's question answer
+   $userquestion = json_encode($userquestion);*/ //old logic
+
+
+   $answer_data = Answers::where('user_id', $user_id)->where('case_id', $case_id)->get();
+
+   $userQueAns = json_decode($answer_data[0]['answer']);
+
+
+   echo "<pre>";
+   print_r($userQueAns);
+   echo "<pre>";
+   exit();
+  //end of code to get user's question answer
 
 
 
@@ -721,7 +732,8 @@ public function create_patient(Request $request)
 
     $days_supply = "60";
     $refills = "11";
-    $directions = "xyz";
+    $directions = "Take one at the morning and another before bed";
+    $product_name = "";
 
 
       /*$DispensUnitId = $this->getDispensUnitId();
@@ -772,7 +784,8 @@ public function create_patient(Request $request)
     }else{
       $days_supply = "30";
       $refills = "0";
-      $directions = "ASDASD";
+      $directions = "Take one at the morning and another before bed";
+      $product_name = "Isotretinoin";
 
       $curl = curl_init();
 

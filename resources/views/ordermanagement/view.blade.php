@@ -127,7 +127,7 @@
 
 															<div class="col-md-6 form-group">
 																<strong>Date : </strong>
-																{{$order_non_prescribed->mobile}}
+																{{$order_non_prescribed->created_at}}
 															</div>
 
 															<div class="col-md-6 form-group">

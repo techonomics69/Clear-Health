@@ -159,6 +159,23 @@ class CaseManagementController extends BaseController
         //
     }
 
+    public function add_recomeended_product(Request $request)
+    {
+        $user_id = $request['user_id'];
+        $case_id = $request['case_id'];
+        $$recommended_product = $request['recommended_product'];
+
+        $data  =  CaseManagement::where('user_id',$user_id)->where('id',$case_id)->update(['recommended_product' => $recommended_product]);
+
+        if($data!= 1){
+           return $this->sendError('Server error', array('Something went wrong!'));
+         }
+        else{
+          return $this->sendResponse($caseUser, 'Recomended product added successfully');
+        }
+        
+    }
+
     /**
      * Remove the specified resource from storage.
      *

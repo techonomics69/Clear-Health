@@ -86,6 +86,10 @@ class OrderManagementController extends Controller
          $order_non_prescribed[$key]->product_name = implode(',',$product_name);
      }
 
+echo "<pre>";
+print_r($order_non_prescribed);
+echo "<pre>";
+
      $user_case_management_data = CaseManagement::join('users','case_managements.user_id', '=', 'users.id')
      ->select('case_managements.*','users.first_name','users.last_name','users.email','users.mobile','users.address')
      ->where('case_managements.id',$id)

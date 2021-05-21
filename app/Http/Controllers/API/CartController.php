@@ -230,12 +230,11 @@ class CartController extends BaseController
 
     try{
 
-        $cart = Cart::where('user_id', $id)->where('order_type','AddOn')->where('status','pending')->get();
+        $cart = Cart::where('user_id', $id)->where('order_type','AddOn')->where('status','pending')->first();
 
         if(isset($cart))
         {
            $deletecart = $cart->delete();  
-
         }
         //$cart= $data->delete();
        return $this->sendResponse($data, 'Item deleted successfully.');

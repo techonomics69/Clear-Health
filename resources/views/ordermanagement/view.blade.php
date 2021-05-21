@@ -45,7 +45,7 @@
 				<?php 
 
 				foreach($order_non_prescribed as $key=>$val){
-					echo "$key=>$val";
+					echo "<br><br>$key=>$val<br><br>";
 				}
 				/* echo "<pre>";
 				//print_r($order_non_prescribed);

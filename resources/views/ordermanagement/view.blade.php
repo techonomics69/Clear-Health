@@ -132,11 +132,6 @@
 															</div>
 
 															<div class="col-md-6 form-group">
-																<strong>Taxes : </strong>
-																{{$order_non_prescribed->mobile}}
-															</div>
-
-															<div class="col-md-6 form-group">
 																<strong>Total Order Amount : </strong>
 																{{$order_non_prescribed->mobile}}
 															</div>

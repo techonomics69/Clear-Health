@@ -89,6 +89,7 @@ class OrderManagementController extends Controller
 echo "<pre>";
 print_r($order_non_prescribed);
 echo "<pre>";
+die();
 
      $user_case_management_data = CaseManagement::join('users','case_managements.user_id', '=', 'users.id')
      ->select('case_managements.*','users.first_name','users.last_name','users.email','users.mobile','users.address')

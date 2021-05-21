@@ -153,7 +153,6 @@ class CartController extends BaseController
                 $data[$key]['product_price'] = $value->product->price;
                 $data[$key]['product_category'] = $value->product->category->name;
 
-
             }
             return $this->sendResponse($data, 'Item retrieved successfully.');
         }catch(\Exception $ex){

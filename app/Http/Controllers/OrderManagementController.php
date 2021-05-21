@@ -83,7 +83,7 @@ foreach($order_non_prescribed as $key=>$val)
             foreach( $product_details as $k=>$v){
              $product_name[] = $v['product_name'];  
          }
-         $order[$key]->product_name = implode(',',$product_name);
+         $order_non_prescribed[$key]->product_name = implode(',',$product_name);
      }
 
      $user_case_management_data = CaseManagement::join('users','case_managements.user_id', '=', 'users.id')

@@ -175,7 +175,8 @@ public function ProductRecommend(Request $request)
     $ts1 = 0;
     $ts2 = 0;
     $data = 'Accutane';
-    $user_is_pregnant_breastfeeding = 0;
+    $user_is_pregnant = 0;
+    $user_is_breastfeeding = 0;
     foreach ($recommendation as $key => $value) {
 
 
@@ -188,7 +189,7 @@ public function ProductRecommend(Request $request)
                 $answer =  $value->answer;
 
             if($answer == 'Yes'){
-                $user_is_pregnant_breastfeeding = 1;
+                $user_is_pregnant = 1;
                 }   
             }
         }
@@ -199,7 +200,7 @@ public function ProductRecommend(Request $request)
                 $answer =  $value->answer;
 
             if($answer == 'Yes'){
-                $user_is_pregnant_breastfeeding = 1;
+                $user_is_breastfeeding = 1;
                 }   
             }
          }
@@ -216,16 +217,7 @@ public function ProductRecommend(Request $request)
 
             }
 
-            $question = $value->question;
-
-            if($question == "Are you Pregnant?"){
-                $user_is_pregnant_breastfeeding = 1;
-            }
-
-            if($question == "Are you breastfeeding?"){
-               $user_is_pregnant_breastfeeding = 1;
-           }
-
+            
            if(isset($answer)){
             if($answer == 'just a few pimples here and there. Mostly whiteheads and blackheads with a few inflamed bumps here and there.'){
                 $a1 = 1;
@@ -389,7 +381,7 @@ $b = $b1+count($b2);
 $c = $c1;
 
 
-if($user_is_pregnant_breastfeeding == 1){
+if($user_is_pregnant == 1 || $user_is_breastfeeding == 1){
    $data = 'Azelaic_Acid';
 }
 else if($a+$b>=11){

@@ -723,7 +723,7 @@ public function CreateCase(Request $request){
    $userquestion = array();
    foreach($userQueAns as $key=>$value){
     $userquestion[$key]['question'] = $value->question;
-    $userquestion[$key]['answer'] =($value->answer !="")?$value->answer:"";
+    $userquestion[$key]['answer'] =(isset($value->answer) && $value->answer !="")?$value->answer:"";
 
     if($value->options_type == "radio"){
      $userquestion[$key]['type']= "boolean";
@@ -745,8 +745,8 @@ public function CreateCase(Request $request){
   $refills = "11";
   $directions = "Take one at the morning and another before bed";
   $product_name = "";
-  $no_substitutions = true,
-  $pharmacy_notes =  "This medication might not be suitable for people with... "
+  $no_substitutions = "true";
+  $pharmacy_notes =  "This medication might not be suitable for people with... ";
 
 
       /*$DispensUnitId = $this->getDispensUnitId();
@@ -801,8 +801,8 @@ public function CreateCase(Request $request){
       $refills = "0";
       $directions = "Take one at the morning and another before bed";
       $product_name = "Isotretinoin";
-      $no_substitutions = true,
-      $pharmacy_notes =  "This medication might not be suitable for people with... "
+      $no_substitutions = "true";
+      $pharmacy_notes =  "This medication might not be suitable for people with... ";
 
       $curl = curl_init();
 
@@ -830,9 +830,10 @@ public function CreateCase(Request $request){
       $medications = json_decode($medications);
 
       $DispensUnitId = $medications[0]->dispense_unit_id;
+      $dosespot_medication_id = $medications[0]->dosespot_medication_id;
 
       $medication_compound_data = array();
-      $medication_compound_data[0]['partner_medication_id'] = $partner_compound_id;
+      $medication_compound_data[0]['dosespot_medication_id'] = $dosespot_medication_id;
       $medication_compound_data[0]['refills'] = $refills;
       $medication_compound_data[0]['quantity'] = $quantity;
       $medication_compound_data[0]['days_supply'] = $days_supply;
@@ -847,7 +848,7 @@ public function CreateCase(Request $request){
     $medication_compound_data = json_encode($medication_compound_data);
 
 
-    /*  $input_md_data = '{"patient_id": '.$patient_id.',"case_files": [],"case_prescriptions": '.$medication_compound_data.',"case_questions": '.$userquestion.'}';*/
+      $input_md_data = '{"patient_id": '.$patient_id.',"case_files": [],"case_prescriptions": '.$medication_compound_data.',"case_questions": '.$userquestion.'}';
 
     
 
@@ -894,7 +895,7 @@ public function CreateCase(Request $request){
 
     $md_case_data = Mdcases::create($input_data);
 
-    //$case_management  =  CaseManagement::where('id',$case_id)->update(['read_at' => $read_at]);
+    $case_management  =  CaseManagement::where('id',$case_id)->where('user_id',$user_id)->update(['md_case_status' => $case_data->status]);
 
     curl_close($curl);
 

@@ -108,7 +108,7 @@
 															
 															<div class="col-md-6  form-group">
 																<strong>Product Name : </strong>
-																{{$order_non_prescribed->first_name}}
+																{{$order_non_prescribed->product_name}}
 															</div>
 
 															<div class="col-md-6 form-group">

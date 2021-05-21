@@ -76,13 +76,11 @@ class OrderManagementController extends Controller
      ->get();
 
 
-echo "<pre>";
-print_r($order_non_prescribed);
-echo "</pre>";
-exit();
      foreach($order_non_prescribed as $key=>$val)
      {
-       /* echo $val['medication_type'];*/
+       echo $val['medication_type'];
+       echo $val['first_name'];
+
         $cart_ids = explode(',', $val['cart_id']);
         $product_name = array();
         $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name')->get();

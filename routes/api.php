@@ -69,7 +69,7 @@ Route::post('forgot_password',[RegisterController::class, 'forgot_password']);
     Route::get('cart/prescribeditem/{id}',[CartController::class, 'getCartByUserPrescribed']);
     Route::get('cart/addonitem/{id}',[CartController::class, 'getCartByUserAddOn']);
     Route::post('cart/addonItemUpdate/{id}', [CartController::class, 'addonItemUpdate']);
-    Route::get('cart/cartRemove/{id}', [CartController::class, 'cartRemove']);
+    Route::post('cart/cartRemove/{id}', [CartController::class, 'cartRemove']);
 
 
     Route::post('getFees',[FeeController::class, 'getFees']);

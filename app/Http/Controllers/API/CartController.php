@@ -223,13 +223,14 @@ class CartController extends BaseController
       return $this->sendError('Server error', array($ex->getMessage()));  
   }
 }
-public function cartRemove($id)
+public function cartRemove(Request $request,$id)
 {
+    $data = $request->all();
     try{
 
         $cart = Cart::where('user_id', $id)->where('order_type','AddOn')->where('status','pending')->get();
 
-        $cart->delete();
+        $cart= $data->delete();
         return $this->sendResponse($cart, 'Item deleted successfully.');
     }catch(\Exception $ex){
       return $this->sendError('Server error', array($ex->getMessage()));  

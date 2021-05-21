@@ -163,7 +163,7 @@ class CaseManagementController extends BaseController
     {
         $user_id = $request['user_id'];
         $case_id = $request['case_id'];
-        $$recommended_product = $request['recommended_product'];
+        $recommended_product = $request['recommended_product'];
 
         $data  =  CaseManagement::where('user_id',$user_id)->where('id',$case_id)->update(['recommended_product' => $recommended_product]);
 

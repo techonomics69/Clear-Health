@@ -687,7 +687,7 @@ public function CreateCase(Request $request){
   $case_id = $request['case_id'];
 
   $product_type = $request['product_type'];
-  $product_name = $request['product_name'];
+  //$product_name = $request['product_name'];
   $quantity = $request['quantity'];
   $preferred_pharmacy_id = $request['preferred_pharmacy_id'];
 
@@ -695,6 +695,11 @@ public function CreateCase(Request $request){
 
   $patient_id = '"'.$patient_data['md_patient_id'].'"';
 
+  $recommended_product = CaseManagement::select('recommended_product')->where('id',$case_id)->where('user_id',$user_id)->first();
+echo "<pre>";
+print_r($recommended_product);
+echo "<pre>";
+exit();
     //code to get user's question answer
 
     /*$answer = QuizAnswer::join('quizzes', 'quizzes.id', '=', 'quiz_answers.question_id')->where('quiz_answers.user_id', $request['user_id'])->where('quiz_answers.case_id', $request['case_id'])->select( 'quizzes.question','quiz_answers.answer','quizzes.options_type')->get()->toArray();

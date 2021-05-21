@@ -105,19 +105,19 @@
 													<div class="card-body">
 														<div class="box-block mtb32">
 															<h3 class="font-weight-bold"><span class="text-underline">Order Summary</span></h3>
-															
+															@foreach ($order_non_prescribed as $key => $order_data)
 															<div class="col-md-6  form-group">
 																<strong>Product Name : </strong>
-																{{$order_non_prescribed->product_name}}
+																{{$order_data->product_name}}
 															</div>
-
+															@endforeach
 															<div class="col-md-6 form-group">
 																<strong>Product Type : </strong>
 																<?php if($order_non_prescribed->medication_type == 1){
-                                                echo "Prescribed";
-                                            }else{
-                                                echo "Non Prescribed";
-                                            } ?>
+																	echo "Prescribed";
+																}else{
+																	echo "Non Prescribed";
+																} ?>
 															</div>
 
 															<div class="col-md-6 form-group">
@@ -235,7 +235,7 @@
  @endphp
  <!-- Start 2nd tab-->
  <div id="questionaire" class="tab-pane fade in">					    
- 
+ 	
  	<div class="row" style="padding: 10px;">
  		<div class="col-md-12">
  			<section class="card" >

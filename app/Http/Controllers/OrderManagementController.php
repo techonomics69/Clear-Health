@@ -74,7 +74,7 @@ class OrderManagementController extends Controller
      //'products.name AS product_name',
      //->where('checkout.id',$id)
      ->get();
-foreach($order_non_prescribed as $key=>$val)
+        foreach($order_non_prescribed as $key=>$val)
         {
             $cart_ids = explode(',', $val['cart_id']);
             $product_name = array();

@@ -59,7 +59,7 @@
                                             <div class="form-group">
                                                 <strong>Type:</strong>
                                                 <span class="required">*</span>
-                                                 {!! Form::select('fee_type', [ 'topical' => 'Topical', 'accutane' => 'Accutane', 'topical_follow_up' => 'Topical follow up', 'accutane_follow_up' => 'Accutane follow up', 'topical_refilled' => 'Topical Refilled','accutane_refilled' => 'Accutane Refilled','minimum_shipping_amount' => 'Minimum Shipping Amount', 'shipping_fee' => 'Shipping Fee'], null, ['class' => 'form-control']); !!}
+                                                 {!! Form::select('fee_type', [ 'topical' => 'Topical', 'tm_accutane' => 'Tele Medicine Accutane', 'accutane' => 'Accutane', 'topical_follow_up' => 'Topical follow up', 'accutane_follow_up' => 'Accutane follow up', 'topical_refilled' => 'Topical Refilled','accutane_refilled' => 'Accutane Refilled','minimum_shipping_amount' => 'Minimum Shipping Amount', 'shipping_fee' => 'Shipping Fee'], null, ['class' => 'form-control']); !!}
                                             </div>
                                         </div>  
 

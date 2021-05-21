@@ -181,7 +181,7 @@ class CheckoutController extends BaseController
     public function getCheckoutdetail(Request $request)
     {
         try{
-            $checkout_data = Checkoutaddress::where('user_id', $request['user_id'])->where('case_id', $request['case_id'])->OrderBy('id', 'desc')->first();
+            $checkout_data = Checkout::where('user_id', $request['user_id'])->where('case_id', $request['case_id'])->OrderBy('id', 'desc')->first();
             //$checkout_data = Checkout::where('user_id', $request->user_id)->where('cart_id', $request->cart_id)->first();
             if(!empty($checkout_data)){
                  return $this->sendResponse($checkout_data, 'Checkout data retrieved successfully.');

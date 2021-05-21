@@ -60,13 +60,13 @@ class QuizAnswerController extends BaseController
         }
         $answer = QuizAnswer::where('user_id', $data['user_id'])->where('question_id', $data['question_id'])->where('case_id', $data['case_id'])->first();
         if(!empty($answer)):
-         $answer->update($data);
-     else:
-         $quizAns = QuizAnswer::create($data);
-     endif;
+           $answer->update($data);
+       else:
+           $quizAns = QuizAnswer::create($data);
+       endif;
 
-     return $this->sendResponse(array(), 'Answer submitted successfully');
- }catch(\Exception $ex){
+       return $this->sendResponse(array(), 'Answer submitted successfully');
+   }catch(\Exception $ex){
     return $this->sendError('Server error',array($ex->getMessage()));
 }
 }
@@ -143,8 +143,8 @@ class QuizAnswerController extends BaseController
         try{
             $answer = QuizAnswer::where('user_id', $request->user_id)->where('question_id', $request->question_id)->where('case_id', $request->case_id)->first();
             if(!empty($answer)){
-             return $this->sendResponse($answer, 'Answer retrieved successfully.');
-         }else{
+               return $this->sendResponse($answer, 'Answer retrieved successfully.');
+           }else{
             return $this->sendResponse($answer =array(), 'No Data Found.');
         }
 
@@ -180,25 +180,25 @@ public function ProductRecommend(Request $request)
 
         if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_1'){
           
-         
+           
 
-        if(isset($value->answer)){
+            if(isset($value->answer)){
 
-            $answer =  $value->answer;
+                $answer =  $value->answer;
 
-        }
+            }
 
-         $question = $value->question;
+            $question = $value->question;
 
-         if($question == "Are you Pregnant?"){
-            $user_is_pregnant_breastfeeding = 1;
-         }
+            if($question == "Are you Pregnant?"){
+                $user_is_pregnant_breastfeeding = 1;
+            }
 
-         if($question == "Are you breastfeeding?"){
-             $user_is_pregnant_breastfeeding = 1;
-         }
+            if($question == "Are you breastfeeding?"){
+               $user_is_pregnant_breastfeeding = 1;
+           }
 
-         if(isset($answer)){
+           if(isset($answer)){
             if($answer == 'just a few pimples here and there. Mostly whiteheads and blackheads with a few inflamed bumps here and there.'){
                 $a1 = 1;
             }else if($answer == 'multiple inflamed pimples with new ones popping up. Acne is inflamed and red.'){
@@ -212,73 +212,73 @@ public function ProductRecommend(Request $request)
     }
     if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_2'){
 
-         if(isset($value->answer)){
+       if(isset($value->answer)){
 
-            $answer =  $value->answer;
+        $answer =  $value->answer;
 
-        }
-        if(isset($answer)){
-            if($answer == 'It doesn’t really bother me'){
-                $a2 = 1;
-            }else if($answer == 'I do notice that it’s there, but it doesn’t prevent me from doing day to day things'){
-                $a2 = 2;
-            }else if($answer == 'It bothers me and I do feel self-conscious about it sometimes when other people point it out'){
-                $a2 = 3;
-            }else if($answer == 'It bothers me a lot.I sometimes skip out on things because of my acne and it affects my self-esteem.'){
-                $a2 = 4;
-            }else if($answer == 'My acne is the primary thing that holds back my confidence, and I feel like it holds me back from enjoying things as much as I want to.'){
-                $a2 = 5;
-            }
+    }
+    if(isset($answer)){
+        if($answer == 'It doesn’t really bother me'){
+            $a2 = 1;
+        }else if($answer == 'I do notice that it’s there, but it doesn’t prevent me from doing day to day things'){
+            $a2 = 2;
+        }else if($answer == 'It bothers me and I do feel self-conscious about it sometimes when other people point it out'){
+            $a2 = 3;
+        }else if($answer == 'It bothers me a lot.I sometimes skip out on things because of my acne and it affects my self-esteem.'){
+            $a2 = 4;
+        }else if($answer == 'My acne is the primary thing that holds back my confidence, and I feel like it holds me back from enjoying things as much as I want to.'){
+            $a2 = 5;
         }
     }
-    if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_3'){
- 
-         if(isset($value->answer)){
+}
+if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_3'){
+   
+   if(isset($value->answer)){
 
-            $answer =  $value->answer;
+    $answer =  $value->answer;
 
-        }
+}
 
-        if(isset($answer)){
-            if($answer == 'My acne does not scar'){
-                $a3 = 1;
-            }else if($answer == 'I tend to get dark marks and pigmentation from my acne'){
-                $a3 = 2;
-            }else if($answer == 'My skin does tend to scar and causes depressions and bumps after my acne heals'){
-                $a3 = 3;
-            }
-        }
+if(isset($answer)){
+    if($answer == 'My acne does not scar'){
+        $a3 = 1;
+    }else if($answer == 'I tend to get dark marks and pigmentation from my acne'){
+        $a3 = 2;
+    }else if($answer == 'My skin does tend to scar and causes depressions and bumps after my acne heals'){
+        $a3 = 3;
     }
-    if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_4'){
+}
+}
+if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_4'){
     
-         if(isset($value->answer)){
+   if(isset($value->answer)){
 
-            $answer =  $value->answer;
+    $answer =  $value->answer;
 
-        }
+}
 
-        if(isset($answer)){
-            if($answer == 'Yes'){
-                $b1 = 1;
-            }
-        }
+if(isset($answer)){
+    if($answer == 'Yes'){
+        $b1 = 1;
     }
-    if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_5'){
- 
-         if(isset($value->answer)){
+}
+}
+if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_5'){
+   
+   if(isset($value->answer)){
 
-            $answer =  $value->answer;
+    $answer =  $value->answer;
 
-        }
-        $option = ['Dapsone (Aczone)', 'Topical Retinoids (Differin, Retin-A, Tazorac, etc.)', 'Topical Antibiotics (Benzaclin, Duac, etc.)', 'Azelaic Acid (Azelex, Finacea)', 'Other'];
+}
+$option = ['Dapsone (Aczone)', 'Topical Retinoids (Differin, Retin-A, Tazorac, etc.)', 'Topical Antibiotics (Benzaclin, Duac, etc.)', 'Azelaic Acid (Azelex, Finacea)', 'Other'];
         //$b2 = array_intersect( $answer, $option ); 
 
 if(isset($answer) && isset($option)){
-            if(!is_array($answer)){
-                $answer = array($answer);
-            }
-            $b2 = array_intersect( $answer, $option );
-        }
+    if(!is_array($answer)){
+        $answer = array($answer);
+    }
+    $b2 = array_intersect( $answer, $option );
+}
 
         /*if(isset($answer)){
             if($answer == 'Benzoyl Peroxide'){
@@ -300,59 +300,59 @@ if(isset($answer) && isset($option)){
     }
 
     if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_6'){
- 
-         if(isset($value->answer)){
+       
+       if(isset($value->answer)){
 
-            $answer =  $value->answer;
+        $answer =  $value->answer;
 
-        }
+    }
 
-        if(isset($answer)){
-            if($answer == 'Yes'){
-                $c1 = 1;
-            }
+    if(isset($answer)){
+        if($answer == 'Yes'){
+            $c1 = 1;
         }
     }
-    if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_7'){
-        
-        if(isset($value->answer)){
+}
+if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_7'){
+    
+    if(isset($value->answer)){
 
-            $answer =  $value->answer;
+        $answer =  $value->answer;
 
-        }
+    }
 
-        
+    
 
-        if(isset($answer)){
-            if($answer == 'Very Dry'){
-                $ts1 = 1;
-            }else if($answer == 'Dry'){
-                $ts1 = 1;
-            }else if($answer == 'Combination'){
-                $ts1 = 2;
-            }else if($answer == 'Oily'){
-                $ts1 = 2;
-            }else if($answer == 'Very Oily'){
-                $ts1 = 2;
-            }
+    if(isset($answer)){
+        if($answer == 'Very Dry'){
+            $ts1 = 1;
+        }else if($answer == 'Dry'){
+            $ts1 = 1;
+        }else if($answer == 'Combination'){
+            $ts1 = 2;
+        }else if($answer == 'Oily'){
+            $ts1 = 2;
+        }else if($answer == 'Very Oily'){
+            $ts1 = 2;
         }
     }
-    if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_8'){
- 
-        if(isset($value->answer)){
+}
+if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_8'){
+   
+    if(isset($value->answer)){
 
-            $answer =  $value->answer;
+        $answer =  $value->answer;
 
-        }
+    }
 
-        if(isset($answer)){
-            if($answer == 'Yes'){
-                $ts2 = 1;
-            }else if($answer == 'No'){
-                $ts2 = 2;
-            }
+    if(isset($answer)){
+        if($answer == 'Yes'){
+            $ts2 = 1;
+        }else if($answer == 'No'){
+            $ts2 = 2;
         }
     }
+}
 
 
 } 
@@ -362,7 +362,7 @@ $c = $c1;
 
 
 if($user_is_pregnant_breastfeeding == 1){
-     $data = 'Azelaic_Acid';
+   $data = 'Azelaic_Acid';
 }
 else if($a+$b>=11){
     $data = 'Accutane';
@@ -405,9 +405,9 @@ public function ProductRecommendBasedONTretinoinFormula(Request $request)
 
     foreach ($recommendation as $key => $value) {
 
-    if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_7'){
- 
-       if(isset($value->answer)){
+        if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_7'){
+           
+         if(isset($value->answer)){
 
             $answer =  $value->answer;
 
@@ -428,7 +428,7 @@ public function ProductRecommendBasedONTretinoinFormula(Request $request)
         }
     }
     if(isset($value->recommendation_product) && $value->recommendation_product == 'recommendation_8'){
- 
+       
         if(isset($value->answer)){
 
             $answer =  $value->answer;
@@ -447,11 +447,11 @@ public function ProductRecommendBasedONTretinoinFormula(Request $request)
 
 } 
 
- if($ts1 == 1){
-        $TretinoinFormula = 'Topical_low';
- }else if($ts1 == 2){
-        $TretinoinFormula = 'Topical_high';
- }
+if($ts1 == 1){
+    $TretinoinFormula = 'Topical_low';
+}else if($ts1 == 2){
+    $TretinoinFormula = 'Topical_high';
+}
 
 if($ts2 == 0){
     $data = $TretinoinFormula;

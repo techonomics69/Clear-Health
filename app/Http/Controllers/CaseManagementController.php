@@ -240,7 +240,7 @@ public function getCaseStatus(){
   $case_id = $request->case_id;
   $system_case_id = $request->system_case_id;
 
-  $current_status = "completed"
+  /*$current_status = "completed"
 
   if($current_status == "dosespot confirmed"){
     curl_setopt_array($curl, array(
@@ -263,7 +263,7 @@ public function getCaseStatus(){
     curl_close($curl);
     echo $response;
   }
-
+*/
     /*echo "<pre>";
     print_r($data);
     echo "<pre>";

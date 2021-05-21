@@ -113,7 +113,6 @@
 									<li><a class="btn" data-toggle="tab" href="#messages">Messages</a></li>
 									<li><a class="btn" data-toggle="tab" href="#photos">Photos </a></li>
 									<li><a class="btn" data-toggle="tab" href="#payments">Payments </a></li>
-									<li><a class="btn" data-toggle="tab" href="#shipments_shipping_details">Shipments & shipping details</a></li>
 								</ul>
 								<div class="tab-content">
 									<!--start 1st tab-->

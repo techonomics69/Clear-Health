@@ -45,7 +45,8 @@
 				<?php 
 
 				foreach($order_non_prescribed as $key=>$val){
-					echo "<br><br>$key=>$val<br><br>";
+					//echo "<br><br>$key=>$val<br><br>";
+					echo $val['medication_type'];
 				}
 				/* echo "<pre>";
 				//print_r($order_non_prescribed);
@@ -53,7 +54,11 @@
 				echo "<pre>";*/
 				die(); 
 
+
 				 if($order_non_prescribed['medication_type'] == 2) { ?>
+
+
+
 					<div class="row">
 						<div class="col-lg-12">
 							<section class="card" >

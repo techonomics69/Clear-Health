@@ -107,32 +107,38 @@
 															<h3 class="font-weight-bold"><span class="text-underline">Order Summary</span></h3>
 															
 															<div class="col-md-6  form-group">
-																<strong>FirstName : </strong>
+																<strong>Product Name : </strong>
 																{{$order_non_prescribed->first_name}}
 															</div>
 
 															<div class="col-md-6 form-group">
-																<strong>LastName : </strong>
+																<strong>Product Type : </strong>
 																{{$order_non_prescribed->last_name}}
 															</div>
 
 															<div class="col-md-6 form-group">
-																<strong>Email : </strong>
+																<strong>Quantity : </strong>
 																{{$order_non_prescribed->email}}
 															</div>
 
 															<div class="col-md-6 form-group">
-																<strong>Phone no : </strong>
+																<strong>Date : </strong>
 																{{$order_non_prescribed->mobile}}
 															</div>
 
 															<div class="col-md-6 form-group">
-																<strong>Address : </strong>
-																{{$order_non_prescribed->addressline1.','}}
-																{{$order_non_prescribed->addressline2.','}}
-																{{$order_non_prescribed->city.','}}
-																{{$order_non_prescribed->state.','}}
-																{{$order_non_prescribed->zipcode}}
+																<strong>Shipping Fees : </strong>
+																{{$order_non_prescribed->addressline1}}
+															</div>
+
+															<div class="col-md-6 form-group">
+																<strong>Taxes : </strong>
+																{{$order_non_prescribed->mobile}}
+															</div>
+
+															<div class="col-md-6 form-group">
+																<strong>Total Order Amount : </strong>
+																{{$order_non_prescribed->mobile}}
 															</div>
 															
 														</div>

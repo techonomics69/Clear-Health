@@ -723,7 +723,7 @@ public function CreateCase(Request $request){
    $userquestion = array();
    foreach($userQueAns as $key=>$value){
     $userquestion[$key]['question'] = $value->question;
-    $userquestion[$key]['answer'] =($value->answer !="")?$value->answer:"";
+    $userquestion[$key]['answer'] =(isset($value->answer) && $value->answer !="")?$value->answer:"";
 
     if($value->options_type == "radio"){
      $userquestion[$key]['type']= "boolean";

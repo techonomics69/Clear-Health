@@ -333,7 +333,7 @@ public function create_patient(Request $request)
      }else{
       return $this->sendResponse(array(),'Something went wrong!');
     }
-  }
+}
 
 
   public function searchStateDetail(Request $request){
@@ -720,11 +720,26 @@ public function create_patient(Request $request)
 
    $userQueAns = json_decode($answer_data[0]['answer']);
 
-
+   $userquestion = array();
+    foreach($userQueAns as $key=>$value){
+      
    echo "<pre>";
-   print_r($userQueAns);
+   print_r($value);
    echo "<pre>";
    exit();
+      $userquestion[$key]['question'] = $value['question'];
+      $userquestion[$key]['answer'] = $value['answer'];
+
+      if($value['options_type'] == "radio"){
+       $userquestion[$key]['type']= "boolean";
+     }else{
+       $userquestion[$key]['type']= "string";
+     }
+     
+     $userquestion[$key]['important']= true;
+   }
+   
+   $userquestion = json_encode($userquestion);
   //end of code to get user's question answer
 
 

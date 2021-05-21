@@ -318,7 +318,7 @@ $c = $c1;
 
 
 if($user_is_pregnant_breastfeeding == 1){
-     $data = 'Azelaic Acid';
+     $data = 'Azelaic_Acid';
 }
 else if($a+$b>=11){
     $data = 'Accutane';

@@ -55,6 +55,9 @@
 				 if($order_non_prescribed['medication_type'] == 2) {*/ ?>
 
 @foreach ($order_non_prescribed as $key => $order_data)
+<?php echo $order_data->medication_type ; ?>
+@endforeach
+
 <?php 
 if($order_data->medication_type == 2 ) { ?>
 					<div class="row">
@@ -123,12 +126,12 @@ if($order_data->medication_type == 2 ) { ?>
 															
 															<div class="col-md-6  form-group">
 																<strong>Product Name : </strong>
-																{{$order_non_prescribed->product_name}}
+																{{$order_data->product_name}}
 															</div>
 
 															<div class="col-md-6 form-group">
 																<strong>Product Type : </strong>
-																<?php if($order_non_prescribed->medication_type == 1){
+																<?php if($order_data->medication_type == 1){
 																	echo "Prescribed";
 																}else{
 																	echo "Non Prescribed";
@@ -137,22 +140,22 @@ if($order_data->medication_type == 2 ) { ?>
 
 															<div class="col-md-6 form-group">
 																<strong>Quantity : </strong>
-																{{$order_non_prescribed->quantity}}
+																{{$order_data->quantity}}
 															</div>
 
 															<div class="col-md-6 form-group">
 																<strong>Date : </strong>
-																{{$order_non_prescribed->created_at}}
+																{{$order_data->created_at}}
 															</div>
 
 															<div class="col-md-6 form-group">
 																<strong>Shipping Fees : </strong>
-																{{$order_non_prescribed->shipping_fee}}
+																{{$order_data->shipping_fee}}
 															</div>
 
 															<div class="col-md-6 form-group">
 																<strong>Total Order Amount : </strong>
-																{{$order_non_prescribed->total_amount}}
+																{{$order_data->total_amount}}
 															</div>
 															
 														</div>
@@ -298,7 +301,6 @@ if($order_data->medication_type == 2 ) { ?>
 </div>
 </div>
 <?php } ?>
-@endforeach
 </div>
 </div>
 @endsection

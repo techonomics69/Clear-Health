@@ -894,7 +894,7 @@ public function CreateCase(Request $request){
 
     $md_case_data = Mdcases::create($input_data);
 
-    //$case_management  =  CaseManagement::where('id',$case_id)->update(['read_at' => $read_at]);
+    $case_management  =  CaseManagement::where('id',$case_id)->where('user_id',$user_id)->update(['md_case_status' => $case_data->status]);
 
     curl_close($curl);
 

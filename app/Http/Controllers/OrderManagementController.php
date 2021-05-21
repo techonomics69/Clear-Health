@@ -85,7 +85,7 @@ class OrderManagementController extends Controller
          }
          $order_non_prescribed[$key]->product_name = implode(',',$product_name);
          echo "<pre>";
-print_r($order_non_prescribed[]);
+print_r($order_non_prescribed[0]);
 echo "<pre>";
 die();
      }

@@ -74,16 +74,22 @@ class OrderManagementController extends Controller
      //'products.name AS product_name',
      //->where('checkout.id',$id)
      ->get();
+
+
+echo "<pre>";
+print_r($order_non_prescribed);
+echo "</pre>";
+exit();
      foreach($order_non_prescribed as $key=>$val)
      {
-        echo $val['medication_type'];
+       /* echo $val['medication_type'];*/
         $cart_ids = explode(',', $val['cart_id']);
         $product_name = array();
         $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name')->get();
 
         foreach($product_details as $product_key=>$product_value){
          $product_name[] = $product_value['product_name'];  
-     }exit();
+     }
 
      /*if(isset($val['medication_type']))
      {

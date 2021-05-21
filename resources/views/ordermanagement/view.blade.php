@@ -42,7 +42,11 @@
 					</div> --> 
 				</div>
 				
-				<?php  print_r($order_non_prescribed); die();   if($order_non_prescribed['medication_type'] == 2) { ?>
+				<?php  echo "<pre>";
+				print_r($order_non_prescribed);
+				echo "<pre>";
+				die();  
+				 if($order_non_prescribed['medication_type'] == 2) { ?>
 					<div class="row">
 						<div class="col-lg-12">
 							<section class="card" >
@@ -115,10 +119,10 @@
 															<div class="col-md-6 form-group">
 																<strong>Product Type : </strong>
 																<?php if($order_non_prescribed->medication_type == 1){
-                                                echo "Prescribed";
-                                            }else{
-                                                echo "Non Prescribed";
-                                            } ?>
+																	echo "Prescribed";
+																}else{
+																	echo "Non Prescribed";
+																} ?>
 															</div>
 
 															<div class="col-md-6 form-group">
@@ -236,7 +240,7 @@
  @endphp
  <!-- Start 2nd tab-->
  <div id="questionaire" class="tab-pane fade in">					    
- 
+
  	<div class="row" style="padding: 10px;">
  		<div class="col-md-12">
  			<section class="card" >

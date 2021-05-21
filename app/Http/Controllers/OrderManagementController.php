@@ -69,11 +69,22 @@ class OrderManagementController extends Controller
      $order_non_prescribed =  checkout::join('users', 'users.id', '=', 'checkout.user_id')
      ->join('carts','carts.id', '=', 'checkout.cart_id')
      ->join('checkout_address','checkout_address.id', '=', 'checkout.id')
-     ->join('products', 'products.id', '=', 'carts.product_id')
-     ->select('checkout.*','users.email','checkout.case_id','checkout.created_at','checkout.order_id','checkout.medication_type','checkout.id','checkout.cart_id','carts.product_price','users.first_name','users.last_name','users.email','users.mobile','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode','products.name AS product_name','carts.quantity')
-     ->where('checkout.id',$id)
-     ->first();
+    /* ->join('products', 'products.id', '=', 'carts.product_id')*/
+     ->select('checkout.*','users.email','checkout.case_id','checkout.created_at','checkout.order_id','checkout.medication_type','checkout.id','checkout.cart_id','carts.product_price','users.first_name','users.last_name','users.email','users.mobile','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode','carts.quantity')
+     //'products.name AS product_name',
+     //->where('checkout.id',$id)
+     ->get();
+foreach($order_non_prescribed as $key=>$val)
+        {
+            $cart_ids = explode(',', $val['cart_id']);
+            $product_name = array();
+            $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name')->get();
 
+            foreach( $product_details as $k=>$v){
+             $product_name[] = $v['product_name'];  
+         }
+         $order[$key]->product_name = implode(',',$product_name);
+     }
 
      $user_case_management_data = CaseManagement::join('users','case_managements.user_id', '=', 'users.id')
      ->select('case_managements.*','users.first_name','users.last_name','users.email','users.mobile','users.address')

@@ -227,14 +227,14 @@ class CartController extends BaseController
   public function cartRemove(Request $request,$id)
   {
     $data = $request->all();
-    
+
     try{
 
         $cart = Cart::where('user_id', $id)->where('order_type','AddOn')->where('status','pending')->get();
 
         if(isset($cart))
         {
-           $cart= $data->delete();   
+           $deletecart= $data->delete($cart);   
         }
         //$cart= $data->delete();
        return $this->sendResponse($data, 'Item deleted successfully.');

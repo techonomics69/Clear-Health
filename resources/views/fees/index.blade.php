@@ -59,6 +59,12 @@
 												case "accutane":
 												$type = "Accutane";
 												break;
+												case "tm_topical":
+												$type = "Tele Medicine Topical";
+												break;
+												case "tm_accutane":
+												$type = "Tele Medicine Accutane";
+												break;
 												case "topical_follow_up":
 												$type = "Topical follow up";
 												break;

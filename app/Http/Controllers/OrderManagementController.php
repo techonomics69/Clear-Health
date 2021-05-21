@@ -79,11 +79,12 @@ class OrderManagementController extends Controller
         $cart_ids = explode(',', $val['cart_id']);
         $product_name = array();
         $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name')->get();
-        
+
         foreach($product_details as $product_key=>$product_value){
            $product_name[] = $product_key['product_name'];  
        }
-       $order_non_prescribed[$key]->product_name = implode(',',$product_name);    
+       $order_non_prescribed[$key]->product_name = implode(',',$product_name);
+           
        echo "<pre>";
        print_r($order_non_prescribed);
        echo "<pre>";

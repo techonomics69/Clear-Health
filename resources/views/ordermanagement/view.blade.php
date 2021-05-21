@@ -137,7 +137,7 @@
 
 															<div class="col-md-6 form-group">
 																<strong>Total Order Amount : </strong>
-																{{$order_non_prescribed->mobile}}
+																{{$order_non_prescribed->total_amount}}
 															</div>
 															
 														</div>

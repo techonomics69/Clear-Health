@@ -18,6 +18,7 @@
 
 	</style>
 
+
 	<div class="content-wrapper">
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-12 mb-2">
@@ -41,7 +42,7 @@
 					</div> --> 
 				</div>
 				
-				<?php if(isset($order_non_prescribed['medication_type'])&&$order_non_prescribed['medication_type'] == 2) { ?>
+				<?php if($order_non_prescribed['medication_type'] == 2) { echo $order_non_prescribed['medication_type'];?>
 					<div class="row">
 						<div class="col-lg-12">
 							<section class="card" >

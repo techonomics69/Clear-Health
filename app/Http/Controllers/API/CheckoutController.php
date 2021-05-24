@@ -26,6 +26,7 @@ class CheckoutController extends BaseController
     try{
        $orderlist = checkout::join('users', 'users.id', '=', 'checkout.user_id')
        ->leftjoin("carts",\DB::raw("FIND_IN_SET(carts.id, checkout.cart_id)") ,">",\DB::raw("'0'"))
+      /* ->join('carts','carts.id', '=', 'checkout.cart_id')*/
        ->select('checkout.id', 'checkout.md_status','checkout.status','checkout.created_at','checkout.updated_at','carts.order_type')
        ->where('checkout.user_id',$request->user_id)
        ->OrderBy('id', 'desc')

@@ -198,30 +198,53 @@
 
  <!--tab3-->
  <div id="skincare_summary" class="tab-pane fade in">
- 	<div class="row" style="padding: 10px;">
- 		<div class="col-md-12">
- 			Skincare Summary
-									{{-- <table class="table table-responsive-md table-striped table-bordered ipledgeList" style="width:100%">
-										<thead>
-											<tr>
-												<th width="60px">No3</th>
-												<th>Name</th>
-												<th width="200px">Action</th>
-											</tr>
-										</thead>
-										<tbody>					
-											@foreach ($loopdata as $key => $data)
-											<tr>
-												<td>{{ ++$i }}</td>
-												<td>{{ $data->question }}</td>
-												<td> </td>
-											</tr>
-											@endforeach
-											@endforeach
-										</tbody>
-									</table> --}}
-								</div>
-							</div>
+ 	<div class="row" style="padding: 20px;">
+										<div class="col-md-12">
+											<section class="card">
+
+												<div class="card-body">
+
+												<div class="box-block mtb32">
+													<h3 class="font-weight-bold"><span class="text-underline">Basic Information</span></h3>
+													<div class="col-md-6  form-group">
+														
+														<strong>FirstName:</strong>
+														{{$user_case_management_data['first_name']}}
+														
+													</div>
+
+													<div class="col-md-6 form-group">
+														<strong>LastName: </strong>
+														{{$user_case_management_data['last_name']}}
+														
+													</div>
+
+													<div class="col-md-6 form-group">
+														<strong>Email: </strong>
+														{{$user_case_management_data['email']}}
+														
+													</div>
+													<div class="col-md-6 form-group">
+														<strong>Mobile No: </strong>
+														{{$user_case_management_data['email']}}
+							
+													</div>
+													<div class="col-md-6 form-group">
+														<strong>Gender : </strong>
+														{{$user_case_management_data['email']}}
+							
+													</div>
+													<div class="col-md-6 form-group">
+														<strong>Physician Details : </strong>
+														{{$user_case_management_data['email']}}
+							
+													</div>
+													</div>
+												</div>
+											</section>
+											
+										</div>
+									</div>
 						</div> 
 
 

@@ -1387,17 +1387,7 @@ public function detach_file_from_case(Request $request){
       $messagefiles = MdMessageFiles::find($messagefiles_details['id']);
       $messagefiles->delete();
 
-      echo "<pre>";
-      print_r(json_decode($delete_file));
-      echo "<pre>";
-      
-
-      echo "<pre>";
-      print_r(json_decode($response));
-      echo "<pre>";
-      exit();
-
-      //return $this->sendResponse($response,'File Detach Successfully');
+      return $this->sendResponse($response,'File Detach Successfully');
     }
     else{
       return $this->sendResponse(array(),'File not Exist.');

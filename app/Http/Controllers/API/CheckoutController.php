@@ -35,8 +35,9 @@ class CheckoutController extends BaseController
         
 
 echo "<pre>";
-print_r($request->user_id);
+print_r($orderlist);
 echo "</pre>";
+die();
 
         if(isset($orderlist)){
             $orderlist->id=$orderlist->id;

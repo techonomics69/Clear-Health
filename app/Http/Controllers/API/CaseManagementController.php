@@ -748,6 +748,8 @@ public function CreateCase(Request $request){
    $userQueAns = json_decode($answer_data[0]['answer']);
 
  //get weight of patient 
+
+   //$answer = QuizAnswer::join('quizzes', 'quizzes.id', '=', 'quiz_answers.question_id')->where('quiz_answers.user_id', $request['user_id'])->where('quiz_answers.case_id', $request['case_id'])->where('quiz_answers.case_id', $request['case_id'])->select( 'quizzes.question','quiz_answers.answer','quizzes.options_type')->get()->toArray();
     foreach ($userQueAns as $key => $value) {
 
         $question = $value->question;
@@ -840,8 +842,8 @@ public function CreateCase(Request $request){
       $medication_compound_data[0]['directions'] = $directions;
       $medication_compound_data[0]['dispense_unit_id'] = $DispensUnitId;
       $medication_compound_data[0]['preferred_pharmacy_id'] = $preferred_pharmacy_id;
-      $medication_compound_data[0]['no_substitutions'] = $no_substitutions;
-      $medication_compound_data[0]['pharmacy_notes'] = $pharmacy_notes;
+      //$medication_compound_data[0]['no_substitutions'] = $no_substitutions;
+      //$medication_compound_data[0]['pharmacy_notes'] = $pharmacy_notes;
 
     }else{
       $days_supply = "30";
@@ -888,8 +890,8 @@ public function CreateCase(Request $request){
       $medication_compound_data[0]['directions'] = $directions;
       $medication_compound_data[0]['dispense_unit_id'] = $DispensUnitId;
       $medication_compound_data[0]['preferred_pharmacy_id'] = $preferred_pharmacy_id;
-      $medication_compound_data[0]['no_substitutions'] = $no_substitutions;
-      $medication_compound_data[0]['pharmacy_notes'] = $pharmacy_notes;
+      //$medication_compound_data[0]['no_substitutions'] = $no_substitutions;
+      //$medication_compound_data[0]['pharmacy_notes'] = $pharmacy_notes;
 
     }
 
@@ -939,7 +941,7 @@ public function CreateCase(Request $request){
     $input_data['prioritized_at'] = $case_data->prioritized_at;
     $input_data['prioritized_reason'] = $case_data->prioritized_reason;
     $input_data['cancelled_at'] = $case_data->prioritized_reason;
-    $input_data['md_created_at'] = $case_data->created_at;
+    $input_data['md_created_at'] = $case_data->case_assignment->created_at;
     $input_data['support_reason'] = $case_data->support_reason;
     $input_data['case_id'] = $case_data->case_id;
     $input_data['status'] = $case_data->status;
@@ -951,6 +953,17 @@ public function CreateCase(Request $request){
     $case_management  =  CaseManagement::where('id',$case_id)->where('user_id',$user_id)->update(['md_case_status' => $case_data->status]);
 
     curl_close($curl);
+
+    $inputmd_data['status'] = $status;
+    $inputmd_data['image'] = "";
+    $inputmd_data['language_id'] = "";
+
+    $mdmanagement_data = Mdmanagement::where('case_id', $case_id)->first();
+    if(!empty($mdmanagement_data)){
+      $mdmanagement_data->update($input);
+    }else{
+      $md_case_data = Mdmanagement::create($input);
+    }
 
     return $this->sendResponse(json_decode($response),'Case Created Successfully');
 

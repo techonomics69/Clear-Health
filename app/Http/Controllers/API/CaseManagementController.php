@@ -1353,19 +1353,7 @@ public function detach_file_from_case(Request $request){
 
     $file_name = str_replace("public/Message_files/","",$messagefiles_details['system_file']);
     
-  
-
-    if(!empty($messagefiles_details)){
-
-      if(file_exists($destinationPath.'/'.$file_name)){
-        unlink($destinationPath.'/'.$file_name);
-      }
-
-      $messagefiles = MdMessageFiles::find($messagefiles_details['id']);
-      $messagefiles->delete();
-
-
-      $delete_file = $this->DeleteFile($file_id);
+    $delete_file = $this->DeleteFile($file_id);
 
       die("here");
 
@@ -1389,6 +1377,16 @@ public function detach_file_from_case(Request $request){
       $response = curl_exec($curl);
 
       curl_close($curl);
+
+
+       if(!empty($messagefiles_details)){
+
+      if(file_exists($destinationPath.'/'.$file_name)){
+        unlink($destinationPath.'/'.$file_name);
+      }
+
+      $messagefiles = MdMessageFiles::find($messagefiles_details['id']);
+      $messagefiles->delete();
 
      
 

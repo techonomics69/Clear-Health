@@ -44,7 +44,7 @@
                   <table class="table  table-responsive-md table-striped table-bordered" style="width:100%" id="CaseManagementList">
                     <thead>
                     <tr>
-                      <th>No</th>             
+                      <th>SR No</th>             
                       <th>Date</th>
                       <th>Case id </th>
                       <th>MD assigned ID</th>   
@@ -61,7 +61,7 @@
                     
                     <tr>
                       <td>{{ ++$i }}</td>           
-                      <td>{{ $case_data['crated_at'] }}</td> 
+                      <td>{{ $case_data['created_at'] }}</td> 
                       <td>{{ $case_data['ref_id']}}</td>
                       <td>{{ $case_data['md_case_id'] }} </td>
                       <td><?php if($case_data['md_status'] ==0){echo 'pending ';}else if($case_data['md_status'] ==1){echo 'support';}else{echo 'accepted';} ?></td>

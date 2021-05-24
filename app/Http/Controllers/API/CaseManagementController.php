@@ -1367,7 +1367,7 @@ public function detach_file_from_case(Request $request){
 
       $delete_file = $this->DeleteFile($file_id);
 
-      die();
+      die("here");
 
      $curl = curl_init();
 

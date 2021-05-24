@@ -44,7 +44,7 @@
                   <table class="table  table-responsive-md table-striped table-bordered" style="width:100%" id="CaseManagementList">
                     <thead>
                     <tr>
-                      <th>No</th>             
+                      <th>SR No</th>             
                       <th>Date</th>
                       <th>Case id </th>
                       <th>MD assigned ID</th>   

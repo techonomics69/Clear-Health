@@ -38,7 +38,6 @@ foreach($orderlist as $key=>$val)
        {
         
         $cart_ids = explode(',', $val['cart_id']);
-
         echo "<pre>";
 print_r($cart_ids);
 echo "</pre>";

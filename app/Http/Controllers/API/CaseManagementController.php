@@ -1051,7 +1051,9 @@ public function detach_file_from_case(Request $request){
 
     if(!empty($casefiles_details) && count($casefiles_details)>0){
 
-      unlink($destinationPath.'/'.$casefiles_details[0]['file']);
+      if(file_exists($destinationPath.'/'.$casefiles_details[0]['file'])){
+        unlink($destinationPath.'/'.$casefiles_details[0]['file']);
+      }
 
       $casefiles = CaseFiles::find($casefiles_details[0]['id']);
       $casefiles->delete();
@@ -1360,27 +1362,63 @@ public function detach_file_from_case(Request $request){
       }
 
       $messagefiles = MdMessageFiles::find($messagefiles_details['id']);
+      $messagefiles->delete();
 
-      echo "<pre>";
-      print_r($messagefiles);
-      echo "<pre>";
-      exit();
 
-      //$messagefiles->delete();
+       $delete_file = $this->DeleteFile($file_id);
+
+     $curl = curl_init();
+
+      curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/messages/'.$case_message_id .'/files/'.$file_id,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'DELETE',
+        CURLOPT_HTTPHEADER => array(
+          'Authorization: Bearer '.$token,
+          'Cookie: __cfduid=da01d92d82d19a6cccebfdc9852303eb81620627650'
+        ),
+      ));
+
+      $response = curl_exec($curl);
+
+      curl_close($curl);
+
+     
+
+      return $this->sendResponse($response,'File Detach Successfully');
     }
+    /*else{
+      return $this->sendResponse(array(),'File not Exist.');
+    }*/
+ 
 
   }
 
-  public function DeleteFile(Request $request){
+  public function DeleteFile($file_id){
 
     $r = $this->get_token();
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
-    $case_id = $request['case_id'];
+    echo "<pre>";
+    print_r($request->all());
+    echo "<pre>";
+    
+
+    echo "<pre>";
+    print_r($file_id);
+    echo "<pre>";
+    exit();
+
+    /*$case_id = $request['case_id'];
     $case_message_id = $request['file_id'];
     $user_id = $request['user_id'];
-    $system_case_id = $request['system_case_id'];
+    $system_case_id = $request['system_case_id'];*/
 
   }
 

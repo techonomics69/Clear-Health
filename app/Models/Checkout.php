@@ -31,6 +31,6 @@ class Checkout extends Model
 
     public function cart()
     {
-        return $this->belongsTo('App\Models\Cart', 'cart_id');
+        return $this->belongsTo('App\Models\Carts', 'cart_id');
     }
 }

@@ -1355,7 +1355,9 @@ public function detach_file_from_case(Request $request){
 
     if(!empty($messagefiles_details)){
 
-      unlink($destinationPath.'/'.$file_name);
+      if(file_exists($destinationPath.'/'.$file_name)){
+        unlink($destinationPath.'/'.$file_name);
+      }
 
       $messagefiles = MdMessageFiles::find($messagefiles_details['id']);
 

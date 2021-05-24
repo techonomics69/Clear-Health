@@ -104,9 +104,19 @@
 														
 													</div>
 													<div class="col-md-6 form-group">
-														<strong> I pledge ID: </strong>
-														#111111
-														
+														<strong>Mobile No: </strong>
+														{{$user_case_management_data['email']}}
+							
+													</div>
+													<div class="col-md-6 form-group">
+														<strong>Gender : </strong>
+														{{$user_case_management_data['email']}}
+							
+													</div>
+													<div class="col-md-6 form-group">
+														<strong>Physician Details : </strong>
+														{{$user_case_management_data['email']}}
+							
 													</div>
 													</div>
 												</div>

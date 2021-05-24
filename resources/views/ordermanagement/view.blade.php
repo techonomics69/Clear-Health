@@ -211,7 +211,7 @@ if($medication_type == 2 ) { ?>
 															</div>
 
 															<div class="col-md-6 form-group">
-																<strong>Mobile : </strong>
+																<strong>Mobile No: </strong>
 																{{$user_case_management_data['mobile']}}
 															</div>
 

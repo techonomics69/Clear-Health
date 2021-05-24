@@ -206,7 +206,6 @@
 
 												<div class="box-block mtb32">
 													<h3 class="font-weight-bold"><span class="text-underline">Skincare Summary</span></h3>
-													
 													</div>
 												</div>
 											</section>
@@ -219,10 +218,10 @@
 						<!--end of tab3-->
 
 						<!--tab4-->
-						<div id="rx" class="tab-pane fade in ">
+						<div id="action_items" class="tab-pane fade in ">
 							<div class="row" style="padding: 20px;">
 								<div class="col-md-12">
-									rx details goes here
+									Action Items
 								</div>
 							</div>
 						</div> 

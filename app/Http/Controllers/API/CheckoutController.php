@@ -33,10 +33,11 @@ class CheckoutController extends BaseController
 
 foreach($orderlist as $key=>$val)
        {
+        echo $val['cart_id'];
+        die();
         $cart_ids = explode(',', $val['cart_id']);
 
-        print_r($cart_ids);
-        die();
+        
         $product_name = array();
         $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name')->get()->toArray();
         foreach($product_details as $product_key=>$product_value){

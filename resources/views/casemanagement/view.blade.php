@@ -205,40 +205,8 @@
 												<div class="card-body">
 
 												<div class="box-block mtb32">
-													<h3 class="font-weight-bold"><span class="text-underline">Basic Information</span></h3>
-													<div class="col-md-6  form-group">
-														
-														<strong>FirstName:</strong>
-														{{$user_case_management_data['first_name']}}
-														
-													</div>
-
-													<div class="col-md-6 form-group">
-														<strong>LastName: </strong>
-														{{$user_case_management_data['last_name']}}
-														
-													</div>
-
-													<div class="col-md-6 form-group">
-														<strong>Email: </strong>
-														{{$user_case_management_data['email']}}
-														
-													</div>
-													<div class="col-md-6 form-group">
-														<strong>Mobile No: </strong>
-														{{$user_case_management_data['email']}}
-							
-													</div>
-													<div class="col-md-6 form-group">
-														<strong>Gender : </strong>
-														{{$user_case_management_data['email']}}
-							
-													</div>
-													<div class="col-md-6 form-group">
-														<strong>Physician Details : </strong>
-														{{$user_case_management_data['email']}}
-							
-													</div>
+													<h3 class="font-weight-bold"><span class="text-underline">Skincare Summary</span></h3>
+													
 													</div>
 												</div>
 											</section>

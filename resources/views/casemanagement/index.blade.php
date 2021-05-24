@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'clearHealth | Customer')
+@section('title', 'clearHealth | Case Management')
 
 @section('content')
 <div class="app-content content">

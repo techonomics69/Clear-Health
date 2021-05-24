@@ -32,12 +32,9 @@ class CheckoutController extends BaseController
     try{
 
         $orderlist =  Checkout::where('user_id', $request->user_id)->OrderBy('id', 'desc')->get();
-dd($orderlist);
+
         if(!empty($orderlist)){
-            $orderlist->id=$orderlist->id;
-            $orderlist->md_status=$orderlist->md_status;
-            $orderlist->status=$orderlist->status;
-            $orderlist->created_at=$orderlist->created_at;
+            $orderlist->order_type=$orderlist->cart->order_type;
         }
         return $this->sendResponse($orderlist, 'Order data retrieved successfully.');
 /*if(!empty($orderlist)){

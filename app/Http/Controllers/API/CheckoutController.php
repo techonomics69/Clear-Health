@@ -33,7 +33,7 @@ class CheckoutController extends BaseController
      ->select('checkout.id', 'checkout.md_status','checkout.status','checkout.created_at','checkout.updated_at')->where('checkout.user_id',$request->user_id)->OrderBy('id', 'desc')->first();
 
      if(!empty($orderlist)){
-         return $this->sendResponse( $orderlist. 'Order data retrieved successfully.');
+         return $this->sendResponse($orderlist, 'Order data retrieved successfully.');
      }else{
         return $this->sendResponse( $orderlist =array(), 'No Data Found.');
     }

@@ -203,7 +203,6 @@
 											</div>
 										</div>
 									</section>
-
 								</div>
 							</div>
 						</div> 
@@ -213,7 +212,13 @@
 						<div id="action_items" class="tab-pane fade in ">
 							<div class="row" style="padding: 20px;">
 								<div class="col-md-12">
-									Action Items
+									<section class="card">
+										<div class="card-body">
+											<div class="box-block mtb32">
+												<h3 class="font-weight-bold"><span class="text-underline">Action Items</span></h3>
+											</div>
+										</div>
+									</section>
 								</div>
 							</div>
 						</div> 
@@ -238,7 +243,7 @@
 							</div>
 						</div>
 						<!--end 6th tab-->
-						
+
 						<!--start 7th tab-->
 						<div id="payments" class="tab-pane fade in ">
 							<div class="row" style="padding: 20px;">

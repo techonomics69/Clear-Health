@@ -189,8 +189,12 @@ class CartController extends BaseController
     {
         try{
             $cart = Cart::where('user_id', $id)->where('order_type','AddOn')->where('status','purchased')->OrderBy('id','desc')->first();
+
+            if(isset($cart))
+            {
             $cart->product_name=$cart->product->name;
             $cart->product_price=$cart->product->price;
+            }
             /*$data = array();
             foreach ($cart as $key => $value) {
                 $data[$key]['id'] = $value->id;

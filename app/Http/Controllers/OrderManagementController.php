@@ -74,10 +74,10 @@ class OrderManagementController extends Controller
        ->get();
 
 
-echo "<pre>";
+/*echo "<pre>";
 print_r($order_non_prescribed);
 echo "</pre>";
-die();
+die();*/
 
 
        foreach($order_non_prescribed as $key=>$val)

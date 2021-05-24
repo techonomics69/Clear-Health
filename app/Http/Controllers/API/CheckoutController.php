@@ -20,7 +20,7 @@ class CheckoutController extends BaseController
       ->join('carts','carts.id', '=', 'checkout.cart_id')
       ->join('products', 'products.id', '=', 'carts.product_id')
       ->select('users.name', 'users.mobile', 'products.name AS product_name' , 'carts.product_price', 'checkout.total_amount','checkout.case_id','checkout.created_at')->get();
-      
+
       return $this->sendResponse($order, 'Order retrieved successfully.');
   }
 
@@ -32,13 +32,13 @@ class CheckoutController extends BaseController
        $order = checkout::join('users', 'users.id', '=', 'checkout.user_id')
        ->join('carts','carts.id', '=', 'checkout.cart_id')
        ->join('products', 'products.id', '=', 'carts.product_id')
-       ->select('users.name', 'users.mobile', 'products.name AS product_name' , 'carts.product_price', 'checkout.total_amount','checkout.case_id','checkout.created_at')->where('user_id', $request['user_id'])->OrderBy('id', 'desc')->first();
+       ->select('users.name', 'users.mobile', 'products.name AS product_name' , 'carts.product_price', 'checkout.total_amount','checkout.case_id','checkout.created_at')->where('user_id', $request['user_id'])->OrderBy('checkout.id', 'desc')->get();
        if(!empty($order)){
            return $this->sendResponse( $order. 'Order data retrieved successfully.');
        }else{
         return $this->sendResponse( $order =array(), 'No Data Found.');
     }
-    
+
 }catch(\Exception $ex){
     return $this->sendError('Server error', array($ex->getMessage()));
 } 
@@ -68,7 +68,7 @@ class CheckoutController extends BaseController
         if(!empty($last_checkout_id)){
             $year = substr($last_checkout_id['order_id'],4, -9);
             $current_year = date("Y");
-            
+
             if(!empty($last_checkout_id['order_id']) && ($year == $current_year)){
                 $id = number_format(substr($last_checkout_id['order_id'], 9)) + 1;
                 $order_id = str_pad($id,8,'0',STR_PAD_LEFT);
@@ -77,10 +77,10 @@ class CheckoutController extends BaseController
         else{
             $order_id = "00000001";
         }
-        
+
         $order_id = "ORD-".date("Y")."-".$order_id;
         $data['order_id'] = $order_id;
-        
+
         if(empty($data['user_id'])):
             if(isset($data['token']) && !empty($data['token'])):
 
@@ -96,21 +96,21 @@ class CheckoutController extends BaseController
             return $this->sendError('Validation Error.', $validator->errors()->all());       
         }
         $checkoutdata = Checkout::create($data);
-        
+
         return $this->sendResponse($checkoutdata, 'Order Created Successfully');
     }catch(\Exception $ex){
         return $this->sendError('Server error',array($ex->getMessage()));
     }
-    
-    
-    
+
+
+
 
 }
 
 public function addCheckoutAddress(Request $request)
 {
     $data = $request->all();
-    
+
     if(empty($data['user_id'])):
         if(isset($data['token']) && !empty($data['token'])):
 
@@ -136,7 +136,7 @@ try{
         return $this->sendError('Validation Error.', $validator->errors()->all());       
     }
     $checkoutaddressdata = Checkoutaddress::create($data);
-    
+
     return $this->sendResponse($checkoutaddressdata, 'Address added Successfully');
 }catch(\Exception $ex){
     return $this->sendError('Server error',array($ex->getMessage()));
@@ -208,7 +208,7 @@ try{
            }else{
             return $this->sendResponse($checkout_data =array(), 'No Data Found.');
         }
-        
+
     }catch(\Exception $ex){
         return $this->sendError('Server error', array($ex->getMessage()));
     }
@@ -225,7 +225,7 @@ public function getCheckoutAddress(Request $request)
        }else{
         return $this->sendResponse($checkout_data =array(), 'No Data Found.');
     }
-    
+
 }catch(\Exception $ex){
     return $this->sendError('Server error', array($ex->getMessage()));
 }

@@ -223,31 +223,33 @@
 						<div id="messages" class="tab-pane fade in ">
 							<div class="row" style="padding: 20px;">
 								<div class="col-md-12">
-
-									messages goes here
-									{{-- <table class="table table-responsive-md table-striped table-bordered ipledgeList" style="width:100%">
-										<thead>
-											<tr>
-												<th width="60px">Files</th>
-												<th width="60px">Imported By</th>
-												<th width="200px">Imported date</th>
-											</tr>
-										</thead>
-										<tbody>					
-											@foreach($ipledgehistory_data as $key1 => $data1)
-											<tr>
-												<td><a class="text-dark" href="{{route('IpledgefileDownload',$data1['id'])}}" target="_blank"><i class="fa fa-download" aria-hidden="true"></i>  {{$data1['files']}}</a></td>
-												<td>{{$data1['imported_by']}}</td>
-												<td>{{$data1['crated_at']}}</td>
-											</tr>
-											@endforeach
-										</tbody>
-									</table> --}}
+									Messages goes here
 								</div>
 							</div>
-						</div> 
+						</div>
+						<!--end 5th tab-->
+
+						<!--start 6th tab-->
+						<div id="photos" class="tab-pane fade in ">
+							<div class="row" style="padding: 20px;">
+								<div class="col-md-12">
+									Photos
+								</div>
+							</div>
+						</div>
+						<!--end 6th tab-->
+						
+						<!--start 7th tab-->
+						<div id="payments" class="tab-pane fade in ">
+							<div class="row" style="padding: 20px;">
+								<div class="col-md-12">
+									Payments
+								</div>
+							</div>
+						</div>
+						<!--end 7th tab--> 
 					</div>
-					<!--end 5th tab-->
+					
 				</div>
 			</section>
 		</div>

@@ -35,7 +35,7 @@ class CheckoutController extends BaseController
 
         if(!empty($orderlist)){
 
-            $orderlist->order_type=$orderlist->carts->order_type;
+            $orderlist->order_type=$orderlist->Cart->order_type;
         }
         return $this->sendResponse($orderlist, 'Order data retrieved successfully.');
 

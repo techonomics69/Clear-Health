@@ -74,6 +74,12 @@ class OrderManagementController extends Controller
        ->get();
 
 
+echo "<pre>";
+print_r($order_non_prescribed);
+echo "</pre>";
+die();
+
+
        foreach($order_non_prescribed as $key=>$val)
        {
         $cart_ids = explode(',', $val['cart_id']);

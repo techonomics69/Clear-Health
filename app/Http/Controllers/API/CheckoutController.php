@@ -25,7 +25,7 @@ class CheckoutController extends BaseController
   }
 
 
-  public function orderDetail(Request $request)
+  public function orderList(Request $request)
   {
 
     try{

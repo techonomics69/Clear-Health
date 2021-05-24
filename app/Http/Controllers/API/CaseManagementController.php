@@ -1353,7 +1353,7 @@ public function detach_file_from_case(Request $request){
     
   
 
-    if(!empty($messagefiles_details) && count($messagefiles_details)>0){
+    if(!empty($messagefiles_details)){
 
       unlink($destinationPath.'/'.$file_name);
 

@@ -28,30 +28,20 @@ class CheckoutController extends BaseController
   public function orderList(Request $request)
   {
 
-    try{
-     $orderlist = checkout::join('users', 'users.id', '=', 'checkout.user_id')
-     ->join('carts','carts.id', '=', 'checkout.cart_id')
-      ->join('products', 'products.id', '=', 'carts.product_id')
-     ->select('checkout.id', 'checkout.md_status','checkout.status','checkout.created_at','checkout.updated_at','carts.order_type')->where('checkout.user_id',$request->user_id)->OrderBy('id', 'desc')->get();
 
-/*foreach($orderlist as $key=>$val)
-        {
-            $cart_ids = explode(',', $val['cart_id']);
-            $product_name = array();
-            $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name')->get();
+try{
+    $orderlist=  checkout::where('user_id', $request->user_id)->OrderBy('id', 'desc')->get();
+    $orderlist->id=$orderlist->id;
+    $orderlist->md_status=$orderlist->md_status;
+    $orderlist->status=$orderlist->status;
+    $orderlist->created_at=$orderlist->created_at;
 
-            foreach( $product_details as $k=>$v){
-               $product_name[] = $v['product_name'];  
-           }
-           $orderlist[$key]->product_name = implode(',',$product_name);
-       }*/
-
-     if(!empty($orderlist)){
+if(!empty($orderlist)){
          return $this->sendResponse($orderlist, 'Order data retrieved successfully.');
      }else{
         return $this->sendResponse( $orderlist =array(), 'No Data Found.');
     }
-
+   
 }catch(\Exception $ex){
     return $this->sendError('Server error', array($ex->getMessage()));
 } 

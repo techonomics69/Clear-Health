@@ -192,8 +192,8 @@ class CartController extends BaseController
 
             if(isset($cart))
             {
-            $cart->product_name=$cart->product->name;
-            $cart->product_price=$cart->product->price;
+                $cart->product_name=$cart->product->name;
+                $cart->product_price=$cart->product->price;
             }
             /*$data = array();
             foreach ($cart as $key => $value) {
@@ -224,15 +224,15 @@ class CartController extends BaseController
                 $UpdateAddon = $cart->update($data);
             } else {
 
-             $InsertAddon = Cart::create($data);
-         }
-         return $this->sendResponse($data, 'Update Data successfully.');
-     }catch(\Exception $ex){
-      return $this->sendError('Server error', array($ex->getMessage()));  
+               $InsertAddon = Cart::create($data);
+           }
+           return $this->sendResponse($data, 'Update Data successfully.');
+       }catch(\Exception $ex){
+          return $this->sendError('Server error', array($ex->getMessage()));  
+      }
   }
-}
-public function cartRemove(Request $request,$id)
-{
+  public function cartRemove(Request $request,$id)
+  {
     $data = $request->all();
 
     try{
@@ -241,13 +241,13 @@ public function cartRemove(Request $request,$id)
 
         if(isset($cart))
         {
-         $deletecart = $cart->delete();  
-     }
+           $deletecart = $cart->delete();  
+       }
         //$cart= $data->delete();
-     return $this->sendResponse($data, 'Item deleted successfully.');
- }catch(\Exception $ex){
-  return $this->sendError('Server error', array($ex->getMessage()));  
-}
+       return $this->sendResponse($data, 'Item deleted successfully.');
+   }catch(\Exception $ex){
+      return $this->sendError('Server error', array($ex->getMessage()));  
+  }
 }
 
 public function prescribedItemUpdate(Request $request,$id)
@@ -262,12 +262,12 @@ public function prescribedItemUpdate(Request $request,$id)
             $Updateprescribed = $cart->update($data);
         } else {
 
-         $Insertprescribed = Cart::create($data);
-     }
-     return $this->sendResponse($data, 'Update Data successfully.');
- }catch(\Exception $ex){
-  return $this->sendError('Server error', array($ex->getMessage()));  
-}
+           $Insertprescribed = Cart::create($data);
+       }
+       return $this->sendResponse($data, 'Update Data successfully.');
+   }catch(\Exception $ex){
+      return $this->sendError('Server error', array($ex->getMessage()));  
+  }
 }
 
 }

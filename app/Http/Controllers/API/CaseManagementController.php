@@ -699,28 +699,28 @@ public function CreateCase(Request $request){
 
   $recommended_product = $recommended_product['recommended_product'];
 
-  if($recommended_product == 'Topical_low'){
+      if($recommended_product == 'Topical_low'){
 
-     $product_name = "Topical Low";
+         $product_name = "Topical Low";
 
-  }
+       }
 
-  if($recommended_product == 'Topical_high'){
+       if($recommended_product == 'Topical_high'){
 
-     $product_name = "Topical High";
+         $product_name = "Topical High";
 
-  }
+       }
 
-  if($recommended_product == 'Azelaic_Acid'){
+       if($recommended_product == 'Azelaic_Acid'){
 
-     $product_name = "Azelaic Acid";
+         $product_name = "Azelaic Acid";
 
-  }
-  if($recommended_product == 'Accutane'){
+       }
+       if($recommended_product == 'Accutane'){
 
-     $product_name = "Isotretinoin";
+         $product_name = "Isotretinoin";
 
-  }
+       }
 
     //code to get user's question answer
 
@@ -750,26 +750,26 @@ public function CreateCase(Request $request){
  //get weight of patient 
 
    //$answer = QuizAnswer::join('quizzes', 'quizzes.id', '=', 'quiz_answers.question_id')->where('quiz_answers.user_id', $request['user_id'])->where('quiz_answers.case_id', $request['case_id'])->where('quiz_answers.case_id', $request['case_id'])->select( 'quizzes.question','quiz_answers.answer','quizzes.options_type')->get()->toArray();
-    foreach ($userQueAns as $key => $value) {
+   foreach ($userQueAns as $key => $value) {
 
-        $question = $value->question;
+    $question = $value->question;
 
-         if($question == "What is your weight in kg?"){
-            if(isset($value->answer)){
+    if($question == "What is your weight in kg?"){
+      if(isset($value->answer)){
 
-                $answer =  $value->answer;
+        $answer =  $value->answer;
 
-            if($answer >= 70){
-                $accutan_strength = 40;
-                }else{
-                  $accutan_strength = 30;
-                }   
-            }
-        }
+        if($answer >= 70){
+          $accutan_strength = 40;
+        }else{
+          $accutan_strength = 30;
+        }   
+      }
     }
+  }
 //end of code to get patient weight 
-   $userquestion = array();
-   foreach($userQueAns as $key=>$value){
+  $userquestion = array();
+  foreach($userQueAns as $key=>$value){
     $userquestion[$key]['question'] = $value->question;
     $userquestion[$key]['answer'] =(isset($value->answer) && $value->answer !="")?$value->answer:"";
 
@@ -905,70 +905,74 @@ public function CreateCase(Request $request){
       echo "<pre>";
       exit();*/
 
-    
-
-    $curl = curl_init();
-
-    curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases',
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_ENCODING => '',
-      CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 0,
-      CURLOPT_FOLLOWLOCATION => true,
-      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => 'POST',
-      CURLOPT_POSTFIELDS =>'{
-        "patient_id": '.$patient_id.',
-        "case_files": [
-        ],
-        "case_prescriptions": '.$medication_compound_data.',
-        "case_questions": '.$userquestion.'
-      }',
-      CURLOPT_HTTPHEADER => array(
-        'Content-Type: application/json',
-        'Authorization: Bearer '.$token,
-        'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
-      ),
-    ));
-
-    $response = curl_exec($curl);
-
-    $case_data = json_decode($response);
 
 
-    
-    $input_data['prioritized_at'] = $case_data->prioritized_at;
-    $input_data['prioritized_reason'] = $case_data->prioritized_reason;
-    $input_data['cancelled_at'] = $case_data->prioritized_reason;
-    $input_data['md_created_at'] = $case_data->case_assignment->created_at;
-    $input_data['support_reason'] = $case_data->support_reason;
-    $input_data['case_id'] = $case_data->case_id;
-    $input_data['status'] = $case_data->status;
-    $input_data['user_id'] = $user_id;
-    $input_data['system_case_id'] = $case_id;
+      $curl = curl_init();
 
-    $md_case_data = Mdcases::create($input_data);
+      curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS =>'{
+          "patient_id": '.$patient_id.',
+          "case_files": [
+          ],
+          "case_prescriptions": '.$medication_compound_data.',
+          "case_questions": '.$userquestion.'
+        }',
+        CURLOPT_HTTPHEADER => array(
+          'Content-Type: application/json',
+          'Authorization: Bearer '.$token,
+          'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+        ),
+      ));
 
-    $case_management  =  CaseManagement::where('id',$case_id)->where('user_id',$user_id)->update(['md_case_status' => $case_data->status]);
+      $response = curl_exec($curl);
 
-    curl_close($curl);
-
-    $inputmd_data['status'] = $status;
-    $inputmd_data['image'] = "";
-    $inputmd_data['language_id'] = "";
-
-    $mdmanagement_data = Mdmanagement::where('case_id', $case_id)->first();
-    if(!empty($mdmanagement_data)){
-      $mdmanagement_data->update($input);
-    }else{
-      $md_case_data = Mdmanagement::create($input);
-    }
-
-    return $this->sendResponse(json_decode($response),'Case Created Successfully');
+      $case_data = json_decode($response);
 
 
-  }
+
+      $input_data['prioritized_at'] = $case_data->prioritized_at;
+      $input_data['prioritized_reason'] = $case_data->prioritized_reason;
+      $input_data['cancelled_at'] = $case_data->prioritized_reason;
+      $input_data['md_created_at'] = $case_data->case_assignment->created_at;
+      $input_data['support_reason'] = $case_data->support_reason;
+      $input_data['case_id'] = $case_data->case_id;
+      $input_data['status'] = $case_data->status;
+      $input_data['user_id'] = $user_id;
+      $input_data['system_case_id'] = $case_id;
+
+      $md_case_data = Mdcases::create($input_data);
+
+      $case_management  =  CaseManagement::where('id',$case_id)->where('user_id',$user_id)->update(['md_case_status' => $case_data->status]);
+
+      curl_close($curl);
+
+      $inputmd_data['status'] = $status;
+      $inputmd_data['image'] = "";
+      $inputmd_data['language_id'] = "";
+      $inputmd_data['md_id'] = $case_data->case_assignment->clinician->clinician_id;
+      $inputmd_data['name'] = $case_data->case_assignment->clinician->full_name;
+      $inputmd_data['reason'] = $case_data->case_assignment->reason;;
+      $inputmd_data['case_assignment_id'] = $case_data->case_assignment->case_assignment_id;
+
+      $mdmanagement_data = Mdmanagement::where('case_id', $case_id)->first();
+      if(!empty($mdmanagement_data)){
+        $mdmanagement_data->update($inputmd_data);
+      }else{
+        $md_case_data = Mdmanagement::create($inputmd_data);
+      }
+
+      return $this->sendResponse(json_decode($response),'Case Created Successfully');
+
+
+}
 
   /*public function getDispensUnitId(){
 
@@ -1171,7 +1175,7 @@ public function CreateCase(Request $request){
     $file_ids = MdMessageFiles::where('user_id', $user_id)->where('md_case_id', $case_id  )->pluck('file_id');
 
     if(!empty($file_ids) && count($file_ids)){
-        $file_ids = $file_ids;
+      $file_ids = $file_ids;
     }else{
       $file_ids = array();
     }
@@ -1281,6 +1285,50 @@ public function CreateCase(Request $request){
     }
 
   }
+ 
+  public function getMessages(Request $request){
 
+    $r = $this->get_token();
+    $token_data = json_decode($r);
+    $token = $token_data->access_token;
+
+    $case_id = $request['case_id'];
+    $case_message_id = $request['system_case_id'];
+    $channel = $request['channel'];
+
+
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/messages?channel='.$channel,
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'GET',
+      CURLOPT_HTTPHEADER => array(
+        'Authorization: Bearer '.$token,
+        'Cookie: __cfduid=da01d92d82d19a6cccebfdc9852303eb81620627650'
+      ),
+    ));
+
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+    
+    $data = json_decode($response);
+
+    if(!empty($data) && count($data)>0 ){
+      return $this->sendResponse($data,'Message retrieved successfully');
+    }else{
+      return $this->sendResponse(array(),'No data found');
+    }
+
+
+
+  }
 
 }

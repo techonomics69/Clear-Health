@@ -1211,6 +1211,11 @@ public function CreateCase(Request $request){
     $input_data['message_files_ids'] = json_encode($file_ids);
     $input_data['clinician  '] = $message_data->clinician ;
 
+    echo "<pre>";
+    print_r($input_data);
+    echo "<pre>";
+    exit();
+
     $message_data = MdMessages::create($input_data);
 
     return $this->sendResponse($message_data,'Message created successfully');

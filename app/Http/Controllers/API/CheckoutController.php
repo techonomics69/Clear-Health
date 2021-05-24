@@ -16,41 +16,27 @@ class CheckoutController extends BaseController
 {
     public function index()
     {
-      /*$order = checkout::join('users', 'users.id', '=', 'checkout.user_id')
-      ->join('carts','carts.id', '=', 'checkout.cart_id')
-      ->join('products', 'products.id', '=', 'carts.product_id')
-      ->select('users.name', 'users.mobile', 'products.name AS product_name' , 'carts.product_price', 'checkout.total_amount','checkout.case_id','checkout.created_at')->get();
 
-      return $this->sendResponse($order, 'Order retrieved successfully.');*/
-  }
+    }
 
 
   public function orderList(Request $request)
   {
 
-
     try{
+       $orderlist = checkout::join('users', 'users.id', '=', 'checkout.user_id')
+       ->leftjoin("carts",\DB::raw("FIND_IN_SET(carts.id, checkout.cart_id)") ,">",\DB::raw("'0'"))
+      /* ->join('carts','carts.id', '=', 'checkout.cart_id')*/
+       ->select('checkout.id', 'checkout.md_status','checkout.status','checkout.created_at','checkout.updated_at','carts.order_type')
+       ->where('checkout.user_id',$request->user_id)
+       ->OrderBy('id', 'desc')
+       ->get();
 
-        $orderlist =  Checkout::where('user_id', $request->user_id)->OrderBy('id', 'desc')->get();
-        
-
-echo "<pre>";
-print_r($orderlist);
-echo "</pre>";
-die();
-
-        if(isset($orderlist)){
-            $orderlist->id=$orderlist->id;
-            $orderlist->md_status=$orderlist->md_status;
-            $orderlist->status=$orderlist->status;
-            $orderlist->created_at=$orderlist->created_at;
-        }
-        return $this->sendResponse($orderlist, 'Order data retrieved successfully.');
-/*if(!empty($orderlist)){
-         return $this->sendResponse($orderlist, 'Order data retrieved successfully.');
-     }else{
+       if(!empty($orderlist)){
+           return $this->sendResponse($orderlist, 'Order data retrieved successfully.');
+       }else{
         return $this->sendResponse( $orderlist =array(), 'No Data Found.');
-    }*/
+    }
 
 }catch(\Exception $ex){
     return $this->sendError('Server error', array($ex->getMessage()));

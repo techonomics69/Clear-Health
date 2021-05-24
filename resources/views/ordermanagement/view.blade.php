@@ -296,7 +296,51 @@ if($medication_type == 2 ) { ?>
  		</div>
  	</div>
  </div>  
- 
+ <!-- End 2nd tab-->
+ <!-- Start #3rd tab-->
+ <div id="skincare_summary" class="tab-pane fade in">					    
+
+ 	<div class="row" style="padding: 10px;">
+ 		<div class="col-md-12">
+ 			<section class="card" >
+ 				<ul class="nav nav-tabs" id="question-tab-menu">
+
+ 					@foreach($category as $key => $data)
+ 					{{-- <li><a class="btn @if($activeTab == 0) active @elseif($current_tab_id == 'home'.$key) active @endif" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li> --}}
+
+ 					<li><a class="btn" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li>
+ 					<?php //$activeTab++ ?> 
+ 					@endforeach
+ 				</ul>
+ 				<div class="tab-content">
+ 					<?php $i=0 ?>
+ 					@foreach($category as $key => $data)
+ 					<div id="home{{$key}}" class="tab-pane fade in @if($i== 0) active show @endif">					    
+ 						@foreach($quiz as $key1 => $que)
+ 						<div class="row" style="padding: 10px;">
+ 							<div class="col-md-12">
+ 								<?php 
+ 								if($que['category_id']== $key){
+
+ 									echo "<h4><strong>Que:".$que['question']."</strong></h4>";
+ 									echo "<p>Ans:".$que['answer']."</p>";
+ 								}
+ 								?>
+
+ 							</div>
+ 						</div>
+ 						<?php $i++ ?>
+ 						@endforeach
+ 					</div> 
+ 					@endforeach 
+ 					
+
+ 				</div>
+ 			</section>
+ 		</div>
+ 	</div>
+ </div>
+ <!-- End 3rd tab-->
 
 </div>
 </section>

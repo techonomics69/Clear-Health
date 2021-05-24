@@ -1399,7 +1399,7 @@ public function detach_file_from_case(Request $request){
 
   }
 
-  public function DeleteFile(Request $request,$file_id){
+  public function DeleteFile($file_id){
 
     $r = $this->get_token();
     $token_data = json_decode($r);

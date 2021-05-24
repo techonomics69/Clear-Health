@@ -688,7 +688,7 @@ public function CreateCase(Request $request){
 
   $product_type = $request['product_type'];
   //$product_name = $request['product_name'];
-  $quantity = $request['quantity'];
+  //$quantity = $request['quantity'];
   $preferred_pharmacy_id = $request['preferred_pharmacy_id'];
 
   $patient_data = User::select('md_patient_id')->where('id', $request['user_id'])->first();
@@ -747,6 +747,25 @@ public function CreateCase(Request $request){
 
    $userQueAns = json_decode($answer_data[0]['answer']);
 
+ //get weight of patient 
+    foreach ($recommendation as $key => $value) {
+
+        $question = $value->question;
+
+         if($question == "What is your weight in kg?"){
+            if(isset($value->answer)){
+
+                $answer =  $value->answer;
+
+            if($answer >= 70){
+                $accutan_strength = 40;
+                }else{
+                  $accutan_strength = 30;
+                }   
+            }
+        }
+    }
+//end of code to get patient weight 
    $userquestion = array();
    foreach($userQueAns as $key=>$value){
     $userquestion[$key]['question'] = $value->question;
@@ -774,6 +793,7 @@ public function CreateCase(Request $request){
   $product_name = "";
   $no_substitutions = "true";
   $pharmacy_notes =  "This medication might not be suitable for people with... ";
+  $quantity = 30;
 
 
       /*$DispensUnitId = $this->getDispensUnitId();
@@ -830,6 +850,7 @@ public function CreateCase(Request $request){
       //$product_name = "Isotretinoin";
       $no_substitutions = "true";
       $pharmacy_notes =  "This medication might not be suitable for people with... ";
+      $quantity = $accutan_strength;
 
       $curl = curl_init();
 
@@ -877,10 +898,10 @@ public function CreateCase(Request $request){
 
       $input_md_data = '{"patient_id": '.$patient_id.',"case_files": [],"case_prescriptions": '.$medication_compound_data.',"case_questions": '.$userquestion.'}';
 
-      echo "<pre>";
+      /*echo "<pre>";
       print_r($input_md_data);
       echo "<pre>";
-      exit();
+      exit();*/
 
     
 
@@ -1135,6 +1156,12 @@ public function CreateCase(Request $request){
 
     //code to get files ids
     $file_ids = MdMessageFiles::where('user_id', $user_id)->where('md_case_id', $case_id  )->pluck('file_id');
+
+    if(!empty($file_ids) && count($file_ids)){
+        $file_ids = $file_ids;
+    }else{
+      $file_ids = array();
+    }
 
     $postfields = array();
     $postfields['from'] = $request['from'];

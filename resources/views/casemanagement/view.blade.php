@@ -121,10 +121,9 @@
 								</div>
 							</div>
 						</div>  
-<!--End 1st tab-->
+						<!--End 1st tab-->
 
 						<!--start 2nd tab-->
-
 
 						{{-- @if(session()->has('que_current_tab'))
 						@php
@@ -180,8 +179,6 @@
 												@endforeach
 											</div> 
 											@endforeach 
-
-
 										</div>
 									</section>
 								</div>

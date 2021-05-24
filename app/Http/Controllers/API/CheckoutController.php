@@ -29,7 +29,7 @@ class CheckoutController extends BaseController
        ->select('checkout.id','checkout.order_id','checkout.md_status','checkout.status','checkout.created_at','checkout.updated_at','carts.order_type','checkout.cart_id')
        ->where('checkout.user_id',$request->user_id)
        ->OrderBy('id', 'DESC')
-       ->get()->toArray();
+       ->get();
 
 
 

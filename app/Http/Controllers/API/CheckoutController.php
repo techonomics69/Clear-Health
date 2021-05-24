@@ -30,12 +30,13 @@ class CheckoutController extends BaseController
 
     try{
      $orderlist = checkout::join('users', 'users.id', '=', 'checkout.user_id')
-     ->select('checkout.id', 'checkout.md_status','checkout.status','checkout.created_at','checkout.updated_at')->where('checkout.user_id',$request->user_id)->get();
+     ->select('checkout.id', 'checkout.md_status','checkout.status','checkout.created_at','checkout.updated_at')->where('checkout.user_id' ,1077)->get();
 
      echo "<pre>";
      print_r($orderlist);
      echo "</pre>";
      die();
+
      if(!empty($orderlist)){
          return $this->sendResponse( $orderlist. 'Order data retrieved successfully.');
      }else{

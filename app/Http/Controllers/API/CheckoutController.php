@@ -32,7 +32,7 @@ class CheckoutController extends BaseController
      $orderlist = checkout::join('users', 'users.id', '=', 'checkout.user_id')
      ->join('carts','carts.id', '=', 'checkout.cart_id')
       ->join('products', 'products.id', '=', 'carts.product_id')
-     ->select('checkout.id', 'checkout.md_status','checkout.status','checkout.created_at','checkout.updated_at','carts.order_type')->where('checkout.user_id',$request->user_id)->OrderBy('id', 'desc')->first();
+     ->select('checkout.id', 'checkout.md_status','checkout.status','checkout.created_at','checkout.updated_at','carts.order_type')->where('checkout.user_id',$request->user_id)->OrderBy('id', 'desc')->get();
 
 /*foreach($orderlist as $key=>$val)
         {

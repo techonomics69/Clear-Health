@@ -269,7 +269,6 @@
 						</div>
 						<!--end 7th tab--> 
 					</div>
-					
 				</div>
 			</section>
 		</div>

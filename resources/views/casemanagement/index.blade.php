@@ -46,11 +46,10 @@
                     <tr>
                       <th>SR No</th>             
                       <th>Date</th>
-                      <th>Case id </th>
-                      <th>MD assigned ID</th>   
-                      <th>MD case status</th>
-                      <th>First Name</th>
-                      <th>Last Name</th> 
+                      <th>MD Case ID</th>
+                      <th>Case ID </th>
+                      <th>MD Status</th>
+                      <th>Order Status</th>
                       <th>Email</th>           
                       <th width="280px">Action</th>             
                     </tr>
@@ -62,11 +61,10 @@
                     <tr>
                       <td>{{ ++$i }}</td>           
                       <td>{{ $case_data['created_at'] }}</td> 
+                      <td>{{ $case_data['md_case_id'] }}</td>
                       <td>{{ $case_data['ref_id']}}</td>
-                      <td>{{ $case_data['md_case_id'] }} </td>
                       <td><?php if($case_data['md_status'] ==0){echo 'pending ';}else if($case_data['md_status'] ==1){echo 'support';}else{echo 'accepted';} ?></td>
-                      <td>{{ $case_data['first_name'] }} </td>
-                      <td>{{ $case_data['last_name'] }} </td>
+                      <td></td>
                       <td>{{ $case_data['email'] }} </td>
                       <td>
                         <div class="d-flex">

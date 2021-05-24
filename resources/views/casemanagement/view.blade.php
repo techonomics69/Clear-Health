@@ -65,17 +65,14 @@
 					<div class="col-lg-12">
 						<section class="card" >
 							<ul class="nav nav-tabs" id="casemanagement-tab-menu">
-
-
-								<li><a class="btn active " data-toggle="tab" href="#profile">Profile</a></li>
-								<li><a class="btn" data-toggle="tab" href="#questionaire">Questionaire </a></li>
-
-								<li><a class="btn" data-toggle="tab" href="#order_summary">Order Summary</a></li>
-
-								<li><a class="btn" data-toggle="tab" href="#rx">RX</a></li>
-								<li><a class="btn" data-toggle="tab" href="#messages">Messages</a></li>
-
-							</ul>
+									<li><a class="btn active " data-toggle="tab" href="#profile">Profile</a></li>
+									<li><a class="btn" data-toggle="tab" href="#questions">Questions</a></li>
+									<li><a class="btn" data-toggle="tab" href="#skincare_summary">Skincare Summary </a></li>
+									<li><a class="btn" data-toggle="tab" href="#action_items">Action Items </a></li>
+									<li><a class="btn" data-toggle="tab" href="#messages">Messages</a></li>
+									<li><a class="btn" data-toggle="tab" href="#photos">Photos </a></li>
+									<li><a class="btn" data-toggle="tab" href="#payments">Payments </a></li>
+								</ul>
 							<div class="tab-content">
 
 								<div id="profile" class="tab-pane fade in active show">					    

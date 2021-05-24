@@ -1392,9 +1392,9 @@ public function detach_file_from_case(Request $request){
 
       return $this->sendResponse($response,'File Detach Successfully');
     }
-    else{
+    /*else{
       return $this->sendResponse(array(),'File not Exist.');
-    }
+    }*/
  
 
   }

@@ -30,9 +30,9 @@ class CheckoutController extends BaseController
 
     try{
        $order = checkout::join('users', 'users.id', '=', 'checkout.user_id')
-       ->join('carts','carts.id', '=', 'checkout.cart_id')
-       ->join('products', 'products.id', '=', 'carts.product_id')
-       ->select('users.name', 'users.mobile', 'products.name AS product_name' , 'carts.product_price', 'checkout.total_amount','checkout.case_id','checkout.created_at')->where('checkout.user_id', $request['user_id'])->get();
+       /*->join('carts','carts.id', '=', 'checkout.cart_id')*/
+       /*->join('products', 'products.id', '=', 'carts.product_id')*/
+       ->select('checkout.id', 'checkout.md_status','checkout.status','checkout.created_at','checkout.updated_at')->where('checkout.user_id', $request['user_id'])->get();
        if(!empty($order)){
            return $this->sendResponse( $order. 'Order data retrieved successfully.');
        }else{

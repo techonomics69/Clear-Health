@@ -105,6 +105,8 @@ Route::post('forgot_password',[RegisterController::class, 'forgot_password']);
     Route::post('createMessage', [CaseManagementController::class, 'createMessage']);
     Route::post('setMessageAsRead', [CaseManagementController::class, 'setMessageAsRead']);
     Route::post('getMessages', [CaseManagementController::class, 'getMessages']);
+    Route::post('DetachMessageFile', [CaseManagementController::class, 'DetachMessageFile']);
+    Route::post('DeleteFile', [CaseManagementController::class, 'DeleteFile']);
     //end of md api
 
     Route::post('user/update_vouch_status/{id}', [UserController::class, 'updateVerifiedByVouch']);

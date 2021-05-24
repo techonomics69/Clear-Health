@@ -1034,7 +1034,7 @@ public function CreateCase(Request $request){
   }
 
 
-  public function detach_file_from_case(Request $request){
+public function detach_file_from_case(Request $request){
 
     $r = $this->get_token();
     $token_data = json_decode($r);
@@ -1084,10 +1084,9 @@ public function CreateCase(Request $request){
     }else{
       return $this->sendResponse(array(),'File not Exist.');
     }
+ 
 
-    
-
-  }
+}
 
   public function createMessageFile(Request $request){
     $r = $this->get_token();
@@ -1330,5 +1329,58 @@ public function CreateCase(Request $request){
 
 
   }
+
+  public function DetachMessageFile(Request $request){
+
+    $r = $this->get_token();
+    $token_data = json_decode($r);
+    $token = $token_data->access_token;
+
+    $case_id = $request['case_id'];
+    $case_message_id = $request['case_message_id'];
+    $case_message_id = $request['file_id'];
+    $user_id = $request['user_id'];
+    $system_case_id = $request['system_case_id'];
+
+
+    $destinationPath = public_path('/Message_files');
+
+    $input = $request->all();
+
+    $messagefiles_details = MdMessageFiles::select('*')->where('case_id', $case_id)->where('md_file_id',$file_id)->get();
+
+    echo "<pre>";
+    print_r($destinationPath);
+    echo "<pre>";
+    
+
+    echo "<pre>";
+    print_r($messagefiles_details);
+    echo "<pre>";
+    exit();
+
+    if(!empty($messagefiles_details) && count($messagefiles_details)>0){
+
+      unlink($destinationPath.'/'.$messagefiles_details[0]['file']);
+
+      $messagefiles = MdMessageFiles::find($messagefiles_details[0]['id']);
+      $messagefiles->delete();
+    }
+
+  }
+
+  public function DeleteFile(Request $request){
+
+    $r = $this->get_token();
+    $token_data = json_decode($r);
+    $token = $token_data->access_token;
+
+    $case_id = $request['case_id'];
+    $case_message_id = $request['file_id'];
+    $user_id = $request['user_id'];
+    $system_case_id = $request['system_case_id'];
+
+  }
+
 
 }

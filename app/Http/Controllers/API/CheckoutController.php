@@ -20,35 +20,34 @@ class CheckoutController extends BaseController
     }
 
 
-  public function orderList(Request $request)
-  {
+    public function orderList(Request $request)
+    {
 
-    try{
-       $orderlist = checkout::join('users', 'users.id', '=', 'checkout.user_id')
-       ->join('carts','carts.id', '=', 'checkout.cart_id')
-       ->select('checkout.id','checkout.order_id','checkout.md_status','checkout.status','checkout.created_at','checkout.updated_at','carts.order_type','checkout.cart_id')
-       ->where('checkout.user_id',$request->user_id)
-       ->OrderBy('id', 'DESC')
-       ->get();
-
-
-
-foreach($orderlist as $key=>$val)
-       {
-        
-        $cart_ids = explode(',', $val['cart_id']);
-        $product_name = array();
-        $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name')->get()->toArray();
-        foreach($product_details as $product_key=>$product_value){
-           $product_name[] = $product_value['product_name'];  
-       }
-       $orderlist[$key]->product_name = implode(', ' ,$product_name);    
-   }
+        try{
+         $orderlist = checkout::join('users', 'users.id', '=', 'checkout.user_id')
+         ->join('carts','carts.id', '=', 'checkout.cart_id')
+         ->select('checkout.id','checkout.order_id','checkout.md_status','checkout.status','checkout.created_at','checkout.updated_at','carts.order_type','checkout.cart_id')
+         ->where('checkout.user_id',$request->user_id)
+         ->OrderBy('id', 'DESC')
+         ->get();
 
 
-       if(!empty($orderlist)){
-           return $this->sendResponse($orderlist, 'Order data retrieved successfully.');
-       }else{
+
+         foreach($orderlist as $key=>$val)
+         {
+            $cart_ids = explode(',', $val['cart_id']);
+            $product_name = array();
+            $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name')->get()->toArray();
+            foreach($product_details as $product_key=>$product_value){
+             $product_name[] = $product_value['product_name'];  
+         }
+         $orderlist[$key]->product_name = implode(', ' ,$product_name);    
+     }
+
+
+     if(!empty($orderlist)){
+         return $this->sendResponse($orderlist, 'Order data retrieved successfully.');
+     }else{
         return $this->sendResponse( $orderlist =array(), 'No Data Found.');
     }
 
@@ -217,8 +216,8 @@ try{
             $checkout_data = Checkout::where('user_id', $request['user_id'])->where('case_id', $request['case_id'])->OrderBy('id', 'desc')->first();
             //$checkout_data = Checkout::where('user_id', $request->user_id)->where('cart_id', $request->cart_id)->first();
             if(!empty($checkout_data)){
-               return $this->sendResponse($checkout_data, 'Checkout data retrieved successfully.');
-           }else{
+             return $this->sendResponse($checkout_data, 'Checkout data retrieved successfully.');
+         }else{
             return $this->sendResponse($checkout_data =array(), 'No Data Found.');
         }
 
@@ -234,8 +233,8 @@ public function getCheckoutAddress(Request $request)
         $checkout_data = Checkoutaddress::where('user_id', $request->user_id)->OrderBy('id', 'desc')->first();
             //$checkout_data = Checkout::where('user_id', $request->user_id)->where('cart_id', $request->cart_id)->first();
         if(!empty($checkout_data)){
-           return $this->sendResponse($checkout_data, 'Checkout Address data retrieved successfully.');
-       }else{
+         return $this->sendResponse($checkout_data, 'Checkout Address data retrieved successfully.');
+     }else{
         return $this->sendResponse($checkout_data =array(), 'No Data Found.');
     }
 

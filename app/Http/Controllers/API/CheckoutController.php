@@ -32,10 +32,7 @@ class CheckoutController extends BaseController
     try{
 
         $orderlist =  Checkout::where('user_id', $request->user_id)->OrderBy('id', 'desc')->get();
-        echo "<pre>";
-        print_r($orderlist."test");
-        echo "</pre>";
-        die();
+        
         if(isset($orderlist)){
             $orderlist->id=$orderlist->id;
             $orderlist->md_status=$orderlist->md_status;

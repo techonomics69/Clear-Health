@@ -28,7 +28,7 @@ class CheckoutController extends BaseController
        ->join('carts','carts.id', '=', 'checkout.cart_id')
        ->select('checkout.id','checkout.order_id','checkout.md_status','checkout.status','checkout.created_at','checkout.updated_at','carts.order_type')
        ->where('checkout.user_id',$request->user_id)
-       ->OrderBy('id', 'desc')
+       ->OrderBy('id', 'DESC')
        ->get();
 
 foreach($orderlist as $key=>$val)

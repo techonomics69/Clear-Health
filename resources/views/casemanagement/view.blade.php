@@ -228,7 +228,13 @@
 						<div id="messages" class="tab-pane fade in ">
 							<div class="row" style="padding: 20px;">
 								<div class="col-md-12">
-									Messages goes here
+									<section class="card">
+										<div class="card-body">
+											<div class="box-block mtb32">
+												<h3 class="font-weight-bold"><span class="text-underline">Messages goes here</span></h3>
+											</div>
+										</div>
+									</section>
 								</div>
 							</div>
 						</div>
@@ -238,7 +244,13 @@
 						<div id="photos" class="tab-pane fade in ">
 							<div class="row" style="padding: 20px;">
 								<div class="col-md-12">
-									Photos
+									<section class="card">
+										<div class="card-body">
+											<div class="box-block mtb32">
+												<h3 class="font-weight-bold"><span class="text-underline">Photos</span></h3>
+											</div>
+										</div>
+									</section>
 								</div>
 							</div>
 						</div>
@@ -248,7 +260,13 @@
 						<div id="payments" class="tab-pane fade in ">
 							<div class="row" style="padding: 20px;">
 								<div class="col-md-12">
-									Payments
+									<section class="card">
+										<div class="card-body">
+											<div class="box-block mtb32">
+												<h3 class="font-weight-bold"><span class="text-underline">Payments</span></h3>
+											</div>
+										</div>
+									</section>
 								</div>
 							</div>
 						</div>

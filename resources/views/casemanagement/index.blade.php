@@ -64,7 +64,7 @@
                       <td>{{ $case_data['md_case_id'] }}</td>
                       <td>{{ $case_data['ref_id']}}</td>
                       <td><?php if($case_data['md_status'] ==0){echo 'pending ';}else if($case_data['md_status'] ==1){echo 'support';}else{echo 'accepted';} ?></td>
-                      <td>{{ $case_data['first_name'] }} </td>
+                      <td></td>
                       <td>{{ $case_data['email'] }} </td>
                       <td>
                         <div class="d-flex">

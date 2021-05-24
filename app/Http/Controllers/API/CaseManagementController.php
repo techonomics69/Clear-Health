@@ -1347,10 +1347,10 @@ public function detach_file_from_case(Request $request){
 
     $input = $request->all();
 
-    $messagefiles_details = MdMessageFiles::select('*')->where([['case_id', '=', $system_case_id],['md_case_id', '=', $case_id],['user_id', '=',$user_id],['file_id', '=',$file_id]])->get();
+    $messagefiles_details = MdMessageFiles::select('*')->where([['case_id', '=', $system_case_id],['md_case_id', '=', $case_id],['user_id', '=',$user_id],['file_id', '=',$file_id]])->first();
 
     echo "<pre>";
-    print_r($destinationPath);
+    print_r(str_replace("public/Message_files/","",$messagefiles_details['system_file']));
     echo "<pre>";
     
 

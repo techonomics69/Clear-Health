@@ -15,7 +15,6 @@ class AddFieldsInMdManagmentTable extends Migration
     {
         Schema::table('md_managment', function (Blueprint $table) {
             $table->string('reason')->nullable()->after('case_id');
-            $table->string('created_at')->nullable()->after('reason');
             $table->string('case_assignment_id')->nullable()->after('created_at');
         });
     }

@@ -1347,24 +1347,24 @@ public function detach_file_from_case(Request $request){
 
     $input = $request->all();
 
-    $messagefiles_details = MdMessageFiles::select('*')->where([['case_id', '=', $system_case_id],['md_case_id', '=', $case_id],['user_id', '=',$user_id],['file_id', '=',$file_id]])->get();
+    $messagefiles_details = MdMessageFiles::select('*')->where([['case_id', '=', $system_case_id],['md_case_id', '=', $case_id],['user_id', '=',$user_id],['file_id', '=',$file_id]])->first();
 
-    echo "<pre>";
-    print_r($destinationPath);
-    echo "<pre>";
+    $file_name = str_replace("public/Message_files/","",$messagefiles_details['system_file']);
     
-
-    echo "<pre>";
-    print_r($messagefiles_details);
-    echo "<pre>";
-    exit();
+  
 
     if(!empty($messagefiles_details) && count($messagefiles_details)>0){
 
-      unlink($destinationPath.'/'.$messagefiles_details[0]['file']);
+      unlink($destinationPath.'/'.$file_name);
 
-      $messagefiles = MdMessageFiles::find($messagefiles_details[0]['id']);
-      $messagefiles->delete();
+      $messagefiles = MdMessageFiles::find($messagefiles_details['id']);
+
+      echo "<pre>";
+      print_r($messagefiles);
+      echo "<pre>";
+      exit();
+
+      //$messagefiles->delete();
     }
 
   }

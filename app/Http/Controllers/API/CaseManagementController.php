@@ -1355,9 +1355,8 @@ public function detach_file_from_case(Request $request){
     
     $delete_file = $this->DeleteFile($file_id);
 
-      die("here");
 
-     $curl = curl_init();
+    $curl = curl_init();
 
       curl_setopt_array($curl, array(
         CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/messages/'.$case_message_id .'/files/'.$file_id,
@@ -1388,13 +1387,21 @@ public function detach_file_from_case(Request $request){
       $messagefiles = MdMessageFiles::find($messagefiles_details['id']);
       $messagefiles->delete();
 
-     
+      echo "<pre>";
+      print_r(json_decode($delete_file));
+      echo "<pre>";
+      
 
-      return $this->sendResponse($response,'File Detach Successfully');
+      echo "<pre>";
+      print_r(json_decode($response));
+      echo "<pre>";
+      exit();
+
+      //return $this->sendResponse($response,'File Detach Successfully');
     }
-    /*else{
+    else{
       return $this->sendResponse(array(),'File not Exist.');
-    }*/
+    }
  
 
   }
@@ -1405,15 +1412,28 @@ public function detach_file_from_case(Request $request){
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
-    echo "<pre>asdasdasd";
-    print_r($file_id);
-    echo "<pre>";
-    exit();
+    $curl = curl_init();
 
-    /*$case_id = $request['case_id'];
-    $case_message_id = $request['file_id'];
-    $user_id = $request['user_id'];
-    $system_case_id = $request['system_case_id'];*/
+      curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/files/'.$file_id,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'DELETE',
+        CURLOPT_HTTPHEADER => array(
+          'Authorization: Bearer '.$token,
+          'Cookie: __cfduid=da01d92d82d19a6cccebfdc9852303eb81620627650'
+        ),
+      ));
+
+      $response = curl_exec($curl);
+
+      curl_close($curl);
+
+      return $response;
 
   }
 

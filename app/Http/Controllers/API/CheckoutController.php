@@ -30,7 +30,21 @@ class CheckoutController extends BaseController
 
     try{
      $orderlist = checkout::join('users', 'users.id', '=', 'checkout.user_id')
+     ->join('carts','carts.id', '=', 'checkout.cart_id')
      ->select('checkout.id', 'checkout.md_status','checkout.status','checkout.created_at','checkout.updated_at')->where('checkout.user_id',$request->user_id)->OrderBy('id', 'desc')->first();
+
+foreach($orderlist as $key=>$val)
+        {
+            $cart_ids = explode(',', $val['cart_id']);
+            $product_name = array();
+            $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name')->get();
+
+            foreach( $product_details as $k=>$v){
+               $product_name[] = $v['product_name'];  
+           }
+           $orderlist[$key]->product_name = implode(',',$product_name);
+       }
+     
 
      if(!empty($orderlist)){
          return $this->sendResponse($orderlist, 'Order data retrieved successfully.');

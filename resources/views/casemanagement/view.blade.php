@@ -110,54 +110,6 @@
 													</div>
 													</div>
 
-
-													<div class="box-block mtb32">
-													<h3 class="font-weight-bold"><span class="text-underline"> Physician details</span></h3>
-													<div class="col-md-6 form-group">
-														<strong> MD Name: </strong>
-														XYZ
-														
-													</div>
-													<div class="col-md-6 form-group">
-														<strong> MD Email: </strong>
-														XYZ
-														
-													</div>
-													<div class="col-md-6 form-group">
-														<strong> MD Contact No: </strong>
-														1234567891
-														
-													</div>
-
-													</div>
-
-
-													<div class="box-block mtb32">
-													<h3 class="font-weight-bold"><span class="text-underline"> Pharmacy details</span></h3>
-													<div class="col-md-6 form-group">
-														<strong> Pharmacy: </strong>
-														xyz
-														
-													</div>
-				                                     </div>
-
-				                                     <?php
-				                                     if($user_case_management_data['product_type'] == "accutane"){
-				                                     ?>
-													 <div class="box-block mtb32">
-													<h3 class="font-weight-bold"><span class="text-underline"> Action Items</span></h3>
-
-													@if (count($errors) > 0)
-													<div class="alert alert-danger">
-														<strong>Whoops!</strong> There were some problems with your input.<br><br>
-														<ul>
-															@foreach ($errors->all() as $error)
-															<li>{{ $error }}</li>
-															@endforeach
-														</ul>
-													</div>
-													@endif
-
 													<div class="col-md-12 form-group" id="testreoprtdiv">
 														<div class="inner-section">
 															<div class="row">

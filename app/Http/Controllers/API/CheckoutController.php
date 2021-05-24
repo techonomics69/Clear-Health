@@ -38,11 +38,6 @@ class CheckoutController extends BaseController
             $orderlist->order_type=$orderlist->cart->order_type;
         }
         return $this->sendResponse($orderlist, 'Order data retrieved successfully.');
-/*if(!empty($orderlist)){
-         return $this->sendResponse($orderlist, 'Order data retrieved successfully.');
-     }else{
-        return $this->sendResponse( $orderlist =array(), 'No Data Found.');
-    }*/
 
 }catch(\Exception $ex){
     return $this->sendError('Server error', array($ex->getMessage()));

@@ -167,6 +167,22 @@ if($medication_type == 2 ) { ?>
 										</div>
 									</div> 
 									<!-- End 2nd tab-->
+
+									<!--start 3nd tab-->
+									<div id="shipments_shipping_details" class="tab-pane fade in">
+										<div class="row" style="padding: 20px;">
+											<div class="col-md-12">
+												<section class="card">
+													<div class="card-body">
+														<div class="box-block mtb32">
+															<h3 class="font-weight-bold"><span class="text-underline">Shipments Shipping Details</span></h3>
+														</div>
+													</div>
+												</section>
+											</div>
+										</div>
+									</div> 
+									<!-- End 2nd tab-->
 								</div>
 							</section>
 						</div>

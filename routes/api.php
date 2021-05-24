@@ -77,6 +77,7 @@ Route::post('forgot_password',[RegisterController::class, 'forgot_password']);
     Route::resource('caseManagement', CaseManagementController::class);
     Route::post('createOrder', [CheckoutController::class, 'store']);
     Route::post('addCheckoutAddress', [CheckoutController::class, 'addCheckoutAddress']);
+    Route::post('orderDetail', [CheckoutController::class, 'orderDetail']);
     Route::post('getOrderDetail', [CheckoutController::class, 'getCheckoutdetail']);
     Route::post('getCheckoutAddress', [CheckoutController::class, 'getCheckoutAddress']);
     Route::get('getUpsellProductDetails', [ProductController::class, 'getUpsellProductDetails']);

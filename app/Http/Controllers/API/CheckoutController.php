@@ -14,15 +14,35 @@ use Exception;
 
 class CheckoutController extends BaseController
 {
-        public function index()
+    public function index()
     {
       $order = checkout::join('users', 'users.id', '=', 'checkout.user_id')
-            ->join('carts','carts.id', '=', 'checkout.cart_id')
-            ->join('products', 'products.id', '=', 'carts.product_id')
-            ->select('users.name', 'users.mobile', 'products.name AS product_name' , 'carts.product_price', 'checkout.total_amount','checkout.case_id','checkout.created_at')->get();
-            
-        return $this->sendResponse($order, 'Order retrieved successfully.');
+      ->join('carts','carts.id', '=', 'checkout.cart_id')
+      ->join('products', 'products.id', '=', 'carts.product_id')
+      ->select('users.name', 'users.mobile', 'products.name AS product_name' , 'carts.product_price', 'checkout.total_amount','checkout.case_id','checkout.created_at')->get();
+      
+      return $this->sendResponse($order, 'Order retrieved successfully.');
+  }
+
+
+  public function orderDetail(Request $request)
+  {
+
+    try{
+       $order = checkout::join('users', 'users.id', '=', 'checkout.user_id')
+       ->join('carts','carts.id', '=', 'checkout.cart_id')
+       ->join('products', 'products.id', '=', 'carts.product_id')
+       ->select('users.name', 'users.mobile', 'products.name AS product_name' , 'carts.product_price', 'checkout.total_amount','checkout.case_id','checkout.created_at')->where('user_id', $request['user_id'])->OrderBy('id', 'desc')->first();
+       if(!empty($order)){
+           return $this->sendResponse( $order. 'Order data retrieved successfully.');
+       }else{
+        return $this->sendResponse( $order =array(), 'No Data Found.');
     }
+    
+}catch(\Exception $ex){
+    return $this->sendError('Server error', array($ex->getMessage()));
+} 
+}
 
     /**
      * Show the form for creating a new resource.
@@ -45,87 +65,87 @@ class CheckoutController extends BaseController
         $data = $request->all();
         $last_checkout_id = Checkout::OrderBy('id','desc')->first();
         $order_id = "00000001";
-            if(!empty($last_checkout_id)){
-                $year = substr($last_checkout_id['order_id'],4, -9);
-                 $current_year = date("Y");
-               
-                if(!empty($last_checkout_id['order_id']) && ($year == $current_year)){
-                    $id = number_format(substr($last_checkout_id['order_id'], 9)) + 1;
-                    $order_id = str_pad($id,8,'0',STR_PAD_LEFT);
-                }
-            }    
-            else{
-                $order_id = "00000001";
+        if(!empty($last_checkout_id)){
+            $year = substr($last_checkout_id['order_id'],4, -9);
+            $current_year = date("Y");
+            
+            if(!empty($last_checkout_id['order_id']) && ($year == $current_year)){
+                $id = number_format(substr($last_checkout_id['order_id'], 9)) + 1;
+                $order_id = str_pad($id,8,'0',STR_PAD_LEFT);
             }
-            
-            $order_id = "ORD-".date("Y")."-".$order_id;
-            $data['order_id'] = $order_id;
-            
-            if(empty($data['user_id'])):
-                if(isset($data['token']) && !empty($data['token'])):
-
-                    $data['user_id'] = (new Parser())->parse($data['token'])->getClaims()['sub']->getValue();
-
-                endif;  
-            endif;     
-            try{
-                $validator = Validator::make($data, [
-                    'user_id' => 'required',
-                ]);
-                if($validator->fails()){
-                    return $this->sendError('Validation Error.', $validator->errors()->all());       
-                }
-                    $checkoutdata = Checkout::create($data);
-                
-                return $this->sendResponse($checkoutdata, 'Order Created Successfully');
-            }catch(\Exception $ex){
-                return $this->sendError('Server error',array($ex->getMessage()));
-            }
-                                     
-            
-       
-
-    }
-
-      public function addCheckoutAddress(Request $request)
-    {
-        $data = $request->all();
+        }    
+        else{
+            $order_id = "00000001";
+        }
         
-            if(empty($data['user_id'])):
-                if(isset($data['token']) && !empty($data['token'])):
+        $order_id = "ORD-".date("Y")."-".$order_id;
+        $data['order_id'] = $order_id;
+        
+        if(empty($data['user_id'])):
+            if(isset($data['token']) && !empty($data['token'])):
 
-                    $data['user_id'] = (new Parser())->parse($data['token'])->getClaims()['sub']->getValue();
+                $data['user_id'] = (new Parser())->parse($data['token'])->getClaims()['sub']->getValue();
 
-                endif;  
-            endif;     
-            try{
-                $validator = Validator::make($data, [
-                    'user_id' => 'required',
-                    'patient_firstname' => 'required',
-                    'patient_lastname' => 'required',
-                    'addressline1' => 'required',
-                    'addressline2' => '',
-                    'city' => 'required',
-                    'state' => 'required',
-                    'zipcode' => 'required',
-                    'email' => 'required',
-                    'phone' => '',
-                    'address_type'=> 'required',
-                ]);
-                if($validator->fails()){
-                    return $this->sendError('Validation Error.', $validator->errors()->all());       
-                }
-                    $checkoutaddressdata = Checkoutaddress::create($data);
-                
-                return $this->sendResponse($checkoutaddressdata, 'Address added Successfully');
-            }catch(\Exception $ex){
-                return $this->sendError('Server error',array($ex->getMessage()));
-            }
-                                     
-            
-       
-
+        endif;  
+    endif;     
+    try{
+        $validator = Validator::make($data, [
+            'user_id' => 'required',
+        ]);
+        if($validator->fails()){
+            return $this->sendError('Validation Error.', $validator->errors()->all());       
+        }
+        $checkoutdata = Checkout::create($data);
+        
+        return $this->sendResponse($checkoutdata, 'Order Created Successfully');
+    }catch(\Exception $ex){
+        return $this->sendError('Server error',array($ex->getMessage()));
     }
+    
+    
+    
+
+}
+
+public function addCheckoutAddress(Request $request)
+{
+    $data = $request->all();
+    
+    if(empty($data['user_id'])):
+        if(isset($data['token']) && !empty($data['token'])):
+
+            $data['user_id'] = (new Parser())->parse($data['token'])->getClaims()['sub']->getValue();
+
+    endif;  
+endif;     
+try{
+    $validator = Validator::make($data, [
+        'user_id' => 'required',
+        'patient_firstname' => 'required',
+        'patient_lastname' => 'required',
+        'addressline1' => 'required',
+        'addressline2' => '',
+        'city' => 'required',
+        'state' => 'required',
+        'zipcode' => 'required',
+        'email' => 'required',
+        'phone' => '',
+        'address_type'=> 'required',
+    ]);
+    if($validator->fails()){
+        return $this->sendError('Validation Error.', $validator->errors()->all());       
+    }
+    $checkoutaddressdata = Checkoutaddress::create($data);
+    
+    return $this->sendResponse($checkoutaddressdata, 'Address added Successfully');
+}catch(\Exception $ex){
+    return $this->sendError('Server error',array($ex->getMessage()));
+}
+
+
+
+
+}
 
     /**
      * Display the specified resource.
@@ -184,31 +204,31 @@ class CheckoutController extends BaseController
             $checkout_data = Checkout::where('user_id', $request['user_id'])->where('case_id', $request['case_id'])->OrderBy('id', 'desc')->first();
             //$checkout_data = Checkout::where('user_id', $request->user_id)->where('cart_id', $request->cart_id)->first();
             if(!empty($checkout_data)){
-                 return $this->sendResponse($checkout_data, 'Checkout data retrieved successfully.');
-            }else{
-                return $this->sendResponse($checkout_data =array(), 'No Data Found.');
-            }
-           
-        }catch(\Exception $ex){
-            return $this->sendError('Server error', array($ex->getMessage()));
+               return $this->sendResponse($checkout_data, 'Checkout data retrieved successfully.');
+           }else{
+            return $this->sendResponse($checkout_data =array(), 'No Data Found.');
         }
-
+        
+    }catch(\Exception $ex){
+        return $this->sendError('Server error', array($ex->getMessage()));
     }
 
-    public function getCheckoutAddress(Request $request)
-    {
-        try{
-            $checkout_data = Checkoutaddress::where('user_id', $request->user_id)->OrderBy('id', 'desc')->first();
+}
+
+public function getCheckoutAddress(Request $request)
+{
+    try{
+        $checkout_data = Checkoutaddress::where('user_id', $request->user_id)->OrderBy('id', 'desc')->first();
             //$checkout_data = Checkout::where('user_id', $request->user_id)->where('cart_id', $request->cart_id)->first();
-            if(!empty($checkout_data)){
-                 return $this->sendResponse($checkout_data, 'Checkout Address data retrieved successfully.');
-            }else{
-                return $this->sendResponse($checkout_data =array(), 'No Data Found.');
-            }
-           
-        }catch(\Exception $ex){
-            return $this->sendError('Server error', array($ex->getMessage()));
-        }
-
+        if(!empty($checkout_data)){
+           return $this->sendResponse($checkout_data, 'Checkout Address data retrieved successfully.');
+       }else{
+        return $this->sendResponse($checkout_data =array(), 'No Data Found.');
     }
+    
+}catch(\Exception $ex){
+    return $this->sendError('Server error', array($ex->getMessage()));
+}
+
+}
 }

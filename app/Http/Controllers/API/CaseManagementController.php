@@ -1224,7 +1224,7 @@ public function detach_file_from_case(Request $request){
     $input_data['prioritized_reason'] = $message_data->prioritized_reason;
     $input_data['message_created_at'] = $message_data->created_at;
     $input_data['case_message_id'] = $message_data->case_message_id;
-    $input_data['message_files_ids'] = json_encode($file_ids);
+    //$input_data['message_files_ids'] = json_encode($file_ids);
     $input_data['clinician  '] = $message_data->clinician ;
     $message_data = MdMessages::create($input_data);
 

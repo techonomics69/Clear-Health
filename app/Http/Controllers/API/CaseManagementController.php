@@ -1321,6 +1321,11 @@ public function CreateCase(Request $request){
     
     $data = json_decode($response);
 
+    echo "<pre>";
+    print_r($data);
+    echo "<pre>";
+    exit();
+
     if(!empty($data) && count($data)>0 ){
       return $this->sendResponse($data,'Message retrieved successfully');
     }else{

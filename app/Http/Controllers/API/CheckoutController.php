@@ -29,25 +29,26 @@ class CheckoutController extends BaseController
   {
 
 
-try{
-    $orderlist =  Checkout::where('user_id', $request->user_id)->OrderBy('id', 'desc')->get();
+    try{
 
-    echo "<pre>";
-    print_r($orderlist."test");
-    echo "</pre>";
-    die();
-
-    $orderlist->id=$orderlist->id;
-    $orderlist->md_status=$orderlist->md_status;
-    $orderlist->status=$orderlist->status;
-    $orderlist->created_at=$orderlist->created_at;
-
-if(!empty($orderlist)){
+        $orderlist =  Checkout::where('user_id', $request->user_id)->OrderBy('id', 'desc')->get();
+        echo "<pre>";
+        print_r($orderlist."test");
+        echo "</pre>";
+        die();
+        if(isset($orderlist)){
+            $orderlist->id=$orderlist->id;
+            $orderlist->md_status=$orderlist->md_status;
+            $orderlist->status=$orderlist->status;
+            $orderlist->created_at=$orderlist->created_at;
+        }
+        return $this->sendResponse($orderlist, 'Order data retrieved successfully.');
+/*if(!empty($orderlist)){
          return $this->sendResponse($orderlist, 'Order data retrieved successfully.');
      }else{
         return $this->sendResponse( $orderlist =array(), 'No Data Found.');
-    }
-   
+    }*/
+
 }catch(\Exception $ex){
     return $this->sendError('Server error', array($ex->getMessage()));
 } 
@@ -213,8 +214,8 @@ try{
             $checkout_data = Checkout::where('user_id', $request['user_id'])->where('case_id', $request['case_id'])->OrderBy('id', 'desc')->first();
             //$checkout_data = Checkout::where('user_id', $request->user_id)->where('cart_id', $request->cart_id)->first();
             if(!empty($checkout_data)){
-             return $this->sendResponse($checkout_data, 'Checkout data retrieved successfully.');
-         }else{
+               return $this->sendResponse($checkout_data, 'Checkout data retrieved successfully.');
+           }else{
             return $this->sendResponse($checkout_data =array(), 'No Data Found.');
         }
 
@@ -230,8 +231,8 @@ public function getCheckoutAddress(Request $request)
         $checkout_data = Checkoutaddress::where('user_id', $request->user_id)->OrderBy('id', 'desc')->first();
             //$checkout_data = Checkout::where('user_id', $request->user_id)->where('cart_id', $request->cart_id)->first();
         if(!empty($checkout_data)){
-         return $this->sendResponse($checkout_data, 'Checkout Address data retrieved successfully.');
-     }else{
+           return $this->sendResponse($checkout_data, 'Checkout Address data retrieved successfully.');
+       }else{
         return $this->sendResponse($checkout_data =array(), 'No Data Found.');
     }
 

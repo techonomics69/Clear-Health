@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'clearHealth | Ordermanagement')
+@section('title', 'clearHealth | Order Management')
 @section('content')
 
 <div class="app-content content">

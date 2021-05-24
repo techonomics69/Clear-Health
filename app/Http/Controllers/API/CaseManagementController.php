@@ -1293,7 +1293,7 @@ public function CreateCase(Request $request){
     $token = $token_data->access_token;
 
     $case_id = $request['case_id'];
-    $case_message_id = $request['system_case_id'];
+    //$case_message_id = $request['system_case_id'];
     $channel = $request['channel'];
 
 

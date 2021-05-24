@@ -303,7 +303,7 @@ if($medication_type == 2 ) { ?>
  	<div class="row" style="padding: 10px;">
  		<div class="col-md-12">
  			<section class="card" >
- 				<ul class="nav nav-tabs" id="question-tab-menu">
+ 				<!-- <ul class="nav nav-tabs" id="question-tab-menu">
 
  					@foreach($category as $key => $data)
  					{{-- <li><a class="btn @if($activeTab == 0) active @elseif($current_tab_id == 'home'.$key) active @endif" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li> --}}
@@ -311,8 +311,8 @@ if($medication_type == 2 ) { ?>
  					<li><a class="btn" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li>
  					<?php //$activeTab++ ?> 
  					@endforeach
- 				</ul>
- 				<div class="tab-content">
+ 				</ul> -->
+ 				<!-- <div class="tab-content">
  					<?php $i=0 ?>
  					@foreach($category as $key => $data)
  					<div id="home{{$key}}" class="tab-pane fade in @if($i== 0) active show @endif">					    
@@ -335,7 +335,7 @@ if($medication_type == 2 ) { ?>
  					@endforeach 
  					
 
- 				</div>
+ 				</div> -->
  			</section>
  		</div>
  	</div>

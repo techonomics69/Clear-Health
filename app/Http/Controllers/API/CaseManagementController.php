@@ -748,7 +748,7 @@ public function CreateCase(Request $request){
    $userQueAns = json_decode($answer_data[0]['answer']);
 
  //get weight of patient 
-    foreach ($recommendation as $key => $value) {
+    foreach ($userQueAns as $key => $value) {
 
         $question = $value->question;
 

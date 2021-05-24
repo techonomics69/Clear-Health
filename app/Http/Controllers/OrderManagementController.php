@@ -73,6 +73,12 @@ class OrderManagementController extends Controller
        ->where('checkout.id',$id)
        ->get();
 
+echo "<pre>";
+print_r($order_non_prescribed);
+echo "</pre>";
+die();
+
+
        foreach($order_non_prescribed as $key=>$val)
        {
         $cart_ids = explode(',', $val['cart_id']);

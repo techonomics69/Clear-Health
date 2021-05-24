@@ -197,10 +197,10 @@
  <!--end code tab2-->
 
  <!--tab3-->
- <div id="order_summary" class="tab-pane fade in">
+ <div id="skincare_summary" class="tab-pane fade in">
  	<div class="row" style="padding: 10px;">
  		<div class="col-md-12">
- 			order summary goes here
+ 			Skincare Summary
 									{{-- <table class="table table-responsive-md table-striped table-bordered ipledgeList" style="width:100%">
 										<thead>
 											<tr>

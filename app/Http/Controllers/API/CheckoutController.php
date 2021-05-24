@@ -31,10 +31,14 @@ class CheckoutController extends BaseController
        ->OrderBy('id', 'DESC')
        ->get();
 
+
+echo "<pre>";
+print_r($orderlist);
+echo "</pre>";
+        die();
 foreach($orderlist as $key=>$val)
        {
-        echo $val['cart_id'];
-        die();
+        
         $cart_ids = explode(',', $val['cart_id']);
 
         

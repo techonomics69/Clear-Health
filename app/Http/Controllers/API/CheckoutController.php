@@ -33,7 +33,7 @@ try{
     $orderlist =  Checkout::where('user_id', $request->user_id)->OrderBy('id', 'desc')->get();
 
     echo "<pre>";
-    print_r($orderlist);
+    print_r($orderlist."test");
     echo "</pre>";
     die();
 

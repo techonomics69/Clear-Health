@@ -139,7 +139,7 @@
           if(isset($ans->answer)){
            $answer =  $ans->answer;
           }
-echo $question;
+echo $questions;
 echo $answer;
 die();
 									  ?>

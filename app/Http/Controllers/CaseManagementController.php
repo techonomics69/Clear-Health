@@ -74,7 +74,7 @@ echo "</pre>";
 die();*/
 
 echo "<pre>";
-print_r('Question:- ' .$value->question);
+print_r('Question:- ' .$value->question.'<br>');
 echo "<br>";
 print_r('Answers:- ' .$value->answer);
 //echo $value['answer'];

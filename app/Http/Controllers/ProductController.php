@@ -61,7 +61,7 @@ class ProductController extends Controller
             'category_id' => 'required|not_in:0',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
             'image_detail' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
-            'retails_price' => 'required|numeric|min:1', 
+            /*'retails_price' => 'required|numeric|min:1',*/ 
             'detail' => 'required',
             'quantity' => 'required|numeric|min:1', 
             'min_quantity_alert' => 'required|numeric|min:1',

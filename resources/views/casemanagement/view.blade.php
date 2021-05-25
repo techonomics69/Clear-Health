@@ -126,21 +126,7 @@
 						<!--start 2nd tab-->
 
 						
-						{{-- @if(session()->has('que_current_tab'))
-						@php
-						$current_tab_id = 'home'.session()->get('que_current_tab') ;
-						$activeTab = 1;
-						$active = 1 ;
-
-						// unset($products[$key]);
-						@endphp
-						@else
-						@php
-						$current_tab_id = "";
-						$activeTab = 0 ;
-						$active = 0 ;	
-						@endphp
-						@endif --}}
+						
 						@php
 						Session::forget('que_current_tab');
 						@endphp

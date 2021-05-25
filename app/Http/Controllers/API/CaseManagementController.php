@@ -806,6 +806,11 @@ public function CreateCase(Request $request){
 
       $DispensUnitId = 8;
 
+      echo "<pre>";
+      print_r('https://api.mdintegrations.xyz/v1/partner/compounds/search?name='.$product_name);
+      echo "<pre>";
+      exit();
+
       $curl = curl_init();
 
       curl_setopt_array($curl, array(
@@ -829,10 +834,6 @@ public function CreateCase(Request $request){
 
       $compounds= $response;
 
-      echo "<pre>";
-      print_r($compounds);
-      echo "<pre>";
-      exit();
 
       $compounds = json_decode($compounds);
 

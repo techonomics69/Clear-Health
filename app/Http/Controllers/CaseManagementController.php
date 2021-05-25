@@ -73,8 +73,10 @@ class CaseManagementController extends Controller
       echo "</pre>";*/
       //die();
           $questions = $value->question;
+          if(isset($value->answer)){
 
            $answer =  $value->answer;
+          }
 
 
           echo "<pre>";

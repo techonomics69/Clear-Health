@@ -60,11 +60,19 @@ class CaseManagementController extends Controller
 
       $answer_data = Answers::where('case_id',509)->where('user_id',1120)->get();
       $answer = json_decode($answer_data[0]['answer']);
-      echo "<pre>";
+      /*echo "<pre>";
       print_r($answer);
       echo "</pre>";
-      die();
+      die();*/
 
+
+
+foreach ($answer as $key => $value) {
+echo $value['question'];
+echo $value['answer'];
+exit();
+
+}
       /*$quiz= QuizAnswer::join('quizzes','quiz_answers.question_id', '=', 'quizzes.id')->select('quiz_answers.*','quizzes.question','quizzes.category_id')->where('case_id', $user_case_management_data['id'])->OrderBy('id', 'ASC')->get();*/
 
       return view('casemanagement.view',compact('user_case_management_data','category','quiz'));

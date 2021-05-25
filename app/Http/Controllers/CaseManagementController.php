@@ -78,7 +78,8 @@ $question = $value->question;
 $answer1 = $value->answer;
 //print_r($value->answer);
 echo "<pre>";
-print_r($question,$answer1);
+print_r($question);
+print_r($answer1);
 echo "</pre>";
 }
 die();

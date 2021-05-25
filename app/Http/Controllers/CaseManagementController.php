@@ -76,7 +76,7 @@ print_r('Answers:- ' .$value->answer);
 echo "</pre>";
 echo "<br>";
 }
-die();
+
 
       /*$quiz= QuizAnswer::join('quizzes','quiz_answers.question_id', '=', 'quizzes.id')->select('quiz_answers.*','quizzes.question','quizzes.category_id')->where('case_id', $user_case_management_data['id'])->OrderBy('id', 'ASC')->get();*/
 

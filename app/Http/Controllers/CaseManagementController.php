@@ -61,7 +61,7 @@ class CaseManagementController extends Controller
       $answer_data = Answers::where('case_id',509)->where('user_id',1120)->get();
       $answers = json_decode($answer_data[0]['answer']);
       /*echo "<pre>";
-      print_r($answer);
+      print_r($answers);
       echo "</pre>";
       die();*/
 
@@ -76,7 +76,7 @@ die();*/
 echo "<pre>";
 print_r('Question:- ' .$value->question.'<br>');
 
-print_r('AnswersDatas:- ' .$value->answer);
+print_r('Answers:- ' .$value->answer);
 //echo $value['answer'];
 echo "</pre>";
 echo "<br>";

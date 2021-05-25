@@ -750,6 +750,7 @@ public function CreateCase(Request $request){
  //get weight of patient 
 
    //$answer = QuizAnswer::join('quizzes', 'quizzes.id', '=', 'quiz_answers.question_id')->where('quiz_answers.user_id', $request['user_id'])->where('quiz_answers.case_id', $request['case_id'])->where('quiz_answers.case_id', $request['case_id'])->select( 'quizzes.question','quiz_answers.answer','quizzes.options_type')->get()->toArray();
+   $accutan_strength = 30;
    foreach ($userQueAns as $key => $value) {
 
     $question = $value->question;

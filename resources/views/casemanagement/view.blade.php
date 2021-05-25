@@ -169,10 +169,10 @@
 													<div class="col-md-12">
 														<?php 
 														if($ans['category_id']== $key){
-
-															echo "<h4><strong>Que:".$ans['question']."</strong></h4>";
-															echo "<p>Ans:".$ans['answer']."</p>";
-														}
+?>
+															<h4><strong>Que:{{$ans->question}}</strong></h4>
+															<p>Ans:{{$ans->answer}}</p>
+														<?php }
 														?>
 
 													</div>

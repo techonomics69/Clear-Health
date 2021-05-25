@@ -135,41 +135,6 @@
 									<h4><strong>Que:{{$ans->question}}</strong></h4>
 									<p>Ans:{{$ans->answer}}</p>
 									@endforeach
-									<!-- <section class="card" >
-										<ul class="nav nav-tabs" id="questions-tab-menu">
-
-											@foreach($category as $key => $data)
-											{{-- <li><a class="btn @if($activeTab == 0) active @elseif($current_tab_id == 'home'.$key) active @endif" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li> --}}
-
-											<li><a class="btn" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li>
-											<?php //$activeTab++ ?> 
-											@endforeach
-										</ul>
-										<div class="tab-content">
-											<?php //$i=0 ?>
-											@foreach($category as $key => $data)
-											<div id="home{{$key}}" class="tab-pane fade in @if($i== 0) active show @endif">					    
-												@foreach($answers as $key1 => $ans)
-
-												<?php //echo $ans; ?>
-												<div class="row" style="padding: 10px;">
-													<div class="col-md-12">
-														<?php 
-														//if($ans['category_id']== $key){
-?>
-															<h4><strong>Que:{{$ans->question}}</strong></h4>
-															<p>Ans:{{$ans->answer}}</p>
-														<?php }
-														?>
-
-													</div>
-												</div>
-												<?php //$i++ ?>
-												@endforeach
-											</div> 
-											@endforeach 
-										</div>
-									</section> -->
 								</div>
 							</div>
 							

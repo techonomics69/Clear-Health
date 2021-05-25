@@ -61,9 +61,11 @@ class CaseManagementController extends Controller
       $quiz = Answers::where('case_id',506)->where('user_id',1123)->OrderBy('id','ASC')->get();
 
       $q= json_encode($quiz);
-      echo "<pre>";
+
+      var_dump(json_decode($q));
+      /*echo "<pre>";
       print_r($q);
-      echo "</pre>";
+      echo "</pre>";*/
       die();
 
 

@@ -162,14 +162,14 @@
 											<?php $i=0 ?>
 											@foreach($category as $key => $data)
 											<div id="home{{$key}}" class="tab-pane fade in @if($i== 0) active show @endif">					    
-												@foreach($quiz as $key1 => $que)
+												@foreach($answers as $key1 => $ans)
 												<div class="row" style="padding: 10px;">
 													<div class="col-md-12">
 														<?php 
-														if($que['category_id']== $key){
+														if($ans['category_id']== $key){
 
-															echo "<h4><strong>Que:".$que['question']."</strong></h4>";
-															echo "<p>Ans:".$que['answer']."</p>";
+															echo "<h4><strong>Que:".$ans['question']."</strong></h4>";
+															echo "<p>Ans:".$ans['answer']."</p>";
 														}
 														?>
 

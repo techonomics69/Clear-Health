@@ -67,38 +67,24 @@ class CaseManagementController extends Controller
       die();*/
 
       foreach ($answers as $key => $value) {
-
-         /*echo "<pre>";
-      print_r($value);
-      echo "</pre>";*/
-      //die();
           $questions = $value->question;
           if(isset($value->answer)){
-
            $answer =  $value->answer;
           }
 
-
-          echo "<pre>";
+         /* echo "<pre>";
           print_r($questions);
           echo "</pre>";
 
            echo "<pre>";
           print_r($answer);
-          echo "</pre>";
-        
-
-        /*if(isset($value->answer)){
-          $answer =  $value->answer;
-          echo "Ans:- " .$answer;
-          echo "<br>";
-        }*/
+          echo "</pre>";*/
 
       }
 
       /*$quiz= QuizAnswer::join('quizzes','quiz_answers.question_id', '=', 'quizzes.id')->select('quiz_answers.*','quizzes.question','quizzes.category_id')->where('case_id', $user_case_management_data['id'])->OrderBy('id', 'ASC')->get();*/
 
-      return view('casemanagement.view',compact('user_case_management_data','category','quiz'));
+      return view('casemanagement.view',compact('user_case_management_data','category','answers'));
     }
 
     /**

@@ -59,8 +59,8 @@ class CaseManagementController extends Controller
         //foreach ($user_case_management_data as $key => $value) {
 
       $quiz = Answers::where('case_id',506)->where('user_id',1123)->select('answer')->get();
-      $q= explode(" { ", ($quiz, "answer"));
-      //$q= json_decode($quiz,"answer");
+      //$q= explode(" { ", ($quiz, "answer"));
+      $q= json_decode($quiz,"answer");
       echo "<pre>";
       print_r($q);
       echo "</pre>";

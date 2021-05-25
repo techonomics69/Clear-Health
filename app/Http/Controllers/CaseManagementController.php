@@ -72,10 +72,12 @@ echo "<pre>";
 print_r('Question:- ' .$value->question.'<br>');
 echo "</pre>";
 
-if(isset($value) && $value->answer){
+if(isset($value->answer)){
 print_r('Answers:- ' .$value->answer.'<br>');
 }
 }
+
+
 
 
 

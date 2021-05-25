@@ -66,14 +66,14 @@ class CaseManagementController extends Controller
       echo "</pre>";
       die();*/
 
-
- 
 foreach ($answers as $key => $value) {
+  if(isset($value)){
 echo "<pre>";
 print_r('Question:- ' .$value->question.'<br>');
 print_r('Answers:- ' .$value->answer);
 echo "</pre>";
 echo "<br>";
+}
 }
 
 

@@ -135,9 +135,9 @@
 									<?php echo "<pre>";
 									print_r($ans);
 echo "</pre>";
-									 die(); ?>
-									<h4><strong>Que:{{ $ans->question }}</strong></h4>
-									<p>Ans:{{ $ans->answer }}</p>
+									  ?>
+									<h4><strong>Que: <?php echo $ans->question;  ?></strong></h4>
+									<p>Ans: <?php echo  $ans->answer; ?> </p>
 									@endforeach
 								</div>
 							</div>

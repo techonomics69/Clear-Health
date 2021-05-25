@@ -63,7 +63,7 @@ class CaseManagementController extends Controller
       
 
   //$recommendation = json_decode($answer_data[0]['answer']);
-      $q= json_decode($quiz[0],"answer");
+      $q= json_decode($quiz[0]['answer']);
 
 
 

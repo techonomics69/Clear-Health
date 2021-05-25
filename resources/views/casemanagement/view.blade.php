@@ -125,11 +125,34 @@
 
 						<!--start 2nd tab-->
 
+						
+{{-- @if(session()->has('que_current_tab'))
+						@php
+						$current_tab_id = 'home'.session()->get('que_current_tab') ;
+						$activeTab = 1;
+						$active = 1 ;
+
+						// unset($products[$key]);
+						@endphp
+						@else
+						@php
+						$current_tab_id = "";
+						$activeTab = 0 ;
+						$active = 0 ;	
+						@endphp
+						@endif --}}
+						@php
+						Session::forget('que_current_tab');
+						@endphp
 						<div id="questions" class="tab-pane fade in">					    
-							
+						
 							<div class="row" style="padding: 10px;">
 								<div class="col-md-12">
-									<section class="card" >
+									@foreach($answers as $key => $ans)
+									<h4><strong>Que:{{$ans->question}}</strong></h4>
+									<p>Ans:{{$ans->answer}}</p>
+									@endforeach
+									<!-- <section class="card" >
 										<ul class="nav nav-tabs" id="questions-tab-menu">
 
 											@foreach($category as $key => $data)
@@ -140,16 +163,16 @@
 											@endforeach
 										</ul>
 										<div class="tab-content">
-											<?php $i=0 ?>
+											<?php //$i=0 ?>
 											@foreach($category as $key => $data)
 											<div id="home{{$key}}" class="tab-pane fade in @if($i== 0) active show @endif">					    
 												@foreach($answers as $key1 => $ans)
 
-												<?php echo $ans; ?>
+												<?php //echo $ans; ?>
 												<div class="row" style="padding: 10px;">
 													<div class="col-md-12">
 														<?php 
-														if($ans['category_id']== $key){
+														//if($ans['category_id']== $key){
 ?>
 															<h4><strong>Que:{{$ans->question}}</strong></h4>
 															<p>Ans:{{$ans->answer}}</p>
@@ -158,12 +181,12 @@
 
 													</div>
 												</div>
-												<?php $i++ ?>
+												<?php //$i++ ?>
 												@endforeach
 											</div> 
 											@endforeach 
 										</div>
-									</section>
+									</section> -->
 								</div>
 							</div>
 							

@@ -824,7 +824,7 @@ public function CreateCase(Request $request){
         CURLOPT_CUSTOMREQUEST => 'GET',
         CURLOPT_HTTPHEADER => array(
           'Authorization: Bearer '.$token,
-          'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+          'Cookie: __cfduid=da01d92d82d19a6cccebfdc9852303eb81620627650'
         ),
       ));
 

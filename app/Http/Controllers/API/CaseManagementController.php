@@ -883,6 +883,11 @@ public function CreateCase(Request $request){
 
       $medications = json_decode($medications);
 
+      echo "<pre>";
+      print_r($medications);
+      echo "<pre>";
+      exit();
+
       $DispensUnitId = $medications[0]->dispense_unit_id;
       $dosespot_medication_id = $medications[0]->dosespot_medication_id;
 

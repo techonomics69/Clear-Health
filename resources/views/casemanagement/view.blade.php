@@ -137,9 +137,6 @@
 												$questions = $ans->question;
 												if(isset($ans->answer)){
 													$answer =  $ans->answer;
-													echo implode(",",$answer);
-													//print_r($string);
-													die();
 												}
 												?>
 												<h4><strong>Que: <?php echo $questions; ?></strong></h4>

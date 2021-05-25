@@ -62,7 +62,7 @@ class CaseManagementController extends Controller
 
       //$q= json_encode($quiz);
 
-      var_dump(json_decode($quiz));
+      var_dump(json_decode($quiz,true));
       /*echo "<pre>";
       print_r($q);
       echo "</pre>";*/

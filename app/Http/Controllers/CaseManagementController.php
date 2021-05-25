@@ -66,18 +66,20 @@ class CaseManagementController extends Controller
       echo "</pre>";
       die();*/
 
-foreach ($answers as $key => $value) {
-  
-echo "<pre>";
-print_r('Question:- ' .$value->question.'<br>');
-echo "</pre>";
+      foreach ($answers as $key => $value) {
+        
+        if (isset($value->question)) {
 
-if(isset($value->answer)){
-                $answer =  $value->answer;
-                  echo $answer;
-            }
+          $questions=$value->question;
+          echo $questions;
+        }
 
-}
+        if(isset($value->answer)){
+          $answer =  $value->answer;
+          echo $answer;
+        }
+
+      }
 
 
 

@@ -278,8 +278,7 @@ if($medication_type == 2 ) { ?>
  				<ul class="nav nav-tabs" id="question-tab-menu">
 
  					@foreach($category as $key => $data)
- 					{{-- <li><a class="btn @if($activeTab == 0) active @elseif($current_tab_id == 'home'.$key) active @endif" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li> --}}
-
+ 					<li><a class="btn @if($activeTab == 0) active @elseif($current_tab_id == 'home'.$key) active @endif" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li> 
  					<li><a class="btn" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li>
  					<?php //$activeTab++ ?> 
  					@endforeach

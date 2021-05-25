@@ -59,6 +59,10 @@ class CaseManagementController extends Controller
       $category = QuizCategory::pluck('name', 'id')->toArray();
 
       $answers_data = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['id'])->get();
+echo "<pre>";
+print_r($answers_data);
+echo "</pre>";
+die();
 
       $answers = json_decode($answers_data[0]['answer']);
       

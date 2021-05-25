@@ -75,9 +75,8 @@ die();*/
 
 echo "<pre>";
 print_r($value->question);
-print_r($value->answer);
+//print_r($value->answer);
 echo "</pre>";
-
 
 }
 die();

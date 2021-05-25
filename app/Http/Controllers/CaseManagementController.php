@@ -78,7 +78,7 @@ class CaseManagementController extends Controller
 
         if(isset($value->answer)){
           $answer =  $value->answer;
-          $ans1 = implode("",$answer);
+          $ans1 = implode(" ",$answer);
           echo "Ans:- " .$ans1;
           echo "<br>";
         }

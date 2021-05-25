@@ -880,14 +880,16 @@ public function CreateCase(Request $request){
 
       curl_close($curl);
 
+      echo "<pre>";
+      print_r($response);
+      echo "<pre>";
+      exit();
+
       $medications = $response;
 
       $medications = json_decode($medications);
 
-      echo "<pre>";
-      print_r($medications);
-      echo "<pre>";
-      exit();
+      
 
       $DispensUnitId = $medications->dispense_unit_id;
       $dosespot_medication_id = $medications->dosespot_medication_id;

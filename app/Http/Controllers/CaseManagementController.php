@@ -62,7 +62,7 @@ class CaseManagementController extends Controller
 
       $answers = json_decode($answers_data[0]['answer']);
       
-      foreach ($answers as $key => $value) {
+      foreach ($answers[0] as $key => $value) {
           $questions = $value->question;
           if(isset($value->answer)){
            $answer =  $value->answer;

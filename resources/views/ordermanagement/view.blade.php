@@ -147,7 +147,7 @@ if($medication_type == 2 ) { ?>
 
 															<div class="col-md-6 form-group">
 																<strong>Date : </strong>
-																{{($order_data->created_at)->format('d/m/Y')}}
+																{{($order_data->created_at)->format(jS F Y h:i:s A)}}
 															</div>
 
 															<div class="col-md-6 form-group">

@@ -858,11 +858,6 @@ public function CreateCase(Request $request){
       $pharmacy_notes =  "This medication might not be suitable for people with... ";
       $quantity = $accutan_strength;
 
-      echo "<pre>";
-      print_r('https://api.mdintegrations.xyz/v1/partner/medications/select?name='.$product_name.'&strength='.$quantity.' mg');
-      echo "<pre>";
-      exit();
-      
       $curl = curl_init();
 
       curl_setopt_array($curl, array(
@@ -880,16 +875,16 @@ public function CreateCase(Request $request){
         ),
       ));
 
-      $response = curl_exec($curl);
+      $response1 = curl_exec($curl);
 
       curl_close($curl);
 
       echo "<pre>";
-      print_r($response);
+      print_r($response1);
       echo "<pre>";
       exit();
 
-      $medications = $response;
+      $medications = $response1;
 
       $medications = json_decode($medications);
 

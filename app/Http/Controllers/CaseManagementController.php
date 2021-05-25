@@ -58,7 +58,7 @@ class CaseManagementController extends Controller
       $category = QuizCategory::pluck('name', 'id')->toArray();
         //foreach ($user_case_management_data as $key => $value) {
 
-      $answer_data = Answers::where('case_id',509)->where('user_id',1120)->get();
+      $answer_data = Answers::where('case_id',$case_id)->where('user_id',$user_id)->get();
       $answers = json_decode($answer_data[0]['answer']);
       /*echo "<pre>";
       print_r($answers);
@@ -68,11 +68,6 @@ class CaseManagementController extends Controller
 
  
 foreach ($answers as $key => $value) {
-/*echo "<pre>";
-print_r($value);
-echo "</pre>";
-die();*/
-
 echo "<pre>";
 print_r('Question:- ' .$value->question.'<br>');
 

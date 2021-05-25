@@ -147,7 +147,7 @@ if($medication_type == 2 ) { ?>
 
 															<div class="col-md-6 form-group">
 																<strong>Date : </strong>
-																{{($order_data->created_at)->format('d/m/Y')}}
+																{{$order_data->created_at}}
 															</div>
 
 															<div class="col-md-6 form-group">
@@ -329,23 +329,23 @@ if($medication_type == 2 ) { ?>
  					@endforeach
  				</ul> -->
  				<!-- <div class="tab-content">
- 					<?php //$i=0 ?>
+ 					<?php $i=0 ?>
  					@foreach($category as $key => $data)
  					<div id="home{{$key}}" class="tab-pane fade in @if($i== 0) active show @endif">					    
  						@foreach($quiz as $key1 => $que)
  						<div class="row" style="padding: 10px;">
  							<div class="col-md-12">
  								<?php 
- 								//if($que['category_id']== $key){
+ 								if($que['category_id']== $key){
 
- 									//echo "<h4><strong>Que:".$que['question']."</strong></h4>";
- 									//echo "<p>Ans:".$que['answer']."</p>";
+ 									echo "<h4><strong>Que:".$que['question']."</strong></h4>";
+ 									echo "<p>Ans:".$que['answer']."</p>";
  								}
  								?>
 
  							</div>
  						</div>
- 						<?php //$i++ ?>
+ 						<?php $i++ ?>
  						@endforeach
  					</div> 
  					@endforeach 

@@ -82,12 +82,12 @@ if($medication_type == 2 ) { ?>
 															<h3 class="font-weight-bold"><span class="text-underline">Basic Information</span></h3>
 															
 															<div class="col-md-6  form-group">
-																<strong>FirstName : </strong>
+																<strong>First Name : </strong>
 																{{$order_data->first_name}}
 															</div>
 
 															<div class="col-md-6 form-group">
-																<strong>LastName : </strong>
+																<strong>Last Name : </strong>
 																{{$order_data->last_name}}
 															</div>
 
@@ -212,12 +212,12 @@ if($medication_type == 2 ) { ?>
 															<h3 class="font-weight-bold"><span class="text-underline">Basic Information</span></h3>
 															
 															<div class="col-md-6  form-group">
-																<strong>FirstName : </strong>
+																<strong>First Name : </strong>
 																{{$user_case_management_data['first_name']}}
 															</div>
 
 															<div class="col-md-6 form-group">
-																<strong>LastName : </strong>
+																<strong>Last Name : </strong>
 																{{$user_case_management_data['last_name']}}
 															</div>
 

@@ -60,17 +60,12 @@ class CaseManagementController extends Controller
 
       $answers_data = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->get();
 
-echo "<pre>";
-print_r($answers_data);
-echo "</pre>";
-die();
-
 if(!empty($answers_data)){
 
       $answers = json_decode($answers_data[0]['answer']);
 
       }
-      
+
       foreach ($answers as $key => $value) {
           $questions = $value->question;
           if(isset($value->answer)){

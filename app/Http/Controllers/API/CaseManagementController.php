@@ -793,7 +793,6 @@ public function CreateCase(Request $request){
   $days_supply = "60";
   $refills = "11";
   $directions = "Take one at the morning and another before bed";
-  $product_name = "";
   $no_substitutions = "true";
   $pharmacy_notes =  "This medication might not be suitable for people with... ";
   $quantity = 30;
@@ -813,7 +812,7 @@ public function CreateCase(Request $request){
       echo "<pre>";
       exit();
 
-      
+
       $curl = curl_init();
 
       curl_setopt_array($curl, array(

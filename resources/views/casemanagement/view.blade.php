@@ -129,7 +129,9 @@
 						
 							<div class="row" style="padding: 10px;">
 								<div class="col-md-12">
-
+<div class="tab-content">
+	<div class="row" style="padding: 10px;">
+													<div class="col-md-12">
 
 
 									@foreach($answers as $key => $ans)
@@ -141,12 +143,17 @@
           }
 //echo $questions;
 
-print_r($answer);
+//print_r($answer);
 
 									  ?>
+
+
 									<h4><strong>Que: <?php echo $questions;  ?></strong></h4>
-									<p>Ans: <?php //echo  $ans->answer; ?> </p>
+									<p>Ans: <?php print_r($answer); ?> </p>
 									@endforeach
+								</div>
+							</div>
+						</div>
 								</div>
 							</div>
 							

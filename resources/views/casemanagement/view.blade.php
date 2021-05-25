@@ -127,8 +127,11 @@
 
 						
 
-						
+						@php
+						Session::forget('que_current_tab');
+						@endphp
 						<div id="questions" class="tab-pane fade in">					    
+							{{-- 	@foreach($que as $key => $loopdata)	 --}}
 							<div class="row" style="padding: 10px;">
 								<div class="col-md-12">
 									<section class="card" >
@@ -146,6 +149,8 @@
 											@foreach($category as $key => $data)
 											<div id="home{{$key}}" class="tab-pane fade in @if($i== 0) active show @endif">					    
 												@foreach($answers as $key1 => $ans)
+
+												<?php echo $ans; ?>
 												<div class="row" style="padding: 10px;">
 													<div class="col-md-12">
 														<?php 

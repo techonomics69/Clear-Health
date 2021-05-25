@@ -58,7 +58,7 @@ class CaseManagementController extends Controller
       $category = QuizCategory::pluck('name', 'id')->toArray();
         //foreach ($user_case_management_data as $key => $value) {
 
-      $quiz = Answers::where('case_id', $user_case_management_data['id'])->where('user_id',$user_case_management_data['id'])->OrderBy('id','ASC')->get();
+      $quiz = Answers::where('case_id',506)->where('user_id',1123)->OrderBy('id','ASC')->get();
 
       echo "<pre>";
       print_r($quiz);

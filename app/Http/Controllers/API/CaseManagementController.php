@@ -832,6 +832,12 @@ public function CreateCase(Request $request){
       $compounds= $response;
 
 
+      echo "<pre>";
+      print_r($compounds);
+      echo "<pre>";
+      exit();
+
+
       $compounds = json_decode($compounds);
 
       $partner_compound_id = $compounds[0]->partner_compound_id;

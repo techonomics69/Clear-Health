@@ -137,8 +137,8 @@
 												$questions = $ans->question;
 												if(isset($ans->answer)){
 													$answer =  $ans->answer;
-													$string=implode(",",$answer);
-													print_r($string);
+													echo implode(",",$answer);
+													//print_r($string);
 													die();
 												}
 												?>

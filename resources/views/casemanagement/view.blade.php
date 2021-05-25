@@ -129,10 +129,21 @@
 						
 							<div class="row" style="padding: 10px;">
 								<div class="col-md-12">
+
+
+
 									@foreach($answers as $key => $ans)
-					
-									<h4><strong>Que: <?php echo $ans['question'];  ?></strong></h4>
-								<!-- 	<p>Ans: <?php //echo  $ans->answer; ?> </p> -->
+									<?php
+
+		$questions = $ans->question;
+          if(isset($ans->answer)){
+           $answer =  $ans->answer;
+          }
+echo $question;
+echo $answer;
+									  ?>
+									<h4><strong>Que: <?php //echo $ans->question;  ?></strong></h4>
+									<p>Ans: <?php //echo  $ans->answer; ?> </p>
 									@endforeach
 								</div>
 							</div>

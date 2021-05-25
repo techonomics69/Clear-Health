@@ -73,8 +73,10 @@ print_r('Question:- ' .$value->question.'<br>');
 echo "</pre>";
 
 if(isset($value->answer)){
-print_r('Answers:- ' .$value->answer.'<br>');
-}
+                $answer =  $value->answer;
+                  echo $answer;
+            }
+
 }
 
 

@@ -70,7 +70,7 @@ foreach ($answers as $key => $value) {
   
 echo "<pre>";
 print_r('Question:- ' .$value->question.'<br>');
-if(!isset($value->answer)){
+if(isset($value->answer)){
 print_r('Answers:- ' .$value->answer);
 }
 echo "</pre>";

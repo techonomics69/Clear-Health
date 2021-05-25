@@ -793,7 +793,6 @@ public function CreateCase(Request $request){
   $days_supply = "60";
   $refills = "11";
   $directions = "Take one at the morning and another before bed";
-  $product_name = "";
   $no_substitutions = "true";
   $pharmacy_notes =  "This medication might not be suitable for people with... ";
   $quantity = 30;
@@ -806,7 +805,6 @@ public function CreateCase(Request $request){
       $DispensUnitId= $DispensUnitId[0]->dispense_unit_id;*/
 
       $DispensUnitId = 8;
-      
 
       $curl = curl_init();
 
@@ -830,6 +828,11 @@ public function CreateCase(Request $request){
       curl_close($curl);
 
       $compounds= $response;
+
+      echo "<pre>";
+      print_r( $compounds);
+      echo "<pre>";
+      exit();
 
       $compounds = json_decode($compounds);
 

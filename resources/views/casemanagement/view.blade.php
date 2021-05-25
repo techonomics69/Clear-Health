@@ -132,7 +132,10 @@
 							<div class="row" style="padding: 10px;">
 								<div class="col-md-12">
 									@foreach($answers as $key => $ans)
-									<?php echo $ans; die(); ?>
+									<?php echo "<pre>";
+									print_r($ans);
+echo "</pre>";
+									 die(); ?>
 									<h4><strong>Que:{{ $ans->question }}</strong></h4>
 									<p>Ans:{{ $ans->answer }}</p>
 									@endforeach

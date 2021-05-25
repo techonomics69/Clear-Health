@@ -141,7 +141,7 @@
           }
 echo $questions;
 echo $answer;
-die();
+
 									  ?>
 									<h4><strong>Que: <?php //echo $ans->question;  ?></strong></h4>
 									<p>Ans: <?php //echo  $ans->answer; ?> </p>

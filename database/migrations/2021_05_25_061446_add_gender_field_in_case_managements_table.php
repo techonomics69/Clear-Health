@@ -14,7 +14,7 @@ class AddGenderFieldInCaseManagementsTable extends Migration
     public function up()
     {
         Schema::table('case_managements', function (Blueprint $table) {
-            $table->enum('gender')->default('0')->after('user_id')->comment='0 = Not known,1 = Male,2 = Female,9 = Not applicable';
+            $table->string('gender')->default('0')->after('user_id')->comment='0 = Not known,1 = Male,2 = Female,9 = Not applicable';
         });
     }
 

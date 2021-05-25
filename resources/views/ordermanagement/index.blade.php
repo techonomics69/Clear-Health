@@ -59,7 +59,7 @@
                                             <td>{{ $order_data->case_id }}</td>
                                             <td>{{ $order_data->email }}</td>
 
-                                            <td>{{\Carbon\Carbon::parse($order_data->created_at)->format('d/m/Y', 'H:i:s')}} </td>
+                                            <td>{{\Carbon\Carbon::parse($order_data->created_at)->format('d/m/Y')}} </td>
                                             <!-- <td>{{ $order_data->created_at }}</td> -->
                                             <td>{{ $order_data->product_name }}</td>
                                             <!-- <td>{{ $order_data->product_price }}</td>  -->

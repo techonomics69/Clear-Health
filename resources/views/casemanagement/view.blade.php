@@ -142,7 +142,7 @@
 												}
 
 echo "<h4><strong>Que:".$questions."</strong></h4>";
-															echo "<p>Ans:".$answer."</p>";
+															print_r("<p>Ans:".$answer."</p>");
 
 												?>
 

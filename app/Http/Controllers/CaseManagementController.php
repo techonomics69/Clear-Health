@@ -56,7 +56,7 @@ class CaseManagementController extends Controller
     {
       $user_case_management_data = CaseManagement::join('users','case_managements.user_id', '=', 'users.id')->select('case_managements.*','users.first_name','users.last_name','users.email','users.mobile','users.gender')->where('case_managements.id',$id)->first();
       $category = QuizCategory::pluck('name', 'id')->toArray();
-        //foreach ($user_case_management_data as $key => $value) {
+       
 
       $answers_data = Answers::where('case_id',509)->where('user_id',1120)->get();
 
@@ -68,12 +68,13 @@ class CaseManagementController extends Controller
 
       foreach ($answers as $key => $value) {
 
-        if (isset($value->question)) {
-
-          $questions=$value->question;
-          echo "Que:- " .$questions;
+        
+          $questions = $value->question;
+          echo "<pre>";
+          print_r("Ques:- " .$questions);
           echo "<br>";
-        }
+          echo "</pre>";
+        
 
         if(isset($value->answer)){
           $answer =  $value->answer;
@@ -82,10 +83,6 @@ class CaseManagementController extends Controller
         }
 
       }
-
-
-
-
 
       /*$quiz= QuizAnswer::join('quizzes','quiz_answers.question_id', '=', 'quizzes.id')->select('quiz_answers.*','quizzes.question','quizzes.category_id')->where('case_id', $user_case_management_data['id'])->OrderBy('id', 'ASC')->get();*/
 

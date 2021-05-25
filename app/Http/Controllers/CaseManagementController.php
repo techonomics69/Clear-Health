@@ -60,9 +60,9 @@ class CaseManagementController extends Controller
 
       $quiz = Answers::where('case_id',506)->where('user_id',1123)->select('answer')->get();
       //$q= explode(" { ", ($quiz, "answer"));
-      $q= json_decode($quiz,"answer");
+      //$q= json_decode($quiz,"answer");
       echo "<pre>";
-      print_r($q);
+      print_r($quiz);
       echo "</pre>";
       die();
 

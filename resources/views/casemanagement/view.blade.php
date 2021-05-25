@@ -126,30 +126,29 @@
 						<!--start 2nd tab-->
 
 						<div id="questions" class="tab-pane fade in">					    
-						
+							
 							<div class="row" style="padding: 10px;">
 								<div class="col-md-12">
-<div class="tab-content">
-	<div class="row" style="padding: 10px;">
-													<div class="col-md-12">
+									<div class="tab-content">
+										<div class="row" style="padding: 10px;">
+											<div class="col-md-12">
 
 
-									@foreach($answers as $key => $ans)
-									<?php
+												@foreach($answers as $key => $ans)
+												<?php
+												$questions = $ans->question;
+												if(isset($ans->answer)){
+													$answer =  $ans->answer;
+												}
+												?>
 
-		$questions = $ans->question;
-          if(isset($ans->answer)){
-           $answer =  $ans->answer;
-          }
-?>
 
-
-									<h4><strong>Que: <?php echo $questions;  ?></strong></h4>
-									<p>Ans: <?php echo $answer; ?> </p>
-									@endforeach
-								</div>
-							</div>
-						</div>
+												<h4><strong>Que: <?php echo $questions;  ?></strong></h4>
+												<p>Ans: <?php print_r($answer); ?> </p>
+												@endforeach
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 							

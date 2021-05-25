@@ -752,7 +752,7 @@ public function CreateCase(Request $request){
    //$answer = QuizAnswer::join('quizzes', 'quizzes.id', '=', 'quiz_answers.question_id')->where('quiz_answers.user_id', $request['user_id'])->where('quiz_answers.case_id', $request['case_id'])->where('quiz_answers.case_id', $request['case_id'])->select( 'quizzes.question','quiz_answers.answer','quizzes.options_type')->get()->toArray();
 
    $accutan_strength = 30;
-   
+
    foreach ($userQueAns as $key => $value) {
 
     $question = $value->question;
@@ -856,6 +856,10 @@ public function CreateCase(Request $request){
       $no_substitutions = "true";
       $pharmacy_notes =  "This medication might not be suitable for people with... ";
       $quantity = $accutan_strength;
+      echo "<pre>";
+      print_r('https://api.mdintegrations.xyz/v1/partner/medications/select?name='.$product_name.'&strength='.$quantity);
+      echo "<pre>";
+      exit();
 
       $curl = curl_init();
 

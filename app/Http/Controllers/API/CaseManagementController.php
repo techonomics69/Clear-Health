@@ -806,10 +806,7 @@ public function CreateCase(Request $request){
 
       $DispensUnitId = 8;
 
-      echo "<pre>";
-      print_r('https://api.mdintegrations.xyz/v1/partner/compounds/search?name='.$product_name);
-      echo "<pre>";
-      exit();
+    
 
       $curl = curl_init();
 
@@ -824,7 +821,7 @@ public function CreateCase(Request $request){
         CURLOPT_CUSTOMREQUEST => 'GET',
         CURLOPT_HTTPHEADER => array(
           'Authorization: Bearer '.$token,
-          'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+          'Cookie: __cfduid=da01d92d82d19a6cccebfdc9852303eb81620627650'
         ),
       ));
 
@@ -833,6 +830,12 @@ public function CreateCase(Request $request){
       curl_close($curl);
 
       $compounds= $response;
+
+
+      echo "<pre>";
+      print_r($compounds);
+      echo "<pre>";
+      exit();
 
 
       $compounds = json_decode($compounds);

@@ -140,7 +140,8 @@
            $answer =  $ans->answer;
           }
 echo $questions;
-echo $answer;
+
+print_r($answer);
 
 									  ?>
 									<h4><strong>Que: <?php //echo $ans->question;  ?></strong></h4>

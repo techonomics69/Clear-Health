@@ -129,118 +129,140 @@
 
 							<div class="row" style="padding: 10px;">
 								<div class="col-md-12">
-									<div class="tab-content">
-										<div class="row" style="padding: 10px;">
-											<div class="col-md-12">
-												@foreach($answers as $key => $ans)
-												<?php
-												$questions = $ans->question;
-												if(isset($ans->answer)){
-													$answer =  $ans->answer;
-												}
-												?>
-												<h4><strong>Que: <?php echo $questions; ?></strong></h4>
 
-												<p>Ans: <?php print_r($answer); ?> </p>
-												
+									<section class="card" >
+										<ul class="nav nav-tabs" id="questions-tab-menu">
+
+											@foreach($category as $key => $data)
+											{{-- <li><a class="btn @if($activeTab == 0) active @elseif($current_tab_id == 'home'.$key) active @endif" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li> --}}
+
+											<li><a class="btn" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li>
+											<?php //$activeTab++ ?> 
+											@endforeach
+										</ul>
+
+
+										<div class="tab-content">
+											<?php $i=0 ?>
+											@foreach($category as $key => $data)
+											<div id="home{{$key}}" class="tab-pane fade in @if($i== 0) active show @endif">	
+												@foreach($answers as $key => $ans)
+												<div class="row" style="padding: 10px;">
+													<div class="col-md-12">
+
+														<?php
+														$questions = $ans->question;
+														if(isset($ans->answer)){
+															$answer =  $ans->answer;
+														}
+														?>
+														<h4><strong>Que: <?php echo $questions; ?></strong></h4>
+
+														<p>Ans: <?php print_r($answer); ?> </p>
+
+
+													</div>
+												</div>
+												<?php $i++ ?>
 												@endforeach
 											</div>
-										</div>
+											@endforeach
+											</div>
+										</section>
+									</div>
+								</div>
+
+							</div>  
+
+
+
+							<!--end 2nd tab-->
+
+							<!--start 3rd tab-->
+							<div id="skincare_summary" class="tab-pane fade in">
+								<div class="row" style="padding: 20px;">
+									<div class="col-md-12">
+										<section class="card">
+											<div class="card-body">
+												<div class="box-block mtb32">
+													<h3 class="font-weight-bold"><span class="text-underline">Skincare Summary</span></h3>
+												</div>
+											</div>
+										</section>
+									</div>
+								</div>
+							</div> 
+							<!--end 3rd tab-->
+
+							<!--start 4th tab-->
+							<div id="action_items" class="tab-pane fade in ">
+								<div class="row" style="padding: 20px;">
+									<div class="col-md-12">
+										<section class="card">
+											<div class="card-body">
+												<div class="box-block mtb32">
+													<h3 class="font-weight-bold"><span class="text-underline">Action Items</span></h3>
+												</div>
+											</div>
+										</section>
+									</div>
+								</div>
+							</div> 
+							<!--end 4th tab-->
+
+							<!--start 5th tab-->
+							<div id="messages" class="tab-pane fade in ">
+								<div class="row" style="padding: 20px;">
+									<div class="col-md-12">
+										<section class="card">
+											<div class="card-body">
+												<div class="box-block mtb32">
+													<h3 class="font-weight-bold"><span class="text-underline">Messages goes here</span></h3>
+												</div>
+											</div>
+										</section>
 									</div>
 								</div>
 							</div>
-							
-						</div>  
+							<!--end 5th tab-->
 
-						
-
-						<!--end 2nd tab-->
-
-						<!--start 3rd tab-->
-						<div id="skincare_summary" class="tab-pane fade in">
-							<div class="row" style="padding: 20px;">
-								<div class="col-md-12">
-									<section class="card">
-										<div class="card-body">
-											<div class="box-block mtb32">
-												<h3 class="font-weight-bold"><span class="text-underline">Skincare Summary</span></h3>
+							<!--start 6th tab-->
+							<div id="photos" class="tab-pane fade in ">
+								<div class="row" style="padding: 20px;">
+									<div class="col-md-12">
+										<section class="card">
+											<div class="card-body">
+												<div class="box-block mtb32">
+													<h3 class="font-weight-bold"><span class="text-underline">Photos</span></h3>
+												</div>
 											</div>
-										</div>
-									</section>
+										</section>
+									</div>
 								</div>
 							</div>
-						</div> 
-						<!--end 3rd tab-->
+							<!--end 6th tab-->
 
-						<!--start 4th tab-->
-						<div id="action_items" class="tab-pane fade in ">
-							<div class="row" style="padding: 20px;">
-								<div class="col-md-12">
-									<section class="card">
-										<div class="card-body">
-											<div class="box-block mtb32">
-												<h3 class="font-weight-bold"><span class="text-underline">Action Items</span></h3>
+							<!--start 7th tab-->
+							<div id="payments" class="tab-pane fade in ">
+								<div class="row" style="padding: 20px;">
+									<div class="col-md-12">
+										<section class="card">
+											<div class="card-body">
+												<div class="box-block mtb32">
+													<h3 class="font-weight-bold"><span class="text-underline">Payments</span></h3>
+												</div>
 											</div>
-										</div>
-									</section>
+										</section>
+									</div>
 								</div>
 							</div>
-						</div> 
-						<!--end 4th tab-->
-
-						<!--start 5th tab-->
-						<div id="messages" class="tab-pane fade in ">
-							<div class="row" style="padding: 20px;">
-								<div class="col-md-12">
-									<section class="card">
-										<div class="card-body">
-											<div class="box-block mtb32">
-												<h3 class="font-weight-bold"><span class="text-underline">Messages goes here</span></h3>
-											</div>
-										</div>
-									</section>
-								</div>
-							</div>
+							<!--end 7th tab--> 
 						</div>
-						<!--end 5th tab-->
-
-						<!--start 6th tab-->
-						<div id="photos" class="tab-pane fade in ">
-							<div class="row" style="padding: 20px;">
-								<div class="col-md-12">
-									<section class="card">
-										<div class="card-body">
-											<div class="box-block mtb32">
-												<h3 class="font-weight-bold"><span class="text-underline">Photos</span></h3>
-											</div>
-										</div>
-									</section>
-								</div>
-							</div>
-						</div>
-						<!--end 6th tab-->
-
-						<!--start 7th tab-->
-						<div id="payments" class="tab-pane fade in ">
-							<div class="row" style="padding: 20px;">
-								<div class="col-md-12">
-									<section class="card">
-										<div class="card-body">
-											<div class="box-block mtb32">
-												<h3 class="font-weight-bold"><span class="text-underline">Payments</span></h3>
-											</div>
-										</div>
-									</section>
-								</div>
-							</div>
-						</div>
-						<!--end 7th tab--> 
 					</div>
-				</div>
-			</section>
+				</section>
+			</div>
 		</div>
 	</div>
-</div>
 </div>
 @endsection
 

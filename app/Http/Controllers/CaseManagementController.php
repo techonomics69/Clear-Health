@@ -75,10 +75,10 @@ die();*/
 
 
 //$question = $value->question;
-echo "<pre>";
+/*echo "<pre>";*/
 echo $value['answer'];
 
-echo "</pre>";
+/*echo "</pre>";*/
 //print_r($value->answer);
 /*echo "<pre>";
 print_r($question);

@@ -140,13 +140,12 @@
 												if(isset($ans->answer)){
 													$answer =  $ans->answer;
 												}
-
-echo "<h4><strong>Que:".$questions."</strong></h4>";
-															print_r("<p>Ans:".$answer."</p>");
-
 												?>
 
 
+												<h4><strong>Que: <?php echo $questions; ?></strong></h4>
+												
+												<p>Ans: <?php print_r($answer); ?> </p>
 												@endforeach
 											</div>
 										</div>

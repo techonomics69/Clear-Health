@@ -125,10 +125,8 @@
 
 						<!--start 2nd tab-->
 
-						
-
 						<div id="questions" class="tab-pane fade in">					    
-							{{-- 	@foreach($que as $key => $loopdata)	 --}}
+							
 							<div class="row" style="padding: 10px;">
 								<div class="col-md-12">
 									<section class="card" >
@@ -168,7 +166,7 @@
 									</section>
 								</div>
 							</div>
-							{{-- @endforeach --}}
+							
 						</div>  
 
 						

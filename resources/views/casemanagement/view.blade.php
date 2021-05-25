@@ -126,11 +126,26 @@
 						<!--start 2nd tab-->
 
 						
-						
+{{-- @if(session()->has('que_current_tab'))
+						@php
+						$current_tab_id = 'home'.session()->get('que_current_tab') ;
+						$activeTab = 1;
+						$active = 1 ;
+
+						// unset($products[$key]);
+						@endphp
+						@else
+						@php
+						$current_tab_id = "";
+						$activeTab = 0 ;
+						$active = 0 ;	
+						@endphp
+						@endif --}}
 						@php
 						Session::forget('que_current_tab');
 						@endphp
 						<div id="questions" class="tab-pane fade in">					    
+							{{-- 	@foreach($que as $key => $loopdata)	 --}}
 							<div class="row" style="padding: 10px;">
 								<div class="col-md-12">
 									<section class="card" >
@@ -154,10 +169,10 @@
 													<div class="col-md-12">
 														<?php 
 														if($ans['category_id']== $key){
-?>
-															<h4><strong>Que:{{$ans->question}}</strong></h4>
-															<p>Ans:{{$ans->answer}}</p>
-														<?php }
+
+															echo "<h4><strong>Que:".$ans['question']."</strong></h4>";
+															echo "<p>Ans:".$ans['answer']."</p>";
+														}
 														?>
 
 													</div>
@@ -170,6 +185,7 @@
 									</section>
 								</div>
 							</div>
+							{{-- @endforeach --}}
 						</div>  
 
 						

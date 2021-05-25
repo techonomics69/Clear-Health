@@ -71,13 +71,13 @@ class CaseManagementController extends Controller
         if (isset($value->question)) {
 
           $questions=$value->question;
-          echo $questions;
+          echo "Que".$questions;
           echo "<br>";
         }
 
         if(isset($value->answer)){
           $answer =  $value->answer;
-          echo $answer;
+          echo "ANS".$answer;
           echo "<br>";
         }
 

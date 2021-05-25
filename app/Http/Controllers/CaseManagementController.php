@@ -71,7 +71,7 @@ class CaseManagementController extends Controller
         
           $questions = $value->question;
           echo "<pre>";
-          print_r("Ques:- ".$questions);
+          print_r($questions);
 
           echo "</pre>";
         
@@ -79,6 +79,7 @@ class CaseManagementController extends Controller
         if(isset($value->answer)){
           $answer =  $value->answer;
           echo "Ans:- " .$answer;
+          echo "<br>";
         }
 
       }

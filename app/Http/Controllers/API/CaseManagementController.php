@@ -718,8 +718,7 @@ public function CreateCase(Request $request){
        }
        if($recommended_product == 'Accutane'){
 
-         //$product_name = "Isotretinoin";
-         $product_name = "Ibuprofen (oral - capsule)";
+         $product_name = "Isotretinoin";
 
        }
 
@@ -751,9 +750,6 @@ public function CreateCase(Request $request){
  //get weight of patient 
 
    //$answer = QuizAnswer::join('quizzes', 'quizzes.id', '=', 'quiz_answers.question_id')->where('quiz_answers.user_id', $request['user_id'])->where('quiz_answers.case_id', $request['case_id'])->where('quiz_answers.case_id', $request['case_id'])->select( 'quizzes.question','quiz_answers.answer','quizzes.options_type')->get()->toArray();
-
-   $accutan_strength = 200;
-
    foreach ($userQueAns as $key => $value) {
 
     $question = $value->question;
@@ -861,7 +857,7 @@ public function CreateCase(Request $request){
       $curl = curl_init();
 
       curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name='.$product_name.'&strength='.$quantity.' mg',
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name='.$product_name.'&strength='.$quantity,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
@@ -870,27 +866,21 @@ public function CreateCase(Request $request){
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => 'GET',
         CURLOPT_HTTPHEADER => array(
-          'Authorization: Bearer .'.$token
+          'Authorization: Bearer .'.$token,
+          'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
         ),
       ));
 
-      $response1 = curl_exec($curl);
+      $response = curl_exec($curl);
 
       curl_close($curl);
 
-      echo "<pre>";
-      print_r($response1);
-      echo "<pre>";
-      exit();
-
-      $medications = $response1;
+      $medications = $response;
 
       $medications = json_decode($medications);
 
-      
-
-      $DispensUnitId = $medications->dispense_unit_id;
-      $dosespot_medication_id = $medications->dosespot_medication_id;
+      $DispensUnitId = $medications[0]->dispense_unit_id;
+      $dosespot_medication_id = $medications[0]->dosespot_medication_id;
 
       $medication_compound_data = array();
       $medication_compound_data[0]['dosespot_medication_id'] = $dosespot_medication_id;

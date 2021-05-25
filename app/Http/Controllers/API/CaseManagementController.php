@@ -718,7 +718,8 @@ public function CreateCase(Request $request){
        }
        if($recommended_product == 'Accutane'){
 
-         $product_name = "Isotretinoin";
+         //$product_name = "Isotretinoin";
+         $product_name = "Ibuprofen";
 
        }
 
@@ -864,7 +865,7 @@ public function CreateCase(Request $request){
       $curl = curl_init();
 
       curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name='.$product_name.'&strength='.$quantity,
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name='.$product_name.'&strength='.$quantity.' mg',
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,

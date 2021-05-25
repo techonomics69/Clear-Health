@@ -73,17 +73,11 @@ print_r($value);
 echo "</pre>";
 die();*/
 
+echo "<pre>";
+print_r($value->answer);
+echo "</pre>";
+die();
 
-//$question = $value->question;
-/*echo "<pre>";*/
-echo $value['answer'];
-
-/*echo "</pre>";*/
-//print_r($value->answer);
-/*echo "<pre>";
-print_r($question);
-print_r($answer1);
-echo "</pre>";*/
 }
 die();
       /*$quiz= QuizAnswer::join('quizzes','quiz_answers.question_id', '=', 'quizzes.id')->select('quiz_answers.*','quizzes.question','quizzes.category_id')->where('case_id', $user_case_management_data['id'])->OrderBy('id', 'ASC')->get();*/

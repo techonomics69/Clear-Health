@@ -72,10 +72,11 @@ echo "<pre>";
 print_r('Question:- ' .$value->question.'<br>');
 echo "</pre>";
 
-if(isset($value->answer) && $value->answer){
+if(isset($value[0]) && $value[0]->answer){
 print_r('Answers:- ' .$value->answer.'<br>');
 }
 }
+
 
 
       /*$quiz= QuizAnswer::join('quizzes','quiz_answers.question_id', '=', 'quizzes.id')->select('quiz_answers.*','quizzes.question','quizzes.category_id')->where('case_id', $user_case_management_data['id'])->OrderBy('id', 'ASC')->get();*/

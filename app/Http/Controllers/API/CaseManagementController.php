@@ -718,9 +718,11 @@ public function CreateCase(Request $request){
        }
        if($recommended_product == 'Accutane'){
 
-         $product_name = "ISOtretinoin%20%28oral%20%2D%20capsule%29";
+         $product_name = "ISOtretinoin (oral - capsule)";
+
        }
 
+     $removed_space_pro_name = 
     //code to get user's question answer
 
     /*$answer = QuizAnswer::join('quizzes', 'quizzes.id', '=', 'quiz_answers.question_id')->where('quiz_answers.user_id', $request['user_id'])->where('quiz_answers.case_id', $request['case_id'])->select( 'quizzes.question','quiz_answers.answer','quizzes.options_type')->get()->toArray();
@@ -810,7 +812,7 @@ public function CreateCase(Request $request){
       $curl = curl_init();
 
       curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/compounds/search?name='.$product_name,
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/compounds/search?name='.urlencode($product_name),
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
@@ -864,7 +866,7 @@ public function CreateCase(Request $request){
       $curl = curl_init();
 
       curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name='.$product_name.'&strength='.rawurlencode($quantity),
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name='.rawurlencode($product_name).'&strength='.rawurlencode($quantity),
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
@@ -880,10 +882,10 @@ public function CreateCase(Request $request){
 
       $response = curl_exec($curl);
 
-      /*echo "<pre>";
+      echo "<pre>";
       print_r($response);
       echo "<pre>";
-      exit();*/
+      exit();
 
       $info = curl_getinfo($curl);
 

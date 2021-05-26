@@ -263,7 +263,7 @@ try{
            $products[$product_key]['quantity'] = $product_value['quantity'];
            $products[$product_key]['order_type'] =$product_value['order_type'];
         
-        
+
 
            if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup'] != '' && $product_value['order_type'] == 'Prescribed'){
 
@@ -274,7 +274,7 @@ try{
  /*print_r($token);
                 die();*/
 
-                $pharmacy_id = $request['pharmacy_pickup'];
+                $pharmacy_id = $product_value['pharmacy_pickup'];
                 print_r('https://api.mdintegrations.xyz/v1/partner/pharmacies/'.$pharmacy_id);
                 die();
                 $curl = curl_init();

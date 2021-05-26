@@ -272,7 +272,7 @@ try{
                 $token = $token_data->access_token;
  /*print_r($token);
                 die();*/
-                
+
                 $pharmacy_id = $request['pharmacy_pickup'];
                 $curl = curl_init();
 
@@ -289,11 +289,10 @@ try{
                       'Authorization: Bearer '.$token,
                   ),
                 ));
-print_r($curl);
-die();
+
                 $response = curl_exec($curl);
-/*print_r($response);
-            die();*/
+print_r($response);
+            die();
             
                 curl_close($curl);
                 

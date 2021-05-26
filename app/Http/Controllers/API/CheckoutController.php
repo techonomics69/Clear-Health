@@ -224,10 +224,10 @@ try{
            foreach($orderlist as $key=>$val)
            {
             
-            //$cart_ids = explode(',', $val['cart_id']);
+            $cart_ids = explode(',', $val['cart_id']);
 
             $product_name = array();
-            $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $val)->select('products.name AS product_name','products.price','products.image')->get()->toArray();
+            $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.price','products.image')->get()->toArray();
 
             foreach($product_details as $product_key => $product_value)
             {
@@ -241,7 +241,7 @@ $products=array();
 
             }
 
-          $product = $orderlist[$key]->product_name = $product_name;
+            $orderlist[$key]->product_name = $product_name;
            $orderlist[$key]->price = $price;
            $orderlist[$key]->image = $image;    
        }

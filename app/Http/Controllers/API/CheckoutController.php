@@ -228,11 +228,12 @@ try{
             $cart_ids = explode(',', $val['cart_id']);
         
             foreach ($cart_ids as $key => $val) {
+            $cartid= $val['cart_ids'];
 echo "<pre>";
-            print_r($val);
-            echo "</pre>";
-            die();
-            
+print_r($cartid);
+echo "</pre>";
+die();
+
             $products_qty = Cart::where('id',$cart_ids)->select('quantity','order_type');
             //$orderlist[$key]->price = implode(', ' ,$products_qty);
             

@@ -233,15 +233,17 @@ try{
             foreach($product_details as $product_key => $product_value)
             {
                 //$orderlist[$key]->product_name = $product_value['product_name']
-               $product_name[] = $product_value['product_name'];
-               $price[] = $product_value['price'];
-               $image[] = $product_value['image'];
+
+               $product[] = $product_value['product_name'];
+
+               //$price[] = $product_value['price'];
+               //$image[] = $product_value['image'];
 
             }
 
-           $orderlist[$key]->product_name = $product_name;
-           $orderlist[$key]->price = $price;
-           $orderlist[$key]->image = $image;    
+           $orderlist[$key]->product_name = $product;
+           //$orderlist[$key]->price = $price;
+           //$orderlist[$key]->image = $image;    
        }
 
        if(!empty($orderlist)){

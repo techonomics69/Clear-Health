@@ -969,7 +969,6 @@ public function CreateCase(Request $request){
       $input_data['status'] = $case_data->status;
       $input_data['user_id'] = $user_id;
       $input_data['system_case_id'] = $case_id;
-       $input_data['preferred_pharmacy_id'] = $preferred_pharmacy_id;
 
       $md_case_data = Mdcases::create($input_data);
 
@@ -994,7 +993,7 @@ public function CreateCase(Request $request){
         $md_case_data = Mdmanagement::create($inputmd_data);
       }*/
 
-      //end of code for update md details
+      //code for update md details
 
       return $this->sendResponse(json_decode($response),'Case Created Successfully');
 

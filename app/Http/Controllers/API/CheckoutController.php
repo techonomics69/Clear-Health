@@ -239,11 +239,10 @@ try{
 
             }
 
-dd($product_name);
 
-           $orderlist[$key]->product_name = implode(', ' ,$product_name);
-           $orderlist[$key]->price = implode(', ' ,$price);
-           $orderlist[$key]->image = implode(', ' , $image);    
+           $orderlist[$key]->product_name = $product_name;
+           $orderlist[$key]->price = $price;
+           $orderlist[$key]->image = $image;    
        }
 
        if(!empty($orderlist)){

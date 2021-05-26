@@ -263,7 +263,7 @@ try{
          $products[$product_key]['order_type'] =$product_value['order_type'];
          $products[$product_key]['pharmacy_pickup']='';
 
-         if('order_type'=='Prescribed' && 'pharmacy_pickup' != ''){
+         if('order_type'=='Prescribed' && isset('pharmacy_pickup' != '')){
 
             if('pharmacy_pickup' != "cash"){
                 $r = $this->get_token();

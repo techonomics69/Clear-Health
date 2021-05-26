@@ -220,7 +220,7 @@ try{
            ->OrderBy('id', 'DESC')
            ->get();
 
-            
+            $orderlist['product_name']=[];
 
            foreach($orderlist as $key=>$val)
            {
@@ -232,7 +232,8 @@ try{
 
             foreach($product_details as $product_key => $product_value)
             {
-                $orderlist[$product_key]->product_name = $product_value['product_name'];
+
+                $orderlist['product_name'][$product_key] = $product_value['product_name'];
                //$product_name[] = $product_value['product_name'];
               // $price[] = $product_value['price'];
                //$image[] = $product_value['image'];

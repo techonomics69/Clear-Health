@@ -111,12 +111,10 @@ class CheckoutController extends BaseController
 
         $checkoutdata = Checkout::create($data);
         $checkcout_address = Checkoutaddress::where('user_id', $data['user_id'])->OrderBy('id','DESC')->first();
-        $ordeID[] = $checkout_address['order_id'];
-    print($ordeID);
-            die();
+        $ordeID = $checkout_address['order_id'];
+
         if(!empty($checkcout_address))
         {
-            
          $orderIdUpdate = $checkcout_address->where('order_id', $ordeID)->update($ordeID);
         }
 

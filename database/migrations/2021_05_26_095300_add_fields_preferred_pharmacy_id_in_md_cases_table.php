@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddFieldPreferredPharmacyIdInMdCasesTable extends Migration
+class AddFieldsPreferredPharmacyIdInMdCasesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddFieldPreferredPharmacyIdInMdCasesTable extends Migration
     public function up()
     {
         Schema::table('md_cases', function (Blueprint $table) {
-            $table->string('preferred_pharmacy_id')->nullable()->after('id');
+           $table->string('preferred_pharmacy_id')->nullable()->after('id');
         });
     }
 

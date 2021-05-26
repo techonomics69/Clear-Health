@@ -875,12 +875,13 @@ public function CreateCase(Request $request){
       //$product_name = "Isotretinoin";
       $no_substitutions = "true";
       $pharmacy_notes =  "This medication might not be suitable for people with... ";
-      $quantity = $accutan_strength.'%20mg';
+      $quantity = $accutan_strength;
+      $strength = $accutan_strength.'%20mg';
 
       $curl = curl_init();
 
       curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name='.$removed_space_pro_name.'&strength='.$quantity,
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name='.$removed_space_pro_name.'&strength='.$strength,
         //CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name=ISOtretinoin%20(oral%20-%20capsule)&strength=30%20mg',
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
@@ -920,12 +921,12 @@ public function CreateCase(Request $request){
     }
     $medication_compound_data = json_encode($medication_compound_data);
 
-    $input_md_data = '{"patient_id": '.$patient_id.',"case_files": [],"case_prescriptions": '.$medication_compound_data.',"case_questions": '.$userquestion.'}';
+    /*$input_md_data = '{"patient_id": '.$patient_id.',"case_files": [],"case_prescriptions": '.$medication_compound_data.',"case_questions": '.$userquestion.'}';*/
 
-    echo "<pre>";
+   /* echo "<pre>";
     print_r($input_md_data);
     echo "<pre>";
-    exit();
+    exit();*/
 
       
 

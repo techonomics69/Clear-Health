@@ -294,8 +294,10 @@ try{
 
                 $response = curl_exec($curl);
                 $response1 = json_decode($response);
+                print_r($response1);
+                die();
                 
-                $product_value['pharmacy_pickup'] =  $response1->name;
+               $products[$product_key]['pharmacy_pickup'] =  $response1->name;
                 /*print_r( $products);
                 die();*/
                 /*$products[$product_key] =  $response1->address1;

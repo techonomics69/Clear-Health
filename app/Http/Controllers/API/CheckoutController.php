@@ -275,8 +275,7 @@ try{
                 die();*/
 
                 $pharmacy_id = $product_value['pharmacy_pickup'];
-                print_r('https://api.mdintegrations.xyz/v1/partner/pharmacies/'.$pharmacy_id);
-                die();
+               
                 $curl = curl_init();
 
                 curl_setopt_array($curl, array(
@@ -294,8 +293,8 @@ try{
                 ));
 
                 $response = curl_exec($curl);
-print_r($response);
-            die();
+                print_r($response);
+                die();
             
                 curl_close($curl);
                 

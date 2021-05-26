@@ -296,11 +296,11 @@ try{
                 $response1 = json_decode($response);
                 
                 $products[$product_key]['pharmacy_pickup'] =  $response1->name;
-                $products[$product_key]['adrress'] =  $response1->address1;
-                $products[$product_key]['adrress'] =  $response1->address2;
-                 $products[$product_key]['adrress'] =  $response1->city;
-                 $products[$product_key]['adrress'] =  $response1->state;
-                  $products[$product_key]['adrress'] =  $response1->zip_code;
+                $products[$product_key] =  $response1->address1;
+                $products[$product_key] =  $response1->address2;
+                 $products[$product_key] =  $response1->city;
+                 $products[$product_key]=  $response1->state;
+                  $products[$product_key] =  $response1->zip_code;
 print_r($products);
                 die();
 

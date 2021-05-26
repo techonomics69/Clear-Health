@@ -290,7 +290,7 @@ try{
                 ));
 print_r($curl);
 
-               
+                die();
                 $response = curl_exec($curl);
 /*print_r($response);
             die();*/

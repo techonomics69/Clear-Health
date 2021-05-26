@@ -862,6 +862,11 @@ public function CreateCase(Request $request){
       $pharmacy_notes =  "This medication might not be suitable for people with... ";
       $quantity = $accutan_strength;
 
+      echo "<pre>";
+      print_r('https://api.mdintegrations.xyz/v1/partner/medications/select?name='.$product_name.'&strength='.$quantity.' mg');
+      echo "<pre>";
+      exit();
+
       $curl = curl_init();
 
       curl_setopt_array($curl, array(
@@ -874,8 +879,7 @@ public function CreateCase(Request $request){
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => 'GET',
         CURLOPT_HTTPHEADER => array(
-          'Authorization: Bearer .'.$token,
-          'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+          'Authorization: Bearer .'.$token  
         ),
       ));
 

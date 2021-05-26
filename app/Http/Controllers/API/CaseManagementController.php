@@ -799,10 +799,6 @@ public function CreateCase(Request $request){
 
  $userquestion = json_encode($userquestion);
 
- echo "<pre>";
- print_r($userquestion);
- echo "<pre>";
- exit();
   //end of code to get user's question answer
 
 

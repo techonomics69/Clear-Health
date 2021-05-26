@@ -811,7 +811,7 @@ public function CreateCase(Request $request){
       $curl = curl_init();
 
       curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/compounds/search?name='.$product_name,
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/compounds/search?name='.urlencode($product_name),
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
@@ -862,15 +862,10 @@ public function CreateCase(Request $request){
       $pharmacy_notes =  "This medication might not be suitable for people with... ";
       $quantity = $accutan_strength;
 
-      echo "<pre>";
-      print_r('https://api.mdintegrations.xyz/v1/partner/medications/select?name='.$product_name.'&strength='.$quantity.' mg');
-      echo "<pre>";
-     
-
       $curl = curl_init();
 
       curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name='.$product_name.'&strength='.$quantity.' mg',
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name='.urlencode($product_name).'&strength='.$quantity.' mg',
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
@@ -879,15 +874,12 @@ public function CreateCase(Request $request){
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => 'GET',
         CURLOPT_HTTPHEADER => array(
-          'Authorization: Bearer .'.$token  
+          'Authorization: Bearer .'.$token,
+          'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
         ),
       ));
 
       $response = curl_exec($curl);
-
-       echo "<pre>";
-      print_r($response);
-      echo "<pre>";
 
       curl_close($curl);
 

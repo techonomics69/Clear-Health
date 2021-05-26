@@ -907,12 +907,9 @@ public function CreateCase(Request $request){
     }
     $medication_compound_data = json_encode($medication_compound_data);
 
-    $input_md_data = '{"patient_id": '.$patient_id.',"case_files": [],"case_prescriptions": '.$medication_compound_data.',"case_questions": '.$userquestion.'}';
+    //$input_md_data = '{"patient_id": '.$patient_id.',"case_files": [],"case_prescriptions": '.$medication_compound_data.',"case_questions": '.$userquestion.'}';
 
-      echo "<pre>";
-      print_r($input_md_data);
-      echo "<pre>";
-      exit();
+      
 
       $curl = curl_init();
 
@@ -941,7 +938,17 @@ public function CreateCase(Request $request){
 
       $response = curl_exec($curl);
 
+      echo "<pre>";
+      print_r($response);
+      echo "<pre>";
+     
+
       $case_data = json_decode($response);
+
+      echo "<pre>";
+      print_r($case_data);
+      echo "<pre>";
+      exit();
 
 
 

@@ -718,8 +718,7 @@ public function CreateCase(Request $request){
        }
        if($recommended_product == 'Accutane'){
 
-         $product_name = "ISOtretinoin (oral - capsule)";
-
+         $product_name = "ISOtretinoin%20%28oral%20%2D%20capsule%29";
        }
 
     //code to get user's question answer
@@ -811,7 +810,7 @@ public function CreateCase(Request $request){
       $curl = curl_init();
 
       curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/compounds/search?name='.urlencode($product_name),
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/compounds/search?name='.$product_name,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
@@ -865,7 +864,7 @@ public function CreateCase(Request $request){
       $curl = curl_init();
 
       curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name='.rawurlencode($product_name).'&strength='.rawurlencode($quantity),
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name='.$product_name.'&strength='.rawurlencode($quantity),
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,

@@ -294,7 +294,7 @@ try{
 
                 $response = curl_exec($curl);
                 $res =json_decode($response);
-                     $products[$product_key]['pharmacy_pickup'] = $res->name;
+                     $products[$product_key]['pharmacy_pickup'] = 'test';
 
                 
                 curl_close($curl);

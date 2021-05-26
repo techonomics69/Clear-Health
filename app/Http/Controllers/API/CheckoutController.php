@@ -225,11 +225,16 @@ try{
            {
             $cart_ids = explode(',', $val['cart_id']);
             $product_name = array();
-            $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.price')->get()->toArray();
+            $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.price','products.image')->get()->toArray();
             foreach($product_details as $product_key => $product_value)
             {
+                echo "<pre>";
+                print_r($product_value);
+                echo "</pre>";
+                die();
                $product_name[] = $product_value['product_name'];
-               $price[] = $product_value['price'];  
+               $price[] = $product_value['price'];
+
             }
            $orderlist[$key]->product_name = implode(', ' ,$product_name);
            $orderlist[$key]->price = implode(', ' ,$price);    

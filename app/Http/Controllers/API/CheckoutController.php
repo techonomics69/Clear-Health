@@ -231,7 +231,7 @@ try{
             $cartid= $val;
 
 
-            $products_qty = Cart::where('id',$cartid)->select('quantity','order_type');
+            $products_qty = Cart::where('id',$cartid)->select('quantity','order_type')->get();
             //$orderlist[$key]->price = implode(', ' ,$products_qty);
             echo "<pre>";
 print_r($products_qty);

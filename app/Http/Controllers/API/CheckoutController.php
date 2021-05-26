@@ -262,7 +262,7 @@ try{
            $products[$product_key]['image'] = $product_value['image'];
            $products[$product_key]['quantity'] = $product_value['quantity'];
            $products[$product_key]['order_type'] =$product_value['order_type'];
-        
+            
 
 
            if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup'] != '' && $product_value['order_type'] == 'Prescribed'){
@@ -294,11 +294,9 @@ try{
 
                 $response = curl_exec($curl);
                 $response1 = json_decode($response);
-                print_r($response1);
-                die();
+                
                     $products[$product_key]['pharmacy_pickup'] =  $response1->name;
-                    print_r($products);
-                die(); 
+                    
                 curl_close($curl);
                 
             }else{

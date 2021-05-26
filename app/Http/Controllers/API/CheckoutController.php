@@ -273,7 +273,7 @@ try{
  
                 $pharmacy_id = $request['pharmacy_pickup'];
                 $curl = curl_init();
-print_r($pharmacy_id);
+print_r($curl);
                 die();
                 curl_setopt_array($curl, array(
                     CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/pharmacies/'.$pharmacy_id,

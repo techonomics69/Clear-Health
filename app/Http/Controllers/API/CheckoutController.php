@@ -288,12 +288,12 @@ try{
                       'Authorization: Bearer '.$token,
                   ),
                 ));
-print_r($curl);
-                die();
+echo  'curl_setopt_array';
+              die();
                 $response = curl_exec($curl);
 /*print_r($response);
             die();*/
-            
+
                 curl_close($curl);
                 
             }else{

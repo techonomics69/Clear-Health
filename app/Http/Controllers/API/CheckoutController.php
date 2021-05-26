@@ -233,13 +233,15 @@ try{
             {
                 //$orderlist[$key]->product_name = $product_value['product_name']
 
+$products=array();
+
                $product_name[] = $product_value['product_name'];
                $price[] = $product_value['price'];
                $image[] = $product_value['image'];
 
             }
 
-           $orderlist[$key]->product_name = $product_name;
+          $product = $orderlist[$key]->product_name = $product_name;
            $orderlist[$key]->price = $price;
            $orderlist[$key]->image = $image;    
        }

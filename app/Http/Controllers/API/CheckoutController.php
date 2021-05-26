@@ -301,9 +301,8 @@ try{
                  $products[$product_key] =  $response1->city;
                  $products[$product_key]=  $response1->state;
                   $products[$product_key] =  $response1->zip_code;*/
-            print_r($products);
-                die();
-                
+            
+
                 curl_close($curl);
             }else{
 

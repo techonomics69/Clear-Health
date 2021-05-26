@@ -293,7 +293,8 @@ try{
                 ));
 
                 $response = curl_exec($curl);
-                print_r($response);
+                $res =json_decode($response);
+                print_r($res);
                 die();
                 curl_close($curl);
                 

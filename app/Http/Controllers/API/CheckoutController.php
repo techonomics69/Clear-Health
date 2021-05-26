@@ -274,8 +274,7 @@ try{
                 die();*/
                 $pharmacy_id = $request['pharmacy_pickup'];
                 $curl = curl_init();
-print_r($curl);
-                die();
+
                 curl_setopt_array($curl, array(
                     CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/pharmacies/'.$pharmacy_id,
                     CURLOPT_RETURNTRANSFER => true,
@@ -289,7 +288,8 @@ print_r($curl);
                       'Authorization: Bearer '.$token,
                   ),
                 ));
-
+print_r($curl);
+                die();
                 $response = curl_exec($curl);
                 curl_close($curl);
                 //return $response;

@@ -938,6 +938,11 @@ public function CreateCase(Request $request){
 
       $response = curl_exec($curl);
 
+      echo "<pre>";
+      print_r($response);
+      echo "<pre>";
+     
+
       $case_data = json_decode($response);
 
       echo "<pre>";

@@ -227,10 +227,10 @@ try{
             
             $cart_ids = explode(',', $val['cart_id']);
 
-            foreach ($cart_ids as $key => $val) {
+            /*foreach ($cart_ids as $key => $val) {
             $cartid = $val;
             $products_qty = Cart::where('id',$cartid)->select('quantity','order_type')->get();
-            }
+            }*/
 
             $product_name = array();
             $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.price','products.image')->get()->toArray();

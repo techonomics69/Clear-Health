@@ -263,7 +263,7 @@ try{
            $products[$product_key]['order_type'] =$product_value['order_type'];
            $products[$product_key]['pharmacy_pickup']='';
 
-           if($product_value['order_type'] == 'Prescribed' && isset($product_value['pharmacy_pickup'] != '')){
+           if(isset($product_value['pharmacy_pickup'] != '') && $product_value['order_type'] == 'Prescribed'){
 
             if($product_value['pharmacy_pickup'] != "cash"){
                 $r = $this->get_token();
@@ -290,7 +290,7 @@ try{
                 $response = curl_exec($curl);
 
                 curl_close($curl);
-                
+
             }else{
 
              $products[$product_key]['pharmacy_pickup']= 'cash';

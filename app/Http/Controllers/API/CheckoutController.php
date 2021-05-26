@@ -118,7 +118,7 @@ class CheckoutController extends BaseController
          $orderIdUpdate = $checkcout_address->update($address_data);
         }
 
-        return $this->sendResponse($checkoutdata, 'Order Created Successfully');
+        return $this->sendResponse(array(), 'Order Created Successfully');
     }catch(\Exception $ex){
         return $this->sendError('Server error',array($ex->getMessage()));
     }

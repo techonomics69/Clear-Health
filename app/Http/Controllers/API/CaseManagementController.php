@@ -881,7 +881,12 @@ public function CreateCase(Request $request){
 
       $response = curl_exec($curl);
 
-      $info = curl_getinfo($curl);
+      echo "<pre>";
+      print_r($response);
+      echo "<pre>";
+      exit();
+
+     /* $info = curl_getinfo($curl);
 
       echo "<pre>";
       print_r($info);
@@ -893,7 +898,7 @@ public function CreateCase(Request $request){
         echo 'Curl error: ' . curl_error($curl);
               //return $this->sendResponse($response, 'Patient Created Successfully1'); 
       }
-
+*/
       curl_close($curl);
 
       $medications = $response;

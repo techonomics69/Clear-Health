@@ -867,8 +867,8 @@ public function CreateCase(Request $request){
       $curl = curl_init();
 
       curl_setopt_array($curl, array(
-        //CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name='.$removed_space_pro_name.'&strength='.$quantity,
-        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name=ISOtretinoin%20(oral%20-%20capsule)&strength=30%20mg',
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name='.$removed_space_pro_name.'&strength='.$quantity,
+        //CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name=ISOtretinoin%20(oral%20-%20capsule)&strength=30%20mg',
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
@@ -877,7 +877,7 @@ public function CreateCase(Request $request){
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => 'GET',
         CURLOPT_HTTPHEADER => array(
-          'Authorization: Bearer .'.$token,
+          'Authorization: Bearer '.$token,
           'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
         ),
       ));

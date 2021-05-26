@@ -223,13 +223,15 @@ try{
 
            foreach($orderlist as $key=>$val)
            {
+
+            echo "<pre>";
+            print_r($val);
+            echo "</pre>";
+            die();
             $cart_ids = explode(',', $val['cart_id']);
             $cart_qty = explode(',', $val['quantity']);
 
-            echo "<pre>";
-            print_r($cart_qty);
-            echo "</pre>";
-            die();
+            
             $product_name = array();
             $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.price','products.image')->get()->toArray();
 

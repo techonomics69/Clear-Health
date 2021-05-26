@@ -110,12 +110,11 @@ class CheckoutController extends BaseController
         }
         $checkoutdata = Checkout::create($data);
         $checkcout_address = Checkoutaddress::where('user_id', $data['user_id'])->OrderBy('id','DESC')->first();
-       
-       print_r($checkcout_address);
-       die();
-        $checkoutdata['order_id'] = $checkout_address->order_id;
-        if($checkcout_address )
-         $orderIdUpdate = $checkoutdata->update($checkout_address);
+        $ordeID= $checkout_address['order_id'];
+        if(!empty($checkcout_address))
+        {
+         $orderIdUpdate = $checkcout_address->where('order_id', $ordeID)->update($ordeID);
+        }
 
         return $this->sendResponse($checkoutdata, 'Order Created Successfully');
     }catch(\Exception $ex){

@@ -229,14 +229,16 @@ try{
             $cart_ids = explode(',', $val['cart_id']);
         
 
-
             foreach ($cart_ids as $key => $val) {
 
+            $products_qty = Cart::where('id',$cart_ids)->select('quantity','order_type');
+            //$orderlist[$key]->price = implode(', ' ,$products_qty);
             echo "<pre>";
-            print_r($val);
+            print_r($products_qty);
             echo "</pre>";
             die();
             }
+
             $product_name = array();
             $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.price','products.image')->get()->toArray();
 

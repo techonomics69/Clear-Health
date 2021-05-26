@@ -296,8 +296,8 @@ try{
                 $response1 = json_decode($response);
                 
                 $products[$product_key]['pharmacy_pickup'] =  $response1->name;
-                print_r( $products);
-                die();
+                /*print_r( $products);
+                die();*/
                 /*$products[$product_key] =  $response1->address1;
                 $products[$product_key] =  $response1->address2;
                  $products[$product_key] =  $response1->city;

@@ -262,7 +262,8 @@ try{
            $products[$product_key]['image'] = $product_value['image'];
            $products[$product_key]['quantity'] = $product_value['quantity'];
            $products[$product_key]['order_type'] =$product_value['order_type'];
-           $products[$product_key]['pharmacy_pickup']='';
+        
+        
 
            if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup'] != '' && $product_value['order_type'] == 'Prescribed'){
 

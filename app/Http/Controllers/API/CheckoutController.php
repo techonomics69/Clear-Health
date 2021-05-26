@@ -237,8 +237,9 @@ try{
                $price[] = $product_value['price'];
                $image[] = $product_value['image'];
 
-            }
-
+      dd( $orderlist) ;
+           }
+die();
            //$orderlist[$key]->product_name = implode(', ' ,$product_name);
            $orderlist[$key]->price = implode(', ' ,$price);
            $orderlist[$key]->image = implode(', ' , $image);    

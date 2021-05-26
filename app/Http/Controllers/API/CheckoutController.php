@@ -218,7 +218,7 @@ try{
 
 
  $orderlist = checkout::join('carts','carts.id', '=', 'checkout.cart_id')
-         ->select('checkout.id','checkout.order_id','carts.quantity','carts.order_type')
+         ->select('checkout.id','checkout.order_id','carts.quantity','carts.order_type','Checkout.cart_id')
          ->where('checkout.order_id',$request->order_id)
          ->OrderBy('id', 'DESC')
          ->get();
@@ -231,7 +231,7 @@ echo "<pre>";
 print_r($cart_ids);
 echo "</pre>";
 die();   
-            
+
             $product_name = array();
             $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name')->get()->toArray();
             foreach($product_details as $product_key=>$product_value){

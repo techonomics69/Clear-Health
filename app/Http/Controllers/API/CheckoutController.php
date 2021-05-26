@@ -288,13 +288,15 @@ try{
                       'Authorization: Bearer '.$token,
                   ),
                 ));
-print_r($curl);
-                die();
+/*print_r($curl);
+                die();*/
                 $response = curl_exec($curl);
-                curl_close($curl);
-                //return $response;
                 print_r($response);
                 die();
+                curl_close($curl);
+
+                //return $response;
+                
 
             }else{
 

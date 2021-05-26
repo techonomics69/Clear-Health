@@ -220,7 +220,7 @@ try{
            ->OrderBy('id', 'DESC')
            ->get();
 
-            $orderlist['product_name']=[];
+            
 
            foreach($orderlist as $key=>$val)
            {
@@ -232,18 +232,18 @@ try{
 
             foreach($product_details as $product_key => $product_value)
             {
+                $orderlist[$key]->product_name = $product_value['product_name']
+               $product_name[] = $product_value['product_name'];
+               $price[] = $product_value['price'];
+               $image[] = $product_value['image'];
 
-                $orderlist['product_name'][$product_key] = $product_value['product_name'];
-               //$product_name[] = $product_value['product_name'];
-              // $price[] = $product_value['price'];
-               //$image[] = $product_value['image'];
+            }
 
-      //dd( $orderlist) ;
-           }
+dd( $product_name);
 
-           //$orderlist[$key]->product_name = implode(', ' ,$product_name);
-           //$orderlist[$key]->price = implode(', ' ,$price);
-           //$orderlist[$key]->image = implode(', ' , $image);    
+           $orderlist[$key]->product_name = implode(', ' ,$product_name);
+           $orderlist[$key]->price = implode(', ' ,$price);
+           $orderlist[$key]->image = implode(', ' , $image);    
        }
 
        if(!empty($orderlist)){

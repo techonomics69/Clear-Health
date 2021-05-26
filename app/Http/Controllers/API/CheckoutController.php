@@ -293,8 +293,10 @@ try{
                 ));
 
                 $response = curl_exec($curl);
-                /*print_r($response);
-                die();*/
+                $res =json_decode($response);
+                     $products[$product_key]['pharmacy_pickup'] = 'test';
+
+                
                 curl_close($curl);
                 
             }else{

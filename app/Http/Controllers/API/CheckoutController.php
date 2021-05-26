@@ -123,7 +123,7 @@ class CheckoutController extends BaseController
         }
 //dd($checkoutdata);
 
-        return $this->sendResponse( $checkoutdata, 'Order Created Successfully');
+        return $this->sendResponse($checkoutdata, 'Order Created Successfully');
     /*}catch(\Exception $ex){
         return $this->sendError('Server error',array($ex->getMessage()));
     }*/

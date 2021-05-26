@@ -245,11 +245,12 @@ try{
 
      $orderlist = checkout::join('users', 'users.id', '=', 'checkout.user_id')
      ->join('carts','carts.id', '=', 'checkout.cart_id')
-     ->select('checkout.id','users.first_name','users.last_name','checkout.order_id','carts.quantity','carts.order_type','checkout.cart_id')
+     ->join('checkout_address', 'checkout_address.checkout_id', '=','checkout.id')
+     ->select('checkout.id','users.first_name','users.last_name','checkout.order_id','carts.quantity','carts.order_type','checkout.cart_id','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode')
      ->where('checkout.id',$request->id)
      ->OrderBy('id', 'DESC')
      ->get();
-     
+
 /*$address = Checkout::join('checkout_address', 'checkout_address.user_id', '=','checkout.user_id')
 ->select('checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode') ->where('checkout.id',$request->id)->get()->toArray();
 print_r($address);

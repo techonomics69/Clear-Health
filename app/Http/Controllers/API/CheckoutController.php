@@ -228,7 +228,7 @@ try{
             $cart_ids = explode(',', $val['cart_id']);
         
             foreach ($cart_ids as $key => $val) {
-            $cartid= $val['cart_ids'];
+            $cartid= $val;
 echo "<pre>";
 print_r($cartid);
 echo "</pre>";

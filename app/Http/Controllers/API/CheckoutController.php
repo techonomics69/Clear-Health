@@ -288,7 +288,7 @@ try{
                       'Authorization: Bearer '.$token,
                   ),
                 ));
-print_r($curl);
+print_r($token);
                 die();
                 $response = curl_exec($curl);
 /*print_r($response);
@@ -297,7 +297,6 @@ print_r($curl);
 
                 //return $response;
                 
-
             }else{
 
              $products[$product_key]['pharmacy_pickup'] = 'cash';

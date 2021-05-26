@@ -234,15 +234,15 @@ try{
             {
                 $orderlist[$product_key]->product_name = $product_value['product_name'];
                //$product_name[] = $product_value['product_name'];
-               $price[] = $product_value['price'];
-               $image[] = $product_value['image'];
+              // $price[] = $product_value['price'];
+               //$image[] = $product_value['image'];
 
-      dd( $orderlist) ;
+      //dd( $orderlist) ;
            }
-die();
+
            //$orderlist[$key]->product_name = implode(', ' ,$product_name);
-           $orderlist[$key]->price = implode(', ' ,$price);
-           $orderlist[$key]->image = implode(', ' , $image);    
+           //$orderlist[$key]->price = implode(', ' ,$price);
+           //$orderlist[$key]->image = implode(', ' , $image);    
        }
 
        if(!empty($orderlist)){

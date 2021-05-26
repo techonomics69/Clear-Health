@@ -881,11 +881,11 @@ public function CreateCase(Request $request){
       ));
 
       $response = curl_exec($curl);
-
+/*
       echo "<pre>";
       print_r($response);
       echo "<pre>";
-      exit();
+      exit();*/
 
       $info = curl_getinfo($curl);
 

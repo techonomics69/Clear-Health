@@ -758,7 +758,7 @@ public function CreateCase(Request $request){
     $question = $value->question;
 
     if($question == "What is your weight in kg?"){
-      if(isset($value->answer)){
+      if(isset($value->answer) && $value->answer!=''){
 
         $answer =  $value->answer;
 
@@ -773,19 +773,32 @@ public function CreateCase(Request $request){
 //end of code to get patient weight 
   $userquestion = array();
   foreach($userQueAns as $key=>$value){
-    $userquestion[$key]['question'] = $value->question;
-    $userquestion[$key]['answer'] =(isset($value->answer) && $value->answer !="")?$value->answer:"";
 
-    if($value->options_type == "radio"){
-     $userquestion[$key]['type']= "boolean";
-   }else{
-     $userquestion[$key]['type']= "string";
-   }
+    if(isset($value->answer) && $value->answer!=''){
+      $userquestion[$key]['question'] = $value->question;
 
-   $userquestion[$key]['important']= true;
+      if(is_array($value->answer)){
+         $userquestion[$key]['answer'] = implode(',',$value->answer);
+      }else{
+         $userquestion[$key]['answer'] = $value->answer;
+      }
+       
+     
+
+     if($value->options_type == "radio"){
+       $userquestion[$key]['type']= "boolean";
+     }else{
+       $userquestion[$key]['type']= "string";
+     }
+
+     $userquestion[$key]['important']= true;
+
+    }
+    
  }
 
  $userquestion = json_encode($userquestion);
+
   //end of code to get user's question answer
 
 
@@ -862,12 +875,13 @@ public function CreateCase(Request $request){
       //$product_name = "Isotretinoin";
       $no_substitutions = "true";
       $pharmacy_notes =  "This medication might not be suitable for people with... ";
-      $quantity = $accutan_strength.'%20mg';
+      $quantity = $accutan_strength;
+      $strength = $accutan_strength.'%20mg';
 
       $curl = curl_init();
 
       curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name='.$removed_space_pro_name.'&strength='.$quantity,
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name='.$removed_space_pro_name.'&strength='.$strength,
         //CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name=ISOtretinoin%20(oral%20-%20capsule)&strength=30%20mg',
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
@@ -907,12 +921,12 @@ public function CreateCase(Request $request){
     }
     $medication_compound_data = json_encode($medication_compound_data);
 
-    $input_md_data = '{"patient_id": '.$patient_id.',"case_files": [],"case_prescriptions": '.$medication_compound_data.',"case_questions": '.$userquestion.'}';
+    /*$input_md_data = '{"patient_id": '.$patient_id.',"case_files": [],"case_prescriptions": '.$medication_compound_data.',"case_questions": '.$userquestion.'}';*/
 
-    echo "<pre>";
+   /* echo "<pre>";
     print_r($input_md_data);
     echo "<pre>";
-    exit();
+    exit();*/
 
       
 
@@ -943,19 +957,7 @@ public function CreateCase(Request $request){
 
       $response = curl_exec($curl);
 
-      echo "<pre>";
-      print_r($response);
-      echo "<pre>";
-     
-
       $case_data = json_decode($response);
-
-      echo "<pre>";
-      print_r($case_data);
-      echo "<pre>";
-      exit();
-
-
 
       $input_data['prioritized_at'] = $case_data->prioritized_at;
       $input_data['prioritized_reason'] = $case_data->prioritized_reason;

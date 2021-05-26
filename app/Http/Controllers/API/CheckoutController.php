@@ -254,7 +254,7 @@ for($i = 0; $i < count($superheroes); $i++) {
             $product_name = array();
             $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.price','products.image')->get()->toArray();
 
-            foreach($product_details[$orderlist[$product_name]] as $product_key => $product_value)
+            foreach($product_details as $product_key => $product_value)
             {
                 //$orderlist[$key]->product_name = $product_value['product_name']
 

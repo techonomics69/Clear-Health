@@ -220,14 +220,12 @@ try{
            ->OrderBy('id', 'DESC')
            ->get();
             
-
            foreach($orderlist as $key=>$val)
            {
-            
             $cart_ids = explode(',', $val['cart_id']);
             $products=array();
             $product_name = array();
-            $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.price','products.image','carts.quantity','carts.order_type','carts.pharmacy_pickup')->get()->toArray();
+            $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->where('order_type','Prescribed')->select('products.name AS product_name','products.price','products.image','carts.quantity','carts.order_type','carts.pharmacy_pickup')->get()->toArray();
 
             foreach($product_details as $product_key => $product_value)
             {

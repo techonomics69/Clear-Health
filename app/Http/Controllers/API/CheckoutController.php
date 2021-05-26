@@ -220,19 +220,16 @@ try{
            ->OrderBy('id', 'DESC')
            ->get();
 
-
+echo "<pre>";
+            print_r($orderlist);
+            echo "</pre>";
+            die();
            foreach($orderlist as $key=>$val)
            {
             
 
             $cart_ids = explode(',', $val['cart_id']);
-            $cart_qty = implode(',', $val['quantity']);
-
-            echo "<pre>";
-            print_r($cart_qty);
-            echo "</pre>";
-            die();
-            
+        
             $product_name = array();
             $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.price','products.image')->get()->toArray();
 

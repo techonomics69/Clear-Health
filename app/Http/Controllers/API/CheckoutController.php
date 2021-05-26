@@ -229,14 +229,14 @@ try{
         
             foreach ($cart_ids as $key => $val) {
             $cartid= $val;
-echo "<pre>";
-print_r($cartid);
+
+
+            $products_qty = Cart::where('id',$cartid)->select('quantity','order_type');
+            //$orderlist[$key]->price = implode(', ' ,$products_qty);
+            echo "<pre>";
+print_r($products_qty);
 echo "</pre>";
 die();
-
-            $products_qty = Cart::where('id',$cart_ids)->select('quantity','order_type');
-            //$orderlist[$key]->price = implode(', ' ,$products_qty);
-            
             }
 
             $product_name = array();

@@ -223,10 +223,7 @@ try{
          ->OrderBy('id', 'DESC')
          ->get();
 
-echo "<pre>";
-print_r($orderlist);
-echo "</pre>";
-die();
+
          foreach($orderlist as $key=>$val)
          {
             $cart_ids = explode(',', $val['cart_id']);
@@ -235,7 +232,11 @@ die();
             foreach($product_details as $product_key=>$product_value){
              $product_name[] = $product_value['product_name'];  
          }
-         $orderlist[$key]->product_name = implode(', ' ,$product_name);    
+         $orderlist[$key]->product_name = implode(', ' ,$product_name); 
+         echo "<pre>";
+print_r($orderlist);
+echo "</pre>";
+die();   
      }
 
 

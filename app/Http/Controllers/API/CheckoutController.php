@@ -234,7 +234,7 @@ try{
             {
                 //$orderlist[$key]->product_name = $product_value['product_name']
 
-               $product[]->product_name = $product_value['product_name'];
+               $product[] = $product_value['product_name'];
 
                //$price[] = $product_value['price'];
                //$image[] = $product_value['image'];

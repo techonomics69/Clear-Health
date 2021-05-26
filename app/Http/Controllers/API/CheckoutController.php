@@ -226,16 +226,10 @@ try{
            {
             
             $cart_ids = explode(',', $val['cart_id']);
+
             foreach ($cart_ids as $key => $val) {
             $cartid = $val;
             $products_qty = Cart::where('id',$cartid)->select('quantity','order_type')->get();
-                foreach ( $products_qty as $key => $v) {
-                    echo "<pre>";
-                    print_r($v);
-                    echo "</pre>";
-                    die();
-                   
-                }
             }
 
             $product_name = array();

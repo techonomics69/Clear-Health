@@ -235,7 +235,8 @@ try{
              $product_name[] = $product_value['product_name'];
              $price[]=$product_value['price'];  
          }
-         $orderlist[$key]->product_name = implode(', ' ,$product_name); 
+         $orderlist[$key]->product_name = implode(', ' ,$product_name);
+         $orderlist[$key]->price; 
          echo "<pre>";
 print_r($orderlist);
 echo "</pre>";

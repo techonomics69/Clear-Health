@@ -120,6 +120,9 @@ class CheckoutController extends BaseController
             $update_checkout_address  =  Checkoutaddress::where('id',$checkcout_address['id'])->update(['order_id' => $order_id]);
         }
 dd($checkoutdata);
+
+
+
         return $this->sendResponse( $checkoutdata, 'Order Created Successfully');
     }catch(\Exception $ex){
         return $this->sendError('Server error',array($ex->getMessage()));

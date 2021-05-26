@@ -940,6 +940,11 @@ public function CreateCase(Request $request){
 
       $case_data = json_decode($response);
 
+      echo "<pre>";
+      print_r($case_data);
+      echo "<pre>";
+      exit();
+
 
 
       $input_data['prioritized_at'] = $case_data->prioritized_at;

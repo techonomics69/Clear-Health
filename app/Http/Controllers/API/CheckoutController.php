@@ -108,6 +108,7 @@ class CheckoutController extends BaseController
         if($validator->fails()){
             return $this->sendError('Validation Error.', $validator->errors()->all());       
         }
+        $checkout_address=[];
         $checkoutdata = Checkout::create($data);
         $checkcout_address = Checkoutaddress::where('user_id', $data['user_id'])->OrderBy('id','DESC')->first();
         $ordeID = $checkout_address['order_id'];

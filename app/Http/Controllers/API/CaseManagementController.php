@@ -845,13 +845,7 @@ public function CreateCase(Request $request){
       curl_close($curl);
 
       $compounds= $response;
-
-
-      echo "<pre>";
-      print_r($compounds);
-      echo "<pre>";
-      exit();
-
+     
 
       $compounds = json_decode($compounds);
 
@@ -993,7 +987,7 @@ public function CreateCase(Request $request){
         $md_case_data = Mdmanagement::create($inputmd_data);
       }*/
 
-      
+
 
       return $this->sendResponse(json_decode($response),'Case Created Successfully');
 
@@ -1206,6 +1200,7 @@ public function detach_file_from_case(Request $request){
     }else{
       $file_ids = array();
     }
+    // end of code to get files ids
 
     $postfields = array();
     $postfields['from'] = $request['from'];
@@ -1258,8 +1253,7 @@ public function detach_file_from_case(Request $request){
 
     return $this->sendResponse($message_data,'Message created successfully');
 
-
-   // end of code to get files ids
+   
   }
 
   public function setMessageAsRead(Request $request){

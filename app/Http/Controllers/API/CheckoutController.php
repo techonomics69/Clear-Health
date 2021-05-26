@@ -288,8 +288,6 @@ try{
                 ));
 
                 $response = curl_exec($curl);
-                print_r($response);
-                die();
                 curl_close($curl);
 
             }else{

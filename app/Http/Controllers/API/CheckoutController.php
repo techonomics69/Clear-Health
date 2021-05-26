@@ -262,7 +262,7 @@ try{
            $products[$product_key]['image'] = $product_value['image'];
            $products[$product_key]['quantity'] = $product_value['quantity'];
            $products[$product_key]['order_type'] =$product_value['order_type'];
-        
+            
 
 
            if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup'] != '' && $product_value['order_type'] == 'Prescribed'){
@@ -293,12 +293,17 @@ try{
                 ));
 
                 $response = curl_exec($curl);
-                $res =json_decode($response);
-                     $products[$product_key]['pharmacy_pickup'] = 'test';
+                $response1 = json_decode($response);
+                
+                $products[$product_key]['pharmacy_pickup'] =  $response1->name;
+                /*$products[$product_key] =  $response1->address1;
+                $products[$product_key] =  $response1->address2;
+                 $products[$product_key] =  $response1->city;
+                 $products[$product_key]=  $response1->state;
+                  $products[$product_key] =  $response1->zip_code;*/
+            
 
-                
                 curl_close($curl);
-                
             }else{
 
              $products[$product_key]['pharmacy_pickup'] = 'cash';
@@ -308,6 +313,7 @@ try{
      }
 
  }
+
  $orderlist[$key]->products = $products;
 
 }

@@ -860,12 +860,12 @@ public function CreateCase(Request $request){
       //$product_name = "Isotretinoin";
       $no_substitutions = "true";
       $pharmacy_notes =  "This medication might not be suitable for people with... ";
-      $quantity = $accutan_strength;
+      $quantity = $accutan_strength.' mg';
 
       $curl = curl_init();
 
       curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name='.urlencode($product_name).'&strength='.$quantity.' mg',
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name='.urlencode($product_name).'&strength='.urlencode($quantity),
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,

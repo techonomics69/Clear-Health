@@ -213,8 +213,36 @@ try{
     public function getCheckoutdetail(Request $request)
     {
         try{
-            //$checkout_data = Checkout::where('id', $request['order_id'])->OrderBy('id', 'desc')->first();
+           /* $checkout_data = Checkout::where('order_id', $request['order_id'])->OrderBy('id', 'desc')->first();*/
             //$checkout_data = Checkout::where('user_id', $request->user_id)->where('cart_id', $request->cart_id)->first();
+
+
+ $orderlist = checkout::join('carts','carts.id', '=', 'checkout.cart_id')
+         ->select('checkout.id','checkout.order_id','carts.quantity','carts.order_type')
+         ->where('checkout.order_id',$request->order_id)
+         ->OrderBy('id', 'DESC')
+         ->get();
+
+echo "<pre>";
+print_r($orderlist);
+echo "</pre>";
+die();
+         foreach($orderlist as $key=>$val)
+         {
+            $cart_ids = explode(',', $val['cart_id']);
+            $product_name = array();
+            $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.price','products.image')->get()->toArray();
+            foreach($product_details as $product_key=>$product_value){
+             $product_name[] = $product_value['product_name'];  
+         }
+         $orderlist[$key]->product_name = implode(', ' ,$product_name);    
+     }
+
+
+
+
+
+
             if(!empty($checkout_data)){
              return $this->sendResponse($checkout_data, 'Checkout data retrieved successfully.');
          }else{

@@ -108,6 +108,10 @@ class CheckoutController extends BaseController
             return $this->sendError('Validation Error.', $validator->errors()->all());       
         }
         $checkoutdata = Checkout::create($data);
+        $checkout_address = Checkoutaddress::where('user_id', $data['user_id'])->OrderBy('id','DESC')->first();
+        print_r($checkout_address);
+        die();
+        $data['order_id'] =$checkout_address->order_id;
 
         return $this->sendResponse($checkoutdata, 'Order Created Successfully');
     }catch(\Exception $ex){

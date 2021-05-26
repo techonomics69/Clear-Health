@@ -270,11 +270,11 @@ try{
                 $r = $this->get_token();
                 $token_data = json_decode($r);
                 $token = $token_data->access_token;
- print_r($token);
-                die();
+ 
                 $pharmacy_id = $request['pharmacy_pickup'];
                 $curl = curl_init();
-
+print_r($pharmacy_id);
+                die();
                 curl_setopt_array($curl, array(
                     CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/pharmacies/'.$pharmacy_id,
                     CURLOPT_RETURNTRANSFER => true,

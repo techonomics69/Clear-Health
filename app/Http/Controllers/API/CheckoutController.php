@@ -250,7 +250,7 @@ try{
      ->OrderBy('id', 'DESC')
      ->get();
 $address = Checkout::join('checkout_address', 'checkout_address.user_id', '=','checkout.user_id')
-->select('checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode')->get();
+->select('checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode')->get()->toArray();
 print_r($address);
 
      foreach($orderlist as $key=>$val)

@@ -962,7 +962,8 @@ public function CreateCase(Request $request){
       $input_data['prioritized_at'] = $case_data->prioritized_at;
       $input_data['prioritized_reason'] = $case_data->prioritized_reason;
       $input_data['cancelled_at'] = $case_data->prioritized_reason;
-      $input_data['md_created_at'] = $case_data->case_assignment->created_at;
+      $input_data['md_created_at'] = $case_data->created_at;
+      //$input_data['md_created_at'] = $case_data->case_assignment->created_at;
       $input_data['support_reason'] = $case_data->support_reason;
       $input_data['case_id'] = $case_data->case_id;
       $input_data['status'] = $case_data->status;
@@ -975,7 +976,9 @@ public function CreateCase(Request $request){
 
       curl_close($curl);
 
-      $inputmd_data['status'] = $status;
+      //code for update md details
+
+      /*$inputmd_data['status'] = $status;
       $inputmd_data['image'] = "";
       $inputmd_data['language_id'] = "";
       $inputmd_data['md_id'] = $case_data->case_assignment->clinician->clinician_id;
@@ -988,7 +991,9 @@ public function CreateCase(Request $request){
         $mdmanagement_data->update($inputmd_data);
       }else{
         $md_case_data = Mdmanagement::create($inputmd_data);
-      }
+      }*/
+
+      //end of code for update md details
 
       return $this->sendResponse(json_decode($response),'Case Created Successfully');
 

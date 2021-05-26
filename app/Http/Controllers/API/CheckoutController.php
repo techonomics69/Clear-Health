@@ -272,6 +272,7 @@ try{
                 $token = $token_data->access_token;
  /*print_r($token);
                 die();*/
+                
                 $pharmacy_id = $request['pharmacy_pickup'];
                 $curl = curl_init();
 
@@ -289,8 +290,7 @@ try{
                   ),
                 ));
 print_r($curl);
-
-                die();
+die();
                 $response = curl_exec($curl);
 /*print_r($response);
             die();*/

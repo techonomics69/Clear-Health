@@ -747,11 +747,6 @@ public function CreateCase(Request $request){
 
    $answer_data = Answers::where('user_id', $user_id)->where('case_id', $case_id)->get();
 
-   echo "<pre>";
-   print_r($answer_data);
-   echo "<pre>";
-   exit();
-
    $userQueAns = json_decode($answer_data[0]['answer']);
 
  //get weight of patient 
@@ -998,7 +993,7 @@ public function CreateCase(Request $request){
         $md_case_data = Mdmanagement::create($inputmd_data);
       }*/
 
-      //code for update md details
+      
 
       return $this->sendResponse(json_decode($response),'Case Created Successfully');
 

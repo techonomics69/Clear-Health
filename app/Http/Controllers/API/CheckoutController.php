@@ -220,7 +220,7 @@ try{
            ->OrderBy('id', 'DESC')
            ->get();
 
-            
+            $orderlist['product_name']=[];
 
            foreach($orderlist as $key=>$val)
            {

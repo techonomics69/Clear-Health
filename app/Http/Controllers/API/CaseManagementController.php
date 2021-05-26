@@ -722,7 +722,8 @@ public function CreateCase(Request $request){
 
        }
 
-     $removed_space_pro_name = str_replace("%20"," ",$product_name);
+     $removed_space_pro_name = str_replace(" ","%20",$product_name);
+    
     //code to get user's question answer
 
     /*$answer = QuizAnswer::join('quizzes', 'quizzes.id', '=', 'quiz_answers.question_id')->where('quiz_answers.user_id', $request['user_id'])->where('quiz_answers.case_id', $request['case_id'])->select( 'quizzes.question','quiz_answers.answer','quizzes.options_type')->get()->toArray();

@@ -866,24 +866,23 @@ public function CreateCase(Request $request){
 
       $curl = curl_init();
 
-curl_setopt_array($curl, array(
-  CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name=ISOtretinoin%20(oral%20-%20capsule)&strength=30%20mg',
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_ENCODING => '',
-  CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 0,
-  CURLOPT_FOLLOWLOCATION => true,
-  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => 'GET',
-  CURLOPT_HTTPHEADER => array(
-    'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJjN2EyMGE5MC00ZGI5LTQyZTQtODYwYS03ZjQxYzJhOGEwYjEiLCJqdGkiOiJmZWM4OTYxYjMxODhmZGVhNzVlZWYzODI0OTZhZGQzZmZkYzkwOGQ4YWM4N2UwMTdiNDYzYjgwZDYyMGViMWI5YTBlNWZmN2NkMDZjM2VlMSIsImlhdCI6MTYyMjAwNDA3MC42NzE1MjgsIm5iZiI6MTYyMjAwNDA3MC42NzE1MywiZXhwIjoxNjIyMDkwNDcwLjY2NTY4Nywic3ViIjoiIiwic2NvcGVzIjpbIioiXX0.raEByG2lohx4sfArqYgcsL10kQf5WrSawycJiB5noiiF_OClOaEHFVm6U7MZG3VWiztzWLb17HWS_Y679Whb8ccK6hpR8ZNfH-rBNbXCEaLlJMvhkBlXRJrtJsBlxQoDDAEiUgABP2wdhWl1DgUKzuJ34f8P7oxSkP0almVVnOe3pc6KWCVnwt_Ex64WYwk67ZoF9t1mdVv-hfbRo0fvMN4VzItE5seM-w85KYzRnTaOIHwZIsA9gpjeDTL3k6qSXPBZvkCfhwXR_HW2ZJC6WcLPXH6kviEZ_fNITW9F6szp3kS_0Hf4M2F91v-eLFli6GKDmpb0UbH7pF_F4RDNTBw3zDvPDly46BKppMRWqW7cAFRPKlarDMd55zjR_cFXJcNXQGwQjnON_SDUVDlO5oLeHdaALpyZklSmpqvusL6FcHjvRA0k0M6dcTX1newDKXO81Fo68CYgb9BDW2gukzJisy37yqc39HExc1i2IKXw5pqBrlqmkYxQuUdL3pXKXAjMORos57CZ28SDD5-jzdHR-IAI5xFI6avWvefQPgD5ukHFxoSu6SJ7KzQNjCqE9bZDTpvpDfLTIfjQBblFGPkIYR8QLbq4Rt7tuVAOSCUQkXNEDJ0eQGzhpccNqFufYxbV2xbTzuikISFaYZlGG6tmanxKGO1qegrssHsSCz0',
-    'Cookie: __cfduid=da01d92d82d19a6cccebfdc9852303eb81620627650'
-  ),
-));
+      curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name='.$removed_space_pro_name.'&strength='.$quantity,
+        //CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name=ISOtretinoin%20(oral%20-%20capsule)&strength=30%20mg',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'GET',
+        CURLOPT_HTTPHEADER => array(
+          'Authorization: Bearer '.$token,
+          'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+        ),
+      ));
 
-$response = curl_exec($curl);
-
-
+      $response = curl_exec($curl);
 /*
       echo "<pre>";
       print_r($response);

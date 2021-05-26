@@ -227,7 +227,7 @@ try{
             $cart_ids = explode(',', $val['cart_id']);
             $products=array();
             $product_name = array();
-            $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.price','products.image','carts.quantity','carts.order_type')->get()->toArray();
+            $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.price','products.image','carts.quantity','carts.order_type','carts.pharmacy_pickup')->get()->toArray();
 
             foreach($product_details as $product_key => $product_value)
             {
@@ -236,6 +236,7 @@ try{
                $products[$product_key]['image'] = $product_value['image'];
                $products[$product_key]['quantity'] = $product_value['quantity'];
                $products[$product_key]['order_type'] =$product_value['order_type'];
+               $products[$product_key]['pharmacy_pickup']=$product_value['pharmacy_pickup'];
             }
             $orderlist[$key]->products = $products;
             

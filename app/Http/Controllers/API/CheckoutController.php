@@ -243,8 +243,9 @@ try{
   {
     try{
 
-       $orderlist = checkout::join('carts','carts.id', '=', 'checkout.cart_id')
-       ->select('checkout.id','checkout.order_id','carts.quantity','carts.order_type','checkout.cart_id')
+       $orderlist = checkout::join('users', 'users.id', '=', 'checkout.user_id')
+       ->join('carts','carts.id', '=', 'checkout.cart_id')
+       ->select('checkout.id','users.first_name','users.last_name','checkout.order_id','carts.quantity','carts.order_type','checkout.cart_id')
        ->where('checkout.order_id',$request->order_id)
        ->OrderBy('id', 'DESC')
        ->get();

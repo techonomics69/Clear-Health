@@ -225,7 +225,7 @@ try{
            {
             
             $cart_ids = explode(',', $val['cart_id']);
-
+$products=array();
             $product_name = array();
             $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.price','products.image')->get()->toArray();
 
@@ -233,17 +233,17 @@ try{
             {
                 //$orderlist[$key]->product_name = $product_value['product_name']
 
-$products=array();
 
-               $product_name[] = $product_value['product_name'];
-               $price[] = $product_value['price'];
-               $image[] = $product_value['image'];
+
+               $products['name'] = $product_value['product_name'];
+               $products['price'] = $product_value['price'];
+               $products['image'] = $product_value['image'];
 
             }
 
-            $orderlist[$key]->product_name = $product_name;
-           $orderlist[$key]->price = $price;
-           $orderlist[$key]->image = $image;    
+            $orderlist[$key]->products = $products;
+           /*$orderlist[$key]->price = $price;
+           $orderlist[$key]->image = $image;*/    
        }
 
        if(!empty($orderlist)){

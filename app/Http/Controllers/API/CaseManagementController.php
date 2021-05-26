@@ -723,7 +723,6 @@ public function CreateCase(Request $request){
        }
 
      $removed_space_pro_name = str_replace("%20"," ",$product_name);
-
      echo "<pre>";
      print_r( $removed_space_pro_name);
      echo "<pre>";

@@ -240,7 +240,7 @@ try{
             }
 
            $orderlist[$key]->product_name = $product_name;
-           $orderlist[$key]->price = $price1;
+           $orderlist[$key]->price = $price;
            $orderlist[$key]->image = $image;    
        }
 

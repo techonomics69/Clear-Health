@@ -296,8 +296,7 @@ try{
                 $response1 = json_decode($response);
                 
                     $products[$product_key]['pharmacy_pickup'] =  $response1->name;
-                    print_r($products);
-                    die();
+
                     //$products[$product_key]['adrress'] =  $response1->addressline1;
                 curl_close($curl);
                 
@@ -312,7 +311,8 @@ try{
  }
 
  $orderlist[$key]->products = $products;
-
+print_r($products);
+die();
 
 }
 

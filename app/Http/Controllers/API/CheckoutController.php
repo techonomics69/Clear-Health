@@ -209,7 +209,7 @@ try{
         //
     }
 
-    /*public function get_token(){
+    public function get_token(){
       $curl = curl_init();
 
       curl_setopt_array($curl, array(
@@ -237,7 +237,7 @@ try{
 
       curl_close($curl);
       return $response;
-  }*/
+  }
   
   public function getCheckoutdetail(Request $request)
   {

@@ -24,30 +24,30 @@ class CheckoutController extends BaseController
     {
 
         try{
-         $orderlist = checkout::join('users', 'users.id', '=', 'checkout.user_id')
-         ->join('carts','carts.id', '=', 'checkout.cart_id')
-         ->select('checkout.id','checkout.order_id','checkout.md_status','checkout.status','checkout.created_at','checkout.updated_at','carts.order_type','checkout.cart_id','checkout.case_id')
-         ->where('checkout.user_id',$request->user_id)
-         ->OrderBy('id', 'DESC')
-         ->get();
+           $orderlist = checkout::join('users', 'users.id', '=', 'checkout.user_id')
+           ->join('carts','carts.id', '=', 'checkout.cart_id')
+           ->select('checkout.id','checkout.order_id','checkout.md_status','checkout.status','checkout.created_at','checkout.updated_at','carts.order_type','checkout.cart_id','checkout.case_id')
+           ->where('checkout.user_id',$request->user_id)
+           ->OrderBy('id', 'DESC')
+           ->get();
 
 
 
-         foreach($orderlist as $key=>$val)
-         {
+           foreach($orderlist as $key=>$val)
+           {
             $cart_ids = explode(',', $val['cart_id']);
             $product_name = array();
             $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name')->get()->toArray();
             foreach($product_details as $product_key=>$product_value){
-             $product_name[] = $product_value['product_name'];  
-         }
-         $orderlist[$key]->product_name = implode(', ' ,$product_name);    
-     }
+               $product_name[] = $product_value['product_name'];  
+           }
+           $orderlist[$key]->product_name = implode(', ' ,$product_name);    
+       }
 
 
-     if(!empty($orderlist)){
-         return $this->sendResponse($orderlist, 'Order data retrieved successfully.');
-     }else{
+       if(!empty($orderlist)){
+           return $this->sendResponse($orderlist, 'Order data retrieved successfully.');
+       }else{
         return $this->sendResponse( $orderlist =array(), 'No Data Found.');
     }
 
@@ -242,50 +242,70 @@ try{
   {
     try{
 
-     $orderlist = checkout::join('carts','carts.id', '=', 'checkout.cart_id')
-     ->select('checkout.id','checkout.order_id','carts.quantity','carts.order_type','checkout.cart_id')
-     ->where('checkout.order_id',$request->order_id)
-     ->OrderBy('id', 'DESC')
-     ->get();
+       $orderlist = checkout::join('carts','carts.id', '=', 'checkout.cart_id')
+       ->select('checkout.id','checkout.order_id','carts.quantity','carts.order_type','checkout.cart_id')
+       ->where('checkout.order_id',$request->order_id)
+       ->OrderBy('id', 'DESC')
+       ->get();
 
-     foreach($orderlist as $key=>$val)
-     {
+       foreach($orderlist as $key=>$val)
+       {
         $cart_ids = explode(',', $val['cart_id']);
         $products=array();
         $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.price','products.image','carts.quantity','carts.order_type','carts.pharmacy_pickup')->get()->toArray();
 
         foreach($product_details as $product_key => $product_value)
         {
-         $products[$product_key]['name'] = $product_value['product_name'];
-         $products[$product_key]['price'] = $product_value['price'];
-         $products[$product_key]['image'] = $product_value['image'];
-         $products[$product_key]['quantity'] = $product_value['quantity'];
-         $products[$product_key]['order_type'] =$product_value['order_type'];
-         $products[$product_key]['pharmacy_pickup']='';
+           $products[$product_key]['name'] = $product_value['product_name'];
+           $products[$product_key]['price'] = $product_value['price'];
+           $products[$product_key]['image'] = $product_value['image'];
+           $products[$product_key]['quantity'] = $product_value['quantity'];
+           $products[$product_key]['order_type'] =$product_value['order_type'];
+           $products[$product_key]['pharmacy_pickup']='';
 
-         if('order_type'=='Prescribed' && isset('pharmacy_pickup' != '')){
+           if($product_value['order_type'] == 'Prescribed' && isset($product_value['pharmacy_pickup'] != '')){
 
-            if('pharmacy_pickup' != "cash"){
+            if($product_value['pharmacy_pickup'] != "cash"){
                 $r = $this->get_token();
                 $token_data = json_decode($r);
                 $token = $token_data->access_token;
 
-                $products[$product_key]['pharmacy_pickup']= 'pharmacy_pickup';
+                $products[$product_key]['pharmacy_pickup']= $request['pharmacy_pickup'];;
+                $curl = curl_init();
+
+                curl_setopt_array($curl, array(
+                    CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/pharmacies/'.$pharmacy_id,
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_ENCODING => '',
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 0,
+                    CURLOPT_FOLLOWLOCATION => true,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => 'GET',
+                    CURLOPT_HTTPHEADER => array(
+                      'Authorization: Bearer '.$token,
+                  ),
+                ));
+
+                $response = curl_exec($curl);
+
+                curl_close($curl);
+                
             }else{
 
-               $products[$product_key]['pharmacy_pickup']= 'cash';
-           }
+             $products[$product_key]['pharmacy_pickup']= 'cash';
+         }
 
-           $products[$product_key]['pharmacy_pickup']= '';
-       }
+         $products[$product_key]['pharmacy_pickup']= '';
+     }
 
-   }
-   $orderlist[$key]->products = $products;
+ }
+ $orderlist[$key]->products = $products;
 
 }
 
 if(!empty($orderlist)){
- return $this->sendResponse($orderlist, 'Checkout data retrieved successfully.');
+   return $this->sendResponse($orderlist, 'Checkout data retrieved successfully.');
 }else{
     return $this->sendResponse($orderlist =array(), 'No Data Found.');
 }
@@ -302,8 +322,8 @@ public function getCheckoutAddress(Request $request)
         $checkout_data = Checkoutaddress::where('user_id', $request->user_id)->OrderBy('id', 'desc')->first();
             //$checkout_data = Checkout::where('user_id', $request->user_id)->where('cart_id', $request->cart_id)->first();
         if(!empty($checkout_data)){
-         return $this->sendResponse($checkout_data, 'Checkout Address data retrieved successfully.');
-     }else{
+           return $this->sendResponse($checkout_data, 'Checkout Address data retrieved successfully.');
+       }else{
         return $this->sendResponse($checkout_data =array(), 'No Data Found.');
     }
 

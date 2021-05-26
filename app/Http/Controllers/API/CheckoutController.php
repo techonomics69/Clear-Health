@@ -101,7 +101,7 @@ class CheckoutController extends BaseController
 
         endif;  
     endif;     
-    try{
+   // try{
         $validator = Validator::make($data, [
             'user_id' => 'required',
         ]);
@@ -121,12 +121,10 @@ class CheckoutController extends BaseController
         }
 dd($checkoutdata);
 
-
-
         return $this->sendResponse( $checkoutdata, 'Order Created Successfully');
-    }catch(\Exception $ex){
+    /*}catch(\Exception $ex){
         return $this->sendError('Server error',array($ex->getMessage()));
-    }
+    }*/
 
 
 

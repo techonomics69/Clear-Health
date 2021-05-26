@@ -270,7 +270,8 @@ try{
                 $r = $this->get_token();
                 $token_data = json_decode($r);
                 $token = $token_data->access_token;
- 
+ /*print_r($token);
+                die();*/
                 $pharmacy_id = $request['pharmacy_pickup'];
                 $curl = curl_init();
 print_r($curl);

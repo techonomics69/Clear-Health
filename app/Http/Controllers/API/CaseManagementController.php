@@ -865,7 +865,7 @@ public function CreateCase(Request $request){
       $curl = curl_init();
 
       curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name='.urlencode($product_name).'&strength='.urlencode($quantity),
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name=ISOtretinoin (oral - capsule)&strength=30 mg',
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,

@@ -218,7 +218,7 @@ try{
 
 
  $orderlist = checkout::join('carts','carts.id', '=', 'checkout.cart_id')
-         ->select('checkout.id','checkout.order_id','carts.quantity','carts.order_type','Checkout.cart_id')
+         ->select('checkout.id','checkout.order_id','carts.quantity','carts.order_type','checkout.cart_id')
          ->where('checkout.order_id',$request->order_id)
          ->OrderBy('id', 'DESC')
          ->get();

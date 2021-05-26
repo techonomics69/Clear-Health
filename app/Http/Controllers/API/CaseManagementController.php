@@ -758,7 +758,7 @@ public function CreateCase(Request $request){
     $question = $value->question;
 
     if($question == "What is your weight in kg?"){
-      if(isset($value->answer)){
+      if(isset($value->answer) && $value->answer!=''){
 
         $answer =  $value->answer;
 
@@ -773,19 +773,36 @@ public function CreateCase(Request $request){
 //end of code to get patient weight 
   $userquestion = array();
   foreach($userQueAns as $key=>$value){
-    $userquestion[$key]['question'] = $value->question;
-    $userquestion[$key]['answer'] =(isset($value->answer) && $value->answer !="")?$value->answer:"";
 
-    if($value->options_type == "radio"){
-     $userquestion[$key]['type']= "boolean";
-   }else{
-     $userquestion[$key]['type']= "string";
-   }
+    if(isset($value->answer) && $value->answer!=''){
+      $userquestion[$key]['question'] = $value->question;
 
-   $userquestion[$key]['important']= true;
+      if(is_array($value->answer)){
+         $userquestion[$key]['answer'] = implode(',',$value->answer);
+      }else{
+         $userquestion[$key]['answer'] = $value->answer;
+      }
+       
+     
+
+     if($value->options_type == "radio"){
+       $userquestion[$key]['type']= "boolean";
+     }else{
+       $userquestion[$key]['type']= "string";
+     }
+
+     $userquestion[$key]['important']= true;
+
+    }
+    
  }
 
  $userquestion = json_encode($userquestion);
+
+ echo "<pre>";
+ print_r($userquestion);
+ echo "<pre>";
+ exit();
   //end of code to get user's question answer
 
 

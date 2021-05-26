@@ -227,23 +227,19 @@ try{
             
             $cart_ids = explode(',', $val['cart_id']);
 
-            /*foreach ($cart_ids as $key => $val) {
-            $cartid = $val;
-            $products_qty = Cart::where('id',$cartid)->select('quantity','order_type')->get();
-            }*/
-
             $product_name = array();
             $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.price','products.image')->get()->toArray();
 
             foreach($product_details as $product_key => $product_value)
             {
+                $orderlist[$key]->product_name = $product_value['product_name']
                $product_name[] = $product_value['product_name'];
                $price[] = $product_value['price'];
                $image[] = $product_value['image'];
 
             }
 
-           $orderlist[$key]->product_name = implode(', ' ,$product_name);
+           //$orderlist[$key]->product_name = implode(', ' ,$product_name);
            $orderlist[$key]->price = implode(', ' ,$price);
            $orderlist[$key]->image = implode(', ' , $image);    
        }

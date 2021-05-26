@@ -883,24 +883,6 @@ public function CreateCase(Request $request){
       ));
 
       $response = curl_exec($curl);
-/*
-      echo "<pre>";
-      print_r($response);
-      echo "<pre>";
-      exit();*/
-
-      $info = curl_getinfo($curl);
-
-      echo "<pre>";
-      print_r($info);
-      echo "<pre>";
-      
-
-       if(curl_exec($curl) == false)
-       {
-        echo 'Curl error: ' . curl_error($curl);
-              //return $this->sendResponse($response, 'Patient Created Successfully1'); 
-      }
 
       curl_close($curl);
 

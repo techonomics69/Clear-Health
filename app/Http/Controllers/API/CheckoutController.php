@@ -251,13 +251,6 @@ try{
      ->OrderBy('id', 'DESC')
      ->get();
 
-
-print_r($orderlist);
-die();
-/*$address = Checkout::join('checkout_address', 'checkout_address.user_id', '=','checkout.user_id')
-->select('checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode') ->where('checkout.id',$request->id)->get()->toArray();
-print_r($address);
-die();*/
      foreach($orderlist as $key=>$val)
      {
         $cart_ids = explode(',', $val['cart_id']);

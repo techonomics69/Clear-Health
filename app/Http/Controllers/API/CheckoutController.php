@@ -245,7 +245,8 @@ try{
 
        $orderlist = checkout::join('users', 'users.id', '=', 'checkout.user_id')
        ->join('carts','carts.id', '=', 'checkout.cart_id')
-       ->select('checkout.id','users.first_name','users.last_name','checkout.order_id','carts.quantity','carts.order_type','checkout.cart_id')
+       ->join('checkout_address','checkout_address.id', '=', 'checkout.user_id')
+       ->select('checkout.id','users.first_name','users.last_name','checkout.order_id','carts.quantity','carts.order_type','checkout.cart_id','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode')
        ->where('checkout.order_id',$request->order_id)
        ->OrderBy('id', 'DESC')
        ->get();
@@ -264,21 +265,15 @@ try{
            $products[$product_key]['quantity'] = $product_value['quantity'];
            $products[$product_key]['order_type'] =$product_value['order_type'];
             
-
-
            if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup'] != '' && $product_value['order_type'] == 'Prescribed'){
 
             if($product_value['pharmacy_pickup'] != "cash"){
                 $r = $this->get_token();
                 $token_data = json_decode($r);
                 $token = $token_data->access_token;
- /*print_r($token);
-                die();*/
-
                 $pharmacy_id = $product_value['pharmacy_pickup'];
                
                 $curl = curl_init();
-
                 curl_setopt_array($curl, array(
                     CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/pharmacies/'.$pharmacy_id,
                     CURLOPT_RETURNTRANSFER => true,
@@ -296,20 +291,8 @@ try{
                 $response = curl_exec($curl);
                 curl_close($curl);
                 $response1 = json_decode($response);
-
-                
-               $products[$product_key]['pharmacy_pickup'] =  $response1->name;
-                /*print_r( $products);
-                die();*/
-                /*$products[$product_key] =  $response1->address1;
-                $products[$product_key] =  $response1->address2;
-                 $products[$product_key] =  $response1->city;
-                 $products[$product_key]=  $response1->state;
-                  $products[$product_key] =  $response1->zip_code;*/
-            
-                
+               $products[$product_key]['pharmacy_pickup'] =  $response1->name; 
             }else{
-
              $products[$product_key]['pharmacy_pickup'] = 'cash';
          }
 

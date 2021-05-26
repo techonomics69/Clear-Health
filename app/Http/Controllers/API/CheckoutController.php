@@ -243,7 +243,7 @@ for($i = 0; $i < count($superheroes); $i++) {
     }
     echo "}<br>";
 }
-die();
+
             
 
            foreach($orderlist as $key=>$val)

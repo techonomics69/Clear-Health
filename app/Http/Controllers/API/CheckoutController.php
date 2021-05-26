@@ -75,8 +75,7 @@ class CheckoutController extends BaseController
     public function store(Request $request)
     {
         $data = $request->all();
-         print_r( $data);
-        die();
+
         $last_checkout_id = Checkout::OrderBy('id','desc')->first();
         $order_id = "00000001";
         if(!empty($last_checkout_id)){
@@ -111,7 +110,8 @@ class CheckoutController extends BaseController
         }
         $checkoutdata = Checkout::create($data);
         $checkout_address = Checkoutaddress::where('user_id', $data['user_id'])->OrderBy('id','DESC')->first();
-
+print_r($checkout_address);
+        die();
         $data['order_id'] =$checkout_address->order_id;
 
         return $this->sendResponse($checkoutdata, 'Order Created Successfully');

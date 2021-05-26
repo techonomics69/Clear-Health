@@ -293,9 +293,9 @@ try{
                 ));
 
                 $response = curl_exec($curl);
+                curl_close($curl);
                 $response1 = json_decode($response);
-                print_r($response1);
-                die();
+
                 
                $products[$product_key]['pharmacy_pickup'] =  $response1->name;
                 /*print_r( $products);
@@ -306,13 +306,13 @@ try{
                  $products[$product_key]=  $response1->state;
                   $products[$product_key] =  $response1->zip_code;*/
             
-                curl_close($curl);
+                
             }else{
 
              $products[$product_key]['pharmacy_pickup'] = 'cash';
          }
 
-         $products[$product_key]['pharmacy_pickup'] = '';
+         //$products[$product_key]['pharmacy_pickup'] = '';
      }
 
  }

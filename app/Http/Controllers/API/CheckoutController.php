@@ -232,15 +232,10 @@ $products=array();
             foreach($product_details as $product_key => $product_value)
             {
                 //$orderlist[$key]->product_name = $product_value['product_name']
-
-
-
-               $products['name'] = $product_value['product_name'];
-               $products['price'] = $product_value['price'];
-               $products['image'] = $product_value['image'];
-
+               $products[$product_key]['name'] = $product_value['product_name'];
+               $products[$product_key]['price'] = $product_value['price'];
+               $products[$product_key]['image'] = $product_value['image'];
             }
-
             $orderlist[$key]->products = $products;
            /*$orderlist[$key]->price = $price;
            $orderlist[$key]->image = $image;*/    

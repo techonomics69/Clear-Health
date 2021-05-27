@@ -102,7 +102,7 @@
 												</div>
 												<div class="col-md-6 form-group">
 													<strong>Mobile No: </strong>
-													{{$user_case_management_data['email']}}
+													{{$user_case_management_data['mobile']}}
 
 												</div>
 												<div class="col-md-6 form-group">

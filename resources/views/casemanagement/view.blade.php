@@ -172,10 +172,7 @@
 <div class="row" style="padding: 10px;">
 	<div class="col-md-12">
 <?php 
-echo"<pre>"; 
-print_r($general_qa);
-echo"</pre>";
-die();
+
 $getquestions = $general_qa->question;
 
 	if(isset($general_qa->answer)){
@@ -188,7 +185,7 @@ $getquestions = $general_qa->question;
 </div>
 @endforeach
 
-<!-- @foreach($accutane as $key => $accutane_qa)
+@foreach($accutane as $key => $accutane_qa)
 <div class="row" style="padding: 10px;">
 	<div class="col-md-12">
 <?php  //echo "<h4><strong>Que:".$accutane_qa['question']."</strong></h4>";
@@ -203,7 +200,7 @@ $getquestions = $general_qa->question;
 	  //echo "<p>Ans:".$accutane_qa['answer']."</p>"; ?>
 	</div>
 </div>
-@endforeach -->
+@endforeach
 
 
 										<!-- </div>

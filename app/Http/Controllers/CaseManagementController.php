@@ -81,7 +81,7 @@ class CaseManagementController extends Controller
     $topical_que = array();
   }
 
-  return view('casemanagement.view',compact('user_case_management_data','category','general_que','accutane','topical'));
+  return view('casemanagement.view',compact('user_case_management_data','category','general_que','accutane_que','topical_que'));
 
 }
 

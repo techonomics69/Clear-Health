@@ -73,11 +73,12 @@ class CaseManagementController extends Controller
 die();*/
           if($category_ids == 7) {
             $general =  $answers;
- print_r($general);
-            die();
+ 
           }
           if ($category_id == 8) {
             $accutane =  $answers;
+            print_r($accutane);
+            die();
            
           }
           if ($category_id == 9){

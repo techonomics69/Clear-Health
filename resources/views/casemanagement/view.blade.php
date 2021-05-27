@@ -116,174 +116,182 @@
 												</div>
 											</div>
 
-								</div>
-							</section>
-						</div>
-					</div>
-				</div>  
-				<!--End 1st tab-->
-
-				<!--start 2nd tab-->
-				{{-- @if(session()->has('que_current_tab'))
-				@php
-				$current_tab_id = 'home'.session()->get('que_current_tab') ;
-				$activeTab = 1;
-				$active = 1 ;
-
-				// unset($products[$key]);
-				@endphp
-				@else
-				@php
-				$current_tab_id = "";
-				$activeTab = 0 ;
-				$active = 0 ;	
-				@endphp
-				@endif --}}
-
-				@php
-				Session::forget('que_current_tab');
-				@endphp
-				<div id="questions" class="tab-pane fade in">					    
-
-					<div class="row" style="padding: 10px;">
-						<div class="col-md-12">
-
-							<section class="card" >
-								<ul class="nav nav-tabs" id="questions-tab-menu">
-
-									@foreach($category as $key => $data)
-									{{-- <li><a class="btn @if($activeTab == 0) active @elseif($current_tab_id == 'home'.$key) active @endif" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li> --}}
-
-									<li><a class="btn" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li>
-									<?php //$activeTab++ ?> 
-									@endforeach
-								</ul>
-
-
-								<div class="tab-content">
-									<?php $i=0 ?>
-									@foreach($category as $key => $data)
-									<?php if($key == 7) { ?>
-									<div id="home{{$key}}" class="tab-pane fade in @if($i== 0) active show @endif">	
-									@foreach($general_que as $key => $general_qa)
-<div class="row" style="padding: 10px;">
-	<div class="col-md-12">
-<?php 
-$getquestions = $general_qa->question;
-	if(isset($general_qa->answer)){
-	$answer =  (array)$general_qa->answer;
-	$getanswer= implode(" " , $answer);
-	} 
-	?>
-<h4><strong>Que: <?php echo $getquestions; ?></strong></h4>
-<p>Ans: <?php echo $getanswer; ?> 
-	</div>
-</div>
-@endforeach
-									</div>
-								<?php } ?>
-								<?php if($key == 8) { ?>
-@foreach($accutane_que as $key => $accutane_qa)
-<div class="row" style="padding: 10px;">
-	<div class="col-md-12">
-<?php 
-
-$getquestions = $accutane_qa->question;
-	if(isset($accutane_qa->answer)){
-	$answer =  (array)$accutane_qa->answer;
-	$getanswer= implode(" " , $answer);
-	} 
-	?>
-<h4><strong>Que: <?php echo $getquestions; ?></strong></h4>
-<p>Ans: <?php echo $getanswer; ?>
-	</div>
-</div>
-@endforeach
-								<?php } ?>
-								<?php if($key == 9) { ?>
-									@foreach($topical_que as $key => $topical_qa)
-<div class="row" style="padding: 10px;">
-	<div class="col-md-12">
-<?php 
-
-$getquestions = $topical_qa->question;
-	if(isset($topical_qa->answer)){
-	$answer =  (array)$topical_qa->answer;
-	$getanswer= implode(" " , $answer);
-	} 
-	?>
-<h4><strong>Que: <?php echo $getquestions; ?></strong></h4>
-<p>Ans: <?php echo $getanswer; ?>
-	</div>
-</div>
-@endforeach
-								<?php } ?>
-								<?php $i++ ?>
-								@endforeach
-							</div>
-						</section>
-					</div>
-				</div>
-
-			</div>  
-
-
-
-			<!--end 2nd tab-->
-
-			<!--start 3rd tab-->
-			<div id="skincare_summary" class="tab-pane fade in">
-				<div class="row" style="padding: 20px;">
-					<div class="col-md-12">
-						<section class="card">
-							<div class="card-body">
-								<div class="box-block mtb32">
-									<h3 class="font-weight-bold"><span class="text-underline">Skincare Summary</span></h3>
+										</div>
+									</section>
 								</div>
 							</div>
-						</section>
-					</div>
-				</div>
-			</div> 
-			<!--end 3rd tab-->
+						</div>  
+						<!--End 1st tab-->
 
-			<!--start 4th tab-->
-			<div id="action_items" class="tab-pane fade in ">
-				<div class="row" style="padding: 20px;">
-					<div class="col-md-12">
-						<section class="card">
-							
-								
-									
+						<!--start 2nd tab-->
+						{{-- @if(session()->has('que_current_tab'))
+						@php
+						$current_tab_id = 'home'.session()->get('que_current_tab') ;
+						$activeTab = 1;
+						$active = 1 ;
 
-									<!-- Action Item-->
-											<?php
-											if($user_case_management_data['product_type'] == "accutane"){?>
-												<div class="box-block mtb32">
-													<h3 class="font-weight-bold"><span class="text-underline"> Action Items</span></h3>
+						// unset($products[$key]);
+						@endphp
+						@else
+						@php
+						$current_tab_id = "";
+						$activeTab = 0 ;
+						$active = 0 ;	
+						@endphp
+						@endif --}}
 
-													@if (count($errors) > 0)
-													<div class="alert alert-danger">
-														<strong>Whoops!</strong> There were some problems with your input.<br><br>
-														<ul>
-															@foreach ($errors->all() as $error)
-															<li>{{ $error }}</li>
-															@endforeach
-														</ul>
+						@php
+						Session::forget('que_current_tab');
+						@endphp
+						<div id="questions" class="tab-pane fade in">					    
+
+							<div class="row" style="padding: 10px;">
+								<div class="col-md-12">
+
+									<section class="card" >
+										<ul class="nav nav-tabs" id="questions-tab-menu">
+
+											@foreach($category as $key => $data)
+											{{-- <li><a class="btn @if($activeTab == 0) active @elseif($current_tab_id == 'home'.$key) active @endif" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li> --}}
+
+											<li><a class="btn" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li>
+											<?php //$activeTab++ ?> 
+											@endforeach
+										</ul>
+
+
+										<div class="tab-content">
+											<?php $i=0 ?>
+											@foreach($category as $key => $data)
+
+											<?php if($key == 7) { ?>
+												<div id="home{{$key}}" class="tab-pane fade in @if($i== 0) active show @endif">	
+													@foreach($general_que as $key => $general_qa)
+													<div class="row" style="padding: 10px;">
+														<div class="col-md-12">
+															<?php 
+															$getquestions = $general_qa->question;
+															if(isset($general_qa->answer)){
+																$answer =  (array)$general_qa->answer;
+																$getanswer= implode(" " , $answer);
+															} 
+															?>
+															<h4><strong>Que: <?php echo $getquestions; ?></strong></h4>
+															<p>Ans: <?php echo $getanswer; ?> 
+														</div>
 													</div>
-													@endif
+													@endforeach
+												</div>
+											<?php } ?>
 
-													<div class="col-md-12 form-group" id="testreoprtdiv">
-														<div class="inner-section">
-															<div class="row">
-																<div class="col-lg-2 col-xl-2 col-md-12">
-																	<strong> Pregnancy Test: </strong>
-																</div>
+											<?php if($key == 8) { ?>
+												<div id="home{{$key}}" class="tab-pane fade in @if($i== 0) active show @endif">	
+												@foreach($accutane_que as $key => $accutane_qa)
+												<div class="row" style="padding: 10px;">
+													<div class="col-md-12">
+														<?php 
 
-																<div class="col-lg-6 col-xl-6 col-md-12">
-																	{!! Form::open(array('route' => 'upload_pregnancy_test_report','method'=>'POST','enctype'=>"multipart/form-data",'id'=>'p_test_form')) !!}
+														$getquestions = $accutane_qa->question;
+														if(isset($accutane_qa->answer)){
+															$answer =  (array)$accutane_qa->answer;
+															$getanswer= implode(" " , $answer);
+														} 
+														?>
+														<h4><strong>Que: <?php echo $getquestions; ?></strong></h4>
+														<p>Ans: <?php echo $getanswer; ?>
+													</div>
+												</div>
+												@endforeach
+											</div>
+											<?php } ?>
 
-																	<span>
+											<?php if($key == 9) { ?>
+												<div id="home{{$key}}" class="tab-pane fade in @if($i== 0) active show @endif">	
+												@foreach($topical_que as $key => $topical_qa)
+												<div class="row" style="padding: 10px;">
+													<div class="col-md-12">
+														<?php 
+
+														$getquestions = $topical_qa->question;
+														if(isset($topical_qa->answer)){
+															$answer =  (array)$topical_qa->answer;
+															$getanswer= implode(" " , $answer);
+														} 
+														?>
+														<h4><strong>Que: <?php echo $getquestions; ?></strong></h4>
+														<p>Ans: <?php echo $getanswer; ?>
+													</div>
+												</div>
+												@endforeach
+											</div>
+											<?php } ?>
+
+											<?php $i++ ?>
+											@endforeach
+										</div>
+									</section>
+								</div>
+							</div>
+
+						</div>  
+
+
+
+						<!--end 2nd tab-->
+
+						<!--start 3rd tab-->
+						<div id="skincare_summary" class="tab-pane fade in">
+							<div class="row" style="padding: 20px;">
+								<div class="col-md-12">
+									<section class="card">
+										<div class="card-body">
+											<div class="box-block mtb32">
+												<h3 class="font-weight-bold"><span class="text-underline">Skincare Summary</span></h3>
+											</div>
+										</div>
+									</section>
+								</div>
+							</div>
+						</div> 
+						<!--end 3rd tab-->
+
+						<!--start 4th tab-->
+						<div id="action_items" class="tab-pane fade in ">
+							<div class="row" style="padding: 20px;">
+								<div class="col-md-12">
+									<section class="card">
+
+
+
+
+										<!-- Action Item-->
+										<?php
+										if($user_case_management_data['product_type'] == "accutane"){?>
+											<div class="box-block mtb32">
+												<h3 class="font-weight-bold"><span class="text-underline"> Action Items</span></h3>
+
+												@if (count($errors) > 0)
+												<div class="alert alert-danger">
+													<strong>Whoops!</strong> There were some problems with your input.<br><br>
+													<ul>
+														@foreach ($errors->all() as $error)
+														<li>{{ $error }}</li>
+														@endforeach
+													</ul>
+												</div>
+												@endif
+
+												<div class="col-md-12 form-group" id="testreoprtdiv">
+													<div class="inner-section">
+														<div class="row">
+															<div class="col-lg-2 col-xl-2 col-md-12">
+																<strong> Pregnancy Test: </strong>
+															</div>
+
+															<div class="col-lg-6 col-xl-6 col-md-12">
+																{!! Form::open(array('route' => 'upload_pregnancy_test_report','method'=>'POST','enctype'=>"multipart/form-data",'id'=>'p_test_form')) !!}
+
+																<span>
 
 																		<!-- <input type="file" name="pregnancy_test" class="btn btn-secondry pregnecyrepot" value="Upload Report" >
 
@@ -395,71 +403,71 @@ $getquestions = $topical_qa->question;
 															</div>
 														</div>
 													</div>
+												</div>
+											<?php } ?>
+
+											<!-- close Action Item-->
+
+
+										</section>
+									</div>
+								</div>
+							</div> 
+							<!--end 4th tab-->
+
+							<!--start 5th tab-->
+							<div id="messages" class="tab-pane fade in ">
+								<div class="row" style="padding: 20px;">
+									<div class="col-md-12">
+										<section class="card">
+											<div class="card-body">
+												<div class="box-block mtb32">
+													<h3 class="font-weight-bold"><span class="text-underline">Messages goes here</span></h3>
+												</div>
 											</div>
-										<?php } ?>
-									
-									<!-- close Action Item-->
-								
-							
-						</section>
-					</div>
-				</div>
-			</div> 
-			<!--end 4th tab-->
-
-			<!--start 5th tab-->
-			<div id="messages" class="tab-pane fade in ">
-				<div class="row" style="padding: 20px;">
-					<div class="col-md-12">
-						<section class="card">
-							<div class="card-body">
-								<div class="box-block mtb32">
-									<h3 class="font-weight-bold"><span class="text-underline">Messages goes here</span></h3>
+										</section>
+									</div>
 								</div>
 							</div>
-						</section>
-					</div>
-				</div>
-			</div>
-			<!--end 5th tab-->
+							<!--end 5th tab-->
 
-			<!--start 6th tab-->
-			<div id="photos" class="tab-pane fade in ">
-				<div class="row" style="padding: 20px;">
-					<div class="col-md-12">
-						<section class="card">
-							<div class="card-body">
-								<div class="box-block mtb32">
-									<h3 class="font-weight-bold"><span class="text-underline">Photos</span></h3>
+							<!--start 6th tab-->
+							<div id="photos" class="tab-pane fade in ">
+								<div class="row" style="padding: 20px;">
+									<div class="col-md-12">
+										<section class="card">
+											<div class="card-body">
+												<div class="box-block mtb32">
+													<h3 class="font-weight-bold"><span class="text-underline">Photos</span></h3>
+												</div>
+											</div>
+										</section>
+									</div>
 								</div>
 							</div>
-						</section>
-					</div>
-				</div>
-			</div>
-			<!--end 6th tab-->
+							<!--end 6th tab-->
 
-			<!--start 7th tab-->
-			<div id="payments" class="tab-pane fade in ">
-				<div class="row" style="padding: 20px;">
-					<div class="col-md-12">
-						<section class="card">
-							<div class="card-body">
-								<div class="box-block mtb32">
-									<h3 class="font-weight-bold"><span class="text-underline">Payments</span></h3>
+							<!--start 7th tab-->
+							<div id="payments" class="tab-pane fade in ">
+								<div class="row" style="padding: 20px;">
+									<div class="col-md-12">
+										<section class="card">
+											<div class="card-body">
+												<div class="box-block mtb32">
+													<h3 class="font-weight-bold"><span class="text-underline">Payments</span></h3>
+												</div>
+											</div>
+										</section>
+									</div>
 								</div>
 							</div>
-						</section>
+							<!--end 7th tab--> 
+						</div>
 					</div>
-				</div>
+				</section>
 			</div>
-			<!--end 7th tab--> 
 		</div>
 	</div>
-</section>
-</div>
-</div>
-</div>
 </div>
 @endsection
 

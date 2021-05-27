@@ -168,9 +168,6 @@
 										<div class="row" style="padding: 10px;">
 											<div class="col-md-12">
 												<?php
-
-												print($ans);
-												die();
 												$questions = $ans->question;
 												if(isset($ans->answer)){
 													$answer =  (array)$ans->answer;

@@ -72,7 +72,7 @@ class CaseManagementController extends Controller
         {
           $category_ids = $value->category_id;
            print_r($category_ids);
-            die();
+          
 
             if($category_ids == 7) {
             $general =  $answers;

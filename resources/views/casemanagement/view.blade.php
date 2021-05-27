@@ -164,7 +164,7 @@
 									<?php $i=0 ?>
 									@foreach($category as $key => $data)
 									<div id="home{{$key}}" class="tab-pane fade in @if($i== 0) active show @endif">	
-										<!-- @foreach($answers as $key => $ans) -->
+										
 										<div class="row" style="padding: 10px;">
 											<div class="col-md-12">
 												
@@ -197,7 +197,7 @@
 										</div>
 									</div>
 									<?php $i++ ?>
-									<!-- @endforeach -->
+									
 								</div>
 								@endforeach
 							</div>

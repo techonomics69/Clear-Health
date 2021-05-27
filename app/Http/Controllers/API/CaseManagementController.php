@@ -1476,6 +1476,7 @@ public function detach_file_from_case(Request $request){
       $file_path = 'public/Message_files/' .$file;
     }else{
       $file = "";
+      $file_path="";
     }
     // end of code to upload files ids
     

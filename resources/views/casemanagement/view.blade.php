@@ -263,14 +263,8 @@
 								</div>
 							</div>
 						</div>
-						</span>
-						</div>
-						</div>
-						</div>
-						</div>
-						</div>
-						</div>
-						</section>  
+						<!-- </span> -->
+						</div>  
 						<!--End 1st tab-->
 
 						<!--start 2nd tab-->

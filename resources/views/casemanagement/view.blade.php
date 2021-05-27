@@ -172,7 +172,9 @@
 <div class="row" style="padding: 10px;">
 	<div class="col-md-12">
 <?php 
+echo "<pre>";
 print_r($getquestions);
+echo "</pre>";
 die();
 $getquestions = $general_qa->question;
 	if(isset($general_qa->answer)){

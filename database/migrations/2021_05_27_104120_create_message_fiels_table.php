@@ -16,7 +16,7 @@ class CreateMessageFielsTable extends Migration
         Schema::create('message_files', function (Blueprint $table) {
             $table->id();
             $table->integer('msg_id');
-            $table->integer('file_path');
+            $table->string('file_path');
             $table->string('file_name');
             $table->timestamps();
         });

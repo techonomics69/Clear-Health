@@ -116,176 +116,175 @@
 												</div>
 											</div>
 
-
 											<!-- Action Item-->
 											<?php
-if($user_case_management_data['product_type'] == "accutane"){?>
-	<div class="box-block mtb32">
-		<h3 class="font-weight-bold"><span class="text-underline"> Action Items</span></h3>
+											if($user_case_management_data['product_type'] == "accutane"){?>
+												<div class="box-block mtb32">
+													<h3 class="font-weight-bold"><span class="text-underline"> Action Items</span></h3>
 
-		@if (count($errors) > 0)
-		<div class="alert alert-danger">
-			<strong>Whoops!</strong> There were some problems with your input.<br><br>
-			<ul>
-				@foreach ($errors->all() as $error)
-				<li>{{ $error }}</li>
-				@endforeach
-			</ul>
-		</div>
-		@endif
+													@if (count($errors) > 0)
+													<div class="alert alert-danger">
+														<strong>Whoops!</strong> There were some problems with your input.<br><br>
+														<ul>
+															@foreach ($errors->all() as $error)
+															<li>{{ $error }}</li>
+															@endforeach
+														</ul>
+													</div>
+													@endif
 
-		<div class="col-md-12 form-group" id="testreoprtdiv">
-			<div class="inner-section">
-				<div class="row">
-					<div class="col-lg-2 col-xl-2 col-md-12">
-						<strong> Pregnancy Test: </strong>
-					</div>
+													<div class="col-md-12 form-group" id="testreoprtdiv">
+														<div class="inner-section">
+															<div class="row">
+																<div class="col-lg-2 col-xl-2 col-md-12">
+																	<strong> Pregnancy Test: </strong>
+																</div>
 
-					<div class="col-lg-6 col-xl-6 col-md-12">
-						{!! Form::open(array('route' => 'upload_pregnancy_test_report','method'=>'POST','enctype'=>"multipart/form-data",'id'=>'p_test_form')) !!}
+																<div class="col-lg-6 col-xl-6 col-md-12">
+																	{!! Form::open(array('route' => 'upload_pregnancy_test_report','method'=>'POST','enctype'=>"multipart/form-data",'id'=>'p_test_form')) !!}
 
-						<span>
+																	<span>
 
-							<input type="file" name="pregnancy_test" class="btn btn-secondry pregnecyrepot" value="Upload Report" >
+																		<input type="file" name="pregnancy_test" class="btn btn-secondry pregnecyrepot" value="Upload Report" >
 
-							<input type="hidden" name="case_id" value="{{$user_case_management_data['id']}}">
+																		<input type="hidden" name="case_id" value="{{$user_case_management_data['id']}}">
 
-							<input type="submit" name="submit_test_report" class="btn btn-secondry" id="uploadBtn_pregnancy_test">
-						</sapn>
-
-
-							{!! Form::close() !!}
-					</div>
-
-					<div class="col-lg-4 col-xl-4 col-md-12">
-						<div class="img-border">
-							<?php 
-								if($user_case_management_data['pregnancy_test'] != ''){ 
-									$path_info = pathinfo($user_case_management_data['pregnancy_test']);
-
-									$file_type = $path_info['extension'];
-
-									if($file_type == 'pdf'){
-										echo "<span><strong>".$user_case_management_data['pregnancy_test']."</strong></span>";
-									}else{
-										?>
-										<img src="{{ asset('public//ipledgeimports/pregnancy_test/'.$user_case_management_data['pregnancy_test']) }}" alt="{{$user_case_management_data['pregnancy_test'] }}">
-									<?php }
+																		<input type="submit" name="submit_test_report" class="btn btn-secondry" id="uploadBtn_pregnancy_test">
+																	</sapn>
 
 
-							}?>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+																	{!! Form::close() !!}
+																</div>
 
-		<div class="col-md-12 form-group mtb32">
-			<div class="inner-section">
-				<div class="row">
-					<div class="col-lg-2 col-xl-2 col-md-12">
-						<strong> Blood-work: </strong>
-					</div>
-					<div class="col-lg-6 col-xl-6 col-md-12">
-						{!! Form::open(array('route' => 'upload_blood_work_test_report','method'=>'POST','enctype'=>"multipart/form-data",'id'=>'p_test_form')) !!}
+																<div class="col-lg-4 col-xl-4 col-md-12">
+																	<div class="img-border">
+																		<?php 
+																		if($user_case_management_data['pregnancy_test'] != ''){ 
+																			$path_info = pathinfo($user_case_management_data['pregnancy_test']);
 
-						<span>
+																			$file_type = $path_info['extension'];
 
-							<input type="file" name="blood_work" class="btn btn-secondry pregnecyrepot" value="Upload Blood Work" >
+																			if($file_type == 'pdf'){
+																				echo "<span><strong>".$user_case_management_data['pregnancy_test']."</strong></span>";
+																			}else{
+																				?>
+																				<img src="{{ asset('public//ipledgeimports/pregnancy_test/'.$user_case_management_data['pregnancy_test']) }}" alt="{{$user_case_management_data['pregnancy_test'] }}">
+																			<?php }
 
 
-							<input type="hidden" name="case_id" value="{{$user_case_management_data['id']}}">
+																		}?>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
 
-							<input type="submit" name="submit_blood_report" class="btn btn-secondry" id="uploadBtn_blood_test">
-						</span>
-						{!! Form::close() !!}
-					</div>
+													<div class="col-md-12 form-group mtb32">
+														<div class="inner-section">
+															<div class="row">
+																<div class="col-lg-2 col-xl-2 col-md-12">
+																	<strong> Blood-work: </strong>
+																</div>
+																<div class="col-lg-6 col-xl-6 col-md-12">
+																	{!! Form::open(array('route' => 'upload_blood_work_test_report','method'=>'POST','enctype'=>"multipart/form-data",'id'=>'p_test_form')) !!}
 
-					<div class="col-lg-4 col-xl-4 col-md-12">
-						<div class="pdfblock">
+																	<span>
 
-									<?php 
-									if($user_case_management_data['blood_work'] != ''){ 
-										$path_info1 = pathinfo($user_case_management_data['blood_work']);
-
-										$file_type1 = $path_info1['extension'];
-
-										if($file_type1 == 'pdf'){
-											echo "<span><strong>".$user_case_management_data['blood_work']."</strong></span>";
-
-										}else{
-											?>
-											<img src="{{ asset('public//ipledgeimports/blood_work/'.$user_case_management_data['blood_work']) }}" alt="{{$user_case_management_data['blood_work'] }}" width="500" height="600">
-										<?php }
-									}
-									?>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-						<div class="col-md-12 form-group mtb32">
-							<div class="inner-section">
-								<div class="row">
-									<div class="col-lg-2 col-xl-2 col-md-12">
-										<strong> I Pledge Agreement: </strong>
-									</div>
-									<div class="col-lg-6 col-xl-6 col-md-12">
-										<?php 
-										if($user_case_management_data['i_pledge_agreement'] == 'verified'){ ?>
-											<input type="text" name="i_pledge_agreement" class="btn btn-secondry" value="Verified" id="i_pledge_agreement" disabled="true">
-										<?php }else{	
-											?>
-											{!! Form::open(array('route' => 'i_pledge_agreement','method'=>'POST','enctype'=>"multipart/form-data",'id'=>'i_pledge_agreement_form')) !!}
-
-											<span>
-												<input type="text" name="i_pledge_agreement" class="btn btn-secondry" value="Verify" id="i_pledge_agreement" >
+																		<input type="file" name="blood_work" class="btn btn-secondry pregnecyrepot" value="Upload Blood Work" >
 
 
-												<input type="hidden" name="case_id" value="{{$user_case_management_data['id']}}">
+																		<input type="hidden" name="case_id" value="{{$user_case_management_data['id']}}">
 
-												<input type="submit" name="submit_i_pledge_agreement" class="btn btn-secondry" id="submit_i_pledge_agreement" style="display: none;">
-											</span>
+																		<input type="submit" name="submit_blood_report" class="btn btn-secondry" id="uploadBtn_blood_test">
+																	</span>
+																	{!! Form::close() !!}
+																</div>
 
-											{!! Form::close() !!}
-										<?php } ?>
+																<div class="col-lg-4 col-xl-4 col-md-12">
+																	<div class="pdfblock">
 
-									</div>
-								</div>
-							</div>
-						</div>
-			</div>
-		</div>
-<?php } ?>
-</div>
+																		<?php 
+																		if($user_case_management_data['blood_work'] != ''){ 
+																			$path_info1 = pathinfo($user_case_management_data['blood_work']);
+
+																			$file_type1 = $path_info1['extension'];
+
+																			if($file_type1 == 'pdf'){
+																				echo "<span><strong>".$user_case_management_data['blood_work']."</strong></span>";
+
+																			}else{
+																				?>
+																				<img src="{{ asset('public//ipledgeimports/blood_work/'.$user_case_management_data['blood_work']) }}" alt="{{$user_case_management_data['blood_work'] }}" width="500" height="600">
+																			<?php }
+																		}
+																		?>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-md-12 form-group mtb32">
+																<div class="inner-section">
+																	<div class="row">
+																		<div class="col-lg-2 col-xl-2 col-md-12">
+																			<strong> I Pledge Agreement: </strong>
+																		</div>
+																		<div class="col-lg-6 col-xl-6 col-md-12">
+																			<?php 
+																			if($user_case_management_data['i_pledge_agreement'] == 'verified'){ ?>
+																				<input type="text" name="i_pledge_agreement" class="btn btn-secondry" value="Verified" id="i_pledge_agreement" disabled="true">
+																			<?php }else{	
+																				?>
+																				{!! Form::open(array('route' => 'i_pledge_agreement','method'=>'POST','enctype'=>"multipart/form-data",'id'=>'i_pledge_agreement_form')) !!}
+
+																				<span>
+																					<input type="text" name="i_pledge_agreement" class="btn btn-secondry" value="Verify" id="i_pledge_agreement" >
+
+
+																					<input type="hidden" name="case_id" value="{{$user_case_management_data['id']}}">
+
+																					<input type="submit" name="submit_i_pledge_agreement" class="btn btn-secondry" id="submit_i_pledge_agreement" style="display: none;">
+																				</span>
+
+																				{!! Form::close() !!}
+																			<?php } ?>
+
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												<?php } ?>
+											</div>
 											<!-- close Action Item-->
 										</div>
 									</section>
-								</div>
+								<!-- </div> -->
 							</div>
 						</div>  
 						<!--End 1st tab-->
 
 						<!--start 2nd tab-->
-{{-- @if(session()->has('que_current_tab'))
- @php
-    $current_tab_id = 'home'.session()->get('que_current_tab') ;
-    $activeTab = 1;
-    $active = 1 ;
-   
-   // unset($products[$key]);
-    @endphp
- @else
- @php
- $current_tab_id = "";
- $activeTab = 0 ;
- $active = 0 ;	
- @endphp
- @endif --}}
+						{{-- @if(session()->has('que_current_tab'))
+						@php
+						$current_tab_id = 'home'.session()->get('que_current_tab') ;
+						$activeTab = 1;
+						$active = 1 ;
 
- @php
- Session::forget('que_current_tab');
- @endphp
+						// unset($products[$key]);
+						@endphp
+						@else
+						@php
+						$current_tab_id = "";
+						$activeTab = 0 ;
+						$active = 0 ;	
+						@endphp
+						@endif --}}
+
+						@php
+						Session::forget('que_current_tab');
+						@endphp
 						<div id="questions" class="tab-pane fade in">					    
 
 							<div class="row" style="padding: 10px;">
@@ -321,111 +320,111 @@ if($user_case_management_data['product_type'] == "accutane"){?>
 														<h4><strong>Que: <?php echo $questions; ?></strong></h4>
 
 														<p>Ans: <?php echo $an; ?>
-														 </p>
+													</p>
 
 
-													</div>
 												</div>
-												<?php $i++ ?>
-												@endforeach
 											</div>
+											<?php $i++ ?>
 											@endforeach
-											</div>
-										</section>
+										</div>
+										@endforeach
 									</div>
-								</div>
-
-							</div>  
-
-
-
-							<!--end 2nd tab-->
-
-							<!--start 3rd tab-->
-							<div id="skincare_summary" class="tab-pane fade in">
-								<div class="row" style="padding: 20px;">
-									<div class="col-md-12">
-										<section class="card">
-											<div class="card-body">
-												<div class="box-block mtb32">
-													<h3 class="font-weight-bold"><span class="text-underline">Skincare Summary</span></h3>
-												</div>
-											</div>
-										</section>
-									</div>
-								</div>
-							</div> 
-							<!--end 3rd tab-->
-
-							<!--start 4th tab-->
-							<div id="action_items" class="tab-pane fade in ">
-								<div class="row" style="padding: 20px;">
-									<div class="col-md-12">
-										<section class="card">
-											<div class="card-body">
-												<div class="box-block mtb32">
-													<h3 class="font-weight-bold"><span class="text-underline">Action Items</span></h3>
-												</div>
-											</div>
-										</section>
-									</div>
-								</div>
-							</div> 
-							<!--end 4th tab-->
-
-							<!--start 5th tab-->
-							<div id="messages" class="tab-pane fade in ">
-								<div class="row" style="padding: 20px;">
-									<div class="col-md-12">
-										<section class="card">
-											<div class="card-body">
-												<div class="box-block mtb32">
-													<h3 class="font-weight-bold"><span class="text-underline">Messages goes here</span></h3>
-												</div>
-											</div>
-										</section>
-									</div>
-								</div>
+								</section>
 							</div>
-							<!--end 5th tab-->
+						</div>
 
-							<!--start 6th tab-->
-							<div id="photos" class="tab-pane fade in ">
-								<div class="row" style="padding: 20px;">
-									<div class="col-md-12">
-										<section class="card">
-											<div class="card-body">
-												<div class="box-block mtb32">
-													<h3 class="font-weight-bold"><span class="text-underline">Photos</span></h3>
-												</div>
-											</div>
-										</section>
-									</div>
-								</div>
-							</div>
-							<!--end 6th tab-->
+					</div>  
 
-							<!--start 7th tab-->
-							<div id="payments" class="tab-pane fade in ">
-								<div class="row" style="padding: 20px;">
-									<div class="col-md-12">
-										<section class="card">
-											<div class="card-body">
-												<div class="box-block mtb32">
-													<h3 class="font-weight-bold"><span class="text-underline">Payments</span></h3>
-												</div>
-											</div>
-										</section>
+
+
+					<!--end 2nd tab-->
+
+					<!--start 3rd tab-->
+					<div id="skincare_summary" class="tab-pane fade in">
+						<div class="row" style="padding: 20px;">
+							<div class="col-md-12">
+								<section class="card">
+									<div class="card-body">
+										<div class="box-block mtb32">
+											<h3 class="font-weight-bold"><span class="text-underline">Skincare Summary</span></h3>
+										</div>
 									</div>
-								</div>
+								</section>
 							</div>
-							<!--end 7th tab--> 
+						</div>
+					</div> 
+					<!--end 3rd tab-->
+
+					<!--start 4th tab-->
+					<div id="action_items" class="tab-pane fade in ">
+						<div class="row" style="padding: 20px;">
+							<div class="col-md-12">
+								<section class="card">
+									<div class="card-body">
+										<div class="box-block mtb32">
+											<h3 class="font-weight-bold"><span class="text-underline">Action Items</span></h3>
+										</div>
+									</div>
+								</section>
+							</div>
+						</div>
+					</div> 
+					<!--end 4th tab-->
+
+					<!--start 5th tab-->
+					<div id="messages" class="tab-pane fade in ">
+						<div class="row" style="padding: 20px;">
+							<div class="col-md-12">
+								<section class="card">
+									<div class="card-body">
+										<div class="box-block mtb32">
+											<h3 class="font-weight-bold"><span class="text-underline">Messages goes here</span></h3>
+										</div>
+									</div>
+								</section>
+							</div>
 						</div>
 					</div>
-				</section>
+					<!--end 5th tab-->
+
+					<!--start 6th tab-->
+					<div id="photos" class="tab-pane fade in ">
+						<div class="row" style="padding: 20px;">
+							<div class="col-md-12">
+								<section class="card">
+									<div class="card-body">
+										<div class="box-block mtb32">
+											<h3 class="font-weight-bold"><span class="text-underline">Photos</span></h3>
+										</div>
+									</div>
+								</section>
+							</div>
+						</div>
+					</div>
+					<!--end 6th tab-->
+
+					<!--start 7th tab-->
+					<div id="payments" class="tab-pane fade in ">
+						<div class="row" style="padding: 20px;">
+							<div class="col-md-12">
+								<section class="card">
+									<div class="card-body">
+										<div class="box-block mtb32">
+											<h3 class="font-weight-bold"><span class="text-underline">Payments</span></h3>
+										</div>
+									</div>
+								</section>
+							</div>
+						</div>
+					</div>
+					<!--end 7th tab--> 
+				</div>
 			</div>
-		</div>
+		</section>
 	</div>
+</div>
+</div>
 </div>
 @endsection
 

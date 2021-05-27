@@ -55,7 +55,7 @@ class CaseManagementController extends Controller
     public function show($id)
     {
       $user_case_management_data = CaseManagement::join('users','case_managements.user_id', '=', 'users.id')->select('case_managements.*','users.first_name','users.last_name','users.email','users.mobile','users.gender')->where('case_managements.id',$id)->first();
-
+      
       $category = QuizCategory::pluck('name', 'id')->toArray();
 
       $answers_data = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->get();

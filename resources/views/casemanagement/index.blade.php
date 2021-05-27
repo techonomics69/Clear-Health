@@ -60,7 +60,7 @@
                     
                     <tr>
                       <td>{{ ++$i }}</td>           
-                      <td>{{ $case_data['created_at'] }}</td> 
+                      <td>{{ $case_data['created_at']->format('d/m/Y') }}</td> 
                       <td>{{ $case_data['md_case_id'] }}</td>
                       <td>{{ $case_data['ref_id']}}</td>
                       <td><?php if($case_data['md_status'] ==0){echo 'pending ';}else if($case_data['md_status'] ==1){echo 'support';}else{echo 'accepted';} ?></td>

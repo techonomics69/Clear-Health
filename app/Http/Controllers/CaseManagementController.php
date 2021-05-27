@@ -58,21 +58,19 @@ class CaseManagementController extends Controller
 
       $category = QuizCategory::pluck('name', 'id')->toArray();
 
-      $answers_data = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->get();
       
-
-
-
-
-       
-        //print_r($value->category_id);
-        $general = Answers::where('category_id', $answers_data[0]['category_id'])->get();
-        //$accutane = Answers::where("category_id",$id)->first();
-        //$topical = Answers::where("category_id", $answers_data->category_id)->get();
-echo "<pre>";
+      $general = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',7)->get();
+      echo "<pre>";
 print_r($general);
 echo "</pre>";
 die(); 
+      
+       
+        //print_r($value->category_id);
+        $general = Answers::where('category_id',$answers_data[0]['category_id'])->get();
+        $accutane = Answers::where("category_id",$answers_data[0]['category_id'])->get();
+        //$topical = Answers::where("category_id", $answers_data->category_id)->get();
+
 
 
 

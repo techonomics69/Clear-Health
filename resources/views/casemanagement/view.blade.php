@@ -38,7 +38,6 @@
 	Session::forget('que_current_tab');
 	@endphp --}}
 
-{{dd($user_case_management_data['product_type'])}}
 	<div class="content-wrapper">
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-12 mb-2">

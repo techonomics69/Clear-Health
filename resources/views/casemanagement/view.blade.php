@@ -261,7 +261,8 @@
 										</div>
 									</section>
 								</div>
-						 
+							</div>
+						</div>  
 						<!--End 1st tab-->
 
 						<!--start 2nd tab-->

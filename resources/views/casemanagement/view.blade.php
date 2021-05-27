@@ -219,7 +219,7 @@
 						<section class="card">
 							<div class="card-body">
 								<div class="box-block mtb32">
-									<h3 class="font-weight-bold"><span class="text-underline">Action Items</span></h3>
+									
 
 									<!-- Action Item-->
 											<?php
@@ -364,7 +364,7 @@
 										<?php } ?>
 									
 									<!-- close Action Item-->
-								</div>
+								
 							</div>
 						</section>
 					</div>

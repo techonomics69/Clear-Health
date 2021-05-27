@@ -69,11 +69,11 @@ class CaseManagementController extends Controller
 
         foreach ($answers as $key => $value) {
           $category_ids = $value->category_id;
-print_r($category_ids);
-die();
-          if($category_id == 7) {
+/*print_r($category_ids);
+die();*/
+          if($category_ids == 7) {
             $general =  $answers;
- print_r( $general);
+ print_r($general);
             die();
           }
           if ($category_id == 8) {

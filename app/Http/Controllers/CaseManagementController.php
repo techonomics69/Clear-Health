@@ -63,7 +63,7 @@ class CaseManagementController extends Controller
 foreach ( $answers_data as $key => $value) {
        
         $id = $value->category_id;
-       $general = Answers::where('category_id', $id)->get();
+       $general = Answers::where('category_id', $id)->first();
      // $accutane = Answers::where("category_id", $answers_data['category_id'])->get();
       //$Topical = Answers::where("category_id", $answers_data['category_id'])->get();
 echo "<pre>";

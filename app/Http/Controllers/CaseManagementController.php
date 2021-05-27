@@ -63,38 +63,37 @@ class CaseManagementController extends Controller
       // $quiz= QuizAnswer::join('quizzes','quiz_answers.question_id', '=', 'quizzes.id')->select('quiz_answers.*','quizzes.question','quizzes.category_id')->where('case_id', $user_case_management_data['id'])->OrderBy('id', 'ASC')->get();
 
       //if(!empty($answers_data)){
-        $answers = json_decode($answers_data[0]['answer']);
 
-
+      $answers = json_decode($answers_data[0]['answer']);
+      
+     
         foreach ($answers as $key => $value) {
+        if(isset($value->answer))
+        {
           $category_ids = $value->category_id;
-/*print_r($category_ids);
-die();*/
-          if($category_ids == 7) {
+           print_r($category_ids);
+            die();
+
+            if($category_ids == 7) {
             $general =  $answers;
              /*print_r( $general);
-            die();*/
- 
-          }
-          if ($category_id == 8) {
+             die();*/
+           }
+           if ($category_id == 8) {
             $accutane =  $answers;
-            print_r($accutane);
-            die();
-           
+            /*print_r($accutane);
+            die(); */
           }
           if ($category_id == 9){
             $topical =  $answers;
            /* print_r($topical);
-            die();*/
-
-          }
-
-        }
-
-      //}
-
-      return view('casemanagement.view',compact('user_case_management_data','category','answers'));
-    }
+           die();*/
+         }
+       }
+     }
+   
+     return view('casemanagement.view',compact('user_case_management_data','category','answers'));
+   }
 
     /**
      * Show the form for editing the specified resource.

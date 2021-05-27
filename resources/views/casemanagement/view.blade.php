@@ -177,7 +177,8 @@
 														?>
 														<h4><strong>Que: <?php echo $questions; ?></strong></h4>
 
-														<p>Ans: <?php echo $an; ?> </p>
+														<p>Ans: <?php echo $an; ?>
+														 </p>
 
 
 													</div>

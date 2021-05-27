@@ -68,9 +68,9 @@ class CaseManagementController extends Controller
 
 
         foreach ($answers as $key => $value) {
-          $category_id=$value['category_id'];
+          //$category_id = $value['category_id'];
 
-print_r($category_id);
+print_r($value['category_id']);
 die();
           if($category_id == 7) {
             $general =  $answers;

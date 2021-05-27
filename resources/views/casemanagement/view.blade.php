@@ -257,7 +257,7 @@
 													</div>
 											</div>
 										<?php } ?>
-									</div>
+									
 									<!-- close Action Item-->
 								</div>
 							</section>

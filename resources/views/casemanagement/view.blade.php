@@ -163,7 +163,7 @@
 								<div class="tab-content">
 									<?php $i=0 ?>
 									@foreach($category as $key => $data)
-									<?php if($key == 7) { }?>
+									<?php if($key == 7) { ?>
 									<div id="home{{$key}}" class="tab-pane fade in @if($i== 0) active show @endif">	
 									@foreach($general_que as $key => $general_qa)
 <div class="row" style="padding: 10px;">
@@ -181,6 +181,7 @@ $getquestions = $general_qa->question;
 </div>
 @endforeach
 									</div>
+								<?php } ?>
 								<?php $i++ ?>
 								@endforeach
 							</div>

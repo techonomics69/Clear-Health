@@ -68,26 +68,7 @@ class CaseManagementController extends Controller
       
      
         foreach ($answers as $key => $value) {
-        if(isset($value->answer))
-        {
-          $category_ids = $value->category_id;
-          print_r($category_ids);
-            if($category_ids == 7) {
-            $general =  $answers;
-             /*print_r( $general);
-             die();*/
-           }
-           if ($category_ids == 8) {
-            $accutane =  $answers;
-            /*print_r($accutane);
-            die(); */
-          }
-          if ($category_ids == 9){
-            $topical =  $answers;
-           /* print_r($topical);
-           die();*/
-         }
-       }
+        echo "$key => $value <br><br>";
      }
    
      return view('casemanagement.view',compact('user_case_management_data','category','answers'));

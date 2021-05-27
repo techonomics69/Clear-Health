@@ -1448,4 +1448,53 @@ public function detach_file_from_case(Request $request){
   }
 
 
+  public function sendMessageToAdmin(Request $request){
+    $user_id = $request['user_id'];
+    $case_id = $request['case_id'];
+    $system_case_id = $request['system_case_id'];
+
+    //code to upload files ids
+     $documents = $request->file('file');
+
+     if(!empty($documents)){
+      $file =  $documents->getClientOriginalName();
+      $doc_file_name =  time().'-'.$file;
+      
+      if (!file_exists(public_path('/Message_files'))) {
+        File::makeDirectory(public_path('/Message_files'),0777,true,true);
+      }
+      $destinationPath = public_path('/Message_files');
+      $documents->move($destinationPath, $doc_file_name);
+
+      chmod($destinationPath."/".$doc_file_name, 0777);
+
+      $file_path = 'public/Message_files/' .$file;
+    }else{
+      $file = "";
+    }
+    // end of code to upload files ids
+
+    $postfields = array();
+    $postfields['text'] = $request['text']; 
+    
+
+    $postfields = json_encode($postfields);
+
+    $input_data = array();
+
+    $input_data['md_case_id'] = $case_id;
+    $input_data['user_id'] = $user_id;
+    $input_data['case_id'] = $system_case_id;
+    $input_data['text'] = $message_data->text;
+    $input_data['file'] = $file_path;
+    $message_data = Messages::create($input_data);
+
+    $message_file_data = array();
+
+    return $this->sendResponse($message_data,'Message created successfully');
+
+   
+  }
+
+
 }

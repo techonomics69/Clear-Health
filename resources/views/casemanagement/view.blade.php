@@ -164,26 +164,47 @@
 									<?php $i=0 ?>
 									@foreach($category as $key => $data)
 									<div id="home{{$key}}" class="tab-pane fade in @if($i== 0) active show @endif">	
-										@foreach($answers as $key => $ans)
+										
 										<div class="row" style="padding: 10px;">
 											<div class="col-md-12">
-												<?php
 												
-												$questions = $ans->question;
-												if(isset($ans->answer)){
-													$answer =  (array)$ans->answer;
-													$getanswer= implode(" " , $answer);
-												}
-												?>
-												<h4><strong>Que: <?php echo $questions; ?></strong></h4>
+@foreach($general as $key => $general_qa)
+<div class="row" style="padding: 10px;">
+	<div class="col-md-12">
+<?php  
 
-												<p>Ans: <?php echo $getanswer; ?>
-											</p>
+$questions = $general_qa->question;
+	if(isset($general_qa->answer)){
+	$answer =  (array)$general_qa->answer;
+	$getanswer= implode(" " , $answer);
+	} ?>
+<h4><strong>Que: <?php echo $questions; ?></strong></h4>
+<p>Ans: <?php echo $getanswer; ?> ?>
+	</div>
+</div>
+@endforeach
+@foreach($accutane as $key => $accutane_qa)
+<div class="row" style="padding: 10px;">
+	<div class="col-md-12">
+<?php  echo "<h4><strong>Que:".$accutane_qa['question']."</strong></h4>";
+	   echo "<p>Ans:".$accutane_qa['answer']."</p>"; ?>
+	</div>
+</div>
+@endforeach
+@foreach($topical as $key => $topical_qa)
+<div class="row" style="padding: 10px;">
+	<div class="col-md-12">
+<?php  echo "<h4><strong>Que:".$accutane_qa['question']."</strong></h4>";
+	  echo "<p>Ans:".$accutane_qa['answer']."</p>"; ?>
+	</div>
+</div>
+@endforeach
+
 
 										</div>
 									</div>
 									<?php $i++ ?>
-									@endforeach
+									
 								</div>
 								@endforeach
 							</div>

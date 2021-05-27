@@ -60,20 +60,30 @@ class CaseManagementController extends Controller
 
 
       $general = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',7)->get();
-      $general_que=json_decode($general[0]["answer"]);
+      if(!empty($general)){
+        $general_que=json_decode($general[0]["answer"]);
+      } else{
+        $general_que = array(); 
+      }
 
       $accutane = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',8)->get();
-      $accutane_que=json_decode($accutane[0]["answer"]);
-echo "<pre>";
-print_r($accutane_que);
-echo "</pre>";
-die();
-      $topical = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',9)->get();
-       $topical_que=json_decode($topical[0]["answer"]);
-       
-   
-     return view('casemanagement.view',compact('user_case_management_data','category','general','accutane','topical'));
-   }
+      if (!empty($accutane)) {
+       $accutane_que=json_decode($accutane[0]["answer"]);
+     }else{
+      $accutane_que = array();
+    }
+
+
+    $topical = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',9)->get();
+    if(!empty($topical)) {
+     $topical_que=json_decode($topical[0]["answer"]);
+   }else{
+    $topical_que = array();
+  }
+
+  return view('casemanagement.view',compact('user_case_management_data','category','general','accutane','topical'));
+
+}
 
     /**
      * Show the form for editing the specified resource.

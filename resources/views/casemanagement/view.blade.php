@@ -262,8 +262,6 @@
 									</section>
 								</div>
 							</div>
-						</div>
-						<!-- </span> -->
 						</div>  
 						<!--End 1st tab-->
 

@@ -173,7 +173,8 @@
 														if(isset($ans->answer)){
 															$answer =  $ans->answer;
 
-															$ans1 = implode('( ) ' ,$answer);
+															echo implode(" ",$answer);
+															die();
 														}
 														?>
 														<h4><strong>Que: <?php echo $questions; ?></strong></h4>

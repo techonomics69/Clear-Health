@@ -109,6 +109,11 @@ Route::post('forgot_password',[RegisterController::class, 'forgot_password']);
     Route::get('DeleteFile/{id}', [CaseManagementController::class, 'DeleteFile']);
     //end of md api
 
+    //system message API
+    Route::post('sendMessageNonMedical', [CaseManagementController::class, 'sendMessageNonMedical']);
+
+
+
     Route::post('user/update_vouch_status/{id}', [UserController::class, 'updateVerifiedByVouch']);
     Route::get('user/vouch_details/{id}', [UserController::class, 'getVouchedDetails']);
     Route::post('add_recomeended_product', [CaseManagementController::class, 'add_recomeended_product']);

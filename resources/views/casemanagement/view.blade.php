@@ -116,7 +116,112 @@
 												</div>
 											</div>
 
-											<!-- Action Item-->
+								</div>
+							</section>
+						</div>
+					</div>
+				</div>  
+				<!--End 1st tab-->
+
+				<!--start 2nd tab-->
+				{{-- @if(session()->has('que_current_tab'))
+				@php
+				$current_tab_id = 'home'.session()->get('que_current_tab') ;
+				$activeTab = 1;
+				$active = 1 ;
+
+				// unset($products[$key]);
+				@endphp
+				@else
+				@php
+				$current_tab_id = "";
+				$activeTab = 0 ;
+				$active = 0 ;	
+				@endphp
+				@endif --}}
+
+				@php
+				Session::forget('que_current_tab');
+				@endphp
+				<div id="questions" class="tab-pane fade in">					    
+
+					<div class="row" style="padding: 10px;">
+						<div class="col-md-12">
+
+							<section class="card" >
+								<ul class="nav nav-tabs" id="questions-tab-menu">
+
+									@foreach($category as $key => $data)
+									{{-- <li><a class="btn @if($activeTab == 0) active @elseif($current_tab_id == 'home'.$key) active @endif" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li> --}}
+
+									<li><a class="btn" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li>
+									<?php //$activeTab++ ?> 
+									@endforeach
+								</ul>
+
+
+								<div class="tab-content">
+									<?php $i=0 ?>
+									@foreach($category as $key => $data)
+									<div id="home{{$key}}" class="tab-pane fade in @if($i== 0) active show @endif">	
+										@foreach($answers as $key => $ans)
+										<div class="row" style="padding: 10px;">
+											<div class="col-md-12">
+												<?php
+												$questions = $ans->question;
+												if(isset($ans->answer)){
+													$answer =  (array)$ans->answer;
+													$getanswer= implode(" " , $answer);
+												}
+												?>
+												<h4><strong>Que: <?php echo $questions; ?></strong></h4>
+
+												<p>Ans: <?php echo $getanswer; ?>
+											</p>
+
+										</div>
+									</div>
+									<?php $i++ ?>
+									@endforeach
+								</div>
+								@endforeach
+							</div>
+						</section>
+					</div>
+				</div>
+
+			</div>  
+
+
+
+			<!--end 2nd tab-->
+
+			<!--start 3rd tab-->
+			<div id="skincare_summary" class="tab-pane fade in">
+				<div class="row" style="padding: 20px;">
+					<div class="col-md-12">
+						<section class="card">
+							<div class="card-body">
+								<div class="box-block mtb32">
+									<h3 class="font-weight-bold"><span class="text-underline">Skincare Summary</span></h3>
+								</div>
+							</div>
+						</section>
+					</div>
+				</div>
+			</div> 
+			<!--end 3rd tab-->
+
+			<!--start 4th tab-->
+			<div id="action_items" class="tab-pane fade in ">
+				<div class="row" style="padding: 20px;">
+					<div class="col-md-12">
+						<section class="card">
+							<div class="card-body">
+								<div class="box-block mtb32">
+									<h3 class="font-weight-bold"><span class="text-underline">Action Items</span></h3>
+
+									<!-- Action Item-->
 											<?php
 											if($user_case_management_data['product_type'] == "accutane"){?>
 												<div class="box-block mtb32">
@@ -259,110 +364,6 @@
 										<?php } ?>
 									
 									<!-- close Action Item-->
-								</div>
-							</section>
-						</div>
-					</div>
-				</div>  
-				<!--End 1st tab-->
-
-				<!--start 2nd tab-->
-				{{-- @if(session()->has('que_current_tab'))
-				@php
-				$current_tab_id = 'home'.session()->get('que_current_tab') ;
-				$activeTab = 1;
-				$active = 1 ;
-
-				// unset($products[$key]);
-				@endphp
-				@else
-				@php
-				$current_tab_id = "";
-				$activeTab = 0 ;
-				$active = 0 ;	
-				@endphp
-				@endif --}}
-
-				@php
-				Session::forget('que_current_tab');
-				@endphp
-				<div id="questions" class="tab-pane fade in">					    
-
-					<div class="row" style="padding: 10px;">
-						<div class="col-md-12">
-
-							<section class="card" >
-								<ul class="nav nav-tabs" id="questions-tab-menu">
-
-									@foreach($category as $key => $data)
-									{{-- <li><a class="btn @if($activeTab == 0) active @elseif($current_tab_id == 'home'.$key) active @endif" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li> --}}
-
-									<li><a class="btn" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li>
-									<?php //$activeTab++ ?> 
-									@endforeach
-								</ul>
-
-
-								<div class="tab-content">
-									<?php $i=0 ?>
-									@foreach($category as $key => $data)
-									<div id="home{{$key}}" class="tab-pane fade in @if($i== 0) active show @endif">	
-										@foreach($answers as $key => $ans)
-										<div class="row" style="padding: 10px;">
-											<div class="col-md-12">
-												<?php
-												$questions = $ans->question;
-												if(isset($ans->answer)){
-													$answer =  (array)$ans->answer;
-													$getanswer= implode(" " , $answer);
-												}
-												?>
-												<h4><strong>Que: <?php echo $questions; ?></strong></h4>
-
-												<p>Ans: <?php echo $getanswer; ?>
-											</p>
-
-										</div>
-									</div>
-									<?php $i++ ?>
-									@endforeach
-								</div>
-								@endforeach
-							</div>
-						</section>
-					</div>
-				</div>
-
-			</div>  
-
-
-
-			<!--end 2nd tab-->
-
-			<!--start 3rd tab-->
-			<div id="skincare_summary" class="tab-pane fade in">
-				<div class="row" style="padding: 20px;">
-					<div class="col-md-12">
-						<section class="card">
-							<div class="card-body">
-								<div class="box-block mtb32">
-									<h3 class="font-weight-bold"><span class="text-underline">Skincare Summary</span></h3>
-								</div>
-							</div>
-						</section>
-					</div>
-				</div>
-			</div> 
-			<!--end 3rd tab-->
-
-			<!--start 4th tab-->
-			<div id="action_items" class="tab-pane fade in ">
-				<div class="row" style="padding: 20px;">
-					<div class="col-md-12">
-						<section class="card">
-							<div class="card-body">
-								<div class="box-block mtb32">
-									<h3 class="font-weight-bold"><span class="text-underline">Action Items</span></h3>
 								</div>
 							</div>
 						</section>

@@ -182,7 +182,7 @@ $questions = $general_qa->question;
 	$getanswer= implode(" " , $answer);
 	} ?>
 <h4><strong>Que: <?php //echo $questions; ?></strong></h4>
-<p>Ans: <?php //echo $getanswer; ?> ?>
+<p>Ans: <?php //echo $getanswer; ?> 
 	</div>
 </div>
 @endforeach

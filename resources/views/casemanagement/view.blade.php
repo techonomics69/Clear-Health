@@ -314,12 +314,12 @@
 														$questions = $ans->question;
 														if(isset($ans->answer)){
 															$answer =  (array)$ans->answer;
-															$an= implode(" " , $answer);
+															$getanswer= implode(" " , $answer);
 														}
 														?>
 														<h4><strong>Que: <?php echo $questions; ?></strong></h4>
 
-														<p>Ans: <?php echo $an; ?>
+														<p>Ans: <?php echo $getanswer; ?>
 													</p>
 
 

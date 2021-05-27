@@ -61,6 +61,9 @@ class CaseManagementController extends Controller
       $answers_data = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->get();
       
 
+
+
+
        
         //print_r($value->category_id);
         $general = Answers::where('category_id', $answers_data[0]['category_id'])->get();

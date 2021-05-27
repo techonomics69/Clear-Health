@@ -178,7 +178,7 @@ $getquestions = $general_qa->question;
 	if(isset($general_qa->answer)){
 	$answer =  (array)$general_qa->answer;
 	$getanswer= implode(" " , $answer);
-	} ?>
+	}  ?>
 <h4><strong>Que: <?php echo $getquestions; ?></strong></h4>
 <p>Ans: <?php echo $getanswer; ?> 
 	</div>

@@ -171,7 +171,7 @@
 														<?php
 														$questions = $ans->question;
 														if(isset($ans->answer)){
-															$answer =  object_to_array($ans->answer);
+															$answer =  (array)$ans->answer;
 															$an= implode(" " , $answer);
 														}
 														?>

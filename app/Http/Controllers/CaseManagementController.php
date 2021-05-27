@@ -62,7 +62,7 @@ class CaseManagementController extends Controller
       $general = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',7)->get();
 
       echo "<pre>";
-print_r(json_decode($general["answer"]));
+print_r(json_decode($general[0]["answer"]));
 echo "</pre>";
 die(); 
       

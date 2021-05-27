@@ -186,7 +186,7 @@ $getquestions = $general_qa->question;
 @endforeach
 
 
-@foreach($accutane as $key => $accutane_qa)
+@foreach($accutane_que as $key => $accutane_qa)
 <div class="row" style="padding: 10px;">
 	<div class="col-md-12">
 <?php  echo "<h4><strong>Que:".$accutane_qa['question']."</strong></h4>";
@@ -196,7 +196,7 @@ $getquestions = $general_qa->question;
 @endforeach
 
 
-@foreach($topical as $key => $topical_qa)
+@foreach($topical_que as $key => $topical_qa)
 <div class="row" style="padding: 10px;">
 	<div class="col-md-12">
 <?php  echo "<h4><strong>Que:".$accutane_qa['question']."</strong></h4>";

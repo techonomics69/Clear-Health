@@ -60,21 +60,19 @@ class CaseManagementController extends Controller
 
       $answers_data = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->get();
       
-foreach ( $answers_data as $key => $value) {
+foreach ($answers_data as $key => $value) {
        
-        $id = $value->category_id;
-        $general = Answers::where('category_id', $id)->first();
+        print_r($value->category_id);
+        //$general = Answers::where('category_id', $id)->first();
         //$accutane = Answers::where("category_id",$id)->first();
       //$Topical = Answers::where("category_id", $answers_data['category_id'])->get();
-echo "<pre>";
+/*echo "<pre>";
 print_r($general);
 echo "</pre>";
 die(); 
-
+*/
      }
 
-     
-      // $quiz= QuizAnswer::join('quizzes','quiz_answers.question_id', '=', 'quizzes.id')->select('quiz_answers.*','quizzes.question','quizzes.category_id')->where('case_id', $user_case_management_data['id'])->OrderBy('id', 'ASC')->get();
 
       //if(!empty($answers_data)){
 

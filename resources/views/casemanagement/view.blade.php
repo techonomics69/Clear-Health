@@ -171,8 +171,10 @@
 @foreach($general as $key => $general_qa)
 <div class="row" style="padding: 10px;">
 	<div class="col-md-12">
-<?php  
+<?php 
+echo"<pre>"; 
 print_r($general_qa);
+echo"</pre>";
 die();
 $getquestions = $general_qa->question;
 

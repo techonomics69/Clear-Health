@@ -63,9 +63,11 @@ class CaseManagementController extends Controller
       // $quiz= QuizAnswer::join('quizzes','quiz_answers.question_id', '=', 'quizzes.id')->select('quiz_answers.*','quizzes.question','quizzes.category_id')->where('case_id', $user_case_management_data['id'])->OrderBy('id', 'ASC')->get();
 
       //if(!empty($answers_data)){
-      $answers = json_decode($answers_data[0]['answer']);
 
-      if(isset($answers) && $answers = ''){
+if(isset($answers_data) &&  $answers_data = ''){
+
+      $answers = json_decode($answers_data[0]['answer']);
+      
         foreach ($answers as $key => $value) {
           $category_ids = $value->category_id;
            /*print_r($category_ids);
@@ -87,6 +89,7 @@ class CaseManagementController extends Controller
          }
        }
      }
+   
      return view('casemanagement.view',compact('user_case_management_data','category','answers'));
    }
 

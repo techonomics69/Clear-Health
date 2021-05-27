@@ -65,7 +65,7 @@ echo "</pre>";
 die();
 
       $general = Answers::where("category_id",$answers_data['category_id'])->get();
-      $accutane = Answers::where("category_id", $answers_data["category_id]")->get();
+      $accutane = Answers::where("category_id", $answers_data['category_id'])->get();
       $Topical = Answers::where("category_id", $answers_data['category_id'])->get();
 
       // $quiz= QuizAnswer::join('quizzes','quiz_answers.question_id', '=', 'quizzes.id')->select('quiz_answers.*','quizzes.question','quizzes.category_id')->where('case_id', $user_case_management_data['id'])->OrderBy('id', 'ASC')->get();

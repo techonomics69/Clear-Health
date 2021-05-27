@@ -36,6 +36,7 @@ class AnswerController extends BaseController
             $validator = Validator::make($data, [
                 'user_id' => 'required',
                 'case_id' => 'required',
+                'category_id' => 'required',
             ]);
             if($validator->fails()){
                 return $this->sendError('Validation Error.', $validator->errors()->all());       

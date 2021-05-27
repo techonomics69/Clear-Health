@@ -1508,7 +1508,7 @@ public function detach_file_from_case(Request $request){
     $user_id = $request['user_id'];
     $md_case_id = $request['md_case_id'];
 
-    $message_details = Messages::select('messages.*','message_files.*')->where('case_id', $case_id)->where('md_case_id',$md_case_id)->where('user_id',$user_id)->get();
+    $message_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')->select('messages.*','message_files.*')->where('case_id', $case_id)->where('md_case_id',$md_case_id)->where('user_id',$user_id)->get();
 
     echo "<pre>";
     print_r($message_details);

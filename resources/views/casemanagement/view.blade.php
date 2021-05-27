@@ -168,7 +168,7 @@
 										<!-- <div class="row" style="padding: 10px;">
 											<div class="col-md-12"> -->
 												
-@foreach($general as $key => $general_qa)
+@foreach($general_que as $key => $general_qa)
 <div class="row" style="padding: 10px;">
 	<div class="col-md-12">
 <?php 

@@ -64,10 +64,9 @@ class CaseManagementController extends Controller
 
       //if(!empty($answers_data)){
 
-if(isset($answers_data) &&  $answers_data = ''){
-
       $answers = json_decode($answers_data[0]['answer']);
       
+      if(isset($answers) && $answers= '' ){
         foreach ($answers as $key => $value) {
           $category_ids = $value->category_id;
            /*print_r($category_ids);

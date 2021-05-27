@@ -255,6 +255,8 @@
 															</div>
 														</div>
 													</div>
+												</span>
+											</div>
 												<?php } ?>
 											</div>
 											<!-- close Action Item-->

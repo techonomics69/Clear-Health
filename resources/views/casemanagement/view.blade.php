@@ -171,12 +171,12 @@
 														<?php
 														$questions = $ans->question;
 														if(isset($ans->answer)){
-															$answer =  $ans->answer;
+															$answer1 =  $ans->answer;
 														}
 														?>
 														<h4><strong>Que: <?php echo $questions; ?></strong></h4>
 
-														<p>Ans: <?php print_r($answer); ?> </p>
+														<p>Ans: <?php print_r($answer1); ?> </p>
 
 
 													</div>

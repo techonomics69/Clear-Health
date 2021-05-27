@@ -66,7 +66,7 @@ die();
 
        
         //print_r($value->category_id);
-        $general = Answers::where('category_id', $answers_data->category_id)->get();
+        $general = Answers::where('category_id', $answers_data['category_id'])->get();
         //$accutane = Answers::where("category_id",$id)->first();
         //$topical = Answers::where("category_id", $answers_data->category_id)->get();
 echo "<pre>";

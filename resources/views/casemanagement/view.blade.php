@@ -250,11 +250,11 @@
 
 																	<span>
 
-																		<input type="file" name="pregnancy_test" class="btn btn-secondry pregnecyrepot" value="Upload Report" >
+																		<!-- <input type="file" name="pregnancy_test" class="btn btn-secondry pregnecyrepot" value="Upload Report" >
 
 																		<input type="hidden" name="case_id" value="{{$user_case_management_data['id']}}">
 
-																		<input type="submit" name="submit_test_report" class="btn btn-secondry" id="uploadBtn_pregnancy_test">
+																		<input type="submit" name="submit_test_report" class="btn btn-secondry" id="uploadBtn_pregnancy_test"> -->
 																	</sapn>
 
 

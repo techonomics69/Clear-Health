@@ -65,10 +65,14 @@ class CaseManagementController extends Controller
       //if(!empty($answers_data)){
 
       $answers = json_decode($answers_data[0]['answer']);
-      
+      print_r($answers_data[0]['answer']);
+      die();
      
         foreach ($answers as $key => $value) {
-        echo "$key => $value <br><br>";
+          echo "<pre>";
+        print_r( $value);
+        echo "</pre>";
+
      }
    
      return view('casemanagement.view',compact('user_case_management_data','category','answers'));

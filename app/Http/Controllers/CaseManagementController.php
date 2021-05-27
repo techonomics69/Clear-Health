@@ -65,16 +65,16 @@ class CaseManagementController extends Controller
     if(!empty($answers_data)){
 
       $answers = json_decode($answers_data[0]['answer']);
-      if($answer['category_id'] == 7) {
+      if($answers['category_id'] == 7) {
 $general =  $answers;
 
 print_r($general);
 die();
 }
-if ($answer['category_id'] == 8) {
+if ($answers['category_id'] == 8) {
 $accutane =  $answers;
 }
-if ($answer['category_id'] == 9){
+if ($answers['category_id'] == 9){
 $topical =  $answers;
 }
 

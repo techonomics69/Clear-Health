@@ -255,176 +255,176 @@
 															</div>
 														</div>
 													</div>
-												</span>
-											</div>
-												<?php } ?>
-											</div>
-											<!-- close Action Item-->
-										</div>
-									</section>
-								</div>
-							</div>
-						</div>  
-						<!--End 1st tab-->
-
-						<!--start 2nd tab-->
-						{{-- @if(session()->has('que_current_tab'))
-						@php
-						$current_tab_id = 'home'.session()->get('que_current_tab') ;
-						$activeTab = 1;
-						$active = 1 ;
-
-						// unset($products[$key]);
-						@endphp
-						@else
-						@php
-						$current_tab_id = "";
-						$activeTab = 0 ;
-						$active = 0 ;	
-						@endphp
-						@endif --}}
-
-						@php
-						Session::forget('que_current_tab');
-						@endphp
-						<div id="questions" class="tab-pane fade in">					    
-
-							<div class="row" style="padding: 10px;">
-								<div class="col-md-12">
-
-									<section class="card" >
-										<ul class="nav nav-tabs" id="questions-tab-menu">
-
-											@foreach($category as $key => $data)
-											{{-- <li><a class="btn @if($activeTab == 0) active @elseif($current_tab_id == 'home'.$key) active @endif" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li> --}}
-
-											<li><a class="btn" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li>
-											<?php //$activeTab++ ?> 
-											@endforeach
-										</ul>
-
-
-										<div class="tab-content">
-											<?php $i=0 ?>
-											@foreach($category as $key => $data)
-											<div id="home{{$key}}" class="tab-pane fade in @if($i== 0) active show @endif">	
-												@foreach($answers as $key => $ans)
-												<div class="row" style="padding: 10px;">
-													<div class="col-md-12">
-
-														<?php
-														$questions = $ans->question;
-														if(isset($ans->answer)){
-															$answer =  (array)$ans->answer;
-															$getanswer= implode(" " , $answer);
-														}
-														?>
-														<h4><strong>Que: <?php echo $questions; ?></strong></h4>
-
-														<p>Ans: <?php echo $getanswer; ?>
-													</p>
-
-
 												</div>
 											</div>
-											<?php $i++ ?>
-											@endforeach
-										</div>
-										@endforeach
+										<?php } ?>
 									</div>
-								</section>
-							</div>
-						</div>
-
-					</div>  
-
-
-
-					<!--end 2nd tab-->
-
-					<!--start 3rd tab-->
-					<div id="skincare_summary" class="tab-pane fade in">
-						<div class="row" style="padding: 20px;">
-							<div class="col-md-12">
-								<section class="card">
-									<div class="card-body">
-										<div class="box-block mtb32">
-											<h3 class="font-weight-bold"><span class="text-underline">Skincare Summary</span></h3>
-										</div>
-									</div>
-								</section>
-							</div>
-						</div>
-					</div> 
-					<!--end 3rd tab-->
-
-					<!--start 4th tab-->
-					<div id="action_items" class="tab-pane fade in ">
-						<div class="row" style="padding: 20px;">
-							<div class="col-md-12">
-								<section class="card">
-									<div class="card-body">
-										<div class="box-block mtb32">
-											<h3 class="font-weight-bold"><span class="text-underline">Action Items</span></h3>
-										</div>
-									</div>
-								</section>
-							</div>
-						</div>
-					</div> 
-					<!--end 4th tab-->
-
-					<!--start 5th tab-->
-					<div id="messages" class="tab-pane fade in ">
-						<div class="row" style="padding: 20px;">
-							<div class="col-md-12">
-								<section class="card">
-									<div class="card-body">
-										<div class="box-block mtb32">
-											<h3 class="font-weight-bold"><span class="text-underline">Messages goes here</span></h3>
-										</div>
-									</div>
-								</section>
-							</div>
+									<!-- close Action Item-->
+								</div>
+							</section>
 						</div>
 					</div>
-					<!--end 5th tab-->
+				</div>  
+				<!--End 1st tab-->
 
-					<!--start 6th tab-->
-					<div id="photos" class="tab-pane fade in ">
-						<div class="row" style="padding: 20px;">
-							<div class="col-md-12">
-								<section class="card">
-									<div class="card-body">
-										<div class="box-block mtb32">
-											<h3 class="font-weight-bold"><span class="text-underline">Photos</span></h3>
+				<!--start 2nd tab-->
+				{{-- @if(session()->has('que_current_tab'))
+				@php
+				$current_tab_id = 'home'.session()->get('que_current_tab') ;
+				$activeTab = 1;
+				$active = 1 ;
+
+				// unset($products[$key]);
+				@endphp
+				@else
+				@php
+				$current_tab_id = "";
+				$activeTab = 0 ;
+				$active = 0 ;	
+				@endphp
+				@endif --}}
+
+				@php
+				Session::forget('que_current_tab');
+				@endphp
+				<div id="questions" class="tab-pane fade in">					    
+
+					<div class="row" style="padding: 10px;">
+						<div class="col-md-12">
+
+							<section class="card" >
+								<ul class="nav nav-tabs" id="questions-tab-menu">
+
+									@foreach($category as $key => $data)
+									{{-- <li><a class="btn @if($activeTab == 0) active @elseif($current_tab_id == 'home'.$key) active @endif" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li> --}}
+
+									<li><a class="btn" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li>
+									<?php //$activeTab++ ?> 
+									@endforeach
+								</ul>
+
+
+								<div class="tab-content">
+									<?php $i=0 ?>
+									@foreach($category as $key => $data)
+									<div id="home{{$key}}" class="tab-pane fade in @if($i== 0) active show @endif">	
+										@foreach($answers as $key => $ans)
+										<div class="row" style="padding: 10px;">
+											<div class="col-md-12">
+
+												<?php
+												$questions = $ans->question;
+												if(isset($ans->answer)){
+													$answer =  (array)$ans->answer;
+													$getanswer= implode(" " , $answer);
+												}
+												?>
+												<h4><strong>Que: <?php echo $questions; ?></strong></h4>
+
+												<p>Ans: <?php echo $getanswer; ?>
+											</p>
+
+
 										</div>
 									</div>
-								</section>
+									<?php $i++ ?>
+									@endforeach
+								</div>
+								@endforeach
 							</div>
-						</div>
+						</section>
 					</div>
-					<!--end 6th tab-->
+				</div>
 
-					<!--start 7th tab-->
-					<div id="payments" class="tab-pane fade in ">
-						<div class="row" style="padding: 20px;">
-							<div class="col-md-12">
-								<section class="card">
-									<div class="card-body">
-										<div class="box-block mtb32">
-											<h3 class="font-weight-bold"><span class="text-underline">Payments</span></h3>
-										</div>
-									</div>
-								</section>
+			</div>  
+
+
+
+			<!--end 2nd tab-->
+
+			<!--start 3rd tab-->
+			<div id="skincare_summary" class="tab-pane fade in">
+				<div class="row" style="padding: 20px;">
+					<div class="col-md-12">
+						<section class="card">
+							<div class="card-body">
+								<div class="box-block mtb32">
+									<h3 class="font-weight-bold"><span class="text-underline">Skincare Summary</span></h3>
+								</div>
 							</div>
-						</div>
+						</section>
 					</div>
-					<!--end 7th tab--> 
+				</div>
+			</div> 
+			<!--end 3rd tab-->
+
+			<!--start 4th tab-->
+			<div id="action_items" class="tab-pane fade in ">
+				<div class="row" style="padding: 20px;">
+					<div class="col-md-12">
+						<section class="card">
+							<div class="card-body">
+								<div class="box-block mtb32">
+									<h3 class="font-weight-bold"><span class="text-underline">Action Items</span></h3>
+								</div>
+							</div>
+						</section>
+					</div>
+				</div>
+			</div> 
+			<!--end 4th tab-->
+
+			<!--start 5th tab-->
+			<div id="messages" class="tab-pane fade in ">
+				<div class="row" style="padding: 20px;">
+					<div class="col-md-12">
+						<section class="card">
+							<div class="card-body">
+								<div class="box-block mtb32">
+									<h3 class="font-weight-bold"><span class="text-underline">Messages goes here</span></h3>
+								</div>
+							</div>
+						</section>
+					</div>
 				</div>
 			</div>
-		</section>
+			<!--end 5th tab-->
+
+			<!--start 6th tab-->
+			<div id="photos" class="tab-pane fade in ">
+				<div class="row" style="padding: 20px;">
+					<div class="col-md-12">
+						<section class="card">
+							<div class="card-body">
+								<div class="box-block mtb32">
+									<h3 class="font-weight-bold"><span class="text-underline">Photos</span></h3>
+								</div>
+							</div>
+						</section>
+					</div>
+				</div>
+			</div>
+			<!--end 6th tab-->
+
+			<!--start 7th tab-->
+			<div id="payments" class="tab-pane fade in ">
+				<div class="row" style="padding: 20px;">
+					<div class="col-md-12">
+						<section class="card">
+							<div class="card-body">
+								<div class="box-block mtb32">
+									<h3 class="font-weight-bold"><span class="text-underline">Payments</span></h3>
+								</div>
+							</div>
+						</section>
+					</div>
+				</div>
+			</div>
+			<!--end 7th tab--> 
+		</div>
 	</div>
+</section>
+</div>
 </div>
 </div>
 </div>

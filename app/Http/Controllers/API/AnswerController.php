@@ -33,7 +33,7 @@ class AnswerController extends BaseController
         $data = $request->all();
 
         print($data);
-        die();
+       
         try{
             $validator = Validator::make($data, [
                 'user_id' => 'required',

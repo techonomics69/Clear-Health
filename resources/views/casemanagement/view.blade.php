@@ -217,8 +217,8 @@
 				<div class="row" style="padding: 20px;">
 					<div class="col-md-12">
 						<section class="card">
-							<div class="card-body">
-								<div class="box-block mtb32">
+							
+								
 									
 
 									<!-- Action Item-->
@@ -365,7 +365,7 @@
 									
 									<!-- close Action Item-->
 								
-							</div>
+							
 						</section>
 					</div>
 				</div>

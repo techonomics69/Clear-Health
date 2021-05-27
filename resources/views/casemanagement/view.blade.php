@@ -172,7 +172,7 @@
 														$questions = $ans->question;
 														if(isset($ans->answer)){
 															$answer =  $ans->answer;
-															$an= implode(" " , $answer)
+															$an= implode(" " , $answer);
 														}
 														?>
 														<h4><strong>Que: <?php echo $questions; ?></strong></h4>

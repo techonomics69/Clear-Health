@@ -18,6 +18,8 @@ use App\Models\CaseFiles;
 use App\Models\MdMessages;
 use App\Models\MdMessageFiles;
 use App\Models\Answers;
+use App\Models\MessageFiles;
+use App\Models\Messages;
 use File;
 
 class CaseManagementController extends BaseController
@@ -1496,6 +1498,7 @@ public function detach_file_from_case(Request $request){
     $message_file_data['file_name'] = $file;
     $message_file_data['file_path'] = $file_path;
     $message_file_data['msg_id'] = $message_data->id();
+    $message_data = MessageFiles::create($message_file_data);
 
     echo "<pre>";
     print_r($message_file_data);

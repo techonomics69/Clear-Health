@@ -63,7 +63,7 @@ class CaseManagementController extends Controller
 die();*/
 foreach ($answers_data as $key => $value) {
   print_r($value->category_id);
-  die();
+  
  
 }
       $general = Answers::where("category_id",$answers_data['category_id'])->get();

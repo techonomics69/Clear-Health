@@ -1510,13 +1510,7 @@ public function detach_file_from_case(Request $request){
 
     $message_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')->select('messages.*','message_files.*')->where('case_id', $case_id)->where('md_case_id',$md_case_id)->where('user_id',$user_id)->get();
 
-    echo "<pre>";
-    print_r($message_details);
-    echo "<pre>";
-    exit();
-    
-
-    if(!empty($data) && count($data)>0 ){
+    if(!empty($message_details) && count($message_details)>0 ){
       return $this->sendResponse($data,'Message retrieved successfully');
     }else{
       return $this->sendResponse(array(),'No data found');

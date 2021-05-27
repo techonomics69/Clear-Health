@@ -66,13 +66,13 @@ class CaseManagementController extends Controller
 
       }
 
-      foreach ($answers as $key => $value) {
+     /* foreach ($answers as $key => $value) {
           $questions = $value->question;
           if(isset($value->answer)){
            $answer =  $value->answer;
           }
 
-      }
+      }*/
 
       return view('casemanagement.view',compact('user_case_management_data','category','answers'));
     }

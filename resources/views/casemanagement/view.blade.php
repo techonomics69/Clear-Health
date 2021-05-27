@@ -174,7 +174,6 @@
 <?php 
 
 $getquestions = $general_qa->question;
-
 	if(isset($general_qa->answer)){
 	$answer =  (array)$general_qa->answer;
 	$getanswer= implode(" " , $answer);
@@ -189,16 +188,16 @@ $getquestions = $general_qa->question;
 @foreach($accutane as $key => $accutane_qa)
 <div class="row" style="padding: 10px;">
 	<div class="col-md-12">
-<?php  //echo "<h4><strong>Que:".$accutane_qa['question']."</strong></h4>";
-	   //echo "<p>Ans:".$accutane_qa['answer']."</p>"; ?>
+<?php  echo "<h4><strong>Que:".$accutane_qa['question']."</strong></h4>";
+	   echo "<p>Ans:".$accutane_qa['answer']."</p>"; ?>
 	</div>
 </div>
 @endforeach
 @foreach($topical as $key => $topical_qa)
 <div class="row" style="padding: 10px;">
 	<div class="col-md-12">
-<?php  //echo "<h4><strong>Que:".$accutane_qa['question']."</strong></h4>";
-	  //echo "<p>Ans:".$accutane_qa['answer']."</p>"; ?>
+<?php  echo "<h4><strong>Que:".$accutane_qa['question']."</strong></h4>";
+	  echo "<p>Ans:".$accutane_qa['answer']."</p>"; ?>
 	</div>
 </div>
 @endforeach

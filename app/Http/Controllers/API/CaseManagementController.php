@@ -1493,9 +1493,11 @@ public function detach_file_from_case(Request $request){
     $message_file_data['file_name'] = $file;
     $message_file_data['file_path'] = $file_path;
     $message_file_data['msg_id'] = $message_data['id'];
-    $message_data = MessageFiles::create($message_file_data);
-
-  
+    $message_file_data = MessageFiles::create($message_file_data);
+    if(!empty($message_file_data)){
+      $message_data['file_name'] = $file;
+      $message_data['file_path'] = $file_path;
+    }
 
     return $this->sendResponse($message_data,'Message created successfully');
 

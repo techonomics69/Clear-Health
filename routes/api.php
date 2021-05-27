@@ -111,6 +111,7 @@ Route::post('forgot_password',[RegisterController::class, 'forgot_password']);
 
     //system message API
     Route::post('sendMessageNonMedical', [CaseManagementController::class, 'sendMessageNonMedical']);
+    Route::post('getMessagesNonMedical', [CaseManagementController::class, 'getMessagesNonMedical']);
 
 
 

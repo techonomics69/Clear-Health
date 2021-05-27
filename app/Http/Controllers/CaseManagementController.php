@@ -60,33 +60,19 @@ class CaseManagementController extends Controller
 
 
       $general = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',7)->get();
+      $general_que=json_decode($general[0]["answer"]);
 
-      echo "<pre>";
-print_r(json_decode($general[0]["answer"]));
+      $accutane = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',8)->get();
+      $accutane_que=json_decode($accutane[0]["answer"]);
+echo "<pre>";
+print_r($accutane_que);
 echo "</pre>";
-die(); 
-      
+die();
+      $topical = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',9)->get();
+       $topical_que=json_decode($topical[0]["answer"]);
        
-        //print_r($value->category_id);
-        $general = Answers::where('category_id',$answers_data[0]['category_id'])->get();
-        $accutane = Answers::where("category_id",$answers_data[0]['category_id'])->get();
-        //$topical = Answers::where("category_id", $answers_data->category_id)->get();
-
-
-
-
-
-      //if(!empty($answers_data)){
-
-      $answers = json_decode($answers_data[0]['answer']);
-        /*foreach ($answers as $key => $value) {
-        echo "<pre>";
-        print_r( $value);
-        echo "</pre>";
-
-     }*/
    
-     return view('casemanagement.view',compact('user_case_management_data','category','answers'));
+     return view('casemanagement.view',compact('user_case_management_data','category','general','accutane','topical'));
    }
 
     /**

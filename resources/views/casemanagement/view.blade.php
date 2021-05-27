@@ -172,7 +172,8 @@
 <div class="row" style="padding: 10px;">
 	<div class="col-md-12">
 <?php 
-
+print_r($getquestions);
+die();
 $getquestions = $general_qa->question;
 	if(isset($general_qa->answer)){
 	$answer =  (array)$general_qa->answer;
@@ -185,6 +186,7 @@ $getquestions = $general_qa->question;
 </div>
 @endforeach
 
+
 @foreach($accutane as $key => $accutane_qa)
 <div class="row" style="padding: 10px;">
 	<div class="col-md-12">
@@ -193,6 +195,8 @@ $getquestions = $general_qa->question;
 	</div>
 </div>
 @endforeach
+
+
 @foreach($topical as $key => $topical_qa)
 <div class="row" style="padding: 10px;">
 	<div class="col-md-12">

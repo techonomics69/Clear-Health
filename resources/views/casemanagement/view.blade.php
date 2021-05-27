@@ -307,22 +307,22 @@
 									<?php $i=0 ?>
 									@foreach($category as $key => $data)
 									<div id="home{{$key}}" class="tab-pane fade in @if($i== 0) active show @endif">	
-										@foreach($answers as $key => $ans)
+										@foreach($answers as $key1 => $ans)
 										<div class="row" style="padding: 10px;">
 											<div class="col-md-12">
-
 												<?php
+												if($ans['category_id']== $key){
 												$questions = $ans->question;
 												if(isset($ans->answer)){
 													$answer =  (array)$ans->answer;
 													$getanswer= implode(" " , $answer);
 												}
+											}
 												?>
 												<h4><strong>Que: <?php echo $questions; ?></strong></h4>
 
 												<p>Ans: <?php echo $getanswer; ?>
 											</p>
-
 
 										</div>
 									</div>

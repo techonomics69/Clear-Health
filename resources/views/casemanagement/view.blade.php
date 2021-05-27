@@ -120,7 +120,7 @@
 
 											<!-- Action Item-->
 											<?php
-if($user_case_management_data['product_type'] == "accutane"){?>
+//if($user_case_management_data['product_type'] == "accutane"){?>
 	<div class="box-block mtb32">
 		<h3 class="font-weight-bold"><span class="text-underline"> Action Items</span></h3>
 
@@ -257,7 +257,7 @@ if($user_case_management_data['product_type'] == "accutane"){?>
 						</div>
 			</div>
 		</div>
-<?php } ?>
+<?php //} ?>
 </div>
 											<!-- close Action Item-->
 										</div>

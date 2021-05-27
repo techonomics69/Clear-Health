@@ -167,18 +167,18 @@
 										@foreach($answers as $key => $ans)
 										<div class="row" style="padding: 10px;">
 											<div class="col-md-12">
-												<?php
-												
+												<!-- <?php
+
 												$questions = $ans->question;
-												if(isset($ans->answer)){
-													$answer =  (array)$ans->answer;
-													$getanswer= implode(" " , $answer);
+												//if(isset($ans->answer)){
+													$answer //=  (array)$ans->answer;
+													$getanswer= //implode(" " , $answer);
 												}
 												?>
-												<h4><strong>Que: <?php echo $questions; ?></strong></h4>
+												<h4><strong>Que: <?php //echo $questions; ?></strong></h4>
 
-												<p>Ans: <?php echo $getanswer; ?>
-											</p>
+												<p>Ans: <?php //echo $getanswer; ?>
+											</p> -->
 
 										</div>
 									</div>

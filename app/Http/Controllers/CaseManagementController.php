@@ -87,10 +87,11 @@ if(isset($answers_data) && $answers_data = '' ){
            die();*/
          }
        }
-     }
+     
    
      return view('casemanagement.view',compact('user_case_management_data','category','answers'));
    }
+ }
 
     /**
      * Show the form for editing the specified resource.

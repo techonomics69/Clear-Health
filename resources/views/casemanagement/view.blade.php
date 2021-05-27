@@ -173,7 +173,7 @@
 	<div class="col-md-12">
 <?php 
 echo "<pre>";
-print_r($getquestions);
+print_r($general_qa);
 echo "</pre>";
 die();
 $getquestions = $general_qa->question;

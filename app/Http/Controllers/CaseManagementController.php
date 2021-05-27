@@ -59,12 +59,15 @@ class CaseManagementController extends Controller
       $category = QuizCategory::pluck('name', 'id')->toArray();
 
       $answers_data = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->get();
-print_r($answers_data);
-die();
-      $general = Answers::where("category_id",$answers_data)->get();
-      $accutane = Answers::where("category_id", $answers_data)->get();
-      $Topical = Answers::where("category_id", $answers_data)->get();
+/*print_r($answers_data);
+die();*/
 
+      $general = Answers::where("category_id",$answers_data->category_id)->get();
+      $accutane = Answers::where("category_id", $answers_data->category_id)->get();
+      $Topical = Answers::where("category_id", $answers_data->category_id)->get();
+
+print_r($general);
+die();
       // $quiz= QuizAnswer::join('quizzes','quiz_answers.question_id', '=', 'quizzes.id')->select('quiz_answers.*','quizzes.question','quizzes.category_id')->where('case_id', $user_case_management_data['id'])->OrderBy('id', 'ASC')->get();
 
       //if(!empty($answers_data)){

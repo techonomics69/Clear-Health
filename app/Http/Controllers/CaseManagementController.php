@@ -66,7 +66,9 @@ class CaseManagementController extends Controller
 
       $answers = json_decode($answers_data[0]['answer']);
 
-      print_r($answers);
+      
+      foreach ($answers as $key => $value) {
+        print_r($value);
       die();
       if($answers['category_id'] == 7) {
 $general =  $answers;

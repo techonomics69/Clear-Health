@@ -167,18 +167,32 @@
 										@foreach($answers as $key => $ans)
 										<div class="row" style="padding: 10px;">
 											<div class="col-md-12">
-												<!-- <?php
+												
+@foreach($general as $key => $general_qa)
+<div class="row" style="padding: 10px;">
+											<div class="col-md-12">
+<?php  echo "<h4><strong>Que:".$general_qa['question']."</strong></h4>";
+	  echo "<p>Ans:".$general_qa['answer']."</p>"; ?>
+	</div>
+</div>
+@endforeach
+@foreach($accutane as $key => $accutane_qa)
+<div class="row" style="padding: 10px;">
+											<div class="col-md-12">
+<?php  echo "<h4><strong>Que:".$accutane_qa['question']."</strong></h4>";
+	   echo "<p>Ans:".$accutane_qa['answer']."</p>"; ?>
+	</div>
+</div>
+@endforeach
+@foreach($topical as $key => $topical_qa)
+<div class="row" style="padding: 10px;">
+											<div class="col-md-12">
+<?php  echo "<h4><strong>Que:".$accutane_qa['question']."</strong></h4>";
+	  echo "<p>Ans:".$accutane_qa['answer']."</p>"; ?>
+	</div>
+</div>
+@endforeach
 
-												$questions = $ans->question;
-												//if(isset($ans->answer)){
-													$answer //=  (array)$ans->answer;
-													$getanswer= //implode(" " , $answer);
-												}
-												?>
-												<h4><strong>Que: <?php //echo $questions; ?></strong></h4>
-
-												<p>Ans: <?php //echo $getanswer; ?>
-											</p> -->
 
 										</div>
 									</div>

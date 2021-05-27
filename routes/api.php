@@ -78,7 +78,6 @@ Route::post('forgot_password',[RegisterController::class, 'forgot_password']);
     Route::post('createOrder', [CheckoutController::class, 'store']);
     Route::post('addCheckoutAddress', [CheckoutController::class, 'addCheckoutAddress']);
     Route::post('orderList', [CheckoutController::class, 'orderList']);
-    //Route::post('getToken', [CheckoutController::class, 'get_token']);
     Route::post('getOrderDetail', [CheckoutController::class, 'getCheckoutdetail']);
     Route::post('getCheckoutAddress', [CheckoutController::class, 'getCheckoutAddress']);
     Route::get('getUpsellProductDetails', [ProductController::class, 'getUpsellProductDetails']);

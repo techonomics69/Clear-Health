@@ -175,7 +175,7 @@
 echo"<pre>";
 print_r($general_qa->question);
 echo"</pre>";
-die();
+
 $questions = $general_qa->question;
 
 

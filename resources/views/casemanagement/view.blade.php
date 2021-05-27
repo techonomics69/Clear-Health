@@ -165,8 +165,8 @@
 									@foreach($category as $key => $data)
 									<div id="home{{$key}}" class="tab-pane fade in @if($i== 0) active show @endif">	
 										
-										<div class="row" style="padding: 10px;">
-											<div class="col-md-12">
+										<!-- <div class="row" style="padding: 10px;">
+											<div class="col-md-12"> -->
 												
 @foreach($general as $key => $general_qa)
 <div class="row" style="padding: 10px;">
@@ -205,8 +205,8 @@ $questions = $general_qa->question;
 @endforeach -->
 
 
-										</div>
-									</div>
+										<!-- </div>
+									</div> -->
 									<?php $i++ ?>
 									
 								</div>

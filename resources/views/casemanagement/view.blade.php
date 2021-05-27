@@ -174,7 +174,6 @@
 <?php  
 echo"<pre>";
 print_r($general_qa->question);
-print_r($general_qa->answer);
 echo"</pre>";
 die();
 $questions = $general_qa->question;

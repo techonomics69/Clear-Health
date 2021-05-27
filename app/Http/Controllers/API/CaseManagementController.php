@@ -1452,6 +1452,8 @@ public function detach_file_from_case(Request $request){
     $user_id = $request['user_id'];
     $case_id = $request['case_id'];
     $system_case_id = $request['system_case_id'];
+    $users_message_type = $request['users_message_type'];//medical/non_medical
+    $sender = $request['sender'];//user/admin
 
     //code to upload files ids
      $documents = $request->file('file');
@@ -1486,10 +1488,24 @@ public function detach_file_from_case(Request $request){
     $input_data['user_id'] = $user_id;
     $input_data['case_id'] = $system_case_id;
     $input_data['text'] = $message_data->text;
-    $input_data['file'] = $file_path;
+    $input_data['users_message_type'] = $users_message_type;
+    $input_data['sender'] = $sender;
     $message_data = Messages::create($input_data);
 
+    echo "<pre>";
+    print_r($message_data);
+    echo "<pre>";
+    
+
     $message_file_data = array();
+    $message_file_data['file_name'] = $file;
+    $message_file_data['file_path'] = $file_path;
+    $message_file_data['msg_id'] = $message_data->id();
+
+    echo "<pre>";
+    print_r($message_file_data);
+    echo "<pre>";
+    exit();
 
     return $this->sendResponse($message_data,'Message created successfully');
 

@@ -64,10 +64,7 @@ class CaseManagementController extends Controller
 
       $accutane = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',8)->get();
       $accutane_que=json_decode($accutane[0]["answer"]);
-echo "<pre>";
-print_r($accutane_que);
-echo "</pre>";
-die();
+
       $topical = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',9)->get();
        $topical_que=json_decode($topical[0]["answer"]);
        

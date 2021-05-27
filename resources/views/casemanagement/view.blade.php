@@ -38,7 +38,7 @@
 	Session::forget('que_current_tab');
 	@endphp --}}
 
-
+{{dd($user_case_management_data['product_type'])}}
 	<div class="content-wrapper">
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-12 mb-2">
@@ -120,7 +120,7 @@
 
 											<!-- Action Item-->
 											<?php
-//if($user_case_management_data['product_type'] == "accutane"){?>
+if($user_case_management_data['product_type'] == "accutane"){?>
 	<div class="box-block mtb32">
 		<h3 class="font-weight-bold"><span class="text-underline"> Action Items</span></h3>
 
@@ -257,7 +257,7 @@
 						</div>
 			</div>
 		</div>
-<?php //} ?>
+<?php } ?>
 </div>
 											<!-- close Action Item-->
 										</div>

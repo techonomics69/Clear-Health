@@ -31,6 +31,9 @@ class AnswerController extends BaseController
      public function answer(Request $request)      
     {
         $data = $request->all();
+
+        print($data);
+        die();
         try{
             $validator = Validator::make($data, [
                 'user_id' => 'required',

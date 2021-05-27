@@ -58,29 +58,21 @@ class CaseManagementController extends Controller
 
       $category = QuizCategory::pluck('name', 'id')->toArray();
 
-      $answers_data = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->get();
-      
 
-      $general = Answers::where('category_id',$answers_data->category_id)->get();
-     // $accutane = Answers::where("category_id", $answers_data['category_id'])->get();
-      //$Topical = Answers::where("category_id", $answers_data['category_id'])->get();
+      $general = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',7)->get();
+      $general_que=json_decode($general[0]["answer"]);
+
+      $accutane = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',8)->get();
+      $accutane_que=json_decode($accutane[0]["answer"]);
 echo "<pre>";
-print_r($general);
+print_r($accutane_que);
 echo "</pre>";
 die();
-      // $quiz= QuizAnswer::join('quizzes','quiz_answers.question_id', '=', 'quizzes.id')->select('quiz_answers.*','quizzes.question','quizzes.category_id')->where('case_id', $user_case_management_data['id'])->OrderBy('id', 'ASC')->get();
-
-      //if(!empty($answers_data)){
-
-      $answers = json_decode($answers_data[0]['answer']);
-        /*foreach ($answers as $key => $value) {
-        echo "<pre>";
-        print_r( $value);
-        echo "</pre>";
-
-     }*/
+      $topical = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',9)->get();
+       $topical_que=json_decode($topical[0]["answer"]);
+       
    
-     return view('casemanagement.view',compact('user_case_management_data','category','answers'));
+     return view('casemanagement.view',compact('user_case_management_data','category','general','accutane','topical'));
    }
 
     /**

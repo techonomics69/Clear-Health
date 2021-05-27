@@ -17,10 +17,10 @@ class CreateMessagesTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('case_id');
-            $table->string('md_case_id');
+            $table->string('md_case_id')->nullable();
             $table->string('users_message_type');
             $table->string('sender');
-            $table->string('text');
+            $table->string('text')->nullable();
             $table->timestamps();
         });
     }

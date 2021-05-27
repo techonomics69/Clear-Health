@@ -68,7 +68,9 @@ class CaseManagementController extends Controller
       
      
         foreach ($answers as $key => $value) {
-        echo "$key => $value <br><br>";
+          echo "<pre>";
+        print_r( $value);
+        echo "</pre>";
      }
    
      return view('casemanagement.view',compact('user_case_management_data','category','answers'));

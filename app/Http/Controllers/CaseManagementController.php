@@ -61,7 +61,7 @@ class CaseManagementController extends Controller
       $answers_data = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->get();
       
 
-      $general = Answers::where('category_id',$answers_data->category_id)->get();
+      $general = Answers::where('category_id',$answers_data->category_id)->find();
      // $accutane = Answers::where("category_id", $answers_data['category_id'])->get();
       //$Topical = Answers::where("category_id", $answers_data['category_id'])->get();
 echo "<pre>";

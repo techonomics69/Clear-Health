@@ -173,7 +173,7 @@
 														if(isset($ans->answer)){
 															$answer =  $ans->answer;
 
-															$ans1 = implode('( ) ' ,$answer)
+															$ans1 = implode('( ) ' ,$answer);
 														}
 														?>
 														<h4><strong>Que: <?php echo $questions; ?></strong></h4>

@@ -62,7 +62,7 @@ class CaseManagementController extends Controller
 /*print_r($answers_data);
 die();*/
 foreach ($answers_data as $key => $value) {
-  print_r($value->['category_id']);
+  print_r($value->category_id);
   die();
  
 }

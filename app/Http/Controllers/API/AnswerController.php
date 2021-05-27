@@ -32,7 +32,7 @@ class AnswerController extends BaseController
     {
         $data = $request->all();
 
-        print($data);
+        print($request->all());
         die();
         try{
             $validator = Validator::make($data, [

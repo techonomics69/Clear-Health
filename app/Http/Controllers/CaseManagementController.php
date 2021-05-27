@@ -71,7 +71,7 @@ class CaseManagementController extends Controller
         if(isset($value->answer) && $value->answer ='')
         {
           $category_ids = $value->category_id;
-          
+          print_r($category_ids);
             if($category_ids == 7) {
             $general =  $answers;
              /*print_r( $general);

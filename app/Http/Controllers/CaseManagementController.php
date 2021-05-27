@@ -68,12 +68,10 @@ class CaseManagementController extends Controller
       
      
         foreach ($answers as $key => $value) {
-        if(isset($value->answer) && $value->answer)
+        if(isset($value->answer) && $value->answer ='')
         {
           $category_ids = $value->category_id;
           
-          
-
             if($category_ids == 7) {
             $general =  $answers;
              /*print_r( $general);

@@ -1454,6 +1454,7 @@ public function detach_file_from_case(Request $request){
     $system_case_id = $request['system_case_id'];
     $users_message_type = $request['users_message_type'];//medical/non_medical
     $sender = $request['sender'];//user/admin
+    $text = $request['text']; 
 
     //code to upload files ids
      $documents = $request->file('file');
@@ -1475,19 +1476,13 @@ public function detach_file_from_case(Request $request){
       $file = "";
     }
     // end of code to upload files ids
-
-    $postfields = array();
-    $postfields['text'] = $request['text']; 
     
-
-    $postfields = json_encode($postfields);
-
     $input_data = array();
 
     $input_data['md_case_id'] = $case_id;
     $input_data['user_id'] = $user_id;
     $input_data['case_id'] = $system_case_id;
-    $input_data['text'] = $message_data->text;
+    $input_data['text'] = $text;
     $input_data['users_message_type'] = $users_message_type;
     $input_data['sender'] = $sender;
     $message_data = Messages::create($input_data);

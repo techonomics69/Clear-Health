@@ -172,8 +172,8 @@
 <div class="row" style="padding: 10px;">
 	<div class="col-md-12">
 <?php  
-print_r($general_qa->question);
-
+print_r($general_qa);
+die();
 $questions = $general_qa->question;
 
 

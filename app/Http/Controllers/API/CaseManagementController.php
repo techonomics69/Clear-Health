@@ -1497,7 +1497,7 @@ public function detach_file_from_case(Request $request){
     $message_file_data = array();
     $message_file_data['file_name'] = $file;
     $message_file_data['file_path'] = $file_path;
-    $message_file_data['msg_id'] = $message_data->id();
+    $message_file_data['msg_id'] = $message_data['id'];
     $message_data = MessageFiles::create($message_file_data);
 
     echo "<pre>";

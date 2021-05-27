@@ -58,7 +58,7 @@ class CaseManagementController extends Controller
 
       $category = QuizCategory::pluck('name', 'id')->toArray();
 
-      $answers_data = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->->get();
+      $answers_data = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->get();
 
       // $quiz= QuizAnswer::join('quizzes','quiz_answers.question_id', '=', 'quizzes.id')->select('quiz_answers.*','quizzes.question','quizzes.category_id')->where('case_id', $user_case_management_data['id'])->OrderBy('id', 'ASC')->get();
 
@@ -69,10 +69,10 @@ class CaseManagementController extends Controller
 
         foreach ($answers as $key => $value) {
           $category_ids = $value->category_id;
-//$questions = $ans->question;
-
-          if($category_ids == 7) {
-            $general =  $category_ids;
+print_r($category_ids);
+die();
+          if($category_id == 7) {
+            $general =  $answers;
  print_r( $general);
             die();
           }

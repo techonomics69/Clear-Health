@@ -254,12 +254,12 @@ class CartController extends BaseController
   }
 }
 
-public function prescribedItemUpdate(Request $request,$id)
+public function prescribedItemUpdate(Request $request)
 {
     $data = $request->all();
 
     try{
-        $cart = Cart::where('user_id', $id)->where('order_type','Prescribed')->where('status','pending')->OrderBy('id','desc')->first();
+        $cart = Cart::where('user_id',  $data['user_id'])->where('order_type','Prescribed')->where('status','pending')->OrderBy('id','desc')->first();
 
         if(isset($cart))
         {

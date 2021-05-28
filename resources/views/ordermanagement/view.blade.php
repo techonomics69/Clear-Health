@@ -241,7 +241,7 @@ if($medication_type == 2 ) { ?>
 																<strong>Physician Details : </strong>
 																{{$user_case_management_data['pharmacy']}}
 															</div>
-
+@endforeach
 														</div>
 													</div>
 												</section>

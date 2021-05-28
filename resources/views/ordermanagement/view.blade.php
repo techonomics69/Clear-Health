@@ -43,9 +43,7 @@
 				</div>
 				
 				
-@foreach ($order_prescribed as $order_prescribed_data)
-<?php echo"<pre>"; print_r($order_prescribed_data); echo"<pre>"; die(); ?>
-@endforeach
+
 @foreach ($order_non_prescribed as $key => $order_data)
 
 <?php $medication_type=$order_data->medication_type; ?>
@@ -207,32 +205,32 @@ if($medication_type == 2 ) { ?>
 															
 															<div class="col-md-6  form-group">
 																<strong>First Name : </strong>
-																{{$user_case_management_data['first_name']}}
+																{{$order_prescribed['first_name']}}
 															</div>
 
 															<div class="col-md-6 form-group">
 																<strong>Last Name : </strong>
-																{{$user_case_management_data['last_name']}}
+																{{$order_prescribed['last_name']}}
 															</div>
 
 															<div class="col-md-6 form-group">
 																<strong>Email : </strong>
-																{{$user_case_management_data['email']}}
+																{{$order_prescribed['email']}}
 															</div>
 
 															<div class="col-md-6 form-group">
 																<strong>Mobile No: </strong>
-																{{$user_case_management_data['mobile']}}
+																{{$order_prescribed['mobile']}}
 															</div>
 
 															<div class="col-md-6 form-group">
 																<strong>Gender : </strong>
-																{{$user_case_management_data['address']}}
+																{{$order_prescribed['address']}}
 															</div>
 
 															<div class="col-md-6 form-group">
 																<strong>Physician Details : </strong>
-																{{$user_case_management_data['pharmacy']}}
+																{{$order_prescribed['pharmacy']}}
 															</div>
 
 														</div>
@@ -282,21 +280,9 @@ if($medication_type == 2 ) { ?>
  					<?php $i=0 ?>
  					@foreach($category as $key => $data)
  					<div id="home{{$key}}" class="tab-pane fade in @if($i== 0) active show @endif">					    
- 						@foreach($quiz as $key1 => $que)
- 						<div class="row" style="padding: 10px;">
- 							<div class="col-md-12">
- 								<?php 
- 								if($que['category_id']== $key){
-
- 									echo "<h4><strong>Que:".$que['question']."</strong></h4>";
- 									echo "<p>Ans:".$que['answer']."</p>";
- 								}
- 								?>
-
- 							</div>
- 						</div>
+ 						
  						<?php $i++ ?>
- 						@endforeach
+ 						
  					</div> 
  					@endforeach 
  					

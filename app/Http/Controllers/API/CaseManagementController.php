@@ -370,7 +370,9 @@ public function create_patient(Request $request)
 public function getPharmacyById(Request $request){
   $pharmacy_id = $request['pharmacy_id'];
   
-  getPharmacyById($pharmacy_id);
+  $response =  getPharmacyById($pharmacy_id);
+
+  return $this->sendResponse(json_decode($response),'Pharmacy Recieved Successfully');
 
 }
 

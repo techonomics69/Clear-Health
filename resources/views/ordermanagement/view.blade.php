@@ -42,27 +42,17 @@
 					</div> --> 
 				</div>
 				
-				<?php 
-				/*foreach($order_non_prescribed as $key=>$val){
-				echo "<br><br>$key=>$val<br><br>";
-					echo $val['medication_type'];
-				}
-				echo "<pre>";
-				print_r($order_non_prescribed);
-				echo $order_non_prescribed->medication_type;
-				echo "<pre>";
-				die(); 
-				 if($order_non_prescribed['medication_type'] == 2) {*/ ?>
-
+				
+@foreach ($order_prescribed as $key => $order_prescribed_data)
+<?php print_r($order_prescribed); ?>
+@endforeach
 @foreach ($order_non_prescribed as $key => $order_data)
 
 <?php $medication_type=$order_data->medication_type; ?>
 
 @endforeach
 
-@foreach ($order_prescribed as $key => $order_prescribed_data)
-<?php print_r($order_prescribed); ?>
-@endforeach
+
 
 <?php 
 if($medication_type == 2 ) { ?>

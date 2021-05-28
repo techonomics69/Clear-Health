@@ -86,24 +86,20 @@ class OrderManagementController extends Controller
    }
 
 
-$order_prescribed = Checkout::join('case_managements','checkout.case_id', '=', 'case_managements.id')
-->join('users','case_managements.user_id', '=', 'users.id')
-->select('checkout.case_id','users.first_name','users.last_name','users.email','users.mobile','users.address')
-->where('checkout.id',$id)
-->get();
+      $order_prescribed = Checkout::join('case_managements','checkout.case_id', '=', 'case_managements.id')
+      ->join('users','case_managements.user_id', '=', 'users.id')
+      ->join('checkout_address', 'checkout_address.user_id', '=','checkout.user_id')
+      ->select('checkout.case_id','users.first_name','users.last_name','users.email','users.mobile','users.address','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode')
+      ->where('checkout.id',$id)
+      ->get();
 
-/*echo "<pre>";
+echo "<pre>";
 print_r($order_prescribed);
 echo "</pre>";
-die();*/
-   /*$order_prescribed = CaseManagement::join('users','case_managements.user_id', '=', 'users.id')
-   ->select('case_managements.*','users.first_name','users.last_name','users.email','users.mobile','users.address')
-   ->where('case_managements.id',$id)
-   ->get();
-*/
+die();
+   
 
-   $category = QuizCategory::pluck('name', 'id')->toArray();
-
+      $category = QuizCategory::pluck('name', 'id')->toArray();
    /*$quiz= QuizAnswer::join('quizzes','quiz_answers.question_id', '=', 'quizzes.id')
    ->select('quiz_answers.*','quizzes.question','quizzes.category_id')
    ->where('case_id', $order_prescribed['id'])

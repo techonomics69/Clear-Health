@@ -42,15 +42,15 @@
 					</div> --> 
 				</div>
 				
-			
-@foreach ($order_non_prescribed as $key => $order_data)
 
-<?php $medication_type=$order_data->medication_type; ?>
+				@foreach ($order_non_prescribed as $key => $order_data)
 
-@endforeach
+				<?php $medication_type=$order_data->medication_type; ?>
 
-<?php 
-if($medication_type == 2 ) { ?>
+				@endforeach
+
+				<?php 
+				if($medication_type == 2 ) { ?>
 					<div class="row">
 						<div class="col-lg-12">
 							<section class="card" >
@@ -200,11 +200,7 @@ if($medication_type == 2 ) { ?>
 														<div class="box-block mtb32">
 															<h3 class="font-weight-bold"><span class="text-underline">Basic Information</span></h3>
 															
-@foreach ($order_prescribed as $key => $order_prescribed_data)
-
-
-
-
+															@foreach ($order_prescribed as $key => $order_prescribed_data)
 
 															<div class="col-md-6  form-group">
 																<strong>First Name : </strong>
@@ -222,7 +218,7 @@ if($medication_type == 2 ) { ?>
 															</div>
 
 															<div class="col-md-6 form-group">
-																<strong>Mobile No: </strong>
+																<strong>Phone No: </strong>
 																{{$order_prescribed_data->mobile}}
 															</div>
 
@@ -235,7 +231,7 @@ if($medication_type == 2 ) { ?>
 																<strong>Physician Details : </strong>
 																{{$order_prescribed_data->pharmacy}}
 															</div>
-@endforeach	
+															@endforeach	
 														</div>
 													</div>
 												</section>

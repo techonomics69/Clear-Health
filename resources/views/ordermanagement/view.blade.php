@@ -43,9 +43,7 @@
 				</div>
 				
 				
-@foreach ($order_prescribed as $order_prescribed_data)
-<?php echo"<pre>"; print_r($order_prescribed_data); echo"<pre>"; die(); ?>
-@endforeach
+
 @foreach ($order_non_prescribed as $key => $order_data)
 
 <?php $medication_type=$order_data->medication_type; ?>
@@ -282,21 +280,9 @@ if($medication_type == 2 ) { ?>
  					<?php $i=0 ?>
  					@foreach($category as $key => $data)
  					<div id="home{{$key}}" class="tab-pane fade in @if($i== 0) active show @endif">					    
- 						@foreach($quiz as $key1 => $que)
- 						<div class="row" style="padding: 10px;">
- 							<div class="col-md-12">
- 								<?php 
- 								if($que['category_id']== $key){
-
- 									echo "<h4><strong>Que:".$que['question']."</strong></h4>";
- 									echo "<p>Ans:".$que['answer']."</p>";
- 								}
- 								?>
-
- 							</div>
- 						</div>
+ 						
  						<?php $i++ ?>
- 						@endforeach
+ 						
  					</div> 
  					@endforeach 
  					

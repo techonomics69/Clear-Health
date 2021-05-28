@@ -257,7 +257,7 @@ foreach($orderlist as $key=>$v)
          {
            
             $cart_id = explode(',', $v['cart_id']);
-           // $product_name = array();
+            $product_name = array();
             $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_id)->select('products.name AS product_name')->get()->toArray();
             foreach($product_details as $product_key=>$product_value){
              $product_name[] = $product_value['product_name']; 

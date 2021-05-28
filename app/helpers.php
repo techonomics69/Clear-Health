@@ -278,7 +278,7 @@ function create_patient(Request $request)
   curl_close($curl);
 
 
-  return $this->sendResponse(json_decode($response),'Pharmacy Recieved Successfully');
+  return $response;
 
 
 }

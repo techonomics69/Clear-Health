@@ -166,9 +166,10 @@
 											<?php if($key == 7) { ?>
 												<div id="home{{$key}}" class="tab-pane fade in @if($i== 0) active show @endif">	
 													@foreach($general_que as $key => $general)
+														<?php $i = 0; ?>
 													<div class="row" style="padding: 10px;">
 														<div class="col-md-12">
-															<?php $i = 0; ?>
+														
 															<?php 
 															$getquestions = $general->question;
 															if(isset($general->answer)){

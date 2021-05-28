@@ -213,7 +213,7 @@
 
 															$getquestions = $topical_qa->question;
 															if(isset($topical_qa->answer)){
-																$answer =  (array)$topical_qa->answer;
+																$answer =  $topical_qa->answer;
 																$getanswer= implode(" " , $answer);
 															} 
 															?>

@@ -255,7 +255,7 @@ function create_patient(Request $request)
   $token_data = json_decode($r);
   $token = $token_data->access_token;
 
-  $pharmacy_id = $request['pharmacy_id'];
+  
 
   $curl = curl_init();
 

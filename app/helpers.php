@@ -250,5 +250,39 @@ function create_patient(Request $request)
 
   }
 
+  public function getPharmacyById(Request $request){
+  $r = $this->get_token();
+  $token_data = json_decode($r);
+  $token = $token_data->access_token;
+
+  $pharmacy_id = $request['pharmacy_id'];
+
+  $curl = curl_init();
+
+  curl_setopt_array($curl, array(
+    CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/pharmacies/'.$pharmacy_id,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => '',
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => 'GET',
+    CURLOPT_HTTPHEADER => array(
+      'Authorization: Bearer '.$token,
+    ),
+  ));
+
+  $response = curl_exec($curl);
+
+  curl_close($curl);
+
+
+  return $this->sendResponse(json_decode($response),'Pharmacy Recieved Successfully');
+
+
+}
+
+
 
 ?>

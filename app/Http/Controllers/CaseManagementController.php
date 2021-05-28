@@ -62,6 +62,7 @@ class CaseManagementController extends Controller
       $general = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',7)->get();
       if(!empty($general)){
         $general_que=json_decode($general[0]["answer"]);
+        $general = [];
       } else{
       $general_que = array();
     }
@@ -69,6 +70,7 @@ class CaseManagementController extends Controller
       $accutane = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',8)->get();
       if (!empty($accutane)) {
        $accutane_que=json_decode($accutane[0]["answer"]);
+       $accutane= [];
      }else{
       $accutane_que = array();
     }
@@ -77,6 +79,7 @@ class CaseManagementController extends Controller
     $topical = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',9)->get();
     if(!empty($topical)) {
      $topical_que=json_decode($topical[0]["answer"]);
+     $topical=[];
    }else{
     $topical_que = array();
   }

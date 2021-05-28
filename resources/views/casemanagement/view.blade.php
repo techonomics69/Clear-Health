@@ -186,14 +186,14 @@
 												</div>
 											<?php } ?>
 
-											<?php if($key == 8) { ?>
+											
 												<?php $i = 0; ?>
 												<div id="home{{$key}}" class="tab-pane fade in @if($i== 0) active show @endif">	
+													<?php if($key == 8) { ?>
 													@foreach($accutane_que as $key => $accutane)
 													<div class="row" style="padding: 10px;">
 														<div class="col-md-12">
 															<?php 
-
 															$getquestions = $accutane->question;
 															if(isset($accutane->answer)){
 																$answer =  (array)$accutane->answer;
@@ -205,8 +205,9 @@
 														</div>
 													</div>
 													@endforeach
+														<?php } ?>
 												</div>
-											<?php } ?>
+										
 
 											<?php if($key == 9) { ?>
 												<?php $i = 0; ?>

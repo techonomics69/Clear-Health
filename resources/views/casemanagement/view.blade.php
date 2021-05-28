@@ -164,7 +164,7 @@
 											@foreach($category as $key => $data)
 
 											<?php if($key == 7) { ?>
-												<?php $i = 0; ?>
+												<?php $j = 0; ?>
 												<div id="home7" class="tab-pane fade in @if($i== 0) active show @endif">	
 													@foreach($general_que as $key => $general)
 													<div class="row" style="padding: 10px;">
@@ -177,7 +177,7 @@
 																$getanswer= implode(" " , $answer);
 															} 
 															?>
-															<h4><strong>Que <?php echo ++$i;?> : <?php echo $getquestions; ?></strong></h4>
+															<h4><strong>Que <?php echo ++$j;?> : <?php echo $getquestions; ?></strong></h4>
 															<p>Ans: <?php echo $getanswer; ?> 
 														</div>
 													</div>
@@ -186,7 +186,7 @@
 											<?php } ?>
 
 											<?php if($key == 8) { ?>
-												<?php $i = 0; ?>
+												<?php $j = 0; ?>
 												<div id="home8" class="tab-pane fade in @if($i== 0) active show @endif">	
 													@foreach($accutane_que as $key => $accutane)
 													<div class="row" style="padding: 10px;">
@@ -198,7 +198,7 @@
 																$getanswer= implode(" " , $answer);
 															} 
 															?>
-															<h4><strong>Que  <?php echo ++$i;?> : <?php echo $getquestions; ?></strong></h4>
+															<h4><strong>Que  <?php echo ++$j;?> : <?php echo $getquestions; ?></strong></h4>
 															<p>Ans: <?php echo $getanswer; ?>
 														</div>
 													</div>
@@ -207,7 +207,7 @@
 											<?php } ?>
 
 											<?php if($key == 9) { ?>
-												<?php $i = 0; ?>
+												<?php $j = 0; ?>
 												<div id="home9" class="tab-pane fade in @if($i== 0) active show @endif">	
 													@foreach($topical_que as $key => $topical)
 													<div class="row" style="padding: 10px;">
@@ -219,7 +219,7 @@
 																$getanswer= implode(" " , $answer);
 															} 
 															?>
-															<h4><strong>Que  <?php echo ++$i;?> : <?php echo $getquestions; ?></strong></h4>
+															<h4><strong>Que  <?php echo ++$j;?> : <?php echo $getquestions; ?></strong></h4>
 															<p>Ans: <?php echo $getanswer; ?>
 														</div>
 													</div>

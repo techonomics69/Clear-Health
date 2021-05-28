@@ -92,7 +92,7 @@ class OrderManagementController extends Controller
 
 
 echo "<pre>";
-print($order_prescribed);
+print($order_prescribed)."hello";
 echo "</pre>";
 die();
    $category = QuizCategory::pluck('name', 'id')->toArray();

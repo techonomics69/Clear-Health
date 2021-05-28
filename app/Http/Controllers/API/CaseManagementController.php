@@ -368,8 +368,9 @@ public function create_patient(Request $request)
 
 
 public function getPharmacyById(Request $request){
+  $pharmacy_id = $request['pharmacy_id'];
   
-  getPharmacyById($request);
+  getPharmacyById($pharmacy_id);
 
 }
 

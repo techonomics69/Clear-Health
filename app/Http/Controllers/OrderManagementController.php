@@ -93,13 +93,13 @@ class OrderManagementController extends Controller
 
    $category = QuizCategory::pluck('name', 'id')->toArray();
 
-   $quiz= QuizAnswer::join('quizzes','quiz_answers.question_id', '=', 'quizzes.id')
+   /*$quiz= QuizAnswer::join('quizzes','quiz_answers.question_id', '=', 'quizzes.id')
    ->select('quiz_answers.*','quizzes.question','quizzes.category_id')
    ->where('case_id', $order_prescribed['id'])
    ->OrderBy('id', 'ASC')
-   ->get();
+   ->get();*/
 
-   return view('ordermanagement.view',compact('order_non_prescribed','order_prescribed','category','quiz'));
+   return view('ordermanagement.view',compact('order_non_prescribed','order_prescribed','category'));
 }
 
 public function edit($id)

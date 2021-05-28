@@ -99,6 +99,8 @@ echo "</pre>";
 die();
    
 
+   
+
       $category = QuizCategory::pluck('name', 'id')->toArray();
    /*$quiz= QuizAnswer::join('quizzes','quiz_answers.question_id', '=', 'quizzes.id')
    ->select('quiz_answers.*','quizzes.question','quizzes.category_id')

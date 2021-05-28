@@ -213,6 +213,7 @@
 echo "<pre>";
 															print_r($topical);
 															echo "</pre>";
+															die();
 															$getquestions = $topical->question;
 															if(isset($topical->answer)){
 																$answer =  (array)$topical->answer;

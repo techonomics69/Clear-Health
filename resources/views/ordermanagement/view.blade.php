@@ -201,11 +201,11 @@ if($medication_type == 2 ) { ?>
 														<div class="box-block mtb32">
 															<h3 class="font-weight-bold"><span class="text-underline">Basic Information</span></h3>
 															
-@foreach ($order_prescribed as $key => $order_prescribed_data)
+<!-- @foreach ($order_prescribed as $key => $order_prescribed_data)
 
-<?php echo"<pre>"; print_r($order_prescribed_data); echo"<pre>"; ?>
+<?php //echo"<pre>"; print_r($order_prescribed_data); echo"<pre>"; ?>
 
-@endforeach
+@endforeach -->
 
 															<div class="col-md-6  form-group">
 																<strong>First Name : </strong>

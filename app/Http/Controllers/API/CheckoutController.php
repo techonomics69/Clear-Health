@@ -255,11 +255,13 @@ try{
 
 foreach($orderlist as $key=>$v)
          {
-            echo "<pre>";
-            print_r($v);
+           
+            $cart_id = explode(',', $v['cart_id']);
+
+             echo "<pre>";
+            print_r($cart_id);
             echo "</pre>";
             die();
-            $cart_id = explode(',', $v['cart_id']);
             $product_name = array();
             $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_id)->select('products.name AS product_name')->get()->toArray();
             foreach($product_details as $product_key=>$product_value){

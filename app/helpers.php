@@ -208,10 +208,6 @@ function create_patient(Request $request)
     $input_data['system_file'] = $file_path;
     $input_data['user_id'] = $user_id;
     $input_data['system_case_id'] = $system_case_id;
-
-
-
-
     //attach file to case_id
 
     $curl1 = curl_init();

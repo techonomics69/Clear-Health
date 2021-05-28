@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use DB;
 
 class TestTableDataSeeder extends Seeder
 {
@@ -13,7 +14,7 @@ class TestTableDataSeeder extends Seeder
      */
     public function run()
     {
-       DB::table('front_status')->insert([
+       DB::table('test')->insert([
     		[
     			'id' => '7',
     			'name' => 'General',

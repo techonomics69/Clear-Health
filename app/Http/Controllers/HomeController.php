@@ -25,8 +25,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-        die("here");
 		$users = User::whereHas('roles', function($q){$q->where('name','!=' ,'Customer'); })->count();
 		$customer = User::whereHas('roles', function($q){$q->where('name','Customer'); })->count();
         

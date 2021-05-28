@@ -599,6 +599,62 @@ function CreateCase(Request $request){
 
 }
 
+function detach_file_from_case(Request $request){
+
+    $r = get_token();
+    $token_data = json_decode($r);
+    $token = $token_data->access_token;
+
+    $file_id = $request['md_file_id'];
+    $case_id = $request['md_case_id'];
+
+    $destinationPath = public_path('/MD_Case_files');
+
+    $input = $request->all();
+
+    $casefiles_details = CaseFiles::select('*')->where('case_id', $case_id)->where('md_file_id',$file_id)->get();
+
+    if(!empty($casefiles_details) && count($casefiles_details)>0){
+
+      if(file_exists($destinationPath.'/'.$casefiles_details[0]['file'])){
+        unlink($destinationPath.'/'.$casefiles_details[0]['file']);
+      }
+
+      $casefiles = CaseFiles::find($casefiles_details[0]['id']);
+      $casefiles->delete();
+
+      $curl = curl_init();
+
+      curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/files/'.$file_id,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'DELETE',
+        CURLOPT_HTTPHEADER => array(
+          'Authorization: Bearer '.$token,
+          'Cookie: __cfduid=da01d92d82d19a6cccebfdc9852303eb81620627650'
+        ),
+      ));
+
+      $response = curl_exec($curl);
+
+      curl_close($curl);
+            // $response;
+
+
+      return $this->sendResponse($response,'File Detach Successfully');
+
+    }else{
+      return $this->sendResponse(array(),'File not Exist.');
+    }
+ 
+
+}
+
 
 
 

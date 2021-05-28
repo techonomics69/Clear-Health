@@ -210,10 +210,6 @@
 													<div class="row" style="padding: 10px;">
 														<div class="col-md-12">
 															<?php 
-echo "<pre>";
-															print_r($topical);
-															echo "</pre>";
-															die();
 															$getquestions = $topical->question;
 															if(isset($topical->answer)){
 																$answer =  (array)$topical->answer;

@@ -200,14 +200,14 @@
 														<div class="box-block mtb32">
 															<h3 class="font-weight-bold"><span class="text-underline">Basic Information</span></h3>
 															
-															@foreach ($order_prescribed as $key => $order_prescribed_data)
+															<!-- @foreach ($order_prescribed as $key => $order_prescribed_data) -->
 
 															<div class="col-md-6  form-group">
 																<strong>First Name : </strong>
-																{{$order_prescribed_data->first_name}}
+																{{$order_prescribed['first_name']}}
 															</div>
 
-															<div class="col-md-6 form-group">
+															<!-- <div class="col-md-6 form-group">
 																<strong>Last Name : </strong>
 																{{$order_prescribed_data->last_name}}
 															</div>
@@ -239,8 +239,8 @@
 															<div class="col-md-6 form-group">
 																<strong>Physician Details : </strong>
 																{{$order_prescribed_data->pharmacy}}
-															</div>
-															@endforeach	
+															</div> -->
+															<!-- @endforeach	 -->
 														</div>
 													</div>
 												</section>

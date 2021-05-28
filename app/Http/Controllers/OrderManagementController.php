@@ -88,22 +88,18 @@ class OrderManagementController extends Controller
    $order_prescribed = CaseManagement::join('users','case_managements.user_id', '=', 'users.id')
    ->select('case_managements.*','users.first_name','users.last_name','users.email','users.mobile','users.address')
    ->where('case_managements.id',$id)
-   ->first();
+   ->get();
 
 
-echo "<pre>";
-print($order_prescribed);
-echo "</pre>";
-die();
    $category = QuizCategory::pluck('name', 'id')->toArray();
 
-   $quiz= QuizAnswer::join('quizzes','quiz_answers.question_id', '=', 'quizzes.id')
+   /*$quiz= QuizAnswer::join('quizzes','quiz_answers.question_id', '=', 'quizzes.id')
    ->select('quiz_answers.*','quizzes.question','quizzes.category_id')
    ->where('case_id', $order_prescribed['id'])
    ->OrderBy('id', 'ASC')
-   ->get();
+   ->get();*/
 
-   return view('ordermanagement.view',compact('order_non_prescribed','order_prescribed','category','quiz'));
+   return view('ordermanagement.view',compact('order_non_prescribed','order_prescribed','category'));
 }
 
 public function edit($id)

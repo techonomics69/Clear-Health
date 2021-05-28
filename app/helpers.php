@@ -284,19 +284,11 @@ function create_patient(Request $request)
 }
 
 function CreateCase(Request $request){
-  $r = $this->get_token();
+  $r = get_token();
   $token_data = json_decode($r);
   $token = $token_data->access_token;
 
-  $user_id = $request['user_id'];
-  $case_id = $request['case_id'];
-
-  $product_type = $request['product_type'];
-  //$product_name = $request['product_name'];
-  //$quantity = $request['quantity'];
-  $preferred_pharmacy_id = $request['preferred_pharmacy_id'];
-
-  $patient_data = User::select('md_patient_id')->where('id', $request['user_id'])->first();
+  $patient_data = User::select('md_patient_id')->where('id', $user_id)->first();
 
   $patient_id = '"'.$patient_data['md_patient_id'].'"';
 
@@ -594,7 +586,7 @@ function CreateCase(Request $request){
 
 
 
-      return $this->sendResponse(json_decode($response),'Case Created Successfully');
+      return $response;
 
 
 }

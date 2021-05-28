@@ -378,8 +378,17 @@ public function getPharmacyById(Request $request){
 
 
 public function CreateCase(Request $request){
+
+  $user_id = $request['user_id'];
+  $case_id = $request['case_id'];
+  $product_type = $request['product_type'];
+  //$product_name = $request['product_name'];
+  //$quantity = $request['quantity'];
+  $preferred_pharmacy_id = $request['preferred_pharmacy_id'];
   
-  CreateCase();
+  $response = CreateCase($user_id,$case_id,$product_type,$preferred_pharmacy_id);
+
+   return $this->sendResponse(json_decode($response),'Case Created Successfully');
 }
 
   /*public function getDispensUnitId(){

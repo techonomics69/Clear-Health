@@ -42,7 +42,14 @@
 					</div> --> 
 				</div>
 				
-				
+@foreach ($order_prescribed as $key => $order_prescribed_data)
+
+<?php echo "<pre>";
+print_r($order_prescribed_data);
+echo "</pre>";  die(); ?>
+
+
+@endforeach				
 
 @foreach ($order_non_prescribed as $key => $order_data)
 

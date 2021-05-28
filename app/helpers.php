@@ -1,5 +1,5 @@
 <?php
-use DB;
+//use DB;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Validator;

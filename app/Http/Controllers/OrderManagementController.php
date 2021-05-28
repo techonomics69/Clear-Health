@@ -88,7 +88,7 @@ class OrderManagementController extends Controller
 
       $order_prescribed = Checkout::join('case_managements','checkout.case_id', '=', 'case_managements.id')
       ->join('users','case_managements.user_id', '=', 'users.id')
-      ->join('checkout_address', 'checkout_address.order_id', '=','checkout.id')
+      ->join('checkout_address', 'checkout_address.user_id', '=','checkout.user_id')
       ->select('checkout.case_id','users.first_name','users.last_name','users.email','users.mobile','users.address','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode')
       ->where('checkout.id',$id)
       ->get();

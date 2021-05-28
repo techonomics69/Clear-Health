@@ -61,8 +61,7 @@
 @endforeach
 
 @foreach ($order_prescribed as $key => $order_prescribed_data)
-<?php print_r($order_prescribed_data);
-?>
+<?php print_r($order_prescribed); ?>
 @endforeach
 
 <?php 

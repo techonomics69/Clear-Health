@@ -283,6 +283,323 @@ function create_patient(Request $request)
 
 }
 
+function CreateCase(Request $request){
+  $r = $this->get_token();
+  $token_data = json_decode($r);
+  $token = $token_data->access_token;
+
+  $user_id = $request['user_id'];
+  $case_id = $request['case_id'];
+
+  $product_type = $request['product_type'];
+  //$product_name = $request['product_name'];
+  //$quantity = $request['quantity'];
+  $preferred_pharmacy_id = $request['preferred_pharmacy_id'];
+
+  $patient_data = User::select('md_patient_id')->where('id', $request['user_id'])->first();
+
+  $patient_id = '"'.$patient_data['md_patient_id'].'"';
+
+  $recommended_product = CaseManagement::select('recommended_product')->where('id',$case_id)->where('user_id',$user_id)->first();
+
+  $recommended_product = $recommended_product['recommended_product'];
+
+      if($recommended_product == 'Topical_low'){
+
+         $product_name = "Topical Low";
+
+       }
+
+       if($recommended_product == 'Topical_high'){
+
+         $product_name = "Topical High";
+
+       }
+
+       if($recommended_product == 'Azelaic_Acid'){
+
+         $product_name = "Azelaic Acid";
+
+       }
+       if($recommended_product == 'Accutane'){
+
+         $product_name = "ISOtretinoin (oral - capsule)";
+
+       }
+
+     $removed_space_pro_name = str_replace(" ","%20",$product_name);
+    
+    //code to get user's question answer
+
+    /*$answer = QuizAnswer::join('quizzes', 'quizzes.id', '=', 'quiz_answers.question_id')->where('quiz_answers.user_id', $request['user_id'])->where('quiz_answers.case_id', $request['case_id'])->select( 'quizzes.question','quiz_answers.answer','quizzes.options_type')->get()->toArray();
+
+    $userquestion = array();
+    foreach($answer as $key=>$value){
+      $userquestion[$key]['question'] = $value['question'];
+      $userquestion[$key]['answer'] = $value['answer'];
+
+      if($value['options_type'] == "radio"){
+       $userquestion[$key]['type']= "boolean";
+     }else{
+       $userquestion[$key]['type']= "string";
+     }
+     
+     $userquestion[$key]['important']= true;
+   }
+   
+   $userquestion = json_encode($userquestion);*/ //old logic
+
+
+   $answer_data = Answers::where('user_id', $user_id)->where('case_id', $case_id)->get();
+
+   $userQueAns = json_decode($answer_data[0]['answer']);
+
+ //get weight of patient 
+
+   //$answer = QuizAnswer::join('quizzes', 'quizzes.id', '=', 'quiz_answers.question_id')->where('quiz_answers.user_id', $request['user_id'])->where('quiz_answers.case_id', $request['case_id'])->where('quiz_answers.case_id', $request['case_id'])->select( 'quizzes.question','quiz_answers.answer','quizzes.options_type')->get()->toArray();
+   $accutan_strength = 30;
+   foreach ($userQueAns as $key => $value) {
+
+    $question = $value->question;
+
+    if($question == "What is your weight in kg?"){
+      if(isset($value->answer) && $value->answer!=''){
+
+        $answer =  $value->answer;
+
+        if($answer >= 70){
+          $accutan_strength = 40;
+        }else{
+          $accutan_strength = 30;
+        }   
+      }
+    }
+  }
+//end of code to get patient weight 
+  $userquestion = array();
+  foreach($userQueAns as $key=>$value){
+
+    if(isset($value->answer) && $value->answer!=''){
+      $userquestion[$key]['question'] = $value->question;
+
+      if(is_array($value->answer)){
+         $userquestion[$key]['answer'] = implode(',',$value->answer);
+      }else{
+         $userquestion[$key]['answer'] = $value->answer;
+      }
+       
+     
+
+     if($value->options_type == "radio"){
+       $userquestion[$key]['type']= "boolean";
+     }else{
+       $userquestion[$key]['type']= "string";
+     }
+
+     $userquestion[$key]['important']= true;
+
+    }
+    
+ }
+
+ $userquestion = json_encode($userquestion);
+
+  //end of code to get user's question answer
+
+
+
+ if($product_type =="Topicals"){
+
+  $days_supply = "60";
+  $refills = "11";
+  $directions = "Take one at the morning and another before bed";
+  $no_substitutions = "true";
+  $pharmacy_notes =  "This medication might not be suitable for people with... ";
+  $quantity = 30;
+
+
+      /*$DispensUnitId = $this->getDispensUnitId();
+
+      $DispensUnitId = json_decode($DispensUnitId);
+      
+      $DispensUnitId= $DispensUnitId[0]->dispense_unit_id;*/
+
+      $DispensUnitId = 8;
+
+    
+
+      $curl = curl_init();
+
+      curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/compounds/search?name='.$removed_space_pro_name,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'GET',
+        CURLOPT_HTTPHEADER => array(
+          'Authorization: Bearer '.$token,
+          'Cookie: __cfduid=da01d92d82d19a6cccebfdc9852303eb81620627650'
+        ),
+      ));
+
+      $response = curl_exec($curl);
+
+      curl_close($curl);
+
+      $compounds= $response;
+     
+
+      $compounds = json_decode($compounds);
+
+      $partner_compound_id = $compounds[0]->partner_compound_id;
+
+      $medication_compound_data = array();
+      $medication_compound_data[0]['partner_compound_id'] = $partner_compound_id;
+      $medication_compound_data[0]['refills'] = $refills;
+      $medication_compound_data[0]['quantity'] = $quantity;
+      $medication_compound_data[0]['days_supply'] = $days_supply;
+      $medication_compound_data[0]['directions'] = $directions;
+      $medication_compound_data[0]['dispense_unit_id'] = $DispensUnitId;
+      $medication_compound_data[0]['preferred_pharmacy_id'] = $preferred_pharmacy_id;
+      //$medication_compound_data[0]['no_substitutions'] = $no_substitutions;
+      //$medication_compound_data[0]['pharmacy_notes'] = $pharmacy_notes;
+
+    }else{
+      $days_supply = "30";
+      $refills = "0";
+      $directions = "Take one at the morning and another before bed";
+      //$product_name = "Isotretinoin";
+      $no_substitutions = "true";
+      $pharmacy_notes =  "This medication might not be suitable for people with... ";
+      $quantity = $accutan_strength;
+      $strength = $accutan_strength.'%20mg';
+
+      $curl = curl_init();
+
+      curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name='.$removed_space_pro_name.'&strength='.$strength,
+        //CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name=ISOtretinoin%20(oral%20-%20capsule)&strength=30%20mg',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'GET',
+        CURLOPT_HTTPHEADER => array(
+          'Authorization: Bearer '.$token,
+          'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+        ),
+      ));
+
+      $response = curl_exec($curl);
+
+      curl_close($curl);
+
+      $medications = $response;
+
+      $medications = json_decode($medications);
+
+      $DispensUnitId = $medications->dispense_unit_id;
+      $dosespot_medication_id = $medications->dosespot_medication_id;
+
+      $medication_compound_data = array();
+      $medication_compound_data[0]['dosespot_medication_id'] = $dosespot_medication_id;
+      $medication_compound_data[0]['refills'] = $refills;
+      $medication_compound_data[0]['quantity'] = $quantity;
+      $medication_compound_data[0]['days_supply'] = $days_supply;
+      $medication_compound_data[0]['directions'] = $directions;
+      $medication_compound_data[0]['dispense_unit_id'] = $DispensUnitId;
+      $medication_compound_data[0]['preferred_pharmacy_id'] = $preferred_pharmacy_id;
+      //$medication_compound_data[0]['no_substitutions'] = $no_substitutions;
+      //$medication_compound_data[0]['pharmacy_notes'] = $pharmacy_notes;
+
+    }
+    $medication_compound_data = json_encode($medication_compound_data);
+
+    /*$input_md_data = '{"patient_id": '.$patient_id.',"case_files": [],"case_prescriptions": '.$medication_compound_data.',"case_questions": '.$userquestion.'}';*/
+
+   /* echo "<pre>";
+    print_r($input_md_data);
+    echo "<pre>";
+    exit();*/
+
+      
+
+      $curl = curl_init();
+
+      curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS =>'{
+          "patient_id": '.$patient_id.',
+          "case_files": [
+          ],
+          "case_prescriptions": '.$medication_compound_data.',
+          "case_questions": '.$userquestion.'
+        }',
+        CURLOPT_HTTPHEADER => array(
+          'Content-Type: application/json',
+          'Authorization: Bearer '.$token,
+          'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+        ),
+      ));
+
+      $response = curl_exec($curl);
+
+      $case_data = json_decode($response);
+
+      $input_data['prioritized_at'] = $case_data->prioritized_at;
+      $input_data['prioritized_reason'] = $case_data->prioritized_reason;
+      $input_data['cancelled_at'] = $case_data->prioritized_reason;
+      $input_data['md_created_at'] = $case_data->created_at;
+      //$input_data['md_created_at'] = $case_data->case_assignment->created_at;
+      $input_data['support_reason'] = $case_data->support_reason;
+      $input_data['case_id'] = $case_data->case_id;
+      $input_data['status'] = $case_data->status;
+      $input_data['user_id'] = $user_id;
+      $input_data['system_case_id'] = $case_id;
+
+      $md_case_data = Mdcases::create($input_data);
+
+      $case_management  =  CaseManagement::where('id',$case_id)->where('user_id',$user_id)->update(['md_case_status' => $case_data->status]);
+
+      curl_close($curl);
+
+      //code for update md details
+
+      /*$inputmd_data['status'] = $status;
+      $inputmd_data['image'] = "";
+      $inputmd_data['language_id'] = "";
+      $inputmd_data['md_id'] = $case_data->case_assignment->clinician->clinician_id;
+      $inputmd_data['name'] = $case_data->case_assignment->clinician->full_name;
+      $inputmd_data['reason'] = $case_data->case_assignment->reason;;
+      $inputmd_data['case_assignment_id'] = $case_data->case_assignment->case_assignment_id;
+
+      $mdmanagement_data = Mdmanagement::where('case_id', $case_id)->first();
+      if(!empty($mdmanagement_data)){
+        $mdmanagement_data->update($inputmd_data);
+      }else{
+        $md_case_data = Mdmanagement::create($inputmd_data);
+      }*/
+
+
+
+      return $this->sendResponse(json_decode($response),'Case Created Successfully');
+
+
+}
+
+
 
 
 ?>

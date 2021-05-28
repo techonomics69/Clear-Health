@@ -21,7 +21,7 @@ use App\Models\Answers;
 use App\Models\MessageFiles;
 use App\Models\Messages;
 
-public function get_token(){
+function get_token(){
   $curl = curl_init();
 
   curl_setopt_array($curl, array(

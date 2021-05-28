@@ -250,7 +250,7 @@ function create_patient(Request $request)
 
   }
 
-  public function getPharmacyById(Request $request){
+ function getPharmacyById(Request $request){
   $r = $this->get_token();
   $token_data = json_decode($r);
   $token = $token_data->access_token;

@@ -317,128 +317,7 @@ public function create_patient(Request $request)
   }
 
   public function createCaseFile(Request $request){
-
-    $r = get_token();
-    $token_data = json_decode($r);
-    $token = $token_data->access_token;
-
-    $documents = $request->file('file');
-    $name = $request->name;
-    $user_id = $request->user_id;
-    $case_id = $request->case_id;
-    $system_case_id = $request->system_case_id;
-
-    if(!empty($documents)){
-      $file =  $documents->getClientOriginalName();
-      $doc_file_name =  time().'-'.$file;
-      
-      if (!file_exists(public_path('/MD_Case_files'))) {
-        File::makeDirectory(public_path('/MD_Case_files'),0777,true,true);
-      }
-      $destinationPath = public_path('/MD_Case_files');
-      $documents->move($destinationPath, $doc_file_name);
-
-      chmod($destinationPath."/".$doc_file_name, 0777);
-
-      $file_path = 'public/MD_Case_files/' .$file;
-    }
-
-    //$file_temp_name = $documents->getfileName();
-    //$file_temp_path = $documents->getpathName();
-    //$file_mimeType = $documents->getClientMimeType();
-
-    $input_data = $request->all();
-
-    $fields = [
-      'name' => $name,
-      //'file' => new \CurlFile($file_temp_path,$file_mimeType, $doc_file_name)
-      'file' => new \CurlFile($destinationPath."/".$doc_file_name)
-    ];
-
-    $curl = curl_init();
-
-    curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/files',
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_ENCODING => '',
-      CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 0,
-      CURLOPT_FOLLOWLOCATION => true,
-      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => 'POST',
-      CURLOPT_POSTFIELDS =>  $fields,
-      CURLOPT_HTTPHEADER => array(
-        'Content: multipart/form-data;',
-        'Authorization: Bearer '.$token,
-        'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
-      ),
-    ));
-
-    $response = curl_exec($curl);
-
-   /* if($errno = curl_errno($curl)) {
-      $error_message = curl_strerror($errno);
-      echo "cURL error ({$errno}):\n {$error_message}";
-    }*/
-
-    curl_close($curl);
-
-    $case_file_data = json_decode($response);
-
-    $input_data['name'] = $case_file_data->name;
-    $input_data['file'] = $doc_file_name;
-    $input_data['mime_type'] = $case_file_data->mime_type;
-    $input_data['url'] = $case_file_data->url;
-    $input_data['url_thumbnail'] = $case_file_data->url_thumbnail;
-    $input_data['file_id'] = $case_file_data->file_id;
-    $input_data['case_id'] = $case_id;
-    $input_data['system_file'] = $file_path;
-    $input_data['user_id'] = $user_id;
-    $input_data['system_case_id'] = $system_case_id;
-
-
-
-
-    //attach file to case_id
-
-    $curl1 = curl_init();
-
-    curl_setopt_array($curl1, array(
-      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/files/'.$case_file_data->file_id,
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_ENCODING => '',
-      CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 0,
-      CURLOPT_FOLLOWLOCATION => true,
-      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => 'POST',
-      CURLOPT_HTTPHEADER => array(
-        'Authorization: Bearer '.$token,
-        'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
-      ),
-    ));
-
-    $response1 = curl_exec($curl1);
-
-    $md_case_file_data = json_decode($response1);
-
-    $input_data['md_file_name'] = $md_case_file_data->name;
-    $input_data['md_mime_type'] = $md_case_file_data->mime_type;
-    $input_data['md_url'] = $md_case_file_data->url;
-    $input_data['md_url_thumbnail'] = $md_case_file_data->url_thumbnail;
-    $input_data['md_file_id'] = $md_case_file_data->file_id;
-
-    $case_file_data = CaseFiles::create($input_data);
-
-
-    curl_close($curl1);
-
-
-    //end of code to attach file to case_id
-
-
-    return $this->sendResponse($case_file_data,'File Created Successfully');
-
+    createCaseFile();
   }
 
   public function getPharmacies(Request $request){
@@ -492,35 +371,8 @@ public function create_patient(Request $request)
 
 
 public function getPharmacyById(Request $request){
-  $r = get_token();
-  $token_data = json_decode($r);
-  $token = $token_data->access_token;
-
-  $pharmacy_id = $request['pharmacy_id'];
-
-  $curl = curl_init();
-
-  curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/pharmacies/'.$pharmacy_id,
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_ENCODING => '',
-    CURLOPT_MAXREDIRS => 10,
-    CURLOPT_TIMEOUT => 0,
-    CURLOPT_FOLLOWLOCATION => true,
-    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-    CURLOPT_CUSTOMREQUEST => 'GET',
-    CURLOPT_HTTPHEADER => array(
-      'Authorization: Bearer '.$token,
-    ),
-  ));
-
-  $response = curl_exec($curl);
-
-  curl_close($curl);
-
-
-  return $this->sendResponse(json_decode($response),'Pharmacy Recieved Successfully');
-
+  
+  getPharmacyById();
 
 }
 

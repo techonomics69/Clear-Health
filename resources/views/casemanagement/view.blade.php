@@ -185,14 +185,14 @@
 
 											<?php if($key == 8) { ?>
 												<!-- <div id="home{{$key}}" class="tab-pane fade in @if($i== 0) active show @endif">	 -->
-													@foreach($accutane_que as $key => $accutane_qa)
+													@foreach($accutane_que as $key => $accutane)
 													<div class="row" style="padding: 10px;">
 														<div class="col-md-12">
 															<?php 
 
-															$getquestions = $accutane_qa->question;
-															if(isset($accutane_qa->answer)){
-																$answer =  (array)$accutane_qa->answer;
+															$getquestions = $accutane->question;
+															if(isset($accutane->answer)){
+																$answer =  (array)$accutane->answer;
 																$getanswer= implode(" " , $answer);
 															} 
 															?>
@@ -206,14 +206,14 @@
 
 											<?php if($key == 9) { ?>
 												<!-- <div id="home{{$key}}" class="tab-pane fade in @if($i== 0) active show @endif"> -->	
-													@foreach($topical_que as $key => $topical_qa)
+													@foreach($topical_que as $key => $topical)
 													<div class="row" style="padding: 10px;">
 														<div class="col-md-12">
 															<?php 
 
-															$getquestions = $topical_qa->question;
-															if(isset($topical_qa->answer)){
-																$answer =  (array)$topical_qa->answer;
+															$getquestions = $topical->question;
+															if(isset($topical->answer)){
+																$answer =  (array)$topical->answer;
 																$getanswer= implode(" " , $answer);
 															} 
 															?>

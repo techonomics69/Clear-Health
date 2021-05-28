@@ -369,7 +369,7 @@ public function create_patient(Request $request)
 
 public function getPharmacyById(Request $request){
   
-  getPharmacyById();
+  getPharmacyById($request);
 
 }
 

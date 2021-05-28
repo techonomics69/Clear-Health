@@ -210,7 +210,8 @@ if($medication_type == 2 ) { ?>
 													<div class="card-body">
 														<div class="box-block mtb32">
 															<h3 class="font-weight-bold"><span class="text-underline">Basic Information</span></h3>
-															
+																@foreach($user_case_management_data as $key => $data)
+																<?php  echo "<pre>"; print_r($data); echo "<pre>"; die(); ?>
 															<div class="col-md-6  form-group">
 																<strong>First Name : </strong>
 																{{$user_case_management_data['first_name']}}

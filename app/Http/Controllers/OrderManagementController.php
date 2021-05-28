@@ -88,7 +88,7 @@ class OrderManagementController extends Controller
    $order_prescribed = CaseManagement::join('users','case_managements.user_id', '=', 'users.id')
    ->select('case_managements.*','users.first_name','users.last_name','users.email','users.mobile','users.address')
    ->where('case_managements.id',$id)
-   ->first();
+   ->get();
 
 
 echo "<pre>";

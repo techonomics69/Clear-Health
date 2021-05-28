@@ -200,47 +200,14 @@
 														<div class="box-block mtb32">
 															<h3 class="font-weight-bold"><span class="text-underline">Basic Information</span></h3>
 															
-															<!-- @foreach ($order_prescribed as $key => $order_prescribed_data) -->
+															
 
 															<div class="col-md-6  form-group">
 																<strong>First Name : </strong>
 																{{$order_prescribed['first_name']}}
 															</div>
 
-															<!-- <div class="col-md-6 form-group">
-																<strong>Last Name : </strong>
-																{{$order_prescribed_data->last_name}}
-															</div>
-
-															<div class="col-md-6 form-group">
-																<strong>Email : </strong>
-																{{$order_prescribed_data->email}}
-															</div>
-
-															<div class="col-md-6 form-group">
-																<strong>Phone No: </strong>
-																{{$order_prescribed_data->mobile}}
-															</div>
-
-															<div class="col-md-6 form-group">
-																<strong>Gender : </strong>
-																
-															</div>
-
-															<div class="col-md-6 form-group">
-																<strong>Address : </strong>
-																{{$order_prescribed_data->addressline1.','}}
-																{{$order_prescribed_data->addressline2.','}}
-																{{$order_prescribed_data->city.','}}
-																{{$order_prescribed_data->state.','}}
-																{{$order_prescribed_data->zipcode}}
-															</div>
-
-															<div class="col-md-6 form-group">
-																<strong>Physician Details : </strong>
-																{{$order_prescribed_data->pharmacy}}
-															</div> -->
-															<!-- @endforeach	 -->
+														
 														</div>
 													</div>
 												</section>

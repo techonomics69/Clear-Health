@@ -184,7 +184,7 @@
 											<?php } ?>
 
 											<?php if($key == 8) { ?>
-												<!-- <div id="home{{$key}}" class="tab-pane fade in @if($i== 0) active show @endif">	 -->
+												<div id="home{{$key}}" class="tab-pane fade in @if($i== 0) active show @endif">	
 													@foreach($accutane_que as $key => $accutane)
 													<div class="row" style="padding: 10px;">
 														<div class="col-md-12">
@@ -201,11 +201,11 @@
 														</div>
 													</div>
 													@endforeach
-												<!-- </div> -->
+												</div>
 											<?php } ?>
 
 											<?php if($key == 9) { ?>
-												<!-- <div id="home{{$key}}" class="tab-pane fade in @if($i== 0) active show @endif"> -->	
+												<div id="home{{$key}}" class="tab-pane fade in @if($i== 0) active show @endif">	
 													@foreach($topical_que as $key => $topical)
 													<div class="row" style="padding: 10px;">
 														<div class="col-md-12">
@@ -222,7 +222,7 @@
 														</div>
 													</div>
 													@endforeach
-												<!-- </div> -->
+												</div>
 											<?php } ?>
 
 											

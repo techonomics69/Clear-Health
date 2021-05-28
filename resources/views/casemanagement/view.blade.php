@@ -227,9 +227,9 @@
 												</div>
 											<?php } ?>
 
-											<?php $i++ ?>
-											@endforeach
 											
+											@endforeach
+											<?php $i++ ?>
 										</div>
 									</section>
 								</div>

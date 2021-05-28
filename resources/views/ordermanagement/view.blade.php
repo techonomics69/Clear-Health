@@ -204,6 +204,10 @@
 																<strong>First Name : </strong>
 																{{$order_prescribed['first_name']}}
 															</div>
+															<div class="col-md-6  form-group">
+																<strong>Last Name : </strong>
+																{{$order_prescribed['last_name']}}
+															</div>
 															<div class="col-md-6 form-group">
 																<strong>Email : </strong>
 																{{$order_prescribed['email']}}
@@ -226,7 +230,6 @@
 																{{$order_prescribed['city']}}
 																{{$order_prescribed['state']}},
 																{{$order_prescribed['zipcode']}}
-																
 															</div>
 
 															<div class="col-md-6 form-group">

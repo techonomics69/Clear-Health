@@ -253,6 +253,23 @@ try{
      ->OrderBy('id', 'DESC')
      ->get();
 
+foreach($orderlist as $key=>$v)
+         {
+            echo "<pre>";
+            print_r($v);
+            echo "</pre>";
+            die();
+            $cart_id = explode(',', $v['cart_id']);
+            $product_name = array();
+            $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_id)->select('products.name AS product_name')->get()->toArray();
+            foreach($product_details as $product_key=>$product_value){
+             $product_name[] = $product_value['product_name'];  
+         }
+         $orderlist[$key]->product_name = implode(', ' ,$product_name);    
+     }
+
+
+
      foreach($orderlist as $key=>$val)
      {
         $cart_ids = explode(',', $val['cart_id']);

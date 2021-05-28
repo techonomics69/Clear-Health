@@ -42,23 +42,17 @@
 					</div> --> 
 				</div>
 				
-				<?php 
-				/*foreach($order_non_prescribed as $key=>$val){
-				echo "<br><br>$key=>$val<br><br>";
-					echo $val['medication_type'];
-				}
-				echo "<pre>";
-				print_r($order_non_prescribed);
-				echo $order_non_prescribed->medication_type;
-				echo "<pre>";
-				die(); 
-				 if($order_non_prescribed['medication_type'] == 2) {*/ ?>
-
+				
+@foreach ($order_prescribed as $order_prescribed_data)
+<?php echo"<pre>"; print_r($order_prescribed_data); echo"<pre>"; die(); ?>
+@endforeach
 @foreach ($order_non_prescribed as $key => $order_data)
 
 <?php $medication_type=$order_data->medication_type; ?>
 
 @endforeach
+
+
 
 <?php 
 if($medication_type == 2 ) { ?>
@@ -319,39 +313,7 @@ if($medication_type == 2 ) { ?>
  	<div class="row" style="padding: 10px;">
  		<div class="col-md-12">
  			<section class="card" >
- 				<!-- <ul class="nav nav-tabs" id="question-tab-menu">
-
- 					@foreach($category as $key => $data)
- 					{{-- <li><a class="btn @if($activeTab == 0) active @elseif($current_tab_id == 'home'.$key) active @endif" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li> --}}
-
- 					<li><a class="btn" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li>
- 					<?php //$activeTab++ ?> 
- 					@endforeach
- 				</ul> -->
- 				<!-- <div class="tab-content">
- 					<?php $i=0 ?>
- 					@foreach($category as $key => $data)
- 					<div id="home{{$key}}" class="tab-pane fade in @if($i== 0) active show @endif">					    
- 						@foreach($quiz as $key1 => $que)
- 						<div class="row" style="padding: 10px;">
- 							<div class="col-md-12">
- 								<?php 
- 								if($que['category_id']== $key){
-
- 									echo "<h4><strong>Que:".$que['question']."</strong></h4>";
- 									echo "<p>Ans:".$que['answer']."</p>";
- 								}
- 								?>
-
- 							</div>
- 						</div>
- 						<?php $i++ ?>
- 						@endforeach
- 					</div> 
- 					@endforeach 
- 					
-
- 				</div> -->
+ 				
  			</section>
  		</div>
  	</div>

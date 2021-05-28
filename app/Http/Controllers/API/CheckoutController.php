@@ -248,10 +248,24 @@ try{
      $orderlist = checkout::join('users', 'users.id', '=', 'checkout.user_id')
      ->join('carts','carts.id', '=', 'checkout.cart_id')
      ->join('checkout_address', 'checkout_address.order_id', '=','checkout.order_id')
-     ->select('checkout.id','users.first_name','users.last_name','checkout.order_id','carts.quantity','carts.order_type','checkout.cart_id','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode','checkout.created_at')
+     ->select('checkout.id','users.first_name','users.last_name','checkout.order_id','carts.quantity','carts.order_type','checkout.cart_id','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode','checkout_address.email','checkout_address.phone','checkout.total_amount','checkout.created_at')
      ->where('checkout.id',$request->id)
      ->OrderBy('id', 'DESC')
      ->get();
+
+foreach($orderlist as $key=>$v)
+         {
+           
+            $cart_id = explode(',', $v['cart_id']);
+            $product_name = array();
+            $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_id)->select('products.name AS product_name')->get()->toArray();
+            foreach($product_details as $product_key=>$product_value){
+             $product_name[] = $product_value['product_name']; 
+         }
+         $orderlist[$key]->product_name = implode(', ' ,$product_name);   
+     }
+
+
 
      foreach($orderlist as $key=>$val)
      {

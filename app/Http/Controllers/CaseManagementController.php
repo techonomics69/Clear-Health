@@ -62,26 +62,26 @@ class CaseManagementController extends Controller
       $general = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',7)->get();
       if(!empty($general)){
         $general_que=json_decode($general[0]["answer"]);
-         $general_que = array();
+         //$general_que = array();
       } else{
-      $general_que = array();
+      $general_que = [];
     }
 
       $accutane = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',8)->get();
       if (!empty($accutane)) {
        $accutane_que=json_decode($accutane[0]["answer"]);
-      $accutane_que = array();
+      
      }else{
-      $accutane_que = array();
+      $accutane_que = [];
     }
 
 
     $topical = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',9)->get();
     if(!empty($topical)) {
      $topical_que=json_decode($topical[0]["answer"]);
-     $topical_que = array();
+     //$topical_que = array();
    }else{
-    $topical_que = array();
+    $topical_que =[];
   }
 
   return view('casemanagement.view',compact('user_case_management_data','category','general_que','accutane_que','topical_que'));

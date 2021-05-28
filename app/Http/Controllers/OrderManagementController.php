@@ -86,20 +86,21 @@ class OrderManagementController extends Controller
    }
 
 
-$order = Checkout::join('case_managements','checkout.case_id', '=', 'case_managements.id')
+$order_prescribed = Checkout::join('case_managements','checkout.case_id', '=', 'case_managements.id')
 ->join('users','case_managements.user_id', '=', 'users.id')
-->select('checkout.case_id','users.first_name','users.last_name')
+->select('checkout.case_id','users.first_name','users.last_name','users.email','users.mobile','users.address')
 ->where('checkout.id',$id)
 ->get();
+
 echo "<pre>";
-print_r($order);
+print_r($order_prescribed);
 echo "</pre>";
 die();
-   $order_prescribed = CaseManagement::join('users','case_managements.user_id', '=', 'users.id')
+   /*$order_prescribed = CaseManagement::join('users','case_managements.user_id', '=', 'users.id')
    ->select('case_managements.*','users.first_name','users.last_name','users.email','users.mobile','users.address')
    ->where('case_managements.id',$id)
    ->get();
-
+*/
 
    $category = QuizCategory::pluck('name', 'id')->toArray();
 

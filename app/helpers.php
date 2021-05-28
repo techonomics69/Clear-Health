@@ -2,9 +2,9 @@
 //use DB;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Validator;
-use Exception;
-use File;
+//use Validator;
+//use Exception;
+//use File;
 
 use App\Models\CaseManagement;
 use App\Models\Mdpatient;

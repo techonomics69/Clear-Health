@@ -173,7 +173,7 @@
 															echo "<pre>";
 															print_r($general);
 															echo "</pre>";
-															die();
+															
 															$getquestions = $general->question;
 															if(isset($general->answer)){
 																$answer =  (array)$general->answer;

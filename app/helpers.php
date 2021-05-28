@@ -129,7 +129,7 @@ function create_patient(Request $request)
   }
 
 
-  public function createCaseFile(Request $request){
+  function createCaseFile(Request $request){
 
     $r = $this->get_token();
     $token_data = json_decode($r);

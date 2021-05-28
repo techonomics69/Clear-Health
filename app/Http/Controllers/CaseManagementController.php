@@ -63,7 +63,7 @@ class CaseManagementController extends Controller
       if(!empty($general[0])){
         $general_que=json_decode($general[0]["answer"]);
       } else{
-      $general_que = [];
+      //$general_que = [];
     }
 echo"<pre>";
 print_r($general_que);

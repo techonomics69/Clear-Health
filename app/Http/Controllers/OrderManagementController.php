@@ -98,7 +98,7 @@ class OrderManagementController extends Controller
    ->OrderBy('id', 'ASC')
    ->get();
 
-   return view('ordermanagement.view',compact('order_non_prescribed','$order_prescribed','category','quiz'));
+   return view('ordermanagement.view',compact('order_non_prescribed','order_prescribed','category','quiz'));
 }
 
 public function edit($id)

@@ -224,7 +224,16 @@
 
 															<div class="col-md-6 form-group">
 																<strong>Gender : </strong>
-																{{$order_prescribed_data->address}}
+																
+															</div>
+
+															<div class="col-md-6 form-group">
+																<strong>Address : </strong>
+																{{$order_prescribed_data->addressline1.','}}
+																{{$order_prescribed_data->addressline2.','}}
+																{{$order_prescribed_data->city.','}}
+																{{$order_prescribed_data->state.','}}
+																{{$order_prescribed_data->zipcode}}
 															</div>
 
 															<div class="col-md-6 form-group">

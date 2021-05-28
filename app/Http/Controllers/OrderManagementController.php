@@ -93,14 +93,11 @@ class OrderManagementController extends Controller
       ->where('checkout.id',$id)
       ->get();
 
-echo "<pre>";
+/*echo "<pre>";
 print_r($order_prescribed);
 echo "</pre>";
-die();
+die();*/
    
-
-   
-
       $category = QuizCategory::pluck('name', 'id')->toArray();
    /*$quiz= QuizAnswer::join('quizzes','quiz_answers.question_id', '=', 'quizzes.id')
    ->select('quiz_answers.*','quizzes.question','quizzes.category_id')

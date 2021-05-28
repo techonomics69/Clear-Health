@@ -207,32 +207,32 @@ if($medication_type == 2 ) { ?>
 															
 															<div class="col-md-6  form-group">
 																<strong>First Name : </strong>
-																{{$user_case_management_data['first_name']}}
+																{{$order_prescribed['first_name']}}
 															</div>
 
 															<div class="col-md-6 form-group">
 																<strong>Last Name : </strong>
-																{{$user_case_management_data['last_name']}}
+																{{$order_prescribed['last_name']}}
 															</div>
 
 															<div class="col-md-6 form-group">
 																<strong>Email : </strong>
-																{{$user_case_management_data['email']}}
+																{{$order_prescribed['email']}}
 															</div>
 
 															<div class="col-md-6 form-group">
 																<strong>Mobile No: </strong>
-																{{$user_case_management_data['mobile']}}
+																{{$order_prescribed['mobile']}}
 															</div>
 
 															<div class="col-md-6 form-group">
 																<strong>Gender : </strong>
-																{{$user_case_management_data['address']}}
+																{{$order_prescribed['address']}}
 															</div>
 
 															<div class="col-md-6 form-group">
 																<strong>Physician Details : </strong>
-																{{$user_case_management_data['pharmacy']}}
+																{{$order_prescribed['pharmacy']}}
 															</div>
 
 														</div>

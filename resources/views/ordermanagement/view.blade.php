@@ -221,11 +221,8 @@
 
 															<div class="col-md-6 form-group">
 																<strong>Address : </strong>
-																{{$order_prescribed['addressline1.',' ']}}
-																{{$order_prescribed['addressline2.',' ']}}
-																{{$order_prescribed['city.',' ']}}
-																{{$order_prescribed['state.',' ']}}
-																{{$order_prescribed['zipcode']}}
+																{{$order_prescribed['addressline1']}}
+																
 															</div>
 
 															<div class="col-md-6 form-group">

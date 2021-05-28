@@ -253,7 +253,6 @@ try{
      ->OrderBy('id', 'DESC')
      ->get();
 
-
 foreach($orderlist as $key=>$v)
          {
            
@@ -285,7 +284,7 @@ foreach($orderlist as $key=>$v)
          if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup'] != '' && $product_value['order_type'] == 'Prescribed'){
 
             if($product_value['pharmacy_pickup'] != "cash"){
-                $r = get_token();
+                $r = $this->get_token();
                 $token_data = json_decode($r);
                 $token = $token_data->access_token;
                 $pharmacy_id = $product_value['pharmacy_pickup'];

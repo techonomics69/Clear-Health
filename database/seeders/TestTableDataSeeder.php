@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use DB;
+use Carbon\Carbon;
 
 class TestTableDataSeeder extends Seeder
 {
@@ -18,14 +19,21 @@ class TestTableDataSeeder extends Seeder
     		[
     			'id' => '7',
     			'name' => 'General',
+    			'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+    			'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+
     		],
     		[
     			'id' => '8',
     			'name' => 'Accutane',
+    			'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+    			'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
     		],
     		[
     			'id' => '9',
     			'name' => 'Topical Cream',
+    			'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+    			'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
     		],
     		
     	]);

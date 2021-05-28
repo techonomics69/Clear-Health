@@ -90,6 +90,11 @@ class OrderManagementController extends Controller
    ->where('case_managements.id',$id)
    ->first();
 
+
+echo "<pre>";
+print($order_prescribed);
+echo "</pre>";
+die();
    $category = QuizCategory::pluck('name', 'id')->toArray();
 
    $quiz= QuizAnswer::join('quizzes','quiz_answers.question_id', '=', 'quizzes.id')

@@ -263,13 +263,8 @@ foreach($orderlist as $key=>$v)
             $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_id)->select('products.name AS product_name')->get()->toArray();
             foreach($product_details as $product_key=>$product_value){
              $product_name[] = $product_value['product_name']; 
-
          }
-         $orderlist[$key]->product_name = implode(', ' ,$product_name); 
-         echo "<pre>";
-            print_r( $orderlist);
-            echo "</pre>";
-            die();   
+         $orderlist[$key]->product_name = implode(', ' ,$product_name);   
      }
 
 

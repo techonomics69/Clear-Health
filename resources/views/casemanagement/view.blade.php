@@ -168,6 +168,7 @@
 													@foreach($general_que as $key => $general)
 													<div class="row" style="padding: 10px;">
 														<div class="col-md-12">
+															<?php $i = 0; ?>
 															<?php 
 															$getquestions = $general->question;
 															if(isset($general->answer)){
@@ -175,7 +176,7 @@
 																$getanswer= implode(" " , $answer);
 															} 
 															?>
-															<h4><strong>Que: <?php echo $getquestions; ?></strong></h4>
+															<h4><strong>Que <?php echo ++$i;?> : <?php echo $getquestions; ?></strong></h4>
 															<p>Ans: <?php echo $getanswer; ?> 
 														</div>
 													</div>

@@ -179,167 +179,14 @@ class CaseManagementController extends BaseController
 
   }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
-/*    public function demo()
-    {
-$curl = curl_init();
-curl_setopt_array($curl, array(
-  CURLOPT_URL => 'http://103.101.59.95/dev.clearhealth/api/create_patient',
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_ENCODING => '',
-  CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 0,
-  CURLOPT_FOLLOWLOCATION => true,
-  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => 'POST',
-  CURLOPT_POSTFIELDS =>'{
-    "first_name": "testphp111111",
-    "last_name": "Doe1111",
-    "gender": 1,
-    "date_of_birth": "2000-12-31",
-    "phone_number": "541-754-3011",
-    "phone_type": 2,
-    "email": "testp11hp111111@gmail.com",
-    "address": {
-        "address": "1901 1st Avenue, New York, NY 10029",
-        "city_id": "0b56b7a1-dae8-4bf8-a44f-4cb808115a6c",
-        "zip_code": "12345"
-    },
-    "weight": 50,
-    "height": 180
-}',
-  CURLOPT_HTTPHEADER => array(
-    'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJjN2EyMGE5MC00ZGI5LTQyZTQtODYwYS03ZjQxYzJhOGEwYjEiLCJqdGkiOiI0MzBhNDI1YmYxNTlhNjlkMzk4YmVmYzRjYjAxOWY2YmZkZjljZWI3ZWI1NmRhM2Q3MTk5ZWQxMDg2MzJkNjk3NGEwNmY4ZDlkZWE3OTE0OSIsImlhdCI6MTYxODMxNDI2NC4wMjgzOTgsIm5iZiI6MTYxODMxNDI2NC4wMjg0MDEsImV4cCI6MTYxODQwMDY2NC4wMjI3ODgsInN1YiI6IiIsInNjb3BlcyI6WyIqIl19.kT6nb2qeI9dM9hLFjpc4Ct3h6xMtpAi4B-1iNVKwNfZ2tCsAV8NwInl44rkTSLujquKPUc3_pAK7smJ-R5tlV1rc_9t7gXsAoRMxiXGiub4UXl4pBNtt95PcxpDLmB9y8mGHLwqgkDy0cabn1x-baf8VBVtaxDMxMWQvlQYmL8X3kdw6QQzgYX45WOqxsyS9JqNml4bn_hGZaG-MGvXtPswaFiKs3YqZHKNeGqnbr4KX-Q6gm2X8loCMOZItPBV2XjVor4bLgxd3AkLWIqBSdhjpwiqRNXDVjdSdIvgFuxpzPZq6K3y_OhHNQluKbCVEhob-YVweikQR1k2pK6UycLrvkFhICSsYiay8qYkdpbpdwDOK7ZtfDGPX070xUWzSlP_vrIvLndsCbucQSFYeelQa_P1aw5ma-35AraN9Ove5eEzetRlvUis_dZNdKDMl2NlAltv9FTsssSQ94rD0tVeW8omkXoA2w9QhtSt-MrB_loqkKt7aExfh5mTeW5I7qhuiz3Row66Z-mizh9BXeCR-JqjcF7qUKW4oQ6qOoAX859YQj_5BEL3rxEz6Xcupr3dEIKtfAGg5Oeeb3J25DDU7QemTEyp4v46Gkc_DFI8zl6HxOg7zcPhH5WXEP6SsUWBAcFIZ8zZg2_fAF_qOAjG1wEqdX1T1C9-Ng517E9U',
-    'Content-Type: application/json'
-  ),
-));
-$response = curl_exec($curl);
-curl_close($curl);
-echo $response;
-}*/
-
-
-public function get_token(){
-  $curl = curl_init();
-
-  curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/auth/token',
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_ENCODING => '',
-    CURLOPT_MAXREDIRS => 10,
-    CURLOPT_TIMEOUT => 0,
-    CURLOPT_FOLLOWLOCATION => true,
-    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-    CURLOPT_CUSTOMREQUEST => 'POST',
-    CURLOPT_POSTFIELDS =>'{
-      "grant_type": "client_credentials",
-      "client_id": "c7a20a90-4db9-42e4-860a-7f41c2a8a0b1",
-      "client_secret": "xBsQsgLFhYIFNlKwhJW3wClOmNuJ4WQDX0n8475C",
-      "scope": "*"
-    }',
-    CURLOPT_HTTPHEADER => array(
-      'Content-Type: application/json',
-      'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
-    ),
-  ));
-
-  $response = curl_exec($curl);
-
-  curl_close($curl);
-  return $response;
-}
-
-
 
 public function create_patient(Request $request)
 {
-  $r = $this->get_token();
-  $token_data = json_decode($r);
-
-  $token = $token_data->access_token;
-
-  $input = json_encode($request->all());
-
-  $input_data = $request->all();
-
-
-
-
-  $curl = curl_init();
-
-  curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/patients',
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_ENCODING => '',
-    CURLOPT_MAXREDIRS => 10,
-    CURLOPT_TIMEOUT => 0,
-    CURLOPT_FOLLOWLOCATION => true,
-    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-    CURLOPT_CUSTOMREQUEST => 'POST',
-    CURLOPT_POSTFIELDS =>$input,
-    CURLOPT_HTTPHEADER => array(
-      'Content-Type: application/json',
-      'Authorization: Bearer '. $token
-    ),
-  ));
-
-  $response = curl_exec($curl);
-
-
-  $Patient_data = json_decode($response);
-
-  if(!empty($Patient_data)){
-
-   $input_data['partner_id'] = $Patient_data->partner_id;
-   $input_data['first_name'] = $Patient_data->first_name;
-   $input_data['last_name'] =  $Patient_data->last_name;
-   $input_data['email'] =  $Patient_data->email;
-   $input_data['gender'] = $Patient_data->gender;
-   $input_data['phone_number'] = $Patient_data->phone_number;
-   $input_data['phone_type'] = $Patient_data->phone_type;
-   $input_data['date_of_birth'] = $Patient_data->date_of_birth;
-   $input_data['active'] = $Patient_data->active;
-   $input_data['weight'] = $Patient_data->weight;
-   $input_data['height'] = $Patient_data->height;
-   $input_data['dosespot_sync_status'] = $Patient_data->dosespot_sync_status;
-   $input_data['patient_id'] = $Patient_data->patient_id;
-   $input_data['gender_label'] = $Patient_data->gender_label;
-   $input_data['address'] = $Patient_data->address->address;
-   $input_data['zip_code'] = $Patient_data->address->zip_code;
-   $input_data['city_id'] = $Patient_data->address->city_id;
-   $input_data['city_name'] = $Patient_data->address->city->name;
-   $input_data['state_name'] = $Patient_data->address->city->state->name;
-   $input_data['state_abbreviation'] = $Patient_data->address->city->state->abbreviation;
-
-
-   $md_patient_data = Mdpatient::create($input_data);
-
-            //$info = curl_getinfo($curl);
-
-       /*if(curl_exec($curl) == false)
-       {
-        echo 'Curl error: ' . curl_error($curl);
-              //return $this->sendResponse($response, 'Patient Created Successfully1'); 
-      }
-      else
-      {*/
-       return $this->sendResponse($input_data,'Patient Created Successfully'); 
-     //}
-
-     }else{
-      return $this->sendResponse(array(),'Something went wrong!');
-    }
-  }
-
+  create_patient();
+}
 
   public function searchStateDetail(Request $request){
-    $r = $this->get_token();
+    $r = get_token();
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
@@ -365,13 +212,10 @@ public function create_patient(Request $request)
     $response = curl_exec($curl);
 
     curl_close($curl);
-    //echo $response;
-
     return $this->sendResponse(json_decode($response),'State data recieved successfully');
   }
 
   public function getAllStates(){
-    //$r = $this->get_token(); 
     $r = get_token();
     $token_data = json_decode($r);
     $token = $token_data->access_token;
@@ -403,7 +247,7 @@ public function create_patient(Request $request)
 
 
   public function SearchCitiesFromGivenState(Request $request){
-    $r = $this->get_token();
+    $r = get_token();
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
@@ -439,7 +283,7 @@ public function create_patient(Request $request)
   }
 
   public function getCitiesFromGivenState(Request $request){
-    $r = $this->get_token();
+    $r = get_token();
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
@@ -474,7 +318,7 @@ public function create_patient(Request $request)
 
   public function createCaseFile(Request $request){
 
-    $r = $this->get_token();
+    $r = get_token();
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
@@ -598,7 +442,7 @@ public function create_patient(Request $request)
   }
 
   public function getPharmacies(Request $request){
-    $r = $this->get_token();
+    $r = get_token();
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
@@ -648,7 +492,7 @@ public function create_patient(Request $request)
 
 
 public function getPharmacyById(Request $request){
-  $r = $this->get_token();
+  $r = get_token();
   $token_data = json_decode($r);
   $token = $token_data->access_token;
 
@@ -682,7 +526,7 @@ public function getPharmacyById(Request $request){
 
 
 public function CreateCase(Request $request){
-  $r = $this->get_token();
+  $r = get_token();
   $token_data = json_decode($r);
   $token = $token_data->access_token;
 
@@ -1059,7 +903,7 @@ public function CreateCase(Request $request){
 
 public function detach_file_from_case(Request $request){
 
-    $r = $this->get_token();
+    $r = get_token();
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
@@ -1114,7 +958,7 @@ public function detach_file_from_case(Request $request){
 }
 
   public function createMessageFile(Request $request){
-    $r = $this->get_token();
+    $r = get_token();
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
@@ -1187,7 +1031,7 @@ public function detach_file_from_case(Request $request){
   }
 
   public function createMessage(Request $request){
-    $r = $this->get_token();
+    $r = get_token();
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
@@ -1261,7 +1105,7 @@ public function detach_file_from_case(Request $request){
 
   public function setMessageAsRead(Request $request){
 
-    $r = $this->get_token();
+    $r = get_token();
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
@@ -1312,7 +1156,7 @@ public function detach_file_from_case(Request $request){
  
   public function getMessages(Request $request){
 
-    $r = $this->get_token();
+    $r = get_token();
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
@@ -1357,7 +1201,7 @@ public function detach_file_from_case(Request $request){
 
   public function DetachMessageFile(Request $request){
 
-    $r = $this->get_token();
+    $r = get_token();
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
@@ -1421,7 +1265,7 @@ public function detach_file_from_case(Request $request){
 
   public function DeleteFile($file_id){
 
-    $r = $this->get_token();
+    $r = get_token();
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 

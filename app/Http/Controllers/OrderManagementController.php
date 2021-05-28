@@ -93,20 +93,8 @@ class OrderManagementController extends Controller
       ->where('checkout.id',$id)
       ->first();
 
-/*echo "<pre>";
-print_r($order_prescribed);
-echo "</pre>";
-die();*/
-   
-
-   
       $category = QuizCategory::pluck('name', 'id')->toArray();
-   /*$quiz= QuizAnswer::join('quizzes','quiz_answers.question_id', '=', 'quizzes.id')
-   ->select('quiz_answers.*','quizzes.question','quizzes.category_id')
-   ->where('case_id', $order_prescribed['id'])
-   ->OrderBy('id', 'ASC')
-   ->get();*/
-
+  
    return view('ordermanagement.view',compact('order_non_prescribed','order_prescribed','category'));
 }
 

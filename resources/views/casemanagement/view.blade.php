@@ -151,14 +151,13 @@
 									<section class="card" >
 										<ul class="nav nav-tabs" id="questions-tab-menu">
 
-									@foreach($category as $key => $data)
-									{{-- <li><a class="btn @if($activeTab == 0) active @elseif($current_tab_id == 'home'.$key) active @endif" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li> --}}
+											@foreach($category as $key => $data)
+											{{-- <li><a class="btn @if($activeTab == 0) active @elseif($current_tab_id == 'home'.$key) active @endif" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li> --}}
 
-									<li><a class="btn" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li>
-									<?php //$activeTab++ ?> 
-									@endforeach
-								</ul>
-
+											<li><a class="btn" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li>
+											<?php //$activeTab++ ?> 
+											@endforeach
+										</ul>
 
 										<div class="tab-content">
 											<?php $i=0 ?>
@@ -186,48 +185,49 @@
 
 											<?php if($key == 8) { ?>
 												<div id="home{{$key}}" class="tab-pane fade in @if($i== 0) active show @endif">	
-												@foreach($accutane_que as $key => $accutane_qa)
-												<div class="row" style="padding: 10px;">
-													<div class="col-md-12">
-														<?php 
+													@foreach($accutane_que as $key => $accutane_qa)
+													<div class="row" style="padding: 10px;">
+														<div class="col-md-12">
+															<?php 
 
-														$getquestions = $accutane_qa->question;
-														if(isset($accutane_qa->answer)){
-															$answer =  (array)$accutane_qa->answer;
-															$getanswer= implode(" " , $answer);
-														} 
-														?>
-														<h4><strong>Que: <?php echo $getquestions; ?></strong></h4>
-														<p>Ans: <?php echo $getanswer; ?>
+															$getquestions = $accutane_qa->question;
+															if(isset($accutane_qa->answer)){
+																$answer =  (array)$accutane_qa->answer;
+																$getanswer= implode(" " , $answer);
+															} 
+															?>
+															<h4><strong>Que: <?php echo $getquestions; ?></strong></h4>
+															<p>Ans: <?php echo $getanswer; ?>
+														</div>
 													</div>
+													@endforeach
 												</div>
-												@endforeach
-											</div>
 											<?php } ?>
 
 											<?php if($key == 9) { ?>
 												<div id="home{{$key}}" class="tab-pane fade in @if($i== 0) active show @endif">	
-												@foreach($topical_que as $key => $topical_qa)
-												<div class="row" style="padding: 10px;">
-													<div class="col-md-12">
-														<?php 
+													@foreach($topical_que as $key => $topical_qa)
+													<div class="row" style="padding: 10px;">
+														<div class="col-md-12">
+															<?php 
 
-														$getquestions = $topical_qa->question;
-														if(isset($topical_qa->answer)){
-															$answer =  (array)$topical_qa->answer;
-															$getanswer= implode(" " , $answer);
-														} 
-														?>
-														<h4><strong>Que: <?php echo $getquestions; ?></strong></h4>
-														<p>Ans: <?php echo $getanswer; ?>
+															$getquestions = $topical_qa->question;
+															if(isset($topical_qa->answer)){
+																$answer =  (array)$topical_qa->answer;
+																$getanswer= implode(" " , $answer);
+															} 
+															?>
+															<h4><strong>Que: <?php echo $getquestions; ?></strong></h4>
+															<p>Ans: <?php echo $getanswer; ?>
+														</div>
 													</div>
+													@endforeach
 												</div>
-												@endforeach
-											</div>
 											<?php } ?>
 
-											<?php $i++ ?>
+											
 											@endforeach
+											<?php $i++ ?>
 										</div>
 									</section>
 								</div>

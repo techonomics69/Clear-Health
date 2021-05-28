@@ -248,7 +248,7 @@ try{
      $orderlist = checkout::join('users', 'users.id', '=', 'checkout.user_id')
      ->join('carts','carts.id', '=', 'checkout.cart_id')
      ->join('checkout_address', 'checkout_address.order_id', '=','checkout.order_id')
-     ->select('checkout.id','users.first_name','users.last_name','checkout.order_id','carts.quantity','carts.order_type','checkout.cart_id','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode','checkout_address.email','checkout_address.phone','checkout.total_amount','checkout.created_at')
+     ->select('checkout.id','checkout_address.patient_firstname','checkout_address.patient_lastname','checkout.order_id','carts.quantity','carts.order_type','checkout.cart_id','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode','checkout_address.email','checkout_address.phone','checkout.total_amount','checkout.created_at')
      ->where('checkout.id',$request->id)
      ->OrderBy('id', 'DESC')
      ->get();
@@ -284,7 +284,7 @@ foreach($orderlist as $key=>$v)
          if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup'] != '' && $product_value['order_type'] == 'Prescribed'){
 
             if($product_value['pharmacy_pickup'] != "cash"){
-                $r = $this->get_token();
+                $r = get_token();
                 $token_data = json_decode($r);
                 $token = $token_data->access_token;
                 $pharmacy_id = $product_value['pharmacy_pickup'];

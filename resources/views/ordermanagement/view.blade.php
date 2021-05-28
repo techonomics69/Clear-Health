@@ -380,9 +380,6 @@ if($medication_type == 2 ) { ?>
 		});
 	});
 
-	$(document).on('click', '#i_pledge_agreement', function() {
-		$('#i_pledge_agreement_form').submit();
-	});
 </script>
 
 

@@ -169,11 +169,6 @@
 													<div class="row" style="padding: 10px;">
 														<div class="col-md-12">
 															<?php 
-
-															echo "<pre>";
-															print_r($general);
-															echo "</pre>";
-															
 															$getquestions = $general->question;
 															if(isset($general->answer)){
 																$answer =  (array)$general->answer;
@@ -194,7 +189,9 @@
 													<div class="row" style="padding: 10px;">
 														<div class="col-md-12">
 															<?php 
-
+echo "<pre>";
+															print_r($accutane);
+															echo "</pre>";
 															$getquestions = $accutane->question;
 															if(isset($accutane->answer)){
 																$answer =  (array)$accutane->answer;

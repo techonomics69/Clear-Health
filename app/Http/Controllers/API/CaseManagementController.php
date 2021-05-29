@@ -542,9 +542,10 @@ public function detach_file_from_case(Request $request){
         $curl = curl_init();
 
         echo "<pre>";
-        print_r('https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/messages');
+        print_r($postfields);
         echo "<pre>";
         exit();
+        
 
         curl_setopt_array($curl, array(
           CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/messages',

@@ -262,43 +262,43 @@
 											<div class="box-block mtb32">
 												<h3 class="font-weight-bold"><span class="text-underline">Shipments</span></h3>
 												<div class="col-md-6  form-group">
-													<strong>Address:</strong>
+													<strong>Address :</strong>
 												</div>
 												<div class="col-md-6  form-group">
-													<strong>TeleHealth Medicine Fee:</strong>
+													<strong>TeleHealth Medicine Fee :</strong>
 												</div>
 												<div class="col-md-6  form-group">
-													<strong>Addons Fee:</strong>
+													<strong>Addons Fee :</strong>
 												</div>
 												<div class="col-md-6  form-group">
-													<strong>Shipping:</strong>
+													<strong>Shipping :</strong>
 												</div>
 												<div class="col-md-6  form-group">
-													<strong>Taxes:</strong>
+													<strong>Taxes :</strong>
 												</div> 
 												<div class="col-md-6  form-group">
-													<strong>Total Amount:</strong>
+													<strong>Total Amount :</strong>
 												</div>
 											</div>
 											<div class="box-block mtb32">
 												<h3 class="font-weight-bold"><span class="text-underline">Physician Details</span></h3>
 												<div class="col-md-6  form-group">
-													<strong>MD ID:</strong>
+													<strong>MD ID :</strong>
 												</div>
 												<div class="col-md-6  form-group">
-													<strong>Name:</strong>
+													<strong>Name :</strong>
 												</div>
 												<div class="col-md-6  form-group">
-													<strong>Expertise:</strong>
+													<strong>Expertise :</strong>
 												</div>
 											</div>
 											<div class="box-block mtb32">
 												<h3 class="font-weight-bold"><span class="text-underline">Pharmacy Preference</span></h3>
 												<div class="col-md-6  form-group">
-													<strong>Local Pharmacy:</strong>
+													<strong>Local Pharmacy :</strong>
 												</div>
 												<div class="col-md-6  form-group">
-													<strong>Clear Health Pharmacy Network:</strong>
+													<strong>Clear Health Pharmacy Network :</strong>
 												</div>
 											</div>
 										</div>

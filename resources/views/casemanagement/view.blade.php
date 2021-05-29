@@ -251,26 +251,26 @@
 												<h3 class="font-weight-bold"><span class="text-underline">Skincare Summary</span></h3>
 												<div class="col-md-6  form-group">
 													<strong>Order ID :</strong>
-													{{$user_case_management_data['order_id']}}
+													{{$skincare_summary['order_id']}}
 												</div>
 												<div class="col-md-6  form-group">
 													<strong>Product Name :</strong>
-													{{$user_case_management_data['product_name']}}
+													{{$skincare_summary['product_name']}}
 												</div>
 												<div class="col-md-6  form-group">
 													<strong>Add-ons [Product Name] :</strong>
-													{{$user_case_management_data['product_name']}}
+													{{$skincare_summary['product_name']}}
 												</div>
 											</div>
 											<div class="box-block mtb32">
 												<h3 class="font-weight-bold"><span class="text-underline">Shipments</span></h3>
 												<div class="col-md-6  form-group">
 													<strong>Address :</strong>
-													{{$user_case_management_data['addressline1']}}
-													{{$user_case_management_data['addressline2']}}
-													{{$user_case_management_data['city']}}
-													{{$user_case_management_data['state']}},
-													{{$user_case_management_data['zipcode']}}
+													{{$skincare_summary['addressline1']}}
+													{{$skincare_summary['addressline2']}}
+													{{$skincare_summary['city']}}
+													{{$skincare_summary['state']}},
+													{{$skincare_summary['zipcode']}}
 												</div>
 												<div class="col-md-6  form-group">
 													<strong>TeleHealth Medicine Fee :</strong>

@@ -292,10 +292,10 @@
 											<div class="box-block mtb32">
 												<h3 class="font-weight-bold"><span class="text-underline">Physician Details</span></h3>
 												<div class="col-md-6  form-group">
-													<strong>MD ID :</strong>
+													<strong>Clinician ID :</strong>
 												</div>
 												<div class="col-md-6  form-group">
-													<strong>Name :</strong>
+													<strong>Clinician Name :</strong>
 												</div>
 												<div class="col-md-6  form-group">
 													<strong>Expertise :</strong>

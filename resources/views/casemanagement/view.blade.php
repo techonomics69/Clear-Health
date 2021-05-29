@@ -255,15 +255,12 @@
 												</div>
 												<div class="col-md-6  form-group">
 													<strong>Product Name :</strong>
-													<?php if($skincare_summary['used_for_plan'] == "No") {?>
-													{{$skincare_summary['product_name']}}
-												<?php } ?>
 												</div>
 												<div class="col-md-6  form-group">
 													<strong>Add-ons [Product Name] :</strong>
 													<?php if($skincare_summary['used_for_plan'] == "Yes") {?>
 													{{$skincare_summary['product_name']}}
-												<?php }else{ ?>{{$skincare_summary['product_name']}} <?php } ?>
+												<?php } ?>
 												</div>
 											</div>
 											<div class="box-block mtb32">

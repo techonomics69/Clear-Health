@@ -63,11 +63,11 @@ class CaseManagementController extends Controller
       ->select('case_managements.*','users.first_name','users.last_name','users.email','users.mobile','users.gender','checkout_address.order_id','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode')
       ->where('case_managements.id',$id)->first();
 
-echo"<pre>";
+/*echo"<pre>";
 print_r($user_case_management_data);
 echo"</pre>";
 die();
-
+*/
       $category = QuizCategory::pluck('name', 'id')->toArray();
 
       $general = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',7)->get();

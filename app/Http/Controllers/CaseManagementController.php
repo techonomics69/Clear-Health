@@ -72,14 +72,14 @@ class CaseManagementController extends Controller
       ->where('case_managements.id',$id)->first();
       
  $cart_ids = explode(',', $skincare_summary['cart_id']);
- echo"<pre>";
-print_r($cart_ids);
-echo"</pre>";
-die();
+
 $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.image','carts.quantity','carts.order_type','carts.pharmacy_pickup','carts.product_price as price')->get()->toArray();
 
 
-
+echo"<pre>";
+print_r($product_details);
+echo"</pre>";
+die();
 
       foreach($skincare_summary as $key=>$val)
        {

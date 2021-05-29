@@ -253,15 +253,11 @@ try{
      ->OrderBy('id', 'DESC')
      ->first();
 
-echo "<pre>";
-print_r($orderlist);
-echo "<pre>";
-exit();
 
-     foreach($orderlist as $key=>$val)
-     {
-        $cart_ids = explode(',', $val['cart_id']);
-        $orderlist[$key]['order_item'] = count($cart_ids);
+    // foreach($orderlist as $key=>$val)
+     //{
+        $cart_ids = explode(',', $orderlist['cart_id']);
+        $orderlist['order_item'] = count($cart_ids);
         
         $products=array();
         $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.image','carts.quantity','carts.order_type','carts.pharmacy_pickup','carts.product_price as price')->get()->toArray();
@@ -270,13 +266,13 @@ exit();
         $s_total = 0;
         $pro_amount = 0;
         $ord_total = 0;
-        $shipping_fee = ($val['shipping_fee']!="" || $val['shipping_fee']!= null)?$val['shipping_fee']:0;
+        $shipping_fee = ($orderlist['shipping_fee']!="" || $orderlist['shipping_fee']!= null)?$orderlist['shipping_fee']:0;
 
-        $telemedicine_fee = ($val['telemedicine_fee']!= '' || $val['telemedicine_fee']!= null)?$val['telemedicine_fee']:0;
+        $telemedicine_fee = ($orderlist['telemedicine_fee']!= '' || $orderlist['telemedicine_fee']!= null)?$orderlist['telemedicine_fee']:0;
 
-        $handling_fee = ($val['handling_fee']!='' || $val['handling_fee']!= null)?$val['handling_fee']:0;
+        $handling_fee = ($orderlist['handling_fee']!='' || $orderlist['handling_fee']!= null)?$orderlist['handling_fee']:0;
 
-        $tax = ($val['tax']!='' || $val['tax']!= null)?$val['tax']:0;
+        $tax = ($orderlist['tax']!='' || $orderlist['tax']!= null)?$orderlist['tax']:0;
 
         foreach($product_details as $product_key => $product_value)
         {
@@ -325,15 +321,15 @@ exit();
        }
 
    }
-   $orderlist[$key]->product_name = implode(', ' ,$product_name);
+   $orderlist['product_name'] = implode(', ' ,$product_name);
 
-   $orderlist[$key]->products = $products;
+   $orderlist['products'] = $products;
 
-   $orderlist[$key]['sub_total'] = $pro_amount;
+   $orderlist['sub_total'] = $pro_amount;
 
-   $orderlist[$key]['order_total'] =  $pro_amount + $shipping_fee + $telemedicine_fee + $handling_fee +$tax ;
+   $orderlist['order_total'] =  $pro_amount + $shipping_fee + $telemedicine_fee + $handling_fee +$tax ;
 
-}
+//}
 
 if(!empty($orderlist)){
  return $this->sendResponse($orderlist, 'Checkout data retrieved successfully.');

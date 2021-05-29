@@ -250,6 +250,12 @@
 											<div class="box-block mtb32">
 												<h3 class="font-weight-bold"><span class="text-underline">Skincare Summary</span></h3>
 											</div>
+											<div class="box-block mtb32">
+												<h3 class="font-weight-bold"><span class="text-underline">Skincare Summary</span></h3>
+											</div>
+											<div class="box-block mtb32">
+												<h3 class="font-weight-bold"><span class="text-underline">Skincare Summary</span></h3>
+											</div>
 										</div>
 									</section>
 								</div>

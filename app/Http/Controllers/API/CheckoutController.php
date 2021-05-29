@@ -263,10 +263,8 @@ try{
 
         foreach($product_details as $product_key => $product_value)
         {
-            echo "<pre>";
-        print_r($product_value);
-        echo "<pre>";
-       
+           
+         $product_name[] = $product_value['product_name'];
          $products[$product_key]['name'] = $product_value['product_name'];
          $products[$product_key]['price'] = $product_value['price'];
          $products[$product_key]['image'] = $product_value['image'];

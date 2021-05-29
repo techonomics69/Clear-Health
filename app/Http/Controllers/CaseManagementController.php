@@ -10,6 +10,7 @@ use App\Models\QuizAnswer;
 use App\Models\Quiz;
 use App\Models\Answers;
 use App\Models\Checkoutaddress;
+use App\Models\Checkout;
 use Session;
 
 
@@ -59,7 +60,7 @@ class CaseManagementController extends Controller
       ->join('checkout_address', 'checkout_address.user_id', '=', 'checkout.user_id')
       ->select('case_managements.*','checkout_address.*','users.first_name','users.last_name','users.email','users.mobile','users.gender')
       ->where('case_managements.id',$id)->first();
-      
+
 echo"<pre>";
 print_r($user_case_management_data);
 echo"</pre>";

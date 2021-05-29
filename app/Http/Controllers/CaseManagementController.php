@@ -87,10 +87,10 @@ die();*/
    }
 
       //'products.name AS product_name',
-echo"<pre>";
+/*echo"<pre>";
 print_r($skincare_summary);
 echo"</pre>";
-die();
+die();*/
 
       $category = QuizCategory::pluck('name', 'id')->toArray();
 

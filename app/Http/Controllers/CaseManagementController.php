@@ -73,10 +73,10 @@ class CaseManagementController extends Controller
       
       foreach($skincare_summary as $key=>$val)
        {
-        echo"<pre>";
+ /*       echo"<pre>";
 print_r($val);
 echo"</pre>";
-die();
+die();*/
         $cart_ids = explode(',', $val['cart_id']);
         $product_name = array();
         $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name')->get()->toArray();

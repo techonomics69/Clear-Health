@@ -265,7 +265,7 @@
 													{{$skincare_summary['product_name']}}
 												<?php } ?>
 												</div>
-											
+											</div>
 											<div class="box-block mtb32">
 												<h3 class="font-weight-bold"><span class="text-underline">Shipments</span></h3>
 												<div class="col-md-6  form-group">

@@ -257,8 +257,6 @@ try{
      {
         $cart_ids = explode(',', $val['cart_id']);
         $orderlist[$key]['order_item'] = count($cart_ids);
-
-        $orderlist[$key]['order_total'] = count($cart_ids);
         
         $products=array();
         $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.image','carts.quantity','carts.order_type','carts.pharmacy_pickup','carts.product_price as price')->get()->toArray();
@@ -328,7 +326,7 @@ try{
 
    $orderlist[$key]['sub_total'] = $pro_amount;
 
-   $ord_total =  $pro_amount + $shipping_fee + $telemedicine_fee + $handling_fee +$tax ;
+   $orderlist[$key]['order_total'] =  $pro_amount + $shipping_fee + $telemedicine_fee + $handling_fee +$tax ;
 
 }
 

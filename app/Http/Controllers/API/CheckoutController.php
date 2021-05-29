@@ -253,6 +253,11 @@ try{
      ->OrderBy('id', 'DESC')
      ->get();
 
+echo "<pre>";
+print_r($orderlist);
+echo "<pre>";
+exit();
+
      foreach($orderlist as $key=>$val)
      {
         $cart_ids = explode(',', $val['cart_id']);

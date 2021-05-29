@@ -519,6 +519,73 @@ public function detach_file_from_case(Request $request){
 
     $message_file_data = MdMessageFiles::create($input_data);
 
+    //create message
+
+    //code to get files ids
+   
+
+    if($message_file_data->file_id !=''){
+      $file_ids = $file_ids;
+    }else{
+      $file_ids = array();
+    }
+    // end of code to get files ids
+    if(!empty($message_file_data)){
+        $postfields = array();
+        $postfields['from'] = $request['from'];
+        $postfields['text'] = $request['text']; 
+        $postfields['prioritized'] = $request['prioritized']; 
+        $postfields['prioritized_reason'] = $request['prioritized_reason'];
+        $postfields['message_files'] = $file_ids;
+
+        $postfields = json_encode($postfields);
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/messages',
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => '',
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 0,
+          CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => 'POST',
+          CURLOPT_POSTFIELDS =>$postfields,
+          CURLOPT_HTTPHEADER => array(
+            'Content-Type: application/json',
+            'Authorization: Bearer '.$token,
+            'Cookie: __cfduid=da01d92d82d19a6cccebfdc9852303eb81620627650'
+          ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        
+        $message_data = json_decode($response);
+        $input_data = array();
+
+        $input_data['md_case_id'] = $case_id;
+        $input_data['user_id'] = $user_id;
+        $input_data['case_id'] = $system_case_id;
+        $input_data['text'] = $message_data->text;
+        $input_data['from'] = $message_data->from;
+        $input_data['channel'] = $message_data->channel;
+        $input_data['prioritized_at'] = $message_data->prioritized_at;
+        $input_data['prioritized_reason'] = $message_data->prioritized_reason;
+        $input_data['message_created_at'] = $message_data->created_at;
+        $input_data['case_message_id'] = $message_data->case_message_id;
+        //$input_data['message_files_ids'] = json_encode($file_ids);
+        $input_data['clinician  '] = $message_data->clinician ;
+        $message_data = MdMessages::create($input_data);
+
+        return $this->sendResponse($message_data,'Message created successfully');
+    }
+    
+
+    //end of create message
+
     return $this->sendResponse($message_file_data,'File created successfully');
 
   }
@@ -533,13 +600,13 @@ public function detach_file_from_case(Request $request){
     $system_case_id = $request['system_case_id'];
 
     //code to get files ids
-    $file_ids = MdMessageFiles::where('user_id', $user_id)->where('md_case_id', $case_id  )->pluck('file_id');
+    /*$file_ids = MdMessageFiles::where('user_id', $user_id)->where('md_case_id', $case_id  )->pluck('file_id');
 
     if(!empty($file_ids) && count($file_ids)){
       $file_ids = $file_ids;
-    }else{
+    }else{*/
       $file_ids = array();
-    }
+    //}
     // end of code to get files ids
 
     $postfields = array();

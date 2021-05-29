@@ -77,9 +77,12 @@ $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id
 
 foreach($product_details as $product_key => $product_value)
         {
-           
-         $product_name[] = $product_value['product_name'];
-         }
+         echo"<pre>";
+print_r($product_value);
+echo"</pre>";
+die(); 
+        }
+
 $skincare_summary['product_name'] = implode(', ' ,$product_details);
 
 echo"<pre>";

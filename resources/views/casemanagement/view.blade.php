@@ -261,11 +261,11 @@
 												</div>
 												 <?php } else { ?>
 												<div class="col-md-6  form-group">
-													
 													<strong>Product Name :</strong>
 													{{$skincare_summary['product_name']}}
+													<?php } ?>
 												</div>
-												<?php } ?>
+												
 											</div>
 											<div class="box-block mtb32">
 												<h3 class="font-weight-bold"><span class="text-underline">Shipments</span></h3>

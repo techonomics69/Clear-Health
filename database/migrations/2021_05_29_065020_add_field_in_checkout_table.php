@@ -19,7 +19,7 @@ class AddFieldInCheckoutTable extends Migration
            $table->string('md_status')->nullable()->after('delivery_date');
            $table->string('telemedicine_fee')->nullable()->after('md_status');
            $table->string('md_status')->nullable()->after('telemedicine_fee');
-           $table->string('shipping_fee')->nullable()->after('sub_total');
+           $table->string('shipping_fee')->nullable()->after('md_status');
            $table->string('handling_fee')->nullable()->after('shipping_fee');
            $table->string('tax')->nullable()->after('handling_fee');
         });

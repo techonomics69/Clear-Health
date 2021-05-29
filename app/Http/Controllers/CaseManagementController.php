@@ -60,7 +60,7 @@ class CaseManagementController extends Controller
       $user_case_management_data = CaseManagement::join('users','case_managements.user_id', '=', 'users.id')
       ->join('carts', 'carts.user_id', '=', 'case_managements.user_id')
       ->join('checkout_address', 'checkout_address.user_id', '=', 'case_managements.user_id')
-      ->select('case_managements.*','users.first_name','users.last_name','users.email','users.mobile','users.gender','checkout_address.order_id','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode','carts.*')
+      ->select('case_managements.*','users.first_name','users.last_name','users.email','users.mobile','users.gender','checkout_address.order_id','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode','carts.product_id')
       ->where('case_managements.id',$id)->first();
 
 echo"<pre>";

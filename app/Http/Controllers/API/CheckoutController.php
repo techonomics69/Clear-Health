@@ -248,12 +248,12 @@ try{
      $orderlist = checkout::join('users', 'users.id', '=', 'checkout.user_id')
      ->join('carts','carts.id', '=', 'checkout.cart_id')
      ->join('checkout_address', 'checkout_address.order_id', '=','checkout.order_id')
-     ->select('checkout.id','checkout_address.patient_firstname','checkout_address.patient_lastname','checkout.order_id','carts.quantity','carts.order_type','checkout.cart_id','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode','checkout_address.email','checkout_address.phone','checkout.total_amount','checkout.created_at')
+     ->select('checkout.id','checkout_address.patient_firstname','checkout_address.patient_lastname','checkout.order_id','carts.quantity','carts.order_type','checkout.cart_id','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode','checkout_address.email','checkout_address.phone','checkout.total_amount','checkout.created_at','checkout.status as order_status',)
      ->where('checkout.id',$request->id)
      ->OrderBy('id', 'DESC')
      ->get();
 
-foreach($orderlist as $key=>$v)
+/*foreach($orderlist as $key=>$v)
          {
            
             $cart_id = explode(',', $v['cart_id']);
@@ -263,7 +263,7 @@ foreach($orderlist as $key=>$v)
              $product_name[] = $product_value['product_name']; 
          }
          $orderlist[$key]->product_name = implode(', ' ,$product_name);   
-     }
+     }*/
 
 
 
@@ -316,6 +316,7 @@ foreach($orderlist as $key=>$v)
        }
 
    }
+   $orderlist[$key]->product_name = implode(', ' ,$product_name);
 
    $orderlist[$key]->products = $products;
 

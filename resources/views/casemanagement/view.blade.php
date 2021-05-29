@@ -259,12 +259,11 @@
 													<?php if($skincare_summary['used_for_plan'] == "Yes") { ?>
 													{{$skincare_summary['product_name']}}
 												</div>
-												 <?php } else { ?>
+												 
 												<div class="col-md-6  form-group">
+													<?php } else { ?>
 													<strong>Product Name :</strong>
-												
 													{{$skincare_summary['product_name']}}
-												
 												</div>
 												<?php } ?>
 											</div>

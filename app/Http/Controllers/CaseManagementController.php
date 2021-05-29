@@ -68,13 +68,25 @@ class CaseManagementController extends Controller
       ->join('products', 'products.id', '=', 'carts.product_id')
       ->join('checkout','checkout.user_id','=', 'case_managements.user_id')
       ->join('checkout_address', 'checkout_address.user_id', '=', 'case_managements.user_id')
-      ->select('checkout_address.order_id','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode','products.name AS product_name','checkout.total_amount','checkout.telemedicine_fee','products.price')
+      ->select('checkout_address.order_id','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode','checkout.total_amount','checkout.telemedicine_fee','products.price','checkout.cart_id')
       ->where('case_managements.id',$id)->first();
       
-/*echo"<pre>";
+      foreach($skincare_summary as $key=>$val)
+       {
+        $cart_ids = explode(',', $val['cart_id']);
+        $product_name = array();
+        $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name')->get()->toArray();
+        foreach($product_details as $product_key=>$product_value){
+           $product_name[] = $product_value['product_name'];  
+       }
+       $skincare_summary[$key]->product_name = implode(', ' ,$product_name);    
+   }
+
+      //'products.name AS product_name',
+echo"<pre>";
 print_r($skincare_summary);
 echo"</pre>";
-die();*/
+die();
 
       $category = QuizCategory::pluck('name', 'id')->toArray();
 

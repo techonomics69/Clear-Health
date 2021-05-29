@@ -255,7 +255,6 @@
 												</div>
 												<div class="col-md-6  form-group">
 													<strong>Product Name :</strong>
-													
 												</div>
 												<div class="col-md-6  form-group">
 													<strong>Add-ons [Product Name] :</strong>

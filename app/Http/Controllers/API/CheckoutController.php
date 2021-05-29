@@ -259,13 +259,14 @@ try{
         $products=array();
         $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.image','carts.quantity','carts.order_type','carts.pharmacy_pickup','carts.product_price as price')->get()->toArray();
 
-        echo "<pre>";
-        print_r($product_details);
-        echo "<pre>";
-        exit();
+        
 
         foreach($product_details as $product_key => $product_value)
         {
+            echo "<pre>";
+        print_r($product_value);
+        echo "<pre>";
+       
          $products[$product_key]['name'] = $product_value['product_name'];
          $products[$product_key]['price'] = $product_value['price'];
          $products[$product_key]['image'] = $product_value['image'];

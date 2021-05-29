@@ -11,6 +11,7 @@ use App\Models\Quiz;
 use App\Models\Answers;
 use App\Models\Checkoutaddress;
 use App\Models\Checkout;
+use App\Models\User;
 use Session;
 
 
@@ -57,6 +58,7 @@ class CaseManagementController extends Controller
     public function show($id)
     {
       $user_case_management_data = CaseManagement::join('users','case_managements.user_id', '=', 'users.id')
+      ->join('users', 'users.id', '=', 'checkout.user_id')
       ->join('checkout_address', 'checkout_address.user_id', '=', 'checkout.user_id')
       ->select('case_managements.*','checkout_address.*','users.first_name','users.last_name','users.email','users.mobile','users.gender')
       ->where('case_managements.id',$id)->first();

@@ -248,7 +248,7 @@ try{
      $orderlist = checkout::join('users', 'users.id', '=', 'checkout.user_id')
      ->join('carts','carts.id', '=', 'checkout.cart_id')
      ->join('checkout_address', 'checkout_address.order_id', '=','checkout.order_id')
-     ->select('checkout.id','checkout_address.patient_firstname','checkout_address.patient_lastname','checkout.order_id','carts.quantity','carts.order_type','checkout.cart_id','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode','checkout_address.email','checkout_address.phone','checkout.total_amount','checkout.created_at','checkout.status as order_status','checkout.md_status','checkout.shipping_fee','checkout.shipping_fee','checkout.ipladege_id','checkout.delivery_date','checkout.telemedicine_fee','checkout.handling_fee','checkout.tax')
+     ->select('checkout.id','checkout_address.patient_firstname','checkout_address.patient_lastname','checkout.order_id','carts.quantity','carts.order_type','checkout.cart_id','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode','checkout_address.email','checkout_address.phone','checkout.total_amount','checkout.created_at','checkout.status as order_status','checkout.md_status','checkout.shipping_fee','checkout.ipladege_id','checkout.delivery_date','checkout.telemedicine_fee','checkout.handling_fee','checkout.tax')
      ->where('checkout.id',$request->id)
      ->OrderBy('id', 'DESC')
      ->get();
@@ -256,10 +256,24 @@ try{
      foreach($orderlist as $key=>$val)
      {
         $cart_ids = explode(',', $val['cart_id']);
+        $orderlist[$key]['order_item'] = count($cart_ids);
+
+        $orderlist[$key]['order_total'] = count($cart_ids);
+        
         $products=array();
         $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.image','carts.quantity','carts.order_type','carts.pharmacy_pickup','carts.product_price as price')->get()->toArray();
 
         
+        $s_total = 0;
+        $pro_amount = 0;
+        $ord_total = 0;
+        $shipping_fee = ($val['shipping_fee']!="" || $val['shipping_fee']!= null)?$val['shipping_fee']:0;
+
+        $telemedicine_fee = ($val['telemedicine_fee']!= '' || $val['telemedicine_fee']!= null)?$val['telemedicine_fee']:0;
+
+        $handling_fee = ($val['handling_fee']!='' || $val['handling_fee']!= null)?$val['handling_fee']:0;
+
+        $tax = ($val['tax']!='' || $val['tax']!= null)?$val['tax']:0;
 
         foreach($product_details as $product_key => $product_value)
         {
@@ -270,6 +284,8 @@ try{
          $products[$product_key]['image'] = $product_value['image'];
          $products[$product_key]['quantity'] = $product_value['quantity'];
          $products[$product_key]['order_type'] = $product_value['order_type'];
+
+         $pro_amount = $pro_amount + $product_value['quantity'] * $product_value['price'];
 
          if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup'] != '' && $product_value['order_type'] == 'Prescribed'){
 
@@ -309,6 +325,10 @@ try{
    $orderlist[$key]->product_name = implode(', ' ,$product_name);
 
    $orderlist[$key]->products = $products;
+
+   $orderlist[$key]['sub_total'] = $pro_amount;
+
+   $ord_total =  $pro_amount + $shipping_fee + $telemedicine_fee + $handling_fee +$tax ;
 
 }
 

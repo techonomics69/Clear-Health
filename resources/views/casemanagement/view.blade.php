@@ -274,9 +274,11 @@
 												</div>
 												<div class="col-md-6  form-group">
 													<strong>TeleHealth Medicine Fee :</strong>
+													{{$skincare_summary['telemedicine_fee']}}
 												</div>
 												<div class="col-md-6  form-group">
 													<strong>Addons Fee :</strong>
+													{{$skincare_summary['price']}}
 												</div>
 												<div class="col-md-6  form-group">
 													<strong>Shipping Fee :</strong> 0

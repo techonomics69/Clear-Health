@@ -10,6 +10,9 @@ use App\Models\QuizAnswer;
 use App\Models\Quiz;
 use App\Models\Answers;
 use App\Models\Checkoutaddress;
+use App\Models\Checkout;
+use App\Models\Cart;
+use App\Models\Product;
 use Session;
 
 
@@ -56,14 +59,27 @@ class CaseManagementController extends Controller
     public function show($id)
     {
       $user_case_management_data = CaseManagement::join('users','case_managements.user_id', '=', 'users.id')
-      // ->join('checkout_address', 'checkout_address.user_id', '=','checkout.user_id')
+      //->join('carts', 'carts.user_id', '=', 'case_managements.user_id')
+      //->join('products', 'products.id', '=', 'carts.product_id')
+      //->join('checkout_address', 'checkout_address.user_id', '=', 'case_managements.user_id')
       ->select('case_managements.*','users.first_name','users.last_name','users.email','users.mobile','users.gender')
       ->where('case_managements.id',$id)->first();
+
+
+      $skincare_summary = CaseManagement::join('users','case_managements.user_id', '=', 'users.id')
+      ->join('carts', 'carts.user_id', '=', 'case_managements.user_id')
+      ->join('products', 'products.id', '=', 'carts.product_id')
+      ->join('checkout','checkout.user_id','=', 'case_managements.user_id')
+      ->join('checkout_address', 'checkout_address.user_id', '=', 'case_managements.user_id')
+      ->select('checkout_address.order_id','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode','products.name AS product_name','total_amount','checkout.total_amount')
+      ->where('case_managements.id',$id)->first();
+      
 /*echo"<pre>";
-print_r($user_case_management_data);
+print_r($skincare_summary);
 echo"</pre>";
-,'checkout_address.order_id'
 die();*/
+
+
       $category = QuizCategory::pluck('name', 'id')->toArray();
 
       $general = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',7)->get();
@@ -92,7 +108,7 @@ die();*/
     $topical_que =[];
   }
 
-  return view('casemanagement.view',compact('user_case_management_data','category','general_que','accutane_que','topical_que'));
+  return view('casemanagement.view',compact('user_case_management_data','category','general_que','accutane_que','topical_que','skincare_summary'));
 
 }
 

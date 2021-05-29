@@ -251,18 +251,26 @@
 												<h3 class="font-weight-bold"><span class="text-underline">Skincare Summary</span></h3>
 												<div class="col-md-6  form-group">
 													<strong>Order ID :</strong>
+													{{$skincare_summary['order_id']}}
 												</div>
 												<div class="col-md-6  form-group">
 													<strong>Product Name :</strong>
+													{{$skincare_summary['product_name']}}
 												</div>
 												<div class="col-md-6  form-group">
-													<strong>Add-ons :</strong>
+													<strong>Add-ons [Product Name] :</strong>
+													{{$skincare_summary['product_name']}}
 												</div>
 											</div>
 											<div class="box-block mtb32">
 												<h3 class="font-weight-bold"><span class="text-underline">Shipments</span></h3>
 												<div class="col-md-6  form-group">
 													<strong>Address :</strong>
+													{{$skincare_summary['addressline1']}}
+													{{$skincare_summary['addressline2']}}
+													{{$skincare_summary['city']}}
+													{{$skincare_summary['state']}},
+													{{$skincare_summary['zipcode']}}
 												</div>
 												<div class="col-md-6  form-group">
 													<strong>TeleHealth Medicine Fee :</strong>
@@ -271,22 +279,23 @@
 													<strong>Addons Fee :</strong>
 												</div>
 												<div class="col-md-6  form-group">
-													<strong>Shipping :</strong>
+													<strong>Shipping Fee :</strong> 0
 												</div>
 												<div class="col-md-6  form-group">
 													<strong>Taxes :</strong>
 												</div> 
 												<div class="col-md-6  form-group">
 													<strong>Total Amount :</strong>
+													{{$skincare_summary['total_amount']}}
 												</div>
 											</div>
 											<div class="box-block mtb32">
 												<h3 class="font-weight-bold"><span class="text-underline">Physician Details</span></h3>
 												<div class="col-md-6  form-group">
-													<strong>MD ID :</strong>
+													<strong>Clinician ID :</strong>
 												</div>
 												<div class="col-md-6  form-group">
-													<strong>Name :</strong>
+													<strong>Clinician Name :</strong>
 												</div>
 												<div class="col-md-6  form-group">
 													<strong>Expertise :</strong>
@@ -294,12 +303,7 @@
 											</div>
 											<div class="box-block mtb32">
 												<h3 class="font-weight-bold"><span class="text-underline">Pharmacy Preference</span></h3>
-												<div class="col-md-6  form-group">
-													<strong>Local Pharmacy :</strong>
-												</div>
-												<div class="col-md-6  form-group">
-													<strong>Clear Health Pharmacy Network :</strong>
-												</div>
+												
 											</div>
 										</div>
 									</section>

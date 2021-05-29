@@ -9,6 +9,7 @@ use App\Models\QuizCategory;
 use App\Models\QuizAnswer;
 use App\Models\Quiz;
 use App\Models\Answers;
+use App\Models\Checkout;
 use Session;
 
 

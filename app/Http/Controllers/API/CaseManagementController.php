@@ -526,7 +526,7 @@ public function detach_file_from_case(Request $request){
     $file_ids = array();
 
     if($message_file_data->file_id !=''){
-      $file_ids = $message_file_data->file_id;
+      $file_ids[] = $message_file_data->file_id;
     }
     // end of code to get files ids
     if(!empty($message_file_data)){

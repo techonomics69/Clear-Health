@@ -17,8 +17,7 @@ class AddFieldInCheckoutTable extends Migration
            $table->string('ipladege_id')->nullable()->after('plan_quantity');
            $table->string('delivery_date')->nullable()->after('ipladege_id');
            $table->string('telemedicine_fee')->nullable()->after('md_status');
-           $table->string('shipping_fee')->nullable()->after('md_status');
-           $table->string('handling_fee')->nullable()->after('shipping_fee');
+           $table->string('handling_fee')->nullable()->after('telemedicine_fee');
            $table->string('tax')->nullable()->after('handling_fee');
         });
     }

@@ -257,7 +257,7 @@
 													<strong>Product Name :</strong>
 												</div>
 												<div class="col-md-6  form-group">
-													<strong>Add-ons :</strong>
+													<strong>Add-ons [Product Name] :</strong>
 												</div>
 											</div>
 											<div class="box-block mtb32">
@@ -274,7 +274,7 @@
 													<strong>TeleHealth Medicine Fee :</strong>
 												</div>
 												<div class="col-md-6  form-group">
-													<strong>Addons Fee [Product Name] :</strong>
+													<strong>Addons Fee :</strong>
 												</div>
 												<div class="col-md-6  form-group">
 													<strong>Shipping Fee :</strong> 0

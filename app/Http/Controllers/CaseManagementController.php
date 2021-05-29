@@ -81,7 +81,7 @@ $product_name=array();
         if($product_value['used_for_plan'] != "Yes") {
         $product_name[] = $product_value['product_name']; 
       }
-      if($product_value['used_for_plan'] == "No"){
+      if($product_value['used_for_plan'] == "Yes"){
          $addon_product[] = $product_value['product_name']; 
       }
     }

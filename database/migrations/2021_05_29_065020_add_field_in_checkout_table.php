@@ -16,7 +16,6 @@ class AddFieldInCheckoutTable extends Migration
         Schema::table('checkout', function (Blueprint $table) {
            $table->string('ipladege_id')->nullable()->after('plan_quantity');
            $table->string('delivery_date')->nullable()->after('ipladege_id');
-           $table->string('md_status')->nullable()->after('delivery_date');
            $table->string('telemedicine_fee')->nullable()->after('md_status');
            $table->string('md_status')->nullable()->after('telemedicine_fee');
            $table->string('shipping_fee')->nullable()->after('md_status');

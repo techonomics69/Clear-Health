@@ -539,6 +539,11 @@ public function detach_file_from_case(Request $request){
 
         $postfields = json_encode($postfields);
 
+        echo "<pre>";
+        print_r($postfields);
+        echo "<pre>";
+        exit();
+
         $curl = curl_init();
 
         curl_setopt_array($curl, array(

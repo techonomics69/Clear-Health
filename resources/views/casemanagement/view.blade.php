@@ -277,7 +277,7 @@
 													<strong>Addons Fee :</strong>
 												</div>
 												<div class="col-md-6  form-group">
-													<strong>Shipping :</strong>
+													<strong>Shipping Fee :</strong> 0
 												</div>
 												<div class="col-md-6  form-group">
 													<strong>Taxes :</strong>

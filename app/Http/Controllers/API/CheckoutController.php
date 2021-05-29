@@ -259,10 +259,17 @@ try{
      ->OrderBy('id', 'DESC')
      ->first();
 
-echo "<pre>";
-print_r($shipping_address);
-echo "<pre>";
-exit();
+$orderlist['shipping_address'] = $shipping_address;
+
+$billing_address = Checkoutaddress::select('*')
+     ->where('checkout_address.order_id',$orderlist['order_id'])
+     ->where('checkout_address.address_type',2)
+     ->OrderBy('id', 'DESC')
+     ->first();
+     
+$orderlist['billing_address'] = $billing_address;
+
+
     // foreach($orderlist as $key=>$val)
      //{
         $cart_ids = explode(',', $orderlist['cart_id']);

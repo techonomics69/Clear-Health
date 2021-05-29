@@ -65,7 +65,7 @@ class CaseManagementController extends Controller
 
       $skincare_summary = CaseManagement::join('users','case_managements.user_id', '=', 'users.id')
       ->join('carts', 'carts.user_id', '=', 'case_managements.user_id')
-      ->join('products', 'products.id', '=', 'carts.product_id')
+      /*->join('products', 'products.id', '=', 'carts.product_id')*/
       ->join('checkout','checkout.user_id','=', 'case_managements.user_id')
       ->join('checkout_address', 'checkout_address.user_id', '=', 'case_managements.user_id')
       ->select('checkout_address.order_id','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode','checkout.total_amount','checkout.telemedicine_fee','products.price','checkout.cart_id')

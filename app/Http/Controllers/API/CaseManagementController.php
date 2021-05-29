@@ -533,7 +533,7 @@ public function detach_file_from_case(Request $request){
         $postfields = array();
         $postfields['from'] = $request->from;
         $postfields['text'] = $request->text; 
-        $postfields['prioritized'] = $request->prioritized; 
+        $postfields['prioritized'] = trim($request->prioritized,'"');; 
         $postfields['prioritized_reason'] = $request->prioritized_reason;
         $postfields['message_files'] = $file_ids;
 
@@ -545,7 +545,7 @@ public function detach_file_from_case(Request $request){
         print_r($postfields);
         echo "<pre>";
         exit();
-        
+
 
         curl_setopt_array($curl, array(
           CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/messages',

@@ -75,33 +75,14 @@ class CaseManagementController extends Controller
 
 $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.used_for_plan','carts.quantity','carts.order_type','carts.pharmacy_pickup','carts.product_price as price')->get()->toArray();
 
+$skincare_summary['product_name'] = implode(', ' ,$product_details);
 
-echo"<pre>";
-print_r($product_details);
-echo"</pre>";
-die();
-
-      foreach($skincare_summary as $key=>$val)
-       {
-/*echo"<pre>";
-print_r($val);
-echo"</pre>";
-die();*/
-        $cart_ids = explode(',', $val['cart_id']);
-        $product_name = array();
-        $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name')->get()->toArray();
-        foreach($product_details as $product_key=>$product_value){
-           $product_name[] = $product_value['product_name'];  
-       }
-       $skincare_summary[$key]->product_name = implode(', ' ,$product_name);    
-   }
-
-      //'products.name AS product_name',
 echo"<pre>";
 print_r($skincare_summary);
 echo"</pre>";
 die();
 
+  
       $category = QuizCategory::pluck('name', 'id')->toArray();
 
       $general = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',7)->get();

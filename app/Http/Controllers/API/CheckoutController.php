@@ -243,7 +243,7 @@ try{
 
   public function getCheckoutdetail(Request $request)
   {
-    try{
+    //try{
 
      $orderlist = checkout::join('users', 'users.id', '=', 'checkout.user_id')
      ->join('carts','carts.id', '=', 'checkout.cart_id')
@@ -320,9 +320,9 @@ if(!empty($orderlist)){
     return $this->sendResponse($orderlist =array(), 'No Data Found.');
 }
 
-}catch(\Exception $ex){
-    return $this->sendError('Server error', array($ex->getMessage()));
-}
+//}catch(\Exception $ex){
+   // return $this->sendError('Server error', array($ex->getMessage()));
+//}
 
 }
 

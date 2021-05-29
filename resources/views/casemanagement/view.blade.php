@@ -274,7 +274,7 @@
 													<strong>TeleHealth Medicine Fee :</strong>
 												</div>
 												<div class="col-md-6  form-group">
-													<strong>Addons Fee[Product Name] :</strong>
+													<strong>Addons Fee [Product Name] :</strong>
 												</div>
 												<div class="col-md-6  form-group">
 													<strong>Shipping Fee :</strong> 0

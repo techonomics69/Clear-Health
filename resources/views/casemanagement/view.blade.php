@@ -286,6 +286,7 @@
 												</div> 
 												<div class="col-md-6  form-group">
 													<strong>Total Amount :</strong>
+													{{$skincare_summary['total_amount']}}
 												</div>
 											</div>
 											<div class="box-block mtb32">

@@ -77,7 +77,7 @@ class CaseManagementController extends Controller
 
       foreach($product_details as $product_key => $product_value)
       {
-        if($skincare_summary['used_for_plan'] != "Yes") {
+        if($product_value['used_for_plan'] != "Yes") {
         $product_name[] = $product_value['product_name']; 
       }
     }

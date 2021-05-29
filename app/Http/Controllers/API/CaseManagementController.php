@@ -533,7 +533,7 @@ public function detach_file_from_case(Request $request){
         $postfields = array();
         $postfields['from'] = $request->from;
         $postfields['text'] = $request->text; 
-        $postfields['prioritized'] = trim($request->prioritized,'"');; 
+        $postfields['prioritized'] =  str_replace('"', "", $request->prioritized);//trim($request->prioritized,'"'); 
         $postfields['prioritized_reason'] = $request->prioritized_reason;
         $postfields['message_files'] = $file_ids;
 

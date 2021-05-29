@@ -255,9 +255,11 @@
 												</div>
 												<div class="col-md-6  form-group">
 													<strong>Product Name :</strong>
+													{{$user_case_management_data['product_name']}}
 												</div>
 												<div class="col-md-6  form-group">
 													<strong>Add-ons [Product Name] :</strong>
+													{{$user_case_management_data['product_name']}}
 												</div>
 											</div>
 											<div class="box-block mtb32">

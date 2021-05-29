@@ -647,7 +647,7 @@ public function detach_file_from_case(Request $request){
     $input_data['md_case_id'] = $case_id;
     $input_data['user_id'] = $user_id;
     $input_data['case_id'] = $system_case_id;
-    $input_data['text'] = ($message_data->text!='')?$message_data->text:'';
+    $input_data['text'] = (isset($message_data->text) && ($message_data->text!='' || $message_data->text!= null))?$message_data->text:'';
     $input_data['from'] = $message_data->from;
     $input_data['channel'] = $message_data->channel;
     $input_data['prioritized_at'] = $message_data->prioritized_at;

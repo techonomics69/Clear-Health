@@ -74,15 +74,20 @@ class CaseManagementController extends Controller
       $cart_ids = explode(',', $skincare_summary['cart_id']);
 
       $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.used_for_plan','carts.quantity','carts.order_type','carts.pharmacy_pickup','carts.product_price as price')->get()->toArray();
-
+$product_name=array();
+ $addon_product=array();
       foreach($product_details as $product_key => $product_value)
       {
         if($product_value['used_for_plan'] != "Yes") {
         $product_name[] = $product_value['product_name']; 
       }
+      if($product_value['used_for_plan'] == "No"){
+         $addon_product[] = $product_value['product_name']; 
+      }
     }
-    
+
       $skincare_summary['product_name'] = implode(', ' ,$product_name);
+      $skincare_summary["addon_product"] =implode(', ', $addon_product);
 
 /*echo"<pre>";
 print_r($skincare_summary);

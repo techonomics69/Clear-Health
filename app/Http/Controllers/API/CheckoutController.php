@@ -243,38 +243,28 @@ try{
 
   public function getCheckoutdetail(Request $request)
   {
-    try{
+    //try{
 
      $orderlist = checkout::join('users', 'users.id', '=', 'checkout.user_id')
      ->join('carts','carts.id', '=', 'checkout.cart_id')
      ->join('checkout_address', 'checkout_address.order_id', '=','checkout.order_id')
-     ->select('checkout.id','checkout_address.patient_firstname','checkout_address.patient_lastname','checkout.order_id','carts.quantity','carts.order_type','checkout.cart_id','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode','checkout_address.email','checkout_address.phone','checkout.total_amount','checkout.created_at')
+     ->select('checkout.id','checkout_address.patient_firstname','checkout_address.patient_lastname','checkout.order_id','carts.quantity','carts.order_type','checkout.cart_id','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode','checkout_address.email','checkout_address.phone','checkout.total_amount','checkout.created_at','checkout.status as order_status','checkout.md_status','checkout.shipping_fee','checkout.shipping_fee','checkout.ipladege_id','checkout.delivery_date','checkout.telemedicine_fee','checkout.handling_fee','checkout.tax')
      ->where('checkout.id',$request->id)
      ->OrderBy('id', 'DESC')
      ->get();
-
-foreach($orderlist as $key=>$v)
-         {
-           
-            $cart_id = explode(',', $v['cart_id']);
-            $product_name = array();
-            $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_id)->select('products.name AS product_name')->get()->toArray();
-            foreach($product_details as $product_key=>$product_value){
-             $product_name[] = $product_value['product_name']; 
-         }
-         $orderlist[$key]->product_name = implode(', ' ,$product_name);   
-     }
-
-
 
      foreach($orderlist as $key=>$val)
      {
         $cart_ids = explode(',', $val['cart_id']);
         $products=array();
-        $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.price','products.image','carts.quantity','carts.order_type','carts.pharmacy_pickup')->get()->toArray();
+        $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.image','carts.quantity','carts.order_type','carts.pharmacy_pickup','carts.product_price as price')->get()->toArray();
+
+        
 
         foreach($product_details as $product_key => $product_value)
         {
+           
+         $product_name[] = $product_value['product_name'];
          $products[$product_key]['name'] = $product_value['product_name'];
          $products[$product_key]['price'] = $product_value['price'];
          $products[$product_key]['image'] = $product_value['image'];
@@ -316,6 +306,7 @@ foreach($orderlist as $key=>$v)
        }
 
    }
+   $orderlist[$key]->product_name = implode(', ' ,$product_name);
 
    $orderlist[$key]->products = $products;
 
@@ -327,9 +318,9 @@ if(!empty($orderlist)){
     return $this->sendResponse($orderlist =array(), 'No Data Found.');
 }
 
-}catch(\Exception $ex){
-    return $this->sendError('Server error', array($ex->getMessage()));
-}
+//}catch(\Exception $ex){
+   // return $this->sendError('Server error', array($ex->getMessage()));
+//}
 
 }
 

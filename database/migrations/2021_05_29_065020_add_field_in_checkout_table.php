@@ -32,8 +32,8 @@ class AddFieldInCheckoutTable extends Migration
      */
     public function down()
     {
-        Schema::table('checkout', function (Blueprint $table) {
+        /*Schema::table('checkout', function (Blueprint $table) {
             //
-        });
+        });*/
     }
 }

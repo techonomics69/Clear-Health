@@ -539,13 +539,12 @@ public function detach_file_from_case(Request $request){
 
         $postfields = json_encode($postfields);
 
+        $curl = curl_init();
+
         echo "<pre>";
-        print_r($postfields);
+        print_r('https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/messages');
         echo "<pre>";
         exit();
-
-       
-        $curl = curl_init();
 
         curl_setopt_array($curl, array(
           CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/messages',
@@ -569,21 +568,21 @@ public function detach_file_from_case(Request $request){
         curl_close($curl);
         
         $message_data = json_decode($response);
-        $input_data = array();
+        $input_data1 = array();
 
-        $input_data['md_case_id'] = $case_id;
-        $input_data['user_id'] = $user_id;
-        $input_data['case_id'] = $system_case_id;
-        $input_data['text'] = $message_data->text;
-        $input_data['from'] = $message_data->from;
-        $input_data['channel'] = $message_data->channel;
-        $input_data['prioritized_at'] = $message_data->prioritized_at;
-        $input_data['prioritized_reason'] = $message_data->prioritized_reason;
-        $input_data['message_created_at'] = $message_data->created_at;
-        $input_data['case_message_id'] = $message_data->case_message_id;
+        $input_data1['md_case_id'] = $case_id;
+        $input_data1['user_id'] = $user_id;
+        $input_data1['case_id'] = $system_case_id;
+        $input_data1['text'] = $message_data->text;
+        $input_data1['from'] = $message_data->from;
+        $input_data1['channel'] = $message_data->channel;
+        $input_data1['prioritized_at'] = $message_data->prioritized_at;
+        $input_data1['prioritized_reason'] = $message_data->prioritized_reason;
+        $input_data1['message_created_at'] = $message_data->created_at;
+        $input_data1['case_message_id'] = $message_data->case_message_id;
         //$input_data['message_files_ids'] = json_encode($file_ids);
-        $input_data['clinician  '] = $message_data->clinician ;
-        $message_data = MdMessages::create($input_data);
+        $input_data1['clinician  '] = $message_data->clinician ;
+        $message_data = MdMessages::create($input_data1);
 
         return $this->sendResponse($message_data,'Message created successfully');
     }else{

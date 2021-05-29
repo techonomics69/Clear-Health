@@ -69,12 +69,12 @@ class CaseManagementController extends Controller
       ->join('checkout','checkout.user_id','=', 'case_managements.user_id')
       ->join('checkout_address', 'checkout_address.user_id', '=', 'case_managements.user_id')
       ->select('checkout_address.order_id','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode','products.name AS product_name','checkout.total_amount','checkout.telemedicine_fee','products.price')
-      ->where('case_managements.id',$id)->first();
+      ->where('case_managements.id',$id)->get();
       
-/*echo"<pre>";
+echo"<pre>";
 print_r($skincare_summary);
 echo"</pre>";
-die();*/
+die();
 
       $category = QuizCategory::pluck('name', 'id')->toArray();
 

@@ -523,11 +523,10 @@ public function detach_file_from_case(Request $request){
 
     //code to get files ids
    
+    $file_ids = array();
 
     if($message_file_data->file_id !=''){
-      $file_ids = $file_ids;
-    }else{
-      $file_ids = array();
+      $file_ids = $message_file_data->file_id;
     }
     // end of code to get files ids
     if(!empty($message_file_data)){
@@ -581,12 +580,14 @@ public function detach_file_from_case(Request $request){
         $message_data = MdMessages::create($input_data);
 
         return $this->sendResponse($message_data,'Message created successfully');
+    }else{
+      return $this->sendResponse($message_file_data,'Some thing went wrong.');
     }
     
 
     //end of create message
 
-    return $this->sendResponse($message_file_data,'File created successfully');
+    
 
   }
 

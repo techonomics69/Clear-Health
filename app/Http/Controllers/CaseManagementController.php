@@ -82,10 +82,10 @@ foreach($product_details as $product_key => $product_value)
 
 $skincare_summary['product_name'] = implode(', ' ,$product_name);
 
-echo"<pre>";
+/*echo"<pre>";
 print_r($skincare_summary);
 echo"</pre>";
-die();
+die();*/
 
   
       $category = QuizCategory::pluck('name', 'id')->toArray();

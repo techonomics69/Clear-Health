@@ -253,7 +253,16 @@ try{
      ->OrderBy('id', 'DESC')
      ->first();
 
+  $shipping_address = Checkoutaddress::select('checkout_address.patient_firstname','checkout_address.patient_lastname','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode','checkout_address.email','checkout_address.phone')
+     ->where('checkout_address.order_id',$orderlist['order_id'])
+     ->where('checkout_address.address_type',1)
+     ->OrderBy('id', 'DESC')
+     ->first();
 
+echo "<pre>";
+print_r($shipping_address);
+echo "<pre>";
+exit();
     // foreach($orderlist as $key=>$val)
      //{
         $cart_ids = explode(',', $orderlist['cart_id']);

@@ -255,7 +255,7 @@
 												</div>
 												<div class="col-md-6  form-group">
 													<strong>Product Name :</strong>
-													{{$skincare_summary['product_name']}}
+													
 												</div>
 												<div class="col-md-6  form-group">
 													<strong>Add-ons [Product Name] :</strong>

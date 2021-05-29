@@ -258,9 +258,10 @@
 													<strong>Add-ons [Product Name] :</strong>
 													<?php if($skincare_summary['used_for_plan'] == "Yes") { ?>
 													{{$skincare_summary['product_name']}}
-												<!-- </div> -->
-												 <?php } else { ?>
-												<!-- <div class="col-md-6  form-group"> -->
+													 <?php } else { ?>
+												</div>
+												
+												<div class="col-md-6  form-group">
 													<strong>Product Name :</strong>
 													{{$skincare_summary['product_name']}}
 													<?php } ?>

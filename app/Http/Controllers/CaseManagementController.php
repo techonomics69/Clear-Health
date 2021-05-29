@@ -56,14 +56,15 @@ class CaseManagementController extends Controller
     public function show($id)
     {
       $user_case_management_data = CaseManagement::join('users','case_managements.user_id', '=', 'users.id')
-      // ->join('checkout_address', 'checkout_address.user_id', '=','checkout.user_id')
-      ->select('case_managements.*','users.first_name','users.last_name','users.email','users.mobile','users.gender')
+      ->join('checkout_address', 'checkout_address.user_id', '=', 'checkout.user_id')
+      ->select('case_managements.*','checkout_address.*','users.first_name','users.last_name','users.email','users.mobile','users.gender')
       ->where('case_managements.id',$id)->first();
-/*echo"<pre>";
+      
+echo"<pre>";
 print_r($user_case_management_data);
 echo"</pre>";
-,'checkout_address.order_id'
-die();*/
+die();
+
       $category = QuizCategory::pluck('name', 'id')->toArray();
 
       $general = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',7)->get();

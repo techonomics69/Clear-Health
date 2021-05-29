@@ -79,7 +79,6 @@ class CaseManagementController extends Controller
       {
         $product_name[] = $product_value['product_name']; 
       }
-
       $skincare_summary['product_name'] = implode(', ' ,$product_name);
 
 /*echo"<pre>";

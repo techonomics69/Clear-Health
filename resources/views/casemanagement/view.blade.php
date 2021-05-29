@@ -294,12 +294,7 @@
 											</div>
 											<div class="box-block mtb32">
 												<h3 class="font-weight-bold"><span class="text-underline">Pharmacy Preference</span></h3>
-												<div class="col-md-6  form-group">
-													<strong>Local Pharmacy :</strong>
-												</div>
-												<div class="col-md-6  form-group">
-													<strong>Clear Health Pharmacy Network :</strong>
-												</div>
+												
 											</div>
 										</div>
 									</section>

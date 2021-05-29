@@ -253,14 +253,14 @@
 													<strong>Order ID :</strong>
 													{{$skincare_summary['order_id']}}
 												</div>
-												<?php if($skincare_summary['used_for_plan'] == "Yes") { ?>
+												
 												<div class="col-md-6  form-group">
 													<strong>Add-ons [Product Name] :</strong>
-													
+													<?php if($skincare_summary['used_for_plan'] == "Yes") { ?>
 													{{$skincare_summary['product_name']}}
-												</div>
+												<!-- </div> -->
 												 <?php } else { ?>
-												<div class="col-md-6  form-group">
+												<!-- <div class="col-md-6  form-group"> -->
 													<strong>Product Name :</strong>
 													{{$skincare_summary['product_name']}}
 													<?php } ?>

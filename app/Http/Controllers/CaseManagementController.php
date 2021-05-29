@@ -71,12 +71,22 @@ class CaseManagementController extends Controller
       ->select('checkout_address.order_id','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode','checkout.total_amount','checkout.telemedicine_fee','products.price','checkout.cart_id')
       ->where('case_managements.id',$id)->first();
       
-      foreach($skincare_summary as $key=>$val)
-       {
-echo"<pre>";
-print_r($val);
+ $cart_ids = explode(',', $skincare_summary['cart_id']);
+ echo"<pre>";
+print_r($cart_ids);
 echo"</pre>";
 die();
+$product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.image','carts.quantity','carts.order_type','carts.pharmacy_pickup','carts.product_price as price')->get()->toArray();
+
+
+
+
+      foreach($skincare_summary as $key=>$val)
+       {
+/*echo"<pre>";
+print_r($val);
+echo"</pre>";
+die();*/
         $cart_ids = explode(',', $val['cart_id']);
         $product_name = array();
         $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name')->get()->toArray();

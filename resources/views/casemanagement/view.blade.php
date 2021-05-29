@@ -169,7 +169,7 @@
 													@foreach($general_que as $key => $general)
 													<div class="row" style="padding: 10px;">
 														<div class="col-md-12">
-			
+															
 															<?php 
 															$getquestions = $general->question;
 															if(isset($general->answer)){
@@ -251,10 +251,13 @@
 												<h3 class="font-weight-bold"><span class="text-underline">Skincare Summary</span></h3>
 											</div>
 											<div class="box-block mtb32">
-												<h3 class="font-weight-bold"><span class="text-underline">Skincare Summary</span></h3>
+												<h3 class="font-weight-bold"><span class="text-underline">Shipments</span></h3>
 											</div>
 											<div class="box-block mtb32">
-												<h3 class="font-weight-bold"><span class="text-underline">Skincare Summary</span></h3>
+												<h3 class="font-weight-bold"><span class="text-underline">Physician Details</span></h3>
+											</div>
+											<div class="box-block mtb32">
+												<h3 class="font-weight-bold"><span class="text-underline">Pharmacy Preference</span></h3>
 											</div>
 										</div>
 									</section>

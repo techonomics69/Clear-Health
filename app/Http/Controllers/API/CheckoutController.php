@@ -261,12 +261,12 @@ try{
 
 $orderlist['shipping_address'] = $shipping_address;
 
-$billing_address = Checkoutaddress::select('*')
+$billing_address = Checkoutaddress::select('checkout_address.patient_firstname')
      ->where('checkout_address.order_id',$orderlist['order_id'])
      ->where('checkout_address.address_type',2)
      ->OrderBy('id', 'DESC')
      ->first();
-     
+
 $orderlist['billing_address'] = $billing_address;
 
 

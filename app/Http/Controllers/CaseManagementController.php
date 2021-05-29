@@ -74,10 +74,10 @@ class CaseManagementController extends Controller
       ->select('checkout_address.order_id','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode','products.name AS product_name','checkout.total_amount','checkout.telemedicine_fee')
       ->where('case_managements.id',$id)->first();
       
-echo"<pre>";
+/*echo"<pre>";
 print_r($skincare_summary);
 echo"</pre>";
-die();
+die();*/
 
 
       $category = QuizCategory::pluck('name', 'id')->toArray();

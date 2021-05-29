@@ -258,8 +258,8 @@
 												</div>
 												<div class="col-md-6  form-group">
 													<strong>Add-ons [Product Name] :</strong>
-													<?php if($skincare_summary['used_for_plan'] == "Yes") { echo $skincare_summary;  ?>
-													<!-- {{$skincare_summary['product_name']}} -->
+													<?php if($skincare_summary['used_for_plan'] == "Yes") {?>
+													{{$skincare_summary['product_name']}}
 												<?php } ?>
 												</div>
 											</div>

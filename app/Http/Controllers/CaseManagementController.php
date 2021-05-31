@@ -126,7 +126,7 @@ if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup']
 
      $skincare_summary['product_name'] = implode(', ' ,$product_name);
      $skincare_summary["addon_product"] =implode(', ', $addon_product);
-     $skincare_summary['products'] = $products;
+     //$skincare_summary['products'] = $products;
 
 /*       echo "<pre>";
 print_r($skincare_summary);

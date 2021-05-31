@@ -74,7 +74,7 @@ class CaseManagementController extends Controller
 
       $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.used_for_plan','carts.quantity','carts.order_type','carts.pharmacy_pickup','carts.product_price as price')->get()->toArray();
 echo "<pre>";
-print_r($product_details)
+print_r($product_details);
 echo "</pre>";
 die();
       $product_name=array();

@@ -128,10 +128,10 @@ if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup']
      $skincare_summary["addon_product"] =implode(', ', $addon_product);
      $skincare_summary['products'] = $products;
 
-       echo "<pre>";
+/*       echo "<pre>";
 print_r($skincare_summary);
 echo "</pre>";
-die();
+die();*/
      $category = QuizCategory::pluck('name', 'id')->toArray();
 
      $general = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',7)->get();

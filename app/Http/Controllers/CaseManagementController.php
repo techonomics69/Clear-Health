@@ -108,9 +108,7 @@ if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup']
                 $response = curl_exec($curl);
                 curl_close($curl);
                 $response1 = json_decode($response);
-                if(isset($products['pharmacy_pickup']) && $products['pharmacy_pickup'] != '' ){
                 $products['pharmacy_pickup'] =  $response1->name; 
-              }
             }else{
                $products['pharmacy_pickup'] = 'Clear Health Pharmacy Network';
            }
@@ -129,8 +127,9 @@ if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup']
 
      $skincare_summary['product_name'] = implode(', ' ,$product_name);
      $skincare_summary["addon_product"] =implode(', ', $addon_product);
+     if(isset($products)&& $products != ''){
      $skincare_summary['products'] = $products;
-
+}
       echo "<pre>";
 print_r($skincare_summary);
 echo "</pre>";

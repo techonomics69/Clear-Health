@@ -102,7 +102,8 @@ class RegisterController extends BaseController
                 $success['token'] =  $user->createToken('MyApp')->accessToken; 
                 $success['email'] =  $user->email;
                 $success['user_id'] =  $user->id;
-       $case_status =  case_managements("user_id",$request['user_id'])->where("case_status" , 'completed')->first();      
+
+       $case_status =  case_managements::where("user_id",$request['user_id'])->where("case_status" , 'completed')->first();      
        echo"<pre>";
        print_r($case_status);
        echo"</pre>";

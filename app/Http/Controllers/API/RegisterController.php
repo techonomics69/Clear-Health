@@ -110,12 +110,12 @@ $acnebother = false;
 
 if($case_status->case_status == "completed")
 {
-    echo $complete;
+    $complete;
 } else {
-    echo $acnebother;
+    $acnebother;
 }
 
- echo"<pre>";
+        echo"<pre>";
        print_r($case_status->case_statu);
        echo"</pre>";
        die();

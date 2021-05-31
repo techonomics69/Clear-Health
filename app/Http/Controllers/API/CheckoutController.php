@@ -341,7 +341,7 @@ $orderlist['billing_address'] = $billing_address;
 
    $orderlist['products'] = $products;
 
-   $orderlist['cart_amount'] = $pro_amount;
+   $orderlist['sub_total'] = $pro_amount;
 
    $orderlist['order_total'] =  $pro_amount + $shipping_fee + $telemedicine_fee + $handling_fee +$tax ;
 

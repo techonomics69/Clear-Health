@@ -110,7 +110,7 @@ $complete = true;
 
 if($case_status->case_status == "completed")
 {
-    $complete;
+   echo  $complete;
 }
 //$acnebother = false;
 /*if($case_status->case_status == "/acnebother")

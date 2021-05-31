@@ -300,7 +300,7 @@ $orderlist['billing_address'] = $billing_address;
          $products[$product_key]['quantity'] = $product_value['quantity'];
          $products[$product_key]['order_type'] = $product_value['order_type'];
 
-         //$pro_amount = $pro_amount + $product_value['quantity'] * $product_value['price'];
+         $pro_amount = $pro_amount + $product_value['quantity'] * $product_value['price'];
 
          if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup'] != '' && $product_value['order_type'] == 'Prescribed'){
 
@@ -341,7 +341,7 @@ $orderlist['billing_address'] = $billing_address;
 
    $orderlist['products'] = $products;
 
-   $orderlist['cart_amount'] = $pro_amount;
+   $orderlist['sub_total'] = $pro_amount;
 
    $orderlist['order_total'] =  $pro_amount + $shipping_fee + $telemedicine_fee + $handling_fee +$tax ;
 

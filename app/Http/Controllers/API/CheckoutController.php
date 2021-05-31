@@ -301,10 +301,7 @@ $orderlist['billing_address'] = $billing_address;
          $products[$product_key]['order_type'] = $product_value['order_type'];
 
          $pro_amount = $pro_amount + $product_value['quantity'] * $product_value['price'];
-echo "<pre>";
-print_r($pro_amount);
-echo "</pre>";
-die();
+
          if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup'] != '' && $product_value['order_type'] == 'Prescribed'){
 
             if($product_value['pharmacy_pickup'] != "cash"){

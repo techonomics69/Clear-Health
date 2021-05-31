@@ -130,17 +130,17 @@ class CaseManagementController extends Controller
    if(isset($products)&& $products != ''){
      $skincare_summary['products'] = $products;
    }
-   /*echo "<pre>";
+   echo "<pre>";
    print_r($skincare_summary);
    echo "</pre>";
-   die();*/
+   die();
 
    $category = QuizCategory::pluck('name', 'id')->toArray();
 
    $general = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',7)->get();
    if(!empty($general[0])){
     $general_que=json_decode($general[0]["answer"]);
-  } else{
+  } else {
     $general_que = [];
   }
 

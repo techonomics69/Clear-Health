@@ -110,11 +110,11 @@ $acnebother = false;
 
 if($case_status->case_status == "completed")
 {
-    echo $complete;
+    $complete;
 }
 if($case_status->case_status == "/acnebother")
 {
-    echo $acnebother;
+    $acnebother;
 }
 
  /*echo"<pre>";

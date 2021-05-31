@@ -619,7 +619,10 @@ public function detach_file_from_case(Request $request){
     $postfields['message_files'] = $file_ids;
 
     $postfields = json_encode($postfields);
-
+echo "<pre>";
+print_r($postfields);
+echo "<pre>";
+die();
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
@@ -640,10 +643,7 @@ public function detach_file_from_case(Request $request){
     ));
 
     $response = curl_exec($curl);
-echo "<pre>";
-print_r($response);
-echo "<pre>";
-die();
+
     curl_close($curl);
     
     $message_data = json_decode($response);

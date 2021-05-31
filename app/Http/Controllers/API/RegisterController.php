@@ -109,12 +109,12 @@ $complete = true;
 
 if($case_status->case_status == 'completed')
 {
-     $complete = true;
+     $complete = false;
 }
 $acnebother = false;
-if($case_status->case_status == '/acnebother')
+if($case_status->case_status)
 {
-     $acnebother = false;
+     $acnebother;
 }
 
 $success['case_status'] = $case_status->$complete;

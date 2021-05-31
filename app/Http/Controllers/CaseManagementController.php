@@ -79,18 +79,15 @@ class CaseManagementController extends Controller
 
       foreach($product_details as $product_key => $product_value)
       {
-
-if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup'] != '' && $product_value['order_type'] == 'Prescribed'){
+$skincare_summary[$product_key]['order_type'] = $product_value['order_type'];
+if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup'] != ''){
 
             if($product_value['pharmacy_pickup'] != "cash"){
                 $r = get_token();
                 $token_data = json_decode($r);
                 $token = $token_data->access_token;
                 $pharmacy_id = $product_value['pharmacy_pickup'];
-echo "<pre>";
-print_r($token_data);
-echo "</pre>";
-die();
+
                 $curl = curl_init();
                 curl_setopt_array($curl, array(
                     CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/pharmacies/'.$pharmacy_id,
@@ -109,13 +106,17 @@ die();
                 $response = curl_exec($curl);
                 curl_close($curl);
                 $response1 = json_decode($response);
-                $products[$product_key]['pharmacy_pickup'] =  $response1->name; 
+                $skincare_summary[$product_key]['pharmacy_pickup'] =  $response1->name; 
             }else{
-               $products[$product_key]['pharmacy_pickup'] = 'cash';
+               $skincare_summary[$product_key]['pharmacy_pickup'] = 'cash';
            }
 
          //$products[$product_key]['pharmacy_pickup'] = '';
        }
+       echo "<pre>";
+print_r($skincare_summary);
+echo "</pre>";
+die();
         if($product_value['used_for_plan'] != "Yes") {
           $product_name[] = $product_value['product_name']; 
         }

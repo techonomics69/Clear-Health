@@ -73,7 +73,7 @@ class CaseManagementController extends Controller
       $cart_ids = explode(',', $skincare_summary['cart_id']);
 
       $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.used_for_plan','carts.quantity','carts.order_type','carts.pharmacy_pickup','carts.product_price as price')->get()->toArray();
-      $products=array();
+      //$products=array();
       $product_name=array();
       $addon_product=array();
 
@@ -81,7 +81,7 @@ class CaseManagementController extends Controller
       {
          //$products[$product_key]['order_type'] = $product_value['order_type'];
 //$skincare_summary['order_type'] = $product_value['order_type'];
-if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup'] != '' && $product_value['order_type'] == 'Prescribed'){
+/*if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup'] != '' && $product_value['order_type'] == 'Prescribed'){
 
             if($product_value['pharmacy_pickup'] != "cash"){
                 $r = get_token();
@@ -113,7 +113,7 @@ if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup']
            }
 
          //$products[$product_key]['pharmacy_pickup'] = '';
-       }
+       }*/
 
         if($product_value['used_for_plan'] != "Yes") {
           $product_name[] = $product_value['product_name']; 

@@ -81,13 +81,13 @@ class CaseManagementController extends Controller
       {
          $products[$product_key]['order_type'] = $product_value['order_type'];
 //$skincare_summary['order_type'] = $product_value['order_type'];
-if(isset($product_key['pharmacy_pickup']) && $product_key['pharmacy_pickup'] != '' && $product_key['order_type'] == 'Prescribed'){
+if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup'] != '' && $product_value['order_type'] == 'Prescribed'){
 
-            if($product_key['pharmacy_pickup'] != "cash"){
+            if($product_value['pharmacy_pickup'] != "cash"){
                 $r = get_token();
                 $token_data = json_decode($r);
                 $token = $token_data->access_token;
-                $pharmacy_id = $product_key['pharmacy_pickup'];
+                $pharmacy_id = $product_value['pharmacy_pickup'];
 
                 $curl = curl_init();
                 curl_setopt_array($curl, array(

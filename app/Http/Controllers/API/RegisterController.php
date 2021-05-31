@@ -112,7 +112,7 @@ if($case_status->case_status == 'completed')
 {
      $complete = false;
 }
-$success['case_status'] = $case_status->case_status->$complete;
+$success['case_status'] = $case_status->case_status->complete;
 
         echo"<pre>";
        print_r($success);

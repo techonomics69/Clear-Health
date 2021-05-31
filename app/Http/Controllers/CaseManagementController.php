@@ -67,7 +67,7 @@ class CaseManagementController extends Controller
       //->join('carts', 'carts.user_id', '=', 'case_managements.user_id')
       //->join('products', 'products.id', '=', 'carts.product_id')
       ->join('checkout','checkout.case_id','=', 'case_managements.id')
-     // ->join('carts', 'checkout.cart_id', '=', 'carts.id')
+      ->join('carts', 'checkout.cart_id', '=', 'carts.id')
       ->join('products', 'products.id', '=', 'carts.product_id')
       ->join('checkout_address', 'checkout_address.order_id', '=', 'checkout.order_id')
       ->select('checkout.order_id','checkout.cart_id','checkout.total_amount','checkout.telemedicine_fee','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode','products.price')

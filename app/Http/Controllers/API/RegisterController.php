@@ -110,18 +110,18 @@ $complete = true;
 
 if($case_status->case_status == "completed")
 {
-    echo $complete;
+    $complete;
 }
-$acnebother = false;
-if($case_status->case_status == "/acnebother")
+//$acnebother = false;
+/*if($case_status->case_status == "/acnebother")
 {
-    echo $acnebother;
-}
+    $acnebother;
+}*/
 
- echo"<pre>";
-       print_r($case_status->case_status);
-       echo"</pre>";
-       die();
+    echo"<pre>";
+    print_r($case_status->case_status);
+    echo"</pre>";
+    die();
 
 
                 return $this->sendResponse($success, 'User login successfully.');

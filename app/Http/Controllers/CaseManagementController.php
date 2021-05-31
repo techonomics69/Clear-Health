@@ -127,14 +127,7 @@ class CaseManagementController extends Controller
 
    $skincare_summary['product_name'] = implode(', ' ,$product_name);
    $skincare_summary["addon_product"] =implode(', ', $addon_product);
-   /*if(isset($products)&& $products != ''){
-     $skincare_summary['products'] = $products;
-   }*/
-  /* echo "<pre>";
-   print_r($skincare_summary);
-   echo "</pre>";
-   die();*/
-
+   
    $category = QuizCategory::pluck('name', 'id')->toArray();
 
    $general = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',7)->get();

@@ -300,7 +300,7 @@ $orderlist['billing_address'] = $billing_address;
          $products[$product_key]['quantity'] = $product_value['quantity'];
          $products[$product_key]['order_type'] = $product_value['order_type'];
 
-         $pro_amount = $pro_amount + $product_value['quantity'] * $product_value['price'];
+         //$pro_amount = $pro_amount + $product_value['quantity'] * $product_value['price'];
 
          if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup'] != '' && $product_value['order_type'] == 'Prescribed'){
 

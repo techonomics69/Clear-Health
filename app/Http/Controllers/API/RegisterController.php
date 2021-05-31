@@ -117,10 +117,10 @@ if($case_status->case_status == "/acnebother")
     $acnebother;
 }
 
- /*echo"<pre>";
+ echo"<pre>";
        print_r($case_status->case_status);
        echo"</pre>";
-       die();*/
+       die();
 
 
                 return $this->sendResponse($success, 'User login successfully.');

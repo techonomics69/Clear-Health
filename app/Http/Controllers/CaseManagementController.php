@@ -74,14 +74,17 @@ class CaseManagementController extends Controller
 
       $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.used_for_plan','carts.quantity','carts.order_type','carts.pharmacy_pickup','carts.product_price as price')->get()->toArray();
 
-if(isset($product_details['pharmacy_pickup']) && $product_details['pharmacy_pickup'] != '' && $product_details['order_type'] == 'Prescribed'){
+/*if(isset($product_details['pharmacy_pickup']) && $product_details['pharmacy_pickup'] != '' && $product_details['order_type'] == 'Prescribed'){*/
 
-            if($product_value['pharmacy_pickup'] != "cash"){
+            if($product_details['pharmacy_pickup'] != "cash"){
                 $r = get_token();
                 $token_data = json_decode($r);
                 $token = $token_data->access_token;
                 $pharmacy_id = $product_details['pharmacy_pickup'];
-
+echo "<pre>";
+print_r($pharmacy_id);
+echo "</pre>";
+die();
                 $curl = curl_init();
                 curl_setopt_array($curl, array(
                     CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/pharmacies/'.$pharmacy_id,
@@ -106,7 +109,7 @@ if(isset($product_details['pharmacy_pickup']) && $product_details['pharmacy_pick
            }
 
          //$products[$product_key]['pharmacy_pickup'] = '';
-       }
+       //}
 
 echo "<pre>";
 print_r($product_details);

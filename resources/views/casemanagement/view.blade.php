@@ -254,10 +254,9 @@
 
 
 													<?php if(isset($skincare_summary['order_id']) && $skincare_summary['order_id'] != '')    
-
 													{ ?>
-													{{$skincare_summary['order_id']}}
-												<?php } ?>
+														{{$skincare_summary['order_id']}}
+													<?php } ?>
 												</div>
 												
 												<div class="col-md-6  form-group">
@@ -278,8 +277,14 @@
 												<h3 class="font-weight-bold"><span class="text-underline">Shipments</span></h3>
 												<div class="col-md-6  form-group">
 													<strong>Address :</strong>
-													{{$skincare_summary['addressline1']}}
-													{{$skincare_summary['addressline2']}}
+													<?php if(isset($skincare_summary['addressline1']) && $skincare_summary['addressline1'] != '')    
+													{ ?>
+														{{$skincare_summary['addressline1']}}
+													<?php } ?>
+													<?php if(isset($skincare_summary['addressline2']) && $skincare_summary['addressline2'] != '')    
+													{ ?>
+														{{$skincare_summary['addressline2']}}
+													<?php } ?>
 													{{$skincare_summary['city']}}
 													{{$skincare_summary['state']}},
 													{{$skincare_summary['zipcode']}}

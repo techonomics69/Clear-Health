@@ -127,9 +127,9 @@ class CaseManagementController extends Controller
 
    $skincare_summary['product_name'] = implode(', ' ,$product_name);
    $skincare_summary["addon_product"] =implode(', ', $addon_product);
-   if(isset($products)&& $products != ''){
+   /*if(isset($products)&& $products != ''){
      $skincare_summary['products'] = $products;
-   }
+   }*/
   /* echo "<pre>";
    print_r($skincare_summary);
    echo "</pre>";

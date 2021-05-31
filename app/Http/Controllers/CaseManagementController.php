@@ -108,9 +108,9 @@ class CaseManagementController extends Controller
             $response = curl_exec($curl);
             curl_close($curl);
             $response1 = json_decode($response);
-            $products['pharmacy_pickup'] =  $response1->name; 
+            $skincare_summary['pharmacy_pickup'] =  $response1->name; 
           }else{
-           $products['pharmacy_pickup'] = 'Clear Health Pharmacy Network';
+           $skincare_summary['pharmacy_pickup'] = 'Clear Health Pharmacy Network';
          }
 
          //$products[$product_key]['pharmacy_pickup'] = '';
@@ -127,9 +127,9 @@ class CaseManagementController extends Controller
 
    $skincare_summary['product_name'] = implode(', ' ,$product_name);
    $skincare_summary["addon_product"] =implode(', ', $addon_product);
-   if(isset($products)&& $products != ''){
+   /*if(isset($products)&& $products != ''){
      $skincare_summary['products'] = $products;
-   }
+   }*/
   /* echo "<pre>";
    print_r($skincare_summary);
    echo "</pre>";

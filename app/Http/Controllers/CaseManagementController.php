@@ -114,10 +114,7 @@ if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup']
 
          //$products[$product_key]['pharmacy_pickup'] = '';
        }
-       /*echo "<pre>";
-print_r($products);
-echo "</pre>";
-die();*/
+
         if($product_value['used_for_plan'] != "Yes") {
           $product_name[] = $product_value['product_name']; 
         }
@@ -131,7 +128,10 @@ die();*/
      $skincare_summary["addon_product"] =implode(', ', $addon_product);
      $skincare_summary['products'] = $products;
 
-
+       echo "<pre>";
+print_r($skincare_summary;
+echo "</pre>";
+die();
      $category = QuizCategory::pluck('name', 'id')->toArray();
 
      $general = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',7)->get();
@@ -157,7 +157,7 @@ die();*/
   $topical_que =[];
 }
 
-return view('casemanagement.view',compact('user_case_management_data','category','general_que','accutane_que','topical_que','skincare_summary','products'));
+return view('casemanagement.view',compact('user_case_management_data','category','general_que','accutane_que','topical_que','skincare_summary'));
 
 }
 

@@ -108,15 +108,17 @@ class RegisterController extends BaseController
 $complete = true;
 $acnebother = false;
 
-if($case_status->case_status == "/acnebother")
+if($case_status->case_status == "completed")
 {
     echo $complete;
-}else{
+}
+if($case_status->case_status == "/acnebother")
+{
     echo $acnebother;
 }
 
  echo"<pre>";
-       print_r($case_status->case_statu);
+       print_r($case_status->case_status);
        echo"</pre>";
        die();
 

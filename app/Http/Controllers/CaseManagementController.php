@@ -108,7 +108,9 @@ if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup']
                 $response = curl_exec($curl);
                 curl_close($curl);
                 $response1 = json_decode($response);
+                if(isset($products['pharmacy_pickup']) && $products['pharmacy_pickup'] != '' ){
                 $products['pharmacy_pickup'] =  $response1->name; 
+              }
             }else{
                $products['pharmacy_pickup'] = 'Clear Health Pharmacy Network';
            }
@@ -129,10 +131,11 @@ if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup']
      $skincare_summary["addon_product"] =implode(', ', $addon_product);
      $skincare_summary['products'] = $products;
 
-       echo "<pre>";
+      echo "<pre>";
 print_r($skincare_summary);
 echo "</pre>";
 die();
+
      $category = QuizCategory::pluck('name', 'id')->toArray();
 
      $general = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',7)->get();

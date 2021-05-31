@@ -285,9 +285,18 @@
 													{ ?>
 														{{$skincare_summary['addressline2']}}
 													<?php } ?>
-													{{$skincare_summary['city']}}
-													{{$skincare_summary['state']}},
-													{{$skincare_summary['zipcode']}}
+													<?php if(isset($skincare_summary['city']) && $skincare_summary['city'] != '')    
+													{ ?>
+														{{$skincare_summary['city']}}
+													<?php } ?>
+													<?php if(isset($skincare_summary['state']) && $skincare_summary['state'] != '')    
+													{ ?>
+														{{$skincare_summary['state']}}, 
+													<?php } ?>
+													<?php if(isset($skincare_summary['zipcode']) && $skincare_summary['zipcode'] != '')    
+													{ ?>
+														{{$skincare_summary['zipcode']}}
+													<?php } ?>
 												</div>
 												<div class="col-md-6  form-group">
 													<strong>TeleHealth Medicine Fee :</strong>

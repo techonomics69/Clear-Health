@@ -198,6 +198,7 @@ class CartController extends BaseController
             {
                 $cart->product_name=$cart->product->name;
                 $cart->product_price=$cart->product->price;
+                $cart->discount_price=$cart->product->discount_price;
             }
             /*$data = array();
             foreach ($cart as $key => $value) {

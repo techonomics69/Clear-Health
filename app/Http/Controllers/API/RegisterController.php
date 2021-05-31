@@ -120,7 +120,7 @@ if($case_status->case_status)
 $success['case_status'] = $case_status->$complete;
 
         echo"<pre>";
-       print_r($success);
+       print_r($case_status->case_status);
        echo"</pre>";
        die();
 

@@ -114,6 +114,7 @@ if($case_status->case_status == "completed")
 } else {
     echo $acnebother;
 }
+$success['case_status'] = $case_status->case_status;
 
         /*echo"<pre>";
        print_r($case_status->case_status);

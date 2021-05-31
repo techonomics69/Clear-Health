@@ -130,10 +130,10 @@ class CaseManagementController extends Controller
    if(isset($products)&& $products != ''){
      $skincare_summary['products'] = $products;
    }
-   echo "<pre>";
+  /* echo "<pre>";
    print_r($skincare_summary);
    echo "</pre>";
-   die();
+   die();*/
 
    $category = QuizCategory::pluck('name', 'id')->toArray();
 

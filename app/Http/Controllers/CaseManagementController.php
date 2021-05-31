@@ -81,7 +81,10 @@ if(isset($product_details['pharmacy_pickup']) && $product_details['pharmacy_pick
                 $token_data = json_decode($r);
                 $token = $token_data->access_token;
                 $pharmacy_id = $product_details['pharmacy_pickup'];
-
+echo "<pre>";
+print_r($token_data);
+echo "</pre>";
+die();
                 $curl = curl_init();
                 curl_setopt_array($curl, array(
                     CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/pharmacies/'.$pharmacy_id,
@@ -108,10 +111,7 @@ if(isset($product_details['pharmacy_pickup']) && $product_details['pharmacy_pick
          //$products[$product_key]['pharmacy_pickup'] = '';
        }
 
-/*echo "<pre>";
-print_r($product_details);
-echo "</pre>";
-die();*/
+
       $product_name=array();
       $addon_product=array();
 

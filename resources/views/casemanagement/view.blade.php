@@ -307,7 +307,10 @@
 												</div>
 												<div class="col-md-6  form-group">
 													<strong>Addons Fee :</strong>
+													<?php if(isset($skincare_summary['price']) && $skincare_summary['price'] != '')    
+													{ ?>
 													{{$skincare_summary['price']}}
+												<?php } ?>
 												</div>
 												<div class="col-md-6  form-group">
 													<strong>Shipping Fee :</strong> 0

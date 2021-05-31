@@ -74,7 +74,7 @@ class CaseManagementController extends Controller
 
       $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.used_for_plan','carts.quantity','carts.order_type','carts.pharmacy_pickup','carts.product_price as price')->get()->toArray();
 
-/*if(isset($product_details['pharmacy_pickup']) && $product_details['pharmacy_pickup'] != '' && $product_details['order_type'] == 'Prescribed'){*/
+if(isset($product_details['pharmacy_pickup']) && $product_details['pharmacy_pickup'] != '' && $product_details['order_type'] == 'Prescribed'){
 
             if($product_details['pharmacy_pickup'] != "cash"){
                 $r = get_token();
@@ -109,7 +109,7 @@ die();
            }
 
          //$products[$product_key]['pharmacy_pickup'] = '';
-       //}
+       }
 
 echo "<pre>";
 print_r($product_details);

@@ -300,7 +300,10 @@
 												</div>
 												<div class="col-md-6  form-group">
 													<strong>TeleHealth Medicine Fee :</strong>
+													<?php if(isset($skincare_summary['telemedicine_fee']) && $skincare_summary['telemedicine_fee'] != '')    
+													{ ?>
 													{{$skincare_summary['telemedicine_fee']}}
+												<?php } ?>
 												</div>
 												<div class="col-md-6  form-group">
 													<strong>Addons Fee :</strong>

@@ -248,7 +248,7 @@ try{
      $orderlist = checkout::join('users', 'users.id', '=', 'checkout.user_id')
      ->join('carts','carts.id', '=', 'checkout.cart_id')
      ->join('checkout_address', 'checkout_address.order_id', '=','checkout.order_id')
-     ->select('checkout.id','checkout_address.patient_firstname','checkout_address.patient_lastname','checkout.order_id','carts.quantity','carts.order_type','checkout.cart_id','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode','checkout_address.email','checkout_address.phone','checkout.total_amount','checkout.created_at','checkout.status as order_status','checkout.md_status','checkout.shipping_fee','checkout.ipladege_id','checkout.delivery_date','checkout.telemedicine_fee','checkout.handling_fee','checkout.tax','checkout.address_type','checkout_address.order_id')
+     ->select('checkout.id','checkout_address.patient_firstname','checkout_address.patient_lastname','checkout.order_id','carts.quantity','carts.order_type','checkout.cart_id','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode','checkout_address.email','checkout_address.phone','checkout.total_amount','checkout.created_at','checkout.status as order_status','checkout.md_status','checkout.shipping_fee','checkout.ipladege_id','checkout.delivery_date','checkout.telemedicine_fee','checkout.handling_fee','checkout.tax','checkout.address_type','checkout_address.order_id','checkout.cart_amount')
      ->where('checkout.id',$request->id)
      ->OrderBy('id', 'DESC')
      ->first();
@@ -300,7 +300,7 @@ $orderlist['billing_address'] = $billing_address;
          $products[$product_key]['quantity'] = $product_value['quantity'];
          $products[$product_key]['order_type'] = $product_value['order_type'];
 
-         $pro_amount = $pro_amount + $product_value['quantity'] * $product_value['price'];
+         //$pro_amount = $pro_amount + $product_value['quantity'] * $product_value['price'];
 
          if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup'] != '' && $product_value['order_type'] == 'Prescribed'){
 
@@ -341,7 +341,7 @@ $orderlist['billing_address'] = $billing_address;
 
    $orderlist['products'] = $products;
 
-   $orderlist['sub_total'] = $pro_amount;
+   //$orderlist['sub_total'] = $pro_amount;
 
    $orderlist['order_total'] =  $pro_amount + $shipping_fee + $telemedicine_fee + $handling_fee +$tax ;
 

@@ -124,7 +124,6 @@ class CaseManagementController extends Controller
      }
 
    }
-
    $skincare_summary['product_name'] = implode(', ' ,$product_name);
    $skincare_summary["addon_product"] =implode(', ', $addon_product);
    

@@ -106,11 +106,13 @@ class RegisterController extends BaseController
        $case_status =  CaseManagement::where("user_id", $user->id)->OrderBy("id" , "DESC")->first(); 
    
 $completed = true;
-
+$acnebother = false;
 
 if($case_status->case_status == 'completed')
 {
-  echo $completed;
+  $completed;
+}else{
+    $acnebother;
 }
 //$acnebother = false;
 /*if($case_status->case_status == "/acnebother")

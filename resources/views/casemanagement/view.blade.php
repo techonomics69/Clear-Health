@@ -302,14 +302,14 @@
 													<strong>TeleHealth Medicine Fee :</strong>
 													<?php if(isset($skincare_summary['telemedicine_fee']) && $skincare_summary['telemedicine_fee'] != '')    
 													{ ?>
-													{{$skincare_summary['telemedicine_fee']}}
-												<?php } ?>
+														{{$skincare_summary['telemedicine_fee']}}
+													<?php } ?>
 												</div>
 												<div class="col-md-6  form-group">
 													<strong>Addons Fee :</strong>
 													<?php if(isset($skincare_summary['price']) && $skincare_summary['price'] != '')  { ?>
-													{{$skincare_summary['price']}} $
-												<?php } ?>
+														{{$skincare_summary['price']}} $
+													<?php } ?>
 												</div>
 												<div class="col-md-6  form-group">
 													<strong>Shipping Fee :</strong> 0
@@ -323,8 +323,8 @@
 												<div class="col-md-6  form-group">
 													<strong>Total Amount :</strong>
 													<?php if(isset($skincare_summary['total_amount']) && $skincare_summary['total_amount'] != '')  { ?>
-													{{$skincare_summary['total_amount']}} $
-												<?php } ?>
+														{{$skincare_summary['total_amount']}} $
+													<?php } ?>
 												</div>
 											</div>
 											<div class="box-block mtb32">
@@ -343,9 +343,10 @@
 												<h3 class="font-weight-bold"><span class="text-underline">Pharmacy Preference</span></h3>
 
 												<div class="col-md-6  form-group">
-
-												{{$skincare_summary['pharmacy_pickup'] }}
-
+													<?php if(isset($skincare_summary['pharmacy_pickup']) && $skincare_summary['pharmacy_pickup'] != '')  { ?>
+														{{$skincare_summary['pharmacy_pickup']}} $
+													<?php } ?>
+													
 												</div>
 												
 											</div>

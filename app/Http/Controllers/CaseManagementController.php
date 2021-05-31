@@ -129,7 +129,7 @@ if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup']
      $skincare_summary['products'] = $products;
 
        echo "<pre>";
-print_r($skincare_summary;
+print_r($skincare_summary);
 echo "</pre>";
 die();
      $category = QuizCategory::pluck('name', 'id')->toArray();

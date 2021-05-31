@@ -103,10 +103,10 @@ class RegisterController extends BaseController
                 $success['email'] =  $user->email;
                 $success['user_id'] =  $user->id;
 
-       $case_status1 =  CaseManagement::OrderBy("user_id" , "DESC")->first(); 
+       $case_status =  CaseManagement::OrderBy("user_id" , "DESC")->first(); 
 
        echo"<pre>";
-       print_r($case_status1);
+       print_r($case_status);
        echo"</pre>";
        die();
                 return $this->sendResponse($success, 'User login successfully.');

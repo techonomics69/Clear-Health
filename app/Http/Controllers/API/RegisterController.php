@@ -108,7 +108,7 @@ class RegisterController extends BaseController
 $complete = true;
 $acnebother = false;
 
-if($case_status->case_status == "completed")
+if($case_status->case_status == "/acnebothe")
 {
     echo $complete;
 }else{

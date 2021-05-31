@@ -640,7 +640,10 @@ public function detach_file_from_case(Request $request){
     ));
 
     $response = curl_exec($curl);
-
+echo "<pre>";
+print_r($response);
+echo "<pre>";
+die();
     curl_close($curl);
     
     $message_data = json_decode($response);
@@ -661,10 +664,7 @@ public function detach_file_from_case(Request $request){
     $message_data = MdMessages::create($input_data);
 
 
-echo "<pre>";
-print_r($input_data);
-echo "<pre>";
-die();
+
     return $this->sendResponse($message_data,'Message created successfully');
 
    

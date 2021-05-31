@@ -79,7 +79,7 @@ class CaseManagementController extends Controller
 
       foreach($product_details as $product_key => $product_value)
       {
-$skincare_summary[$product_key]['order_type'] = $product_value['order_type'];
+$skincare_summary['order_type'] = $product_value['order_type'];
 if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup'] != ''){
 
             if($product_value['pharmacy_pickup'] != "cash"){

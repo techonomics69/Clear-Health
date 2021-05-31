@@ -302,7 +302,7 @@
 													<strong>TeleHealth Medicine Fee :</strong>
 													<?php if(isset($skincare_summary['telemedicine_fee']) && $skincare_summary['telemedicine_fee'] != '')    
 													{ ?>
-														{{$skincare_summary['telemedicine_fee']}}
+														{{$skincare_summary['telemedicine_fee']}} $
 													<?php } ?>
 												</div>
 												<div class="col-md-6  form-group">
@@ -344,9 +344,9 @@
 
 												<div class="col-md-6  form-group">
 													<?php if(isset($skincare_summary['pharmacy_pickup']) && $skincare_summary['pharmacy_pickup'] != '')  { ?>
-														{{$skincare_summary['pharmacy_pickup']}} $
+														{{$skincare_summary['pharmacy_pickup']}}
 													<?php } ?>
-													
+
 												</div>
 												
 											</div>

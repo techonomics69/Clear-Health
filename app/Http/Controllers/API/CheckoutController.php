@@ -280,7 +280,7 @@ $orderlist['billing_address'] = $billing_address;
 
         
         $s_total = 0;
-        $pro_amount = 0;
+        //$pro_amount = 0;
         $ord_total = 0;
         $shipping_fee = ($orderlist['shipping_fee']!="" || $orderlist['shipping_fee']!= null)?$orderlist['shipping_fee']:0;
 

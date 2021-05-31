@@ -73,13 +73,14 @@ class CaseManagementController extends Controller
       $cart_ids = explode(',', $skincare_summary['cart_id']);
 
       $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.used_for_plan','carts.quantity','carts.order_type','carts.pharmacy_pickup','carts.product_price as price')->get()->toArray();
-
+      $products=array();
       $product_name=array();
       $addon_product=array();
 
       foreach($product_details as $product_key => $product_value)
       {
-$skincare_summary['order_type'] = $product_value['order_type'];
+         $products[$product_key]['order_type'] = $product_value['order_type'];
+//$skincare_summary['order_type'] = $product_value['order_type'];
 if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup'] != ''){
 
             if($product_value['pharmacy_pickup'] != "cash"){
@@ -106,9 +107,9 @@ if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup']
                 $response = curl_exec($curl);
                 curl_close($curl);
                 $response1 = json_decode($response);
-                $skincare_summary[$product_key]['pharmacy_pickup'] =  $response1->name; 
+                $products[$product_key]['pharmacy_pickup'] =  $response1->name; 
             }else{
-               $skincare_summary[$product_key]['pharmacy_pickup'] = 'cash';
+               $products[$product_key]['pharmacy_pickup'] = 'cash';
            }
 
          //$products[$product_key]['pharmacy_pickup'] = '';

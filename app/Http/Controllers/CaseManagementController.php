@@ -74,13 +74,19 @@ class CaseManagementController extends Controller
 
       $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.used_for_plan','carts.quantity','carts.order_type','carts.pharmacy_pickup','carts.product_price as price')->get()->toArray();
 
-if(isset($product_details['pharmacy_pickup']) && $product_details['pharmacy_pickup'] != '' && $product_details['order_type'] == 'Prescribed'){
+      $product_name=array();
+      $addon_product=array();
 
-            if($product_details['pharmacy_pickup'] != "cash"){
+      foreach($product_details as $product_key => $product_value)
+      {
+
+if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup'] != '' && $product_value['order_type'] == 'Prescribed'){
+
+            if($product_value['pharmacy_pickup'] != "cash"){
                 $r = get_token();
                 $token_data = json_decode($r);
                 $token = $token_data->access_token;
-                $pharmacy_id = $product_details['pharmacy_pickup'];
+                $pharmacy_id = $product_value['pharmacy_pickup'];
 echo "<pre>";
 print_r($token_data);
 echo "</pre>";
@@ -103,26 +109,20 @@ die();
                 $response = curl_exec($curl);
                 curl_close($curl);
                 $response1 = json_decode($response);
-                $product_details['pharmacy_pickup'] =  $response1->name; 
+                $products[$product_key]['pharmacy_pickup'] =  $response1->name; 
             }else{
-               $product_details['pharmacy_pickup'] = 'Clear Health Pharmacy Network';
+               $products[$product_key]['pharmacy_pickup'] = 'cash';
            }
 
          //$products[$product_key]['pharmacy_pickup'] = '';
        }
-
-
-      $product_name=array();
-      $addon_product=array();
-
-      foreach($product_details as $product_key => $product_value)
-      {
         if($product_value['used_for_plan'] != "Yes") {
           $product_name[] = $product_value['product_name']; 
         }
         if($product_value['used_for_plan'] == "Yes"){
          $addon_product[] = $product_value['product_name']; 
        }
+
      }
 
      $skincare_summary['product_name'] = implode(', ' ,$product_name);

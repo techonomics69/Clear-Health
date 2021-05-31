@@ -62,70 +62,57 @@ class CaseManagementController extends Controller
       ->select('case_managements.*','users.first_name','users.last_name','users.email','users.mobile','users.gender')
       ->where('case_managements.id',$id)->first();
 
-
       $skincare_summary = CaseManagement::join('users','case_managements.user_id', '=', 'users.id')
-      //->join('carts', 'carts.user_id', '=', 'case_managements.user_id')
-      //->join('products', 'products.id', '=', 'carts.product_id')
       ->join('checkout','checkout.case_id','=', 'case_managements.id')
       ->join('carts', 'checkout.cart_id', '=', 'carts.id')
       ->join('products', 'products.id', '=', 'carts.product_id')
       ->join('checkout_address', 'checkout_address.order_id', '=', 'checkout.order_id')
       ->select('checkout.order_id','checkout.cart_id','checkout.total_amount','checkout.telemedicine_fee','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode','products.price')
-
-     // ->join('checkout_address', 'checkout_address.user_id', '=', 'case_managements.user_id')
-      //->select('checkout_address.order_id','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode','checkout.total_amount','checkout.telemedicine_fee','products.price','checkout.cart_id')
       ->where('case_managements.id',$id)->first();
+
       $cart_ids = explode(',', $skincare_summary['cart_id']);
-/*echo"<pre>";
-print_r($skincare_summary);
-echo"</pre>";
-die();*/
+
       $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.used_for_plan','carts.quantity','carts.order_type','carts.pharmacy_pickup','carts.product_price as price')->get()->toArray();
-$product_name=array();
- $addon_product=array();
+
+      $product_name=array();
+      $addon_product=array();
+
       foreach($product_details as $product_key => $product_value)
       {
         if($product_value['used_for_plan'] != "Yes") {
-        $product_name[] = $product_value['product_name']; 
-      }
-      if($product_value['used_for_plan'] == "Yes"){
+          $product_name[] = $product_value['product_name']; 
+        }
+        if($product_value['used_for_plan'] == "Yes"){
          $addon_product[] = $product_value['product_name']; 
-      }
+       }
+     }
+
+     $skincare_summary['product_name'] = implode(', ' ,$product_name);
+     $skincare_summary["addon_product"] =implode(', ', $addon_product);
+
+
+     $category = QuizCategory::pluck('name', 'id')->toArray();
+
+     $general = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',7)->get();
+     if(!empty($general[0])){
+      $general_que=json_decode($general[0]["answer"]);
+    } else{
+      $general_que = [];
     }
 
-      $skincare_summary['product_name'] = implode(', ' ,$product_name);
-      $skincare_summary["addon_product"] =implode(', ', $addon_product);
-
-/*echo"<pre>";
-print_r($skincare_summary);
-echo"</pre>";
-die();*/
-
-$category = QuizCategory::pluck('name', 'id')->toArray();
-
-$general = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',7)->get();
-if(!empty($general[0])){
-  $general_que=json_decode($general[0]["answer"]);
-} else{
-  $general_que = [];
-}
-/*echo"<pre>";
-print_r($general_que);
-echo"</pre>";
-die();*/
-$accutane = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',8)->get();
-if (!empty($accutane[0])) {
- $accutane_que=json_decode($accutane[0]["answer"]);
-}else{
-  $accutane_que = [];
-}
+    $accutane = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',8)->get();
+    if (!empty($accutane[0])) {
+     $accutane_que=json_decode($accutane[0]["answer"]);
+   }else{
+    $accutane_que = [];
+  }
 
 
-$topical = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',9)->get();
-if(!empty($topical[0])) {
- $topical_que=json_decode($topical[0]["answer"]);
+  $topical = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',9)->get();
+  if(!empty($topical[0])) {
+   $topical_que=json_decode($topical[0]["answer"]);
 
-}else{
+ }else{
   $topical_que =[];
 }
 

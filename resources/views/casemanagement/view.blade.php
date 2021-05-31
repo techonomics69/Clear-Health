@@ -251,7 +251,13 @@
 												<h3 class="font-weight-bold"><span class="text-underline">Skincare Summary</span></h3>
 												<div class="col-md-6  form-group">
 													<strong>Order ID :</strong>
+
+
+													<?php if(isset($skincare_summary['order_id'] && $skincare_summary['order_id'] != ''))    
+
+													{ ?>
 													{{$skincare_summary['order_id']}}
+												<?php } ?>
 												</div>
 												
 												<div class="col-md-6  form-group">

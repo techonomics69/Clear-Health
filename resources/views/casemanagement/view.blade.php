@@ -253,7 +253,7 @@
 													<strong>Order ID :</strong>
 
 
-													<?php if(isset($skincare_summary['order_id'] && $skincare_summary['order_id'] != ''))    
+													<?php if(isset($skincare_summary['order_id']) && $skincare_summary['order_id'] != '')    
 
 													{ ?>
 													{{$skincare_summary['order_id']}}

@@ -85,6 +85,8 @@ if(isset($product_details['pharmacy_pickup']) && $product_details['pharmacy_pick
 print_r($pharmacy_id);
 echo "</pre>";
 die();*/
+
+
                 $curl = curl_init();
                 curl_setopt_array($curl, array(
                     CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/pharmacies/'.$pharmacy_id,

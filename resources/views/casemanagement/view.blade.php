@@ -343,7 +343,7 @@
 												<!-- 	<strong>Total Amount :</strong> -->
 												 
 												{{$skincare_summary['products'] }}
-												<
+												
 												</div>
 												
 											</div>

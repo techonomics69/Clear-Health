@@ -103,12 +103,13 @@ class RegisterController extends BaseController
                 $success['email'] =  $user->email;
                 $success['user_id'] =  $user->id;
 
-       $case_status =  CaseManagement::where("user_id",$user->id)->OrderBy("id" , "DESC")->first(); 
+       $case_status =  CaseManagement::where("user_id", $user->id)->OrderBy("id" , "DESC")->first(); 
 
        
 $complete = true;
 $acnebother = false;
-if($case_status->case_status == "complete")
+
+if($case_status->case_status == "completed")
 {
     $complete;
 }else{
@@ -116,7 +117,7 @@ if($case_status->case_status == "complete")
 }
 
  echo"<pre>";
-       print_r($case_status);
+       print_r($case_status->case_statu);
        echo"</pre>";
        die();
 

@@ -75,14 +75,9 @@ class CaseManagementController extends Controller
      // ->join('checkout_address', 'checkout_address.user_id', '=', 'case_managements.user_id')
       //->select('checkout_address.order_id','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode','checkout.total_amount','checkout.telemedicine_fee','products.price','checkout.cart_id')
       ->where('case_managements.id',$id)->first();
-      
-
-
-
-
       $cart_ids = explode(',', $skincare_summary['cart_id']);
 echo"<pre>";
-print_r($cart_ids);
+print_r($skincare_summary);
 echo"</pre>";
 die();
       $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.used_for_plan','carts.quantity','carts.order_type','carts.pharmacy_pickup','carts.product_price as price')->get()->toArray();

@@ -81,7 +81,7 @@ class CaseManagementController extends Controller
       {
          //$products[$product_key]['order_type'] = $product_value['order_type'];
 //$skincare_summary['order_type'] = $product_value['order_type'];
-/*if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup'] != '' && $product_value['order_type'] == 'Prescribed'){
+if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup'] != '' && $product_value['order_type'] == 'Prescribed'){
 
             if($product_value['pharmacy_pickup'] != "cash"){
                 $r = get_token();
@@ -113,7 +113,7 @@ class CaseManagementController extends Controller
            }
 
          //$products[$product_key]['pharmacy_pickup'] = '';
-       }*/
+       }
 
         if($product_value['used_for_plan'] != "Yes") {
           $product_name[] = $product_value['product_name']; 
@@ -126,7 +126,7 @@ class CaseManagementController extends Controller
 
      $skincare_summary['product_name'] = implode(', ' ,$product_name);
      $skincare_summary["addon_product"] =implode(', ', $addon_product);
-     //$skincare_summary['products'] = $products;
+     $skincare_summary['products'] = $products;
 
 /*       echo "<pre>";
 print_r($skincare_summary);

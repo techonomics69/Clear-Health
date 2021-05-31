@@ -103,7 +103,8 @@ class RegisterController extends BaseController
                 $success['email'] =  $user->email;
                 $success['user_id'] =  $user->id;
 
-       $case_status =  CaseManagement::where("user_id",$request['user_id'])->where("case_status" , 'completed')->first();      
+       $case_status =  CaseManagement::where("user_id",$request['user_id'])->OrderBy("user_id" , "DESC")->first(); 
+
        echo"<pre>";
        print_r($case_status);
        echo"</pre>";

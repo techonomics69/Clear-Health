@@ -114,10 +114,10 @@ if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup']
 
          //$products[$product_key]['pharmacy_pickup'] = '';
        }
-       /*echo "<pre>";
+       echo "<pre>";
 print_r($products);
 echo "</pre>";
-die();*/
+die();
         if($product_value['used_for_plan'] != "Yes") {
           $product_name[] = $product_value['product_name']; 
         }

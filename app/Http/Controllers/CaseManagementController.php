@@ -81,11 +81,6 @@ if(isset($product_details['pharmacy_pickup']) && $product_details['pharmacy_pick
                 $token_data = json_decode($r);
                 $token = $token_data->access_token;
                 $pharmacy_id = $product_details['pharmacy_pickup'];
-/*echo "<pre>";
-print_r($pharmacy_id);
-echo "</pre>";
-die();*/
-
 
                 $curl = curl_init();
                 curl_setopt_array($curl, array(
@@ -113,10 +108,10 @@ die();*/
          //$products[$product_key]['pharmacy_pickup'] = '';
        }
 
-echo "<pre>";
+/*echo "<pre>";
 print_r($product_details);
 echo "</pre>";
-die();
+die();*/
       $product_name=array();
       $addon_product=array();
 

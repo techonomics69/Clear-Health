@@ -102,7 +102,7 @@ if(isset($product_details['pharmacy_pickup']) && $product_details['pharmacy_pick
                 $response1 = json_decode($response);
                 $product_details['pharmacy_pickup'] =  $response1->name; 
             }else{
-               $product_details['pharmacy_pickup'] = 'cash';
+               $product_details['pharmacy_pickup'] = 'Clear Health Pharmacy Network';
            }
 
          //$products[$product_key]['pharmacy_pickup'] = '';

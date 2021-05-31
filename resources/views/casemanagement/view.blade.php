@@ -316,6 +316,9 @@
 												</div>
 												<div class="col-md-6  form-group">
 													<strong>Taxes :</strong>
+													<?php if(isset($skincare_summary]['tax'])&& $skincare_summary['tax'] != '') {?>
+														{{$skincare_summary['tax']}}
+													<?php } ?>
 												</div> 
 												<div class="col-md-6  form-group">
 													<strong>Total Amount :</strong>
@@ -338,7 +341,7 @@
 											</div>
 											<div class="box-block mtb32">
 												<h3 class="font-weight-bold"><span class="text-underline">Pharmacy Preference</span></h3>
-												
+
 												<div class="col-md-6  form-group">
 
 												{{$skincare_summary['pharmacy_pickup'] }}

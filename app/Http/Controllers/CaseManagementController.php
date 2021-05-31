@@ -107,13 +107,14 @@ if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup']
                 $response = curl_exec($curl);
                 curl_close($curl);
                 $response1 = json_decode($response);
-                $products[$product_key]['pharmacy_pickup'] =  $response1->name; 
+                $products[$product_value]['pharmacy_pickup'] =  $response1->name; 
             }else{
-               $products[$product_key]['pharmacy_pickup'] = 'Clear Health Pharmacy Network';
+               $products[$product_value]['pharmacy_pickup'] = 'Clear Health Pharmacy Network';
            }
 
          //$products[$product_key]['pharmacy_pickup'] = '';
        }
+       
        echo "<pre>";
 print_r($products);
 echo "</pre>";

@@ -344,7 +344,7 @@
 													<!-- <?php //if(isset($skincare_summary['products']) && $skincare_summary['products'] != '')  { ?>
 													{{$skincare_summary['products']}}
 												<?php } ?> -->
-												<?php echo $products; ?>
+												<?php echo $skincare_summary['products']; ?>
 												</div>
 												
 											</div>

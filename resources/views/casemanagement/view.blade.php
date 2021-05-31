@@ -308,7 +308,7 @@
 												<div class="col-md-6  form-group">
 													<strong>Addons Fee :</strong>
 													<?php if(isset($skincare_summary['price']) && $skincare_summary['price'] != '')  { ?>
-													{{$skincare_summary['price']}}$
+													{{$skincare_summary['price']}} $
 												<?php } ?>
 												</div>
 												<div class="col-md-6  form-group">
@@ -317,13 +317,13 @@
 												<div class="col-md-6  form-group">
 													<strong>Taxes :</strong>
 													<?php if(isset($skincare_summary['tax']) && $skincare_summary['tax'] != '') {?>
-														{{$skincare_summary['tax']}}$
+														{{$skincare_summary['tax']}} $
 													<?php } ?>
 												</div> 
 												<div class="col-md-6  form-group">
 													<strong>Total Amount :</strong>
 													<?php if(isset($skincare_summary['total_amount']) && $skincare_summary['total_amount'] != '')  { ?>
-													{{$skincare_summary['total_amount']}}$
+													{{$skincare_summary['total_amount']}} $
 												<?php } ?>
 												</div>
 											</div>

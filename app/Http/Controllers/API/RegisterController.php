@@ -12,6 +12,7 @@ use Exception;
 use DB; 
 use Carbon\Carbon; 
 use Illuminate\Support\Str;
+use App\Models\case_managements;
 
    
 class RegisterController extends BaseController 
@@ -101,7 +102,11 @@ class RegisterController extends BaseController
                 $success['token'] =  $user->createToken('MyApp')->accessToken; 
                 $success['email'] =  $user->email;
                 $success['user_id'] =  $user->id;
-       
+       $case_status =  case_managements("user_id",$request['user_id'])->where("case_status" , 'completed')->first();      
+       echo"<pre>";
+       print_r($case_status);
+       echo"</pre>";
+       die();
                 return $this->sendResponse($success, 'User login successfully.');
             } 
             else{ 

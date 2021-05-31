@@ -73,6 +73,41 @@ class CaseManagementController extends Controller
       $cart_ids = explode(',', $skincare_summary['cart_id']);
 
       $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.used_for_plan','carts.quantity','carts.order_type','carts.pharmacy_pickup','carts.product_price as price')->get()->toArray();
+
+if(isset($product_details['pharmacy_pickup']) && $product_details['pharmacy_pickup'] != '' && $product_details['order_type'] == 'Prescribed'){
+
+            if($product_value['pharmacy_pickup'] != "cash"){
+                $r = get_token();
+                $token_data = json_decode($r);
+                $token = $token_data->access_token;
+                $pharmacy_id = $product_details['pharmacy_pickup'];
+
+                $curl = curl_init();
+                curl_setopt_array($curl, array(
+                    CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/pharmacies/'.$pharmacy_id,
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_ENCODING => '',
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 0,
+                    CURLOPT_FOLLOWLOCATION => true,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => 'GET',
+                    CURLOPT_HTTPHEADER => array(
+                      'Authorization: Bearer '.$token,
+                  ),
+                ));
+
+                $response = curl_exec($curl);
+                curl_close($curl);
+                $response1 = json_decode($response);
+                $product_details['pharmacy_pickup'] =  $response1->name; 
+            }else{
+               $product_details['pharmacy_pickup'] = 'cash';
+           }
+
+         //$products[$product_key]['pharmacy_pickup'] = '';
+       }
+
 echo "<pre>";
 print_r($product_details);
 echo "</pre>";

@@ -316,7 +316,7 @@
 												</div>
 												<div class="col-md-6  form-group">
 													<strong>Taxes :</strong>
-													<?php if(isset($skincare_summary]['tax'])&& $skincare_summary['tax'] != '') {?>
+													<?php if(isset($skincare_summary['tax']) && $skincare_summary['tax'] != '') {?>
 														{{$skincare_summary['tax']}}
 													<?php } ?>
 												</div> 

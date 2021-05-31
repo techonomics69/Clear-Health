@@ -110,9 +110,9 @@ $acnebother = false;
 
 if($case_status->case_status == "completed")
 {
-    echo $complete;
+     $complete;
 } else {
-    echo $acnebother;
+   $acnebother;
 }
 $success['case_status'] = $case_status->case_status;
 

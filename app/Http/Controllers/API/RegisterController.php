@@ -105,25 +105,20 @@ class RegisterController extends BaseController
 
        $case_status =  CaseManagement::where("user_id", $user->id)->OrderBy("id" , "DESC")->first(); 
    
-$completed = true;
+$complete = true;
 $acnebother = false;
 
-if($case_status->case_status == 'completed')
+if($case_status->case_status == "completed")
 {
-  $completed;
+    echo $complete;
 }else{
-    $acnebother;
+    echo $acnebother;
 }
-//$acnebother = false;
-/*if($case_status->case_status == "/acnebother")
-{
-    $acnebother;
-}*/
 
-    echo"<pre>";
-    print_r($case_status->case_status);
-    echo"</pre>";
-    die();
+ echo"<pre>";
+       print_r($case_status->case_statu);
+       echo"</pre>";
+       die();
 
 
                 return $this->sendResponse($success, 'User login successfully.');

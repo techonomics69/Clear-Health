@@ -68,7 +68,7 @@ class CaseManagementController extends Controller
       ->join('carts', 'checkout.cart_id', '=', 'carts.id')
       ->join('products', 'products.id', '=', 'carts.product_id')
       ->join('checkout_address', 'checkout_address.order_id', '=', 'checkout.order_id')
-      ->select('checkout.order_id','checkout.cart_id','checkout.total_amount','checkout.telemedicine_fee','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode','products.price')
+      ->select('checkout.order_id','checkout.cart_id','checkout.total_amount','checkout.telemedicine_fee','checkout.tax','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode','products.price')
       ->where('case_managements.id',$id)->first();
 
       $cart_ids = explode(',', $skincare_summary['cart_id']);

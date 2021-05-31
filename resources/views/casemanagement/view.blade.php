@@ -341,9 +341,9 @@
 
 												<div class="col-md-6  form-group">
 												<!-- 	<strong>Total Amount :</strong> -->
-												 <?php if(isset($skincare_summary['products']) && $skincare_summary['products'] !=''){?>
+												 
 												{{$skincare_summary['products'] }}
-												<?php } ?>
+												<
 												</div>
 												
 											</div>

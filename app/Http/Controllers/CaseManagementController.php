@@ -82,81 +82,81 @@ class CaseManagementController extends Controller
       {
          //$products[$product_key]['order_type'] = $product_value['order_type'];
 //$skincare_summary['order_type'] = $product_value['order_type'];
-if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup'] != '' && $product_value['order_type'] == 'Prescribed'){
+        if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup'] != '' && $product_value['order_type'] == 'Prescribed'){
 
-            if($product_value['pharmacy_pickup'] != "cash"){
-                $r = get_token();
-                $token_data = json_decode($r);
-                $token = $token_data->access_token;
-                $pharmacy_id = $product_value['pharmacy_pickup'];
+          if($product_value['pharmacy_pickup'] != "cash"){
+            $r = get_token();
+            $token_data = json_decode($r);
+            $token = $token_data->access_token;
+            $pharmacy_id = $product_value['pharmacy_pickup'];
 
-                $curl = curl_init();
-                curl_setopt_array($curl, array(
-                    CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/pharmacies/'.$pharmacy_id,
-                    CURLOPT_RETURNTRANSFER => true,
-                    CURLOPT_ENCODING => '',
-                    CURLOPT_MAXREDIRS => 10,
-                    CURLOPT_TIMEOUT => 0,
-                    CURLOPT_FOLLOWLOCATION => true,
-                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                    CURLOPT_CUSTOMREQUEST => 'GET',
-                    CURLOPT_HTTPHEADER => array(
-                      'Authorization: Bearer '.$token,
-                  ),
-                ));
+            $curl = curl_init();
+            curl_setopt_array($curl, array(
+              CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/pharmacies/'.$pharmacy_id,
+              CURLOPT_RETURNTRANSFER => true,
+              CURLOPT_ENCODING => '',
+              CURLOPT_MAXREDIRS => 10,
+              CURLOPT_TIMEOUT => 0,
+              CURLOPT_FOLLOWLOCATION => true,
+              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+              CURLOPT_CUSTOMREQUEST => 'GET',
+              CURLOPT_HTTPHEADER => array(
+                'Authorization: Bearer '.$token,
+              ),
+            ));
 
-                $response = curl_exec($curl);
-                curl_close($curl);
-                $response1 = json_decode($response);
-                $products['pharmacy_pickup'] =  $response1->name; 
-            }else{
-               $products['pharmacy_pickup'] = 'Clear Health Pharmacy Network';
-           }
+            $response = curl_exec($curl);
+            curl_close($curl);
+            $response1 = json_decode($response);
+            $products['pharmacy_pickup'] =  $response1->name; 
+          }else{
+           $products['pharmacy_pickup'] = 'Clear Health Pharmacy Network';
+         }
 
          //$products[$product_key]['pharmacy_pickup'] = '';
        }
 
-        if($product_value['used_for_plan'] != "Yes") {
-          $product_name[] = $product_value['product_name']; 
-        }
-        if($product_value['used_for_plan'] == "Yes"){
-         $addon_product[] = $product_value['product_name']; 
-       }
-
+       if($product_value['used_for_plan'] != "Yes") {
+        $product_name[] = $product_value['product_name']; 
+      }
+      if($product_value['used_for_plan'] == "Yes"){
+       $addon_product[] = $product_value['product_name']; 
      }
 
-     $skincare_summary['product_name'] = implode(', ' ,$product_name);
-     $skincare_summary["addon_product"] =implode(', ', $addon_product);
-     if(isset($products)&& $products != ''){
+   }
+
+   $skincare_summary['product_name'] = implode(', ' ,$product_name);
+   $skincare_summary["addon_product"] =implode(', ', $addon_product);
+   if(isset($products)&& $products != ''){
      $skincare_summary['products'] = $products;
-}
-      echo "<pre>";
-print_r($skincare_summary);
-echo "</pre>";
-die();
+   }
+   /*echo "<pre>";
+   print_r($skincare_summary);
+   echo "</pre>";
+   die();*/
 
-     $category = QuizCategory::pluck('name', 'id')->toArray();
+   $category = QuizCategory::pluck('name', 'id')->toArray();
 
-     $general = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',7)->get();
-     if(!empty($general[0])){
-      $general_que=json_decode($general[0]["answer"]);
-    } else{
-      $general_que = [];
-    }
-
-    $accutane = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',8)->get();
-    if (!empty($accutane[0])) {
-     $accutane_que=json_decode($accutane[0]["answer"]);
-   }else{
-    $accutane_que = [];
+   $general = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',7)->get();
+   if(!empty($general[0])){
+    $general_que=json_decode($general[0]["answer"]);
+  } else{
+    $general_que = [];
   }
 
-
-  $topical = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',9)->get();
-  if(!empty($topical[0])) {
-   $topical_que=json_decode($topical[0]["answer"]);
-
+  $accutane = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',8)->get();
+  if (!empty($accutane[0])) {
+   $accutane_que=json_decode($accutane[0]["answer"]);
  }else{
+  $accutane_que = [];
+}
+
+
+$topical = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',9)->get();
+if(!empty($topical[0])) {
+ $topical_que=json_decode($topical[0]["answer"]);
+
+}else{
   $topical_que =[];
 }
 

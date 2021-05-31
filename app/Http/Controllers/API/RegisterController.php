@@ -109,20 +109,20 @@ $complete = true;
 
 if($case_status->case_status == 'completed')
 {
-     $complete = false;
+     echo $complete = false;
 }
 $acnebother = false;
 if($case_status->case_status)
 {
-     $acnebother;
+     echo  $acnebother;
 }
 
 $success['case_status'] = $case_status->$complete;
 
-        echo"<pre>";
+        /*echo"<pre>";
        print_r($case_status->case_status);
        echo"</pre>";
-       die();
+       die();*/
 
 
                 return $this->sendResponse($success, 'User login successfully.');

@@ -660,6 +660,11 @@ public function detach_file_from_case(Request $request){
     $input_data['clinician  '] = $message_data->clinician ;
     $message_data = MdMessages::create($input_data);
 
+
+echo "<pre>";
+print_r($input_data);
+echo "<pre>";
+die();
     return $this->sendResponse($message_data,'Message created successfully');
 
    

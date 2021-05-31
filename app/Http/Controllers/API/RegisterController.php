@@ -12,7 +12,7 @@ use Exception;
 use DB; 
 use Carbon\Carbon; 
 use Illuminate\Support\Str;
-use App\Models\case_managements;
+use App\Models\CaseManagement;
 
    
 class RegisterController extends BaseController 
@@ -103,7 +103,7 @@ class RegisterController extends BaseController
                 $success['email'] =  $user->email;
                 $success['user_id'] =  $user->id;
 
-       $case_status =  case_managements::where("user_id",$request['user_id'])->where("case_status" , 'completed')->first();      
+       $case_status =  CaseManagement::where("user_id",$request['user_id'])->where("case_status" , 'completed')->first();      
        echo"<pre>";
        print_r($case_status);
        echo"</pre>";

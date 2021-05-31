@@ -276,7 +276,7 @@ $orderlist['billing_address'] = $billing_address;
         $orderlist['order_item'] = count($cart_ids);
         
         $products=array();
-        $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.image','carts.quantity','carts.order_type','carts.pharmacy_pickup','carts.product_price as price')->get()->toArray();
+        $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.image','products.discount_price','carts.quantity','carts.order_type','carts.pharmacy_pickup','carts.product_price as price')->get()->toArray();
 
         
         $s_total = 0;
@@ -298,6 +298,7 @@ $orderlist['billing_address'] = $billing_address;
          $products[$product_key]['price'] = $product_value['price'];
          $products[$product_key]['image'] = $product_value['image'];
          $products[$product_key]['quantity'] = $product_value['quantity'];
+         $products[$product_key]['discount_price'] = $product_value['discount_price'];
          $products[$product_key]['order_type'] = $product_value['order_type'];
 
          //$pro_amount = $pro_amount + $product_value['quantity'] * $product_value['price'];

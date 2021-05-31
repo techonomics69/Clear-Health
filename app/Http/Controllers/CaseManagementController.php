@@ -81,7 +81,7 @@ class CaseManagementController extends Controller
       {
          $products[$product_key]['order_type'] = $product_value['order_type'];
 //$skincare_summary['order_type'] = $product_value['order_type'];
-if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup'] != ''){
+if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup'] != '' && $product_value['order_type'] == 'Prescribed'){
 
             if($product_value['pharmacy_pickup'] != "cash"){
                 $r = get_token();
@@ -109,15 +109,15 @@ if(isset($product_value['pharmacy_pickup']) && $product_value['pharmacy_pickup']
                 $response1 = json_decode($response);
                 $products[$product_key]['pharmacy_pickup'] =  $response1->name; 
             }else{
-               $products[$product_key]['pharmacy_pickup'] = 'cash';
+               $products[$product_key]['pharmacy_pickup'] = 'Clear Health Pharmacy Network';
            }
 
          //$products[$product_key]['pharmacy_pickup'] = '';
        }
-       echo "<pre>";
+       /*echo "<pre>";
 print_r($products);
 echo "</pre>";
-die();
+die();*/
         if($product_value['used_for_plan'] != "Yes") {
           $product_name[] = $product_value['product_name']; 
         }
@@ -156,7 +156,7 @@ die();
   $topical_que =[];
 }
 
-return view('casemanagement.view',compact('user_case_management_data','category','general_que','accutane_que','topical_que','skincare_summary'));
+return view('casemanagement.view',compact('user_case_management_data','category','general_que','accutane_que','topical_que','skincare_summary','products'));
 
 }
 

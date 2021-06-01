@@ -53,12 +53,15 @@
                                     <tbody>
                                         <?php $i=1;?>
                                         @foreach ($order as $key => $order_data)
+<<<<<<< HEAD
                                         <?php 
                                         echo "<pre>";
                                         print_r($order);
                                         echo "</pre>";
                                         die();
                                         ?>
+=======
+>>>>>>> 9b5ed87a85649197c9744b4d0667bd25db74f3db
                                         <tr> 
                                             <td>{{ $i++ }}</td>
                                             <td>{{ $order_data->order_id }} </td>

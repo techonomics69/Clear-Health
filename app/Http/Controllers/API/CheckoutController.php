@@ -124,6 +124,11 @@ class CheckoutController extends BaseController
 
         $pro_data  =  CaseManagement::select('recommended_product')->where('user_id',$data['user_id'])->where('id',$data['case_id'])->first();
 
+        echo "<pre>";
+        print_r($pro_data);
+        echo "<pre>";
+        exit();
+
         $product_type = $pro_data['recommended_product'];
 
         $cart_ids = explode(',', $data['cart_id']);

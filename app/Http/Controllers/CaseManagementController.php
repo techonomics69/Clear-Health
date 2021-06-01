@@ -147,7 +147,7 @@ die();*/
 $accutane_que=json_decode($accutane->answer); 
 
 echo "<pre>";
-print_r($accutane->answer);
+print_r($accutane_que);
 echo "</pre>";
 
   /*if(isset($accutane)) {

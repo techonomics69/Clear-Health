@@ -43,14 +43,14 @@
 				</div>
 				
 
-				@foreach ($order_non_prescribed as $key => $order_data)
+				<!-- @foreach ($order_non_prescribed as $key => $order_data)
 
 				<?php $medication_type=$order_data->medication_type; ?>
 
-				@endforeach
+				@endforeach -->
 
-				<?php 
-				if($medication_type == 2 ) { ?>
+				<!-- <?php 
+				if($medication_type == 2 ) { ?> -->
 					<div class="row">
 						<div class="col-lg-12">
 							<section class="card" >
@@ -177,144 +177,7 @@
 						</div>
 					</div>
 
-				<?php } else { ?> 
-					<div class="row">
-						<div class="col-lg-12">
-							<section class="card" >
-								<ul class="nav nav-tabs" id="casemanagement-tab-menu">
-									<li><a class="btn active " data-toggle="tab" href="#profile">Profile</a></li>
-									<li><a class="btn" data-toggle="tab" href="#questions">Questions</a></li>
-									<li><a class="btn" data-toggle="tab" href="#skincare_summary">Skincare Summary </a></li>
-									<li><a class="btn" data-toggle="tab" href="#action_items">Action Items </a></li>
-									<li><a class="btn" data-toggle="tab" href="#messages">Messages</a></li>
-									<li><a class="btn" data-toggle="tab" href="#photos">Photos </a></li>
-									<li><a class="btn" data-toggle="tab" href="#payments">Payments </a></li>
-								</ul>
-								<div class="tab-content">
-									<!--start 1st tab-->
-									<div id="profile" class="tab-pane fade in active show">
-										<div class="row" style="padding: 20px;">
-											<div class="col-md-12">
-												<section class="card">
-													<div class="card-body">
-														<div class="box-block mtb32">
-															<h3 class="font-weight-bold"><span class="text-underline">Basic Information</span></h3>
-															
-															<div class="col-md-6  form-group">
-																<strong>First Name : </strong>
-																{{$order_prescribed['first_name']}}
-															</div>
-															<div class="col-md-6  form-group">
-																<strong>Last Name : </strong>
-																{{$order_prescribed['last_name']}}
-															</div>
-															<div class="col-md-6 form-group">
-																<strong>Email : </strong>
-																{{$order_prescribed['email']}}
-															</div>
-
-															<div class="col-md-6 form-group">
-																<strong>Phone No: </strong>
-																{{$order_prescribed['mobile']}}
-															</div>
-
-															<div class="col-md-6 form-group">
-																<strong>Gender : </strong>
-																
-															</div>
-
-															<div class="col-md-6 form-group">
-																<strong>Address : </strong>
-																{{$order_prescribed['addressline1']}}
-																{{$order_prescribed['addressline2']}}
-																{{$order_prescribed['city']}}
-																{{$order_prescribed['state']}},
-																{{$order_prescribed['zipcode']}}
-															</div>
-
-															<div class="col-md-6 form-group">
-																<strong>Physician Details : </strong>
-																{{$order_prescribed['pharmacy']}}
-															</div>
-														
-														</div>
-													</div>
-												</section>
-											</div>
-										</div>
-									</div> 
-									<!--End 1st tab-->
-
-									  <!-- @if(session()->has('que_current_tab'))
-
- @php
-    $current_tab_id = 'home'.session()->get('que_current_tab') ;
-    $activeTab = 1;
-    $active = 1 ;
-   
-   // unset($products[$key]);
-    @endphp
- @else
- @php
- $current_tab_id = "";
- $activeTab = 0 ;
- $active = 0 ;	
- @endphp
- @endif -->
-
- @php
- Session::forget('que_current_tab');
- @endphp
- <!-- Start 2nd tab-->
- <div id="questions" class="tab-pane fade in">					    
-
- 	<div class="row" style="padding: 10px;">
- 		<div class="col-md-12">
- 			<section class="card" >
- 				<ul class="nav nav-tabs" id="question-tab-menu">
-
- 					@foreach($category as $key => $data)
- 					{{-- <li><a class="btn @if($activeTab == 0) active @elseif($current_tab_id == 'home'.$key) active @endif" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li> --}}
-
- 					<li><a class="btn" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li>
- 					<?php //$activeTab++ ?> 
- 					@endforeach
- 				</ul>
- 				<div class="tab-content">
- 					<?php $i=0 ?>
- 					@foreach($category as $key => $data)
- 					<div id="home{{$key}}" class="tab-pane fade in @if($i== 0) active show @endif">					    
- 						
- 						<?php $i++ ?>
- 						
- 					</div> 
- 					@endforeach 
- 					
-
- 				</div>
- 			</section>
- 		</div>
- 	</div>
- </div>  
- <!-- End 2nd tab-->
- <!-- Start #3rd tab-->
- <div id="skincare_summary" class="tab-pane fade in">					    
-
- 	<div class="row" style="padding: 10px;">
- 		<div class="col-md-12">
- 			<section class="card" >
- 				
- 			</section>
- 		</div>
- 	</div>
- </div>
- <!-- End 3rd tab-->
-
-</div>
-</section>
-</div>
-</div>
-<?php } ?>
+				
 </div>
 </div>
 @endsection

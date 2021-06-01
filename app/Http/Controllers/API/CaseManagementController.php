@@ -467,6 +467,8 @@ public function detach_file_from_case(Request $request){
                 'user_id' => 'required',
                 'case_id' => 'required',
                 'system_case_id' => 'required',
+                'text' => 'required',
+                'from' => 'required',
             ]);
             if($validator->fails()){
                 return $this->sendError('Validation Error.', $validator->errors()->all());       
@@ -545,7 +547,7 @@ public function detach_file_from_case(Request $request){
       $file_ids[] = $message_file_data->file_id;
     }
     // end of code to get files ids
-    if(!empty($message_file_data)){
+ 
         $postfields = array();
         $postfields['from'] = $request->from;
         $postfields['text'] = $request->text; 
@@ -599,15 +601,16 @@ public function detach_file_from_case(Request $request){
         //$input_data['message_files_ids'] = json_encode($file_ids);
         $input_data1['clinician  '] = $message_data->clinician ;
         $message_data = MdMessages::create($input_data1);
+        if(isset($message_file_data) && !empty($message_file_data)){
+           $message_data['message_file_data'] = $message_file_data;
+        }
+       
 
         if(!empty( $message_data)){
           return $this->sendResponse($message_data,'Message created successfully');
         }else{
-          return $this->sendResponse($message_file_data,'Some thing went wrong.');
+          return $this->sendResponse(array(),'Some thing went wrong.');
         }
-    }else{
-      return $this->sendResponse($message_file_data,'Some thing went wrong.');
-    }
     
 
     //end of create message

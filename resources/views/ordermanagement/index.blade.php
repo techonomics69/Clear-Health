@@ -90,7 +90,7 @@
                                                 </div>  
                                             </td>
 
-                                        <?php //} ?>
+                                        <?php } ?>
                                     <?php } ?>
                                 </tr>
                                 @endforeach

@@ -123,7 +123,7 @@ public function addParentdetails(Request $request)
      public function show($id)
     {
         $user = User::find($id);
-                $success['user_id'] =  $user->id;
+                //$success['user_id'] =  $user->id;
                 $case_status =  CaseManagement::where("user_id", $user->id)->OrderBy("id" , "DESC")->first(); 
                 $complete = true;
 

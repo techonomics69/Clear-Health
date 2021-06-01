@@ -152,8 +152,9 @@ if(array_key_exists("answer",$accutane))
 }else{
    $accutane_que = [];
 }
- echo "<pre>";
-print_r($accutane_que);
+
+echo "<pre>";
+print_r($accutane->answer);
 echo "</pre>";
 die();
 

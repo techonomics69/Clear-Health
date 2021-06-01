@@ -80,17 +80,20 @@
                                                     </a> 
                                                 </div>  
                                             </td>
-                                        <?php }else{  ?>
-                                           <?php if($order_data->case_id == 0){ ?>
+                                        <?php }else{ 
+                                            //echo "<pre>"; print_r($order_data->case_id); echo "</pre>";
+                                            ?>
+                                           
+
                                              <td> 
                                                 <div class="d-flex">
                                                     <a class="icons edit-icon" href="{{ route('casemanagement.show',$order_data->case_id)}}">
-                                                        <i class="fa fa-eye"></i> <?php echo "<pre>"; print_r($order_data->case_id); echo "</pre>"; ?>
+                                                        <i class="fa fa-eye"></i> 
                                                     </a> 
                                                 </div>  
                                             </td>
 
-                                        <?php } ?>
+                                        
                                     <?php } ?>
                                 </tr>
                                 @endforeach

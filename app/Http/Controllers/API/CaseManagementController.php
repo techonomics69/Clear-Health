@@ -455,12 +455,6 @@ public function detach_file_from_case(Request $request){
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
-    echo "<pre>";
-    print_r($request->all());
-    echo "<pre>";
-    exit();
-
-
     $documents = $request->file('file');
     $name = $request->name;
     $user_id = $request->user_id;
@@ -551,7 +545,12 @@ public function detach_file_from_case(Request $request){
         $postfields = array();
         $postfields['from'] = $request->from;
         $postfields['text'] = $request->text; 
-        $postfields['prioritized'] =  true;//str_replace('"', "", $request->prioritized);//trim($request->prioritized,'"'); 
+        if($request->prioritized == "true"){
+          $postfields['prioritized'] =  true;
+        }else{
+          $postfields['prioritized'] =  false;
+        }
+       //str_replace('"', "", $request->prioritized);//trim($request->prioritized,'"'); 
         $postfields['prioritized_reason'] = $request->prioritized_reason;
         $postfields['message_files'] = $file_ids;
 

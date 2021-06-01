@@ -472,7 +472,6 @@ public function detach_file_from_case(Request $request){
                 return $this->sendError('Validation Error.', $validator->errors()->all());       
             }
     //end of validation
-
     if(!empty($documents)){
       $file =  $documents->getClientOriginalName();
       $doc_file_name =  time().'-'.$file;
@@ -550,7 +549,6 @@ public function detach_file_from_case(Request $request){
         }else{
           $postfields['prioritized'] =  false;
         }
-       //str_replace('"', "", $request->prioritized);//trim($request->prioritized,'"'); 
         $postfields['prioritized_reason'] = $request->prioritized_reason;
         $postfields['message_files'] = $file_ids;
 

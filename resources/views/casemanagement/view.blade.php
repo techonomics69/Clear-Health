@@ -178,6 +178,7 @@
 															} */
 															?>
 															<h4><strong>Que <?php echo ++$j;?> : <?php echo $general->question; ?></strong></h4>
+
 															<p>Ans: <?php if(isset($general->answer)){
 																$answer =  (array)$general->answer;
 																$getanswer= implode(" " ,$answer);
@@ -196,14 +197,19 @@
 													<div class="row" style="padding: 10px;">
 														<div class="col-md-12">
 															<?php 
-															$getquestions = $accutane->question;
+															/*$getquestions = $accutane->question;
 															if(isset($accutane->answer)){
 																$answer =  (array)$accutane->answer;
 																$getanswer= implode(" " , $answer);
-															} 
+															}*/ 
 															?>
-															<h4><strong>Que  <?php echo ++$j;?> : <?php echo $getquestions; ?></strong></h4>
-															<p>Ans: <?php echo $getanswer; ?>
+															<h4><strong>Que  <?php echo ++$j;?> : <?php echo $accutane->question; ?></strong></h4>
+															<p>Ans: 
+															<?php if(isset($accutane->answer)){
+																$answer =  (array)$accutane->answer;
+																$getanswer= implode(" " ,$answer);
+																echo $getanswer;
+															} ?> 
 														</div>
 													</div>
 													@endforeach
@@ -217,14 +223,18 @@
 													<div class="row" style="padding: 10px;">
 														<div class="col-md-12">
 															<?php 
-															$getquestions = $topical->question;
+															/*$getquestions = $topical->question;
 															if(isset($topical->answer)){
 																$answer =  (array)$topical->answer;
 																$getanswer= implode(" " , $answer);
-															} 
+															}*/ 
 															?>
-															<h4><strong>Que  <?php echo ++$j;?> : <?php echo $getquestions; ?></strong></h4>
-															<p>Ans: <?php echo $getanswer; ?>
+															<h4><strong>Que  <?php echo ++$j;?> : <?php echo $topical->question; ?></strong></h4>
+															<p>Ans: <?php if(isset($topical->answer)){
+																$answer =  (array)$topical->answer;
+																$getanswer= implode(" " ,$answer);
+																echo $getanswer;
+															} ?>
 														</div>
 													</div>
 													@endforeach

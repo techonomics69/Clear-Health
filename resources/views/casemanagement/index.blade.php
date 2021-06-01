@@ -57,9 +57,7 @@
                     <tbody>
                       <?php $i=0;?>
                     @foreach ($user_case_management_data as $key => $case_data)
-                    <?php echo "<pre>"; print_r($user_case_management_data);
-                    echo "</pre>";
-                    die(); ?>
+                    
                     <tr>
                       <td>{{ ++$i }}</td>           
                       <td>{{ $case_data['created_at']->format('d/m/Y') }}</td> 

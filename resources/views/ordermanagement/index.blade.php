@@ -71,7 +71,7 @@
 
                                            <td>
                                                 <div class="d-flex">
-                                                    <a class="icons edit-icon" href="{{ route('ordermanagement.show',$order_data->id)$order_data->case_id}}">
+                                                    <a class="icons edit-icon" href="{{ route('ordermanagement.show',$order_data->id)}}">
                                                         <i class="fa fa-eye"></i>
                                                     </a> 
                                                 </div>  

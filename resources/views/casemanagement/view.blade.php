@@ -178,7 +178,9 @@
 															} */
 															?>
 															<h4><strong>Que <?php echo ++$j;?> : <?php echo $general->question; ?></strong></h4>
-															<p>Ans: <?php  ?> 
+															<p>Ans: <?php  if(isset($general->answer)){
+																echo $general->answer;
+															} ?> 
 														</div>
 													</div>
 													@endforeach

@@ -131,8 +131,6 @@ class CaseManagementController extends Controller
 
    $general = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',7)->first();
 
-
-
   $general_que=json_decode($general->answer);
 
    /*if(!empty($general[0])){
@@ -143,21 +141,27 @@ class CaseManagementController extends Controller
 
 
   $accutane = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',8)->get();
-  if (!empty($accutane[0])) {
+
+$accutane_que=json_decode($accutane->answer); 
+
+  /*if (!empty($accutane[0])) {
    $accutane_que=json_decode($accutane[0]["answer"]);
  }else{
   $accutane_que = [];
-}
+}*/
 
 
 $topical = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',9)->get();
-if(!empty($topical[0])) {
+
+$topical_que=json_decode($topical->answer);
+
+/*if(!empty($topical[0])) {
  $topical_que=json_decode($topical[0]["answer"]);
 
 }else{
   $topical_que =[];
 }
-
+*/
 return view('casemanagement.view',compact('user_case_management_data','category','general_que','accutane_que','topical_que','skincare_summary'));
 
 }

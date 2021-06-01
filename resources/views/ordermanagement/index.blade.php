@@ -78,15 +78,13 @@
                                                 </div>  
                                             </td>
                                         <?php }else{ ?>
-                                         @foreach ($user_case_management_data as $key => $case_data)
                                          <td> 
                                             <div class="d-flex">
-                                                <a class="icons edit-icon" href="{{ route('casemanagement.show',$case_data['id']) }}">
+                                                <a class="icons edit-icon" href="{{ route('ordermanagement.show',$order_data->case_id)}}">
                                                     <i class="fa fa-eye"></i>
                                                 </a> 
                                             </div>  
                                         </td>
-                                        @endforeach
                                     <?php } ?>
                                 </tr>
 

@@ -131,6 +131,7 @@ public function addParentdetails(Request $request)
                 print_r($order_status);
                 echo "</pre>";
                 die();
+                
                 $complete = true;
 
                 if($case_status->case_status == 'completed')

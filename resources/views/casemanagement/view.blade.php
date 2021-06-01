@@ -171,11 +171,11 @@
 														<div class="col-md-12">
 
 															<?php 
-															$getquestions = $general->question;
+															/*$getquestions = $general->question;
 															if(isset($general->answer)){
 																$answer =  (array)$general->answer;
 																$getanswer= implode(" " , $answer);
-															} 
+															} */
 															?>
 															<h4><strong>Que <?php echo ++$j;?> : <?php echo $general->question; ?></strong></h4>
 															<p>Ans: <?php echo $general->answer; ?> 
@@ -183,7 +183,7 @@
 													</div>
 													@endforeach
 												</div>
-											<?php } ?>
+											<?php //} ?>
 
 											<?php if($key == 8) { ?>
 												<?php $j = 0; ?>

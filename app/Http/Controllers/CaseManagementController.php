@@ -144,24 +144,24 @@ class CaseManagementController extends Controller
 
 $accutane_que=json_decode($accutane->answer); 
 
-  /*if (!empty($accutane)) {
+  if (!empty($accutane)) {
    $accutane_que=json_decode($accutane->answer);
  }else{
   $accutane_que = [];
-}*/
+}
 
 
 $topical = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',9)->first();
 
 $topical_que=json_decode($topical->answer);
 
-/*if(!empty($topical[0])) {
- $topical_que=json_decode($topical[0]["answer"]);
+if(!empty($topical)) {
+ $topical_que=json_decode($topical->answer);
 
 }else{
   $topical_que =[];
 }
-*/
+
 return view('casemanagement.view',compact('user_case_management_data','category','general_que','accutane_que','topical_que','skincare_summary'));
 
 }

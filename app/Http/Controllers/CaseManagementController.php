@@ -133,26 +133,13 @@ class CaseManagementController extends Controller
 
    //$general_que=json_decode($general->answer);
 
-
    if(is_array($general) && array_key_exists("answer",$general))
    {
      $general_que = json_decode($general->answer); 
-     echo "<pre>";
-print_r($general_que);
-echo "</pre>";
-die();
 
-   }
-   else
-   {
-
+   }else{
    }
 
-   /*if(isset($general)){
-    $general_que=json_decode($general->answer);
-  } else {
-    $general_que = [];
-  }*/
 
 /*echo "<pre>";
 print_r($general_que);
@@ -165,40 +152,19 @@ $accutane = Answers::where('case_id',$user_case_management_data['id'])->where('u
 if(is_array($accutane) && array_key_exists("answer",$accutane))
 {
  $accutane_que=json_decode($accutane->answer); 
+}else{
 }
-else
-{
-
-}
-
-  /*if(isset($accutane)) {
-   $accutane_que=json_decode($accutane->answer);
- }else{
-  $accutane_que = [];
-}*/
 
 
 $topical = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',9)->first();
 
 /*$topical_que=json_decode($topical->answer);*/
-/*echo "<pre>";
-print_r($topical);
-echo "</pre>";
-die();*/
+
 if(is_array($topical) && array_key_exists("answer",$topical))
 {
  $topical_que=json_decode($topical->answer);
-}
-else
-{
-
-}
-
-/*if(isset($topical)) {
- $topical_que=json_decode($topical->answer);
 }else{
-  $topical_que =[];
-}*/
+}
 
 return view('casemanagement.view',compact('user_case_management_data','category','general_que','accutane_que','topical_que','skincare_summary'));
 

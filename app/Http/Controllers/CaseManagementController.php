@@ -152,14 +152,14 @@ if(isset($accutane) || array_key_exists("answer",$accutane))
    $accutane_que = [];
 }
 
+echo "<pre>";
+print_r($accutane);
+echo "</pre>";
 
 $topical = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',9)->first();
 
 /*$topical_que=json_decode($topical->answer);*/
-echo "<pre>";
-print_r($topical);
-echo "</pre>";
-die();
+
 if(isset($topical))
 {
  $topical_que=json_decode($topical->answer);

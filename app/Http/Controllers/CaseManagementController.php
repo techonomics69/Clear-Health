@@ -140,7 +140,10 @@ class CaseManagementController extends Controller
     $general_que = [];
    }
 
-
+/*echo "<pre>";
+print_r($general);
+echo "</pre>";
+die();*/
 $accutane = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',8)->first();
 
 //$accutane_que=json_decode($accutane->answer); 
@@ -152,10 +155,7 @@ if(isset($accutane))
    $accutane_que = [];
 }
 
-echo "<pre>";
-print_r($accutane);
-echo "</pre>";
-die();
+
 $topical = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',9)->first();
 
 /*$topical_que=json_decode($topical->answer);*/

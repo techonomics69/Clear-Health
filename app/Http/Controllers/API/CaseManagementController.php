@@ -456,7 +456,6 @@ public function detach_file_from_case(Request $request){
     $token = $token_data->access_token;
 
 
-
     $documents = $request->file('file');
     $name = $request->name;
     $user_id = $request->user_id;
@@ -617,6 +616,20 @@ public function detach_file_from_case(Request $request){
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
+
+    //validation 
+    $data = $request->all(); 
+
+    $validator = Validator::make($data, [
+                'user_id' => 'required',
+                'case_id' => 'required',
+                'system_case_id' => 'required',
+            ]);
+    if($validator->fails()){
+        return $this->sendError('Validation Error.', $validator->errors()->all());       
+    }
+    //end of validation
+
     $user_id = $request['user_id'];
     $case_id = $request['case_id'];
     $system_case_id = $request['system_case_id'];
@@ -666,7 +679,9 @@ public function detach_file_from_case(Request $request){
     $message_data = json_decode($response);
     $input_data = array();
 
-    $input_data['md_case_id'] = $case_id;
+
+    if(!empty($message_data)&& count($message_data)>0){
+       $input_data['md_case_id'] = $case_id;
     $input_data['user_id'] = $user_id;
     $input_data['case_id'] = $system_case_id;
     $input_data['text'] = $message_data->text;
@@ -682,7 +697,12 @@ public function detach_file_from_case(Request $request){
 
 
 
-    return $this->sendResponse($message_data,'Message created successfully');
+       return $this->sendResponse($message_data,'Message created successfully');
+    }else{
+        return $this->sendResponse($message_file_data,'Some thing went wrong.');
+    }
+
+   
 
    
   }

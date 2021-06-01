@@ -134,7 +134,7 @@ class CheckoutController extends BaseController
         print_r($data['user_id']);
         echo "<pre>";
        echo "<pre>case_id:";
-       print_r($data['case_id');
+       print_r($data['case_id']);
        echo "<pre>product_type:";
        print_r($product_type);
        echo "<pre>";

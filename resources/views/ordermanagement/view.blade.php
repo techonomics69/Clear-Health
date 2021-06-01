@@ -42,165 +42,171 @@
 					</div> --> 
 				</div>
 				
-				<div class="row">
-					<div class="col-lg-12">
-						<section class="card" >
-							<ul class="nav nav-tabs" id="casemanagement-tab-menu">
-								<li><a class="btn active " data-toggle="tab" href="#profile">Profile</a></li>
-								<li><a class="btn" data-toggle="tab" href="#order_summary">Order Summary</a></li>
-								<li><a class="btn" data-toggle="tab" href="#shipments_shipping_details">Shipments & shipping details</a></li>
-							</ul>
-							<div class="tab-content">
-								<!--start 1st tab-->
-								
-								<div id="profile" class="tab-pane fade in active show">
-									<div class="row" style="padding: 20px;">
-										<div class="col-md-12">
-											<section class="card">
-												<div class="card-body">
-													<div class="box-block mtb32">
-														<h3 class="font-weight-bold"><span class="text-underline">Basic Information</span></h3>
-														
-														<div class="col-md-6  form-group">
-															<strong>First Name : </strong>
-															{{$order_data->first_name}}
-														</div>
 
-														<div class="col-md-6 form-group">
-															<strong>Last Name : </strong>
-															{{$order_data->last_name}}
-														</div>
-
-														<div class="col-md-6 form-group">
-															<strong>Email : </strong>
-															{{$order_data->email}}
-														</div>
-
-														<div class="col-md-6 form-group">
-															<strong>Phone no : </strong>
-															{{$order_data->mobile}}
-														</div>
-
-														<div class="col-md-6 form-group">
-															<strong>Address : </strong>
-															{{$order_data->addressline1.','}}
-															{{$order_data->addressline2.','}}
-															{{$order_data->city.','}}
-															{{$order_data->state.','}}
-															{{$order_data->zipcode}}
-														</div>
-														
-													</div>
-												</div>
-											</section>
-										</div>
-									</div>
-								</div> 
-								<!--End 1st tab--> 
-								<!--start 2nd tab-->
-								<div id="order_summary" class="tab-pane fade in">
-									<div class="row" style="padding: 20px;">
-										<div class="col-md-12">
-											<section class="card">
-												<div class="card-body">
-													<div class="box-block mtb32">
-														<h3 class="font-weight-bold"><span class="text-underline">Order Summary</span></h3>
-														
-														<div class="col-md-6  form-group">
-															<strong>Product Name : </strong>
-															{{$order_data->product_name}}
-														</div>
-
-														<div class="col-md-6 form-group">
-															<strong>Product Type : </strong>
-															<?php if($order_data->medication_type == 1){
-																echo "Prescribed";
-															}else{
-																echo "Non Prescribed";
-															} ?>
-														</div>
-
-														<div class="col-md-6 form-group">
-															<strong>Quantity : </strong>
-															{{$order_data->quantity}}
-														</div>
-
-														<div class="col-md-6 form-group">
-															<strong>Date : </strong>
-															{{($order_data->created_at)->format('d/m/Y')}}
-														</div>
-
-														<div class="col-md-6 form-group">
-															<strong>Shipping Fees : </strong>
-															{{$order_data->shipping_fee}}
-														</div>
-
-														<div class="col-md-6 form-group">
-															<strong>Total Order Amount : </strong>
-															{{$order_data->total_amount}}
-														</div>
-														
-													</div>
-												</div>
-											</section>
-										</div>
-									</div>
-								</div> 
-								<!-- End 2nd tab-->
-
-								<!--start 3nd tab-->
-								<div id="shipments_shipping_details" class="tab-pane fade in">
-									<div class="row" style="padding: 20px;">
-										<div class="col-md-12">
-											<section class="card">
-												<div class="card-body">
-													<div class="box-block mtb32">
-														<h3 class="font-weight-bold"><span class="text-underline">Shipments Shipping Details</span></h3>
-													</div>
-												</div>
-											</section>
-										</div>
-									</div>
-								</div> 
-								<!-- End 2nd tab-->
-							</div>
-						</section>
-					</div>
-				</div>
+				@foreach ($order_non_prescribed as $key => $order_data)
 
 				
-			</div>
-		</div>
-		@endsection
 
-		@section('scriptsection')
+	
+					<div class="row">
+						<div class="col-lg-12">
+							<section class="card" >
+								<ul class="nav nav-tabs" id="casemanagement-tab-menu">
+									<li><a class="btn active " data-toggle="tab" href="#profile">Profile</a></li>
+									<li><a class="btn" data-toggle="tab" href="#order_summary">Order Summary</a></li>
+									<li><a class="btn" data-toggle="tab" href="#shipments_shipping_details">Shipments & shipping details</a></li>
+								</ul>
+								<div class="tab-content">
+									<!--start 1st tab-->
+									
+									<div id="profile" class="tab-pane fade in active show">
+										<div class="row" style="padding: 20px;">
+											<div class="col-md-12">
+												<section class="card">
+													<div class="card-body">
+														<div class="box-block mtb32">
+															<h3 class="font-weight-bold"><span class="text-underline">Basic Information</span></h3>
+															
+															<div class="col-md-6  form-group">
+																<strong>First Name : </strong>
+																{{$order_data->first_name}}
+															</div>
 
-		<script>
-			$.noConflict();
-			jQuery( document ).ready(function( $ ) {
-				$('.c_profile').DataTable({
-					"dom": '<"top"if>rt<"bottom"lp><"clear">',
-					"oSearch": { "bSmart": false, "bRegex": true },
-					"scrollX": true,
-				});
-			});
+															<div class="col-md-6 form-group">
+																<strong>Last Name : </strong>
+																{{$order_data->last_name}}
+															</div>
 
-		</script>
+															<div class="col-md-6 form-group">
+																<strong>Email : </strong>
+																{{$order_data->email}}
+															</div>
+
+															<div class="col-md-6 form-group">
+																<strong>Phone no : </strong>
+																{{$order_data->mobile}}
+															</div>
+
+															<div class="col-md-6 form-group">
+																<strong>Address : </strong>
+																{{$order_data->addressline1.','}}
+																{{$order_data->addressline2.','}}
+																{{$order_data->city.','}}
+																{{$order_data->state.','}}
+																{{$order_data->zipcode}}
+															</div>
+															
+														</div>
+													</div>
+												</section>
+											</div>
+										</div>
+									</div> 
+									<!--End 1st tab--> 
+									<!--start 2nd tab-->
+									<div id="order_summary" class="tab-pane fade in">
+										<div class="row" style="padding: 20px;">
+											<div class="col-md-12">
+												<section class="card">
+													<div class="card-body">
+														<div class="box-block mtb32">
+															<h3 class="font-weight-bold"><span class="text-underline">Order Summary</span></h3>
+															
+															<div class="col-md-6  form-group">
+																<strong>Product Name : </strong>
+																{{$order_data->product_name}}
+															</div>
+
+															<div class="col-md-6 form-group">
+																<strong>Product Type : </strong>
+																<?php if($order_data->medication_type == 1){
+																	echo "Prescribed";
+																}else{
+																	echo "Non Prescribed";
+																} ?>
+															</div>
+
+															<div class="col-md-6 form-group">
+																<strong>Quantity : </strong>
+																{{$order_data->quantity}}
+															</div>
+
+															<div class="col-md-6 form-group">
+																<strong>Date : </strong>
+																{{($order_data->created_at)->format('d/m/Y')}}
+															</div>
+
+															<div class="col-md-6 form-group">
+																<strong>Shipping Fees : </strong>
+																{{$order_data->shipping_fee}}
+															</div>
+
+															<div class="col-md-6 form-group">
+																<strong>Total Order Amount : </strong>
+																{{$order_data->total_amount}}
+															</div>
+															
+														</div>
+													</div>
+												</section>
+											</div>
+										</div>
+									</div> 
+									<!-- End 2nd tab-->
+
+									<!--start 3nd tab-->
+									<div id="shipments_shipping_details" class="tab-pane fade in">
+										<div class="row" style="padding: 20px;">
+											<div class="col-md-12">
+												<section class="card">
+													<div class="card-body">
+														<div class="box-block mtb32">
+															<h3 class="font-weight-bold"><span class="text-underline">Shipments Shipping Details</span></h3>
+														</div>
+													</div>
+												</section>
+											</div>
+										</div>
+									</div> 
+									<!-- End 2nd tab-->
+								</div>
+							</section>
+						</div>
+					</div>
+
+				@endforeach 
+</div>
+</div>
+@endsection
+
+@section('scriptsection')
+
+<script>
+	$.noConflict();
+	jQuery( document ).ready(function( $ ) {
+		$('.c_profile').DataTable({
+			"dom": '<"top"if>rt<"bottom"lp><"clear">',
+			"oSearch": { "bSmart": false, "bRegex": true },
+			"scrollX": true,
+		});
+	});
+
+</script>
 
 
-		@endsection
-		<style>
-			.tab-content h4{
-				font-size:16px;
-			}
-			.tab-content p{
-				font-size:16px;
-				margin-bottom:0;
-			}
-			.inner-section {
-				width: 100%;
+@endsection
+<style>
+	.tab-content h4{
+		font-size:16px;
+	}
+	.tab-content p{
+		font-size:16px;
+		margin-bottom:0;
+	}
+	.inner-section {
+		width: 100%;
 
-			}
-		</style>
+	}
+</style>
 
 

@@ -144,11 +144,11 @@ class CaseManagementController extends Controller
 
 $accutane_que=json_decode($accutane->answer); 
 
-  /*if (!empty($accutane[0])) {
-   $accutane_que=json_decode($accutane[0]["answer"]);
+  if (!empty($accutane)) {
+   $accutane_que=json_decode($accutane->answer);
  }else{
   $accutane_que = [];
-}*/
+}
 
 
 $topical = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',9)->get();

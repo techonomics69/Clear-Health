@@ -53,6 +53,7 @@
                                     <tbody>
                                         <?php $i=1;?>
                                         @foreach ($order as $key => $order_data)
+
                                         <tr> 
                                             <td>{{ $i++ }}</td>
                                             <td>{{ $order_data->order_id }} </td>
@@ -81,16 +82,16 @@
 
                                            <td> 
                                             <div class="d-flex">
-                                                <a class="icons edit-icon" href="{{ route('casemanagement.show',$order_data->case_id) }}">
+                                                <a class="icons edit-icon" href="#">
                                                     <i class="fa fa-eye"></i>
                                                 </a> 
                                             </div>  
                                         </td>
-                                        
+
                                     <?php } ?>
                                 </tr>
                                 @endforeach
-                                
+
                             </tbody>
                         </table>
                     </div>

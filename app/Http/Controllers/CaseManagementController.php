@@ -166,7 +166,7 @@ if(is_array($topical) && array_key_exists("answer",$topical))
 }else{
 }
 
-return view('casemanagement.view',compact('user_case_management_data','category',['general_que'=>$general_que],'accutane_que','topical_que','skincare_summary'));
+return view('casemanagement.view',compact('user_case_management_data','category','general_que','accutane_que','topical_que','skincare_summary'));
 
 }
 

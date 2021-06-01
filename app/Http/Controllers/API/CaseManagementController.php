@@ -450,7 +450,7 @@ public function detach_file_from_case(Request $request){
   detach_file_from_case();
 }
 
-  public function createMessage(Request $request){
+public function createMessage(Request $request){
     $r = get_token();
     $token_data = json_decode($r);
     $token = $token_data->access_token;
@@ -965,7 +965,9 @@ public function detach_file_from_case(Request $request){
     $user_id = $request['user_id'];
     $md_case_id = $request['md_case_id'];
 
-    $message_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')->select('messages.*','message_files.*')->where('case_id', $case_id)->where('md_case_id',$md_case_id)->where('user_id',$user_id)->get();
+    //$message_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')->select('messages.*','message_files.*')->where('case_id', $case_id)->where('md_case_id',$md_case_id)->where('user_id',$user_id)->get();
+
+     $message_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')->select('messages.*','message_files.*')->where('user_id',$user_id)->get();
 
     if(!empty($message_details) && count($message_details)>0 ){
       return $this->sendResponse($message_details,'Message retrieved successfully');

@@ -80,7 +80,7 @@
                                                     </a> 
                                                 </div>  
                                             </td>
-                                        <?php }else{ echo "<br>".$order_data->case_id;  ?>
+                                        <?php }else{  ?>
                                            <?php if(isset($order_data->case_id) && $order_data->case_id == ''){ ?>
                                              <td> 
                                                 <div class="d-flex">

@@ -13,6 +13,7 @@ use DB;
 use Carbon\Carbon; 
 use Illuminate\Support\Str;
 use App\Models\CaseManagement;
+use App\Models\Checkout;
 
 
 class RegisterController extends BaseController 
@@ -104,6 +105,7 @@ class RegisterController extends BaseController
                 $success['user_id'] =  $user->id;
 
                 $case_status =  CaseManagement::where("user_id", $user->id)->OrderBy("id" , "DESC")->first(); 
+                $order_status = Checkout::where("user_id",$user->id)OrderBy("id" , "DESC")->first();
 
                 $complete = true;
 
@@ -112,7 +114,13 @@ class RegisterController extends BaseController
                     $complete = false;
                 }
 
+                $status = false;
+                if(isset($order_status) && $order_status->user_id == $user->id)
+                {
+                    $status = true;
+                }
                 $success['case_status'] = $complete;
+                $success['order_status'] = $status;
 
                 return $this->sendResponse($success, 'User login successfully.');
             } 
@@ -163,8 +171,8 @@ class RegisterController extends BaseController
             return $this->sendResponse(array(), 'Password reset link is sent successfully');
 
         }catch(\Exception $ex){
-           return $this->sendError('Server error',array($ex->getMessage()));
-       }
-   }
+         return $this->sendError('Server error',array($ex->getMessage()));
+     }
+ }
 
 }

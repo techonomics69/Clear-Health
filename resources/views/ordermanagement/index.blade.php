@@ -77,8 +77,9 @@
                                                     </a> 
                                                 </div>  
                                             </td>
-                                        <?php  }else{ ?>
+                                        <?php }  ?> <?php  if($order_data->medication_type == 1 ) ?>
                                              @foreach ($user_case_management_data as $key => $case_data)
+
                                          <td> 
                                             <div class="d-flex">
                                                 <a class="icons edit-icon" href="{{ route('casemanagement.show',$case_data['id']) }}">

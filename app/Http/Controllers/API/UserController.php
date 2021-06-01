@@ -122,6 +122,7 @@ public function addParentdetails(Request $request)
      public function show($id)
     {
         $user = User::find($id);
+        
         return $this->sendResponse($user,'user Retrived successfully');
     }
 

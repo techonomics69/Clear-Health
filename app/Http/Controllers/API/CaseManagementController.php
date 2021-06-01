@@ -979,5 +979,24 @@ public function createMessage(Request $request){
 
   }
 
+  public function getMdDetailForMessage(Request $request){
+    $case_id = $request['case_id'];
+    $user_id = $request['user_id'];
+    $md_case_id = $request['md_case_id'];
+
+    //$message_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')->select('messages.*','message_files.*')->where('case_id', $case_id)->where('md_case_id',$md_case_id)->where('user_id',$user_id)->get();
+
+     $message_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')->select('messages.*','message_files.*')->where('user_id',$user_id)->get();
+
+    if(!empty($message_details) && count($message_details)>0 ){
+      return $this->sendResponse($message_details,'Message retrieved successfully');
+    }else{
+      return $this->sendResponse(array(),'No data found');
+    }
+
+
+
+  }
+
 
 }

@@ -129,7 +129,7 @@ public function show($id)
     $order_status = Checkout::where("user_id",$user->id)->first();
 
     $complete = true;
-    if($case_status[0]->case_status == 'completed')
+    if($case_status->case_status == 'completed')
     {
         $complete = false;
     }
@@ -140,7 +140,7 @@ public function show($id)
         $status = true;
     }
 
-    $user['case_status'] = $complete;
+    $user[0]['case_status'] = $complete;
     $user['order_status'] = $status;
     return $this->sendResponse($user,'user Retrived successfully');
 }

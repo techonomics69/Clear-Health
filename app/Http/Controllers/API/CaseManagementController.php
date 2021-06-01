@@ -467,6 +467,8 @@ public function detach_file_from_case(Request $request){
                 'user_id' => 'required',
                 'case_id' => 'required',
                 'system_case_id' => 'required',
+                'text' => 'required',
+                'from' => 'required',
             ]);
             if($validator->fails()){
                 return $this->sendError('Validation Error.', $validator->errors()->all());       

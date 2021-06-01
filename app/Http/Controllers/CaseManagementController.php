@@ -138,10 +138,11 @@ class CaseManagementController extends Controller
   }
 
 foreach ($general_que as $key => $value) {
- echo "<pre>";
+
+echo "<pre>";
 print_r($value);
 echo "</pre>";
-die(); 
+ 
 }
 
   $accutane = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',8)->get();

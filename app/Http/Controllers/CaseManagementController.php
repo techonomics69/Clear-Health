@@ -133,22 +133,16 @@ class CaseManagementController extends Controller
 
   $general_que=json_decode($general->answer);
 
-   /*if(!empty($general[0])){
-    $general_que=json_decode($general[0]["answer"]);
+   if(!empty($general)){
+    $general_que=json_decode($general->answer);
   } else {
     $general_que = [];
-  }*/
+  }
 
-echo "<pre>";
-print_r($general_que);
-echo "</pre>";
-die();
+
   $accutane = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',8)->first();
 
 $accutane_que=json_decode($accutane->answer); 
-
-
-
 
   if (!empty($accutane)) {
    $accutane_que=json_decode($accutane->answer);

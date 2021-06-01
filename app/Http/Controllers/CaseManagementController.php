@@ -147,7 +147,7 @@ class CaseManagementController extends Controller
   } else {
     $general_que = [];
   }*/
-  
+
 /*echo "<pre>";
 print_r($general_que);
 echo "</pre>";
@@ -187,7 +187,6 @@ else
 
 /*if(isset($topical)) {
  $topical_que=json_decode($topical->answer);
-
 }else{
   $topical_que =[];
 }*/

@@ -91,8 +91,7 @@
 
                                     <?php} } ?>
                                 </tr>
-                                @endforeach
-
+                               @endforeach
                             </tbody>
                         </table>
                     </div>

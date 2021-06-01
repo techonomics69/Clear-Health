@@ -599,6 +599,10 @@ public function detach_file_from_case(Request $request){
         //$input_data['message_files_ids'] = json_encode($file_ids);
         $input_data1['clinician  '] = $message_data->clinician ;
         $message_data = MdMessages::create($input_data1);
+        if(isset($message_file_data) && !empty($message_file_data)){
+           $message_data['message_file_data'] = $message_file_data;
+        }
+       
 
         if(!empty( $message_data)){
           return $this->sendResponse($message_data,'Message created successfully');

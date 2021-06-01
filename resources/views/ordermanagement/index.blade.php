@@ -36,7 +36,7 @@
                         <section class="card" >
                             <div class="row" style="padding: 20px;">
                                 <div class="col-md-12">
-                                 <table class="table table-responsive-md table-striped table-bordered " style="width:100%" id="ordermanagement">
+                                   <table class="table table-responsive-md table-striped table-bordered " style="width:100%" id="ordermanagement">
                                     <thead>
                                         <tr>
                                             <th width="60px">SR No</th>
@@ -70,17 +70,16 @@
                                             } ?></td>
 
                                             <?php if($order_data->medication_type == 2 ) { ?> 
-                                               <td> 
+                                             <td> 
                                                 <div class="d-flex">
                                                     <a class="icons edit-icon" href="{{ route('ordermanagement.show',$order_data->id)}}">
                                                         <i class="fa fa-eye"></i>
                                                     </a> 
                                                 </div>  
                                             </td>
-                                        <?php }  ?> <?php  if($order_data->medication_type == 1 ) { ?>
-                                             @foreach ($user_case_management_data as $key => $case_data)
-
-                                         <td> 
+                                        <?php }  if($order_data->medication_type == 1 ) { ?>
+                                           @foreach ($user_case_management_data as $key => $case_data)
+                                           <td> 
                                             <div class="d-flex">
                                                 <a class="icons edit-icon" href="{{ route('casemanagement.show',$case_data['id']) }}">
                                                     <i class="fa fa-eye"></i>

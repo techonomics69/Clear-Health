@@ -80,7 +80,7 @@
                                                     </a> 
                                                 </div>  
                                             </td>
-                                        <?php }else{ ?>
+                                        <?php }else{ var_dump($order_data->case_id) ; die();  ?>
                                            <?php if(isset($order_data) && $order_data->case_id == ''){ ?>
                                              <td> 
                                                 <div class="d-flex">

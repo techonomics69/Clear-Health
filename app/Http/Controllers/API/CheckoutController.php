@@ -9,6 +9,7 @@ use App\Models\Checkoutaddress;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Cart;
+use App\Models\CaseManagement;
 use Validator;
 use Exception;
 
@@ -122,6 +123,7 @@ class CheckoutController extends BaseController
         if($data['medication_type'] == 1){
 
         $pro_data  =  CaseManagement::select('recommended_product')->where('user_id',$user_id)->where('id',$case_id)->first();
+
         $product_type = $pro_data['recommended_product'];
 
         $cart_ids = explode(',', $data['cart_id']);

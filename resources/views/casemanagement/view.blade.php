@@ -177,8 +177,8 @@
 																$getanswer= implode(" " , $answer);
 															} 
 															?>
-															<h4><strong>Que <?php echo ++$j;?> : <?php echo $getquestions; ?></strong></h4>
-															<p>Ans: <?php echo $getanswer; ?> 
+															<h4><strong>Que <?php echo ++$j;?> : <?php echo $general->question; ?></strong></h4>
+															<p>Ans: <?php echo $general->answer; ?> 
 														</div>
 													</div>
 													@endforeach

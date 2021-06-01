@@ -595,7 +595,7 @@ public function detach_file_from_case(Request $request){
         $input_data1['clinician  '] = $message_data->clinician ;
         $message_data = MdMessages::create($input_data1);
 
-        if(!empty( $message_data) && count($message_data)>0){
+        if(!empty( $message_data)){
           return $this->sendResponse($message_data,'Message created successfully');
         }else{
           return $this->sendResponse($message_file_data,'Some thing went wrong.');

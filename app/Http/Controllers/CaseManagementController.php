@@ -157,9 +157,9 @@ else
   
   }
 
-echo "<pre>";
+/*echo "<pre>";
 print_r($accutane_que);
-echo "</pre>";
+echo "</pre>";*/
 
   /*if(isset($accutane)) {
    $accutane_que=json_decode($accutane->answer);

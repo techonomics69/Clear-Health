@@ -491,9 +491,8 @@ public function detach_file_from_case(Request $request){
       'file' => new \CurlFile($destinationPath."/".$doc_file_name)
        ];
 
-    }
 
-    $input_data = $request->all();
+           $input_data = $request->all();
 
    
     $curl = curl_init();
@@ -534,11 +533,15 @@ public function detach_file_from_case(Request $request){
 
     //create message
 
+    }
+
+
+
     //code to get files ids
    
     $file_ids = array();
 
-    if($message_file_data->file_id !=''){
+    if(!empty($message_file_data) && $message_file_data->file_id !=''){
       $file_ids[] = $message_file_data->file_id;
     }
     // end of code to get files ids

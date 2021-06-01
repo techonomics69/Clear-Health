@@ -160,7 +160,7 @@ echo "<pre>";
 print_r($topical);
 echo "</pre>";
 die();
-if(isset($topical) || array_key_exists("answer",$topical))
+if(isset($topical))
 {
  $topical_que=json_decode($topical->answer);
 }else{

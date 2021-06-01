@@ -455,6 +455,11 @@ public function detach_file_from_case(Request $request){
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
+    echo "<pre>";
+    print_r($request->all());
+    echo "<pre>";
+    exit();
+
 
     $documents = $request->file('file');
     $name = $request->name;

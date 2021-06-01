@@ -133,7 +133,7 @@ class CaseManagementController extends Controller
 
    //$general_que=json_decode($general->answer);
 
-   if(isset($general != NULL) || array_key_exists("answer",$general))
+   if(isset($general) || $general != NULL || array_key_exists("answer",$general))
    {
      $general_que = json_decode($general->answer); 
    }else{
@@ -145,7 +145,7 @@ $accutane = Answers::where('case_id',$user_case_management_data['id'])->where('u
 
 //$accutane_que=json_decode($accutane->answer); 
 
-if(isset($accutane != NULL) || array_key_exists("answer",$accutane))
+if(isset($accutane)|| $accutane != NULL || array_key_exists("answer",$accutane))
 {
  $accutane_que=json_decode($accutane->answer); 
 }else{
@@ -160,7 +160,7 @@ $topical = Answers::where('case_id',$user_case_management_data['id'])->where('us
 
 /*$topical_que=json_decode($topical->answer);*/
 
-if(isset($topical != NULL) || array_key_exists("answer",$topical))
+if(isset($topical)|| $topical != NULL || array_key_exists("answer",$topical))
 {
  $topical_que=json_decode($topical->answer);
 }else{

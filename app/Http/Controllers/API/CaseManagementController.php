@@ -70,7 +70,7 @@ class CaseManagementController extends BaseController
           $current_year = date("Y");
           if(!empty($case->ref_id) && ($year == $current_year)):
             $id = number_format(substr($case->ref_id, 8)) + 1;
-          dd($id)
+          dd($id);
           $ref_number = str_pad($id,8,'0',STR_PAD_LEFT);
         endif;
       else:

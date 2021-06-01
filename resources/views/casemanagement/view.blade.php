@@ -171,16 +171,16 @@
 														<div class="col-md-12">
 
 															<?php 
-															/*$getquestions = $general->question;
+															$getquestions = $general->question;
 															if(isset($general->answer)){
 																$answer =  (array)$general->answer;
 																$getanswer= implode(" " , $answer);
-															} */
+															} 
 															?>
 															<h4><strong>Que <?php echo ++$j;?> : <?php echo $general->question; ?></strong></h4>
-															<p>Ans: <?php  if(isset($general->answer)){
-																echo $general->answer;
-															} ?> 
+															<p>Ans: <?php 
+																echo $getanswer;
+															?> 
 														</div>
 													</div>
 													@endforeach

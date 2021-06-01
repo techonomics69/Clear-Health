@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Models\User;
+use App\Models\CaseManagement;
 use App\Models\Parentdetail;
 use Validator;
 use Exception;
@@ -122,7 +123,18 @@ public function addParentdetails(Request $request)
      public function show($id)
     {
         $user = User::find($id);
-        
+        $success['user_id'] =  $user->id;
+
+                $case_status =  CaseManagement::where("user_id", $user->id)->OrderBy("id" , "DESC")->first(); 
+
+                $complete = true;
+
+                if($case_status->case_status == 'completed')
+                {
+                    $complete = false;
+                }
+
+                $success['case_status'] = $complete;
         return $this->sendResponse($user,'user Retrived successfully');
     }
 

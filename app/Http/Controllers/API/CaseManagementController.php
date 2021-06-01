@@ -450,7 +450,7 @@ public function detach_file_from_case(Request $request){
   detach_file_from_case();
 }
 
-  public function createMessageFile(Request $request){
+  public function createMessage(Request $request){
     $r = get_token();
     $token_data = json_decode($r);
     $token = $token_data->access_token;
@@ -611,11 +611,10 @@ public function detach_file_from_case(Request $request){
 
   }
 
-  public function createMessage(Request $request){
+  /*public function createMessage111(Request $request){
     $r = get_token();
     $token_data = json_decode($r);
     $token = $token_data->access_token;
-
 
     //validation 
     $data = $request->all(); 
@@ -640,7 +639,7 @@ public function detach_file_from_case(Request $request){
     if(!empty($file_ids) && count($file_ids)){
       $file_ids = $file_ids;
     }else{*/
-      $file_ids = array();
+     /* $file_ids = array();
     //}
     // end of code to get files ids
 
@@ -705,7 +704,7 @@ public function detach_file_from_case(Request $request){
    
 
    
-  }
+  }*/
 
   public function setMessageAsRead(Request $request){
 

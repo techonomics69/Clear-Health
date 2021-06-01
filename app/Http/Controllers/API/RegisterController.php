@@ -105,7 +105,7 @@ class RegisterController extends BaseController
                 $success['user_id'] =  $user->id;
 
                 $case_status =  CaseManagement::where("user_id", $user->id)->OrderBy("id" , "DESC")->first(); 
-                $order_status = Checkout::where("user_id",$user->id)OrderBy("id" , "DESC")->first();
+                $order_status = Checkout::where("user_id",$user->id)->OrderBy("id" , "DESC")->first();
 
                 $complete = true;
 

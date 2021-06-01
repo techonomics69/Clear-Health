@@ -132,8 +132,8 @@ public function addParentdetails(Request $request)
                     $complete = false;
                 }
 
-                $success['case_status'] = $complete;
-        return $this->sendResponse($user,$success,'user Retrived successfully');
+                 $user['case_status'] = $complete;
+        return $this->sendResponse($user,'user Retrived successfully');
     }
 
     public function updateVerifiedByVouch(Request $request, $id){

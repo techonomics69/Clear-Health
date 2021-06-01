@@ -148,7 +148,6 @@ $accutane = Answers::where('case_id',$user_case_management_data['id'])->where('u
 if(isset($accutane) || array_key_exists("answer",$accutane))
 {
  $accutane_que=json_decode($accutane->answer); 
-
 }else{
    $accutane_que = [];
 }

@@ -81,16 +81,16 @@
                                                 </div>  
                                             </td>
                                         <?php }else{  ?>
-                                           <?php if(isset($order_data->case_id) && $order_data->case_id == ''){ ?>
+                                           <?php //if(isset($order_data->case_id) && $order_data->case_id == ''){ ?>
                                              <td> 
                                                 <div class="d-flex">
                                                     <a class="icons edit-icon" href="{{ route('casemanagement.show',$order_data->case_id)}}">
-                                                        <i class="fa fa-eye"></i>
+                                                        <i class="fa fa-eye"></i> <?php echo "<pre>"; print_r($order_data->case_id); echo "</pre>"; ?>
                                                     </a> 
                                                 </div>  
                                             </td>
 
-                                        <?php } ?>
+                                        <?php //} ?>
                                     <?php } ?>
                                 </tr>
                                 @endforeach

@@ -680,7 +680,7 @@ public function detach_file_from_case(Request $request){
     $input_data = array();
 
 
-    if(!empty($message_data)&& count($message_data)>0){
+    if(!empty($message_data)){
        $input_data['md_case_id'] = $case_id;
     $input_data['user_id'] = $user_id;
     $input_data['case_id'] = $system_case_id;

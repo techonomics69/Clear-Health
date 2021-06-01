@@ -139,10 +139,7 @@ class CaseManagementController extends Controller
    }else{
     $general_que = [];
    }
-echo "<pre>";
-print_r($general_que);
-echo "</pre>";
-die();
+
 
 $accutane = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',8)->first();
 
@@ -168,7 +165,10 @@ if(isset($topical) || array_key_exists("answer",$topical))
 }else{
   $topical_que=[];
 }
-
+echo "<pre>";
+print_r($topical_que);
+echo "</pre>";
+die();
 return view('casemanagement.view',compact('user_case_management_data','category','general_que','accutane_que','topical_que','skincare_summary'));
 
 }

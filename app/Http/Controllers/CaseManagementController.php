@@ -146,6 +146,17 @@ die();*/
 
 $accutane_que=json_decode($accutane->answer); 
 
+
+
+if (array_key_exists("answer",$accutane_que))
+  {
+ $accutane_que=json_decode($accutane->answer); 
+  }
+else
+  {
+  
+  }
+
 echo "<pre>";
 print_r($accutane_que);
 echo "</pre>";

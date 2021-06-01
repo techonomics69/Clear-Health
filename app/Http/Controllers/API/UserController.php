@@ -129,7 +129,7 @@ public function show($id)
     $order_status = Checkout::where("user_id",$user->id)->first();
 
     $complete = true;
-    if($case_status->case_status == 'completed')
+    if(isset($case_status) && $case_status->case_status == 'completed')
     {
         $complete = false;
     }

@@ -455,11 +455,25 @@ public function detach_file_from_case(Request $request){
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
+
+
     $documents = $request->file('file');
     $name = $request->name;
     $user_id = $request->user_id;
     $case_id = $request->case_id;
     $system_case_id = $request->system_case_id;
+
+    //validation 
+    $data = $request->all(); 
+    $validator = Validator::make($data, [
+                'user_id' => 'required',
+                'case_id' => 'required',
+                'system_case_id' => 'required',
+            ]);
+            if($validator->fails()){
+                return $this->sendError('Validation Error.', $validator->errors()->all());       
+            }
+    //end of validation
 
     if(!empty($documents)){
       $file =  $documents->getClientOriginalName();
@@ -580,7 +594,13 @@ public function detach_file_from_case(Request $request){
         $input_data1['clinician  '] = $message_data->clinician ;
         $message_data = MdMessages::create($input_data1);
 
-        return $this->sendResponse($message_data,'Message created successfully');
+        if(!empty( $message_data) && count($message_data)>0){
+          return $this->sendResponse($message_data,'Message created successfully');
+        }else{
+          return $this->sendResponse($message_file_data,'Some thing went wrong.');
+        }
+
+        
     }else{
       return $this->sendResponse($message_file_data,'Some thing went wrong.');
     }

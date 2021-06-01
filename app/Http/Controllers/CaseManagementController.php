@@ -156,7 +156,7 @@ $accutane = Answers::where('case_id',$user_case_management_data['id'])->where('u
 
 //$accutane_que=json_decode($accutane->answer); 
 
-if (array_key_exists("answer",$accutane))
+if(array_key_exists("answer",$accutane))
 {
  $accutane_que=json_decode($accutane->answer); 
 }
@@ -176,7 +176,7 @@ $topical = Answers::where('case_id',$user_case_management_data['id'])->where('us
 
 /*$topical_que=json_decode($topical->answer);*/
 
-if (array_key_exists("answer",$topical))
+if(array_key_exists("answer",$topical))
 {
  $topical_que=json_decode($topical->answer);
 }

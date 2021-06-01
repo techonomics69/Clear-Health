@@ -144,6 +144,12 @@ class CaseManagementController extends Controller
 
 $accutane_que=json_decode($accutane->answer); 
 
+echo "<pre>";
+print_r($accutane_que);
+echo "</pre>";
+die();
+
+
   if (!empty($accutane)) {
    $accutane_que=json_decode($accutane->answer);
  }else{

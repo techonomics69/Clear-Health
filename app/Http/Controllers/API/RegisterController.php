@@ -1,7 +1,7 @@
 <?php
-   
+
 namespace App\Http\Controllers\API;
-   
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Models\User;
@@ -14,7 +14,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Str;
 use App\Models\CaseManagement;
 
-   
+
 class RegisterController extends BaseController 
 {
     /**
@@ -39,11 +39,11 @@ class RegisterController extends BaseController
                 'c_password.required' => 'Please enter confirm password',
                 'c_password.same' => 'Password not matched with confirm password',
             ]);
-       
+
             if($validator->fails()){
                 return $this->sendError('Validation Error.', $validator->errors()->all());       
             }
-       
+
             $input = $request->all();
             $input['password'] = bcrypt($input['password']);
             $customerRole = Role::findByName('Customer');
@@ -62,7 +62,7 @@ class RegisterController extends BaseController
                     $success['user_id'] =  $user->id;
                 }
                 
-       
+
                 return $this->sendResponse($success, 'User register successfully.');    
             }else{
                 return $this->sendError('Unauthorised', array('Failed to register, please try again'));
@@ -71,7 +71,7 @@ class RegisterController extends BaseController
             //return $this->sendError('Server error',array($ex->getMessage()));
         }
     }
-   
+
     /**
      * Login api
      *
@@ -87,7 +87,7 @@ class RegisterController extends BaseController
                 'email.required' => 'Please enter email address',
                 'password.required' => 'Please enter password',
             ]);
-       
+
             if($validator->fails()){
                 return $this->sendError('Validation Error.', $validator->errors()->all());       
             }
@@ -103,17 +103,16 @@ class RegisterController extends BaseController
                 $success['email'] =  $user->email;
                 $success['user_id'] =  $user->id;
 
-       $case_status =  CaseManagement::where("user_id", $user->id)->OrderBy("id" , "DESC")->first(); 
-   
-$complete = true;
+                $case_status =  CaseManagement::where("user_id", $user->id)->OrderBy("id" , "DESC")->first(); 
 
-if($case_status->case_status == 'completed')
-{
-    $complete = false;
-}
+                $complete = true;
 
-$success['case_status'] = $complete;
+                if($case_status->case_status == 'completed')
+                {
+                    $complete = false;
+                }
 
+                $success['case_status'] = $complete;
 
                 return $this->sendResponse($success, 'User login successfully.');
             } 
@@ -149,7 +148,7 @@ $success['case_status'] = $complete;
                 ['email' => $request->email, 'token' => $token, 'created_at' => Carbon::now()]
             );
 
-       
+
             if($validator->fails()){
                 return $this->sendError('Validation Error.', $validator->errors()->all());       
             }
@@ -158,14 +157,14 @@ $success['case_status'] = $complete;
                 'title' => 'Please click on below link to reset your password',
                 'token' => $token
             ];
-   
+
             \Mail::to($request->email)->send(new \App\Mail\ForgotPassMail($details));
 
             return $this->sendResponse(array(), 'Password reset link is sent successfully');
 
         }catch(\Exception $ex){
-             return $this->sendError('Server error',array($ex->getMessage()));
-        }
-    }
+           return $this->sendError('Server error',array($ex->getMessage()));
+       }
+   }
 
 }

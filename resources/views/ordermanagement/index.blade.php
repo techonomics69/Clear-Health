@@ -53,12 +53,17 @@
                                     <tbody>
                                         <?php $i=1;?>
                                         @foreach ($order as $key => $order_data)
+<<<<<<< HEAD
 <?php
 echo"<pre>"; 
 print_r($order);
 echo"</pre>";
 die();
  ?>
+=======
+
+
+>>>>>>> dbbc84f2cb49491ca5308bf4acb2128db5759927
                                         <tr> 
                                             <td>{{ $i++ }}</td>
                                             <td>{{ $order_data->order_id }} </td>
@@ -84,16 +89,16 @@ die();
                                                 </div>  
                                             </td>
                                         <?php }else{ ?>
-
+<?php if(isset($order_data->case_id == '') && $order_data->case_id){ ?>
                                            <td> 
                                             <div class="d-flex">
-                                                <a class="icons edit-icon" href="#">
+                                                <a class="icons edit-icon" href="{{ route('casemanagement.show',$order_data->case_id)}}">
                                                     <i class="fa fa-eye"></i>
                                                 </a> 
                                             </div>  
                                         </td>
 
-                                    <?php } ?>
+                                    <?php} } ?>
                                 </tr>
                                 @endforeach
 

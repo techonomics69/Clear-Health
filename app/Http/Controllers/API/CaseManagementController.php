@@ -600,8 +600,6 @@ public function detach_file_from_case(Request $request){
         }else{
           return $this->sendResponse($message_file_data,'Some thing went wrong.');
         }
-
-        
     }else{
       return $this->sendResponse($message_file_data,'Some thing went wrong.');
     }

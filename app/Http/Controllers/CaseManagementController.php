@@ -132,7 +132,7 @@ class CaseManagementController extends Controller
    $general = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',7)->get();
 
 
-dd($general);
+dd($general->answer);
    if(!empty($general[0])){
     $general_que=json_decode($general[0]["answer"]);
   } else {

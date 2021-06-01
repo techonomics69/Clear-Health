@@ -182,7 +182,7 @@ $topical = Answers::where('case_id',$user_case_management_data['id'])->where('us
 echo "<pre>";
 print_r($topical);
 echo "</pre>";
-
+die();
 if(array_key_exists("answer",$topical))
 {
  $topical_que=json_decode($topical->answer);

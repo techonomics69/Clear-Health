@@ -118,6 +118,38 @@ class CheckoutController extends BaseController
             $update_checkout_address  =  Checkoutaddress::where('id',$checkcout_address['id'])->update(['order_id' => $order_id]);
         }
 
+        //code gor md create case
+        if($data['medication_type'] == 1){
+
+        $pro_data  =  CaseManagement::select('recommended_product')->where('user_id',$user_id)->where('id',$case_id)->first();
+        $product_type = $pro_data['recommended_product'];
+
+        $cart_ids = explode(',', $data['cart_id']);
+
+        $pharmacy_data  =  Cart::select('pharmacy_pickup')->where('user_id',$user_id)->->whereIn('id',$cart_ids)->where('order_type', '!=', 'AddOn')->first();
+
+        $preferred_pharmacy_id = $pharmacy_data['pharmacy_pickup'];
+
+        echo "<pre>user_id:";
+        print_r($data['user_id']);
+        echo "<pre>";
+       echo "<pre>case_id:";
+       print_r($data['case_id');
+       echo "<pre>product_type:";
+       print_r($product_type);
+       echo "<pre>";
+        echo "<pre>preferred_pharmacy_id:";
+       print_r($preferred_pharmacy_id);
+       echo "<pre>";
+
+       exit();
+
+         $response = CreateCase($data['user_id'],$data['case_id'],$product_type,$preferred_pharmacy_id);
+        }
+        //end of code for md create case
+
+        //return $this->sendResponse(json_decode($response),'Case Created Successfully');
+
         return $this->sendResponse($checkoutdata, 'Order Created Successfully');
 }
 

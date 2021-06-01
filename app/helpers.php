@@ -283,7 +283,7 @@ function create_patient(Request $request)
 
 }
 
-function CreateCase(Request $request){
+function CreateCase($user_id,$case_id,$product_type,$preferred_pharmacy_id){
   $r = get_token();
   $token_data = json_decode($r);
   $token = $token_data->access_token;

@@ -140,18 +140,18 @@ class CaseManagementController extends Controller
   }*/
 
 
-  $accutane = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',8)->get();
+  $accutane = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',8)->first();
 
 $accutane_que=json_decode($accutane->answer); 
 
-  if (!empty($accutane)) {
+  /*if (!empty($accutane)) {
    $accutane_que=json_decode($accutane->answer);
  }else{
   $accutane_que = [];
-}
+}*/
 
 
-$topical = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',9)->get();
+$topical = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',9)->first();
 
 $topical_que=json_decode($topical->answer);
 

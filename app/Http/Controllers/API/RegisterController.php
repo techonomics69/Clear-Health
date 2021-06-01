@@ -123,8 +123,7 @@ class RegisterController extends BaseController
                 $success['order_status'] = $status;
 
                 return $this->sendResponse($success, 'User login successfully.');
-            } 
-            else{ 
+            }else{ 
                 return $this->sendError('Unauthorised.', array('Password does not matched'));
             } 
         }catch(\Exception $ex){
@@ -171,8 +170,8 @@ class RegisterController extends BaseController
             return $this->sendResponse(array(), 'Password reset link is sent successfully');
 
         }catch(\Exception $ex){
-         return $this->sendError('Server error',array($ex->getMessage()));
-     }
- }
+           return $this->sendError('Server error',array($ex->getMessage()));
+       }
+   }
 
 }

@@ -127,11 +127,18 @@ public function addParentdetails(Request $request)
                 //$success['user_id'] =  $user->id;
                 $case_status =  CaseManagement::where("user_id", $user->id)->OrderBy("id" , "DESC")->first();
                 $order_status = Checkout::where("user_id",$user->id)->first();
-                echo "<pre>";
+
+$a = true;
+if($order_status->user_id == $user->id)
+{
+$a = false;
+}
+
+                /*echo "<pre>";
                 print_r($order_status);
                 echo "</pre>";
                 die();
-
+ */
                 $complete = true;
 
 
@@ -139,8 +146,9 @@ public function addParentdetails(Request $request)
                 {
                     $complete = false;
                 }
-
-                 $user['case_status'] = $complete;
+                
+                $user['case_status'] = $complete;
+                $user['order_status'] = $a;
         return $this->sendResponse($user,'user Retrived successfully');
     }
 

@@ -131,45 +131,39 @@ class CaseManagementController extends Controller
 
    $general = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',7)->first();
 
-  $general_que=json_decode($general->answer);
+   /*$general_que=json_decode($general->answer);*/
 
-if(array_key_exists("answer",$general_que))
-  {
- $general_que=json_decode($general->answer); 
-  }
-else
-  {
-  
-  }
+   if(array_key_exists("answer",$general))
+   {
+     $general_que=json_decode($general->answer); 
+   }
+   else
+   {
 
+   }
 
    /*if(isset($general)){
     $general_que=json_decode($general->answer);
   } else {
     $general_que = [];
   }*/
+
 /*echo "<pre>";
 print_r($general_que);
 echo "</pre>";
 die();*/
-  $accutane = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',8)->first();
+$accutane = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',8)->first();
 
-$accutane_que=json_decode($accutane->answer); 
+//$accutane_que=json_decode($accutane->answer); 
 
-
-
-if (array_key_exists("answer",$accutane_que))
-  {
+if (array_key_exists("answer",$accutane))
+{
  $accutane_que=json_decode($accutane->answer); 
-  }
+}
 else
-  {
-  
-  }
+{
 
-/*echo "<pre>";
-print_r($accutane_que);
-echo "</pre>";*/
+}
 
   /*if(isset($accutane)) {
    $accutane_que=json_decode($accutane->answer);
@@ -180,11 +174,19 @@ echo "</pre>";*/
 
 $topical = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',9)->first();
 
-$topical_que=json_decode($topical->answer);
+/*$topical_que=json_decode($topical->answer);*/
+
+if (array_key_exists("answer",$topical))
+{
+ $topical_que=json_decode($topical->answer);
+}
+else
+{
+
+}
 
 /*if(isset($topical)) {
  $topical_que=json_decode($topical->answer);
-
 }else{
   $topical_que =[];
 }*/

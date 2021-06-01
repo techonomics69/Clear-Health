@@ -36,7 +36,7 @@
                         <section class="card" >
                             <div class="row" style="padding: 20px;">
                                 <div class="col-md-12">
-                                 <table class="table table-responsive-md table-striped table-bordered " style="width:100%" id="ordermanagement">
+                                   <table class="table table-responsive-md table-striped table-bordered " style="width:100%" id="ordermanagement">
                                     <thead>
                                         <tr>
                                             <th width="60px">SR No</th>
@@ -53,6 +53,8 @@
                                     <tbody>
                                         <?php $i=1;?>
                                         @foreach ($order as $key => $order_data)
+
+
                                         <tr> 
                                             <td>{{ $i++ }}</td>
                                             <td>{{ $order_data->order_id }} </td>
@@ -70,7 +72,7 @@
                                             } ?></td>
 
                                             <?php if($order_data->medication_type == 2 ) { ?> 
-                                               <td> 
+                                             <td> 
                                                 <div class="d-flex">
                                                     <a class="icons edit-icon" href="{{ route('ordermanagement.show',$order_data->id)}}">
                                                         <i class="fa fa-eye"></i>
@@ -78,17 +80,19 @@
                                                 </div>  
                                             </td>
                                         <?php }else{ ?>
-                                         <td> 
+<?php if(isset($order_data->case_id == '') && $order_data->case_id){ ?>
+                                           <td> 
                                             <div class="d-flex">
-                                                <a class="icons edit-icon" href="{{ route('ordermanagement.show',$order_data->case_id)}}">
+                                                <a class="icons edit-icon" href="{{ route('casemanagement.show',$order_data->case_id)}}">
                                                     <i class="fa fa-eye"></i>
                                                 </a> 
                                             </div>  
                                         </td>
-                                    <?php } ?>
-                                </tr>
 
-                                @endforeach
+                                    <?php } ?>
+                                <?php } ?>
+                                </tr>
+                               @endforeach
                             </tbody>
                         </table>
                     </div>

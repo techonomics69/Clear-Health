@@ -134,10 +134,10 @@ public function show($id)
         $complete = false;
     }
 
-    $status = true;
+    $status = false;
     if($order_status->user_id == $user->id)
     {
-        $status = false;
+        $status = true;
     }
 
     $user['case_status'] = $complete;

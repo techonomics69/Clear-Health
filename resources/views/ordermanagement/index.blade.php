@@ -69,7 +69,7 @@
                                                 echo "Non Prescribed";
                                             } ?></td>
 
-                                            <?php if($medication_type == 1 ) { ?> 
+                                            <?php if($order_data->medication_type == 2 ) { ?> 
                                                <td> 
                                                 <div class="d-flex">
                                                     <a class="icons edit-icon" href="{{ route('ordermanagement.show',$order_data->id)}}">

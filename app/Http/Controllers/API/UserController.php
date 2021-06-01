@@ -140,7 +140,7 @@ public function show($id)
         $status = true;
     }
 
-    $user[0]['case_status'] = $complete;
+    $user['case_status'] = $complete;
     $user['order_status'] = $status;
     return $this->sendResponse($user,'user Retrived successfully');
 }

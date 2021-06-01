@@ -545,7 +545,7 @@ public function detach_file_from_case(Request $request){
       $file_ids[] = $message_file_data->file_id;
     }
     // end of code to get files ids
-    if(!empty($message_file_data)){
+ 
         $postfields = array();
         $postfields['from'] = $request->from;
         $postfields['text'] = $request->text; 
@@ -605,9 +605,6 @@ public function detach_file_from_case(Request $request){
         }else{
           return $this->sendResponse(array(),'Some thing went wrong.');
         }
-    }else{
-      return $this->sendResponse(array(),'Some thing went wrong.');
-    }
     
 
     //end of create message

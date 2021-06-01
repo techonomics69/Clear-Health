@@ -154,7 +154,7 @@ if(isset($accutane) || array_key_exists("answer",$accutane))
 }
 
 echo "<pre>";
-print_r($accutane->answer);
+print_r($accutane_que);
 echo "</pre>";
 die();
 

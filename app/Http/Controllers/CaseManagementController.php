@@ -153,8 +153,10 @@ if(isset($accutane) || array_key_exists("answer",$accutane))
    $accutane_que = [];
 }
 
-
-
+echo "<pre>";
+print_r($accutane_que);
+echo "</pre>";
+die();
 $topical = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',9)->first();
 
 /*$topical_que=json_decode($topical->answer);*/
@@ -165,10 +167,7 @@ if(isset($topical) || array_key_exists("answer",$topical))
 }else{
   $topical_que=[];
 }
-echo "<pre>";
-print_r($topical_que);
-echo "</pre>";
-die();
+
 return view('casemanagement.view',compact('user_case_management_data','category','general_que','accutane_que','topical_que','skincare_summary'));
 
 }

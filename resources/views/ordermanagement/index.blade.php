@@ -77,7 +77,7 @@
                                                     </a> 
                                                 </div>  
                                             </td>
-                                        <?php }  ?> <?php  if($order_data->medication_type == 1 ) ?>
+                                        <?php }  ?> <?php  if($order_data->medication_type == 1 ) { ?>
                                              @foreach ($user_case_management_data as $key => $case_data)
 
                                          <td> 

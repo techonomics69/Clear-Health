@@ -141,6 +141,7 @@ class CaseManagementController extends Controller
 print_r($general_que);
 echo "</pre>";
 die();
+
    }
    else
    {

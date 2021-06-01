@@ -146,9 +146,20 @@ die();*/
 
 $accutane_que=json_decode($accutane->answer); 
 
-echo "<pre>";
+
+
+if (array_key_exists("answer",$accutane_que))
+  {
+ $accutane_que=json_decode($accutane->answer); 
+  }
+else
+  {
+  
+  }
+
+/*echo "<pre>";
 print_r($accutane_que);
-echo "</pre>";
+echo "</pre>";*/
 
   /*if(isset($accutane)) {
    $accutane_que=json_decode($accutane->answer);

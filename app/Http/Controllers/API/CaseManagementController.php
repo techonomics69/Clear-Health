@@ -316,6 +316,10 @@ public function create_patient(Request $request)
 
   }
 
+  public function createCaseFile(Request $request){
+    createCaseFile();
+  }
+
   public function getPharmacies(Request $request){
     $r = get_token();
     $token_data = json_decode($r);

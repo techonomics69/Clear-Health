@@ -135,7 +135,7 @@ public function show($id)
     }
 
     $status = false;
-    if(isset($order_status)$order_status->user_id == $user->id)
+    if(isset($order_status) && $order_status->user_id == $user->id)
     {
         $status = true;
     }

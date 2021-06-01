@@ -138,6 +138,7 @@ class CaseManagementController extends Controller
      $general_que = json_decode($general->answer); 
 
    }else{
+    $general_que = [];
    }
 
 
@@ -153,6 +154,7 @@ if(is_array($accutane) && array_key_exists("answer",$accutane))
 {
  $accutane_que=json_decode($accutane->answer); 
 }else{
+   $accutane_que = [];
 }
 
 
@@ -164,6 +166,7 @@ if(is_array($topical) && array_key_exists("answer",$topical))
 {
  $topical_que=json_decode($topical->answer);
 }else{
+  $topical_que=[];
 }
 
 return view('casemanagement.view',compact('user_case_management_data','category','general_que','accutane_que','topical_que','skincare_summary'));

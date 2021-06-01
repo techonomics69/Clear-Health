@@ -50,7 +50,7 @@
 				@endforeach -->
 
 				<!-- <?php 
-				if($medication_type == 2 ) { ?> -->
+				//if($medication_type == 2 ) { ?> -->
 					<div class="row">
 						<div class="col-lg-12">
 							<section class="card" >
@@ -194,19 +194,8 @@
 		});
 	});
 
-	$(document).on('click', '#i_pledge_agreement', function() {
-		$('#i_pledge_agreement_form').submit();
-	});
 </script>
 
-
-@if (count($errors) > 0)
-<script type="text/javascript">
-	$('html, body').animate({
-		scrollTop: $("#testreoprtdiv").offset().top
-	}, 2000);
-</script>
-@endif
 
 @endsection
 <style>

@@ -123,10 +123,8 @@ public function addParentdetails(Request $request)
      public function show($id)
     {
         $user = User::find($id);
-        $success['user_id'] =  $user->id;
-
+                $success['user_id'] =  $user->id;
                 $case_status =  CaseManagement::where("user_id", $user->id)->OrderBy("id" , "DESC")->first(); 
-
                 $complete = true;
 
                 if($case_status->case_status == 'completed')
@@ -135,7 +133,7 @@ public function addParentdetails(Request $request)
                 }
 
                 $success['case_status'] = $complete;
-        return $this->sendResponse($user,'user Retrived successfully');
+        return $this->sendResponse($user,$success,'user Retrived successfully');
     }
 
     public function updateVerifiedByVouch(Request $request, $id){

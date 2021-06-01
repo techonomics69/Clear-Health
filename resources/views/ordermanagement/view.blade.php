@@ -44,10 +44,7 @@
 				
 
 				@foreach ($order_non_prescribed as $key => $order_data)
-
-				
-
-	
+				@endforeach 
 					<div class="row">
 						<div class="col-lg-12">
 							<section class="card" >
@@ -174,7 +171,7 @@
 						</div>
 					</div>
 
-				@endforeach 
+				
 </div>
 </div>
 @endsection

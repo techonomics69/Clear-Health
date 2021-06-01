@@ -36,7 +36,7 @@
                         <section class="card" >
                             <div class="row" style="padding: 20px;">
                                 <div class="col-md-12">
-                                 <table class="table table-responsive-md table-striped table-bordered " style="width:100%" id="ordermanagement">
+                                   <table class="table table-responsive-md table-striped table-bordered " style="width:100%" id="ordermanagement">
                                     <thead>
                                         <tr>
                                             <th width="60px">SR No</th>
@@ -73,19 +73,16 @@
                                             } ?></td>
 
                                             <?php if($order_data->medication_type == 2 ) { ?> 
-                                               <td> 
+                                             <td> 
                                                 <div class="d-flex">
                                                     <a class="icons edit-icon" href="{{ route('ordermanagement.show',$order_data->id)}}">
                                                         <i class="fa fa-eye"></i>
                                                     </a> 
                                                 </div>  
                                             </td>
-                                        <?php }else{ 
-                                            //echo "<pre>"; print_r($order_data->case_id); echo "</pre>";
-                                            ?>
-                                           
+                                        <?php }else{ ?>
 
-                                             <td> 
+                                            <td> 
                                                 <div class="d-flex">
                                                     <a class="icons edit-icon" href="{{ route('casemanagement.show',$order_data->case_id)}}">
                                                         <i class="fa fa-eye"></i> 
@@ -93,18 +90,18 @@
                                                 </div>  
                                             </td>
 
-                                        
-                                    <?php } ?>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+
+                                        <?php } ?>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            </div>
         </div>
     </div>
-</div>
 </div>
 @endsection
 

@@ -81,7 +81,7 @@
                                                 </div>  
                                             </td>
                                         <?php }else{ echo "<br>".$order_data->case_id;  ?>
-                                           <?php if(isset($order_data->case_id) && $order_data->case_id == ''){ ?>
+                                           <?php if(isset($order_data->case_id) && $order_data->case_id == 0){ ?>
                                              <td> 
                                                 <div class="d-flex">
                                                     <a class="icons edit-icon" href="{{ route('casemanagement.show',$order_data->case_id)}}">

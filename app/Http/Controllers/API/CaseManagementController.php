@@ -485,15 +485,17 @@ public function detach_file_from_case(Request $request){
       chmod($destinationPath."/".$doc_file_name, 0777);
 
       $file_path = 'public/Message_files/' .$file;
+
+       $fields = [
+      'name' => $name,
+      'file' => new \CurlFile($destinationPath."/".$doc_file_name)
+       ];
+
     }
 
     $input_data = $request->all();
 
-    $fields = [
-      'name' => $name,
-      'file' => new \CurlFile($destinationPath."/".$doc_file_name)
-    ];
-
+   
     $curl = curl_init();
 
     curl_setopt_array($curl, array(

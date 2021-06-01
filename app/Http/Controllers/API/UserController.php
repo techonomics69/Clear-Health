@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Models\User;
 use App\Models\CaseManagement;
+use App\Models\Checkout;
 use App\Models\Parentdetail;
 use Validator;
 use Exception;
@@ -124,7 +125,13 @@ public function addParentdetails(Request $request)
     {
         $user = User::find($id);
                 //$success['user_id'] =  $user->id;
-                $case_status =  CaseManagement::where("user_id", $user->id)->OrderBy("id" , "DESC")->first(); 
+                $case_status =  CaseManagement::where("user_id", $user->id)->OrderBy("id" , "DESC")->first();
+                $order_status = Checkout::where("user_id",$user->id)->first();
+                echo "<pre>";
+                print_r($order_status);
+                echo "</pre>";
+                die();
+                
                 $complete = true;
 
                 if($case_status->case_status == 'completed')

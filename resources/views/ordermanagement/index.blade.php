@@ -80,8 +80,8 @@
                                                     </a> 
                                                 </div>  
                                             </td>
-                                        <?php }else{ var_dump($order_data->case_id) ; die();  ?>
-                                           <?php if(isset($order_data) && $order_data->case_id == ''){ ?>
+                                        <?php }else{   ?>
+                                           <?php if(isset($order_data->case_id) && $order_data->case_id == ''){ ?>
                                              <td> 
                                                 <div class="d-flex">
                                                     <a class="icons edit-icon" href="{{ route('casemanagement.show',$order_data->case_id)}}">

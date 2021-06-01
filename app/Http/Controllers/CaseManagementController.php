@@ -154,11 +154,11 @@ echo "</pre>";
 die();*/
   $accutane = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',8)->first();
 
-$accutane_que=json_decode($accutane->answer); 
+//$accutane_que=json_decode($accutane->answer); 
 
 
 
-if (array_key_exists("answer",$accutane_que))
+if (array_key_exists("answer",$accutane))
   {
  $accutane_que=json_decode($accutane->answer); 
   }
@@ -180,7 +180,18 @@ echo "</pre>";*/
 
 $topical = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',9)->first();
 
-$topical_que=json_decode($topical->answer);
+/*$topical_que=json_decode($topical->answer);*/
+
+if (array_key_exists("answer",$topical))
+  {
+ $topical_que=json_decode($topical->answer);
+  }
+else
+  {
+  
+  }
+
+
 
 /*if(isset($topical)) {
  $topical_que=json_decode($topical->answer);

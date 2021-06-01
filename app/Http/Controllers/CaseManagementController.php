@@ -133,19 +133,19 @@ class CaseManagementController extends Controller
 
    //$general_que=json_decode($general->answer);
 
-/*echo "<pre>";
-print_r($general);
-echo "</pre>";*/
-/*die();*/
+
    if(is_array($general) && array_key_exists("answer",$general))
    {
-     $general_que=json_decode($general->answer); 
+     $general_que = json_decode($general->answer); 
    }
    else
    {
 
    }
-
+echo "<pre>";
+print_r($general_que);
+echo "</pre>";
+die();
    /*if(isset($general)){
     $general_que=json_decode($general->answer);
   } else {

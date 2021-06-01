@@ -183,7 +183,7 @@
 													</div>
 													@endforeach
 												</div>
-											<?php //} ?>
+											<?php } ?>
 
 											<?php if($key == 8) { ?>
 												<?php $j = 0; ?>

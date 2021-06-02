@@ -169,13 +169,9 @@
 													@foreach($general_que as $key => $general)
 													<div class="row" style="padding: 10px;">
 														<div class="col-md-12">
-
 															<?php 
-															/*$getquestions = $general->question;
-															if(isset($general->answer)){
-																$answer =  (array)$general->answer;
-																$getanswer= implode(" " , $answer);
-															} */
+															if(isset($value->question) && $value->question='Hey there! First, we need to know your legal name.')
+    {
 															?>
 															<h4><strong>Que <?php echo ++$j;?> : <?php 
 															/*if(isset($general) && $general->question="Hey there! First, we need to know your legal name.") {*/
@@ -191,6 +187,7 @@
 																	
 																	echo $getanswer;
 																} 
+															}
 																/*echo $first_name;
 																echo $last_name;*/
 																 ?> 

@@ -985,12 +985,11 @@ public function createMessage(Request $request){
    // $md_case_id = $request['md_case_id'];//md_case_id
     
     $message_details = CaseManagement::join('md_managment', 'md_managment.case_id', '=', 'case_managements.md_case_id')->select('case_managements.md_case_id','md_managment.*')->where('ccase_managements.id',$case_id)->where('case_managements.user_id',$user_id)->toSql();//get()->toArray()
-
-
 echo "<pre>";
 print_r($message_details);
 echo "<pre>";
 exit();
+
     if(!empty($message_details) && count($message_details)>0 ){
       return $this->sendResponse($message_details,'data retrieved successfully');
     }else{

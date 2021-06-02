@@ -144,13 +144,13 @@ class CaseManagementController extends Controller
   print_r($general_que);
   echo "</pre>";*/
 
-  foreach ($general_que as $key => $value) {
+  //foreach ($general_que as $key => $value) {
 
-    echo "<pre>";
+  /*echo "<pre>";
   print_r($value);
-  echo "</pre>";
+  echo "</pre>";*/
   //die();
-    if(isset($value->question) && $value->question == 'Hey there! First, we need to know your legal name.')
+    /*if(isset($value->question) && $value->question == 'Hey there! First, we need to know your legal name.')
     {
       $first_name = $value->answer = $user_case_management_data->first_name;
       $last_name =  $value->answer = $user_case_management_data->last_name;
@@ -164,7 +164,7 @@ class CaseManagementController extends Controller
       echo "</pre>";
       
     }
-  }
+*/ // }
   $accutane = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',8)->first();
 
 //$accutane_que=json_decode($accutane->answer); 

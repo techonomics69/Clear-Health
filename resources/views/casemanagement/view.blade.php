@@ -170,11 +170,13 @@
 													<div class="row" style="padding: 10px;">
 														<div class="col-md-12">
 															<?php 
-															/*if(isset($general->question) && $general->question='Hey there! First, we need to know your legal name.')
-    {*/
-															?>
-															<h4><strong>Que <?php echo ++$j;?> : <?php 
-															/*if(isset($general) && $general->question="Hey there! First, we need to know your legal name.") {*/
+															if(isset($general->question) && $general->question == 'Hey there! First, we need to know your legal name.')
+															{ 
+																$first_name = $value->answer = $user_case_management_data->first_name;
+																$last_name =  $value->answer = $user_case_management_data->last_name;
+																?>
+																<h4><strong>Que <?php echo ++$j; ?> : <?php 
+																/*if(isset($general) && $general->question="Hey there! First, we need to know your legal name.") {*/
 																/*$first_name = $general->answer = $user_case_management_data->first_name;
 																$last_name =  $general->answer = $user_case_management_data->last_name;*/
 																//echo $general->question;
@@ -186,11 +188,11 @@
 																	$getanswer= implode(" " ,$answer);
 																	
 																	echo $getanswer;
-																//} 
+																} 
 															}
 																/*echo $first_name;
 																echo $last_name;*/
-																 ?> 
+																?> 
 															</div>
 														</div>
 														@endforeach

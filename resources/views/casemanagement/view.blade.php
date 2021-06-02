@@ -546,29 +546,15 @@
 								<div class="row" style="padding: 20px;">
 									<div class="col-md-12">
 										<section class="card">
-											
+											<ul class="nav nav-tabs" id="messages-tab-menu">
+												<li><a class="btn active" data-toggle="tab" href="#">Medical Messgaes</a></li>
+												<li><a class="btn" data-toggle="tab" href="#">Non-Medical Messgaes</a></li>
+											</ul>
+											<div class="card-body">
 
-<!-- <ul class="nav nav-tabs" id="messages-tab-menu">
-
-											@foreach($category as $key => $data)
-											{{-- <li><a class="btn @if($activeTab == 0) active @elseif($current_tab_id == 'home'.$key) active @endif" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li> --}}
-
-											<li><a class="btn" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li>
-											<?php //$activeTab++ ?> 
-											@endforeach
-										</ul> -->
-
-
-<ul class="nav nav-tabs" id="messages-tab-menu">
-						<li><a class="btn active" data-toggle="tab" href="#">Medical Messgaes</a></li>
-						<li><a class="btn" data-toggle="tab" href="#">Non-Medical Messgaes</a></li>
-					</ul>
-					<div class="card-body">
-
-
-												<!-- <div class="box-block mtb32">
+												<div class="box-block mtb32">
 													<h3 class="font-weight-bold"><span class="text-underline">Messages goes here</span></h3>
-												</div> -->
+												</div>
 											</div>
 										</section>
 									</div>

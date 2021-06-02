@@ -180,13 +180,8 @@
 																<?php 
 																echo $general->question; ?></strong></h4>
 
-																<p>Ans: <?php /*if(isset($general->answer)){
-																	
-																	$answer =  (array)$general->answer;
-																	$getanswer= implode(" " ,$answer);
-																	
-																	echo $getanswer;
-																} */
+																<p>Ans: <?php 
+																
 																$first_name = $general->answer = $user_case_management_data->first_name;
 																$last_name =  $general->answer = $user_case_management_data->last_name;
 																echo $first_name;

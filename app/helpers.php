@@ -55,13 +55,12 @@ function create_patient($user_id,$case_id)
 {
 	$r = get_token();
 	$token_data = json_decode($r);
-
 	$token = $token_data->access_token;
 
- $allergies="";
- $current_medications="";
- $weight ="";
- $height="";
+  $allergies="";
+  $current_medications="";
+  $weight ="";
+  $height="";
 
  $userQueAns = getQuestionAnswerFromUserid($user_id,$case_id);
  foreach ($userQueAns as $key => $value) {

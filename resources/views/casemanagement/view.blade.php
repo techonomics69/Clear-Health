@@ -181,7 +181,7 @@
 																<p>Ans: <?php 
 																$first_name = $general->answer = $user_case_management_data->first_name;
 																$last_name =  $general->answer = $user_case_management_data->last_name;
-																echo $first_name "" .$last_name;
+																echo $first_name. " " .$last_name;
 																
 															}else{ ?>
 																<h4><strong>Que <?php echo ++$j; ?> : <?php echo $general->question; ?></strong></h4>

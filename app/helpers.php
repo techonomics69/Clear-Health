@@ -107,7 +107,28 @@ $user_data = User::where('id', $user_id)->first();
 
 $input = json_encode($request->all());
 
-$input_data = $request->all();
+$input_data = array();
+$address = array();
+
+$input_data['first_name'] = $user_data['first_name'];
+$input_data['last_name'] = $user_data['last_name'];
+$input_data['gender'] = $user_data['gender'];
+$input_data['date_of_birth'] = $user_data['date_of_birth'];
+$input_data['phone_number'] = $user_data['phone_number'];
+$input_data['email'] = $user_data['email'];
+$input_data['phone_number'] = $user_data['phone_number'];
+
+$address['address'] = $user_data['address'];
+$address['city_id'] = $user_data['city_id'];
+$address['zip_code'] = $user_data['zip_code'];
+$input_data['address'] = $address;
+$input_data['city_id'] = '31f5afce-1c7f-4636-b9b4-3874a177de90';//$user_data['city_id'];
+$input_data['zip_code'] = $user_data['zip_code'];
+$input_data['phone_type'] = 2;
+$input_data['height'] = $$height;
+$input_data['weight'] = $weight;
+$input_data['current_medications'] = $current_medications;
+$input_data['allergies'] = $allergies;
 
 $curl = curl_init();
 
@@ -166,14 +187,13 @@ if(!empty($Patient_data)){
               //return $this->sendResponse($response, 'Patient Created Successfully1'); 
       }
       else
-      {*/
+      {
       	return $this->sendResponse($input_data,'Patient Created Successfully'); 
-     //}
-
-      }else{
-      	return $this->sendResponse(array(),'Something went wrong!');
-      }
+     }*/
+     return $Patient_data->patient_id;
+      
     }
+  }
 
 
     function createCaseFile(Request $request){

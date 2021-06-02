@@ -181,25 +181,22 @@
 																echo $general->question; ?></strong></h4>
 
 																<p>Ans: <?php 
-
+																
 																$first_name = $general->answer = $user_case_management_data->first_name;
 																$last_name =  $general->answer = $user_case_management_data->last_name;
 																echo $first_name;
 																echo $last_name;
-															}
+															}else{ ?>
+																<h4><strong>Que <?php echo ++$j; ?> : <?php echo $general->question; ?></strong></h4>
 
-															?> 
-@endforeach
-@foreach($general_que as $key => $general1)
-															
-																<h4><strong>Que <?php echo ++$j; ?> : <?php echo $general1->question; ?></strong></h4>
-
-																<p>Ans: <?php if(isset($general1->answer)){
-																	$answer =  (array)$general1->answer;
+																<p>Ans: <?php if(isset($general->answer)){
+																	$answer =  (array)$general->answer;
 																	$getanswer= implode(" " ,$answer);
 																	echo $getanswer;
 																} ?>
-																
+																<?php 
+															}
+															?> 
 															<!-- @endforeach -->
 														</div>
 													</div>

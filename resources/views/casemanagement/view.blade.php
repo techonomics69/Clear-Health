@@ -175,38 +175,38 @@
 															{ 
 																?>
 																<h4><strong>Que <?php echo ++$j; ?> : 
-																<?php 
-																echo $general->question; ?></strong></h4>
+																	<?php 
+																	echo $general->question; ?></strong></h4>
 
-																<p>Ans: <?php 
-																$first_name = $general->answer = $user_case_management_data->first_name;
-																$last_name =  $general->answer = $user_case_management_data->last_name;
-																echo $first_name. " " .$last_name;
-																
-															}else{ ?>
-																<h4><strong>Que <?php echo ++$j; ?> : <?php echo $general->question; ?></strong></h4>
+																	<p>Ans: <?php 
+																	$first_name = $general->answer = $user_case_management_data->first_name;
+																	$last_name =  $general->answer = $user_case_management_data->last_name;
+																	echo $first_name. " " .$last_name;
 
-																<p>Ans: <?php if(isset($general->answer)){
-																	$answer =  (array)$general->answer;
-																	$getanswer= implode(" " ,$answer);
-																	echo $getanswer;
-																} ?>
-																<?php 
-															}
-															?> 
+																}else{ ?>
+																	<h4><strong>Que <?php echo ++$j; ?> : <?php echo $general->question; ?></strong></h4>
+
+																	<p>Ans: <?php if(isset($general->answer)){
+																		$answer =  (array)$general->answer;
+																		$getanswer= implode(" " ,$answer);
+																		echo $getanswer;
+																	} ?>
+																	<?php 
+																}
+																?> 
+															</div>
 														</div>
+														@endforeach
 													</div>
-													@endforeach
-												</div>
-											<?php } ?>
+												<?php } ?>
 
-											<?php if($key == 8) { ?>
-												<?php $j = 0; ?>
-												<div id="home8" class="tab-pane fade in">	
-													@foreach($accutane_que as $key => $accutane)
-													<div class="row" style="padding: 10px;">
-														<div class="col-md-12">
-															<?php 
+												<?php if($key == 8) { ?>
+													<?php $j = 0; ?>
+													<div id="home8" class="tab-pane fade in">	
+														@foreach($accutane_que as $key => $accutane)
+														<div class="row" style="padding: 10px;">
+															<div class="col-md-12">
+																<?php 
 															/*$getquestions = $accutane->question;
 															if(isset($accutane->answer)){
 																$answer =  (array)$accutane->answer;
@@ -547,9 +547,16 @@
 									<div class="col-md-12">
 										<section class="card">
 											<div class="card-body">
-												<div class="box-block mtb32">
+
+<ul class="nav nav-tabs" id="casemanagement-tab-menu">
+						<li><a class="btn active " data-toggle="tab" href="#profile">Medical Messgaes</a></li>
+						<li><a class="btn active " data-toggle="tab" href="#profile">Non-Medical Messgaes</a></li>
+					</ul>
+
+
+												<!-- <div class="box-block mtb32">
 													<h3 class="font-weight-bold"><span class="text-underline">Messages goes here</span></h3>
-												</div>
+												</div> -->
 											</div>
 										</section>
 									</div>

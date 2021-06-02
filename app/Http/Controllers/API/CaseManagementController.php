@@ -961,9 +961,9 @@ public function createMessage(Request $request){
   }
 
   public function getMessagesNonMedical(Request $request){
-    $case_id = $request['case_id'];
+    //$case_id = $request['case_id'];
     $user_id = $request['user_id'];
-    $md_case_id = $request['md_case_id'];
+    //$md_case_id = $request['md_case_id'];
 
     //$message_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')->select('messages.*','message_files.*')->where('case_id', $case_id)->where('md_case_id',$md_case_id)->where('user_id',$user_id)->get();
 

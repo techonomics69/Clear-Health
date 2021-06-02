@@ -140,9 +140,11 @@ class CaseManagementController extends Controller
     $general_que = [];
    }
 foreach ($general_que as $key => $value) {
-  if(isset($value) && $value->question='Hey there! First, we need to know your legal name111.'){
+  if(isset($value) && $value->question='Hey there! First, we need to know your legal name.'){
+
+$value->answer="first_name""last_name"
 echo "<pre>";
-print_r($value->question);
+print_r($value->answer);
 echo "</pre>";
 }
 }

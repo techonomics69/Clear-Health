@@ -178,9 +178,9 @@
 															} */
 															?>
 															<h4><strong>Que <?php echo ++$j;?> : <?php 
-															if(isset($general) && $general->question="Hey there! First, we need to know your legal name.") {
-																$first_name = $general->answer = $user_case_management_data->first_name;
-																	$last_name =  $general->answer = $user_case_management_data->last_name;
+															/*if(isset($general) && $general->question="Hey there! First, we need to know your legal name.") {*/
+																/*$first_name = $general->answer = $user_case_management_data->first_name;
+																$last_name =  $general->answer = $user_case_management_data->last_name;*/
 																//echo $general->question;
 																echo $general->question; ?></strong></h4>
 
@@ -190,8 +190,10 @@
 																	$getanswer= implode(" " ,$answer);
 																	
 																	echo $getanswer;
-																} echo $first_name;
-																	echo $last_name; ?> 
+																} 
+																/*echo $first_name;
+																echo $last_name;*/
+																 ?> 
 															</div>
 														</div>
 														@endforeach

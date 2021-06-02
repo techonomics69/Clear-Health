@@ -122,14 +122,14 @@ class CheckoutController extends BaseController
         //code gor md create case
         if($data['medication_type'] == 1){
 
-        $pro_data  =  CaseManagement::select('recommended_product')->where('user_id',$data['user_id'])->where('id',$data['case_id'])->first();
+        /*$pro_data  =  CaseManagement::select('recommended_product')->where('user_id',$data['user_id'])->where('id',$data['case_id'])->first();
 
         echo "<pre>";
         print_r($pro_data);
         echo "<pre>";
         exit();
 
-        $product_type = $pro_data['recommended_product'];
+        $product_type = $pro_data['recommended_product'];*/
 
         $cart_ids = explode(',', $data['cart_id']);
 
@@ -151,7 +151,7 @@ class CheckoutController extends BaseController
 
        exit();*/
 
-         $response = CreateCase($data['user_id'],$data['case_id'],$product_type,$preferred_pharmacy_id);
+         $response = CreateCase($data['user_id'],$data['case_id'],$preferred_pharmacy_id);
         }
         //end of code for md create case
 

@@ -139,6 +139,11 @@ class CaseManagementController extends Controller
    }else{
     $general_que = [];
   }
+
+  echo "<pre>";
+  print_r($general_que);
+  echo "</pre>";
+  
   /*foreach ($general_que as $key => $value) {
     if(isset($value->question) && $value->question='Hey there! First, we need to know your legal name.')
     {

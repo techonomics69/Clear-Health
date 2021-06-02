@@ -146,9 +146,9 @@ class CaseManagementController extends Controller
 
   foreach ($general_que as $key => $value) {
 
-   /* echo "<pre>";
+    echo "<pre>";
   print_r($value);
-  echo "</pre>";*/
+  echo "</pre>";
   //die();
     if(isset($value->question) && $value->question == 'Hey there! First, we need to know your legal name.')
     {
@@ -160,7 +160,7 @@ class CaseManagementController extends Controller
       echo "<br>";
       print_r($first_name); 
       print_r($last_name);
-      print_r($value);
+
       echo "</pre>";
       
     }

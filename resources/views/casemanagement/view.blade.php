@@ -198,18 +198,18 @@
 															}else{ ?>
 																<h4><strong>Que <?php echo ++$j; ?> : <?php echo $general->question; ?></strong></h4>
 
-																<p>Ans: <?php *if(isset($general->answer)){
+																<p>Ans: <?php if(isset($general->answer)){
 																	
 																	$answer =  (array)$general->answer;
 																	$getanswer= implode(" " ,$answer);
 																	
 																	echo $getanswer;
 																} ?>
-																
+
 																<?php 
 
 															}
-															
+
 															?> 
 															<!-- @endforeach -->
 														</div>

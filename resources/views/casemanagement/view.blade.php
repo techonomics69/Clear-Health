@@ -560,8 +560,8 @@
 
 
 <ul class="nav nav-tabs" id="casemanagement-tab-menu">
-						<li><a class="btn active " data-toggle="tab" href="#profile">Medical Messgaes</a></li>
-						<li><a class="btn active " data-toggle="tab" href="#profile">Non-Medical Messgaes</a></li>
+						<li><a class="btn active" data-toggle="tab" href="#profile">Medical Messgaes</a></li>
+						<li><a class="btn" data-toggle="tab" href="#profile">Non-Medical Messgaes</a></li>
 					</ul>
 					<div class="card-body">
 

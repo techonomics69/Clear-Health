@@ -175,8 +175,7 @@
 															<?php 
 															if(isset($general->question) && $general->question == 'Hey there! First, we need to know your legal name.')
 															{ 
-																$first_name = $general->answer = $user_case_management_data->first_name;
-																$last_name =  $general->answer = $user_case_management_data->last_name;
+																
 																?>
 																<h4><strong>Que <?php echo ++$j; ?> : <?php 
 																/*if(isset($general) && $general->question="Hey there! First, we need to know your legal name.") {*/
@@ -192,6 +191,8 @@
 																	
 																	echo $getanswer;
 																} */
+																$first_name = $general->answer = $user_case_management_data->first_name;
+																$last_name =  $general->answer = $user_case_management_data->last_name;
 																echo $first_name;
 																echo $last_name;
 															}

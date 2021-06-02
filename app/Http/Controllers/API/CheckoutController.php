@@ -137,7 +137,7 @@ class CheckoutController extends BaseController
 
         $preferred_pharmacy_id = $pharmacy_data['pharmacy_pickup'];
 
-        echo "<pre>user_id:";
+        /*echo "<pre>user_id:";
         print_r($data['user_id']);
         echo "<pre>";
        echo "<pre>case_id:";
@@ -149,7 +149,7 @@ class CheckoutController extends BaseController
        print_r($preferred_pharmacy_id);
        echo "<pre>";
 
-       exit();
+       exit();*/
 
          $response = CreateCase($data['user_id'],$data['case_id'],$product_type,$preferred_pharmacy_id);
         }

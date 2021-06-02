@@ -138,40 +138,41 @@ class CaseManagementController extends Controller
      $general_que = json_decode($general->answer); 
    }else{
     $general_que = [];
-   }
-foreach ($general_que as $key => $value) {
-  if(isset($value->question) && $value->question='Hey there! First, we need to know your legal name.')
-  {
-$first_name = $value->answer = $user_case_management_data->first_name;
-$last_name = $value->answer = $user_case_management_data->last_name;
-echo "<pre>";
-print_r($value->question);
-echo "<br>";
-print_r($first_name); 
-print_r($last_name);
-echo "</pre>";
-}
-}
-$accutane = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',8)->first();
+  }
+  foreach ($general_que as $key => $value) {
+    if(isset($value->question) && $value->question='Hey there! First, we need to know your legal name.')
+    {
+      $first_name = $value->answer = $user_case_management_data->first_name;
+      $last_name =  $value->answer = $user_case_management_data->last_name;
+      echo "<pre>";
+      print_r($value->question);
+      echo "<br>";
+      print_r($first_name); 
+      print_r( $last_name);
+      echo "</pre>";
+      die();
+    }
+  }
+  $accutane = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',8)->first();
 
 //$accutane_que=json_decode($accutane->answer); 
 
-if(isset($accutane))
-{
- $accutane_que=json_decode($accutane->answer); 
-}else{
+  if(isset($accutane))
+  {
+   $accutane_que=json_decode($accutane->answer); 
+ }else{
    $accutane_que = [];
-}
+ }
 
 
-$topical = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',9)->first();
+ $topical = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',9)->first();
 
-/*$topical_que=json_decode($topical->answer);*/
+ /*$topical_que=json_decode($topical->answer);*/
 
-if(isset($topical))
-{
- $topical_que=json_decode($topical->answer);
-}else{
+ if(isset($topical))
+ {
+   $topical_que=json_decode($topical->answer);
+ }else{
   $topical_que=[];
 }
 

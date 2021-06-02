@@ -191,7 +191,7 @@
 															?> 
 @endforeach
 @foreach($general_que as $key => $general1)
-															<?php else{ ?>
+															
 																<h4><strong>Que <?php echo ++$j; ?> : <?php echo $general1->question; ?></strong></h4>
 
 																<p>Ans: <?php if(isset($general1->answer)){
@@ -199,9 +199,7 @@
 																	$getanswer= implode(" " ,$answer);
 																	echo $getanswer;
 																} ?>
-																<?php 
-															}
-															?> 
+																
 															<!-- @endforeach -->
 														</div>
 													</div>

@@ -158,7 +158,7 @@ class CheckoutController extends BaseController
 
 
 
-        $response = CreateCase($data['user_id'],$data['case_id'],$preferred_pharmacy_id, $patient_id);
+        $response = CreateCase($data['user_id'],$data['case_id'],$preferred_pharmacy_id,$patient_id);
 
         $response = json_decode($response);
 

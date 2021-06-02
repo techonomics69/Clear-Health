@@ -283,7 +283,7 @@ function create_patient(Request $request)
 
 }
 
-function CreateCase($user_id,$case_id,$product_type,$preferred_pharmacy_id){
+function CreateCase($user_id,$case_id,$preferred_pharmacy_id){
   $r = get_token();
   $token_data = json_decode($r);
   $token = $token_data->access_token;
@@ -349,17 +349,19 @@ function CreateCase($user_id,$case_id,$product_type,$preferred_pharmacy_id){
  //get weight of patient 
 
    //$answer = QuizAnswer::join('quizzes', 'quizzes.id', '=', 'quiz_answers.question_id')->where('quiz_answers.user_id', $request['user_id'])->where('quiz_answers.case_id', $request['case_id'])->where('quiz_answers.case_id', $request['case_id'])->select( 'quizzes.question','quiz_answers.answer','quizzes.options_type')->get()->toArray();
+
+
    $accutan_strength = 30;
    foreach ($userQueAns as $key => $value) {
 
     $question = $value->question;
 
-    if($question == "What is your weight in kg?"){
+    if($question == "What is your weight in lbs??"){
       if(isset($value->answer) && $value->answer!=''){
 
         $answer =  $value->answer;
 
-        if($answer >= 70){
+        if($answer > 154){
           $accutan_strength = 40;
         }else{
           $accutan_strength = 30;
@@ -400,7 +402,7 @@ function CreateCase($user_id,$case_id,$product_type,$preferred_pharmacy_id){
 
 
 
- if($product_type =="Topicals"){
+ if($product_type !="Accutane"){
 
   $days_supply = "60";
   $refills = "11";

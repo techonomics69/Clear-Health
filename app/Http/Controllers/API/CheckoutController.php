@@ -120,7 +120,7 @@ class CheckoutController extends BaseController
         }
 
         //code gor md create case
-       /* if($data['medication_type'] == 1){
+        if($data['medication_type'] == 1){
 
         $pro_data  =  CaseManagement::select('recommended_product')->where('user_id',$data['user_id'])->where('id',$data['case_id'])->first();
 
@@ -152,7 +152,7 @@ class CheckoutController extends BaseController
        exit();
 
          $response = CreateCase($data['user_id'],$data['case_id'],$product_type,$preferred_pharmacy_id);
-        }*/
+        }
         //end of code for md create case
 
         //return $this->sendResponse(json_decode($response),'Case Created Successfully');

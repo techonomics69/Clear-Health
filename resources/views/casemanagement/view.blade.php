@@ -17,6 +17,13 @@
 		}
 
 	</style>
+	<style type="text/css">
+		#messages-tab-menu li a.active{
+			background-color: #43bfc1;
+			color: #ffffff;
+		}
+
+	</style>
 
 	{{-- @if(session()->has('que_current_tab'))
 	@php
@@ -553,7 +560,6 @@
 											<div class="tab-content">
 
 												<div id="tab1" class="tab-pane fade in active show">	
-													
 													<div class="row" style="padding: 10px;">
 														<div class="col-md-12">
 															<div class="box-block mtb32" id="tab1">
@@ -566,7 +572,6 @@
 												</div>
 
 												<div id="tab2" class="tab-pane fade in">	
-													
 													<div class="row" style="padding: 10px;">
 														<div class="col-md-12">
 															<div class="box-block mtb32" id="tab1">

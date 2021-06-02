@@ -171,7 +171,7 @@
 													<?php  /*echo "<pre>"; print_r($general); echo "</pre>";*/ ?>
 													<div class="row" style="padding: 10px;">
 														<div class="col-md-12">
-															<!-- @foreach($user_case_management_data as $key => $user_case_management) -->
+															
 															<?php 
 															if(isset($general->question) && $general->question == 'Hey there! First, we need to know your legal name.')
 															{ 
@@ -181,7 +181,7 @@
 																echo $general->question; ?></strong></h4>
 
 																<p>Ans: <?php 
-																
+
 																$first_name = $general->answer = $user_case_management_data->first_name;
 																$last_name =  $general->answer = $user_case_management_data->last_name;
 																echo $first_name;
@@ -197,7 +197,6 @@
 																<?php 
 															}
 															?> 
-															<!-- @endforeach -->
 														</div>
 													</div>
 													@endforeach

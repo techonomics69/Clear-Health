@@ -125,48 +125,7 @@ class CheckoutController extends BaseController
 
             //call create patient api
 
-            $allergies="";
-            $current_medications="";
-            $weight ="";
-            $$height="";
-
-            $userQueAns = getQuestionAnswerFromUserid($user_id,$case_id);
-            foreach ($userQueAns as $key => $value) {
-
-                $question = $value->question;
-
-                if($question == "Please list medications that you are allergic to."){
-                  if(isset($value->answer) && $value->answer!=''){
-
-                    $allergies =  $value->answer;
-
-              }
-
-              if($question == "Please list any other medications that you’re currently taking."){
-                  if(isset($value->answer) && $value->answer!=''){
-
-                    $current_medications =  $value->answer;
-
-              }
-
-              if($question == "What is your weight in lbs?"){
-                  if(isset($value->answer) && $value->answer!=''){
-
-                    $weight =  $value->answer;
-
-              }
-
-              if($question == "What is your Height?"){
-                  if(isset($value->answer) && $value->answer!=''){
-
-                    $height =  $value->answer;
-
-              }
-
-              
-          }
-      }
-
+           
             //end of code create patient api
 
         /*$pro_data  =  CaseManagement::select('recommended_product')->where('user_id',$data['user_id'])->where('id',$data['case_id'])->first();

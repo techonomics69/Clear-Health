@@ -167,8 +167,6 @@
 												<?php $j = 0; ?>
 												<div id="home7" class="tab-pane fade in @if($i== 0) active show @endif">	
 													@foreach($general_que as $key => $general)
-
-													<?php  /*echo "<pre>"; print_r($general); echo "</pre>";*/ ?>
 													<div class="row" style="padding: 10px;">
 														<div class="col-md-12">
 															
@@ -181,11 +179,10 @@
 																echo $general->question; ?></strong></h4>
 
 																<p>Ans: <?php 
-
 																$first_name = $general->answer = $user_case_management_data->first_name;
 																$last_name =  $general->answer = $user_case_management_data->last_name;
-																echo $first_name;
-																echo $last_name;
+																echo $first_name "" .$last_name;
+																
 															}else{ ?>
 																<h4><strong>Que <?php echo ++$j; ?> : <?php echo $general->question; ?></strong></h4>
 

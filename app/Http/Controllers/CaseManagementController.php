@@ -147,7 +147,8 @@ $last_name = $value->answer = $user_case_management_data->last_name;
 echo "<pre>";
 print_r($value->question);
 echo "<br>";
-print_r($first_name);
+print_r($first_name); 
+
 print_r($last_name);
 echo "</pre>";
 die();

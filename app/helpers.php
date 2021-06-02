@@ -58,58 +58,105 @@ function create_patient(Request $request)
 
 	$token = $token_data->access_token;
 
-	$input = json_encode($request->all());
+ $allergies="";
+ $current_medications="";
+ $weight ="";
+ $height="";
 
-	$input_data = $request->all();
+ $userQueAns = getQuestionAnswerFromUserid($user_id,$case_id);
+ foreach ($userQueAns as $key => $value) {
 
-	$curl = curl_init();
+  $question = $value->question;
 
-	curl_setopt_array($curl, array(
-		CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/patients',
-		CURLOPT_RETURNTRANSFER => true,
-		CURLOPT_ENCODING => '',
-		CURLOPT_MAXREDIRS => 10,
-		CURLOPT_TIMEOUT => 0,
-		CURLOPT_FOLLOWLOCATION => true,
-		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		CURLOPT_CUSTOMREQUEST => 'POST',
-		CURLOPT_POSTFIELDS =>$input,
-		CURLOPT_HTTPHEADER => array(
-			'Content-Type: application/json',
-			'Authorization: Bearer '. $token
-		),
-	));
+  if($question == "Please list medications that you are allergic to."){
+    if(isset($value->answer) && $value->answer!=''){
 
-	$response = curl_exec($curl);
+      $allergies =  $value->answer;
+
+    }
+  }
+
+  if($question == "Please list any other medications that you’re currently taking."){
+    if(isset($value->answer) && $value->answer!=''){
+
+      $current_medications =  $value->answer;
+
+    }
+  }
+
+  if($question == "What is your weight in lbs?"){
+    if(isset($value->answer) && $value->answer!=''){
+
+      $weight =  $value->answer;
+
+    }
+  }
+
+  if($question == "What is your Height?"){
+    if(isset($value->answer) && $value->answer!=''){
+
+      $height =  $value->answer;
+
+    }
+
+    
+  }
+}
+
+$patient_data = User::select('md_patient_id')->where('id', $user_id)->first();
+
+$input = json_encode($request->all());
+
+$input_data = $request->all();
+
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/patients',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'POST',
+  CURLOPT_POSTFIELDS =>$input,
+  CURLOPT_HTTPHEADER => array(
+   'Content-Type: application/json',
+   'Authorization: Bearer '. $token
+ ),
+));
+
+$response = curl_exec($curl);
 
 
-	$Patient_data = json_decode($response);
+$Patient_data = json_decode($response);
 
-	if(!empty($Patient_data)){
+if(!empty($Patient_data)){
 
-		$input_data['partner_id'] = $Patient_data->partner_id;
-		$input_data['first_name'] = $Patient_data->first_name;
-		$input_data['last_name'] =  $Patient_data->last_name;
-		$input_data['email'] =  $Patient_data->email;
-		$input_data['gender'] = $Patient_data->gender;
-		$input_data['phone_number'] = $Patient_data->phone_number;
-		$input_data['phone_type'] = $Patient_data->phone_type;
-		$input_data['date_of_birth'] = $Patient_data->date_of_birth;
-		$input_data['active'] = $Patient_data->active;
-		$input_data['weight'] = $Patient_data->weight;
-		$input_data['height'] = $Patient_data->height;
-		$input_data['dosespot_sync_status'] = $Patient_data->dosespot_sync_status;
-		$input_data['patient_id'] = $Patient_data->patient_id;
-		$input_data['gender_label'] = $Patient_data->gender_label;
-		$input_data['address'] = $Patient_data->address->address;
-		$input_data['zip_code'] = $Patient_data->address->zip_code;
-		$input_data['city_id'] = $Patient_data->address->city_id;
-		$input_data['city_name'] = $Patient_data->address->city->name;
-		$input_data['state_name'] = $Patient_data->address->city->state->name;
-		$input_data['state_abbreviation'] = $Patient_data->address->city->state->abbreviation;
+  $input_data['partner_id'] = $Patient_data->partner_id;
+  $input_data['first_name'] = $Patient_data->first_name;
+  $input_data['last_name'] =  $Patient_data->last_name;
+  $input_data['email'] =  $Patient_data->email;
+  $input_data['gender'] = $Patient_data->gender;
+  $input_data['phone_number'] = $Patient_data->phone_number;
+  $input_data['phone_type'] = $Patient_data->phone_type;
+  $input_data['date_of_birth'] = $Patient_data->date_of_birth;
+  $input_data['active'] = $Patient_data->active;
+  $input_data['weight'] = $Patient_data->weight;
+  $input_data['height'] = $Patient_data->height;
+  $input_data['dosespot_sync_status'] = $Patient_data->dosespot_sync_status;
+  $input_data['patient_id'] = $Patient_data->patient_id;
+  $input_data['gender_label'] = $Patient_data->gender_label;
+  $input_data['address'] = $Patient_data->address->address;
+  $input_data['zip_code'] = $Patient_data->address->zip_code;
+  $input_data['city_id'] = $Patient_data->address->city_id;
+  $input_data['city_name'] = $Patient_data->address->city->name;
+  $input_data['state_name'] = $Patient_data->address->city->state->name;
+  $input_data['state_abbreviation'] = $Patient_data->address->city->state->abbreviation;
 
 
-		$md_patient_data = Mdpatient::create($input_data);
+  $md_patient_data = Mdpatient::create($input_data);
 
             //$info = curl_getinfo($curl);
 
@@ -126,68 +173,68 @@ function create_patient(Request $request)
       }else{
       	return $this->sendResponse(array(),'Something went wrong!');
       }
-  }
-
-
-  function createCaseFile(Request $request){
-
-    $r = $this->get_token();
-    $token_data = json_decode($r);
-    $token = $token_data->access_token;
-
-    $documents = $request->file('file');
-    $name = $request->name;
-    $user_id = $request->user_id;
-    $case_id = $request->case_id;
-    $system_case_id = $request->system_case_id;
-
-    if(!empty($documents)){
-      $file =  $documents->getClientOriginalName();
-      $doc_file_name =  time().'-'.$file;
-      
-      if (!file_exists(public_path('/MD_Case_files'))) {
-        File::makeDirectory(public_path('/MD_Case_files'),0777,true,true);
-      }
-      $destinationPath = public_path('/MD_Case_files');
-      $documents->move($destinationPath, $doc_file_name);
-
-      chmod($destinationPath."/".$doc_file_name, 0777);
-
-      $file_path = 'public/MD_Case_files/' .$file;
     }
+
+
+    function createCaseFile(Request $request){
+
+      $r = $this->get_token();
+      $token_data = json_decode($r);
+      $token = $token_data->access_token;
+
+      $documents = $request->file('file');
+      $name = $request->name;
+      $user_id = $request->user_id;
+      $case_id = $request->case_id;
+      $system_case_id = $request->system_case_id;
+
+      if(!empty($documents)){
+        $file =  $documents->getClientOriginalName();
+        $doc_file_name =  time().'-'.$file;
+        
+        if (!file_exists(public_path('/MD_Case_files'))) {
+          File::makeDirectory(public_path('/MD_Case_files'),0777,true,true);
+        }
+        $destinationPath = public_path('/MD_Case_files');
+        $documents->move($destinationPath, $doc_file_name);
+
+        chmod($destinationPath."/".$doc_file_name, 0777);
+
+        $file_path = 'public/MD_Case_files/' .$file;
+      }
 
     //$file_temp_name = $documents->getfileName();
     //$file_temp_path = $documents->getpathName();
     //$file_mimeType = $documents->getClientMimeType();
 
-    $input_data = $request->all();
+      $input_data = $request->all();
 
-    $fields = [
-      'name' => $name,
+      $fields = [
+        'name' => $name,
       //'file' => new \CurlFile($file_temp_path,$file_mimeType, $doc_file_name)
-      'file' => new \CurlFile($destinationPath."/".$doc_file_name)
-    ];
+        'file' => new \CurlFile($destinationPath."/".$doc_file_name)
+      ];
 
-    $curl = curl_init();
+      $curl = curl_init();
 
-    curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/files',
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_ENCODING => '',
-      CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 0,
-      CURLOPT_FOLLOWLOCATION => true,
-      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => 'POST',
-      CURLOPT_POSTFIELDS =>  $fields,
-      CURLOPT_HTTPHEADER => array(
-        'Content: multipart/form-data;',
-        'Authorization: Bearer '.$token,
-        'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
-      ),
-    ));
+      curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/files',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS =>  $fields,
+        CURLOPT_HTTPHEADER => array(
+          'Content: multipart/form-data;',
+          'Authorization: Bearer '.$token,
+          'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+        ),
+      ));
 
-    $response = curl_exec($curl);
+      $response = curl_exec($curl);
 
    /* if($errno = curl_errno($curl)) {
       $error_message = curl_strerror($errno);
@@ -250,77 +297,77 @@ function create_patient(Request $request)
 
   }
 
- function getPharmacyById($pharmacy_id){
-  $r = get_token();
-  $token_data = json_decode($r);
-  $token = $token_data->access_token;
+  function getPharmacyById($pharmacy_id){
+    $r = get_token();
+    $token_data = json_decode($r);
+    $token = $token_data->access_token;
 
-  
-
-  $curl = curl_init();
-
-  curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/pharmacies/'.$pharmacy_id,
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_ENCODING => '',
-    CURLOPT_MAXREDIRS => 10,
-    CURLOPT_TIMEOUT => 0,
-    CURLOPT_FOLLOWLOCATION => true,
-    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-    CURLOPT_CUSTOMREQUEST => 'GET',
-    CURLOPT_HTTPHEADER => array(
-      'Authorization: Bearer '.$token,
-    ),
-  ));
-
-  $response = curl_exec($curl);
-
-  curl_close($curl);
-
-
-  return $response;
-
-
-}
-
-function CreateCase($user_id,$case_id,$preferred_pharmacy_id){
-  $r = get_token();
-  $token_data = json_decode($r);
-  $token = $token_data->access_token;
-
-  $patient_data = User::select('md_patient_id')->where('id', $user_id)->first();
-
-  $patient_id = '"'.$patient_data['md_patient_id'].'"';
-
-  $recommended_product = CaseManagement::select('recommended_product')->where('id',$case_id)->where('user_id',$user_id)->first();
-
-  $recommended_product = $recommended_product['recommended_product'];
-
-      if($recommended_product == 'Topical_low'){
-
-         $product_name = "Topical Low";
-
-       }
-
-       if($recommended_product == 'Topical_high'){
-
-         $product_name = "Topical High";
-
-       }
-
-       if($recommended_product == 'Azelaic_Acid'){
-
-         $product_name = "Azelaic Acid";
-
-       }
-       if($recommended_product == 'Accutane'){
-
-         $product_name = "ISOtretinoin (oral - capsule)";
-
-       }
-
-     $removed_space_pro_name = str_replace(" ","%20",$product_name);
     
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/pharmacies/'.$pharmacy_id,
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'GET',
+      CURLOPT_HTTPHEADER => array(
+        'Authorization: Bearer '.$token,
+      ),
+    ));
+
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+
+
+    return $response;
+
+
+  }
+
+  function CreateCase($user_id,$case_id,$preferred_pharmacy_id){
+    $r = get_token();
+    $token_data = json_decode($r);
+    $token = $token_data->access_token;
+
+    $patient_data = User::select('md_patient_id')->where('id', $user_id)->first();
+
+    $patient_id = '"'.$patient_data['md_patient_id'].'"';
+
+    $recommended_product = CaseManagement::select('recommended_product')->where('id',$case_id)->where('user_id',$user_id)->first();
+
+    $recommended_product = $recommended_product['recommended_product'];
+
+    if($recommended_product == 'Topical_low'){
+
+     $product_name = "Topical Low";
+
+   }
+
+   if($recommended_product == 'Topical_high'){
+
+     $product_name = "Topical High";
+
+   }
+
+   if($recommended_product == 'Azelaic_Acid'){
+
+     $product_name = "Azelaic Acid";
+
+   }
+   if($recommended_product == 'Accutane'){
+
+     $product_name = "ISOtretinoin (oral - capsule)";
+
+   }
+
+   $removed_space_pro_name = str_replace(" ","%20",$product_name);
+   
     //code to get user's question answer
 
     /*$answer = QuizAnswer::join('quizzes', 'quizzes.id', '=', 'quiz_answers.question_id')->where('quiz_answers.user_id', $request['user_id'])->where('quiz_answers.case_id', $request['case_id'])->select( 'quizzes.question','quiz_answers.answer','quizzes.options_type')->get()->toArray();
@@ -374,11 +421,11 @@ function CreateCase($user_id,$case_id,$preferred_pharmacy_id){
       $userquestion[$key]['question'] = $value->question;
 
       if(is_array($value->answer)){
-         $userquestion[$key]['answer'] = implode(',',$value->answer);
-      }else{
-         $userquestion[$key]['answer'] = $value->answer;
-      }
-       
+       $userquestion[$key]['answer'] = implode(',',$value->answer);
+     }else{
+       $userquestion[$key]['answer'] = $value->answer;
+     }
+     
      
 
      if($value->options_type == "radio"){
@@ -389,8 +436,8 @@ function CreateCase($user_id,$case_id,$preferred_pharmacy_id){
 
      $userquestion[$key]['important']= true;
 
-    }
-    
+   }
+   
  }
 
  $userquestion = json_encode($userquestion);
@@ -417,7 +464,7 @@ function CreateCase($user_id,$case_id,$preferred_pharmacy_id){
 
       $DispensUnitId = 8;
 
-    
+      
 
       $curl = curl_init();
 
@@ -441,7 +488,7 @@ function CreateCase($user_id,$case_id,$preferred_pharmacy_id){
       curl_close($curl);
 
       $compounds= $response;
-     
+      
 
       $compounds = json_decode($compounds);
 
@@ -518,53 +565,53 @@ function CreateCase($user_id,$case_id,$preferred_pharmacy_id){
     echo "<pre>";
     exit();*/
 
-      
+    
 
-      $curl = curl_init();
+    $curl = curl_init();
 
-      curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases',
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => '',
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => 'POST',
-        CURLOPT_POSTFIELDS =>'{
-          "patient_id": '.$patient_id.',
-          "case_files": [
-          ],
-          "case_prescriptions": '.$medication_compound_data.',
-          "case_questions": '.$userquestion.'
-        }',
-        CURLOPT_HTTPHEADER => array(
-          'Content-Type: application/json',
-          'Authorization: Bearer '.$token,
-          'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
-        ),
-      ));
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases',
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'POST',
+      CURLOPT_POSTFIELDS =>'{
+        "patient_id": '.$patient_id.',
+        "case_files": [
+        ],
+        "case_prescriptions": '.$medication_compound_data.',
+        "case_questions": '.$userquestion.'
+      }',
+      CURLOPT_HTTPHEADER => array(
+        'Content-Type: application/json',
+        'Authorization: Bearer '.$token,
+        'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+      ),
+    ));
 
-      $response = curl_exec($curl);
+    $response = curl_exec($curl);
 
-      $case_data = json_decode($response);
+    $case_data = json_decode($response);
 
-      $input_data['prioritized_at'] = $case_data->prioritized_at;
-      $input_data['prioritized_reason'] = $case_data->prioritized_reason;
-      $input_data['cancelled_at'] = $case_data->prioritized_reason;
-      $input_data['md_created_at'] = $case_data->created_at;
+    $input_data['prioritized_at'] = $case_data->prioritized_at;
+    $input_data['prioritized_reason'] = $case_data->prioritized_reason;
+    $input_data['cancelled_at'] = $case_data->prioritized_reason;
+    $input_data['md_created_at'] = $case_data->created_at;
       //$input_data['md_created_at'] = $case_data->case_assignment->created_at;
-      $input_data['support_reason'] = $case_data->support_reason;
-      $input_data['case_id'] = $case_data->case_id;
-      $input_data['status'] = $case_data->status;
-      $input_data['user_id'] = $user_id;
-      $input_data['system_case_id'] = $case_id;
+    $input_data['support_reason'] = $case_data->support_reason;
+    $input_data['case_id'] = $case_data->case_id;
+    $input_data['status'] = $case_data->status;
+    $input_data['user_id'] = $user_id;
+    $input_data['system_case_id'] = $case_id;
 
-      $md_case_data = Mdcases::create($input_data);
+    $md_case_data = Mdcases::create($input_data);
 
-      $case_management  =  CaseManagement::where('id',$case_id)->where('user_id',$user_id)->update(['md_case_status' => $case_data->status]);
+    $case_management  =  CaseManagement::where('id',$case_id)->where('user_id',$user_id)->update(['md_case_status' => $case_data->status]);
 
-      curl_close($curl);
+    curl_close($curl);
 
       //code for update md details
 
@@ -588,74 +635,74 @@ function CreateCase($user_id,$case_id,$preferred_pharmacy_id){
       return $response;
 
 
-}
+    }
 
-function detach_file_from_case(Request $request){
+    function detach_file_from_case(Request $request){
 
-    $r = get_token();
-    $token_data = json_decode($r);
-    $token = $token_data->access_token;
+      $r = get_token();
+      $token_data = json_decode($r);
+      $token = $token_data->access_token;
 
-    $file_id = $request['md_file_id'];
-    $case_id = $request['md_case_id'];
+      $file_id = $request['md_file_id'];
+      $case_id = $request['md_case_id'];
 
-    $destinationPath = public_path('/MD_Case_files');
+      $destinationPath = public_path('/MD_Case_files');
 
-    $input = $request->all();
+      $input = $request->all();
 
-    $casefiles_details = CaseFiles::select('*')->where('case_id', $case_id)->where('md_file_id',$file_id)->get();
+      $casefiles_details = CaseFiles::select('*')->where('case_id', $case_id)->where('md_file_id',$file_id)->get();
 
-    if(!empty($casefiles_details) && count($casefiles_details)>0){
+      if(!empty($casefiles_details) && count($casefiles_details)>0){
 
-      if(file_exists($destinationPath.'/'.$casefiles_details[0]['file'])){
-        unlink($destinationPath.'/'.$casefiles_details[0]['file']);
-      }
+        if(file_exists($destinationPath.'/'.$casefiles_details[0]['file'])){
+          unlink($destinationPath.'/'.$casefiles_details[0]['file']);
+        }
 
-      $casefiles = CaseFiles::find($casefiles_details[0]['id']);
-      $casefiles->delete();
+        $casefiles = CaseFiles::find($casefiles_details[0]['id']);
+        $casefiles->delete();
 
-      $curl = curl_init();
+        $curl = curl_init();
 
-      curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/files/'.$file_id,
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => '',
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => 'DELETE',
-        CURLOPT_HTTPHEADER => array(
-          'Authorization: Bearer '.$token,
-          'Cookie: __cfduid=da01d92d82d19a6cccebfdc9852303eb81620627650'
-        ),
-      ));
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/files/'.$file_id,
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => '',
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 0,
+          CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => 'DELETE',
+          CURLOPT_HTTPHEADER => array(
+            'Authorization: Bearer '.$token,
+            'Cookie: __cfduid=da01d92d82d19a6cccebfdc9852303eb81620627650'
+          ),
+        ));
 
-      $response = curl_exec($curl);
+        $response = curl_exec($curl);
 
-      curl_close($curl);
+        curl_close($curl);
             // $response;
 
 
-      return $this->sendResponse($response,'File Detach Successfully');
+        return $this->sendResponse($response,'File Detach Successfully');
 
-    }else{
-      return $this->sendResponse(array(),'File not Exist.');
+      }else{
+        return $this->sendResponse(array(),'File not Exist.');
+      }
+      
+
     }
- 
 
-}
+    function getQuestionAnswerFromUserid($user_id,$case_id){
 
-function getQuestionAnswerFromUserid($user_id,$case_id){
+      $answer_data = Answers::where('user_id', $user_id)->where('case_id', $case_id)->get();
 
-  $answer_data = Answers::where('user_id', $user_id)->where('case_id', $case_id)->get();
+      $userQueAns = json_decode($answer_data[0]['answer']);
 
-  $userQueAns = json_decode($answer_data[0]['answer']);
-
-  return $userQueAns;
+      return $userQueAns;
 
 
-}
+    }
 
 
-?>
+    ?>

@@ -150,7 +150,10 @@ $response = curl_exec($curl);
 
 $Patient_data = json_decode($response);
 
-
+echo "<pre>";
+print_r($Patient_data);
+echo "<pre>";
+exit();
 
 if(!empty($Patient_data)){
 

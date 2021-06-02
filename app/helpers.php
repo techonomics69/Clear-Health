@@ -341,10 +341,7 @@ function CreateCase($user_id,$case_id,$preferred_pharmacy_id){
    
    $userquestion = json_encode($userquestion);*/ //old logic
 
-
-   $answer_data = Answers::where('user_id', $user_id)->where('case_id', $case_id)->get();
-
-   $userQueAns = json_decode($answer_data[0]['answer']);
+   $userQueAns = getQuestionAnswerFromUserid($user_id,$case_id);
 
  //get weight of patient 
 
@@ -649,7 +646,16 @@ function detach_file_from_case(Request $request){
 
 }
 
+function getQuestionAnswerFromUserid($user_id,$case_id){
 
+  $answer_data = Answers::where('user_id', $user_id)->where('case_id', $case_id)->get();
+
+  $userQueAns = json_decode($answer_data[0]['answer']);
+
+  return $userQueAns;
+
+
+}
 
 
 ?>

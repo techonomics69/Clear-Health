@@ -144,6 +144,7 @@ foreach ($general_que as $key => $value) {
 
 $value->answer = $user_case_management_data['first_name']['last_name'];
 echo "<pre>";
+print_r($value->question);
 print_r($value->answer);
 echo "</pre>";
 }

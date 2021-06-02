@@ -124,8 +124,7 @@ class CheckoutController extends BaseController
 
 
             //call create patient api
-
-           
+                $patient_id = create_patient($data['user_id'],$data['case_id']);
             //end of code create patient api
 
         /*$pro_data  =  CaseManagement::select('recommended_product')->where('user_id',$data['user_id'])->where('id',$data['case_id'])->first();

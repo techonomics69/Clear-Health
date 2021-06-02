@@ -51,7 +51,7 @@ function get_token(){
   return $response;
 }
 
-function create_patient(Request $request)
+function create_patient($user_id,$case_id)
 {
 	$r = $this->get_token();
 	$token_data = json_decode($r);
@@ -99,11 +99,11 @@ function create_patient(Request $request)
 
     }
 
-    
+
   }
 }
 
-$patient_data = User::select('md_patient_id')->where('id', $user_id)->first();
+$user_data = User::where('id', $user_id)->first();
 
 $input = json_encode($request->all());
 
@@ -191,7 +191,7 @@ if(!empty($Patient_data)){
       if(!empty($documents)){
         $file =  $documents->getClientOriginalName();
         $doc_file_name =  time().'-'.$file;
-        
+
         if (!file_exists(public_path('/MD_Case_files'))) {
           File::makeDirectory(public_path('/MD_Case_files'),0777,true,true);
         }
@@ -302,7 +302,7 @@ if(!empty($Patient_data)){
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
-    
+
 
     $curl = curl_init();
 
@@ -367,7 +367,7 @@ if(!empty($Patient_data)){
    }
 
    $removed_space_pro_name = str_replace(" ","%20",$product_name);
-   
+
     //code to get user's question answer
 
     /*$answer = QuizAnswer::join('quizzes', 'quizzes.id', '=', 'quiz_answers.question_id')->where('quiz_answers.user_id', $request['user_id'])->where('quiz_answers.case_id', $request['case_id'])->select( 'quizzes.question','quiz_answers.answer','quizzes.options_type')->get()->toArray();
@@ -425,7 +425,7 @@ if(!empty($Patient_data)){
      }else{
        $userquestion[$key]['answer'] = $value->answer;
      }
-     
+
      
 
      if($value->options_type == "radio"){
@@ -437,7 +437,7 @@ if(!empty($Patient_data)){
      $userquestion[$key]['important']= true;
 
    }
-   
+
  }
 
  $userquestion = json_encode($userquestion);
@@ -464,7 +464,7 @@ if(!empty($Patient_data)){
 
       $DispensUnitId = 8;
 
-      
+
 
       $curl = curl_init();
 
@@ -488,7 +488,7 @@ if(!empty($Patient_data)){
       curl_close($curl);
 
       $compounds= $response;
-      
+
 
       $compounds = json_decode($compounds);
 
@@ -565,7 +565,7 @@ if(!empty($Patient_data)){
     echo "<pre>";
     exit();*/
 
-    
+
 
     $curl = curl_init();
 
@@ -689,7 +689,7 @@ if(!empty($Patient_data)){
       }else{
         return $this->sendResponse(array(),'File not Exist.');
       }
-      
+
 
     }
 

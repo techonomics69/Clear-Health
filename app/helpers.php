@@ -53,7 +53,7 @@ function get_token(){
 
 function create_patient($user_id,$case_id)
 {
-	$r = $this->get_token();
+	$r = get_token();
 	$token_data = json_decode($r);
 
 	$token = $token_data->access_token;

@@ -104,7 +104,7 @@ function create_patient($user_id,$case_id)
 
 $user_data = User::where('id', $user_id)->first();
 
-$input = json_encode($request->all());
+
 
 $input_data = array();
 $address = array();
@@ -128,6 +128,8 @@ $input_data['height'] = $$height;
 $input_data['weight'] = $weight;
 $input_data['current_medications'] = $current_medications;
 $input_data['allergies'] = $allergies;
+
+$input = json_encode($input_data);
 
 $curl = curl_init();
 

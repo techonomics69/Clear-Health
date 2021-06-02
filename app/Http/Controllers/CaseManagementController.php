@@ -147,7 +147,7 @@ class CaseManagementController extends Controller
       echo "<pre>";
       print_r($value->question);
       echo "<br>";
-      print_r($first_name).'&nbsp'; 
+      print_r($first_name)'&nbsp'; 
       print_r($last_name);
       echo "</pre>";
       die();

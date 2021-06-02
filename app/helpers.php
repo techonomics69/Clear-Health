@@ -350,14 +350,16 @@ if(!empty($Patient_data)){
 
   }
 
-  function CreateCase($user_id,$case_id,$preferred_pharmacy_id){
+  function CreateCase($user_id,$case_id,$preferred_pharmacy_id,$patient_id){
     $r = get_token();
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
-    $patient_data = User::select('md_patient_id')->where('id', $user_id)->first();
+    /*$patient_data = User::select('md_patient_id')->where('id', $user_id)->first();
 
-    $patient_id = '"'.$patient_data['md_patient_id'].'"';
+    $patient_id = '"'.$patient_data['md_patient_id'].'"';*/
+
+    $patient_id = '"'.$patient_id.'"';
 
     $recommended_product = CaseManagement::select('recommended_product')->where('id',$case_id)->where('user_id',$user_id)->first();
 

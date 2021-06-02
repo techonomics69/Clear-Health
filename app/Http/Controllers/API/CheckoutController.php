@@ -122,6 +122,53 @@ class CheckoutController extends BaseController
         //code gor md create case
         if($data['medication_type'] == 1){
 
+
+            //call create patient api
+
+            $allergies="";
+            $current_medications="";
+            $weight ="";
+            $$height="";
+
+            $userQueAns = getQuestionAnswerFromUserid($user_id,$case_id);
+            foreach ($userQueAns as $key => $value) {
+
+                $question = $value->question;
+
+                if($question == "Please list medications that you are allergic to."){
+                  if(isset($value->answer) && $value->answer!=''){
+
+                    $allergies =  $value->answer;
+
+              }
+
+              if($question == "Please list any other medications that you’re currently taking."){
+                  if(isset($value->answer) && $value->answer!=''){
+
+                    $current_medications =  $value->answer;
+
+              }
+
+              if($question == "What is your weight in lbs?"){
+                  if(isset($value->answer) && $value->answer!=''){
+
+                    $weight =  $value->answer;
+
+              }
+
+              if($question == "What is your Height?"){
+                  if(isset($value->answer) && $value->answer!=''){
+
+                    $height =  $value->answer;
+
+              }
+
+              
+          }
+      }
+
+            //end of code create patient api
+
         /*$pro_data  =  CaseManagement::select('recommended_product')->where('user_id',$data['user_id'])->where('id',$data['case_id'])->first();
 
         echo "<pre>";
@@ -151,11 +198,13 @@ class CheckoutController extends BaseController
 
        exit();*/
 
-         $response = CreateCase($data['user_id'],$data['case_id'],$preferred_pharmacy_id);
 
-         $response = json_decode($response);
 
-         if(!empty($response)){
+        $response = CreateCase($data['user_id'],$data['case_id'],$preferred_pharmacy_id);
+
+        $response = json_decode($response);
+
+        if(!empty($response)){
             $checkoutdata['md_response'] = $response;
          }
         }

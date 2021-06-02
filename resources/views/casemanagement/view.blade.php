@@ -193,8 +193,8 @@
 																} */
 																$first_name = $general->answer = $user_case_management_data->first_name;
 																$last_name =  $general->answer = $user_case_management_data->last_name;
-																echo $first_name;
-																echo $last_name;
+																print_r($first_name);
+																print_r($last_name);
 															}
 																
 																?> 

@@ -547,12 +547,15 @@
 									<div class="col-md-12">
 										<section class="card">
 											<ul class="nav nav-tabs" id="messages-tab-menu">
-												<li><a class="btn active" data-toggle="tab" href="#">Medical Messgaes</a></li>
-												<li><a class="btn" data-toggle="tab" href="#">Non-Medical Messgaes</a></li>
+												<li><a class="btn active" data-toggle="tab" href="#tab1">Medical Messgaes</a></li>
+												<li><a class="btn" data-toggle="tab" href="#tab2">Non-Medical Messgaes</a></li>
 											</ul>
 											<div class="card-body">
 
-												<div class="box-block mtb32">
+												<div class="box-block mtb32" id="tab1">
+													<h3 class="font-weight-bold"><span class="text-underline">Messages</span></h3>
+												</div>
+												<div class="box-block mtb32" id="tab2">
 													<h3 class="font-weight-bold"><span class="text-underline">Messages goes here</span></h3>
 												</div>
 											</div>

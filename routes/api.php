@@ -107,6 +107,8 @@ Route::post('forgot_password',[RegisterController::class, 'forgot_password']);
     Route::post('getMessages', [CaseManagementController::class, 'getMessages']);
     Route::post('DetachMessageFile', [CaseManagementController::class, 'DetachMessageFile']);
     Route::get('DeleteFile/{id}', [CaseManagementController::class, 'DeleteFile']);
+    Route::post('getMdDetailForMessage', [CaseManagementController::class, 'getMdDetailForMessage']);
+
     //end of md api
 
     //system message API

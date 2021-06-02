@@ -469,7 +469,7 @@ if(!empty($Patient_data)){
 
 
 
- if($product_type !="Accutane"){
+ if($recommended_product !="Accutane"){
 
   $days_supply = "60";
   $refills = "11";

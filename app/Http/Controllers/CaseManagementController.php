@@ -160,6 +160,7 @@ class CaseManagementController extends Controller
       echo "<br>";
       print_r($first_name); 
       print_r($last_name);
+      print_r($value);
       echo "</pre>";
       
     }

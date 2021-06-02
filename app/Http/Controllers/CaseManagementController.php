@@ -140,10 +140,12 @@ class CaseManagementController extends Controller
     $general_que = [];
    }
 foreach ($general_que as $key => $value) {
+  if(isset($value) && $value->question='Hey there! First, we need to know your legal name.'){
 echo "<pre>";
-print_r($value);
+print_r($value->question);
 echo "</pre>";
 die();
+}
 }
 $accutane = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',8)->first();
 

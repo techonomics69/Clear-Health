@@ -142,7 +142,7 @@ class CaseManagementController extends Controller
 foreach ($general_que as $key => $value) {
   if(isset($value) && $value->question='Hey there! First, we need to know your legal name.'){
 
-$value->answer = $user_case_management_data['first_name'];
+$value->answer = $user_case_management_data['first_name'],$user_case_management_data['last_name'];
 echo "<pre>";
 print_r($value->answer);
 echo "</pre>";

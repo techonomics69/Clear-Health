@@ -550,7 +550,35 @@
 												<li><a class="btn active" data-toggle="tab" href="#tab1">Medical Messgaes</a></li>
 												<li><a class="btn" data-toggle="tab" href="#tab2">Non-Medical Messgaes</a></li>
 											</ul>
-											<div class="card-body">
+											<div class="tab-content">
+
+												<div id="tab1" class="tab-pane fade in active show">	
+													
+													<div class="row" style="padding: 10px;">
+														<div class="col-md-12">
+															<div class="box-block mtb32" id="tab1">
+																<h3 class="font-weight-bold"><span class="text-underline">Messages111</span></h3>
+															</div>
+
+
+														</div>
+													</div>
+												</div>
+
+												<div id="tab2" class="tab-pane fade in">	
+													
+													<div class="row" style="padding: 10px;">
+														<div class="col-md-12">
+															<div class="box-block mtb32" id="tab1">
+																<h3 class="font-weight-bold"><span class="text-underline">Messages222</span></h3>
+															</div>
+
+
+														</div>
+													</div>
+												</div>
+
+											<!-- <div class="card-body">
 
 												<div class="box-block mtb32" id="tab1">
 													<h3 class="font-weight-bold"><span class="text-underline">Messages</span></h3>
@@ -558,50 +586,51 @@
 												<div class="box-block mtb32" id="tab2">
 													<h3 class="font-weight-bold"><span class="text-underline">Messages goes here</span></h3>
 												</div>
-											</div>
-										</section>
-									</div>
+											</div> -->
+										</div>
+									</section>
 								</div>
 							</div>
-							<!--end 5th tab-->
-
-							<!--start 6th tab-->
-							<div id="photos" class="tab-pane fade in ">
-								<div class="row" style="padding: 20px;">
-									<div class="col-md-12">
-										<section class="card">
-											<div class="card-body">
-												<div class="box-block mtb32">
-													<h3 class="font-weight-bold"><span class="text-underline">Photos</span></h3>
-												</div>
-											</div>
-										</section>
-									</div>
-								</div>
-							</div>
-							<!--end 6th tab-->
-
-							<!--start 7th tab-->
-							<div id="payments" class="tab-pane fade in ">
-								<div class="row" style="padding: 20px;">
-									<div class="col-md-12">
-										<section class="card">
-											<div class="card-body">
-												<div class="box-block mtb32">
-													<h3 class="font-weight-bold"><span class="text-underline">Payments</span></h3>
-												</div>
-											</div>
-										</section>
-									</div>
-								</div>
-							</div>
-							<!--end 7th tab--> 
 						</div>
+						<!--end 5th tab-->
+
+						<!--start 6th tab-->
+						<div id="photos" class="tab-pane fade in ">
+							<div class="row" style="padding: 20px;">
+								<div class="col-md-12">
+									<section class="card">
+										<div class="card-body">
+											<div class="box-block mtb32">
+												<h3 class="font-weight-bold"><span class="text-underline">Photos</span></h3>
+											</div>
+										</div>
+									</section>
+								</div>
+							</div>
+						</div>
+						<!--end 6th tab-->
+
+						<!--start 7th tab-->
+						<div id="payments" class="tab-pane fade in ">
+							<div class="row" style="padding: 20px;">
+								<div class="col-md-12">
+									<section class="card">
+										<div class="card-body">
+											<div class="box-block mtb32">
+												<h3 class="font-weight-bold"><span class="text-underline">Payments</span></h3>
+											</div>
+										</div>
+									</section>
+								</div>
+							</div>
+						</div>
+						<!--end 7th tab--> 
 					</div>
-				</section>
-			</div>
+				</div>
+			</section>
 		</div>
 	</div>
+</div>
 </div>
 @endsection
 

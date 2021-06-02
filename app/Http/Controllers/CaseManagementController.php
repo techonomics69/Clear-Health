@@ -149,8 +149,8 @@ class CaseManagementController extends Controller
     echo "<pre>";
   print_r($value);
   echo "</pre>";
-  die();
-    if(isset($value->question) && $value->question='Hey there! First, we need to know your legal name.')
+  //die();
+    /*if(isset($value->question) && $value->question='Hey there! First, we need to know your legal name.')
     {
       $first_name = $value->answer = $user_case_management_data->first_name;
       $last_name =  $value->answer = $user_case_management_data->last_name;
@@ -161,7 +161,7 @@ class CaseManagementController extends Controller
       print_r($last_name);
       echo "</pre>";
       
-    }
+    }*/
   }
   $accutane = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',8)->first();
 

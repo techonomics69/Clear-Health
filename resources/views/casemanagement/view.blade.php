@@ -169,12 +169,12 @@
 													@foreach($general_que as $key => $general)
 													<div class="row" style="padding: 10px;">
 														<div class="col-md-12">
-															@foreach($user_case_management_data as $key => $user_case_management)
+															<!-- @foreach($user_case_management_data as $key => $user_case_management) -->
 															<?php 
 															if(isset($general->question) && $general->question == 'Hey there! First, we need to know your legal name.')
 															{ 
-																$first_name = $general->answer = $user_case_management->first_name;
-																$last_name =  $general->answer = $user_case_management->last_name;
+																$first_name = $general->answer = $user_case_management_data->first_name;
+																$last_name =  $general->answer = $user_case_management_data->last_name;
 																?>
 																<h4><strong>Que <?php echo ++$j; ?> : <?php 
 																/*if(isset($general) && $general->question="Hey there! First, we need to know your legal name.") {*/
@@ -195,7 +195,7 @@
 															}
 																
 																?> 
-																@endforeach
+																<!-- @endforeach -->
 															</div>
 														</div>
 														@endforeach

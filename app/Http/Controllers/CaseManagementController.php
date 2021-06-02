@@ -150,7 +150,7 @@ class CaseManagementController extends Controller
       print_r($first_name); 
       print_r($last_name);
       echo "</pre>";
-      die();
+      
     }
   }
   $accutane = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',8)->first();

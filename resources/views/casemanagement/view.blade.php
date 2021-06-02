@@ -177,26 +177,33 @@
 																$getanswer= implode(" " , $answer);
 															} */
 															?>
-															<h4><strong>Que <?php echo ++$j;?> : <?php echo $general->question; ?></strong></h4>
+															<h4><strong>Que <?php echo ++$j;?> : <?php 
+															if(isset($value) && $value->question="Hey there! First, we need to know your legal name.") {
+																//echo $general->question;
+																echo $general->question; ?></strong></h4>
 
-															<p>Ans: <?php if(isset($general->answer)){
-																$answer =  (array)$general->answer;
-																$getanswer= implode(" " ,$answer);
-																echo $getanswer;
-															} ?> 
+																<p>Ans: <?php if(isset($general->answer)){
+																	$first_name = $value->answer = $user_case_management_data->first_name;
+																	$last_name =  $value->answer = $user_case_management_data->last_name;
+																	$answer =  (array)$general->answer;
+																	$getanswer= implode(" " ,$answer);
+																	echo $first_name;
+																	echo $last_name;
+																	echo $getanswer;
+																} ?> 
+															</div>
 														</div>
+														@endforeach
 													</div>
-													@endforeach
-												</div>
-											<?php } ?>
+												<?php } ?>
 
-											<?php if($key == 8) { ?>
-												<?php $j = 0; ?>
-												<div id="home8" class="tab-pane fade in">	
-													@foreach($accutane_que as $key => $accutane)
-													<div class="row" style="padding: 10px;">
-														<div class="col-md-12">
-															<?php 
+												<?php if($key == 8) { ?>
+													<?php $j = 0; ?>
+													<div id="home8" class="tab-pane fade in">	
+														@foreach($accutane_que as $key => $accutane)
+														<div class="row" style="padding: 10px;">
+															<div class="col-md-12">
+																<?php 
 															/*$getquestions = $accutane->question;
 															if(isset($accutane->answer)){
 																$answer =  (array)$accutane->answer;
@@ -205,24 +212,24 @@
 															?>
 															<h4><strong>Que  <?php echo ++$j;?> : <?php echo $accutane->question; ?></strong></h4>
 															<p>Ans: 
-															<?php if(isset($accutane->answer)){
-																$answer =  (array)$accutane->answer;
-																$getanswer= implode(" " ,$answer);
-																echo $getanswer;
-															} ?> 
+																<?php if(isset($accutane->answer)){
+																	$answer =  (array)$accutane->answer;
+																	$getanswer= implode(" " ,$answer);
+																	echo $getanswer;
+																} ?> 
+															</div>
 														</div>
+														@endforeach
 													</div>
-													@endforeach
-												</div>
-											<?php } ?>
+												<?php } ?>
 
-											<?php if($key == 9) { ?>
-												<?php $j = 0; ?>
-												<div id="home9" class="tab-pane fade in">	
-													@foreach($topical_que as $key => $topical)
-													<div class="row" style="padding: 10px;">
-														<div class="col-md-12">
-															<?php 
+												<?php if($key == 9) { ?>
+													<?php $j = 0; ?>
+													<div id="home9" class="tab-pane fade in">	
+														@foreach($topical_que as $key => $topical)
+														<div class="row" style="padding: 10px;">
+															<div class="col-md-12">
+																<?php 
 															/*$getquestions = $topical->question;
 															if(isset($topical->answer)){
 																$answer =  (array)$topical->answer;

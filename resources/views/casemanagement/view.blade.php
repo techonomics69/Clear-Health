@@ -170,8 +170,8 @@
 													<div class="row" style="padding: 10px;">
 														<div class="col-md-12">
 															<?php 
-															if(isset($general->question) && $general->question='Hey there! First, we need to know your legal name.')
-    {
+															/*if(isset($general->question) && $general->question='Hey there! First, we need to know your legal name.')
+    {*/
 															?>
 															<h4><strong>Que <?php echo ++$j;?> : <?php 
 															/*if(isset($general) && $general->question="Hey there! First, we need to know your legal name.") {*/
@@ -186,7 +186,7 @@
 																	$getanswer= implode(" " ,$answer);
 																	
 																	echo $getanswer;
-																} 
+																//} 
 															}
 																/*echo $first_name;
 																echo $last_name;*/

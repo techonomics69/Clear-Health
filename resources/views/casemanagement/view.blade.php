@@ -546,12 +546,24 @@
 								<div class="row" style="padding: 20px;">
 									<div class="col-md-12">
 										<section class="card">
-											<div class="card-body">
+											
+
+<!-- <ul class="nav nav-tabs" id="messages-tab-menu">
+
+											@foreach($category as $key => $data)
+											{{-- <li><a class="btn @if($activeTab == 0) active @elseif($current_tab_id == 'home'.$key) active @endif" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li> --}}
+
+											<li><a class="btn" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li>
+											<?php //$activeTab++ ?> 
+											@endforeach
+										</ul> -->
+
 
 <ul class="nav nav-tabs" id="casemanagement-tab-menu">
 						<li><a class="btn active " data-toggle="tab" href="#profile">Medical Messgaes</a></li>
 						<li><a class="btn active " data-toggle="tab" href="#profile">Non-Medical Messgaes</a></li>
 					</ul>
+					<div class="card-body">
 
 
 												<!-- <div class="box-block mtb32">

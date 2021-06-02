@@ -179,18 +179,21 @@
 															?>
 															<h4><strong>Que <?php echo ++$j;?> : <?php 
 															if(isset($general) && $general->question="Hey there! First, we need to know your legal name.") {
+																$first_name = $general->answer = $user_case_management_data->first_name;
+																	$last_name =  $general->answer = $
 																//echo $general->question;
 																echo $general->question; ?></strong></h4>
 
 																<p>Ans: <?php if(isset($general->answer)){
-																	$first_name = $general->answer = $user_case_management_data->first_name;
-																	$last_name =  $general->answer = $user_case_management_data->last_name;
+																	user_case_management_data->last_name;
 																	$answer =  (array)$general->answer;
 																	$getanswer= implode(" " ,$answer);
-																	echo $first_name;
-																	echo $last_name;
+																	
 																	echo $getanswer;
-																} ?> 
+																} 
+echo $first_name;
+																	echo $last_name;
+																?> 
 															</div>
 														</div>
 														@endforeach

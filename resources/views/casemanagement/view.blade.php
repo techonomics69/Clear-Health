@@ -181,7 +181,7 @@
 																echo $general->question; ?></strong></h4>
 
 																<p>Ans: <?php 
-																
+
 																$first_name = $general->answer = $user_case_management_data->first_name;
 																$last_name =  $general->answer = $user_case_management_data->last_name;
 																echo $first_name;
@@ -194,14 +194,15 @@
 																	$getanswer= implode(" " ,$answer);
 																	echo $getanswer;
 																} ?>
-																<?php 
-															}
-															?> 
+																
 															<!-- @endforeach -->
 														</div>
 													</div>
 													@endforeach
 												</div>
+												<?php 
+															}
+															?> 
 											<?php } ?>
 
 											<?php if($key == 8) { ?>

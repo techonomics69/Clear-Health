@@ -59,8 +59,8 @@ function create_patient($user_id,$case_id)
 
   $allergies="";
   $current_medications="";
-  $weight ="";
-  $height="";
+  $weight = 0;
+  $height= 0;
 
  $userQueAns = getQuestionAnswerFromUserid($user_id,$case_id);
  foreach ($userQueAns as $key => $value) {

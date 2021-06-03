@@ -84,22 +84,19 @@ class TreatmentGuidesController extends BaseController
               "status" =>"1",
               "guides_image" => "testimg",
           ]);
-        
+
 
 //$products = Product::where('product_active', '1')->get();
         foreach ($array as $key => $value) {
            //$product = Product::find($id);
           echo $value["id"]."<br />";
-          echo $value["title"]."<br />";
-          echo $value["sub_title"]."<br />";
-          echo $value["status"]."<br />";
-          echo $value["guides_image"]."<br />";
+
       }
 
       if (is_null($array)) {
         return $this->sendError('Blog not found.');
     }
-    
-    return $this->sendResponse($array, 'Cms retrieved successfully.');
+
+    return $this->sendResponse($value, 'Cms retrieved successfully.');
 }
 }

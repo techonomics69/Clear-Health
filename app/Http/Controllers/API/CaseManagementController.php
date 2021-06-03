@@ -974,13 +974,6 @@ public function createMessage(Request $request){
 
      $message_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')->join('users', 'users.id', '=', 'messages.user_id')->select('messages.*','message_files.*','users.first_name','users.last_name')->where('user_id',$user_id)->OrderBy('messages.id','desc')->get();
 
-     echo "<pre>";
-     print_r($destinationPath = public_path());
-     echo "<pre>";
-
-     echo asset('public/Message_files/download.png');
-     exit();
-
      $message_data = array();
      foreach($message_details as $key=>$value){
      	$message_data[$key]['id'] = $value['id'];
@@ -998,6 +991,18 @@ public function createMessage(Request $request){
      	}
 
      	$message_data[$key]['messageStatus'] = $messageStatus;
+
+     	if($value['file_path']!=''){
+     		$message_data[$key]['file_path'] = assets($value['file_path']);
+     	}else{
+     		$message_data[$key]['file_path'] = null;
+     	}
+
+     	if($value['file_name']!=''){
+     		$message_data[$key]['file_name'] = $value['file_name'];
+     	}else{
+     		$message_data[$key]['file_name'] = null;
+     	}
 
      }
 

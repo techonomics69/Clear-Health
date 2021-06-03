@@ -977,6 +977,7 @@ public function createMessage(Request $request){
      echo "<pre>";
      print_r($destinationPath = public_path());
      echo "<pre>";
+      print_r(url());
      exit();
 
      $message_data = array();

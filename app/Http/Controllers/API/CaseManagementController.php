@@ -975,7 +975,7 @@ public function createMessage(Request $request){
      $message_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')->join('users', 'users.id', '=', 'messages.user_id')->select('messages.*','message_files.*','users.first_name','users.last_name')->where('user_id',$user_id)->OrderBy('messages.id','desc')->get();
 
      echo "<pre>";
-     print_r($message_details);
+     print_r($destinationPath = public_path());
      echo "<pre>";
      exit();
 

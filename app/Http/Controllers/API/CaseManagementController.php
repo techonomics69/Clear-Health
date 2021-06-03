@@ -962,9 +962,12 @@ public function createMessage(Request $request){
       chmod($destinationPath."/".$doc_file_name, 0777);
 
       $file_path = 'public/Message_files/' .$doc_file_name;
+
+      $file_mimeType = $documents->getClientMimeType();
     }else{
       $doc_file_name = "";
       $file_path="";
+      $file_mimeType ="";
     }
     // end of code to upload files ids
     
@@ -981,6 +984,7 @@ public function createMessage(Request $request){
     $message_file_data = array();
     $message_file_data['file_name'] = $doc_file_name;
     $message_file_data['file_path'] = $file_path;
+    $message_file_data['mime_type'] = $file_mimeType;
     $message_file_data['msg_id'] = $message_data['id'];
     $message_file_data = MessageFiles::create($message_file_data);
     if(!empty($message_file_data)){

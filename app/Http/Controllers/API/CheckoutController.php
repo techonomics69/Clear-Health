@@ -124,49 +124,12 @@ class CheckoutController extends BaseController
 
 
             //call create patient api
+                $patient_id = create_patient($data['user_id'],$data['case_id']);
 
-            $allergies="";
-            $current_medications="";
-            $weight ="";
-            $$height="";
-
-            $userQueAns = getQuestionAnswerFromUserid($user_id,$case_id);
-            foreach ($userQueAns as $key => $value) {
-
-                $question = $value->question;
-
-                if($question == "Please list medications that you are allergic to."){
-                  if(isset($value->answer) && $value->answer!=''){
-
-                    $allergies =  $value->answer;
-
-              }
-
-              if($question == "Please list any other medications that you’re currently taking."){
-                  if(isset($value->answer) && $value->answer!=''){
-
-                    $current_medications =  $value->answer;
-
-              }
-
-              if($question == "What is your weight in lbs?"){
-                  if(isset($value->answer) && $value->answer!=''){
-
-                    $weight =  $value->answer;
-
-              }
-
-              if($question == "What is your Height?"){
-                  if(isset($value->answer) && $value->answer!=''){
-
-                    $height =  $value->answer;
-
-              }
-
-              
-          }
-      }
-
+                echo "<pre>";
+                print_r($patient_id);
+                echo "<pre>";
+                exit();
             //end of code create patient api
 
         /*$pro_data  =  CaseManagement::select('recommended_product')->where('user_id',$data['user_id'])->where('id',$data['case_id'])->first();
@@ -184,7 +147,7 @@ class CheckoutController extends BaseController
 
         $preferred_pharmacy_id = $pharmacy_data['pharmacy_pickup'];
 
-        /*echo "<pre>user_id:";
+        echo "<pre>user_id:";
         print_r($data['user_id']);
         echo "<pre>";
        echo "<pre>case_id:";
@@ -196,18 +159,18 @@ class CheckoutController extends BaseController
        print_r($preferred_pharmacy_id);
        echo "<pre>";
 
-       exit();*/
+       exit();
 
 
 
-        $response = CreateCase($data['user_id'],$data['case_id'],$preferred_pharmacy_id);
+        $response = CreateCase($data['user_id'],$data['case_id'],$preferred_pharmacy_id,$patient_id);
 
         $response = json_decode($response);
 
         if(!empty($response)){
             $checkoutdata['md_response'] = $response;
          }
-        }
+        }*/*/
         //end of code for md create case
 
         //return $this->sendResponse(json_decode($response),'Case Created Successfully');

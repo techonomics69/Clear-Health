@@ -961,13 +961,14 @@ public function createMessage(Request $request){
   }
 
   public function getMessagesNonMedical(Request $request){
-    $case_id = $request['case_id'];
+    //$case_id = $request['case_id'];
     $user_id = $request['user_id'];
-    $md_case_id = $request['md_case_id'];
+    //$md_case_id = $request['md_case_id'];
+
 
     //$message_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')->select('messages.*','message_files.*')->where('case_id', $case_id)->where('md_case_id',$md_case_id)->where('user_id',$user_id)->get();
 
-     $message_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')->select('messages.*','message_files.*')->where('user_id',$user_id)->get();
+     $message_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')->select('messages.*','message_files.*')->where('user_id',$user_id)->OrderBy('messages.id','desc')->get();
 
     if(!empty($message_details) && count($message_details)>0 ){
       return $this->sendResponse($message_details,'Message retrieved successfully');
@@ -980,16 +981,14 @@ public function createMessage(Request $request){
   }
 
   public function getMdDetailForMessage(Request $request){
-    $case_id = $request['case_id'];
-    $user_id = $request['user_id'];
-    $md_case_id = $request['md_case_id'];
-
-    //$message_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')->select('messages.*','message_files.*')->where('case_id', $case_id)->where('md_case_id',$md_case_id)->where('user_id',$user_id)->get();
-
-     $message_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')->select('messages.*','message_files.*')->where('user_id',$user_id)->get();
+    $case_id = $request['case_id'];//system_case_id
+    $user_id = $request['user_id'];//user id
+   // $md_case_id = $request['md_case_id'];//md_case_id
+    
+    $message_details = CaseManagement::join('md_managment', 'md_managment.case_id', '=', 'case_managements.md_case_id')->select('case_managements.md_case_id','md_managment.*')->where('case_managements.id',$case_id)->where('case_managements.user_id',$user_id)->get()->toArray();
 
     if(!empty($message_details) && count($message_details)>0 ){
-      return $this->sendResponse($message_details,'Message retrieved successfully');
+      return $this->sendResponse($message_details,'data retrieved successfully');
     }else{
       return $this->sendResponse(array(),'No data found');
     }

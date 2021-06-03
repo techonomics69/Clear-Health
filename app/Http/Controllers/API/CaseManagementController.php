@@ -803,10 +803,10 @@ public function createMessage(Request $request){
     $msg_history = array();
 
     foreach($data as $key=>$value){
-    	$msg_history[]['message'] = $value['text'];
-    	$date = strtotime($value['created_at']);
+    	$msg_history[]['message'] = $value->text;
+    	$date = strtotime($value->created_at);
      	$message_data[]['date'] = date('M j', $date);
-    	$msg_history[]['read_at'] = $value['read_at'];
+    	$msg_history[]['read_at'] = $value->read_at;
     	$msg_history[]['messageStatus'] = 'sent';
 
     	if(!empty($value['message_files'])){
@@ -814,10 +814,10 @@ public function createMessage(Request $request){
     	}
 
     	if(!empty($value['clinician'])){
-    		$msg_history[]['message'] = $value['text'];
-    		$date = strtotime($value['created_at']);
+    		$msg_history[]['message'] = $value->text;
+    		$date = strtotime($value->created_at);
      	    $message_data[]['date'] = date('M j', $date);
-    		$msg_history[]['read_at'] = $value['read_at'];
+    		$msg_history[]['read_at'] = $value->read_at;
     		$msg_history[]['messageStatus'] = 'received';
     	}
     }

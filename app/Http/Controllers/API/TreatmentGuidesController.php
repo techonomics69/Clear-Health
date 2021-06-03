@@ -91,6 +91,7 @@ class TreatmentGuidesController extends BaseController
            //$product = Product::find($id);
           /*echo $value["id"]."<br />";*/
 
+
       }
 
       if (is_null($array)) {

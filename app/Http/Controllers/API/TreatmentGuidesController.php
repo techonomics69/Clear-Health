@@ -26,6 +26,7 @@ class TreatmentGuidesController extends BaseController
                 "title" => "abc",
                 "sub_title" => "abc1",
                 "status" =>"1",
+                "detail" => "AAAAAAA",
                 "guides_image" => "abcimg",
             ],
             [
@@ -33,6 +34,7 @@ class TreatmentGuidesController extends BaseController
                 "title" => "pqr",
                 "sub_title" => "pqr1",
                 "status" =>"1",
+                "detail" => "BBBBBBB",
                 "guides_image" => "pqrimg",
             ],
             [
@@ -40,6 +42,7 @@ class TreatmentGuidesController extends BaseController
               "title" => "xyz",
               "sub_title" => "xyz1",
               "status" =>"1",
+              "detail" => "CCCCCCCC",
               "guides_image" => "xyzimg",
           ],
           [
@@ -47,6 +50,7 @@ class TreatmentGuidesController extends BaseController
               "title" => "test",
               "sub_title" => "test1",
               "status" =>"1",
+              "detail" => "DDDDDDD",
               "guides_image" => "testimg",
           ]);
 

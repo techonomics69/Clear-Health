@@ -90,6 +90,7 @@ class TreatmentGuidesController extends BaseController
         foreach ($array as $key => $value) {
            //$product = Product::find($id);
             print_r($value["id"])."<br />";
+            
           /*echo $value["title"]."<br />";
           echo $value["sub_title"]."<br />";
           echo $value["status"]."<br />";

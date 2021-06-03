@@ -22,7 +22,10 @@ class TreatmentGuidesController extends Controller
     public function index()
     {
 
+    $TreatmentGuides = TreatmentGuides::OrderBy('id', 'ASC')->paginate(50);
+        return view('cms.index', compact('TreatmentGuides'))->with('i', ($request->input('page', 1) -1) * 5);
     }
+    
     public function create()
     {
        return view('treatmentGuides.create');

@@ -813,7 +813,7 @@ public function createMessage(Request $request){
     	 $msg_history[]['message_files'] = $value->message_files;
     	}
 
-    	if(!empty($value['clinician'])){
+    	if(!empty($value->clinician)){
     		$msg_history[]['message'] = $value->text;
     		$date = strtotime($value->created_at);
      	    $message_data[]['date'] = date('M j', $date);

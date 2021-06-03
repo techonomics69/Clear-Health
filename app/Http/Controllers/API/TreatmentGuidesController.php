@@ -24,7 +24,7 @@ class TreatmentGuidesController extends BaseController
     "title" => "test",
     "sub_title" => "test1",
     "status" =>"1",
-    "img" = "test",
+    "img" => "test",
 );
 
 // Using the short array syntax

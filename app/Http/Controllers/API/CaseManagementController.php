@@ -828,12 +828,6 @@ public function createMessage(Request $request){
     	$i++;
     }
 
-foreach ($msg_history as $k => $row)
-{
-$vc_array_value[$k] = $row['created_at'];
-}
-$desc_$msg_history= array_multisort($vc_array_value, SORT_DESC);
-
     if(!empty($msg_history) && count($msg_history)>0 ){
       return $this->sendResponse($msg_history,'Message retrieved successfully');
     }else{
@@ -1006,7 +1000,7 @@ $desc_$msg_history= array_multisort($vc_array_value, SORT_DESC);
 
     //$message_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')->select('messages.*','message_files.*')->where('case_id', $case_id)->where('md_case_id',$md_case_id)->where('user_id',$user_id)->get();
 
-     $message_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')->join('users', 'users.id', '=', 'messages.user_id')->select('messages.*','message_files.*','users.first_name','users.last_name')->where('user_id',$user_id)->OrderBy('messages.id','desc')->get();
+     $message_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')->join('users', 'users.id', '=', 'messages.user_id')->select('messages.*','message_files.*','users.first_name','users.last_name')->where('user_id',$user_id)->OrderBy('messages.id','asc')->get();
 
      $message_data = array();
      foreach($message_details as $key=>$value){

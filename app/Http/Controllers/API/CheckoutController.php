@@ -170,7 +170,7 @@ class CheckoutController extends BaseController
         if(!empty($response)){
             $checkoutdata['md_response'] = $response;
          }
-        }*/*/
+        }
         //end of code for md create case
 
         //return $this->sendResponse(json_decode($response),'Case Created Successfully');

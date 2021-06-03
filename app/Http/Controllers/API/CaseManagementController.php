@@ -809,7 +809,7 @@ public function createMessage(Request $request){
     	$msg_history[]['read_at'] = $value['read_at'];
     	$msg_history[]['messageStatus'] = 'sent';
 
-    	if(!empty($value['message_files']){
+    	if(!empty($value['message_files'])){
     	 $msg_history[]['message_files'] = $value['message_files'];
     	}
 

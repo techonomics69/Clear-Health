@@ -50,17 +50,51 @@ class TreatmentGuidesController extends BaseController
               "guides_image" => "testimg",
           ]);
 
-        return $this->sendResponse($array,'Cms retrieved successfully.');
+        return $this->sendResponse($array,'Treatement Guides retrieved successfully.');
     }
 
-    /*public function show($id)
+    public function show($id)
     {
-        $cms = Cms::find($id);
+        $array = array(
+            [
+                "id" =>"1",
+                "title" => "abc",
+                "sub_title" => "abc1",
+                "status" =>"1",
+                "guides_image" => "abcimg",
+            ],
+            [
+                "id" =>"2",
+                "title" => "pqr",
+                "sub_title" => "pqr1",
+                "status" =>"1",
+                "guides_image" => "pqrimg",
+            ],
+            [
+              "id" =>"3",
+              "title" => "xyz",
+              "sub_title" => "xyz1",
+              "status" =>"1",
+              "guides_image" => "xyzimg",
+          ],
+          [
+              "id" =>"4",
+              "title" => "test",
+              "sub_title" => "test1",
+              "status" =>"1",
+              "guides_image" => "testimg",
+          ]);
   
-        if (is_null($cms)) {
+
+//$products = Product::where('product_active', '1')->get();
+         foreach ($array as $key => $value) {
+            $value->id = $value->array->id;
+        }
+
+        if (is_null($array)) {
             return $this->sendError('Blog not found.');
         }
    
-        return $this->sendResponse($cms, 'Cms retrieved successfully.');
-    }*/
+        return $this->sendResponse($array, 'Cms retrieved successfully.');
+    }
 }

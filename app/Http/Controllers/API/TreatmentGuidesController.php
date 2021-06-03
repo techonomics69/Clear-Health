@@ -97,6 +97,6 @@ class TreatmentGuidesController extends BaseController
         return $this->sendError('Blog not found.');
     }
 
-    return $this->sendResponse($array, 'Cms retrieved successfully.');
+    return $this->sendResponse($value, 'Cms retrieved successfully.');
 }
 }

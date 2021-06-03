@@ -990,6 +990,7 @@ public function createMessage(Request $request){
     if(!empty($message_file_data)){
       $message_data['file_name'] = $doc_file_name;
       $message_data['file_path'] = $file_path;
+      $message_data['mime_type'] = $file_mimeType;
     }
 
     return $this->sendResponse($message_data,'Message created successfully');

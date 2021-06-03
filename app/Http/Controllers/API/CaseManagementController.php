@@ -908,10 +908,14 @@ public function createMessage(Request $request){
 
   public function sendMessageNonMedical(Request $request){
     $user_id = $request['user_id'];
-    $case_id = $request['md_case_id'];
+
+    $case_id = (isset($request['md_case_id']) && $request['md_case_id']!='')?$request['md_case_id']:'';
     $system_case_id = $request['case_id'];
-    $users_message_type = $request['users_message_type'];//medical/non_medical
+
+    $users_message_type = (isset($request['users_message_type'])&&$request['users_message_type']!='')?$request['users_message_type']:'';//medical/non_medical
+
     $sender = $request['sender'];//user/admin
+    
     $text = $request['text']; 
 
     //code to upload files ids

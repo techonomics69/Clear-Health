@@ -448,7 +448,7 @@ if(!empty($Patient_data)){
      }else{
 
         if($question =='How would you rate your stress level on a scale of 1 to 10?'){
-             $userquestion[$key]['answer'] = $value->answer;
+             $userquestion[$key]['answer'] = "'".$value->answer."'";
         }else{
           $userquestion[$key]['answer'] = $value->answer;
         }

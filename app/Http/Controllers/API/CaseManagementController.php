@@ -993,7 +993,7 @@ public function createMessage(Request $request){
      	$message_data[$key]['messageStatus'] = $messageStatus;
 
      	echo "<pre>";
-     	print_r(url());
+     	print_r(url()->full());
      	echo "<pre>";
      	exit();
 

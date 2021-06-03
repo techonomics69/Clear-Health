@@ -806,8 +806,8 @@ public function createMessage(Request $request){
     foreach($data as $key=>$value){
     	$msg_history[$i]['message'] = $value->text;
     	$date = strtotime($value->created_at);	
-     	$message_data[$i]['msg_date'] = date('M j', $date);
-     	$message_data[$i]['created_at'] = $date;
+     	$msg_history[$i]['msg_date'] = date('M j', $date);
+     	$msg_history[$i]['created_at'] = $date;
     	$msg_history[$i]['read_at'] = $value->read_at;
     	$msg_history[$i]['messageStatus'] = 'sent';
 
@@ -819,8 +819,8 @@ public function createMessage(Request $request){
     		$i++;
     		$msg_history[$i]['message'] = $value->text;
     		$date1 = strtotime($value->created_at);
-     	    $message_data[$i]['msg_date'] = date('M j', $date);
-     	    $message_data[$i]['created_at'] = $date1;
+     	    $msg_history[$i]['msg_date'] = date('M j', $date);
+     	    $msg_history[$i]['created_at'] = $date1;
     		$msg_history[$i]['read_at'] = $value->read_at;
     		$msg_history[$i]['messageStatus'] = 'received';
     	}
@@ -963,7 +963,7 @@ public function createMessage(Request $request){
 
       $file_path = 'public/Message_files/' .$doc_file_name;
     }else{
-      $file = "";
+      $doc_file_name = "";
       $file_path="";
     }
     // end of code to upload files ids

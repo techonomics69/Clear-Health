@@ -978,7 +978,7 @@ public function createMessage(Request $request){
      print_r($destinationPath = public_path());
      echo "<pre>";
 
-     echo url();
+     echo asset('public/Message_files/download.png');
      exit();
 
      $message_data = array();

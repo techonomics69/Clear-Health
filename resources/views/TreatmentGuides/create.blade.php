@@ -64,7 +64,7 @@
                                 {!! Form::select('status', ['0' => 'Please Select', '1' => 'In Stock', '2' => 'Out of Stock'], null, ['class' => 'form-control']); !!}
                             </div>
                         </div>
-                        
+
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="form-group">
                                 <strong>Guides Details:</strong>
@@ -72,7 +72,7 @@
                                 {!! Form::textarea('detail', null, array('placeholder' => 'Details','class' => 'details')) !!}
                             </div>
                         </div>
-                        
+
                         <div class="col-md-2 col-sm-3 col-xs-6">
                             <div class="form-group">
                                 <strong>Image:</strong>
@@ -80,7 +80,7 @@
                                 {!! Form::file('guides_image', null, array('class' => 'form-control')) !!}                                        
                             </div>
                         </div>
-                        
+
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 text-right">
                         <a href="{{ route('treatmentGuides.index') }}">
@@ -110,6 +110,7 @@
         });
     });
 </script>
+
 <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>  
 <script type="text/javascript">
     tinymce.init({

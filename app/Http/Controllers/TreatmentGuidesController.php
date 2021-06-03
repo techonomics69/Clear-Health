@@ -25,7 +25,8 @@ class TreatmentGuidesController extends Controller
     }
     public function create()
     {
- return redirect()->route('treatmentGuides.create');
+       return view('treatmentGuides.create');
+ //return redirect()->route('treatmentGuides.create');
 
     }
 

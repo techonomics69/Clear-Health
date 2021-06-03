@@ -86,16 +86,16 @@ class TreatmentGuidesController extends BaseController
           ]);
   
 
-//$products = Product::where('product_active', '1')->get();
-         foreach ($array as $key => $value) {
+$products1 = array::where('id', '1')->get();
+         /*foreach ($array as $key => $value) {
            //$product = Product::find($id);
            $value->array = $value->array->id; 
-        }
+        }*/
 
-        if (is_null($array)) {
+        if (is_null($products1)) {
             return $this->sendError('Blog not found.');
         }
    
-        return $this->sendResponse($array, 'Cms retrieved successfully.');
+        return $this->sendResponse($products1, 'Cms retrieved successfully.');
     }
 }

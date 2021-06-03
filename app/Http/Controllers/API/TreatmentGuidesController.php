@@ -18,7 +18,7 @@ class TreatmentGuidesController extends BaseController
     public function index()
     {
 
-        $array = array(
+        /*$array = array(
     "foo" => "bar",
     "bar" => "foo",
 );
@@ -28,11 +28,10 @@ $array = [
     "foo" => "bar",
     "bar" => "foo",
 ];
-    echo"<pre>";
-    print_r($array);
-    echo"</pre>";   
+   */ 
+   echo "HELLOO";   
     
-        return $this->sendResponse($array, 'Cms retrieved successfully.');
+        return $this->sendResponse('Cms retrieved successfully.');
     }
 
     /*public function show($id)

@@ -46,7 +46,7 @@ class TreatmentGuidesController extends Controller
                 
         toastr()->success('Treatment Guides created successfully');
 
-        return redirect()->route('treat_guides.index');
+        return redirect()->route('treatmentGuides.index');
     }
     
 }

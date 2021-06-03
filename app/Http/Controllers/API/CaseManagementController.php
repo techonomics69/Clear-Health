@@ -803,6 +803,8 @@ public function createMessage(Request $request){
     $msg_history = array();
 
     $i = 0;
+
+    echo "initial call".$i."</br>";
     foreach($data as $key=>$value){
     	$msg_history[$i]['message'] = $value->text;
     	$date = strtotime($value->created_at);
@@ -816,6 +818,7 @@ public function createMessage(Request $request){
     	}
 
     	if(!empty($value->clinician)){
+    		echo "clinician call".$i."</br>";
     		$i++;
     		$msg_history[$i]['message'] = $value->text;
     		$date1 = strtotime($value->created_at);
@@ -826,7 +829,8 @@ public function createMessage(Request $request){
     	}
 
     	$i++;
-    }
+    	echo "last call".$i."</br>";
+    }die();
 
     if(!empty($msg_history) && count($msg_history)>0 ){
       return $this->sendResponse($msg_history,'Message retrieved successfully');

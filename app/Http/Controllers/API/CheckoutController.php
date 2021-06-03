@@ -110,14 +110,7 @@ class CheckoutController extends BaseController
             return $this->sendError('Validation Error.', $validator->errors()->all());       
         }
 
-        $checkoutdata = Checkout::create($data);
-        $checkcout_address = Checkoutaddress::where('user_id', $data['user_id'])->OrderBy('id','DESC')->first();
-        
-        if(!empty($checkcout_address))
-        {
-        
-            $update_checkout_address  =  Checkoutaddress::where('id',$checkcout_address['id'])->update(['order_id' => $order_id]);
-        }
+       
 
         //code gor md create case
         if($data['medication_type'] == 1){
@@ -136,30 +129,58 @@ class CheckoutController extends BaseController
 
         $product_type = $pro_data['recommended_product'];*/
 
-        $cart_ids = explode(',', $data['cart_id']);
+            if($patient_id != ''){
+               $cart_ids = explode(',', $data['cart_id']);
 
-        $pharmacy_data  =  Cart::select('pharmacy_pickup')->where('user_id',$data['user_id'])->whereIn('id',$cart_ids)->where('order_type', '!=', 'AddOn')->first();
+               $pharmacy_data  =  Cart::select('pharmacy_pickup')->where('user_id',$data['user_id'])->whereIn('id',$cart_ids)->where('order_type', '!=', 'AddOn')->first();
 
-        $preferred_pharmacy_id = $pharmacy_data['pharmacy_pickup'];
+               $preferred_pharmacy_id = $pharmacy_data['pharmacy_pickup'];
 
-        $response = CreateCase($data['user_id'],$data['case_id'],$preferred_pharmacy_id,$patient_id);
+               $response = CreateCase($data['user_id'],$data['case_id'],$preferred_pharmacy_id,$patient_id);
 
-        $response = json_decode($response);
+               $response = json_decode($response);
 
-        echo "<pre>";
-        print_r($response);
-        echo "<pre>";
-        exit();
+               if(!empty($response)){
 
-        if(!empty($response)){
-            $checkoutdata['md_response'] = $response;
-         }
+                $checkoutdata['md_response'] = $response;
+                //code to insert data in checkout table
+                $checkoutdata = Checkout::create($data);
+                $checkcout_address = Checkoutaddress::where('user_id', $data['user_id'])->OrderBy('id','DESC')->first();
+
+                if(!empty($checkcout_address))
+                {
+
+                    $update_checkout_address  =  Checkoutaddress::where('id',$checkcout_address['id'])->update(['order_id' => $order_id]);
+                }
+                //end of code to insert data in checkout table
+
+                 return $this->sendResponse($checkoutdata, 'Order Created Successfully');
+                }
+            }else{
+                 return $this->sendResponse(array(), 'something went wrong!');
+            }
+
+       
+        }else{
+            // code to insert data in checkout table
+            $checkoutdata = Checkout::create($data);
+            $checkcout_address = Checkoutaddress::where('user_id', $data['user_id'])->OrderBy('id','DESC')->first();
+            
+            if(!empty($checkcout_address))
+            {
+            
+                $update_checkout_address  =  Checkoutaddress::where('id',$checkcout_address['id'])->update(['order_id' => $order_id]);
+            }
+
+            // end of code to insert data in checkout table
+
+             return $this->sendResponse($checkoutdata, 'Order Created Successfully');
         }
         //end of code for md create case
 
         //return $this->sendResponse(json_decode($response),'Case Created Successfully');
 
-        return $this->sendResponse($checkoutdata, 'Order Created Successfully');
+       
 }
 
 public function addCheckoutAddress(Request $request)

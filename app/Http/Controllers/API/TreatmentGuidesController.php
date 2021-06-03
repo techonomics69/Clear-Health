@@ -9,7 +9,7 @@ use Exception;
 
 
 
-   
+
 class TreatmentGuidesController extends BaseController
 {
     /**
@@ -20,21 +20,36 @@ class TreatmentGuidesController extends BaseController
     public function index()
     {
 
-        /*$array = array(
-    "foo" => "bar",
-    "bar" => "foo",
-);
+        $array = array(
+            "id" =>"1",
+            "title" => "abc",
+            "sub_title" => "abc1",
+            "status" =>"1",
+            "guides_image" => "abcimg",
+            )array(
+               "id" =>"2",
+               "title" => "pqr",
+               "sub_title" => "pqr1",
+               "status" =>"1",
+               "guides_image" => "pqrimg",
+            )array(
+               "id" =>"3",
+               "title" => "xyz",
+               "sub_title" => "xyz1",
+               "status" =>"1",
+               "guides_image" => "xyzimg",
+           
+            )array(
+               "id" =>"4",
+               "title" => "rst",
+               "sub_title" => "rst1",
+               "status" =>"1",
+               "guides_image" => "rstimg",
+           ));
 
 // Using the short array syntax
-$array = [
-    "foo" => "bar",
-    "bar" => "foo",
-];
-   */ 
-$test ="hello 1";
-   echo $test;   
-    
-        return $this->sendResponse($test,'Cms retrieved successfully.');
+
+        return $this->sendResponse($array,'Cms retrieved successfully.');
     }
 
     /*public function show($id)

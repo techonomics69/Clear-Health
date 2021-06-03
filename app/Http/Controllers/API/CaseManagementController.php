@@ -998,7 +998,7 @@ public function createMessage(Request $request){
      	exit();
 
      	if($value['file_path']!=''){
-     		$message_data[$key]['file_path'] = echo assets(''.$value['file_path'].'');
+     		$message_data[$key]['file_path'] = $value['file_path'];
      	}else{
      		$message_data[$key]['file_path'] = null;
      	}

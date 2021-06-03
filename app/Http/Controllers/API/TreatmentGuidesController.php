@@ -25,11 +25,23 @@ class TreatmentGuidesController extends BaseController
     "sub_title" => "test1",
     "status" =>"1",
     "img" => "test",
-);
+        );
+        $array1 = array(
+    "title" => "test",
+    "sub_title" => "test1",
+    "status" =>"1",
+    "img" => "test",
+        );
+        $array2 = array(
+    "title" => "test",
+    "sub_title" => "test1",
+    "status" =>"1",
+    "img" => "test",
+        );
 
 // Using the short array syntax
 
-        return $this->sendResponse($array,'Cms retrieved successfully.');
+        return $this->sendResponse($array,$array1,$array2,'Cms retrieved successfully.');
     }
 
     /*public function show($id)

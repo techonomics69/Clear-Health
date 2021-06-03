@@ -666,12 +666,12 @@ data-open="click" data-menu="vertical-menu" data-col="2-columns">
                   </a>
                   <ul class="menu-content">
                     <li class="sub-menu guides-list ">
-                      <a href="{{ route('cms.index') }}">
+                      <a href="{{ route('treatmentGuides.index') }}">
                         Guides List
                       </a>                          
                     </li>
                     <li class="sub-menu guides-create">
-                      <a href="{{ route('cms.create') }}">
+                      <a href="{{ route('treatmentGuides.create') }}">
                         Guides Create
                       </a>                          
                     </li>                                                               

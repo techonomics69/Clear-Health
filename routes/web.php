@@ -23,6 +23,7 @@ use App\Http\Controllers\CaseManagementController;
 use App\Http\Controllers\FeesController;
 use App\Http\Controllers\MdManagementController;
 use App\Http\Controllers\OrderManagementController;
+use App\Http\Controllers\TreatmentGuidesController;
 
 
 /*
@@ -63,8 +64,8 @@ Route::get('logout', function () {
 
 // Reset Password Routes
 
-    Route::get('/reset-password/{token}', [ResetPasswordController::class, 'getPassword']);
-    Route::post('/reset-password', [ResetPasswordController::class, 'updatePassword'])->name('reset.password'); 
+Route::get('/reset-password/{token}', [ResetPasswordController::class, 'getPassword']);
+Route::post('/reset-password', [ResetPasswordController::class, 'updatePassword'])->name('reset.password'); 
 
 //Admin Routes
 Route::group(['middleware' => ['auth']],function(){  
@@ -176,13 +177,13 @@ Route::group(['middleware' => ['auth']],function(){
     Route::get('admin/customer/edit/{id}', [CustomerController::class, 'edit'])->name('customers.edit');
     Route::patch('admin/customer/update/{id}', [CustomerController::class, 'update'])->name('customers.update');
     Route::delete('admin/customer/destroy/{id}', [CustomerController::class, 'destroy'])->name('customers.destroy'); 
-  
+    
 
 // Change password Routes
 
     Route::get('change-password', [ChangePasswordController::class, 'index'])->name('change.index');
     Route::post('change-password', [ChangePasswordController::class, 'store'])->name('change.password');    
-       
+    
 // Quiz Routes
     Route::get('admin/quiz', [QuizController::class, 'index'])->name('quiz.index');
     Route::get('admin/quiz/create', [QuizController::class, 'create'])->name('quiz.create');
@@ -193,7 +194,7 @@ Route::group(['middleware' => ['auth']],function(){
     Route::delete('admin/quiz/destroy/{id}', [QuizController::class, 'destroy'])->name('quiz.destroy');
     Route::post('admin/quiz/orderUpdate', [QuizController::class, 'orderUpdate'])->name('orderUpdate.update');
     Route::get('admin/quiz/option', [QuizController::class, 'option'])->name('quiz.option');
-         
+    
 // Quiz Category Routes
     Route::get('admin/quizCategory', [QuizCategoryController::class, 'index'])->name('quizCategory.index');
     Route::get('admin/quizCategory/create', [QuizCategoryController::class, 'create'])->name('quizCategory.create');
@@ -239,11 +240,17 @@ Route::group(['middleware' => ['auth']],function(){
 
     //Order Management
     Route::get('admin/ordermanagement', [OrderManagementController::class, 'index'])->name('ordermanagement.index');
-   /* Route::get('admin/ordermanagement/show/{id}/{case_id}', [OrderManagementController::class, 'show'])->name('ordermanagement.show');*/
-    /*Route::get('admin/ordermanagement/show/{case_id}', [OrderManagementController::class, 'show'])->name('ordermanagement.show');*/
-     Route::get('admin/ordermanagement/show/{id}', [OrderManagementController::class, 'show'])->name('ordermanagement.show');
+    Route::get('admin/ordermanagement/show/{id}', [OrderManagementController::class, 'show'])->name('ordermanagement.show');
 
-
+     //TreatmentGuides
+    Route::get('admin/treatmentGuides', [TreatmentGuidesController::class, 'index'])->name('treatmentGuides.index');
+    Route::get('admin/treatmentGuides/create', [TreatmentGuidesController::class, 'create'])->name('treatmentGuides.create');
+    Route::post('admin/treatmentGuides/store', [TreatmentGuidesController::class, 'store'])->name('treatmentGuides.store');
+    Route::get('admin/treatmentGuides/show/{id}', [TreatmentGuidesController::class, 'show'])->name('treatmentGuides.show');
+    Route::get('admin/treatmentGuides/edit/{id}', [TreatmentGuidesController::class, 'edit'])->name('treatmentGuides.edit');
+    Route::patch('admin/treatmentGuides/update/{id}', [TreatmentGuidesController::class, 'update'])->name('treatmentGuides.update');
+    Route::delete('admin/treatmentGuides/destroy/{id}', [TreatmentGuidesController::class, 'destroy'])->name('treatmentGuides.destroy');
+    
 });
 
 

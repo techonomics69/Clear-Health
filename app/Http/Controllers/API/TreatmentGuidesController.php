@@ -28,7 +28,9 @@ $array = [
     "foo" => "bar",
     "bar" => "foo",
 ];
-       
+    echo"<pre>";
+    print_r($array);
+    echo"</pre>";   
     
         return $this->sendResponse($array, 'Cms retrieved successfully.');
     }

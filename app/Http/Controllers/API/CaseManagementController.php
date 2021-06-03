@@ -976,7 +976,7 @@ public function createMessage(Request $request){
 
      $message_data = array();
      foreach($message_details as $key=>$value){
-     		
+     	$message_data[$key]['id'] = $value['id'];
      	$message_data[$key]['name'] = $value['first_name'].' '.$value['last_name'];
      	$message_data[$key]['message'] = $value['text'];
 

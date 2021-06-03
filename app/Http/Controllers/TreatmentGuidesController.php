@@ -2,110 +2,51 @@
 
 namespace App\Http\Controllers;
     
-use App\Models\Product;
+use App\Models\TreatmentGuides;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
 
 
-
-class TreatmentGuidesController extends BaseController
+class TreatmentGuidesController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    public function store(Request $request)
     {
+        $regex = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
+        $this->validate($request, [
+            
+            'title' => 'required|unique:products,name|regex:/^[\pL\s\-]+$/u',
+            'sub_title' => 'required',
+            'status' => 'required|not_in:0',
+            'guides_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
+            'detail' => 'required',
+        ]);
+        $data = $request->all();
 
-        $array = array(
-            [
-                "id" =>"1",
-                "title" => "abc",
-                "sub_title" => "abc1",
-                "status" =>"1",
-                "detail" => "AAAAAAA",
-                "guides_image" => "abcimg",
-            ],
-            [
-                "id" =>"2",
-                "title" => "pqr",
-                "sub_title" => "pqr1",
-                "status" =>"1",
-                "detail" => "BBBBBBB",
-                "guides_image" => "pqrimg",
-            ],
-            [
-              "id" =>"3",
-              "title" => "xyz",
-              "sub_title" => "xyz1",
-              "status" =>"1",
-              "detail" => "CCCCCCCC",
-              "guides_image" => "xyzimg",
-          ],
-          [
-              "id" =>"4",
-              "title" => "test",
-              "sub_title" => "test1",
-              "status" =>"1",
-              "detail" => "DDDDDDD",
-              "guides_image" => "testimg",
-          ]);
+        if(!empty($request->guides_image)):
+            $imageName = time().'.'.$request->guides_image->extension();
 
-        return $this->sendResponse($array,'Treatement Guides retrieved successfully.');
+            $path = public_path().'/images/TreatmentGuides';
+
+            if (! File::exists($path)) {
+                File::makeDirectory($path, $mode = 0777, true, true);
+            }
+
+            $request->guides_image->move(public_path('images/TreatmentGuides'), $imageName);
+            $data['guides_image'] = $imageName;
+        endif;
+
+        $treat_guides = TreatmentGuides::create($data);
+                
+        toastr()->success('Treatment Guides created successfully');
+
+        return redirect()->route('treat_guides.index');
     }
-
-    public function show($id)
-    {
-        $Treatment = array(
-            [
-                "id" =>"1",
-                "title" => "abc",
-                "sub_title" => "abc1",
-                "status" =>"1",
-                "guides_image" => "abcimg",
-            ],
-            [
-                "id" =>"2",
-                "title" => "pqr",
-                "sub_title" => "pqr1",
-                "status" =>"1",
-                "guides_image" => "pqrimg",
-            ],
-            [
-              "id" =>"3",
-              "title" => "xyz",
-              "sub_title" => "xyz1",
-              "status" =>"1",
-              "guides_image" => "xyzimg",
-          ],
-          [
-              "id" =>"4",
-              "title" => "test",
-              "sub_title" => "test1",
-              "status" =>"1",
-              "guides_image" => "testimg",
-          ]);
-
-
-        //$Treatment = $array::find($id);
-        /*echo "<pre>";
-        print_r($Treatment);
-        echo "</pre>";*/
-        //die();
-
-        //$cms = Cms::find($id);
-        //foreach ($array as $key => $value) {
-           //$product = Product::find($id);
-          /*echo $value["id"]."<br />";*/
-
-      //}
-
-      if (is_null($Treatment)) {
-        return $this->sendError('Blog not found.');
-    }
-
-    return $this->sendResponse($Treatment, 'Cms retrieved successfully.');
-}
+    
 }

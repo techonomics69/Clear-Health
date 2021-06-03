@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class MessageFiles extends Model
 {
     use HasFactory;
-    protected $fillable = ['msg_id', 'file_path', 'file_name'];
+    protected $fillable = ['msg_id', 'file_path', 'file_name','file_name','thumbnail'];
 }

@@ -41,7 +41,7 @@ class TreatmentGuidesController extends BaseController
 
 // Using the short array syntax
 
-        return $this->sendResponse($array'Cms retrieved successfully.');
+        return $this->sendResponse($array,'Cms retrieved successfully.');
     }
 
     /*public function show($id)

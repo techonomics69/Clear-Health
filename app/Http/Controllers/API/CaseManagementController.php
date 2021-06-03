@@ -808,7 +808,7 @@ public function createMessage(Request $request){
     	$date = strtotime($value->created_at);	
      	$msg_history[$i]['msg_date'] = date('M j', $date);
      	$msg_history[$i]['created_at'] = $date;
-    	$msg_history[$i]['read_at'] = $value->read_at;
+    	$msg_history[$i]['read_at'] = $value->created_at;
     	$msg_history[$i]['messageStatus'] = 'sent';
 
     	if(!empty($value->message_files)){
@@ -820,7 +820,7 @@ public function createMessage(Request $request){
     		$msg_history[$i]['message'] = $value->text;
     		$date1 = strtotime($value->created_at);
      	    $msg_history[$i]['msg_date'] = date('M j', $date);
-     	    $msg_history[$i]['created_at'] = $date1;
+     	    $msg_history[$i]['created_at'] = $value->created_at;
     		$msg_history[$i]['read_at'] = $value->read_at;
     		$msg_history[$i]['messageStatus'] = 'received';
     	}
@@ -1011,6 +1011,7 @@ public function createMessage(Request $request){
      	$date = strtotime($value['created_at']);
 
      	$message_data[$key]['date'] = date('M j', $date);
+     	$message_data[$key]['created_at'] = $value['created_at'];
 
      	if($value['sender'] == 'admin'){
      		$messageStatus = 'received';

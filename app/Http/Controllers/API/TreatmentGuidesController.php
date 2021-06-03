@@ -21,16 +21,13 @@ class TreatmentGuidesController extends BaseController
     {
 
         $array = array(
-    "foo" => "bar",
-    "bar" => "foo",
+    "title" => "test",
+    "sub_title" => "test1",
+    "status" =>1,
+    "img" = "test"
 );
 
 // Using the short array syntax
-$array = [
-    "foo" => "bar",
-    "bar" => "foo",
-];
-    
 
         return $this->sendResponse($array,'Cms retrieved successfully.');
     }

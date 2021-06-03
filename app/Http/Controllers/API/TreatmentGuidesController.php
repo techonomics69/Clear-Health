@@ -26,16 +26,8 @@ class TreatmentGuidesController extends BaseController
     "sub_title" => "test1",
     "status" =>"1",
     "img" => "test",
-        );
-        $array1 = array(
+        )array(
              "id" =>"2",
-    "title" => "test",
-    "sub_title" => "test1",
-    "status" =>"1",
-    "img" => "test",
-        );
-        $array2 = array(
-             "id" =>"3",
     "title" => "test",
     "sub_title" => "test1",
     "status" =>"1",

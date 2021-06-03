@@ -800,8 +800,30 @@ public function createMessage(Request $request){
     
     $data = json_decode($response);
 
-    if(!empty($data) && count($data)>0 ){
-      return $this->sendResponse($data,'Message retrieved successfully');
+    $msg_history = array();
+
+    foreach($data as $key=>$value){
+    	$msg_history[]['message'] = $value['text'];
+    	$date = strtotime($value['created_at']);
+     	$message_data[]['date'] = date('M j', $date);
+    	$msg_history[]['read_at'] = $value['read_at'];
+    	$msg_history[]['messageStatus'] = 'sent';
+
+    	if(!empty($value['message_files']){
+    	 $msg_history[]['message_files'] = $value['message_files'];
+    	}
+
+    	if(!empty($value['clinician'])){
+    		$msg_history[]['message'] = $value['text'];
+    		$date = strtotime($value['created_at']);
+     	    $message_data[]['date'] = date('M j', $date);
+    		$msg_history[]['read_at'] = $value['read_at'];
+    		$msg_history[]['messageStatus'] = 'received';
+    	}
+    }
+
+    if(!empty($msg_history) && count($msg_history)>0 ){
+      return $this->sendResponse($msg_history,'Message retrieved successfully');
     }else{
       return $this->sendResponse(array(),'No data found');
     }

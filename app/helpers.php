@@ -419,8 +419,16 @@ if(!empty($Patient_data)){
 
     $question = $value->question;
 
-    if($question == "What is your weight in lbs??"){
-      if(isset($value->answer) && $value->answer!=''){
+    
+  }
+//end of code to get patient weight 
+  $userquestion = array();
+  foreach($userQueAns as $key=>$value){
+
+      $question = $value->question;
+
+      if($question == "What is your weight in lbs??"){
+        if(isset($value->answer) && $value->answer!=''){
 
         $answer =  $value->answer;
 
@@ -431,10 +439,6 @@ if(!empty($Patient_data)){
         }   
       }
     }
-  }
-//end of code to get patient weight 
-  $userquestion = array();
-  foreach($userQueAns as $key=>$value){
 
     if(isset($value->answer) && $value->answer!=''){
       $userquestion[$key]['question'] = $value->question;
@@ -442,7 +446,13 @@ if(!empty($Patient_data)){
       if(is_array($value->answer)){
        $userquestion[$key]['answer'] = implode(',',$value->answer);
      }else{
-       $userquestion[$key]['answer'] = $value->answer;
+
+        if($question =='How would you rate your stress level on a scale of 1 to 10?'){
+             $userquestion[$key]['answer'] = string($value->answer);
+        }else{
+          $userquestion[$key]['answer'] = $value->answer;
+        }
+       
      }
 
      

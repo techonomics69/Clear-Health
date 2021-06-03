@@ -993,7 +993,7 @@ public function createMessage(Request $request){
      	$message_data[$key]['messageStatus'] = $messageStatus;
 
      	if($value['file_path']!=''){
-     		$message_data[$key]['file_path'] = assets($value['file_path']);
+     		$message_data[$key]['file_path'] = assets(''.$value['file_path'].'');
      	}else{
      		$message_data[$key]['file_path'] = null;
      	}

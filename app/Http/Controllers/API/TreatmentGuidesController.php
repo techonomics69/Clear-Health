@@ -9,7 +9,7 @@ use Exception;
 
 
 
-   
+
 class TreatmentGuidesController extends BaseController
 {
     /**
@@ -22,17 +22,31 @@ class TreatmentGuidesController extends BaseController
 
         $array = array(
             "id" =>"1",
-    "title" => "test",
-    "sub_title" => "test1",
-    "status" =>"1",
-    "img" => "test",
-    array(
-             "id" =>"2",
-    "title" => "test",
-    "sub_title" => "test1",
-    "status" =>"1",
-    "img" => "test",
-        ));
+            "title" => "abc",
+            "sub_title" => "abc1",
+            "status" =>"1",
+            "guides_image" => "abcimg",
+            array(
+               "id" =>"2",
+               "title" => "pqr",
+               "sub_title" => "pqr1",
+               "status" =>"1",
+               "guides_image" => "pqrimg",
+           )
+            array(
+               "id" =>"3",
+               "title" => "xyz",
+               "sub_title" => "xyz1",
+               "status" =>"1",
+               "guides_image" => "xyzimg",
+           )
+            array(
+               "id" =>"4",
+               "title" => "rst",
+               "sub_title" => "rst1",
+               "status" =>"1",
+               "guides_image" => "rstimg",
+           ));
 
 // Using the short array syntax
 

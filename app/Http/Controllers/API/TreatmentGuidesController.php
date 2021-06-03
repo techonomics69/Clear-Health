@@ -22,48 +22,33 @@ class TreatmentGuidesController extends BaseController
 
         $array = array(
             [
-            "id" =>"1",
-            "title" => "abc",
-            "sub_title" => "abc1",
-            "status" =>"1",
-            "guides_image" => "abcimg",
-           ],
-              [
+                "id" =>"1",
+                "title" => "abc",
+                "sub_title" => "abc1",
+                "status" =>"1",
+                "guides_image" => "abcimg",
+            ],
+            [
                 "id" =>"2",
-               "title" => "pqr",
-               "sub_title" => "pqr1",
-               "status" =>"1",
-               "guides_image" => "pqrimg",
-               ],
-               [
+                "title" => "pqr",
+                "sub_title" => "pqr1",
+                "status" =>"1",
+                "guides_image" => "pqrimg",
+            ],
+            [
               "id" =>"3",
-               "title" => "xyz",
-               "sub_title" => "xyz1",
-               "status" =>"1",
-               "guides_image" => "xyzimg",
-           ]);
-/*array(
-               "id" =>"2",
-               "title" => "pqr",
-               "sub_title" => "pqr1",
-               "status" =>"1",
-               "guides_image" => "pqrimg",
-            )array(
-               "id" =>"3",
-               "title" => "xyz",
-               "sub_title" => "xyz1",
-               "status" =>"1",
-               "guides_image" => "xyzimg",
-           
-            )array(
-               "id" =>"4",
-               "title" => "rst",
-               "sub_title" => "rst1",
-               "status" =>"1",
-               "guides_image" => "rstimg",
-           ));*/
-
-// Using the short array syntax
+              "title" => "xyz",
+              "sub_title" => "xyz1",
+              "status" =>"1",
+              "guides_image" => "xyzimg",
+          ],
+          [
+              "id" =>"4",
+              "title" => "test",
+              "sub_title" => "test1",
+              "status" =>"1",
+              "guides_image" => "testimg",
+          ]);
 
         return $this->sendResponse($array,'Cms retrieved successfully.');
     }

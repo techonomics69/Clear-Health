@@ -33,11 +33,11 @@ class TreatmentGuidesController extends BaseController
                "status" =>"1",
                "guides_image" => "pqrimg",
                array(
-               "id" =>"2",
-               "title" => "pqr",
-               "sub_title" => "pqr1",
+              "id" =>"3",
+               "title" => "xyz",
+               "sub_title" => "xyz1",
                "status" =>"1",
-               "guides_image" => "pqrimg",
+               "guides_image" => "xyzimg",
             )));
 /*array(
                "id" =>"2",

@@ -995,8 +995,8 @@ public function createMessage(Request $request){
      }
 
 
-    if(!empty($message_details) && count($message_details)>0 ){
-      return $this->sendResponse($message_details,'Message retrieved successfully');
+    if(!empty($message_data) && count($message_data)>0 ){
+      return $this->sendResponse($message_data,'Message retrieved successfully');
     }else{
       return $this->sendResponse(array(),'No data found');
     }

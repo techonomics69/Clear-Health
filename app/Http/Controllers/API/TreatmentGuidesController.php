@@ -23,8 +23,8 @@ class TreatmentGuidesController extends BaseController
         $array = array(
     "title" => "test",
     "sub_title" => "test1",
-    "status" =>1,
-    "img" = "test"
+    "status" =>"1",
+    "img" = "test",
 );
 
 // Using the short array syntax

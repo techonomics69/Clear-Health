@@ -88,7 +88,8 @@ class TreatmentGuidesController extends BaseController
 
 //$products = Product::where('product_active', '1')->get();
          foreach ($array as $key => $value) {
-            $value->id = $value->array->id;
+           //$product = Product::find($id);
+          echo $value["id"]."<br />";
         }
 
         if (is_null($array)) {

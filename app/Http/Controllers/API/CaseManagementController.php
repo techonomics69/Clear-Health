@@ -802,24 +802,30 @@ public function createMessage(Request $request){
 
     $msg_history = array();
 
+    $i = 0;
     foreach($data as $key=>$value){
-    	$msg_history[]['message'] = $value->text;
+    	$msg_history[$i]['message'] = $value->text;
     	$date = strtotime($value->created_at);
-     	$message_data[]['date'] = date('M j', $date);
-    	$msg_history[]['read_at'] = $value->read_at;
-    	$msg_history[]['messageStatus'] = 'sent';
+     	$message_data[$i]['date'] = date('M j', $date);
+     	$message_data[$i]['created_at'] = getdate($date);
+    	$msg_history[$i]['read_at'] = $value->read_at;
+    	$msg_history[$i]['messageStatus'] = 'sent';
 
     	if(!empty($value->message_files)){
-    	 $msg_history[]['message_files'] = $value->message_files;
+    	 $msg_history[$i]['message_files'] = $value->message_files;
     	}
 
     	if(!empty($value->clinician)){
-    		$msg_history[]['message'] = $value->text;
+    		$i++;
+    		$msg_history[$i]['message'] = $value->text;
     		$date = strtotime($value->created_at);
-     	    $message_data[]['date'] = date('M j', $date);
-    		$msg_history[]['read_at'] = $value->read_at;
-    		$msg_history[]['messageStatus'] = 'received';
+     	    $message_data[$i]['date'] = date('M j', $date);
+     	    $message_data[$i]['created_at'] = getdate($date);
+    		$msg_history[$i]['read_at'] = $value->read_at;
+    		$msg_history[$i]['messageStatus'] = 'received';
     	}
+
+    	$i++;
     }
 
     if(!empty($msg_history) && count($msg_history)>0 ){

@@ -59,8 +59,8 @@ function create_patient($user_id,$case_id)
 
   $allergies="";
   $current_medications="";
-  $weight ="";
-  $height="";
+  $weight = 0;
+  $height= 0;
 
  $userQueAns = getQuestionAnswerFromUserid($user_id,$case_id);
  foreach ($userQueAns as $key => $value) {
@@ -127,11 +127,6 @@ $input_data['allergies'] = $allergies;
 
 $input = json_encode($input_data);
 
-echo "<pre>";
-print_r($input);
-echo "<pre>";
-exit();
-
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
@@ -154,11 +149,6 @@ $response = curl_exec($curl);
 
 
 $Patient_data = json_decode($response);
-
-echo "<pre>";
-print_r($Patient_data);
-echo "<pre>";
-exit();
 
 if(!empty($Patient_data)){
 

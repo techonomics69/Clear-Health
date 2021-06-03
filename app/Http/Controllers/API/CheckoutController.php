@@ -129,7 +129,7 @@ class CheckoutController extends BaseController
                 echo "<pre>";
                 print_r($patient_id);
                 echo "<pre>";
-                exit();
+                
             //end of code create patient api
 
         /*$pro_data  =  CaseManagement::select('recommended_product')->where('user_id',$data['user_id'])->where('id',$data['case_id'])->first();
@@ -146,22 +146,6 @@ class CheckoutController extends BaseController
         $pharmacy_data  =  Cart::select('pharmacy_pickup')->where('user_id',$data['user_id'])->whereIn('id',$cart_ids)->where('order_type', '!=', 'AddOn')->first();
 
         $preferred_pharmacy_id = $pharmacy_data['pharmacy_pickup'];
-
-        echo "<pre>user_id:";
-        print_r($data['user_id']);
-        echo "<pre>";
-       echo "<pre>case_id:";
-       print_r($data['case_id']);
-       echo "<pre>product_type:";
-       print_r($product_type);
-       echo "<pre>";
-        echo "<pre>preferred_pharmacy_id:";
-       print_r($preferred_pharmacy_id);
-       echo "<pre>";
-
-       exit();
-
-
 
         $response = CreateCase($data['user_id'],$data['case_id'],$preferred_pharmacy_id,$patient_id);
 

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'clearHealth | Products')
+@section('title', 'clearHealth | Treatment Guides')
 @section('content')
 <div class="app-content content">
 @if (count($errors) > 0)
@@ -15,12 +15,12 @@
 <div class="content-wrapper">
         <div class="content-header row">
             <div class="content-header-left col-md-6 col-12 mb-2">
-                <h3 class="content-header-title mb-0">Product</h3>
+                <h3 class="content-header-title mb-0">Treatment Guides</h3>
                 <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12 d-flex">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{url('/admin/dashboard')}}">Dashboard</a></li>
-                                <li class="breadcrumb-item active">Create Product</li>
+                                <li class="breadcrumb-item active">Create Treatment Guides</li>
                             </ol>
                         </div>
                 </div>
@@ -46,14 +46,14 @@
                     <div class="row">
                         <div class="col-md-4 col-sm-6 col-xs-12">
                                     <div class="form-group">
-                                        <strong>Product Name:</strong>
+                                        <strong>Title:</strong>
                                         <span class="required">*</span>
-                                        {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+                                        {!! Form::text('title', null, array('placeholder' => 'Title','class' => 'form-control')) !!}
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-sm-6 col-xs-12">
                                 <div class="form-group">
-                                    <strong>Product Sub Title:</strong>
+                                    <strong>Sub Title:</strong>
                                      {!! Form::text('sub_title', null, array('placeholder' => 'Sub Title','class' => 'form-control')) !!}
                                 </div>
                             </div>
@@ -64,106 +64,22 @@
                                     {!! Form::select('status', ['0' => 'Please Select', '1' => 'In Stock', '2' => 'Out of Stock'], null, ['class' => 'form-control']); !!}
                                 </div>
                             </div>
-                                <div class="col-md-4 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <strong>Available Date:</strong>
-                                        <span class="required">*</span>
-                                        {!! Form::text('available_date', null, array('placeholder' => 'Available Date','class' => 'form-control available_date', 'readonly' => 'readonly')) !!}
-                                    </div>
-                                </div>
                                 
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <strong>Category:</strong>
-                                    <span class="required">*</span>
-                                    {!! Form::select('category_id', ['0'=>'Please Select'] + $Categories, null, ['class' => 'form-control']) !!}
-                                </div>
-                            </div>
-                            
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <strong>Discount Price:</strong>
-                                    <span class="required">*</span>
-                                    {!! Form::number('discount_price', null, array('placeholder' => 'Discount Price','class' => 'form-control')) !!}
-                                </div>
-                            </div>
-                            
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <strong>Short Description:</strong>
-                                    {!! Form::textarea('short_description', null, array('placeholder' => 'Short Description', 'class' => 'form-control')) !!}
-                                </div>
-                            </div>
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <strong>Details:</strong>
+                                    <strong>Guides Details:</strong>
                                     <span class="required">*</span>
                                     {!! Form::textarea('detail', null, array('placeholder' => 'Details','class' => 'details')) !!}
                                 </div>
                             </div>
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <strong>Quantity:</strong>
-                                    <span class="required">*</span>
-                                    {!! Form::number('quantity', null, array('placeholder' => 'Quantity','class' => 'form-control')) !!}
-                                </div>
-                            </div>
-                                <div class="col-md-4 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <strong>Minimum Quantity Alert:</strong>
-                                        <span class="required">*</span>
-                                        {!! Form::number('min_quantity_alert', null, array('placeholder' => 'Minimum Quantity Alert','class' => 'form-control')) !!}
-                                    </div>
-                                </div>
+                            
                                 <div class="col-md-2 col-sm-3 col-xs-6">
                                     <div class="form-group">
-                                        <strong>Image [List]:</strong>
-                                        <span class="required">*</span><br>
-                                        {!! Form::file('image', null, array('class' => 'form-control')) !!}
-                                    </div>
-                                </div>
-                                <div class="col-md-2 col-sm-3 col-xs-6">
-                                    <div class="form-group">
-                                        <strong>Image [Detail]:</strong>
+                                        <strong>Image:</strong>
                                         <span class="required">*</span>
-                                        {!! Form::file('image_detail', null, array('class' => 'form-control')) !!}                                        
+                                        {!! Form::file('guides_image', null, array('class' => 'form-control')) !!}                                        
                                     </div>
                                 </div>
-                                <div class="col-md-4 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <strong>URL:</strong>
-                                        {!! Form::text('url', null, array('placeholder' => 'URL','class' => 'form-control')) !!}
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-6 col-xs-12">   
-                                    <div class="form-group">
-                                        <strong>Price:</strong>
-                                        <span class="required">*</span>
-                                        {!! Form::number('price', null, array('placeholder' => 'Price','class' => 'form-control')) !!}
-                                    </div>
-                                </div>
-                                <div class="col-md-2 col-sm-3 col-xs-6">
-                                    <div class="form-group">
-                                        <strong>Weight:</strong>
-                                        <span class="required">*</span>
-                                        {!! Form::number('weight', null, array('placeholder' => 'Weight','class' => 'form-control')) !!}                                        
-                                    </div>
-                                </div>
-                                <div class="col-md-2 col-sm-3 col-xs-6">
-                                    <div class="form-group">
-                                        <strong>Unit:</strong>
-                                        <span class="required">*</span>
-                                        {!! Form::select('weight_unit', ['Kilogram(kg)'=>'Kilogram(kg)', 'Gram(g)'=>'Gram(g)'], null, ['class' => 'form-control']) !!}
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <strong>Product Status:</strong>
-                                    <span class="required">*</span>
-                                    {!! Form::select('product_active', ['0' => 'Please Select', '1' => 'Active', '2' => 'In Active', '3' => 'Do no show'], null, ['class' => 'form-control']); !!}
-                                </div>
-                            </div>
-
                             
                    </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 text-right">

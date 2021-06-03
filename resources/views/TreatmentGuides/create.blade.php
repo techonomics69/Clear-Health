@@ -27,7 +27,7 @@
             </div>
             <div class="content-header-right col-md-6 col-12 mb-2">
             <div class="pull-right">
-                        <a class="btn btn-secondry" href="{{ route('products.index') }}"> Back</a>
+                        <a class="btn btn-secondry" href="{{ route('treatmentGuides.index') }}"> Back</a>
                     </div>
             </div>
         </div>
@@ -83,7 +83,7 @@
                             
                    </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 text-right">
-                            <a href="{{ route('products.index') }}">
+                            <a href="{{ route('treatmentGuides.index') }}">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                             </a>
                             <button type="submit" class="btn btn-secondry" data-dismiss="modal">Submit</button>

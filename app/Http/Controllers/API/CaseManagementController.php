@@ -1028,10 +1028,10 @@ public function createMessage(Request $request){
 
      	if($value['file_path']!=''){
      		$message_data[$key]['file_path'] = $value['file_path'];
-     		$message_data['mime_type'] = $value['mime_type'];
+     		$message_data[$key]['mime_type'] = $value['mime_type'];
      	}else{
      		$message_data[$key]['file_path'] = null;
-     		$message_data['mime_type'] = null;
+     		$message_data[$key]['mime_type'] = null;
      	}
 
      	if($value['file_name']!=''){

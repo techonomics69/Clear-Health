@@ -803,12 +803,15 @@ public function createMessage(Request $request){
     $msg_history = array();
 
     $i = 0;
-
-    echo "initial call".$i."</br>";
     foreach($data as $key=>$value){
     	$msg_history[$i]['message'] = $value->text;
     	$date = strtotime($value->created_at);
-     	$message_data[$i]['date'] = date('M j', $date);
+
+    	echo "<pre>";
+    	print_r($date);
+    	echo "<pre>";
+    	exit();	
+     	$message_data[$i]['msg_date'] = date('M j', $date);
      	$message_data[$i]['created_at'] = $date;
     	$msg_history[$i]['read_at'] = $value->read_at;
     	$msg_history[$i]['messageStatus'] = 'sent';
@@ -818,19 +821,17 @@ public function createMessage(Request $request){
     	}
 
     	if(!empty($value->clinician)){
-    		echo "clinician call".$i."</br>";
     		$i++;
     		$msg_history[$i]['message'] = $value->text;
     		$date1 = strtotime($value->created_at);
-     	    $message_data[$i]['date'] = date('M j', $date);
+     	    $message_data[$i]['msg_date'] = date('M j', $date);
      	    $message_data[$i]['created_at'] = $date1;
     		$msg_history[$i]['read_at'] = $value->read_at;
     		$msg_history[$i]['messageStatus'] = 'received';
     	}
 
     	$i++;
-    	echo "last call".$i."</br>";
-    }die();
+    }
 
     if(!empty($msg_history) && count($msg_history)>0 ){
       return $this->sendResponse($msg_history,'Message retrieved successfully');

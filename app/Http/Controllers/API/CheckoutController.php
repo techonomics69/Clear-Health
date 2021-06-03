@@ -151,6 +151,11 @@ class CheckoutController extends BaseController
 
         $response = json_decode($response);
 
+        echo "<pre>";
+        print_r($response);
+        echo "<pre>";
+        exit();
+
         if(!empty($response)){
             $checkoutdata['md_response'] = $response;
          }

@@ -965,7 +965,7 @@ public function createMessage(Request $request){
 
       chmod($destinationPath."/".$doc_file_name, 0777);
 
-      $file_path = 'public/Message_files/' .$file;
+      $file_path = 'public/Message_files/' .$doc_file_name;
     }else{
       $file = "";
       $file_path="";
@@ -983,7 +983,7 @@ public function createMessage(Request $request){
     $message_data = Messages::create($input_data);
 
     $message_file_data = array();
-    $message_file_data['file_name'] = $file;
+    $message_file_data['file_name'] = $doc_file_name;
     $message_file_data['file_path'] = $file_path;
     $message_file_data['msg_id'] = $message_data['id'];
     $message_file_data = MessageFiles::create($message_file_data);

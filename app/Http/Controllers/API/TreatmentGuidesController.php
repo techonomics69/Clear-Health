@@ -21,24 +21,27 @@ class TreatmentGuidesController extends BaseController
     {
 
         $array = array(
+            [
             "id" =>"1",
             "title" => "abc",
             "sub_title" => "abc1",
             "status" =>"1",
             "guides_image" => "abcimg",
-            array(
-               "id" =>"2",
+           ],
+              [
+                "id" =>"2",
                "title" => "pqr",
                "sub_title" => "pqr1",
                "status" =>"1",
                "guides_image" => "pqrimg",
-               array(
+               ],
+               [
               "id" =>"3",
                "title" => "xyz",
                "sub_title" => "xyz1",
                "status" =>"1",
                "guides_image" => "xyzimg",
-            )));
+           ]);
 /*array(
                "id" =>"2",
                "title" => "pqr",

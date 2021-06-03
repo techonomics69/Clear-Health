@@ -26,7 +26,20 @@ class TreatmentGuidesController extends BaseController
             "sub_title" => "abc1",
             "status" =>"1",
             "guides_image" => "abcimg",
-            )array(
+            array(
+               "id" =>"2",
+               "title" => "pqr",
+               "sub_title" => "pqr1",
+               "status" =>"1",
+               "guides_image" => "pqrimg",
+               array(
+              "id" =>"3",
+               "title" => "xyz",
+               "sub_title" => "xyz1",
+               "status" =>"1",
+               "guides_image" => "xyzimg",
+            )));
+/*array(
                "id" =>"2",
                "title" => "pqr",
                "sub_title" => "pqr1",
@@ -45,7 +58,7 @@ class TreatmentGuidesController extends BaseController
                "sub_title" => "rst1",
                "status" =>"1",
                "guides_image" => "rstimg",
-           ));
+           ));*/
 
 // Using the short array syntax
 

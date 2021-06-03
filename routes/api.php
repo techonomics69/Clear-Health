@@ -19,6 +19,7 @@ use App\Http\Controllers\API\FeeController;
 use App\Http\Controllers\API\CaseManagementController;
 use App\Http\Controllers\API\CheckoutController;
 use App\Http\Controllers\API\AnswerController;
+use App\Http\Controllers\API\TreatmentGuidesController;
   
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,7 @@ Route::post('forgot_password',[RegisterController::class, 'forgot_password']);
     Route::resource('blogs', BlogController::class);
     Route::get('getalltags',[BlogController::class, 'getAllTags']);
     Route::get('getmostpopular',[BlogController::class, 'most_popular']);
+    Route::get('treatmentGuides',[TreatmentGuidesController::class, 'treatmentGuides']);
     
     Route::resource('category', CategoryController::class);
     Route::resource('cms', CmsController::class);

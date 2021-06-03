@@ -977,12 +977,12 @@ public function createMessage(Request $request){
      $message_data = array();
      foreach($message_details as $key=>$value){
      		
-     	$message_data['name'] = $value['first_name'].' '.$value['last_name'];
-     	$message_data['message'] = $value['text'];
+     	$message_data[$key]['name'] = $value['first_name'].' '.$value['last_name'];
+     	$message_data[$key]['message'] = $value['text'];
 
      	$date = strtotime($value['created_at']);
 
-     	$message_data['date'] = date('M j', $date);
+     	$message_data[$key]['date'] = date('M j', $date);
 
      	if($value['sender'] == 'admin'){
      		$messageStatus = 'received';
@@ -990,7 +990,7 @@ public function createMessage(Request $request){
      		$messageStatus = 'sent';
      	}
 
-     	$message_data['messageStatus'] = $messageStatus;
+     	$message_data[$key]['messageStatus'] = $messageStatus;
 
      }
 

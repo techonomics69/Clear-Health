@@ -1,11 +1,13 @@
 <?php
-   
 namespace App\Http\Controllers\API;
-   
-use Illuminate\Http\Request;
+
 use App\Http\Controllers\API\BaseController as BaseController;
-use App\Models\Cms;
+use Illuminate\Http\Request;
+
 use Validator;
+use Exception;
+
+
 
    
 class TreatmentGuidesController extends BaseController
@@ -29,9 +31,10 @@ $array = [
     "bar" => "foo",
 ];
    */ 
-   echo "HELLOO";   
+$test ="hello 1";
+   echo $test;   
     
-        return $this->sendResponse('Cms retrieved successfully.');
+        return $this->sendResponse($test,'Cms retrieved successfully.');
     }
 
     /*public function show($id)

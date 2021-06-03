@@ -805,12 +805,7 @@ public function createMessage(Request $request){
     $i = 0;
     foreach($data as $key=>$value){
     	$msg_history[$i]['message'] = $value->text;
-    	$date = strtotime($value->created_at);
-
-    	echo "<pre>";
-    	print_r($date);
-    	echo "<pre>";
-    	exit();	
+    	$date = strtotime($value->created_at);	
      	$message_data[$i]['msg_date'] = date('M j', $date);
      	$message_data[$i]['created_at'] = $date;
     	$msg_history[$i]['read_at'] = $value->read_at;

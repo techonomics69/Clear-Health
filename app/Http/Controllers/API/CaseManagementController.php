@@ -807,7 +807,7 @@ public function createMessage(Request $request){
     	$msg_history[$i]['message'] = $value->text;
     	$date = strtotime($value->created_at);
      	$message_data[$i]['date'] = date('M j', $date);
-     	$message_data[$i]['created_at'] = getdate($date);
+     	$message_data[$i]['created_at'] = $date;
     	$msg_history[$i]['read_at'] = $value->read_at;
     	$msg_history[$i]['messageStatus'] = 'sent';
 
@@ -818,9 +818,9 @@ public function createMessage(Request $request){
     	if(!empty($value->clinician)){
     		$i++;
     		$msg_history[$i]['message'] = $value->text;
-    		$date = strtotime($value->created_at);
+    		$date1 = strtotime($value->created_at);
      	    $message_data[$i]['date'] = date('M j', $date);
-     	    $message_data[$i]['created_at'] = getdate($date);
+     	    $message_data[$i]['created_at'] = $date1;
     		$msg_history[$i]['read_at'] = $value->read_at;
     		$msg_history[$i]['messageStatus'] = 'received';
     	}

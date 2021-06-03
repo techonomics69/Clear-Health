@@ -483,6 +483,7 @@ if(!empty($Patient_data)){
   //$no_substitutions = false;
   //$pharmacy_notes =  "";
   $quantity = 30;
+  $preferred_pharmacy_id ="123456"
 
 
       /*$DispensUnitId = $this->getDispensUnitId();

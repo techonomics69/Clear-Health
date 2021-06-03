@@ -480,8 +480,8 @@ if(!empty($Patient_data)){
   $days_supply = "60";
   $refills = "11";
   $directions = "Take one at the morning and another before bed";
-  $no_substitutions = "false";
-  $pharmacy_notes =  "";
+  //$no_substitutions = false;
+  //$pharmacy_notes =  "";
   $quantity = 30;
 
 
@@ -539,8 +539,8 @@ if(!empty($Patient_data)){
       $refills = "0";
       $directions = "Take one at the morning and another before bed";
       //$product_name = "Isotretinoin";
-      $no_substitutions = "false";
-      $pharmacy_notes =  "";
+      //$no_substitutions = false;
+     // $pharmacy_notes =  "";
       $quantity = $accutan_strength;
       $strength = $accutan_strength.'%20mg';
 
@@ -581,8 +581,8 @@ if(!empty($Patient_data)){
       $medication_compound_data[0]['directions'] = $directions;
       $medication_compound_data[0]['dispense_unit_id'] = $DispensUnitId;
       $medication_compound_data[0]['preferred_pharmacy_id'] = $preferred_pharmacy_id;
-      $medication_compound_data[0]['no_substitutions'] = $no_substitutions;
-      $medication_compound_data[0]['pharmacy_notes'] = $pharmacy_notes;
+     // $medication_compound_data[0]['no_substitutions'] = $no_substitutions;
+      //$medication_compound_data[0]['pharmacy_notes'] = $pharmacy_notes;
 
     }
     $medication_compound_data = json_encode($medication_compound_data);

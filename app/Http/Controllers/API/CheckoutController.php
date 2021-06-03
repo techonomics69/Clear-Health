@@ -120,7 +120,7 @@ class CheckoutController extends BaseController
         }
 
         //code gor md create case
-        /*if($data['medication_type'] == 1){
+        if($data['medication_type'] == 1){
 
 
             //call create patient api
@@ -141,7 +141,7 @@ class CheckoutController extends BaseController
 
         $product_type = $pro_data['recommended_product'];*/
 
-        /*$cart_ids = explode(',', $data['cart_id']);
+        $cart_ids = explode(',', $data['cart_id']);
 
         $pharmacy_data  =  Cart::select('pharmacy_pickup')->where('user_id',$data['user_id'])->whereIn('id',$cart_ids)->where('order_type', '!=', 'AddOn')->first();
 
@@ -170,7 +170,7 @@ class CheckoutController extends BaseController
         if(!empty($response)){
             $checkoutdata['md_response'] = $response;
          }
-        }*/
+        }*/*/
         //end of code for md create case
 
         //return $this->sendResponse(json_decode($response),'Case Created Successfully');

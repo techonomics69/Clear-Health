@@ -33,6 +33,11 @@ class TreatmentGuidesController extends Controller
 
     public function store(Request $request)
     {
+
+      echo "<pre>";
+      print_r($request->all());
+      echo "</pre>";
+      die();
       $regex = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
       $this->validate($request, [
 

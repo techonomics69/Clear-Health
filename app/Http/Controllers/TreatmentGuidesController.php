@@ -44,8 +44,8 @@ class TreatmentGuidesController extends Controller
         'title' => 'required|unique:products,name|regex:/^[\pL\s\-]+$/u',
         'sub_title' => 'required',
         'status' => 'required|not_in:0',
-        'guides_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
         'detail' => 'required',
+         'guides_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
       ]);
       $data = $request->all();
 
@@ -62,7 +62,7 @@ class TreatmentGuidesController extends Controller
         $data['guides_image'] = $imageName;
       endif;
 
-      $treat_guides = TreatmentGuides::create($data);
+      $treatmentGuides = TreatmentGuides::create($data);
 
       toastr()->success('Treatment Guides created successfully');
 

@@ -32,21 +32,20 @@ class TreatmentGuidesController extends BaseController
                "sub_title" => "pqr1",
                "status" =>"1",
                "guides_image" => "pqrimg",
-           )
             array(
                "id" =>"3",
                "title" => "xyz",
                "sub_title" => "xyz1",
                "status" =>"1",
                "guides_image" => "xyzimg",
-           )
+           
             array(
                "id" =>"4",
                "title" => "rst",
                "sub_title" => "rst1",
                "status" =>"1",
                "guides_image" => "rstimg",
-           ));
+           ))));
 
 // Using the short array syntax
 

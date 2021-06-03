@@ -55,7 +55,7 @@ class TreatmentGuidesController extends BaseController
 
     public function show($id)
     {
-        $array = array(
+        $Treatment = array(
             [
                 "id" =>"1",
                 "title" => "abc",
@@ -86,7 +86,7 @@ class TreatmentGuidesController extends BaseController
           ]);
 
 
-        $Treatment = $array::find($id);
+        //$Treatment = $array::find($id);
         /*echo "<pre>";
         print_r($Treatment);
         echo "</pre>";*/
@@ -96,7 +96,6 @@ class TreatmentGuidesController extends BaseController
         //foreach ($array as $key => $value) {
            //$product = Product::find($id);
           /*echo $value["id"]."<br />";*/
-
 
       //}
 

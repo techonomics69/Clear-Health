@@ -976,11 +976,21 @@ public function createMessage(Request $request){
 
      $message_data = array();
      foreach($message_details as $key=>$value){
-     		echo "<pre>";
-     		print_r($value);
-     		echo "<pre>";
-     		exit();
+     		
+     	$message_data['name'] = $value['first_name'].' '.$value['last_name'];
+     	$message_data['message'] = $value['text'];
 
+     	$date = strtotime($value['created_at']);
+
+     	$message_data['date'] = date('M j', $date);
+
+     	if($value['sender'] == 'admin'){
+     		$messageStatus = 'received';
+     	}else{
+     		$messageStatus = 'sent';
+     	}
+
+     	$message_data['messageStatus'] = $messageStatus;
 
      }
 

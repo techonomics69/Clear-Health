@@ -86,11 +86,13 @@ class TreatmentGuidesController extends BaseController
           ]);
 
 
-        $Treatment = $array::where('id', '1')->get();
-        echo "<pre>";
+        $Treatment = $array::find($id);
+        /*echo "<pre>";
         print_r($Treatment);
-        echo "</pre>";
-        die();
+        echo "</pre>";*/
+        //die();
+
+        //$cms = Cms::find($id);
         //foreach ($array as $key => $value) {
            //$product = Product::find($id);
           /*echo $value["id"]."<br />";*/

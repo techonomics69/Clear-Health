@@ -807,7 +807,7 @@ public function createMessage(Request $request){
     	$msg_history[$i]['message'] = $value->text;
     	$date = strtotime($value->created_at);	
      	$msg_history[$i]['msg_date'] = date('M j', $date);
-     	$msg_history[$i]['created_at'] = $date;
+     	$msg_history[$i]['created_at'] = $value->created_at;
     	$msg_history[$i]['read_at'] = $value->created_at;
     	$msg_history[$i]['messageStatus'] = 'sent';
 

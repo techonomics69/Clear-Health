@@ -828,6 +828,12 @@ public function createMessage(Request $request){
     	$i++;
     }
 
+foreach ($msg_history as $k => $row)
+{
+$vc_array_value[$k] = $row['created_at'];
+}
+$desc_$msg_history= array_multisort($vc_array_value, SORT_DESC);
+
     if(!empty($msg_history) && count($msg_history)>0 ){
       return $this->sendResponse($msg_history,'Message retrieved successfully');
     }else{
@@ -984,7 +990,7 @@ public function createMessage(Request $request){
     $message_file_data['msg_id'] = $message_data['id'];
     $message_file_data = MessageFiles::create($message_file_data);
     if(!empty($message_file_data)){
-      $message_data['file_name'] = $file;
+      $message_data['file_name'] = $doc_file_name;
       $message_data['file_path'] = $file_path;
     }
 

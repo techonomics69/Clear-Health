@@ -49,11 +49,9 @@
                 <thead>
                 <tr>
                     <th width="60px">No</th>
-                    <th>Name</th>
-                    <th>Category</th>
+                    <th>Title</th>
+                    <th>Sub title</th>
                     <th>Status</th>
-                    <th>Upsell</th>
-                    <th>Price</th>
                     <th width="200px">Action</th>
                 </tr>
                 </thead>

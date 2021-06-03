@@ -99,7 +99,7 @@ class TreatmentGuidesController extends BaseController
 
       //}
 
-      if (is_null($array)) {
+      if (is_null($Treatment)) {
         return $this->sendError('Blog not found.');
     }
 

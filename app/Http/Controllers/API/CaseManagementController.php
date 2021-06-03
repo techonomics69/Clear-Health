@@ -976,17 +976,27 @@ public function createMessage(Request $request){
 
      $message_data = array();
      foreach($message_details as $key=>$value){
-     		echo "<pre>";
-     		print_r($value);
-     		echo "<pre>";
-     		exit();
+     	$message_data[$key]['id'] = $value['id'];
+     	$message_data[$key]['name'] = $value['first_name'].' '.$value['last_name'];
+     	$message_data[$key]['message'] = $value['text'];
 
+     	$date = strtotime($value['created_at']);
+
+     	$message_data[$key]['date'] = date('M j', $date);
+
+     	if($value['sender'] == 'admin'){
+     		$messageStatus = 'received';
+     	}else{
+     		$messageStatus = 'sent';
+     	}
+
+     	$message_data[$key]['messageStatus'] = $messageStatus;
 
      }
 
 
-    if(!empty($message_details) && count($message_details)>0 ){
-      return $this->sendResponse($message_details,'Message retrieved successfully');
+    if(!empty($message_data) && count($message_data)>0 ){
+      return $this->sendResponse($message_data,'Message retrieved successfully');
     }else{
       return $this->sendResponse(array(),'No data found');
     }

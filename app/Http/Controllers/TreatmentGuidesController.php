@@ -17,13 +17,15 @@ class TreatmentGuidesController extends Controller
      */
 
 
+
+
     public function index()
     {
-      
+
     }
     public function create()
     {
-     
+
 
     }
 
@@ -32,7 +34,7 @@ class TreatmentGuidesController extends Controller
     {
       $regex = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
       $this->validate($request, [
-        
+
         'title' => 'required|unique:products,name|regex:/^[\pL\s\-]+$/u',
         'sub_title' => 'required',
         'status' => 'required|not_in:0',
@@ -55,7 +57,7 @@ class TreatmentGuidesController extends Controller
       endif;
 
       $treat_guides = TreatmentGuides::create($data);
-      
+
       toastr()->success('Treatment Guides created successfully');
 
       return redirect()->route('treatmentGuides.index');
@@ -63,18 +65,18 @@ class TreatmentGuidesController extends Controller
 
     public function show($id)
     {
-      
+
     }
 
     public function edit($id)
     {
-      
+
     }
-    
+
 
     public function update(Request $request, $id)
     {
-      
+
     } 
     public function destroy($id)
     {

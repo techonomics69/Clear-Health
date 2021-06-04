@@ -1,15 +1,15 @@
 @extends('layouts.app')
-@section('title', 'clearHealth | Treatment Guides')
 
+@section('title', 'clearHealth | Treatement Guides')
 @section('content')
 
 <div class="app-content content">
-    @if ($message = Session::get('success'))
-    <div class="alert alert-success">
-        <p>{{ $message }}</p>
-    </div>
-    @endif
-    <!DOCTYPE html>
+@if ($message = Session::get('success'))
+<div class="alert alert-success">
+    <p>{{ $message }}</p>
+</div>
+@endif
+
    
 
     <div class="content-wrapper">

@@ -1081,7 +1081,7 @@ public function createMessage(Request $request){
     $destinationPath = public_path('/Message_files');
 
 
-    $messagefiles_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')->select('messages.id as message_id','message_files.*')->where('user_id',$user_id)->where('messages.id',$$message_id)->first();
+    $messagefiles_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')->select('messages.id as message_id','message_files.*')->where('user_id',$user_id)->where('messages.id',$message_id)->first();
 
     echo "<pre>";
     print_r( $messagefiles_details);

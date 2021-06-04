@@ -1093,10 +1093,19 @@ public function createMessage(Request $request){
         }
 
         $messagefiles = Messages::find($messagefiles_details['id']);
-        $messagefiles->delete();
+        //$messagefiles->delete();
 
         $message = MessageFiles::find($messagefiles_details['message_id']);
-        $message->delete();
+        //$message->delete();
+
+        echo "<pre>";
+        print_r($messagefiles);
+        echo "<pre>";
+
+        echo "<pre>";
+        print_r($message);
+        echo "<pre>";
+        exit();
 
       return $this->sendResponse($message,'File Detach Successfully');
     }

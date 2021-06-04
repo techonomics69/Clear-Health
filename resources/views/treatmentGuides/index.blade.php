@@ -81,7 +81,7 @@
                                     @endcan
                                     @can('treatmentGuides-delete')                          
                                     {!! Form::open(['method' => 'DELETE','route' => ['treatmentGuides.destroy', $guides->id],'style'=>'display:inline']) !!}
-                                        <a class="icons edit-icon treatmentGuides_delete" href="#" id="{{$guides->id}}" onclick="deleteGuides({{$guides->id}})">
+                                        <a class="icons edit-icon cms_delete" href="#" id="{{$guides->id}}" onclick="deleteguides({{$guides->id}})">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                         </a>
                                         <button type="submit" class="btn btn-danger btn_delete{{$guides->id}}" style="display:none;">Delete</button>
@@ -103,7 +103,7 @@
 @endsection
 
 @section('scriptsection')
-
+  
 <script>
     $.noConflict();
     jQuery( document ).ready(function( $ ) {
@@ -112,8 +112,8 @@
         });
     });
     
-    function deleteGuides(e){
-     swal({
+    function deleteguides(e){
+       swal({
         title: "Are you sure want to delete?",
         text: "You will not be able to recover this !",
         icon: "../public/icon/delete.png",
@@ -121,14 +121,13 @@
         buttons: true,
         dangerMode: false,
         buttons: ["No, cancel Please!",'Yes, delete it!']
-    }).then((willDelete) => {
-        if (willDelete) {
-           $('.btn_delete'+e)[0].click();    
-       } 
-   });
-};
-</script> 
-
+      }).then((willDelete) => {
+            if (willDelete) {
+                 $('.btn_delete'+e)[0].click();    
+            } 
+        });
+    };
+</script>
 @endsection
 
 

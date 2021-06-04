@@ -79,7 +79,7 @@
                                             </a>  
                                             @endcan                                                                                                                                                                                    
                                             @can('treatmentGuides-delete')                          
-                                            {!! Form::open(['method' => 'DELETE','route' => ['treatmentGuides.destroy', $product->id],'style'=>'display:inline']) !!}
+                                            {!! Form::open(['method' => 'DELETE','route' => ['treatmentGuides.destroy', $guides->id],'style'=>'display:inline']) !!}
                                             <a class="icons edit-icon product_delete" href="#" id="{{$guides->id}}" onclick="deleteGuides({{$guides->id}})">
                                                 <i class="fa fa-trash" aria-hidden="true"></i>
                                             </a>

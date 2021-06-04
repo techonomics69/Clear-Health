@@ -28,7 +28,7 @@ class TreatmentGuidesController extends Controller
     print_r($treatmentguides);
     echo "</pre>";
     die();*/
-        return view('treatmentGuides.index', compact('TreatmentGuides'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('treatmentGuides.index', compact('treatmentguides'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     public function create()

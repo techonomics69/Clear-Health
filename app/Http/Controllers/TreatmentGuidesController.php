@@ -78,21 +78,45 @@ class TreatmentGuidesController extends Controller
 
       public function update(Request $request, $id)
         {
-          $treatmentguides = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
+
+ $treatmentguides = TreatmentGuides::find($id);
+        $data = $request->all();
+
+          $regex = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
             $this->validate($request, [
             'title' => 'required',
             'sub_title' => 'required',
             'status' => 'required|not_in:0',
             'detail' => 'required',
             'guides_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
-        ]);  
+        ]); 
+
+        if(!empty($request->guides_image)):
+            $imageName = time().'.'.$request->guides_image->extension();
+
+            $path = public_path().'/images/TreatmentGuides';
+
+            if (! File::exists($path)) {
+                File::makeDirectory($path, $mode = 0777, true, true);
+            }
+
+            $request->guides_image->move(public_path('images/TreatmentGuides'), $imageName);
+
+            $oldImg = $path.'/'.$treatmentguides->guides_image;
+
+            if (File::exists($oldImg)) : // unlink or remove previous image from folder
+                unlink($oldImg);
+            endif;
+
+            $data['guides_image'] = $imageName;              
+        endif; 
         
-          $treatmentguides = TreatmentGuides::find($id);
-          $treatmentguides->update($request->all());       
+          $treatmentguides->update($data);       
                 
           toastr()->success('Treatment Guides updated successfully');
           return redirect()->route('treatmentGuides.index');
         } 
+        
       public function destroy($id)
         {
 

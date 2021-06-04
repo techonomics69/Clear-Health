@@ -22,25 +22,25 @@ class TreatmentGuidesController extends Controller
     public function index()
     {
 
-    $treatmentguides = TreatmentGuides::OrderBy('id', 'ASC')->paginate(50);
+      $treatmentguides = TreatmentGuides::OrderBy('id', 'ASC')->paginate(50);
 
     /*echo "<pre>";
     print_r($treatmentguides);
     echo "</pre>";
     die();*/
-        return view('treatmentGuides.index', compact('treatmentguides'))->with('i', (request()->input('page', 1) - 1) * 5);
-    }
+    return view('treatmentGuides.index', compact('treatmentguides'))->with('i', (request()->input('page', 1) - 1) * 5);
+  }
 
-    public function create()
-    {
-       return view('treatmentGuides.create');
+  public function create()
+  {
+   return view('treatmentGuides.create');
  //return redirect()->route('treatmentGuides.create');
 
-    }
+ }
 
 
-    public function store(Request $request)
-    {
+ public function store(Request $request)
+ {
 
       /*echo "<pre>";
       print_r($request->all());
@@ -53,7 +53,7 @@ class TreatmentGuidesController extends Controller
         'sub_title' => 'required',
         'status' => 'required|not_in:0',
         'detail' => 'required',
-         'guides_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
+        'guides_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
       ]);
       $data = $request->all();
 
@@ -95,6 +95,10 @@ class TreatmentGuidesController extends Controller
     public function destroy($id)
     {
 
+      $treatmentGuides = TreatmentGuides::find($id);
+      $treatmentGuides->delete();
+      toastr()->success('Treatment Guides deleted successfully');
+      return redirect()->route('treatmentGuides.index');
     }
 
     

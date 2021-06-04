@@ -22,7 +22,7 @@ class TreatmentGuidesController extends Controller
     public function index()
     {
 
-      $treatmentguides = TreatmentGuides::OrderBy('id', 'ASC')->paginate(50);
+      $treatmentguides = TreatmentGuides::OrderBy('id', 'DESC')->paginate(50);
 
     /*echo "<pre>";
     print_r($treatmentguides);
@@ -107,6 +107,6 @@ class TreatmentGuidesController extends Controller
     return redirect()->route('treatmentGuides.index');
   }
 
-  
-  
+
+
 }

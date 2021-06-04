@@ -1074,13 +1074,14 @@ public function createMessage(Request $request){
 
     //$case_id = $request['case_id'];
     $user_id = $request['user_id'];
+    $message_id = $request['message_id'];
     //$system_case_id = $request['system_case_id'];
 
 
     $destinationPath = public_path('/Message_files');
 
 
-    $messagefiles_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')->select('messages.id as message_id','message_files.*')->where('user_id', '=',$user_id)->first();
+    $messagefiles_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')->select('messages.id as message_id','message_files.*')->where('user_id',$user_id)->where('messages.id',$$message_id)->first();
 
     echo "<pre>";
     print_r( $messagefiles_details);

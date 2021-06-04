@@ -80,27 +80,33 @@ class TreatmentGuidesController extends Controller
     public function show($id)
     {
 
-    }
-
-    public function edit($id)
-    {
-
-    }
-
-
-    public function update(Request $request, $id)
-    {
-
-    } 
-    public function destroy($id)
-    {
-
-      $treatmentGuides = TreatmentGuides::find($id);
-      $treatmentGuides->delete();
-      toastr()->success('Treatment Guides deleted successfully');
-      return redirect()->route('treatmentGuides.index');
-    }
-
-    
-    
+     $treatmentGuides = TreatmentGuides::find($id);
+     if(isset($treatmentGuides)):
+      return view('treatmentGuides.show',compact('treatmentGuides'));
+    else:
+      return redirect()->away('http://'.$id);
+    endif;
   }
+
+  public function edit($id)
+  {
+
+  }
+
+
+  public function update(Request $request, $id)
+  {
+
+  } 
+  public function destroy($id)
+  {
+
+    $treatmentGuides = TreatmentGuides::find($id);
+    $treatmentGuides->delete();
+    toastr()->success('Treatment Guides deleted successfully');
+    return redirect()->route('treatmentGuides.index');
+  }
+
+  
+  
+}

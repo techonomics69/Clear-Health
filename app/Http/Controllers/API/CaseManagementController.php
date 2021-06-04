@@ -1080,6 +1080,7 @@ public function createMessage(Request $request){
 
     $messagefiles_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')->select('messages.id as message_id','message_files.*')->where('user_id',$user_id)->where('messages.id',$message_id)->first();
 
+
     $file_name = str_replace("public/Message_files/","",$messagefiles_details['file_name']);
     
     if(!empty($messagefiles_details)){
@@ -1088,9 +1089,9 @@ public function createMessage(Request $request){
           unlink($destinationPath.'/'.$file_name);
         }
 
-        $messagefiles = Messages::find($messagefiles_details['id']);
+        $messagefiles = Messages::find($messagefiles_details['message_id']);
 
-        $message = MessageFiles::find($messagefiles_details['message_id']);
+        $message = MessageFiles::find($messagefiles_details['id']);
 
         echo "<pre>";
         print_r($messagefiles);

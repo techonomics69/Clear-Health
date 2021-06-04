@@ -1089,10 +1089,8 @@ public function createMessage(Request $request){
         }
 
         $messagefiles = Messages::find($messagefiles_details['id']);
-        //$messagefiles->delete();
 
         $message = MessageFiles::find($messagefiles_details['message_id']);
-        //$message->delete();
 
         echo "<pre>";
         print_r($messagefiles);

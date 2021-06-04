@@ -1096,9 +1096,9 @@ public function createMessage(Request $request){
         $messagefiles->delete();
 
         $message = MessageFiles::find($messagefiles_details['id']);
-        $message->delete();
+        $message_deleted = $message->delete();
 
-      return $this->sendResponse($message,'File Detach Successfully');
+      return $this->sendResponse($message_deleted,'File Detach Successfully');
     }
     else{
       return $this->sendResponse(array(),'File not Exist.');

@@ -61,7 +61,7 @@
                             <div class="form-group">
                                 <strong>Status:</strong>
                                 <span class="required">*</span>
-                                {!! Form::select('status', ['0' => 'Please Select', '1' => 'In Stock', '2' => 'Out of Stock'], null, ['class' => 'form-control']); !!}
+                                {!! Form::select('status', ['0' => 'Please Select', '1' => 'Active', '2' => 'In Active'], null, ['class' => 'form-control']); !!}
                             </div>
                         </div>
 
@@ -103,12 +103,7 @@
 <script type="text/javascript">
     $('form').submit(function(){
         $(this).find('button[type=submit]').prop('disabled', true);
-    });
-    $(document).ready(function() {
-        $(function () {
-            $('.available_date').datepicker();
-        });
-    });
+    }); 
 </script>
 
 <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>  

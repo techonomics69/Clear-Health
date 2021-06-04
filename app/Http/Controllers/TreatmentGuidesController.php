@@ -80,13 +80,28 @@ endif;
 
 public function edit($id)
 {
-
+$treatmentguides = TreatmentGuides::find($id);        
+        return view('treatmentGuides.edit',compact('treatmentguides'));
 }
 
 
 public function update(Request $request, $id)
 {
+$treatmentguides = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
+        $this->validate($request, [
+            'title' => 'required',
+            'sub_title' => 'required',
+            'status' => 'required|not_in:0',
+            'detail' => 'required',
+    'guides_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
+        ]);  
+        
+        $treatmentguides = TreatmentGuides::find($id);
+        $treatmentguides->update($request->all());       
+                
+        toastr()->success('Treatment Guides updated successfully');
 
+        return redirect()->route('treatmentGuides.index');
 } 
 public function destroy($id)
 {

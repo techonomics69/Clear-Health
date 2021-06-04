@@ -1070,7 +1070,7 @@ public function createMessage(Request $request){
 
   }
 
-  public function DetachNonmedicalMessageFile(Request $request){
+  public function DetachNonmedicalMessageWithFile(Request $request){
 
     //$case_id = $request['case_id'];
     $user_id = $request['user_id'];

@@ -15,101 +15,91 @@ class TreatmentGuidesController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
+      public function index()
+        {
 
+            $treatmentguides = TreatmentGuides::OrderBy('id', 'DESC')->paginate(50);
+            return view('treatmentGuides.index', compact('treatmentguides'))->with('i', (request()->input('page', 1) - 1) * 5);
+        }
 
+      public function create()
+        {
+          return view('treatmentGuides.create');
+        }
 
+      public function store(Request $request)
+        {
+            $regex = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
+            $this->validate($request, [
 
-  public function index()
-  {
+              'title' => 'required|unique:products,name|regex:/^[\pL\s\-]+$/u',
+              'sub_title' => 'required',
+              'status' => 'required|not_in:0',
+              'detail' => 'required',
+              'guides_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
+            ]);
+            $data = $request->all();
 
-   $treatmentguides = TreatmentGuides::OrderBy('id', 'DESC')->paginate(50);
-   return view('treatmentGuides.index', compact('treatmentguides'))->with('i', (request()->input('page', 1) - 1) * 5);
- }
+            if(!empty($request->guides_image)):
+            $imageName = time().'.'.$request->guides_image->extension();
 
- public function create()
- {
-   return view('treatmentGuides.create');
+            $path = public_path().'/images/TreatmentGuides';
 
- }
+            if (! File::exists($path)) {
+              File::makeDirectory($path, $mode = 0777, true, true);
+            }
 
+              $request->guides_image->move(public_path('images/TreatmentGuides'), $imageName);
+              $data['guides_image'] = $imageName;
+            endif;
 
- public function store(Request $request)
- {
+            $treatmentGuides = TreatmentGuides::create($data);
 
-  $regex = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
-  $this->validate($request, [
+            toastr()->success('Treatment Guides created successfully');
+          return redirect()->route('treatmentGuides.index');
+        }
 
-    'title' => 'required|unique:products,name|regex:/^[\pL\s\-]+$/u',
-    'sub_title' => 'required',
-    'status' => 'required|not_in:0',
-    'detail' => 'required',
-    'guides_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
-  ]);
-  $data = $request->all();
+      public function show($id)
+        {
 
-  if(!empty($request->guides_image)):
-    $imageName = time().'.'.$request->guides_image->extension();
+          $treatmentGuides = TreatmentGuides::find($id);
+          if(isset($treatmentGuides)):
+          return view('treatmentGuides.show',compact('treatmentGuides'));
+          else:
+          return redirect()->away('http://'.$id);
+          endif;
+        }
 
-    $path = public_path().'/images/TreatmentGuides';
+      public function edit($id)
+        {
+          $treatmentguides = TreatmentGuides::find($id);        
+          return view('treatmentGuides.edit',compact('treatmentguides'));
+        }
 
-    if (! File::exists($path)) {
-      File::makeDirectory($path, $mode = 0777, true, true);
-    }
-
-    $request->guides_image->move(public_path('images/TreatmentGuides'), $imageName);
-    $data['guides_image'] = $imageName;
-  endif;
-
-  $treatmentGuides = TreatmentGuides::create($data);
-
-  toastr()->success('Treatment Guides created successfully');
-
-  return redirect()->route('treatmentGuides.index');
-}
-
-public function show($id)
-{
-
- $treatmentGuides = TreatmentGuides::find($id);
- if(isset($treatmentGuides)):
-  return view('treatmentGuides.show',compact('treatmentGuides'));
-else:
-  return redirect()->away('http://'.$id);
-endif;
-}
-
-public function edit($id)
-{
-$treatmentguides = TreatmentGuides::find($id);        
-        return view('treatmentGuides.edit',compact('treatmentguides'));
-}
-
-
-public function update(Request $request, $id)
-{
-$treatmentguides = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
-        $this->validate($request, [
+      public function update(Request $request, $id)
+        {
+          $treatmentguides = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
+            $this->validate($request, [
             'title' => 'required',
             'sub_title' => 'required',
             'status' => 'required|not_in:0',
             'detail' => 'required',
-    'guides_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
+            'guides_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
         ]);  
         
-        $treatmentguides = TreatmentGuides::find($id);
-        $treatmentguides->update($request->all());       
+          $treatmentguides = TreatmentGuides::find($id);
+          $treatmentguides->update($request->all());       
                 
-        toastr()->success('Treatment Guides updated successfully');
+          toastr()->success('Treatment Guides updated successfully');
+          return redirect()->route('treatmentGuides.index');
+        } 
+      public function destroy($id)
+        {
 
-        return redirect()->route('treatmentGuides.index');
-} 
-public function destroy($id)
-{
-
-  $treatmentGuides = TreatmentGuides::find($id);
-  $treatmentGuides->delete();
-  toastr()->success('Treatment Guides deleted successfully');
-  return redirect()->route('treatmentGuides.index');
-}
+          $treatmentGuides = TreatmentGuides::find($id);
+          $treatmentGuides->delete();
+          toastr()->success('Treatment Guides deleted successfully');
+          return redirect()->route('treatmentGuides.index');
+        }
 
 }

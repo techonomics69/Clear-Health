@@ -24,10 +24,10 @@ class TreatmentGuidesController extends Controller
 
     $treatmentguides = TreatmentGuides::OrderBy('id', 'ASC')->paginate(50);
 
-    echo "<pre>";
+    /*echo "<pre>";
     print_r($treatmentguides);
     echo "</pre>";
-    die();
+    die();*/
         return view('treatmentGuides.index', compact('TreatmentGuides'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 

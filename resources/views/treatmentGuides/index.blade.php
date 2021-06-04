@@ -74,19 +74,19 @@
                                     <a class="icons edit-icon" href="{{ route('treatmentGuides.show',$guides->id) }}">
                                         <i class="fa fa-eye"></i>
                                     </a> 
-                                   <!--  @can('treatmentGuides-edit')    --> 
-                                    <a class="icons edit-icon" href="#">
+                                    @can('treatmentGuides-edit')    
+                                    <a class="icons edit-icon" href="{{ route('treatmentGuides.edit',$guides->id) }}">
                                         <i class="fa fa-edit"></i>
                                     </a>
-                                   <!--  @endcan -->
-                                    <!-- @can('treatmentGuides-delete')                          
-                                    {!! Form::open(['method' => 'DELETE','route' => ['treatmentGuides.destroy', $guides->id],'style'=>'display:inline']) !!} -->
-                                        <a class="icons edit-icon treatmentGuides_delete" href="#" id="">
+                                    @endcan
+                                    @can('treatmentGuides-delete')                          
+                                    {!! Form::open(['method' => 'DELETE','route' => ['treatmentGuides.destroy', $guides->id],'style'=>'display:inline']) !!}
+                                        <a class="icons edit-icon treatmentGuides_delete" href="#" id="{{$guides->id}}" onclick="deleteGuides({{$guides->id}})">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                         </a>
-                                        <button type="submit" class="btn btn-danger btn_delete" style="display:none;">Delete</button>
-                                    <!-- {!! Form::close() !!}
-                                    @endcan  -->
+                                        <button type="submit" class="btn btn-danger btn_delete{{$guides->id}}" style="display:none;">Delete</button>
+                                    {!! Form::close() !!}
+                                    @endcan 
                                 </div>                      
                                 </td>
                                     </tr>

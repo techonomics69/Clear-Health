@@ -1085,7 +1085,6 @@ public function createMessage(Request $request){
 
     $file_name = str_replace("public/Message_files/","",$messagefiles_details['file_name']);
     
-
     if(!empty($messagefiles_details)){
 
         if(file_exists($destinationPath.'/'.$file_name)){

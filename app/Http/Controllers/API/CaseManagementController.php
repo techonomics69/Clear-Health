@@ -1083,11 +1083,6 @@ public function createMessage(Request $request){
 
     $messagefiles_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')->select('messages.id as message_id','message_files.*')->where('user_id',$user_id)->where('messages.id',$message_id)->first();
 
-    echo "<pre>";
-    print_r( $messagefiles_details);
-    echo "<pre>";
-    exit();
-
     $file_name = str_replace("public/Message_files/","",$messagefiles_details['file_name']);
     
 

@@ -10,31 +10,25 @@ use Illuminate\Support\Facades\File;
 
 class TreatmentGuidesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+  /**
+   * Display a listing of the resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
 
 
 
 
-    public function index()
-    {
-
-      $treatmentguides = TreatmentGuides::OrderBy('id', 'DESC')->paginate(50);
-
-    /*echo "<pre>";
-    print_r($treatmentguides);
-    echo "</pre>";
-    die();*/
-    return view('treatmentGuides.index', compact('treatmentguides'))->with('i', (request()->input('page', 1) - 1) * 5);
-  }
-
-  public function create()
+  public function index()
   {
+
+   $treatmentguides = TreatmentGuides::OrderBy('id', 'DESC')->paginate(50);
+   return view('treatmentGuides.index', compact('treatmentguides'))->with('i', (request()->input('page', 1) - 1) * 5);
+ }
+
+ public function create()
+ {
    return view('treatmentGuides.create');
- //return redirect()->route('treatmentGuides.create');
 
  }
 
@@ -42,71 +36,65 @@ class TreatmentGuidesController extends Controller
  public function store(Request $request)
  {
 
-      /*echo "<pre>";
-      print_r($request->all());
-      echo "</pre>";
-      die();*/
-      $regex = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
-      $this->validate($request, [
+  $regex = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
+  $this->validate($request, [
 
-        'title' => 'required|unique:products,name|regex:/^[\pL\s\-]+$/u',
-        'sub_title' => 'required',
-        'status' => 'required|not_in:0',
-        'detail' => 'required',
-        'guides_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
-      ]);
-      $data = $request->all();
+    'title' => 'required|unique:products,name|regex:/^[\pL\s\-]+$/u',
+    'sub_title' => 'required',
+    'status' => 'required|not_in:0',
+    'detail' => 'required',
+    'guides_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
+  ]);
+  $data = $request->all();
 
-      if(!empty($request->guides_image)):
-        $imageName = time().'.'.$request->guides_image->extension();
+  if(!empty($request->guides_image)):
+    $imageName = time().'.'.$request->guides_image->extension();
 
-        $path = public_path().'/images/TreatmentGuides';
+    $path = public_path().'/images/TreatmentGuides';
 
-        if (! File::exists($path)) {
-          File::makeDirectory($path, $mode = 0777, true, true);
-        }
-
-        $request->guides_image->move(public_path('images/TreatmentGuides'), $imageName);
-        $data['guides_image'] = $imageName;
-      endif;
-
-      $treatmentGuides = TreatmentGuides::create($data);
-
-      toastr()->success('Treatment Guides created successfully');
-
-      return redirect()->route('treatmentGuides.index');
+    if (! File::exists($path)) {
+      File::makeDirectory($path, $mode = 0777, true, true);
     }
 
-    public function show($id)
-    {
+    $request->guides_image->move(public_path('images/TreatmentGuides'), $imageName);
+    $data['guides_image'] = $imageName;
+  endif;
 
-     $treatmentGuides = TreatmentGuides::find($id);
-     if(isset($treatmentGuides)):
-      return view('treatmentGuides.show',compact('treatmentGuides'));
-    else:
-      return redirect()->away('http://'.$id);
-    endif;
-  }
+  $treatmentGuides = TreatmentGuides::create($data);
 
-  public function edit($id)
-  {
+  toastr()->success('Treatment Guides created successfully');
 
-  }
+  return redirect()->route('treatmentGuides.index');
+}
 
+public function show($id)
+{
 
-  public function update(Request $request, $id)
-  {
+ $treatmentGuides = TreatmentGuides::find($id);
+ if(isset($treatmentGuides)):
+  return view('treatmentGuides.show',compact('treatmentGuides'));
+else:
+  return redirect()->away('http://'.$id);
+endif;
+}
 
-  } 
-  public function destroy($id)
-  {
+public function edit($id)
+{
 
-    $treatmentGuides = TreatmentGuides::find($id);
-    $treatmentGuides->delete();
-    toastr()->success('Treatment Guides deleted successfully');
-    return redirect()->route('treatmentGuides.index');
-  }
+}
 
 
+public function update(Request $request, $id)
+{
+
+} 
+public function destroy($id)
+{
+
+  $treatmentGuides = TreatmentGuides::find($id);
+  $treatmentGuides->delete();
+  toastr()->success('Treatment Guides deleted successfully');
+  return redirect()->route('treatmentGuides.index');
+}
 
 }

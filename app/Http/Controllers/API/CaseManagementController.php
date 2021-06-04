@@ -800,8 +800,36 @@ public function createMessage(Request $request){
     
     $data = json_decode($response);
 
-    if(!empty($data) && count($data)>0 ){
-      return $this->sendResponse($data,'Message retrieved successfully');
+    $msg_history = array();
+
+    $i = 0;
+    foreach($data as $key=>$value){
+    	$msg_history[$i]['message'] = $value->text;
+    	$date = strtotime($value->created_at);	
+     	$msg_history[$i]['msg_date'] = date('M j', $date);
+     	$msg_history[$i]['created_at'] = $value->created_at;
+    	$msg_history[$i]['read_at'] = $value->created_at;
+    	$msg_history[$i]['messageStatus'] = 'sent';
+
+    	if(!empty($value->message_files)){
+    	 $msg_history[$i]['message_files'] = $value->message_files;
+    	}
+
+    	if(!empty($value->clinician)){
+    		$i++;
+    		$msg_history[$i]['message'] = $value->text;
+    		$date1 = strtotime($value->created_at);
+     	    $msg_history[$i]['msg_date'] = date('M j', $date);
+     	    $msg_history[$i]['created_at'] = $value->created_at;
+    		$msg_history[$i]['read_at'] = $value->read_at;
+    		$msg_history[$i]['messageStatus'] = 'received';
+    	}
+
+    	$i++;
+    }
+
+    if(!empty($msg_history) && count($msg_history)>0 ){
+      return $this->sendResponse($msg_history,'Message retrieved successfully');
     }else{
       return $this->sendResponse(array(),'No data found');
     }
@@ -933,10 +961,13 @@ public function createMessage(Request $request){
 
       chmod($destinationPath."/".$doc_file_name, 0777);
 
-      $file_path = 'public/Message_files/' .$file;
+      $file_path = 'public/Message_files/' .$doc_file_name;
+
+      $file_mimeType = $documents->getClientMimeType();
     }else{
-      $file = "";
+      $doc_file_name = "";
       $file_path="";
+      $file_mimeType ="";
     }
     // end of code to upload files ids
     
@@ -951,13 +982,15 @@ public function createMessage(Request $request){
     $message_data = Messages::create($input_data);
 
     $message_file_data = array();
-    $message_file_data['file_name'] = $file;
+    $message_file_data['file_name'] = $doc_file_name;
     $message_file_data['file_path'] = $file_path;
+    $message_file_data['mime_type'] = $file_mimeType;
     $message_file_data['msg_id'] = $message_data['id'];
     $message_file_data = MessageFiles::create($message_file_data);
     if(!empty($message_file_data)){
-      $message_data['file_name'] = $file;
+      $message_data['file_name'] = $doc_file_name;
       $message_data['file_path'] = $file_path;
+      $message_data['mime_type'] = $file_mimeType;
     }
 
     return $this->sendResponse($message_data,'Message created successfully');
@@ -972,7 +1005,7 @@ public function createMessage(Request $request){
 
     //$message_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')->select('messages.*','message_files.*')->where('case_id', $case_id)->where('md_case_id',$md_case_id)->where('user_id',$user_id)->get();
 
-     $message_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')->join('users', 'users.id', '=', 'messages.user_id')->select('messages.*','message_files.*','users.first_name','users.last_name')->where('user_id',$user_id)->OrderBy('messages.id','desc')->get();
+     $message_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')->join('users', 'users.id', '=', 'messages.user_id')->select('messages.*','message_files.*','users.first_name','users.last_name')->where('user_id',$user_id)->OrderBy('messages.id','asc')->get();
 
      $message_data = array();
      foreach($message_details as $key=>$value){
@@ -983,6 +1016,7 @@ public function createMessage(Request $request){
      	$date = strtotime($value['created_at']);
 
      	$message_data[$key]['date'] = date('M j', $date);
+     	$message_data[$key]['created_at'] = $value['created_at'];
 
      	if($value['sender'] == 'admin'){
      		$messageStatus = 'received';
@@ -993,9 +1027,11 @@ public function createMessage(Request $request){
      	$message_data[$key]['messageStatus'] = $messageStatus;
 
      	if($value['file_path']!=''){
-     		$message_data[$key]['file_path'] = assets(''.$value['file_path'].'');
+     		$message_data[$key]['file_path'] = $value['file_path'];
+     		$message_data[$key]['mime_type'] = $value['mime_type'];
      	}else{
      		$message_data[$key]['file_path'] = null;
+     		$message_data[$key]['mime_type'] = null;
      	}
 
      	if($value['file_name']!=''){
@@ -1003,6 +1039,8 @@ public function createMessage(Request $request){
      	}else{
      		$message_data[$key]['file_name'] = null;
      	}
+
+
 
      }
 

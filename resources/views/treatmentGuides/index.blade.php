@@ -73,13 +73,13 @@
                         <a class="icons edit-icon" href="{{ route('treatmentGuides.show',$guides->id) }}">
                             <i class="fa fa-eye"></i>
                         </a>        
-                        @can('product-edit')                     
+                        @can('treatmentGuides-edit')                     
                         <a class="icons edit-icon" href="{{ route('treatmentGuides.edit',$guides->id) }}">
                             <i class="fa fa-edit"></i>
                         </a>  
                         @endcan                                                                                                                                                                                    
-                        @can('product-delete')                          
-                        {!! Form::open(['method' => 'DELETE','route' => ['products.destroy', $product->id],'style'=>'display:inline']) !!}
+                        @can('treatmentGuides-delete')                          
+                        {!! Form::open(['method' => 'DELETE','route' => ['treatmentGuides.destroy', $product->id],'style'=>'display:inline']) !!}
                             <a class="icons edit-icon product_delete" href="#" id="{{$guides->id}}" onclick="deleteGuides({{$guides->id}})">
                                 <i class="fa fa-trash" aria-hidden="true"></i>
                             </a>

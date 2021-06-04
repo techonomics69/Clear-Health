@@ -40,7 +40,6 @@
                                 <thead>
                                     <tr>
                                         <th width="60px">No</th>
-                                        <th> No 1</th>
                                         <th>Title</th>
                                         <th>Sub title</th>
                                         <th>Status</th>

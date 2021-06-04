@@ -71,7 +71,7 @@
                                         </td>
                                        <td>
                                     <div class="d-flex">
-                                    <a class="icons edit-icon" href="{{ route('deleteGuides.show',$guides->id) }}">
+                                    <a class="icons edit-icon" href="{{ route('treatmentGuides.show',$guides->id) }}">
                                         <i class="fa fa-eye"></i>
                                     </a> 
                                     @can('treatmentGuides-edit')    

@@ -1076,13 +1076,16 @@ public function createMessage(Request $request){
     $user_id = $request['user_id'];
     $message_id = $request['message_id'];
     //$system_case_id = $request['system_case_id'];
+
+
     $destinationPath = public_path('/Message_files');
+
 
     $messagefiles_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')->select('messages.id as message_id','message_files.*')->where('user_id',$user_id)->where('messages.id',$message_id)->first();
 
-
     $file_name = str_replace("public/Message_files/","",$messagefiles_details['file_name']);
     
+
     if(!empty($messagefiles_details)){
 
         if(file_exists($destinationPath.'/'.$file_name)){
@@ -1090,17 +1093,10 @@ public function createMessage(Request $request){
         }
 
         $messagefiles = Messages::find($messagefiles_details['message_id']);
+        $messagefiles->delete();
 
         $message = MessageFiles::find($messagefiles_details['id']);
-
-        echo "<pre>";
-        print_r($messagefiles);
-        echo "<pre>";
-
-        echo "<pre>";
-        print_r($message);
-        echo "<pre>";
-        exit();
+        $message->delete();
 
       return $this->sendResponse($message,'File Detach Successfully');
     }

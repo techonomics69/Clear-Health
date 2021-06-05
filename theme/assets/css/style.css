@@ -772,6 +772,7 @@ padding: 0.5rem;
             }
         }
     }
+
     .last-typing-section {
         display: flex;
         align-items: center;
@@ -796,5 +797,6 @@ padding: 0.5rem;
        }
 
     }
+  }
 /* media */
 /* 2212 

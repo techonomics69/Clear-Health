@@ -19,7 +19,7 @@ class ChangePasswordController extends BaseController
 
     public function index()
     {
-       // return view('changePassword');
+        return view('changePassword');
     }
 
     public function create()

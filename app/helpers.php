@@ -133,7 +133,7 @@ $u_address = "";
   $u_address = $shipping_address['addressline1'];
 }
  if($shipping_address['addressline2']!='' && $u_address!=''){
-  $u_address = $u_address','.$shipping_address['addressline2'];
+  $u_address = $u_address.','.$shipping_address['addressline2'];
 }
  if($shipping_address['city']!=''){
   $u_address .= ','.$shipping_address['city'];

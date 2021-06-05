@@ -127,6 +127,11 @@ $input_data['allergies'] = $allergies;
 
 $input = json_encode($input_data);
 
+echo "<pre>";
+print_r($input);
+echo "<pre>";
+exit();
+
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
@@ -727,5 +732,24 @@ if(!empty($Patient_data)){
 
     }
 
+    function update_read_at_for_non_medical(){
+       //$messages  =  Messages::where('id',$msg_id)->where('user_id',$user_id)->where('read_at',NULL)->update(['read_at' => Carbon::now()->format('Y-m-d H:i:s')]);
+
+        $messages  =  Messages::where('read_at',NULL)->update(['read_at' => Carbon::now()->format('Y-m-d H:i:s')]);
+
+       return $messages;
+      
+    }
+
+    function UnreadMsgCountOfUser(){
+       $messages  =  Messages::where('id',$msg_id)->where('user_id',$user_id)->where('read_at',NULL)->update(['read_at' => Carbon::now()->format('Y-m-d H:i:s')]);
+
+       return $messages;
+      
+    }
+
+    function UnreadMsgCountOfAdmin(){
+      
+    }
 
     ?>

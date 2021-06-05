@@ -1068,7 +1068,42 @@ public function createMessage(Request $request){
       return $this->sendResponse(array(),'No data found');
     }
 
+  }
 
+  public function DetachNonmedicalMessageWithFile(Request $request){
+
+    //$case_id = $request['case_id'];
+    $user_id = $request['user_id'];
+    $message_id = $request['message_id'];
+    //$system_case_id = $request['system_case_id'];
+
+
+    $destinationPath = public_path('/Message_files');
+
+
+    $messagefiles_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')->select('messages.id as message_id','message_files.*')->where('user_id',$user_id)->where('messages.id',$message_id)->first();
+
+    $file_name = str_replace("public/Message_files/","",$messagefiles_details['file_name']);
+    
+
+    if(!empty($messagefiles_details)){
+
+        if(file_exists($destinationPath.'/'.$file_name)){
+          unlink($destinationPath.'/'.$file_name);
+        }
+
+        $messagefiles = Messages::find($messagefiles_details['message_id']);
+        $messagefiles->delete();
+
+        $message = MessageFiles::find($messagefiles_details['id']);
+        $message_deleted = $message->delete();
+
+      return $this->sendResponse($message_deleted,'File Detach Successfully');
+    }
+    else{
+      return $this->sendResponse(array(),'File not Exist.');
+    }
+ 
 
   }
 

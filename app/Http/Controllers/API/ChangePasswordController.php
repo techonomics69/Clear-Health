@@ -9,7 +9,7 @@ use App\Models\User;
 use Validator;
 use Exception;
 
-class ChangePasswordController extends Controller
+class ChangePasswordController extends BaseController
 {
 
     public function __construct()

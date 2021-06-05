@@ -58,6 +58,11 @@ function create_patient($user_id,$case_id,$order_id)
 	$token_data = json_decode($r);
 	$token = $token_data->access_token;
 
+    echo "<pre>";
+    print_r($order_id);
+    echo "<pre>";
+    exit();
+
   $allergies ="";
   $current_medications = "";
   $weight = 0;

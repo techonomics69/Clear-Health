@@ -781,14 +781,14 @@ if(!empty($Patient_data)){
       
     }
 
-    function UnreadMsgCountOfUser(){
+    function UnreadMsgCountOfUser($user_id){
        $user_unread_count  =  Messages::where('read_at','!=',NULL)->where('user_id',$user_id)->where('sender','admin')->get()->toArray();
 
        return count($user_unread_count);
       
     }
 
-    function UnreadMsgCountOfAdmin(){
+    function UnreadMsgCountOfAdmin($user_id){
       $admin_unread_count  =  Messages::where('read_at','!=',NULL)->where('user_id',$user_id)->where('sender','user')->get()->toArray();
 
        return count($admin_unread_count);

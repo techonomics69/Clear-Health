@@ -705,6 +705,8 @@ flex: 1 1 auto;
 padding: 0.5rem;
 }
 }
+
+
 /*Message Screen*/
 .right-cht {
    padding: 10px;
@@ -742,10 +744,10 @@ padding: 0.5rem;
    padding: 11px;
    margin: 10px 10px;
 }
- .chating-section ul li:nth-child(odd) p {
-   background: #f44336 0d;
-   padding: 11px;
-   margin-bottom: 5px;
+.chating-section ul li:nth-child(odd) p {
+    background: #f44336 0d;
+    padding: 11px;
+    margin-bottom: 0px;
 }
  .chating-section ul li:nth-child(odd) h5 {
    text-align: right;

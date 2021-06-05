@@ -13,6 +13,10 @@ use Exception;
 class ChangePasswordController extends BaseController
 {
 
+    public function __construct()
+    {
+        //
+    }
     
     public function index()
     {

@@ -710,6 +710,8 @@ padding: 0.5rem;
 /*Message Screen*/
 .right-cht {
    padding: 10px;
+   width: 721px;
+    margin: 0 auto;
 }
  .chating-section ul {
    height: 500px;
@@ -736,9 +738,6 @@ padding: 0.5rem;
       padding: 0;
     list-style: none;
     bottom: 0;
-    width: 721px;
-    margin: 0 auto;
-    box-shadow: 0 0 6px 1px #d2caca;
 }
  .chating-section ul li {
    max-width: 400px;
@@ -772,6 +771,7 @@ padding: 0.5rem;
    display: flex;
    align-items: center;
    overflow: hidden;
+
 }
  .last-typing-section form {
    display: flex;

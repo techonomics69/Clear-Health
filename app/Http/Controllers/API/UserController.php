@@ -164,7 +164,7 @@ public function updateVerifiedByVouch(Request $request){
         if($orderdata['medication_type'] == 1){
 
             //call create patient api
-                $patient_id = create_patient($user_id,$case_id,$order_id;
+                $patient_id = create_patient($user_id,$case_id,$order_id);
             //end of code create patient api
 
 

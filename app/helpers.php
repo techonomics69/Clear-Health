@@ -61,6 +61,7 @@ function create_patient($user_id,$case_id)
   $current_medications="";
   $weight = 0;
   $height= 0;
+  $gender_id=0;
 
  $userQueAns = getQuestionAnswerFromUserid($user_id,$case_id);
  foreach ($userQueAns as $key => $value) {
@@ -100,6 +101,26 @@ function create_patient($user_id,$case_id)
 
 
   }
+
+  if($question == "What was your gender assigned at birth?"){
+    if(isset($value->answer) && $value->answer!=''){
+
+      $gender =  $value->answer;
+      if($gender == "Male"){
+        $gender_id = 1;
+      }else{
+        $gender_id = 2;
+      }
+      /*  0 = Not known;
+          1 = Male;
+          2 = Female;
+          9 = Not applicable.
+      */
+
+    }
+
+
+  }
 }
 
 $user_data = User::where('id', $user_id)->first();
@@ -111,7 +132,7 @@ $address = array();
 
 $input_data['first_name'] = $user_data['first_name'];
 $input_data['last_name'] = $user_data['last_name'];
-$input_data['gender'] = $user_data['gender'];
+$input_data['gender'] = $gender_id;
 $input_data['date_of_birth'] = $user_data['dob'];
 $input_data['phone_number'] = $user_data['mobile'];
 $input_data['phone_type'] = 2;

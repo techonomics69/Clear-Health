@@ -120,6 +120,11 @@ function create_patient($user_id,$case_id,$order_id)
 
 $user_data = User::where('id', $user_id)->first();
 
+echo "<pre>";
+print_r($user_data);
+echo "<pre>";
+exit();
+
  $shipping_address = Checkoutaddress::select('*')
    ->where('checkout_address.order_id',$order_id)
    ->where('checkout_address.address_type',1)

@@ -133,7 +133,7 @@ Route::post('getToken', [CaseManagementController::class, 'get_token']);
     Route::post('getAnswer',[AnswerController::class,'getAnswer']);
 
     //Change Password
-     Route::get('change-password', [ChangePasswordController::class, 'index'])
+    // Route::get('change-password', [ChangePasswordController::class, 'index'])
      Route::post('change-password', [ChangePasswordController::class, 'store'])
     
     Route::group(['middleware' => 'auth:api'], function(){});

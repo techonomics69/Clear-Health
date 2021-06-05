@@ -605,13 +605,13 @@
                                     <img src="{{asset('public/images/camera.png')}}" alt="">
                                 </div>
                                 <div class="attachment lastimg">
-                                    <img src="{{assets('public/images/paperclip.png')}}" alt="">
+                                    <img src="{{asset('public/images/paperclip.png')}}" alt="">
                                 </div>
                                 <div class="search">
                                     <input class="form-control" type="text" placeholder="Readonly input here..." >
                                 </div>
                                 <div class="sending lastimg">
-                                    <img src="{{assets('public/images/telegram.png')}}" alt="">
+                                    <img src="{{asset('public/images/telegram.png')}}" alt="">
                                 </div>
                             </div>
                     </div>														<!-- </div>

@@ -198,9 +198,10 @@ public function updateVerifiedByVouch(Request $request){
           return $this->sendResponse($user, 'Something went wrong!');  
       }
 
+  }
   }catch(\Exception $ex){
-   return $this->sendError('Server error',array($ex->getMessage()));
-}
+     return $this->sendError('Server error',array($ex->getMessage()));
+  }
 }
 
 public function getVouchedDetails(Request $request, $id){

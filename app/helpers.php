@@ -148,11 +148,6 @@ $input_data['allergies'] = $allergies;
 
 $input = json_encode($input_data);
 
-echo "<pre>";
-print_r($input);
-echo "<pre>";
-exit();
-
 $curl = curl_init();
 
 curl_setopt_array($curl, array(

@@ -575,7 +575,47 @@
 																<h3 class="font-weight-bold"><span class="text-underline">Non-Medical Messgaes</span></h3>
 															</div>
 
+<div class="right-cht">
+                        <div class="header-chat">
+                            <p>Brandon Koh,MD</p>
+                        </div>
 
+                            <div class="chating-section">
+                                <ul>
+                                    <li>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                                        <h5>Monday:10:20</h5>
+                                    </li>
+                                    <li>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                                        <h5>Monday:10:20</h5>
+                                    </li>
+                                    <li>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                                        <h5>Monday:10:20</h5>
+                                    </li>
+                                    <li>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                                        <h5>Monday:10:20</h5>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="last-typing-section">
+                                <div class="camera lastimg">
+                                    <img src="assets/images/camera.png" alt="">
+                                </div>
+                                <div class="attachment lastimg">
+                                    <img src="assets/images/paperclip.png" alt="">
+                                </div>
+                                <div class="search">
+                                    <input class="form-control" type="text" placeholder="Readonly input here..." >
+                                </div>
+                                <div class="sending lastimg">
+                                    <img src="assets/images/telegram.png" alt="">
+                                </div>
+                            </div>
+                    </div>
 														</div>
 													</div>
 												</div>

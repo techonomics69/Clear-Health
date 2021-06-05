@@ -51,17 +51,17 @@ function get_token(){
   return $response;
 }
 
-function create_patient($user_id,$case_id)
+function create_patient($user_id,$case_id,$order_id)
 {
 	$r = get_token();
 	$token_data = json_decode($r);
 	$token = $token_data->access_token;
 
-  $allergies="";
-  $current_medications="";
+  $allergies ="";
+  $current_medications = "";
   $weight = 0;
-  $height= 0;
-  $gender_id=0;
+  $height = 0;
+  $gender_id = 0;
 
  $userQueAns = getQuestionAnswerFromUserid($user_id,$case_id);
  foreach ($userQueAns as $key => $value) {
@@ -86,20 +86,14 @@ function create_patient($user_id,$case_id)
 
   if($question == "What is your weight in lbs?"){
     if(isset($value->answer) && $value->answer!=''){
-
       $weight =  $value->answer;
-
     }
   }
 
   if($question == "What is your Height?"){
     if(isset($value->answer) && $value->answer!=''){
-
       $height =  $value->answer;
-
     }
-
-
   }
 
   if($question == "What was your gender assigned at birth?"){
@@ -125,6 +119,18 @@ function create_patient($user_id,$case_id)
 
 $user_data = User::where('id', $user_id)->first();
 
+ $shipping_address = Checkoutaddress::select('*')
+   ->where('checkout_address.order_id',$order_id)
+   ->where('checkout_address.address_type',1)
+   ->OrderBy('id', 'DESC')
+   ->first();
+
+   echo "<pre>";
+   print_r($shipping_address);
+   echo "<pre>";
+   exit();
+
+$user_address = "";
 
 
 $input_data = array();

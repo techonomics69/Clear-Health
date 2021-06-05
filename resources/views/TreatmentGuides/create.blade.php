@@ -61,7 +61,7 @@
                             <div class="form-group">
                                 <strong>Status:</strong>
                                 <span class="required">*</span>
-                                {!! Form::select('status', ['0' => 'Please Select', '1' => 'Acive', '2' => 'In Active'], null, ['class' => 'form-control']); !!}
+                                {!! Form::select('status', ['0' => 'Please Select', '1' => 'Acive',  '2' => 'In Active'], null, ['class' => 'form-control']); !!}
                             </div>
                         </div>
 

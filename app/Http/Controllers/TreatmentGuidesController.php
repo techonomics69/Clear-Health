@@ -88,7 +88,7 @@ class TreatmentGuidesController extends Controller
     'sub_title' => 'required',
     'status' => 'required|not_in:0',
     'detail' => 'required',
-    'guides_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
+   /* 'guides_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',*/
   ]); 
 
    if(!empty($request->guides_image)):

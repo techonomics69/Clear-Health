@@ -4,6 +4,8 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
+use App\Models\User;
+
 
 class MatchOldPassword implements Rule
 {
@@ -26,7 +28,7 @@ class MatchOldPassword implements Rule
      */
     public function passes($attribute, $value)
     {
-        return Hash::check($value, auth()->user()->password);
+        return Hash::check($value, auth()->User()->password);
     }
 
     /**

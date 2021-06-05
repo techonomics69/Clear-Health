@@ -20,6 +20,7 @@ use App\Http\Controllers\API\CaseManagementController;
 use App\Http\Controllers\API\CheckoutController;
 use App\Http\Controllers\API\AnswerController;
 use App\Http\Controllers\API\TreatmentGuidesController;
+use App\Http\Controllers\API\ChangePasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -130,6 +131,10 @@ Route::post('getToken', [CaseManagementController::class, 'get_token']);
     //Answer API
     Route::post('answer',[AnswerController::class, 'answer']);
     Route::post('getAnswer',[AnswerController::class,'getAnswer']);
+
+    //Change Password
+     Route::get('change-password', [ChangePasswordController::class, 'index'])->name('change.index');
+     Route::post('change-password', [ChangePasswordController::class, 'store'])->name('change.password');
     
     Route::group(['middleware' => 'auth:api'], function(){});
     

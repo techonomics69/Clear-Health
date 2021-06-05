@@ -29,8 +29,9 @@ class ChangePasswordController extends BaseController
     }
 
 
-    public function store(Request $request)
+    public function changePassword(Request $request)
     {
+        die();
         $request->validate([
             'email' => ['required'],
             'current_password' => ['required', new MatchOldPassword],

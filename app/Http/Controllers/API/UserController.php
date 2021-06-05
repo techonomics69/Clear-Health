@@ -145,13 +145,51 @@ public function show($id)
     return $this->sendResponse($user,'user Retrived successfully');
 }
 
-public function updateVerifiedByVouch(Request $request, $id){
+public function updateVerifiedByVouch(Request $request){
     try{
-        $input = $request->all();
 
-        $data = User::whereId($id)->update($input);
+        //$input = $request->all();
 
-        $user = User::find($id);
+        $user_id = $request['user_id'];
+        $case_id = $request['case_id'];
+        $order_id = $request['order_id'];
+
+        $data = User::where('id',$user_id])->update(['verified_by_vouch' => $request['verified_by_vouch']]);
+
+        //$user = User::find($id);
+
+         $orderdata = checkout::where('checkout.order_id',$order_id)->where('checkout.case_id',$case_id)->where('checkout.user_id',$user_id)->first();
+
+
+        //code gor md create case
+        if($data['medication_type'] == 1){
+
+            //call create patient api
+                $patient_id = create_patient($data['user_id'],$data['case_id']);
+            //end of code create patient api
+
+
+            if($patient_id != ''){
+
+               $cart_ids = explode(',', $data['cart_id']);
+
+               $pharmacy_data  =  Cart::select('pharmacy_pickup')->where('user_id',$data['user_id'])->whereIn('id',$cart_ids)->where('order_type', '!=', 'AddOn')->first();
+
+               $preferred_pharmacy_id = $pharmacy_data['pharmacy_pickup'];
+
+               $response = CreateCase($data['user_id'],$data['case_id'],$preferred_pharmacy_id,$patient_id);
+
+               $response = json_decode($response);
+
+               if(!empty($response)){
+
+                $md_response = $response;
+               
+                 return $this->sendResponse($md_response, 'Order Created Successfully');
+                }
+            }else{
+                 return $this->sendResponse(array(), 'something went wrong!');
+            }
 
         if($data == 1){
             return $this->sendResponse($user, 'User Status Updated Successfully');

@@ -134,7 +134,7 @@ $u_address = "";
 }
  if($shipping_address['addressline2']!='' && $u_address!=''){
   $u_address = $u_address','.$shipping_address['addressline2']
-};
+}
  /*if($shipping_address['city']!=''){$user_address .= ','.$shipping_address['city']};
 
 if($shipping_address['state']!=''){$user_address .= ','.$shipping_address['state']};
@@ -142,7 +142,7 @@ if($shipping_address['state']!=''){$user_address .= ','.$shipping_address['state
 if($shipping_address['zipcode']!=''){$user_address .= ','.$shipping_address['zipcode']};
 */
 echo "<pre>";
-print_r($u_address);
+print_r("xgdfgdfgdfg");
 echo "<pre>";
 exit();
 

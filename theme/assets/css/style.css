@@ -718,18 +718,19 @@ padding: 0.5rem;
             width: 5px;
           }
           
-        
+          / Track /
           &::-webkit-scrollbar-track {
             box-shadow: inset 0 0 5px #e4dede; 
             border-radius: 0px;
           }
-          
+           
+          / Handle /
           &::-webkit-scrollbar-thumb {
             background: #e4e4e4; 
             border-radius: 10px;
           }
           
-         
+          / Handle on hover /
           &::-webkit-scrollbar-thumb:hover {
             background: $dark; 
           }
@@ -740,7 +741,7 @@ padding: 0.5rem;
             bottom: 0;
             li{
                max-width: 400px;
-               /* / text-align: center; /*/
+                / text-align: center; /
                 padding: 11px;
                 margin: 10px 10px;
                 &:nth-child(odd) {
@@ -774,12 +775,12 @@ padding: 0.5rem;
     .last-typing-section {
         display: flex;
         align-items: center;
-        /*justify-content: space-around;*/
+        // justify-content: space-around;
         overflow: hidden;
         form{
             display: flex;
             align-items: center;
-            /* justify-content: space-around;*/
+            // justify-content: space-around;
             overflow: hidden;
         }
       

@@ -33,7 +33,7 @@ class ChangePasswordController extends BaseController
     {
         $request->validate([
             'email' => ['required'],
-            'current_password' => ['required', new MatchOldPassword],
+            //'current_password' => ['required', new MatchOldPassword],
             'new_password' => ['required'],
             'new_confirm_password' => ['same:new_password'],
         ]);

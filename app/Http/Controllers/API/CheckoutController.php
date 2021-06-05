@@ -122,7 +122,7 @@ class CheckoutController extends BaseController
     }
     //end of code to insert data in checkout table
 
-    return $this->sendResponse(json_decode($response),'Case Created Successfully');
+    return $this->sendResponse($checkoutdata,'Order Created Successfully');
 
 
 }

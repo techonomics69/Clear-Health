@@ -160,6 +160,11 @@ public function updateVerifiedByVouch(Request $request){
 
          $orderdata = checkout::where('checkout.order_id',$order_id)->where('checkout.case_id',$case_id)->where('checkout.user_id',$user_id)->first();
 
+         echo "<pre>";
+         print_r($orderdata);
+         echo "<pre>";
+         exit();
+
 
         //code gor md create case
         if($data['medication_type'] == 1){

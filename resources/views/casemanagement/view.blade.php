@@ -602,7 +602,7 @@
 
                             <div class="last-typing-section">
                                 <div class="camera lastimg">
-                                    <img src="publi/images/camera.png" alt="">
+                                    <img src="public/images/camera.png" alt="">
                                 </div>
                                 <div class="attachment lastimg">
                                     <img src="assets/images/paperclip.png" alt="">

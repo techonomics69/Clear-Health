@@ -33,6 +33,12 @@ class ChangePasswordController extends BaseController
             'new_confirm_password' => ['same:new_password'],
         ]);
    
+
+   echo "<pre>";
+   print_r($request->all());
+   echo "</pre>";
+   die();
+
         $newpassword = User::find($id)->update(['password'=> Hash::make($request->new_password)]);
    
     return $this->sendResponse($newpassword, 'Password change successfully');

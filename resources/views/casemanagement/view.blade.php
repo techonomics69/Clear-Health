@@ -569,9 +569,9 @@
 												</div>
 
 												<div id="tab2" class="tab-pane fade in">	
-													<div class="row" style="padding: 10px;">
+													<!-- <div class="row" style="padding: 10px;">
 														<div class="col-md-12">
-															<div class="box-block mtb32" id="tab1">
+															<div class="box-block mtb32" id="tab1"> -->
 																<!-- <h3 class="font-weight-bold"><span class="text-underline">Non-Medical Messgaes</span></h3> -->
 																
 	<div class="right-cht">
@@ -614,11 +614,11 @@
                                     <img src="assets/images/telegram.png" alt="">
                                 </div>
                             </div>
-                    </div>														</div>
+                    </div>														<!-- </div>
 
 
 														</div>
-													</div>
+													</div> -->
 												</div>
 
 											<!-- <div class="card-body">

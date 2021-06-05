@@ -147,10 +147,6 @@ if($shipping_address['zipcode']!=''){
   $u_address .= ','.$shipping_address['zipcode'];
 }
 
-echo "<pre>";
-print_r($u_address);
-echo "<pre>";
-exit();
 
 $input_data = array();
 $address = array();

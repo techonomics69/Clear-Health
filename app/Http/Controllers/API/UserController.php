@@ -160,29 +160,23 @@ public function updateVerifiedByVouch(Request $request){
 
          $orderdata = checkout::where('checkout.order_id',$order_id)->where('checkout.case_id',$case_id)->where('checkout.user_id',$user_id)->first();
 
-         echo "<pre>";
-         print_r($orderdata);
-         echo "<pre>";
-         exit();
-
-
         //code gor md create case
-        if($data['medication_type'] == 1){
+        if($orderdata['medication_type'] == 1){
 
             //call create patient api
-                $patient_id = create_patient($data['user_id'],$data['case_id']);
+                $patient_id = create_patient($user_id,$case_id);
             //end of code create patient api
 
 
-            if($patient_id != ''){
+            if($patient_id != '' && $data == 1){
 
-               $cart_ids = explode(',', $data['cart_id']);
+               $cart_ids = explode(',', $orderdata['cart_id']);
 
-               $pharmacy_data  =  Cart::select('pharmacy_pickup')->where('user_id',$data['user_id'])->whereIn('id',$cart_ids)->where('order_type', '!=', 'AddOn')->first();
+               $pharmacy_data  =  Cart::select('pharmacy_pickup')->where('user_id',$user_id)->whereIn('id',$cart_ids)->where('order_type', '!=', 'AddOn')->first();
 
                $preferred_pharmacy_id = $pharmacy_data['pharmacy_pickup'];
 
-               $response = CreateCase($data['user_id'],$data['case_id'],$preferred_pharmacy_id,$patient_id);
+               $response = CreateCase($user_id,$case_id,$preferred_pharmacy_id,$patient_id);
 
                $response = json_decode($response);
 
@@ -190,19 +184,11 @@ public function updateVerifiedByVouch(Request $request){
 
                 $md_response = $response;
                
-                 return $this->sendResponse($md_response, 'Order Created Successfully');
+                 return $this->sendResponse($md_response, 'User Status Updated Successfully');
                 }
             }else{
                  return $this->sendResponse(array(), 'something went wrong!');
             }
-
-        if($data == 1){
-            return $this->sendResponse($user, 'User Status Updated Successfully');
-        }else{
-
-          return $this->sendResponse($user, 'Something went wrong!');  
-      }
-
   }
 }catch(\Exception $ex){
    return $this->sendError('Server error',array($ex->getMessage()));

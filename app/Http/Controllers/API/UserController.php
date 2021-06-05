@@ -11,6 +11,7 @@ use App\Models\Parentdetail;
 use Validator;
 use Exception;
 use Spatie\Permission\Models\Role;
+use App\Models\Cart;
 //use App\Http\Controllers\API\Mail;
 //use Illuminate\Mail\Mailable;
 use Mail;

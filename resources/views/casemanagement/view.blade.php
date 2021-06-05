@@ -572,10 +572,8 @@
 													<div class="row" style="padding: 10px;">
 														<div class="col-md-12">
 															<div class="box-block mtb32" id="tab1">
-																<h3 class="font-weight-bold"><span class="text-underline">Non-Medical Messgaes</span></h3>
-															</div>
-
-<div class="right-cht">
+																<!-- <h3 class="font-weight-bold"><span class="text-underline">Non-Medical Messgaes</span></h3> -->
+																<div class="right-cht">
                         <div class="header-chat">
                             <p>Brandon Koh,MD</p>
                         </div>
@@ -616,6 +614,9 @@
                                 </div>
                             </div>
                     </div>
+															</div>
+
+
 														</div>
 													</div>
 												</div>

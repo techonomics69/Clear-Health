@@ -146,7 +146,7 @@ public function show($id)
 }
 
 public function updateVerifiedByVouch(Request $request){
-    try{
+    //try{
 
         //$input = $request->all();
 
@@ -199,9 +199,9 @@ public function updateVerifiedByVouch(Request $request){
       }
 
   }
-  }catch(\Exception $ex){
+  /*}catch(\Exception $ex){
      return $this->sendError('Server error',array($ex->getMessage()));
-  }
+  }*/
 }
 
 public function getVouchedDetails(Request $request, $id){

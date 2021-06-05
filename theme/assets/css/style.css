@@ -733,9 +733,12 @@ padding: 0.5rem;
    background: black;
 }
  .chating-section ul {
-   padding: 0;
-   list-style: none;
-   bottom: 0;
+      padding: 0;
+    list-style: none;
+    bottom: 0;
+    width: 721px;
+    margin: 0 auto;
+    box-shadow: 0 0 6px 1px #d2caca;
 }
  .chating-section ul li {
    max-width: 400px;
@@ -759,7 +762,7 @@ padding: 0.5rem;
  .chating-section ul li:nth-child(even) p {
    background: #00f 14;
    padding: 11px;
-   margin-bottom: 5px;
+   margin-bottom: 0px;
 }
  .chating-section ul li:nth-child(even) h5 {
    text-align: right;

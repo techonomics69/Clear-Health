@@ -782,13 +782,16 @@ if(!empty($Patient_data)){
     }
 
     function UnreadMsgCountOfUser(){
-       $messages  =  Messages::where('id',$msg_id)->where('user_id',$user_id)->where('read_at',NULL)->update(['read_at' => Carbon::now()->format('Y-m-d H:i:s')]);
+       $user_unread_count  =  Messages::where('read_at','!=',NULL)->where('user_id',$user_id)->where('sender','admin')->get()->toArray();
 
-       return $messages;
+       return count($user_unread_count);
       
     }
 
     function UnreadMsgCountOfAdmin(){
+      $admin_unread_count  =  Messages::where('read_at','!=',NULL)->where('user_id',$user_id)->where('sender','user')->get()->toArray();
+
+       return count($admin_unread_count);
       
     }
 

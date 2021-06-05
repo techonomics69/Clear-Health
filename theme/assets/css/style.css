@@ -783,6 +783,17 @@ padding: 0.5rem;
  .last-typing-section .search .navbar {
    padding: 0;
 }
+
+.camera.lastimg {
+    margin-right: 16px;
+}
+.attachment.lastimg {
+    margin-right: 16px;
+}
+
+.sending.lastimg{
+margin-right:16px
+}
  
 /* media */
 /* 2212 

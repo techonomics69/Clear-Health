@@ -121,8 +121,30 @@ function create_patient($user_id,$case_id,$order_id)
 $user_data = User::where('id', $user_id)->first();
 
 
+ $shipping_address = Checkoutaddress::select('*')
+   ->where('checkout_address.order_id',$order_id)
+   ->where('checkout_address.address_type',1)
+   ->OrderBy('id', 'DESC')
+   ->first();
 
- 
+$user_address = "";
+
+ if($shipping_address['addressline1']!=''){
+  $user_address = $shipping_address['addressline1']
+};
+ if($shipping_address['addressline2']!='' && $user_address!=''){
+  $user_address = $user_address','.$shipping_address['addressline2']
+};
+ /*if($shipping_address['city']!=''){$user_address .= ','.$shipping_address['city']};
+
+if($shipping_address['state']!=''){$user_address .= ','.$shipping_address['state']};
+
+if($shipping_address['zipcode']!=''){$user_address .= ','.$shipping_address['zipcode']};
+*/
+echo "<pre>";
+print_r($user_address);
+echo "<pre>";
+exit();
 
 $input_data = array();
 $address = array();
@@ -134,7 +156,7 @@ $input_data['date_of_birth'] = $user_data['dob'];
 $input_data['phone_number'] = $user_data['mobile'];
 $input_data['phone_type'] = 2;
 $input_data['email'] = $user_data['email'];
-$address['address'] = "jghkj";
+$address['address'] = $user_address;
 $address['city_id'] = '31f5afce-1c7f-4636-b9b4-3874a177de90';//$user_data['city_id'];
 $address['zip_code'] = $user_data['zip'];
 $input_data['address'] = $address;

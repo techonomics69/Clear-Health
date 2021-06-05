@@ -142,7 +142,7 @@ if($shipping_address['state']!=''){$user_address .= ','.$shipping_address['state
 if($shipping_address['zipcode']!=''){$user_address .= ','.$shipping_address['zipcode']};
 */
 echo "<pre>";
-print_r($shipping_address);
+print_r($shipping_address['addressline1']);
 echo "<pre>";
 exit();
 

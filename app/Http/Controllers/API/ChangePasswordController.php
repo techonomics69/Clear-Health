@@ -32,36 +32,36 @@ class ChangePasswordController extends BaseController
 
     public function changePassword(Request $request)
     {
-      
+
         $request->validate([
             'email' => ['required'],
             'current_password' => ['required'],
             'new_password' => ['required'],
             'new_confirm_password' => ['same:new_password'],
         ]);
-   
-   
+
+
         if(!empty($request->email)){
             $user = User::where('email',$request->email) -> first();
             if(empty($user)){
-            return $this->sendError('Unauthorised.', array('Invalid email or user'));
-               }
+                return $this->sendError('Unauthorised.', array('Invalid email or user'));
             }
+        }
         
-         
+
         if(Auth::attempt(['email' => $request->email, 'password' => $request->current_password])){  
-        $user = Auth::user(); 
-        $success['token'] =  $user->createToken('MyApp')->accessToken;
-        $success['user_id'] =  $user->id; 
-        } 
-   
+            $user = Auth::user(); 
+            $success['token'] =  $user->createToken('MyApp')->accessToken;
+            $success['user_id'] =  $user->id; 
+        
+
         $newpassword = User::find($id)->update(['password'=> Hash::make($request->new_password)]);
-         echo"<pre>";
-   print_r($newpassword);
-   echo"</pre>";
-   die();
-   
-    return $this->sendResponse($newpassword, 'Password Change Successfully');
+        echo"<pre>";
+        print_r($newpassword);
+        echo"</pre>";
+        die();
+}
+        return $this->sendResponse($newpassword, 'Password Change Successfully');
         //return redirect()->route('change.index')->with('message', 'Password change successfully.');
     }
 

@@ -22,10 +22,6 @@ class TreatmentGuidesController extends BaseController
     {
 
       $TreatmentGuides = TreatmentGuides::where('status', 1)->get();
-      /*echo "<pre>";
-      print_r($TreatmentGuides);
-      echo "</pre>";
-      die();*/
         return $this->sendResponse($TreatmentGuides,'Treatement Guides retrieved successfully.');
     }
 

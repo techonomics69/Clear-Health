@@ -51,10 +51,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        
-                                        <tr> 
-                                            <?php $i=1;?>
+                                        <?php $i=1;?>
                                         @foreach ($order as $key => $order_data)
+                                        <tr> 
                                             <td>{{ $i++ }}</td>
                                             <td>{{ $order_data->order_id }} </td>
                                             <td>{{ $order_data->case_id }}</td>

@@ -89,8 +89,6 @@
                                                     </a> 
                                                 </div>  
                                             </td>
-
-
                                         <?php } else{?>
                                             <td> 
                                                 <div class="d-flex">

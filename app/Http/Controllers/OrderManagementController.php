@@ -49,10 +49,7 @@ class OrderManagementController extends Controller
            }
            $order[$key]->product_name = implode(',',$product_name);
        }
-       echo "<pre>";
-       print_r($order);
-       echo "</pre>";
-       die();
+       
        return view('ordermanagement.index',compact('order'));
    }
 

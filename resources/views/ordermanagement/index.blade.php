@@ -31,7 +31,7 @@
                         </div>
                     </div> -->
                 </div>
-                
+
                 <div class="row">
                     <div class="col-lg-12">
                         <section class="card" >
@@ -79,7 +79,6 @@
                                             </td>
                                         <?php }else { ?>
                                             <?php if(isset($order_data->case_id)){?>
-
                                            <td> 
                                                 <div class="d-flex">
                                                     <a class="icons edit-icon" href="{{ route('casemanagement.show',$order_data->case_id)}}">

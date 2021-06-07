@@ -228,7 +228,7 @@ public function addUserPic(Request $request)
     $case_id = $request['case_id'];
     $user_left_pic = $request->file('left_pic');
     $user_right_pic = $request->file('right_pic');
-    $straight_pic = $request->file('straight_pic');
+    $user_straight_pic = $request->file('straight_pic');
 
     $destinationPath = public_path('/images/Users');
 

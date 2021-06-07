@@ -370,11 +370,11 @@ public function getCaseStatus(){
 
   foreach($data as $key=>$value){
 
-    $user_id = $data['user_id'];
-    $case_id = $data['case_id'];
-    $system_case_id = $data['system_case_id'];
+    $user_id = $value['user_id'];
+    $case_id = $value['case_id'];
+    $system_case_id = $value['system_case_id'];
 
-    $recommended_product = $data['recommended_product'];
+    $recommended_product = $value['recommended_product'];
 
     $userQueAns = getQuestionAnswerFromUserid($user_id,$system_case_id);
 

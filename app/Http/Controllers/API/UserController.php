@@ -230,6 +230,7 @@ public function addUserPic(Request $request)
     $user_right_pic = $request->file('right_pic');
     $user_straight_pic = $request->file('straight_pic');
 
+    
     $destinationPath = public_path('/images/Users');
 
     if(!empty($user_left_pic)){
@@ -258,7 +259,7 @@ public function addUserPic(Request $request)
         File::makeDirectory(public_path('/images/Users'),0777,true,true);
       }
       //$straight_pic_destinationPath = public_path('/images/Users');
-      $user_right_pic->move($destinationPath, $file_name_straight_pic);
+      $user_straight_pic->move($destinationPath, $file_name_straight_pic);
 
       chmod($destinationPath."/".$file_name_straight_pic, 0777);
 

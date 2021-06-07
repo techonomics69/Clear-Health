@@ -31,8 +31,7 @@
                         </div>
                     </div> -->
                 </div>
-                <div class="content-body">
-      <section class="basic-elements">
+                
                 <div class="row">
                     <div class="col-lg-12">
                         <section class="card" >
@@ -99,9 +98,6 @@
                 </section>
             </div>
         </div>
-    </section>
-</div>
-
     </div>
 </div>
 @endsection

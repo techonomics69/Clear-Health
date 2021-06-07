@@ -373,7 +373,7 @@ public function getCaseStatus(){
   $token_data = json_decode($r);
   $token = $token_data->access_token;
 
-  foreach($data $key=>$value){
+  foreach($data as $key=>$value){
 
     echo "<pre>";
     print_r($value);

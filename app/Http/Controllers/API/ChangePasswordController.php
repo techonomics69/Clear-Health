@@ -31,6 +31,7 @@ class ChangePasswordController extends BaseController
 
     public function changePassword(Request $request)
     {
+        die("test");
         $request->validate([
             'email' => ['required'],
             'current_password' => ['required', new MatchOldPassword],

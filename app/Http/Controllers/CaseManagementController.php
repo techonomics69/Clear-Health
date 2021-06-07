@@ -371,30 +371,29 @@ public function getCaseStatus(){
   foreach($data as $key=>$value){
 
     $user_id = $value['user_id'];
-    $case_id = $value['case_id'];
-    $system_case_id = $value['system_case_id'];
+    $case_id = $value['md_case_id'];
+    $system_case_id = $value['id'];
 
     $recommended_product = $value['recommended_product'];
 
-    $userQueAns = getQuestionAnswerFromUserid($user_id,$system_case_id);
+    if($value['md_case_status']!= 'completed'){
 
-    if(!empty($userQueAns)){
-      foreach ($userQueAns as $key => $value) {
-       $question = $value->question;
-       if($question == "What was your gender assigned at birth?"){
-          if(isset($value->answer) && $value->answer!=''){
+        $userQueAns = getQuestionAnswerFromUserid($user_id,$system_case_id);
 
-            $gender =  $value->answer;
+          if(!empty($userQueAns)){
+            foreach ($userQueAns as $key => $value) {
+             $question = $value->question;
+             if($question == "What was your gender assigned at birth?"){
+                if(isset($value->answer) && $value->answer!=''){
+
+                  $gender =  $value->answer;
+                }
+             }
           }
-       }
-    }
 
-  }
+        }
 
-
-  /*$current_status = "completed"*/
-
-      if($case_id != '' || $case_id != NULL){
+    if($case_id != '' || $case_id != NULL){
 
        $curl = curl_init();
 
@@ -455,10 +454,10 @@ public function getCaseStatus(){
         */
        }
 
-     }
+      }
+    }
 
-
-   }exit();
+  }
 
 
 }

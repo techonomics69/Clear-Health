@@ -34,18 +34,20 @@ class ChangePasswordController extends BaseController
         /*die("test");*/
         $request->validate([
             'email' => ['required'],
-            'current_password' => ['required', new MatchOldPassword],
+            'current_password' => ['required'],
             'new_password' => ['required'],
             'new_confirm_password' => ['same:new_password'],
         ]);
    
 
-  /* echo "<pre>";
-   print_r($request->all());
-   echo "</pre>";
-   die();*/
+  
         $user = Auth::user(); 
         $success['token'] =  $user->createToken('MyApp')->accessToken; 
+         echo "<pre>";
+   print_r($request->all());
+   print_r($success);
+   echo "</pre>";
+   die();
         //$newpassword = User::find($id)->update(['password'=> Hash::make($request->new_password)]);
                         $newpassword=User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
     return $this->sendResponse($newpassword, 'Password Change Successfully');

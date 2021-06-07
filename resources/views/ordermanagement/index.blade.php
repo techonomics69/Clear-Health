@@ -92,7 +92,7 @@
                                         <?php } else{?>
                                             <td> 
                                                 <div class="d-flex">
-                                                    <a class="icons edit-icon" href="{{ route('casemanagement.show',$order_data->case_id)}}">
+                                                    <a class="icons edit-icon" href="#">
                                                         <i class="fa fa-eye"></i> 
                                                     </a> 
                                                 </div>  

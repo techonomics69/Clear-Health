@@ -221,6 +221,12 @@ public function getVouchedDetails(Request $request, $id){
 
 public function addUserPic(Request $request)
 {
+
+    echo "<pre>";
+    print_r( $request->all());
+    echo "<pre>";
+    exit();
+
     $user_id = $request->user_id;
     $case_id = $request->case_id;
     $user_left_pic = $request->file('left_pic');

@@ -50,29 +50,6 @@
                                             <th width="200px">Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <?php $i=1;?>
-                                        @foreach ($order as $key => $order_data)
-                                        <tr> 
-                                            <td>{{ $i++ }}</td>
-                                            <td>{{ $order_data->order_id }} </td>
-                                            <td>{{ $order_data->case_id }}</td>
-                                            <td>{{ $order_data->email }}</td>
-
-                                            <td>{{\Carbon\Carbon::parse($order_data->created_at)->format('d/m/Y')}} </td>
-                                            <!-- <td>{{ $order_data->created_at }}</td> -->
-                                            <td>{{ $order_data->product_name }}</td>
-                                            <!-- <td>{{ $order_data->product_price }}</td>  -->
-                                            <td><?php if($order_data->medication_type == 1){
-                                                echo "Prescribed";
-                                            }else{
-                                                echo "Non Prescribed";
-                                            } ?></td>
-
-                                            
-                                    </tr>
-                                    @endforeach
-                                </tbody>
                             </table>
                         </div>
                     </div>

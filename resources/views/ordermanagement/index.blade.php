@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'clearHealth | Ordermanagement')
+@section('title', 'clearHealth | Order Management')
 @section('content')
 
 <div class="app-content content">
@@ -9,7 +9,6 @@
         <p>{{ $message }}</p>
     </div>
     @endif
-
 
     <div class="content-wrapper">
         <div class="content-header row">
@@ -40,17 +39,58 @@
                                    <table class="table table-responsive-md table-striped table-bordered " style="width:100%" id="ordermanagement">
                                     <thead>
                                         <tr>
-                                            <th width="60px">No</th>
+                                            <th width="60px">SR No</th>
                                             <th>Order Id</th>
                                             <th>Case Id</th>
                                             <th>Email</th>
                                             <th>Date</th>
                                             <th>Product Name</th>
                                             <th>Order Type</th>
+                                            <!--  <th>Order Status</th> -->
                                             <th width="200px">Action</th>
                                         </tr>
                                     </thead>
-                                    
+                                    <tbody>
+                                        <?php $i=1;?>
+                                        @foreach ($order as $key => $order_data)
+                                        <tr> 
+                                            <td>{{ $i++ }}</td>
+                                            <td>{{ $order_data->order_id }} </td>
+                                            <td>{{ $order_data->case_id }}</td>
+                                            <td>{{ $order_data->email }}</td>
+
+                                            <td>{{\Carbon\Carbon::parse($order_data->created_at)->format('d/m/Y')}} </td>
+                                            <!-- <td>{{ $order_data->created_at }}</td> -->
+                                            <td>{{ $order_data->product_name }}</td>
+                                            <!-- <td>{{ $order_data->product_price }}</td>  -->
+                                            <td><?php if($order_data->medication_type == 1){
+                                                echo "Prescribed";
+                                            }else{
+                                                echo "Non Prescribed";
+                                            } ?></td>
+
+                                            <?php if($order_data->medication_type == 2 ) { ?> 
+                                             <td> 
+                                                <div class="d-flex">
+                                                    <a class="icons edit-icon" href="{{ route('ordermanagement.show',$order_data->id)}}">
+                                                        <i class="fa fa-eye"></i>
+                                                    </a> 
+                                                </div>  
+                                            </td>
+                                        <?php }else { ?>
+                                            <?php if(isset($order_data->case_id)){?>
+                                           <td> 
+                                                <div class="d-flex">
+                                                    <a class="icons edit-icon" href="{{ route('casemanagement.show',$order_data->case_id)}}">
+                                                        <i class="fa fa-eye"></i> 
+                                                    </a> 
+                                                </div>  
+                                            </td> 
+                                        <?php }?> 
+                                    <?php  }?>
+                                        </tr>
+                                        @endforeach
+                                    </tbody> 
                                 </table>
                             </div>
                         </div>

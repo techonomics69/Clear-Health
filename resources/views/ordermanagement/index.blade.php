@@ -79,22 +79,7 @@
             "oSearch": { "bSmart": false, "bRegex": true }
         });
     });
-    
-    function deleteMdmanagement(e){
-       swal({
-        title: "Are you sure want to delete?",
-        text: "If you delete this category, it's also delete all products releated to this category ",
-        icon: "../public/icon/delete.png",
-        imageSize: '60x60',          
-        buttons: true,
-        dangerMode: false,
-        buttons: ["No, cancel Please!",'Yes, delete it!']
-      }).then((willDelete) => {
-            if (willDelete) {
-                 $('.btn_delete'+e)[0].click();    
-            } 
-        });
-    };
+     
 </script>
 @endsection
 

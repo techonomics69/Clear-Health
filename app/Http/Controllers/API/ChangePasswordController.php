@@ -34,7 +34,7 @@ class ChangePasswordController extends BaseController
 public function changePassword(Request $request)
 {
     $input = $request->all();
-    $userid = Auth::guard('api')->user()->id;
+    $userid = Auth::guard('api')->User()->id;
 
         $request->validate([
             'email' => ['required'],

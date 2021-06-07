@@ -16,6 +16,7 @@ use App\Models\UserPics;
 //use App\Http\Controllers\API\Mail;
 //use Illuminate\Mail\Mailable;
 use Mail;
+use File;
 
 class UserController extends BaseController
 {

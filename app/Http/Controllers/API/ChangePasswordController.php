@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Spatie\Permission\Models\Role;
 use Validator;
 use Exception;
 
@@ -42,13 +41,20 @@ class ChangePasswordController extends BaseController
         ]);
    
    
-        $user = Auth::user(); 
+        if(!empty($request->email)){
+            $user = User::where('email',$request->email) -> first();
+            echo"<pre>";
+   print_r($user);
+   echo"</pre>";
+   die();
+            if(empty($user)){
+            return $this->sendError('Unauthorised.', array('Invalid email or user'));
+               }
+            }
+        //$user = Auth::user(); 
       
         $success['token'] =  $user->createToken('MyApp')->accessToken;
-          echo"<pre>";
-   print_r($success);
-   echo"</pre>";
-   die(); 
+           
         $newpassword = User::find($id)->update(['password'=> Hash::make($request->new_password)]);
    
     return $this->sendResponse($newpassword, 'Password Change Successfully');

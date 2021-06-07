@@ -54,7 +54,6 @@ class ChangePasswordController extends BaseController
             $newpassword = User::find($user->id)->update(['password'=> Hash::make($request->new_password)]);
             return $this->sendResponse([], 'Password Change Successfully');
         }
-        //return redirect()->route('change.index')->with('message', 'Password change successfully.');
     }
 
 

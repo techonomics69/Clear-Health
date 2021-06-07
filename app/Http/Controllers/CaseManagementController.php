@@ -378,28 +378,32 @@ public function getCaseStatus(){
 
     $userQueAns = getQuestionAnswerFromUserid($user_id,$system_case_id);
 
-    foreach ($userQueAns as $key => $value) {
-       $question = $value->question;
-       if($question == "What was your gender assigned at birth?"){
-          if(isset($value->answer) && $value->answer!=''){
+      if(!empty($userQueAns)){
+        foreach ($userQueAns as $key => $value) {
+             $question = $value->question;
+             if($question == "What was your gender assigned at birth?"){
+                if(isset($value->answer) && $value->answer!=''){
 
-            $gender =  $value->answer;
+                  $gender =  $value->answer;
 
-            /*if($gender == "Male"){
-              $gender_id = 1;
-            }else{
-              $gender_id = 2;
-            }
-              0 = Not known;
-                1 = Male;
-                2 = Female;
-                9 = Not applicable.
-            
+                  /*if($gender == "Male"){
+                    $gender_id = 1;
+                  }else{
+                    $gender_id = 2;
+                  }
+                    0 = Not known;
+                      1 = Male;
+                      2 = Female;
+                      9 = Not applicable.
+                  
 
-          }*/
-     }
-  }
+                }*/
+           }
+        }
+      }
 
+      }
+          
 
     if($case_id != '' || $case_id != NULL){
 
@@ -460,12 +464,8 @@ public function getCaseStatus(){
     curl_close($curl);
     echo $response;
   }
-*/
-    /*echo "<pre>";
-    print_r($data);
-    echo "<pre>";
-    exit();*/
-  }
+
+  
 
 }
 

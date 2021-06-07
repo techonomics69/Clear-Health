@@ -19,7 +19,7 @@
    </div>
    <div class="content-header-right col-md-6 col-12 mb-2">
      <div class="pull-right">
-        <a class="btn btn-secondry" href="{{ route('cms.index') }}"> Back</a>
+        <a class="btn btn-secondry" href="{{ route('treatmentGuides.index') }}"> Back</a>
     </div>
 </div> 
 </div>

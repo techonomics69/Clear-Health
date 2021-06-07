@@ -165,30 +165,30 @@ class CaseManagementController extends Controller
       
     }
 */ // }
-  $accutane = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',8)->first();
+    $accutane = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',8)->first();
 
 //$accutane_que=json_decode($accutane->answer); 
 
-  if(isset($accutane))
-  {
-   $accutane_que=json_decode($accutane->answer); 
- }else{
-   $accutane_que = [];
- }
+    if(isset($accutane))
+    {
+     $accutane_que=json_decode($accutane->answer); 
+   }else{
+     $accutane_que = [];
+   }
 
 
- $topical = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',9)->first();
+   $topical = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',9)->first();
 
- /*$topical_que=json_decode($topical->answer);*/
+   /*$topical_que=json_decode($topical->answer);*/
 
- if(isset($topical))
- {
-   $topical_que=json_decode($topical->answer);
- }else{
-  $topical_que=[];
-}
+   if(isset($topical))
+   {
+     $topical_que=json_decode($topical->answer);
+   }else{
+    $topical_que=[];
+  }
 
-return view('casemanagement.view',compact('user_case_management_data','category','general_que','accutane_que','topical_que','skincare_summary'));
+  return view('casemanagement.view',compact('user_case_management_data','category','general_que','accutane_que','topical_que','skincare_summary'));
 
 }
 
@@ -378,38 +378,25 @@ public function getCaseStatus(){
 
     $userQueAns = getQuestionAnswerFromUserid($user_id,$system_case_id);
 
-if(!empty($userQueAns)){
-  foreach ($userQueAns as $key => $value) {
+    if(!empty($userQueAns)){
+      foreach ($userQueAns as $key => $value) {
        $question = $value->question;
        if($question == "What was your gender assigned at birth?"){
           if(isset($value->answer) && $value->answer!=''){
 
             $gender =  $value->answer;
+          }
+       }
+    }
 
-            /*if($gender == "Male"){
-              $gender_id = 1;
-            }else{
-              $gender_id = 2;
-            }
-              0 = Not known;
-                1 = Male;
-                2 = Female;
-                9 = Not applicable.
-            
-
-          }*/
-     }
   }
-}
 
-}
-    
 
-    if($case_id != '' || $case_id != NULL){
+      if($case_id != '' || $case_id != NULL){
 
        $curl = curl_init();
 
-    curl_setopt_array($curl, array(
+       curl_setopt_array($curl, array(
         CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
@@ -424,45 +411,27 @@ if(!empty($userQueAns)){
         ),
       ));
 
-      $response = curl_exec($curl);
+       $response = curl_exec($curl);
 
-      $MdCaseStatus = json_decode($response);
+       $MdCaseStatus = json_decode($response);
 
-      echo "<pre>";
-      print_r($MdCaseStatus);
-      echo "<pre>";
-      exit();
+       echo "<pre>";
+       print_r($MdCaseStatus);
+       echo "<pre>";
+       exit();
 
-      curl_close($curl);
-      
-    }
-   
+       curl_close($curl);
 
-  }
- 
+     }
 
-  /*$current_status = "completed"
 
-  if($current_status == "dosespot confirmed"){
-    curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id,
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_ENCODING => '',
-      CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 0,
-      CURLOPT_FOLLOWLOCATION => true,
-      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => 'GET',
-      CURLOPT_HTTPHEADER => array(
-        'Authorization: Bearer '.$token,
-        'Cookie: __cfduid=da01d92d82d19a6cccebfdc9852303eb81620627650'
-      ),
-    ));
+   }
 
-    $response = curl_exec($curl);
 
-    curl_close($curl);
-    echo $response;
-  }*/
+  /*$current_status = "completed"*/
+
+
+
+}
 
 }

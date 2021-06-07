@@ -392,6 +392,8 @@ public function getCaseStatus(){
   }
 
 
+  /*$current_status = "completed"*/
+
       if($case_id != '' || $case_id != NULL){
 
        $curl = curl_init();
@@ -422,14 +424,41 @@ public function getCaseStatus(){
 
        curl_close($curl);
 
+
+       if($gender == "Female" && $recommended_product == 'Accutane'){
+
+        /*
+        1.   Telehealth Evaluation Requested -> sent to MD Integrations  (case status MD side = pending )
+        2.   Awaiting Live Consultation -> MD assigned, call not initiated ( MD guys will call ping our API using webhook and we will get notified that MD has been assigned)
+        3.   Awaiting Follow-Up -> (case status received as support from MD)
+        4.   Awaiting Prescription Approval
+        5.   Prescription Approved -> (prescription confirmed by dosespot/script is written i.e. case status received from MD = Dosespot confirmed)
+        6.   Awaiting Action Items
+        */
+
+       }else if($gender == "Male" && $recommended_product == 'Accutane'){
+        /*
+          Initial Accutane Male Flow:
+    
+          1. Telehealth Visit Requested/ Awaiting Clinician assigned - after vouched verification is done.
+          2. MD Assigned
+          3. Awaiting Prescription Approval
+          4. Prescription Approved
+        */
+
+       }else{
+        /*
+        Topical Male & Female:
+
+        1. Telehealth Evaluation Requested
+        2. Prescription Approved/Denied
+        */
+       }
+
      }
 
 
    }
-
-
-  /*$current_status = "completed"*/
-
 
 
 }

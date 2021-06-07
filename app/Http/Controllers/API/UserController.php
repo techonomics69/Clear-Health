@@ -12,6 +12,7 @@ use Validator;
 use Exception;
 use Spatie\Permission\Models\Role;
 use App\Models\Cart;
+use App\Models\UserPics;
 //use App\Http\Controllers\API\Mail;
 //use Illuminate\Mail\Mailable;
 use Mail;
@@ -222,13 +223,8 @@ public function getVouchedDetails(Request $request, $id){
 public function addUserPic(Request $request)
 {
 
-    echo "<pre>";
-    print_r($request->all());
-    echo "<pre>";
-    exit();
-
-    $user_id = $request->user_id;
-    $case_id = $request->case_id;
+    $user_id = $request['user_id'];
+    $case_id = $request['case_id'];
     $user_left_pic = $request->file('left_pic');
     $user_right_pic = $request->file('right_pic');
     $straight_pic = $request->file('straight_pic');
@@ -249,6 +245,8 @@ public function addUserPic(Request $request)
 
       //$left_pic_file_path = 'public/images/Users' .$left_pic;
   
+    }else{
+        $file_name_left_pic = NULL;
     }
 
     if(!empty($user_straight_pic)){
@@ -265,6 +263,8 @@ public function addUserPic(Request $request)
 
       //$straight_pic_file_path = 'public/images/Users' .$straight_pic;
   
+    }else{
+        $file_name_straight_pic = NULL; 
     }
 
     if(!empty($user_right_pic)){
@@ -281,18 +281,20 @@ public function addUserPic(Request $request)
 
       //$right_pic_file_path = 'public/images/Userss' .$right_pic;
   
+    }else{
+      $file_name_right_pic = NULL;  
     }
 
 
-/*$parent = Parentdetail::create(array(
-    'user_id'=>$request->user_id,
-    'first_name'=>$request->case_id,
-    'last_name'=>$request->last_name,
-    'phone'=>$request->phone,
-    'email'=>$request->email,
+$parent = UserPics::create(array(
+    'user_id'=>$user_id,
+    'case_id'=>$case_id,
+    'left_pic'=>$file_name_left_pic,
+    'straight_pic'=>$file_name_straight_pic,
+    'right_pic'=>$file_name_right_pic,
 ));
 
-return $this->sendResponse($parent, 'User pictur saved successfully.');*/
+return $this->sendResponse($parent, 'User picture saved successfully.');
 
 }
 

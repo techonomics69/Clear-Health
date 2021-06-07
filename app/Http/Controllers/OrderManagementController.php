@@ -37,7 +37,7 @@ class OrderManagementController extends Controller
 
         $order = checkout::join('users', 'users.id', '=', 'checkout.user_id')
         ->join('carts','carts.id', '=', 'checkout.cart_id')
-        ->select('users.email','checkout.case_id','checkout.created_at','checkout.order_id','checkout.medication_type','checkout.id','checkout.cart_id','carts.product_price','checkout.case_id')->orderBy('checkout.id', 'DESC')->get();
+        ->select('users.email','checkout.case_id','checkout.created_at','checkout.order_id','checkout.medication_type','checkout.id','checkout.cart_id','carts.product_price','checkout.case_id')->orderBy('checkout.id', 'DESC')->first();
         foreach($order as $key=>$val)
         {
             $cart_ids = explode(',', $val['cart_id']);
@@ -49,7 +49,10 @@ class OrderManagementController extends Controller
            }
            $order[$key]->product_name = implode(',',$product_name);
        }
-       
+echo "<pre>";
+print_r($order);
+echo "</pre>";
+die();
        return view('ordermanagement.index',compact('order'));
    }
 

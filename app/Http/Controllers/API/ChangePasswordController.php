@@ -29,9 +29,9 @@ class ChangePasswordController extends BaseController
     }
 
 
-    public function changePassword(Request $request)
+    /*public function changePassword(Request $request)
     {
-        /*die("test");*/
+      
         $request->validate([
             'email' => ['required'],
             'current_password' => ['required', new MatchOldPassword],
@@ -47,7 +47,7 @@ class ChangePasswordController extends BaseController
    
     return $this->sendResponse($newpassword, 'Password Change Successfully');
         //return redirect()->route('change.index')->with('message', 'Password change successfully.');
-    }
+    }*/
 
 
     /**

@@ -49,7 +49,7 @@ class ChangePasswordController extends BaseController
             }
         
          
-        if(Auth::attempt(['email' => $request->email])){  
+        if(Auth::attempt(['email' => $request->email, 'password' => $request->current_password])){  
         $user = Auth::user(); 
                 $success['token'] =  $user->createToken('MyApp')->accessToken; 
                 } 

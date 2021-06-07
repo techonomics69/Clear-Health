@@ -21,7 +21,7 @@ class TreatmentGuidesController extends BaseController
     public function index()
     {
 
-      $TreatmentGuides = TreatmentGuides::where('status', '!= 0')->get();
+      $TreatmentGuides = TreatmentGuides::where('status', 0)->get();
         return $this->sendResponse($TreatmentGuides,'Treatement Guides retrieved successfully.');
     }
 

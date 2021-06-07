@@ -50,13 +50,7 @@
                                             <th width="200px">Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <?php $i=1;?>
-                                        @foreach ($order as $key => $order_data)
-                                        <tr> 
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
+                                    
                                 </table>
                             </div>
                         </div>
@@ -68,7 +62,7 @@
     @endsection
 
     @section('scriptsection')
-    
+
     <script>
         $.noConflict();
         jQuery( document ).ready(function( $ ) {

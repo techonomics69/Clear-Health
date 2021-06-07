@@ -51,7 +51,7 @@ class ChangePasswordController extends BaseController
             $user = Auth::user(); 
             $success['token'] =  $user->createToken('MyApp')->accessToken;
             $success['user_id'] =  $user->id; 
-            $newpassword = User::find($id)->update(['password'=> Hash::make($request->new_password)]);
+            $newpassword = User::find($user->id)->update(['password'=> Hash::make($request->new_password)]);
             echo "<pre>";
             print_r($newpassword);
             echo "</pre>";

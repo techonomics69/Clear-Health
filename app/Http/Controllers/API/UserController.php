@@ -221,7 +221,63 @@ public function getVouchedDetails(Request $request, $id){
 
 public function addUserPic(Request $request)
 {
-    
+    $user_id = $request->user_id;
+    $case_id = $request->case_id;
+    $user_left_pic = $request->file('left_pic');
+    $user_right_pic = $request->file('right_pic');
+    $straight_pic = $request->file('straight_pic');
+
+    $destinationPath = public_path('/images/Users');
+
+    if(!empty($user_left_pic)){
+      $left_pic =  $user_left_pic->getClientOriginalName();
+      $file_name_left_pic =  time().'-'.$left_pic;
+      
+      if (!file_exists(public_path('/images/Users'))) {
+        File::makeDirectory(public_path('/images/Users'),0777,true,true);
+      }
+      
+      $user_left_pic->move($destinationPath, $file_name_left_pic);
+
+      chmod($destinationPath."/".$file_name_left_pic, 0777);
+
+      //$left_pic_file_path = 'public/images/Users' .$left_pic;
+  
+    }
+
+    if(!empty($user_straight_pic)){
+      $straight_pic =  $user_straight_pic->getClientOriginalName();
+      $file_name_straight_pic =  time().'-'.$straight_pic;
+      
+      if (!file_exists(public_path('/images/Users'))) {
+        File::makeDirectory(public_path('/images/Users'),0777,true,true);
+      }
+      //$straight_pic_destinationPath = public_path('/images/Users');
+      $user_right_pic->move($destinationPath, $file_name_straight_pic);
+
+      chmod($destinationPath."/".$file_name_straight_pic, 0777);
+
+      //$straight_pic_file_path = 'public/images/Users' .$straight_pic;
+  
+    }
+
+    if(!empty($user_right_pic)){
+      $right_pic =  $user_left_pic->getClientOriginalName();
+      $file_name_right_pic =  time().'-'.$right_pic;
+      
+      if (!file_exists(public_path('/images/Users'))) {
+        File::makeDirectory(public_path('/images/Users'),0777,true,true);
+      }
+      $destinationPath = public_path('/images/Users');
+      $user_right_pic->move($destinationPath, $file_name_right_pic);
+
+      chmod($destinationPath."/".$file_name_right_pic, 0777);
+
+      //$right_pic_file_path = 'public/images/Userss' .$right_pic;
+  
+    }
+
+
 /*$parent = Parentdetail::create(array(
     'user_id'=>$request->user_id,
     'first_name'=>$request->case_id,

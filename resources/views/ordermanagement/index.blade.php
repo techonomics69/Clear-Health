@@ -36,7 +36,7 @@
                         <section class="card" >
                             <div class="row" style="padding: 20px;">
                                 <div class="col-md-12">
-                                   <table class="table table-responsive-md table-striped table-bordered " style="width:100%" id="ordermanagement">
+                                 <table class="table table-responsive-md table-striped table-bordered " style="width:100%" id="ordermanagement">
                                     <thead>
                                         <tr>
                                             <th width="60px">SR No</th>
@@ -70,7 +70,7 @@
                                             } ?></td>
 
                                             <?php if($order_data->medication_type == 2 ) { ?> 
-                                             <td> 
+                                               <td> 
                                                 <div class="d-flex">
                                                     <a class="icons edit-icon" href="{{ route('ordermanagement.show',$order_data->id)}}">
                                                         <i class="fa fa-eye"></i>
@@ -79,7 +79,7 @@
                                             </td>
                                         <?php } else { ?>
                                             <?php if(isset($order_data->case_id)){?>
-                                           <td> 
+                                             <td> 
                                                 <div class="d-flex">
                                                     <a class="icons edit-icon" href="{{ route('casemanagement.show',$order_data->case_id)}}">
                                                         <i class="fa fa-eye"></i> 
@@ -88,30 +88,30 @@
                                             </td> 
                                         <?php }?> 
                                     <?php  }?>
-                                        </tr>
-                                        @endforeach
-                                    </tbody> 
-                                </table>
-                            </div>
-                        </div>
-                    </section>
+                                </tr>
+                                @endforeach
+                            </tbody> 
+                        </table>
+                    </div>
                 </div>
-            </div>
+            </section>
         </div>
     </div>
-    @endsection
+</div>
+</div>
+@endsection
 
-    @section('scriptsection')
+@section('scriptsection')
 
-    <script>
-        $.noConflict();
-        jQuery( document ).ready(function( $ ) {
-            $('#ordermanagement').DataTable({
-                "dom": '<"top"if>rt<"bottom"lp><"clear">',
-                "oSearch": { "bSmart": false, "bRegex": true }
-            });
+<script>
+    $.noConflict();
+    jQuery( document ).ready(function( $ ) {
+        $('#ordermanagement').DataTable({
+            "dom": '<"top"if>rt<"bottom"lp><"clear">',
+            "oSearch": { "bSmart": false, "bRegex": true }
         });
-    </script>
-    @endsection
+    });
+</script>
+@endsection
 
 

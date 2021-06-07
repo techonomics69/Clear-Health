@@ -218,5 +218,21 @@ public function getVouchedDetails(Request $request, $id){
    return $this->sendError('Server error',array($ex->getMessage()));
 }
 }
+
+public function addUserPic(Request $request)
+{
+    
+/*$parent = Parentdetail::create(array(
+    'user_id'=>$request->user_id,
+    'first_name'=>$request->case_id,
+    'last_name'=>$request->last_name,
+    'phone'=>$request->phone,
+    'email'=>$request->email,
+));
+
+return $this->sendResponse($parent, 'User pictur saved successfully.');*/
+
+}
+
 }
 

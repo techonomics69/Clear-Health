@@ -43,7 +43,7 @@ class OrderManagementController extends Controller
 
 $cart_ids = explode(',', $order['cart_id']);
 
-$product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.image','products.discount_price','carts.quantity','carts.order_type','carts.pharmacy_pickup','carts.product_price as price')->get()->toArray();
+$product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name')->get()->toArray();
 $order['product_name'] = implode(', ' ,$product_name);
         /*foreach($order as $key=>$val)
         {

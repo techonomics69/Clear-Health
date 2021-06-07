@@ -21,6 +21,7 @@ use App\Models\Answers;
 use App\Models\MessageFiles;
 use App\Models\Messages;
 use App\Models\Checkoutaddress;
+use App\Models\Cart;
 
 function get_token(){
   $curl = curl_init();
@@ -120,18 +121,32 @@ function create_patient($user_id,$case_id,$order_id)
 
 $user_data = User::where('id', $user_id)->first();
 
+
  $shipping_address = Checkoutaddress::select('*')
    ->where('checkout_address.order_id',$order_id)
    ->where('checkout_address.address_type',1)
    ->OrderBy('id', 'DESC')
    ->first();
 
-   echo "<pre>";
-   print_r($shipping_address);
-   echo "<pre>";
-   exit();
+$u_address = "";
 
-$user_address = "";
+ if($shipping_address['addressline1']!=''){
+  $u_address = $shipping_address['addressline1'];
+}
+ if($shipping_address['addressline2']!='' && $u_address!=''){
+  $u_address = $u_address.','.$shipping_address['addressline2'];
+}
+ if($shipping_address['city']!=''){
+  $u_address .= ','.$shipping_address['city'];
+}
+
+if($shipping_address['state']!=''){
+  $u_address .= ','.$shipping_address['state'];
+}
+
+if($shipping_address['zipcode']!=''){
+  $u_address .= ','.$shipping_address['zipcode'];
+}
 
 
 $input_data = array();
@@ -144,7 +159,7 @@ $input_data['date_of_birth'] = $user_data['dob'];
 $input_data['phone_number'] = $user_data['mobile'];
 $input_data['phone_type'] = 2;
 $input_data['email'] = $user_data['email'];
-$address['address'] = $user_data['address'];
+$address['address'] = $u_address;
 $address['city_id'] = '31f5afce-1c7f-4636-b9b4-3874a177de90';//$user_data['city_id'];
 $address['zip_code'] = $user_data['zip'];
 $input_data['address'] = $address;
@@ -155,10 +170,7 @@ $input_data['allergies'] = $allergies;
 
 $input = json_encode($input_data);
 
-echo "<pre>";
-print_r($input);
-echo "<pre>";
-exit();
+
 
 $curl = curl_init();
 
@@ -769,14 +781,17 @@ if(!empty($Patient_data)){
       
     }
 
-    function UnreadMsgCountOfUser(){
-       $messages  =  Messages::where('id',$msg_id)->where('user_id',$user_id)->where('read_at',NULL)->update(['read_at' => Carbon::now()->format('Y-m-d H:i:s')]);
+    function UnreadMsgCountOfUser($user_id){
+       $user_unread_count  =  Messages::where('read_at','!=',NULL)->where('user_id',$user_id)->where('sender','admin')->get()->toArray();
 
-       return $messages;
+       return count($user_unread_count);
       
     }
 
-    function UnreadMsgCountOfAdmin(){
+    function UnreadMsgCountOfAdmin($user_id){
+      $admin_unread_count  =  Messages::where('read_at','!=',NULL)->where('user_id',$user_id)->where('sender','user')->get()->toArray();
+
+       return count($admin_unread_count);
       
     }
 

@@ -58,7 +58,7 @@
                                             <td>{{ $order_data-> order_id }} </td>
                                         </tr>
                                         @endforeach
-                                    </tbody>
+                                    </tbody>   
                             </table>
                         </div>
                     </div>

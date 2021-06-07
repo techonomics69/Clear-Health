@@ -300,9 +300,11 @@ return $this->sendResponse($parent, 'User picture saved successfully.');
 
 }
 
-public function getUserPic(Request $request, $id)
+public function getUserPic(Request $request)
 {
-  $userpic=UserPics::all();
+  $user_id = $request['user_id'];
+  $case_id = $request['case_id'];
+  $userpic=UserPics::where('user_id',$request['user_id'])->where('case_id',$request['case_id'])->get();
   return $this->sendResponse($userpic, 'User picture saved successfully.');
 
 }

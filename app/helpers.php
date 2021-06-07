@@ -765,7 +765,7 @@ if(!empty($Patient_data)){
 
       $answer_data = Answers::where('user_id', $user_id)->where('case_id', $case_id)->get();
 
-      if(!empty($answer_data)){
+      if(!empty($answer_data) && count($answer_data)>0){
         $userQueAns = json_decode($answer_data[0]['answer']);
 
       }else{

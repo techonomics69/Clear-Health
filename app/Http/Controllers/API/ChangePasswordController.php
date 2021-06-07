@@ -40,10 +40,10 @@ class ChangePasswordController extends BaseController
         ]);
    
 
-   /*echo "<pre>";
+   echo "<pre>";
    print_r($request->all());
    echo "</pre>";
-   die();*/
+   die();
 
         $newpassword = User::find($id)->update(['password'=> Hash::make($request->new_password)]);
    

@@ -223,7 +223,7 @@ public function addUserPic(Request $request)
 {
 
     echo "<pre>";
-    print_r( $request->all());
+    print_r($request->all());
     echo "<pre>";
     exit();
 

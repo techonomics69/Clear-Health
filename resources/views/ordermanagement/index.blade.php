@@ -50,7 +50,14 @@
                                             <th width="200px">Action</th>
                                         </tr>
                                     </thead>
-                                    
+                                    <tbody>
+                                        <?php $i=1;?>
+                                        @foreach ($order as $key => $order_data)
+                                        <tr> 
+                                            <td>{{ $i++ }}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody> 
                                 </table>
                             </div>
                         </div>

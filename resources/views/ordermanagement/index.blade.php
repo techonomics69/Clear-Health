@@ -55,6 +55,7 @@
                                         @foreach ($order as $key => $order_data)
                                         <tr> 
                                             <td>{{ $i++ }}</td>
+                                            <td>{{ $order_data->order_id }} </td>
                                         </tr>
                                         @endforeach
                                     </tbody> 

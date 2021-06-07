@@ -302,10 +302,36 @@ return $this->sendResponse($parent, 'User picture saved successfully.');
 
 public function getUserPic(Request $request)
 {
-  $user_id = $request['user_id'];
+
+try{
+   $user_id = $request['user_id'];
+  $case_id = $request['case_id'];
+   $userpic=UserPics::where('user_id',$request['user_id'])->where('case_id',$request['case_id'])->get();
+        
+
+
+        if(!empty($userpic)){
+            return $this->sendResponse($userpic, 'Users vouched details retrived successfully');
+        }else{
+
+          return $this->sendResponse($userpic, 'NO data found!');  
+      }
+
+  }catch(\Exception $ex){
+   return $this->sendError('Server error',array($ex->getMessage()));
+}
+
+
+
+
+
+
+
+
+  /*$user_id = $request['user_id'];
   $case_id = $request['case_id'];
   $userpic=UserPics::where('user_id',$request['user_id'])->where('case_id',$request['case_id'])->get();
-  return $this->sendResponse($userpic, 'User picture saved successfully.');
+  return $this->sendResponse($userpic, 'User picture saved successfully.');*/
 
 }
 

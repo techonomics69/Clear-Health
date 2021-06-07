@@ -24,7 +24,7 @@ class CheckoutController extends BaseController
     public function orderList(Request $request)
     {
 
-        try{
+        //try{
            $orderlist = checkout::join('users', 'users.id', '=', 'checkout.user_id')
            ->join('carts','carts.id', '=', 'checkout.cart_id')
            ->select('checkout.id','checkout.order_id','checkout.md_status','checkout.status','checkout.created_at','checkout.updated_at','carts.order_type','checkout.cart_id','checkout.case_id')
@@ -52,9 +52,9 @@ class CheckoutController extends BaseController
         return $this->sendResponse( $orderlist =array(), 'No Data Found.');
     }
 
-}catch(\Exception $ex){
+/*}catch(\Exception $ex){
     return $this->sendError('Server error', array($ex->getMessage()));
-} 
+} */
 }
 
     /**

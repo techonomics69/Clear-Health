@@ -311,7 +311,7 @@ try{
 
 
         if(!empty($userpic)){
-            return $this->sendResponse($userpic, 'Users vouched details retrived successfully');
+            return $this->sendResponse($userpic, 'Users picture saved successfully');
         }else{
 
           return $this->sendResponse($userpic, 'NO data found!');  

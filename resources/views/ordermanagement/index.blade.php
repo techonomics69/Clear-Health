@@ -53,9 +53,6 @@
                                     <tbody>
                                         <?php $i=1;?>
                                         @foreach ($order as $key => $order_data)
-
-                                        
-
                                         <tr> 
                                             <td>{{ $i++ }}</td>
                                             <td>{{ $order_data->order_id }} </td>
@@ -80,12 +77,7 @@
                                                     </a> 
                                                 </div>  
                                             </td>
-                                        <?php }else{ ?>
-
-                                            
-
-
-                                        <?php } ?>
+                                        
                                     </tr>
                                     @endforeach
                                 </tbody>

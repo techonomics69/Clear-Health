@@ -300,5 +300,12 @@ return $this->sendResponse($parent, 'User picture saved successfully.');
 
 }
 
+public function getUserPic(Request $request, $id)
+{
+  $userpic=UserPics::all();
+  return $this->sendResponse($userpic, 'User picture saved successfully.');
+
+}
+
 }
 

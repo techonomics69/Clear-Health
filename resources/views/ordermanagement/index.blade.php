@@ -86,7 +86,10 @@
                                                     </a> 
                                                 </div>  
                                             </td> 
-                                        <?php }?> 
+                                        <?php }else{
+                                            ?>
+                                            <td></td>
+                                            <?php } ?> 
                                     <?php  }?>
                                         </tr>
                                         @endforeach

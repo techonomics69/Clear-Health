@@ -55,7 +55,7 @@ class ChangePasswordController extends BaseController
             $success['user_id'] =  $user->id; 
         
 
-        $newpassword = User::find($id)->update(['password'=> Hash::make($request->new_password)]);
+        $newpassword = User::find($user->id)->update(['password'=> Hash::make($request->new_password)]);
         echo"<pre>";
         print_r($newpassword);
         echo"</pre>";

@@ -43,16 +43,15 @@ class ChangePasswordController extends BaseController
    
         if(!empty($request->email)){
             $user = User::where('email',$request->email) -> first();
-            echo"<pre>";
-   print_r($user);
-   echo"</pre>";
-   die();
             if(empty($user)){
             return $this->sendError('Unauthorised.', array('Invalid email or user'));
                }
             }
-        //$user = Auth::user(); 
-      
+        $user = Auth::user(); 
+       echo"<pre>";
+   print_r($user);
+   echo"</pre>";
+   die();
         $success['token'] =  $user->createToken('MyApp')->accessToken;
            
         $newpassword = User::find($id)->update(['password'=> Hash::make($request->new_password)]);

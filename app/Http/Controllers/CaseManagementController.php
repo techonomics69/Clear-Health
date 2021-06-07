@@ -364,6 +364,11 @@ public function getCaseStatus(){
 
   $data = CaseManagement::all();
 
+  echo "<pre>";
+  print_r($data);
+  echo "<pre>";
+  exit();
+
   $r = $this->get_token();
   $token_data = json_decode($r);
   $token = $token_data->access_token;

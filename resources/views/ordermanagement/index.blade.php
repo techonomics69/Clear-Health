@@ -82,13 +82,13 @@
                                             </td>
                                         <?php }else{ ?>
 
-                                            <td> 
+                                           <!--  <td> 
                                                 <div class="d-flex">
                                                     <a class="icons edit-icon" href="{{ route('casemanagement.show',$order_data->case_id)}}">
                                                         <i class="fa fa-eye"></i> 
                                                     </a> 
                                                 </div>  
-                                            </td>
+                                            </td> -->
 
 
                                         <?php } ?>

@@ -362,27 +362,70 @@ public function get_token(){
 
 public function getCaseStatus(){
 
-  $data = CaseManagement::all();
+        $data = CaseManagement::all();
 
-  echo "<pre>";
-  print_r($data);
-  echo "<pre>";
-  exit();
-
-  $r = $this->get_token();
-  $token_data = json_decode($r);
-  $token = $token_data->access_token;
+        $r = $this->get_token();
+        $token_data = json_decode($r);
+        $token = $token_data->access_token;
 
   foreach($data as $key=>$value){
 
-    echo "<pre>";
-    print_r($value);
-    echo "<pre>";
-    exit();
+    $user_id = $data['user_id'];
+    $case_id = $data['case_id'];
+    $system_case_id = $data['system_case_id'];
 
-     $user_id = $request->user_id;
-    $case_id = $request->case_id;
-    $system_case_id = $request->system_case_id;
+    $recommended_product = $data['recommended_product'];
+
+    $userQueAns = getQuestionAnswerFromUserid($user_id,$system_case_id);
+
+    foreach ($userQueAns as $key => $value) {
+       $question = $value->question;
+       if($question == "What was your gender assigned at birth?"){
+          if(isset($value->answer) && $value->answer!=''){
+
+            $gender =  $value->answer;
+
+            /*if($gender == "Male"){
+              $gender_id = 1;
+            }else{
+              $gender_id = 2;
+            }
+              0 = Not known;
+                1 = Male;
+                2 = Female;
+                9 = Not applicable.
+            
+
+          }*/
+     }
+  }
+
+
+    if($case_id != '' || $case_id != NULL){
+
+       $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'GET',
+        CURLOPT_HTTPHEADER => array(
+          'Authorization: Bearer '.$token,
+          'Cookie: __cfduid=da01d92d82d19a6cccebfdc9852303eb81620627650'
+        ),
+      ));
+
+      $response = curl_exec($curl);
+
+      curl_close($curl);
+      echo $response;
+    }
+   
 
   }
  

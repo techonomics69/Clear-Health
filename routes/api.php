@@ -121,7 +121,6 @@ Route::post('getToken', [CaseManagementController::class, 'get_token']);
     //system message API
     Route::post('sendMessageNonMedical', [CaseManagementController::class, 'sendMessageNonMedical']);
     Route::post('getMessagesNonMedical', [CaseManagementController::class, 'getMessagesNonMedical']);
-
     Route::post('user/update_vouch_status', [UserController::class, 'updateVerifiedByVouch']);
     Route::get('user/vouch_details/{id}', [UserController::class, 'getVouchedDetails']);
     Route::post('user/add_user_pic', [UserController::class, 'addUserPic']);

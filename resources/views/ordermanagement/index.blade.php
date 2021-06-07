@@ -77,7 +77,7 @@
                                                     </a> 
                                                 </div>  
                                             </td>
-                                        <?php }else { ?>
+                                        <?php } else { ?>
                                             <?php if(isset($order_data->case_id)){?>
                                            <td> 
                                                 <div class="d-flex">

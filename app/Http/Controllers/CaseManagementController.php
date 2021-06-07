@@ -420,7 +420,7 @@ public function getCaseStatus(){
        echo "<pre>";
        print_r($MdCaseStatus);
        echo "<pre>";
-       exit();
+       
 
        curl_close($curl);
 
@@ -458,7 +458,7 @@ public function getCaseStatus(){
      }
 
 
-   }
+   }exit();
 
 
 }

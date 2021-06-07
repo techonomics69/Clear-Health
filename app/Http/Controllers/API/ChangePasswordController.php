@@ -5,7 +5,6 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Validator;
@@ -32,25 +31,15 @@ class ChangePasswordController extends BaseController
 
     public function changePassword(Request $request)
     {
-        /*die("test");*/
         $request->validate([
             'email' => ['required'],
-            'current_password' => ['required'],
+            'current_password' => ['required', new MatchOldPassword],
             'new_password' => ['required'],
             'new_confirm_password' => ['same:new_password'],
         ]);
    
-
-  
-        $user = Auth::user(); 
-        $success['token'] =  $user->createToken('MyApp')->accessToken; 
-         echo "<pre>";
-   print_r($request->all());
-   print_r($success);
-   echo "</pre>";
-   die();
-        //$newpassword = User::find($id)->update(['password'=> Hash::make($request->new_password)]);
-                        $newpassword=User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
+        $newpassword = User::find($id)->update(['password'=> Hash::make($request->new_password)]);
+   
     return $this->sendResponse($newpassword, 'Password Change Successfully');
         //return redirect()->route('change.index')->with('message', 'Password change successfully.');
     }

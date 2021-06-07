@@ -362,11 +362,11 @@ public function get_token(){
 
 public function getCaseStatus(){
 
-        $data = CaseManagement::all();
+  $data = CaseManagement::all();
 
-        $r = $this->get_token();
-        $token_data = json_decode($r);
-        $token = $token_data->access_token;
+  $r = $this->get_token();
+  $token_data = json_decode($r);
+  $token = $token_data->access_token;
 
   foreach($data as $key=>$value){
 
@@ -422,8 +422,15 @@ public function getCaseStatus(){
 
       $response = curl_exec($curl);
 
+      $MdCaseStatus = json_decode($response);
+
+      echo "<pre>";
+      print_r($MdCaseStatus);
+      echo "<pre>";
+      exit();
+
       curl_close($curl);
-      echo $response;
+      
     }
    
 

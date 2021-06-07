@@ -80,7 +80,8 @@
                                                     </a> 
                                                 </div>  
                                             </td>
-                                        <?php }else{ if(isset($order_data->case_id)){?>
+                                        <?php }else { ?>
+                                            <?php if(isset($order_data->case_id)){?>
 
                                            <td> 
                                                 <div class="d-flex">
@@ -91,7 +92,8 @@
                                             </td> 
 
 
-                                        <?php } }?>
+                                        <?php }?> 
+                                    <?php  }?>
                                     </tr>
                                     @endforeach
                                 </tbody>

@@ -90,13 +90,7 @@
                                                 </div>  
                                             </td>
                                         <?php } else{?>
-                                            <td> 
-                                                <div class="d-flex">
-                                                    <a class="icons edit-icon" href="#">
-                                                        <i class="fa fa-eye"></i> 
-                                                    </a> 
-                                                </div>  
-                                            </td>
+                                            
                                         <?php } ?>
                                     </tr>
                                     @endforeach

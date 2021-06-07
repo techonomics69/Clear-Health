@@ -372,9 +372,20 @@ public function getCaseStatus(){
   $r = $this->get_token();
   $token_data = json_decode($r);
   $token = $token_data->access_token;
-  $user_id = $request->user_id;
-  $case_id = $request->case_id;
-  $system_case_id = $request->system_case_id;
+
+  foreach($data $key=>$value){
+
+    echo "<pre>";
+    print_r($value);
+    echo "<pre>";
+    exit();
+
+     $user_id = $request->user_id;
+    $case_id = $request->case_id;
+    $system_case_id = $request->system_case_id;
+
+  }
+ 
 
   /*$current_status = "completed"
 

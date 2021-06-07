@@ -31,6 +31,7 @@
                         </div>
                     </div> -->
                 </div>
+                
                 <div class="row">
                     <div class="col-lg-12">
                         <section class="card" >
@@ -46,16 +47,12 @@
                                             <th>Date</th>
                                             <th>Product Name</th>
                                             <th>Order Type</th>
-                                            <!--  <th>Order Status</th> -->
                                             <th width="200px">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php $i=1;?>
                                         @foreach ($order as $key => $order_data)
-
-                                        
-
                                         <tr> 
                                             <td>{{ $i++ }}</td>
                                             <td>{{ $order_data->order_id }} </td>
@@ -90,8 +87,6 @@
                                                     </a> 
                                                 </div>  
                                             </td> 
-
-
                                         <?php }?> 
                                     <?php  }?>
                                     </tr>

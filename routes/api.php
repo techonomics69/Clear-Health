@@ -124,6 +124,7 @@ Route::post('getToken', [CaseManagementController::class, 'get_token']);
 
     Route::post('user/update_vouch_status', [UserController::class, 'updateVerifiedByVouch']);
     Route::get('user/vouch_details/{id}', [UserController::class, 'getVouchedDetails']);
+    Route::post('user/add_user_pic', [UserController::class, 'addUserPic']);
     Route::post('add_recomeended_product', [CaseManagementController::class, 'add_recomeended_product']);
 
     //Answer API

@@ -782,12 +782,12 @@ if(!empty($Patient_data)){
     function getCaseType($user_id,$case_id,$system_case_id){
         $case_type_detail = Mdcases::select('case_type')->where('user_id',$user_id)->where('case_id',$case_id)->where('system_case_id',$system_case_id)->get();
 
-        echo "<pre>";
-        print_r($case_type_detail);
-        echo "<pre>";
-        exit();
-
-        return  $case_type_detail['case_type'];
+        if(!empty($case_type_detail)){
+          $case_type = $case_type_detail['case_type'];
+        }else{
+          $case_type = '';
+        }
+        return  $case_type;
     }
 
     ?>

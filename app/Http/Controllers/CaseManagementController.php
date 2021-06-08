@@ -420,7 +420,7 @@ $sender = "admin";
 
 toastr()->success('message send');
 
-    //return redirect()->back();
+    return redirect()->back();
 
 //return view('sendMessageNonMedical',compact('message_data'));
     //return $this->sendResponse('sendMessageNonMedical','Message created successfully');

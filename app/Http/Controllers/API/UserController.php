@@ -226,13 +226,16 @@ public function addUserPic(Request $request)
   $data = $request->all();
   $user_id = $request['user_id'];
   $case_id = $request['case_id'];
-  $user_left_pic = $request->file('left_pic');
+  $user_left_pic = $request['left_pic'];
+  $user_right_pic = $request['right_pic'];
+  $user_straight_pic = $request['straight_pic'];
+  $user_other_pic = $request['other_pic'];
+  /*$user_left_pic = $request->file('left_pic');
   $user_right_pic = $request->file('right_pic');
   $user_straight_pic = $request->file('straight_pic');
-  $user_other_pic = $request->file('other_pic');
+  $user_other_pic = $request->file('other_pic');*/
 
-
-  $destinationPath = public_path('/images/Users');
+  /*$destinationPath = public_path('/images/Users');
 
   if(!empty($user_left_pic)){
     $left_pic =  $user_left_pic->getClientOriginalName();
@@ -304,16 +307,21 @@ public function addUserPic(Request $request)
 
   }else{
     $file_name_other_pic = NULL;
-  }
+  }*/
 
   $userpic=UserPics::where('user_id',$request['user_id'])->where('case_id',$request['case_id'])->first();
 
   if(isset($userpic)){
     $userpicUpdate = UserPics::where('id',$userpic->id)->update(array(
-      'left_pic'=>$file_name_left_pic,
+      'left_pic'=>$user_left_pic,
+      'straight_pic'=>$user_straight_pic,
+      'right_pic'=>$user_right_pic,
+      'other_pic' => $user_other_pic,
+
+      /*'left_pic'=>$file_name_left_pic,
       'straight_pic'=>$file_name_straight_pic,
       'right_pic'=>$file_name_right_pic,
-      'other_pic' => $file_name_other_pic,
+      'other_pic' => $file_name_other_pic,*/
     ));
     return $this->sendResponse(array(), 'User picture update successfully');
   }else{
@@ -321,10 +329,15 @@ public function addUserPic(Request $request)
     $parent = UserPics::create(array(
       'user_id'=>$user_id,
       'case_id'=>$case_id,
-      'left_pic'=>$file_name_left_pic,
+      'left_pic'=>$user_left_pic,
+      'straight_pic'=>$user_straight_pic,
+      'right_pic'=>$user_right_pic,
+      'other_pic' => $user_other_pic,
+
+      /*'left_pic'=>$file_name_left_pic,
       'straight_pic'=>$file_name_straight_pic,
       'right_pic'=>$file_name_right_pic,
-      'other_pic' => $file_name_other_pic,
+      'other_pic' => $file_name_other_pic,*/
     ));
     return $this->sendResponse($parent, 'User picture saved successfully.');
   }

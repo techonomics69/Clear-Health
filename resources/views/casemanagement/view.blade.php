@@ -610,6 +610,9 @@
                         	</div>
                         	<div class="search">
                         		<input class="form-control" type="text" name="text" placeholder="Readonly input here..." >
+                        		<input class="form-control" type="hidden" name="user_id" value="{{$user_case_management_data['user_id']}}">
+                        		<input class="form-control" type="hidden" name="case_id" value="{{$user_case_management_data['id']}}">
+         
                         	</div>
                         	<div class="sending lastimg">
                         		<button type="submit"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>

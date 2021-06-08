@@ -355,6 +355,11 @@ public function get_token(){
 }
 
 public function sendMessageNonMedical(Request $request){
+
+  echo "<pre>";
+  print_r($request->all());
+  echo "</pre>";
+  die();
     $user_id = $request['user_id'];
 
     $case_id = (isset($request['md_case_id']) && $request['md_case_id']!='')?$request['md_case_id']:0;

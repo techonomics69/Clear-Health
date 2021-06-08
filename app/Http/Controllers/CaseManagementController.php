@@ -14,6 +14,8 @@ use App\Models\Checkout;
 use App\Models\Cart;
 use App\Models\Product;
 use App\Models\Messages;
+use App\Models\MessageFiles;
+use Redirect;
 use Session;
 
 
@@ -132,7 +134,6 @@ class CaseManagementController extends Controller
 
    $general = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',7)->first();
 
-   //$general_que=json_decode($general->answer);
 
    if(isset($general))
    {
@@ -140,35 +141,8 @@ class CaseManagementController extends Controller
    }else{
     $general_que = [];
   }
-
-  /*echo "<pre>";
-  print_r($general_que);
-  echo "</pre>";*/
-
-  //foreach ($general_que as $key => $value) {
-
-  /*echo "<pre>";
-  print_r($value);
-  echo "</pre>";*/
-  //die();
-    /*if(isset($value->question) && $value->question == 'Hey there! First, we need to know your legal name.')
-    {
-      $first_name = $value->answer = $user_case_management_data->first_name;
-      $last_name =  $value->answer = $user_case_management_data->last_name;
-
-      echo "<pre>";
-      print_r($value->question);
-      echo "<br>";
-      print_r($first_name); 
-      print_r($last_name);
-
-      echo "</pre>";
-      
-    }
-*/ // }
+ 
     $accutane = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',8)->first();
-
-//$accutane_que=json_decode($accutane->answer); 
 
     if(isset($accutane))
     {
@@ -177,10 +151,7 @@ class CaseManagementController extends Controller
      $accutane_que = [];
    }
 
-
    $topical = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',9)->first();
-
-   /*$topical_que=json_decode($topical->answer);*/
 
    if(isset($topical))
    {
@@ -356,25 +327,22 @@ public function get_token(){
 
 public function sendMessageNonMedical(Request $request){
 
-  echo "<pre>";
-  print_r($request->all());
-  echo "</pre>";
-  die();
+
     $user_id = $request['user_id'];
 
     $case_id = (isset($request['md_case_id']) && $request['md_case_id']!='')?$request['md_case_id']:0;
     $system_case_id = $request['case_id'];
 
-    $users_message_type = (isset($request['users_message_type'])&&$request['users_message_type']!='')?$request['users_message_type']:'';//medical/non_medical
-
-    $sender = $request['sender'];//user/admin
-
+    //$users_message_type = (isset($request['users_message_type'])&&$request['users_message_type']!='')?$request['users_message_type']:'';//medical/non_medical
+$users_message_type = 'Non-Medical';
+    //$sender = $request['sender']; //user/admin
+$sender = "admin";
     $text = $request['text']; 
 
     //code to upload files ids
-     //$documents = $request->file('file');
+     $documents = $request->file('file');
 
-    /* if(!empty($documents)){
+     if(!empty($documents)){
       $file =  $documents->getClientOriginalName();
       $doc_file_name =  time().'-'.$file;
       
@@ -393,7 +361,7 @@ public function sendMessageNonMedical(Request $request){
       $doc_file_name = "";
       $file_path="";
       $file_mimeType ="";
-    }*/
+    }
     // end of code to upload files ids
     
     $input_data = array();
@@ -405,8 +373,11 @@ public function sendMessageNonMedical(Request $request){
     $input_data['users_message_type'] = $users_message_type;
     $input_data['sender'] = $sender;
     $message_data = Messages::create($input_data);
-
-    /*$message_file_data = array();
+/*echo "<pre>";
+  print_r($message_data);
+  echo "</pre>";
+  die();*/
+    $message_file_data = array();
     $message_file_data['file_name'] = $doc_file_name;
     $message_file_data['file_path'] = $file_path;
     $message_file_data['mime_type'] = $file_mimeType;
@@ -416,10 +387,88 @@ public function sendMessageNonMedical(Request $request){
       $message_data['file_name'] = $doc_file_name;
       $message_data['file_path'] = $file_path;
       $message_data['mime_type'] = $file_mimeType;
-    }*/
+    }
 
-    return $this->sendResponse($message_data,'Message created successfully');
+    $message_data['show_non_medical_screen'] =1;
+/*echo "<pre>";
+  print_r($message_data);
+  echo "</pre>";
+  die();*/
+//toastr()->success('Message send');
+//return redirect()->back();
+
+return redirect('sendMessageNonMedical',compact('message_data'));
+
+    //return $this->sendResponse('sendMessageNonMedical','Message created successfully');
 
   }
+
+public function getMessagesNonMedical(Request $request){
+    //$case_id = $request['case_id'];
+    $user_id = $request['user_id'];
+    //$md_case_id = $request['md_case_id'];
+
+
+    //$message_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')->select('messages.*','message_files.*')->where('case_id', $case_id)->where('md_case_id',$md_case_id)->where('user_id',$user_id)->get();
+
+     $message_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')
+     ->join('users', 'users.id', '=', 'messages.user_id')
+     ->select('messages.*','message_files.*','users.first_name','users.last_name')
+     ->where('user_id',$user_id)
+     ->OrderBy('messages.id','asc')
+     ->get();
+
+     $message_data = array();
+     foreach($message_details as $key=>$value){
+      $message_data[$key]['id'] = $value['id'];
+      $message_data[$key]['name'] = $value['first_name'].' '.$value['last_name'];
+      $message_data[$key]['message'] = $value['text'];
+
+      $date = strtotime($value['created_at']);
+
+      $message_data[$key]['date'] = date('M j', $date);
+      $message_data[$key]['created_at'] = $value['created_at'];
+
+      if($value['sender'] == 'admin'){
+        $messageStatus = 'received';
+      }else{
+        $messageStatus = 'sent';
+      }
+
+      $message_data[$key]['messageStatus'] = $messageStatus;
+
+      if($value['file_path']!=''){
+        $message_data[$key]['file_path'] = $value['file_path'];
+        $message_data[$key]['mime_type'] = $value['mime_type'];
+      }else{
+        $message_data[$key]['file_path'] = null;
+        $message_data[$key]['mime_type'] = null;
+      }
+
+      if($value['file_name']!=''){
+        $message_data[$key]['file_name'] = $value['file_name'];
+      }else{
+        $message_data[$key]['file_name'] = null;
+      }
+
+
+
+     }
+/*echo "<pre>";
+print_r($message_data);
+echo "</pre>";
+die();*/
+    if(!empty($message_data) && count($message_data)>0 ){
+      return $this->sendResponse($message_data,'Message retrieved successfully');
+    }else{
+      return $this->sendResponse(array(),'No data found');
+    }
+
+
+
+  }
+
+
+
 
 }

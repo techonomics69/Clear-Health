@@ -317,6 +317,11 @@ public function addUserPic(Request $request)
       'straight_pic'=>$user_straight_pic,
       'right_pic'=>$user_right_pic,
       'other_pic' => $user_other_pic,
+
+      /*'left_pic'=>$file_name_left_pic,
+      'straight_pic'=>$file_name_straight_pic,
+      'right_pic'=>$file_name_right_pic,
+      'other_pic' => $file_name_other_pic,*/
     ));
     return $this->sendResponse(array(), 'User picture update successfully');
   }else{
@@ -328,6 +333,11 @@ public function addUserPic(Request $request)
       'straight_pic'=>$user_straight_pic,
       'right_pic'=>$user_right_pic,
       'other_pic' => $user_other_pic,
+
+      /*'left_pic'=>$file_name_left_pic,
+      'straight_pic'=>$file_name_straight_pic,
+      'right_pic'=>$file_name_right_pic,
+      'other_pic' => $file_name_other_pic,*/
     ));
     return $this->sendResponse($parent, 'User picture saved successfully.');
   }

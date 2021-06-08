@@ -390,15 +390,15 @@ $sender = "admin";
     }
 
     $message_data['show_non_medical_screen'] = 1 ;
-echo "<pre>";
+/*echo "<pre>";
   print_r($message_data);
   echo "</pre>";
-  die();
+  die();*/
 //toastr()->success('Message send');
 //return redirect()->back();
 
 
-return redirect('sendMessageNonMedical')->with('message_data', 'The success message!');
+return redirect('sendMessageNonMedical')->with(['message_data' => $message_data] );
 //return redirect('sendMessageNonMedical',compact('message_data'));
 
     //return $this->sendResponse('sendMessageNonMedical','Message created successfully');

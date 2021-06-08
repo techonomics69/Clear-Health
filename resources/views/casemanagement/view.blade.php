@@ -611,7 +611,7 @@
                         		<input class="form-control" type="text" placeholder="Readonly input here..." >
                         	</div>
                         	<div class="sending lastimg">
-                        		<button type="submit" data-dismiss="modal"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
+                        		<button type="submit"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
                         		<!-- <img src="{{asset('public/images/telegram.png')}}" alt=""> -->
                         	</div>
                         </div>

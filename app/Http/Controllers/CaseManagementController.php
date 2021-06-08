@@ -353,4 +353,67 @@ public function get_token(){
   return $response;
 }
 
+public function sendMessageNonMedical(Request $request){
+    $user_id = $request['user_id'];
+
+    $case_id = (isset($request['md_case_id']) && $request['md_case_id']!='')?$request['md_case_id']:0;
+    $system_case_id = $request['case_id'];
+
+    $users_message_type = (isset($request['users_message_type'])&&$request['users_message_type']!='')?$request['users_message_type']:'';//medical/non_medical
+
+    $sender = $request['sender'];//user/admin
+
+    $text = $request['text']; 
+
+    //code to upload files ids
+     $documents = $request->file('file');
+
+     if(!empty($documents)){
+      $file =  $documents->getClientOriginalName();
+      $doc_file_name =  time().'-'.$file;
+      
+      if (!file_exists(public_path('/Message_files'))) {
+        File::makeDirectory(public_path('/Message_files'),0777,true,true);
+      }
+      $destinationPath = public_path('/Message_files');
+      $documents->move($destinationPath, $doc_file_name);
+
+      chmod($destinationPath."/".$doc_file_name, 0777);
+
+      $file_path = 'public/Message_files/' .$doc_file_name;
+
+      $file_mimeType = $documents->getClientMimeType();
+    }else{
+      $doc_file_name = "";
+      $file_path="";
+      $file_mimeType ="";
+    }
+    // end of code to upload files ids
+    
+    $input_data = array();
+
+    $input_data['md_case_id'] = $case_id;
+    $input_data['user_id'] = $user_id;
+    $input_data['case_id'] = $system_case_id;
+    $input_data['text'] = $text;
+    $input_data['users_message_type'] = $users_message_type;
+    $input_data['sender'] = $sender;
+    $message_data = Messages::create($input_data);
+
+    $message_file_data = array();
+    $message_file_data['file_name'] = $doc_file_name;
+    $message_file_data['file_path'] = $file_path;
+    $message_file_data['mime_type'] = $file_mimeType;
+    $message_file_data['msg_id'] = $message_data['id'];
+    $message_file_data = MessageFiles::create($message_file_data);
+    if(!empty($message_file_data)){
+      $message_data['file_name'] = $doc_file_name;
+      $message_data['file_path'] = $file_path;
+      $message_data['mime_type'] = $file_mimeType;
+    }
+
+    return $this->sendResponse($message_data,'Message created successfully');
+
+  }
+
 }

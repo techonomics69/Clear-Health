@@ -578,7 +578,7 @@
                     <!--     <div class="header-chat">
                             <p>Brandon Koh,MD</p>
                         </div> -->
-
+{!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
                         <div class="chating-section">
                         	<ul>
                         		<li>
@@ -601,9 +601,9 @@
                         </div>
 
                         <div class="last-typing-section">
-                        	<div class="camera lastimg">
+                        	<!-- <div class="camera lastimg">
                         		<img src="{{asset('public/images/camera.png')}}" alt="">
-                        	</div>
+                        	</div> -->
                         	<div class="attachment lastimg">
                         		<img src="{{asset('public/images/paperclip.png')}}" alt="">
                         	</div>
@@ -611,9 +611,11 @@
                         		<input class="form-control" type="text" placeholder="Readonly input here..." >
                         	</div>
                         	<div class="sending lastimg">
-                        		<img src="{{asset('public/images/telegram.png')}}" alt="">
+                        		<button type="submit" data-dismiss="modal"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
+                        		<!-- <img src="{{asset('public/images/telegram.png')}}" alt=""> -->
                         	</div>
                         </div>
+                         {!! Form::close() !!}
                     </div>														<!-- </div>
 
 
@@ -692,6 +694,11 @@
 	$(document).on('click', '#i_pledge_agreement', function() {
 		$('#i_pledge_agreement_form').submit();
 	});
+
+$('form').submit(function(){
+        $(this).find('button[type=submit]').prop('disabled', true);
+    });
+
 </script>
 
 

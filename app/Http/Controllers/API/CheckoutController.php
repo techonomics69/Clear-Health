@@ -383,4 +383,40 @@ public function getCheckoutAddress(Request $request)
 }
 
 }
+
+public function getTaxes(Request $request){
+
+   $client = \TaxJar\Client::withApiKey('dcbaa17daefa7c485d84ee47793d1708');
+   $client->setApiConfig('api_url', \TaxJar\Client::SANDBOX_API_URL);
+
+    $order_taxes = $client->taxForOrder([
+          'from_country' => 'US',
+          'from_zip' => '06880',
+          'from_state' => 'Conneticut',
+          'from_city' => 'Westport',
+          'from_street' => '141 Post Road East',
+          'to_country' => 'US',
+          'to_zip' => '07446',
+          'to_state' => 'NJ',
+          'to_city' => 'Ramsey',
+          'to_street' => '63 W Main St',
+          'amount' => 16.50,
+          'shipping' => 1.5,
+          'line_items' => [
+            [
+              'id' => '1',
+              'quantity' => 1,
+              'product_tax_code' => '53131619A0001',
+              'unit_price' => 15.0,
+              'discount' => 0
+            ]
+          ]
+        ]);
+
+        echo '<pre>';
+        print_r($order_taxes->amount_to_collect);
+        echo '</pre>';
+        exit();
+
+}
 }

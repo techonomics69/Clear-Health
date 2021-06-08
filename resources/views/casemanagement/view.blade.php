@@ -580,7 +580,7 @@
                         </div> -->
 
  
-@if(Session::has('message_data'))
+@if(Session::get('message_data'))
 <div class="alert alert-danger">
   {{ Session::get('message_data')}}
 </div>

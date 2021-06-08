@@ -24,6 +24,7 @@ use App\Http\Controllers\FeesController;
 use App\Http\Controllers\MdManagementController;
 use App\Http\Controllers\OrderManagementController;
 use App\Http\Controllers\TreatmentGuidesController;
+use App\Http\Controllers\CaseStatusUpdateGetPrescriptionController;
 
 
 /*

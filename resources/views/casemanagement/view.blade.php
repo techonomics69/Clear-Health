@@ -608,7 +608,7 @@
                         		<img src="{{asset('public/images/paperclip.png')}}" alt="">
                         	</div>
                         	<div class="search">
-                        		<input class="form-control" type="text" placeholder="Readonly input here..." >
+                        		<input class="form-control" type="text" name="text" placeholder="Readonly input here..." >
                         	</div>
                         	<div class="sending lastimg">
                         		<button type="submit"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>

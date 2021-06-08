@@ -418,7 +418,7 @@ $sender = "admin";
       $message_data['mime_type'] = $file_mimeType;
     }*/
 
-    return $this->sendResponse($message_data,'Message created successfully');
+    return $this->sendResponse('sendMessageNonMedical','Message created successfully');
 
   }
 

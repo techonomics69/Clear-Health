@@ -133,7 +133,6 @@ class CaseManagementController extends Controller
 
    $general = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',7)->first();
 
-   //$general_que=json_decode($general->answer);
 
    if(isset($general))
    {
@@ -141,35 +140,8 @@ class CaseManagementController extends Controller
    }else{
     $general_que = [];
   }
-
-  /*echo "<pre>";
-  print_r($general_que);
-  echo "</pre>";*/
-
-  //foreach ($general_que as $key => $value) {
-
-  /*echo "<pre>";
-  print_r($value);
-  echo "</pre>";*/
-  //die();
-    /*if(isset($value->question) && $value->question == 'Hey there! First, we need to know your legal name.')
-    {
-      $first_name = $value->answer = $user_case_management_data->first_name;
-      $last_name =  $value->answer = $user_case_management_data->last_name;
-
-      echo "<pre>";
-      print_r($value->question);
-      echo "<br>";
-      print_r($first_name); 
-      print_r($last_name);
-
-      echo "</pre>";
-      
-    }
-*/ // }
+ 
     $accutane = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',8)->first();
-
-//$accutane_que=json_decode($accutane->answer); 
 
     if(isset($accutane))
     {
@@ -178,10 +150,7 @@ class CaseManagementController extends Controller
      $accutane_que = [];
    }
 
-
    $topical = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',9)->first();
-
-   /*$topical_que=json_decode($topical->answer);*/
 
    if(isset($topical))
    {

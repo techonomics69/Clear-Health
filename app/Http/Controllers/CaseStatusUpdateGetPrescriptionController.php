@@ -184,7 +184,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
           }
         }
 
-      }     exit();
+      }die('dev is working');
 
       //end code
     }

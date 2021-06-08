@@ -85,7 +85,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
          curl_close($curl);
 
-         if(!empty($MdCaseStatus)){
+        if(!empty($MdCaseStatus)){
 
           $md_case_status = $MdCaseStatus->status;
 
@@ -172,16 +172,13 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                 $md_case_data = Mdmanagement::create($inputmd_data);
               }
 
-            }
+        }
+            //md status completed
 
           }
         }
 
       }
-
-
-    }
-
 
       //end code
     }

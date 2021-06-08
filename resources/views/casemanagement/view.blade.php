@@ -580,8 +580,12 @@
                         </div> -->
 
  
-
+ {{ Session::get('message_data')}}
 {!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
+
+<?php $q= session::get('message_data'); 
+echo $q;
+?>
 
                         <div class="chating-section">
                         	<ul>

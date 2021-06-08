@@ -579,11 +579,12 @@
                             <p>Brandon Koh,MD</p>
                         </div> -->
 
-                      
+ {{ session()->get( 'message_data' ) }}                     
 <?php 
-Session::get('message_data');
-echo "testttttttttt"; 
-print_r($message_data); ?>
+
+$q= Session::get('message_data');
+echo $q; 
+//print_r($message_data); ?>
 
 {!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
 

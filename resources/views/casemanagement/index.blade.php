@@ -99,7 +99,7 @@
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
     });
 
-    $.ajax({
+    /*$.ajax({
             method:"post",
             url:"{{url('/CaseStatus')}}",
             data: {
@@ -113,7 +113,7 @@
                 
                  alert(res);  
             }
-        });
+        });*/
   });
 </script>
 @endsection

@@ -27,7 +27,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
     {
       $data = CaseManagement::all();
 
-      $r = $this->get_token();
+      $r = get_token();
       $token_data = json_decode($r);
       $token = $token_data->access_token;
 

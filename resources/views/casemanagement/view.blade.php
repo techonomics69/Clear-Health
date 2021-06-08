@@ -579,10 +579,7 @@
                             <p>Brandon Koh,MD</p>
                         </div> -->
 
-                       <!-- @foreach ($message_data as $key => $msg)
-
-                       <?php //echo "testttttttttttttttttt";  print_r($msg['show_non_medical_screen']); ?>
-                       @endforeach -->
+                      
 
 
 {!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}

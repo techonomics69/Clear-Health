@@ -711,7 +711,7 @@ $('form').submit(function(){
 
 <script>
 function myFunction() {
-  setTimeout(function(){ location.reload(); }, 3000);
+  setTimeout(function(){ window.location.reload(); }, 3000);
 }
 </script>
 @if (count($errors) > 0)

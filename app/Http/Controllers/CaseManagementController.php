@@ -389,11 +389,11 @@ $sender = "admin";
       $message_data['mime_type'] = $file_mimeType;
     }
 
-    $message_data['show_non_medical_screen'] =1;
-/*echo "<pre>";
+    $message_data['show_non_medical_screen'] = 1 ;
+echo "<pre>";
   print_r($message_data);
   echo "</pre>";
-  die();*/
+  die();
 //toastr()->success('Message send');
 //return redirect()->back();
 

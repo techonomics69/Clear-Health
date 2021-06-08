@@ -223,7 +223,7 @@ public function getVouchedDetails(Request $request, $id){
 
 public function addUserPic(Request $request)
 {
-
+  $data = $request->all();
   $user_id = $request['user_id'];
   $case_id = $request['case_id'];
   $user_left_pic = $request->file('left_pic');
@@ -288,7 +288,7 @@ public function addUserPic(Request $request)
     $file_name_right_pic = NULL;  
   }
 
-if(!empty($user_other_pic)){
+  if(!empty($user_other_pic)){
     $other_pic =  $user_other_pic->getClientOriginalName();
     $file_name_other_pic =  time().'-'.$other_pic;
 
@@ -306,50 +306,34 @@ if(!empty($user_other_pic)){
     $file_name_other_pic = NULL;
   }
 
-  $parent = UserPics::create(array(
-    'user_id'=>$user_id,
-    'case_id'=>$case_id,
-    'left_pic'=>$file_name_left_pic,
-    'straight_pic'=>$file_name_straight_pic,
-    'right_pic'=>$file_name_right_pic,
-    'other_pic' => $file_name_other_pic,
-  ));
+  $userpic=UserPics::where('user_id',$request['user_id'];)->where('case_id',$request['case_id'])->first();
 
-  return $this->sendResponse($parent, 'User picture saved successfully.');
+  if(isset($userpic)){
+    $userpicUpdate = UserPics::where('id',$userpic->id)->update($data);
+    return $this->sendResponse(array(), 'User picture Successfully');
+  }else{
 
+    $parent = UserPics::create(array(
+      'user_id'=>$user_id,
+      'case_id'=>$case_id,
+      'left_pic'=>$file_name_left_pic,
+      'straight_pic'=>$file_name_straight_pic,
+      'right_pic'=>$file_name_right_pic,
+      'other_pic' => $file_name_other_pic,
+    ));
+    return $this->sendResponse($parent, 'User picture saved successfully.');
+  }
 }
 
-      public function getUserPic(Request $request)
-      {
-         $data = $request->all();
-      try{
-              $validator = Validator::make($data, [
-                  'user_id' => 'required',
-                  'case_id' => 'required',
-              ]);
-              if($validator->fails()){
-                  return $this->sendError('Validation Error.', $validator->errors()->all());       
-              }
-              $userpic=UserPics::where('user_id',$data['user_id'])->where('case_id',$data['case_id'])->first();
+public function getUserPic(Request $request)
+{
 
-              if(isset($userpic)){
-                  $userpicUpdate = UserPics::where('id',$userpic->id)->update($data);
-                  return $this->sendResponse(array(), 'User picture Successfully');
-              }else{
-                $userpic=UserPics::where('user_id',$data['user_id'])->where('case_id',$data['case_id'])->first();
-                return $this->sendResponse(array(), 'Answer Added Successfully');
-              }
-          }catch(\Exception $ex){
-              return $this->sendError('Server error',array($ex->getMessage()));
-          }
+  $user_id = $request['user_id'];
+  $case_id = $request['case_id'];
+  $userpic=UserPics::where('user_id',$request['user_id'])->where('case_id',$request['case_id'])->fisrt();
+  return $this->sendResponse($userpic, 'User picture saved successfully.');
 
-       /* $user_id = $request['user_id'];
-        $case_id = $request['case_id'];
-        $userpic=UserPics::where('user_id',$request['user_id'])->where('case_id',$request['case_id'])->first();
-
-        return $this->sendResponse($userpic, 'User picture saved successfully.');*/
-
-      }
+}
 
 }
 

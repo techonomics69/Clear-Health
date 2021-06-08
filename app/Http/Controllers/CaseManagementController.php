@@ -422,8 +422,8 @@ $sender = "admin";
   print_r($message_data);
   echo "</pre>";
   die();*/
-toastr()->success('Message send');
-return redirect()->back();
+//toastr()->success('Message send');
+//return redirect()->back();
 
 //return view('sendMessageNonMedical',compact('message_data'));
     //return $this->sendResponse('sendMessageNonMedical','Message created successfully');

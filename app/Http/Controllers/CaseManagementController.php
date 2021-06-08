@@ -369,9 +369,9 @@ $sender = "admin";
     $text = $request['text']; 
 
     //code to upload files ids
-     //$documents = $request->file('file');
+     $documents = $request->file('file');
 
-    /* if(!empty($documents)){
+     if(!empty($documents)){
       $file =  $documents->getClientOriginalName();
       $doc_file_name =  time().'-'.$file;
       
@@ -390,7 +390,7 @@ $sender = "admin";
       $doc_file_name = "";
       $file_path="";
       $file_mimeType ="";
-    }*/
+    }
     // end of code to upload files ids
     
     $input_data = array();
@@ -406,7 +406,7 @@ $sender = "admin";
   print_r($message_data);
   echo "</pre>";
   die();*/
-    /*$message_file_data = array();
+    $message_file_data = array();
     $message_file_data['file_name'] = $doc_file_name;
     $message_file_data['file_path'] = $file_path;
     $message_file_data['mime_type'] = $file_mimeType;
@@ -416,8 +416,11 @@ $sender = "admin";
       $message_data['file_name'] = $doc_file_name;
       $message_data['file_path'] = $file_path;
       $message_data['mime_type'] = $file_mimeType;
-    }*/
-
+    }
+echo "<pre>";
+  print_r($message_data);
+  echo "</pre>";
+  die();
 toastr()->success('Message send');
 return redirect()->back();
 

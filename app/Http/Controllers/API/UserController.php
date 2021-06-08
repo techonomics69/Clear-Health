@@ -335,6 +335,9 @@ if(!empty($user_other_pic)){
               if(isset($userpic)){
                   $userpicUpdate = UserPics::where('id',$userpic->id)->update($data);
                   return $this->sendResponse(array(), 'User picture Successfully');
+              }else{
+                $userpic=UserPics::where('user_id',$data['user_id'])->where('case_id',$data['case_id'])->first();
+                return $this->sendResponse(array(), 'Answer Added Successfully');
               }
           }catch(\Exception $ex){
               return $this->sendError('Server error',array($ex->getMessage()));

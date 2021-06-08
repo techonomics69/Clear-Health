@@ -95,13 +95,11 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
             $md_status = NULL;
           }
 
-          $case_type_detail = getCaseType($user_id,$case_id,$system_case_id);
+          $case_type = getCaseType($user_id,$case_id,$system_case_id);
 
-        echo "<pre>";
-        print_r( $case_type_detail);
-        echo "<pre>";
+        
 
-          if($gender == "Female" && $recommended_product == 'Accutane'){
+          if($gender == "Female" && $recommended_product == 'Accutane' && $case_type = 'new'){
 
                 /*
                 1.   Telehealth Evaluation Requested -> sent to MD Integrations  (case status MD side = pending )
@@ -111,28 +109,29 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                 5.   Prescription Approved -> (prescription confirmed by dosespot/script is written i.e. case status received from MD = Dosespot confirmed)
                 6.   Awaiting Action Items
                 */
-                if(($md_status != null || $value['md_status']!= null) && $md_case_status == 'pending'){
+                if(($md_status != null || $value['md_status']!= null) && $md_case_status == 'pending' && $case_type = 'new'){
 
                   $system_status = 'Awaiting Live Consultation';
                 }
 
-                if($md_case_status == 'support'){
+                if($md_case_status == 'support' && $case_type = 'new'){
 
                   $system_status = 'Awaiting Follow-Up';
                 }
 
-                if($md_case_status =='support'){
+                if($md_case_status =='support' && $case_type = 'follow_up'){
 
                   $system_status = ' Awaiting Prescription Approval';
                 }
 
-                if( $md_case_status == 'dosespot confirmed'){
+                if($md_case_status == 'dosespot confirmed' && $case_type = 'follow_up'){
 
                   $system_status = 'Prescription Approved';
                 }
                 
 
-                if(($md_status != null || $value['md_status']!= null) && $md_case_status == 'dosespot confirmed'){
+                if($md_case_status == 'dosespot confirmed' && $value['pregnancy_test']!= NULL && $value['blood_work']!= NULL && $value['i_pledge_agreement']!= NULL){
+
                   $system_status = 'Awaiting Action Items';
                 }
 
@@ -146,6 +145,22 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                   4. Prescription Approved
                 */
 
+                if(($md_status != null || $value['md_status']!= null) && $md_case_status == 'pending' && $case_type = 'new'){
+
+                  $system_status = 'MD Assigned';
+                }
+
+                if($md_case_status =='support' && $case_type = 'new'){
+
+                  $system_status = ' Awaiting Prescription Approval';
+                }
+
+                if($md_case_status == 'dosespot confirmed' && $case_type = 'new'){
+
+                  $system_status = 'Prescription Approved';
+                }
+                
+
          }else{
                 /*
                 Topical Male & Female:
@@ -153,6 +168,11 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                 1. Telehealth Evaluation Requested
                 2. Prescription Approved/Denied
                 */
+
+                if($md_case_status == 'dosespot confirmed' && $case_type = 'new'){
+
+                  $system_status = 'Prescription Approved';
+                }
               }
 
               $case_management  =  CaseManagement::where('id',$case_id)->where('user_id',$user_id)->update(['md_case_status' => $MdCaseStatus->status,'md_status' => $md_status,'system_status'=> $system_status ]);
@@ -183,7 +203,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
           }
         }
 
-      }die('dev is working');
+      }
 
       //end code
     }

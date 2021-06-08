@@ -87,6 +87,7 @@ Route::post('addCheckoutAddress', [CheckoutController::class, 'addCheckoutAddres
 Route::post('orderList', [CheckoutController::class, 'orderList']);
 Route::post('getOrderDetail', [CheckoutController::class, 'getCheckoutdetail']);
 Route::post('getCheckoutAddress', [CheckoutController::class, 'getCheckoutAddress']);
+Route::post('getTaxes', [CheckoutController::class,'getTaxes']);
 Route::get('getUpsellProductDetails', [ProductController::class, 'getUpsellProductDetails']);
 Route::get('getskincareplan', [ProductController::class, 'getskincareplan']);
 Route::post('ProductRecommend',[QuizAnswerController::class, 'ProductRecommend']);

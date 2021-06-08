@@ -396,7 +396,7 @@ $sender = "admin";
 //toastr()->success('Message send');
 //return redirect()->back();
 
-return view('casemanagement.view',compact('message_data','show_non_medical_screen'));
+return view('sendMessageNonMedical',compact('message_data','show_non_medical_screen'));
 
     //return $this->sendResponse('sendMessageNonMedical','Message created successfully');
 

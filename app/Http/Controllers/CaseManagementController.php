@@ -387,7 +387,14 @@ $sender = "admin";
     }
 
     $message_data['show_non_medical_screen'] = 1 ;
+/*echo "<pre>";
+  print_r($message_data);
+  echo "</pre>";
+  die();*/
+return redirect()->back()->with('message_data');
 
+//return redirect()->route('sendMessageNonMedical')->with('message_data' , $message_data);
+//return redirect('sendMessageNonMedical')->with(['message_data' => $message_data] );
   }
 
 public function getMessagesNonMedical(Request $request){

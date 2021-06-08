@@ -306,7 +306,7 @@ public function addUserPic(Request $request)
     $file_name_other_pic = NULL;
   }
 
-  $userpic=UserPics::where('user_id',$request['user_id'];)->where('case_id',$request['case_id'])->first();
+  $userpic=UserPics::where('user_id',$request['user_id'])->where('case_id',$request['case_id'])->first();
 
   if(isset($userpic)){
     $userpicUpdate = UserPics::where('id',$userpic->id)->update($data);

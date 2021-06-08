@@ -787,12 +787,12 @@ if(!empty($Patient_data)){
           echo "<pre>";
           
 
-        if(!empty($case_type_detail) && count($case_type_detail)>0){
+        /*if(!empty($case_type_detail) && count($case_type_detail)>0){
           $case_type = $case_type_detail['case_type'];
         }else{
           $case_type = '';
         }
-        return  $case_type;
+        return  $case_type;*/
     }
 
     ?>

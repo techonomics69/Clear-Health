@@ -14,7 +14,7 @@ class ChangeFieldTypeOfMdCreatedAtInMdCasesTable extends Migration
     public function up()
     {
         Schema::table('md_cases', function (Blueprint $table) {
-            $table->string('case_type')->nullable()->after('system_case_id')->default('new');
+            $table->string('md_created_at')->change();
         });
     }
 

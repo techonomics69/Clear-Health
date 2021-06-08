@@ -780,9 +780,9 @@ if(!empty($Patient_data)){
     }
 
     function getCaseType($user_id,$case_id,$system_case_id){
-        $case_type_detail = Mdcases::select('case_type')->where('user_id',$user_id)->where('case_id',$case_id)->where('system_case_id',$system_case_id)->get()->toArray();
+        $case_type_detail = Mdcases::select('case_type')->where('user_id',$user_id)->where('case_id',$case_id)->where('system_case_id',$system_case_id)->first();
 
-        if(!empty($case_type_detail) && count($case_type_detail)>0){
+        if(!empty($case_type_detail)){
           $case_type = $case_type_detail['case_type'];
         }else{
           $case_type = '';

@@ -42,7 +42,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
         $system_status = 'Telehealth Evaluation Requested';
 
-        $case_type_detail = getCaseType($user_id,$case_id,$system_case_id);
+   
 
         if($value['md_case_status']!= 'completed'){
 
@@ -52,14 +52,13 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
             foreach ($userQueAns as $key => $value) {
              $question = $value->question;
              if($question == "What was your gender assigned at birth?"){
-              if(isset($value->answer) && $value->answer!=''){
+               if(isset($value->answer) && $value->answer!=''){
 
                 $gender =  $value->answer;
-              }
+               }
+             }
             }
           }
-
-        }
 
         if($case_id != '' || $case_id != NULL){
 
@@ -96,6 +95,11 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
             $md_status = NULL;
           }
 
+          $case_type_detail = getCaseType($user_id,$case_id,$system_case_id);
+
+        echo "<pre>";
+        print_r( $case_type_detail);
+        echo "<pre>";
 
           if($gender == "Female" && $recommended_product == 'Accutane'){
 
@@ -179,7 +183,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
           }
         }
 
-      }
+      }die('dev is working');
 
       //end code
     }

@@ -13,7 +13,12 @@ class ChangeFieldTypeUserPictureTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('user_picture', function (Blueprint $table) {
+            $table->text('left_pic')->change();
+            $table->text('right_pic')->change();
+            $table->text('straight_pic')->change();
+            $table->text('other_pic')->change();
+        });
     }
 
     /**

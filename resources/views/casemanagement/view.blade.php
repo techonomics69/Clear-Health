@@ -582,7 +582,7 @@
  
 @if(Session::get('message_data'))
 <div class="alert alert-danger">
-  {{ Session::get('message_data')}}
+  {{ Session('message_data')}}
 </div>
 @endif
 

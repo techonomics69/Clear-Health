@@ -14,7 +14,7 @@ class AddFieldsMdFollowUpAtAndFollowUpInCaseManagementsTable extends Migration
     public function up()
     {
         Schema::table('case_managements', function (Blueprint $table) {
-             $table->dateTime ('md_follow_up_at')->nullable()->after('recommended_product');
+             $table->dateTime('md_follow_up_at')->nullable()->after('recommended_product');
              $table->string('follow_up')->nullable()->after('md_follow_up_at');
         });
 

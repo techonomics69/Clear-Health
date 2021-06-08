@@ -330,11 +330,11 @@ if(!empty($user_other_pic)){
               if($validator->fails()){
                   return $this->sendError('Validation Error.', $validator->errors()->all());       
               }
-              $userpic=UserPics::where('user_id',$request['user_id'])->where('case_id',$request['case_id'])->first();
+              $userpic=UserPics::where('user_id',$data['user_id'])->where('case_id',$data['case_id'])->first();
 
               if(isset($userpic)){
                   $userpicUpdate = UserPics::where('id',$userpic->id)->update($data);
-                  return $this->sendResponse(array(), 'Answer Updated Successfully');
+                  return $this->sendResponse(array(), 'User picture Successfully');
               }
           }catch(\Exception $ex){
               return $this->sendError('Server error',array($ex->getMessage()));

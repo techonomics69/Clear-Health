@@ -364,7 +364,7 @@ public function sendMessageNonMedical(Request $request){
 
     $users_message_type = (isset($request['users_message_type'])&&$request['users_message_type']!='medical')?$request['users_message_type']:'';//medical/non_medical
 
-    //$sender = $request['sender'];//user/admin
+    $sender = $request['sender'];//user/admin
 
     $text = $request['text']; 
 

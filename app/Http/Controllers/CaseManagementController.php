@@ -362,8 +362,8 @@ public function sendMessageNonMedical(Request $request){
     $case_id = (isset($request['md_case_id']) && $request['md_case_id']!='')?$request['md_case_id']:0;
     $system_case_id = $request['case_id'];
 
-    $users_message_type = (isset($request['users_message_type'])&&$request['users_message_type']!='medical')?$request['users_message_type']:'';//medical/non_medical
-
+    //$users_message_type = (isset($request['users_message_type'])&&$request['users_message_type']!='')?$request['users_message_type']:'';//medical/non_medical
+$users_message_type = 'Non-Medical';
     //$sender = $request['sender']; //user/admin
 $sender = "admin";
     $text = $request['text']; 

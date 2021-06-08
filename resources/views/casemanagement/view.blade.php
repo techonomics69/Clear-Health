@@ -580,7 +580,7 @@
                         </div> -->
 {!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
 
-<?php echo $message_data['show_non_medical_screen']; ?>
+<?php echo "testttttttttttttttttt"; echo $message_data['show_non_medical_screen']; ?>
                         <div class="chating-section">
                         	<ul>
                         		<li>

@@ -397,7 +397,7 @@ $sender = "admin";
 //toastr()->success('Message send');
 //return redirect()->back();
 
-return Redirect('sendMessageNonMedical')->back()->with('message_data');
+return back()->with('message_data');
 //return redirect('sendMessageNonMedical')->with(['message_data' => $message_data] );
 //return redirect('sendMessageNonMedical',compact('message_data'));
 

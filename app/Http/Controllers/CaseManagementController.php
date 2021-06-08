@@ -373,10 +373,7 @@ $sender = "admin";
     $input_data['users_message_type'] = $users_message_type;
     $input_data['sender'] = $sender;
     $message_data = Messages::create($input_data);
-/*echo "<pre>";
-  print_r($message_data);
-  echo "</pre>";
-  die();*/
+
     $message_file_data = array();
     $message_file_data['file_name'] = $doc_file_name;
     $message_file_data['file_path'] = $file_path;

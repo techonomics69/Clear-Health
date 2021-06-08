@@ -310,7 +310,7 @@ public function addUserPic(Request $request)
 
   if(isset($userpic)){
     $userpicUpdate = UserPics::where('id',$userpic->id)->update($data);
-    return $this->sendResponse(array(), 'User picture Successfully');
+    return $this->sendResponse(array(), 'User picture update successfully');
   }else{
 
     $parent = UserPics::create(array(

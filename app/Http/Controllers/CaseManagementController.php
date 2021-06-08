@@ -438,7 +438,12 @@ public function getMessagesNonMedical(Request $request){
 
     //$message_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')->select('messages.*','message_files.*')->where('case_id', $case_id)->where('md_case_id',$md_case_id)->where('user_id',$user_id)->get();
 
-     $message_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')->join('users', 'users.id', '=', 'messages.user_id')->select('messages.*','message_files.*','users.first_name','users.last_name')->where('user_id',$user_id)->OrderBy('messages.id','asc')->get();
+     $message_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')
+     ->join('users', 'users.id', '=', 'messages.user_id')
+     ->select('messages.*','message_files.*','users.first_name','users.last_name')
+     ->where('user_id',$user_id)
+     ->OrderBy('messages.id','asc')
+     ->get();
 
      $message_data = array();
      foreach($message_details as $key=>$value){
@@ -476,10 +481,10 @@ public function getMessagesNonMedical(Request $request){
 
 
      }
-echo "<pre>";
+/*echo "<pre>";
 print_r($message_data);
 echo "</pre>";
-die();
+die();*/
     if(!empty($message_data) && count($message_data)>0 ){
       return $this->sendResponse($message_data,'Message retrieved successfully');
     }else{

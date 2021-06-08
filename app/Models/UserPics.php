@@ -9,5 +9,5 @@ class UserPics extends Model
 {
     use HasFactory;
     protected $table = "user_picture";
-    protected $fillable = ['user_id', 'case_id', 'left_pic', 'right_pic','straight_pic'];
+    protected $fillable = ['user_id', 'case_id', 'left_pic', 'right_pic','straight_pic','other_pic'];
 }

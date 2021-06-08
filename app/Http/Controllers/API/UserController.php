@@ -229,6 +229,7 @@ public function addUserPic(Request $request)
   $user_left_pic = $request->file('left_pic');
   $user_right_pic = $request->file('right_pic');
   $user_straight_pic = $request->file('straight_pic');
+  $user_other_pic = $request->file('other_pic');
 
 
   $destinationPath = public_path('/images/Users');
@@ -287,6 +288,23 @@ public function addUserPic(Request $request)
     $file_name_right_pic = NULL;  
   }
 
+if(!empty($user_other_pic)){
+    $other_pic =  $user_other_pic->getClientOriginalName();
+    $file_name_other_pic =  time().'-'.$other_pic;
+
+    if (!file_exists(public_path('/images/Users'))) {
+      File::makeDirectory(public_path('/images/Users'),0777,true,true);
+    }
+
+    $user_other_pic->move($destinationPath, $file_name_other_pic);
+
+    chmod($destinationPath."/".$file_name_left_pic, 0777);
+
+      //$left_pic_file_path = 'public/images/Users' .$left_pic;
+
+  }else{
+    $file_name_other_pic = NULL;
+  }
 
   $parent = UserPics::create(array(
     'user_id'=>$user_id,
@@ -294,6 +312,7 @@ public function addUserPic(Request $request)
     'left_pic'=>$file_name_left_pic,
     'straight_pic'=>$file_name_straight_pic,
     'right_pic'=>$file_name_right_pic,
+    'other_pic' => $file_name_other_pic,
   ));
 
   return $this->sendResponse($parent, 'User picture saved successfully.');

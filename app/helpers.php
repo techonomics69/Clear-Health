@@ -785,7 +785,7 @@ if(!empty($Patient_data)){
           echo "<pre>";
           print_r($case_type_detail);
           echo "<pre>";
-          exit();
+          
 
         if(!empty($case_type_detail) && count($case_type_detail)>0){
           $case_type = $case_type_detail['case_type'];

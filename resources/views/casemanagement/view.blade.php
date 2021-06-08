@@ -624,7 +624,7 @@ print_r($q); ?>
          
                         	</div>
                         	<div class="sending lastimg">
-                        		<button type="submit"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
+                        		<button type="submit" id="submit" onclick="myFunction()"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
                         		<!-- <img src="{{asset('public/images/telegram.png')}}" alt=""> -->
                         	</div>
                         </div>
@@ -714,7 +714,11 @@ $('form').submit(function(){
 
 </script>
 
-
+<script>
+function myFunction() {
+  setTimeout(function(){ location.reload(); }, 3000);
+}
+</script>
 @if (count($errors) > 0)
 <script type="text/javascript">
 	$('html, body').animate({

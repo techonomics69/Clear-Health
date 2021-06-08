@@ -41,7 +41,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
         $system_status = 'Telehealth Evaluation Requested';
 
-        $case_type_detail = getCaseType($user_id,$case_id);
+        $case_type_detail = getCaseType($user_id,$case_id,$system_case_id);
 
         if($value['md_case_status']!= 'completed'){
 

@@ -587,9 +587,6 @@
     </div>
      @endif
 
-
-
-
 {!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
 
 <?php 

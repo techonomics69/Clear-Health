@@ -398,7 +398,7 @@ $sender = "admin";
 //return redirect()->back();
 
 
-return back()->with('message_data', 'The success message!');
+return redirect()->back()->with('message_data', 'The success message!');
 //return redirect('sendMessageNonMedical',compact('message_data'));
 
     //return $this->sendResponse('sendMessageNonMedical','Message created successfully');

@@ -324,7 +324,7 @@ if(!empty($user_other_pic)){
 
       $user_id = $request['user_id'];
       $case_id = $request['case_id'];
-      $userpic=UserPics::where('user_id',$request['user_id'])->where('case_id',$request['case_id'])->get();
+      $userpic=UserPics::where('user_id',$request['user_id'])->where('case_id',$request['case_id'])->first();
       return $this->sendResponse($userpic, 'User picture saved successfully.');
 
     }

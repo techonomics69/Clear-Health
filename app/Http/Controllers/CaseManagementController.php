@@ -392,9 +392,7 @@ $sender = "admin";
   echo "</pre>";
   die();*/
 return redirect()->back()->with('message_data');
-//return redirect()->back()->with('message', "Record Added Successfully, docket number is $docket_number");
-//return redirect()->route('sendMessageNonMedical')->with('message_data' , $message_data);
-//return redirect('sendMessageNonMedical')->with(['message_data' => $message_data] );
+
   }
 
 public function getMessagesNonMedical(Request $request){

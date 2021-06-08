@@ -373,10 +373,7 @@ $sender = "admin";
     $input_data['users_message_type'] = $users_message_type;
     $input_data['sender'] = $sender;
     $message_data = Messages::create($input_data);
-/*echo "<pre>";
-  print_r($message_data);
-  echo "</pre>";
-  die();*/
+
     $message_file_data = array();
     $message_file_data['file_name'] = $doc_file_name;
     $message_file_data['file_path'] = $file_path;
@@ -394,15 +391,10 @@ $sender = "admin";
   print_r($message_data);
   echo "</pre>";
   die();*/
-//toastr()->success('Message send');
-//return redirect()->back();
+return redirect()->back()->with($message_data);
 
-return back()->with('message_data');
+//return redirect()->route('sendMessageNonMedical')->with('message_data' , $message_data);
 //return redirect('sendMessageNonMedical')->with(['message_data' => $message_data] );
-//return redirect('sendMessageNonMedical',compact('message_data'));
-
-    //return $this->sendResponse('sendMessageNonMedical','Message created successfully');
-
   }
 
 public function getMessagesNonMedical(Request $request){

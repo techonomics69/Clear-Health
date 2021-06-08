@@ -579,14 +579,20 @@
                             <p>Brandon Koh,MD</p>
                         </div> -->
 
- {{ session()->get( 'message_data' ) }}                     
-<?php 
+ 
+@if(Session::has('message_data'))
+<div class="alert alert-danger">
+  {{ Session::get('message_data')}}
+</div>
+@endif
 
-$q= Session::get('message_data');
-//echo $q; 
-print_r($q); ?>
 
 {!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
+
+<?php 
+//echo $message_data; 
+//echo $q;
+?>
 
                         <div class="chating-section">
                         	<ul>
@@ -624,7 +630,7 @@ print_r($q); ?>
          
                         	</div>
                         	<div class="sending lastimg">
-                        		<button type="submit"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
+                        		<button type="submit" onclick="myFunction()"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
                         		<!-- <img src="{{asset('public/images/telegram.png')}}" alt=""> -->
                         	</div>
                         </div>
@@ -714,7 +720,11 @@ $('form').submit(function(){
 
 </script>
 
-
+<script>
+function myFunction() {
+  setTimeout(function(){ location.reload(true); }, 3000);
+}
+</script>
 @if (count($errors) > 0)
 <script type="text/javascript">
 	$('html, body').animate({

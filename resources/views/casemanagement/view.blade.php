@@ -580,7 +580,8 @@
                         </div> -->
 
                       
-
+<?php echo "testttttttttt"; 
+print_r($message_data); ?>
 
 {!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
 

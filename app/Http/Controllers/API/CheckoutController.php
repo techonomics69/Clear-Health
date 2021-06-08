@@ -387,13 +387,17 @@ public function getCheckoutAddress(Request $request)
 public function getTaxes(Request $request){
 
 
-  $user_id  = $request['user_id'];
+   $user_id  = $request['user_id'];
 
-   
-   //$orderlist['order_item'] = count($cart_ids);
+
+  /* $cart_ids = explode(',', $orderlist['cart_id']);
+   $orderlist['order_item'] = count($cart_ids);
 
    $products=array();
-   $cart_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->where('carts.user_id',$user_id)->where('carts.status','pending')->select('products.name AS product_name','products.image','products.discount_price','carts.quantity','carts.order_type','carts.pharmacy_pickup','carts.product_price as price')->get()->toArray();
+   $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','products.image','products.discount_price','carts.quantity','carts.order_type','carts.pharmacy_pickup','carts.product_price as price')->get()->toArray();*/
+
+   $products=array();
+   $cart_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->join('products', 'products.id', '=', 'carts.product_id')->where('carts.user_id',$user_id)->where('carts.status','pending')->select('products.name AS product_name','products.image','products.discount_price','carts.quantity','carts.order_type','carts.pharmacy_pickup','carts.product_price')->get()->toArray();
 
    echo "<pre>";
    print_r($cart_details);

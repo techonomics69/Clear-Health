@@ -223,12 +223,13 @@ public function getVouchedDetails(Request $request, $id){
 
 public function addUserPic(Request $request)
 {
-
+  $data = $request->all();
   $user_id = $request['user_id'];
   $case_id = $request['case_id'];
   $user_left_pic = $request->file('left_pic');
   $user_right_pic = $request->file('right_pic');
   $user_straight_pic = $request->file('straight_pic');
+  $user_other_pic = $request->file('other_pic');
 
 
   $destinationPath = public_path('/images/Users');
@@ -270,7 +271,7 @@ public function addUserPic(Request $request)
   }
 
   if(!empty($user_right_pic)){
-    $right_pic =  $user_left_pic->getClientOriginalName();
+    $right_pic =  $user_right_pic->getClientOriginalName();
     $file_name_right_pic =  time().'-'.$right_pic;
 
     if (!file_exists(public_path('/images/Users'))) {
@@ -287,28 +288,57 @@ public function addUserPic(Request $request)
     $file_name_right_pic = NULL;  
   }
 
+  if(!empty($user_other_pic)){
+    $other_pic =  $user_other_pic->getClientOriginalName();
+    $file_name_other_pic =  time().'-'.$other_pic;
 
-  $parent = UserPics::create(array(
-    'user_id'=>$user_id,
-    'case_id'=>$case_id,
-    'left_pic'=>$file_name_left_pic,
-    'straight_pic'=>$file_name_straight_pic,
-    'right_pic'=>$file_name_right_pic,
-  ));
+    if (!file_exists(public_path('/images/Users'))) {
+      File::makeDirectory(public_path('/images/Users'),0777,true,true);
+    }
 
-  return $this->sendResponse($parent, 'User picture saved successfully.');
+    $user_other_pic->move($destinationPath, $file_name_other_pic);
 
+    chmod($destinationPath."/".$file_name_left_pic, 0777);
+
+      //$left_pic_file_path = 'public/images/Users' .$left_pic;
+
+  }else{
+    $file_name_other_pic = NULL;
+  }
+
+  $userpic=UserPics::where('user_id',$request['user_id'])->where('case_id',$request['case_id'])->first();
+
+  if(isset($userpic)){
+    $userpicUpdate = UserPics::where('id',$userpic->id)->update(array(
+      'left_pic'=>$file_name_left_pic,
+      'straight_pic'=>$file_name_straight_pic,
+      'right_pic'=>$file_name_right_pic,
+      'other_pic' => $file_name_other_pic,
+    ));
+    return $this->sendResponse(array(), 'User picture update successfully');
+  }else{
+
+    $parent = UserPics::create(array(
+      'user_id'=>$user_id,
+      'case_id'=>$case_id,
+      'left_pic'=>$file_name_left_pic,
+      'straight_pic'=>$file_name_straight_pic,
+      'right_pic'=>$file_name_right_pic,
+      'other_pic' => $file_name_other_pic,
+    ));
+    return $this->sendResponse($parent, 'User picture saved successfully.');
+  }
 }
 
-    public function getUserPic(Request $request)
-    {
+public function getUserPic(Request $request)
+{
 
-      $user_id = $request['user_id'];
-      $case_id = $request['case_id'];
-      $userpic=UserPics::where('user_id',$request['user_id'])->where('case_id',$request['case_id'])->get();
-      return $this->sendResponse($userpic, 'User picture saved successfully.');
+  $user_id = $request['user_id'];
+  $case_id = $request['case_id'];
+  $userpic=UserPics::where('user_id',$request['user_id'])->where('case_id',$request['case_id'])->fisrt();
+  return $this->sendResponse($userpic, 'User picture saved successfully.');
 
-    }
+}
 
 }
 

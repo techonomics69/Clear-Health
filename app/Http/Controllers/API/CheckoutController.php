@@ -386,6 +386,24 @@ public function getCheckoutAddress(Request $request)
 
 public function getTaxes(Request $request){
 
+
+  $user_id  = $request['user_id'];
+
+
+    // foreach($orderlist as $key=>$val)
+     //{
+   
+   //$orderlist['order_item'] = count($cart_ids);
+
+   $products=array();
+   $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->where('carts.user_id',$user_id)->where('carts.status','pending')->select('products.name AS product_name','products.image','products.discount_price','carts.quantity','carts.order_type','carts.pharmacy_pickup','carts.product_price as price')->get()->toArray();
+
+   $pro_amount =0; 
+   $ord_total = 0;
+   $shipping_fee = ($orderlist['shipping_fee']!="" || $orderlist['shipping_fee']!= null)?$orderlist['shipping_fee']:0;
+
+   
+
    $client = \TaxJar\Client::withApiKey('dcbaa17daefa7c485d84ee47793d1708');
    $client->setApiConfig('api_url', \TaxJar\Client::SANDBOX_API_URL);
 

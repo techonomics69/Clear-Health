@@ -389,14 +389,16 @@ public function getTaxes(Request $request){
 
   $user_id  = $request['user_id'];
 
-
-    // foreach($orderlist as $key=>$val)
-     //{
    
    //$orderlist['order_item'] = count($cart_ids);
 
    $products=array();
-   $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->where('carts.user_id',$user_id)->where('carts.status','pending')->select('products.name AS product_name','products.image','products.discount_price','carts.quantity','carts.order_type','carts.pharmacy_pickup','carts.product_price as price')->get()->toArray();
+   $cart_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->where('carts.user_id',$user_id)->where('carts.status','pending')->select('products.name AS product_name','products.image','products.discount_price','carts.quantity','carts.order_type','carts.pharmacy_pickup','carts.product_price as price')->get()->toArray();
+
+   echo "<pre>";
+   print_r($cart_details);
+   echo "<pre>";
+   exit();
 
    $pro_amount =0; 
    $ord_total = 0;

@@ -15,6 +15,7 @@ use App\Models\Cart;
 use App\Models\Product;
 use App\Models\Messages;
 use App\Models\MessageFiles;
+use Redirect;
 use Session;
 
 
@@ -396,7 +397,7 @@ $sender = "admin";
 //toastr()->success('Message send');
 //return redirect()->back();
 
-return view('sendMessageNonMedical',compact('message_data'));
+return redirect('sendMessageNonMedical',compact('message_data'));
 
     //return $this->sendResponse('sendMessageNonMedical','Message created successfully');
 

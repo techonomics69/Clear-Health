@@ -580,11 +580,18 @@
                         </div> -->
 
  
- {{ Session::get('message_data')}}
+@if(Session::has('message_data'))
+<div class="alert alert-danger">
+  {{ Session::get('message_data')}}
+</div>
+@endif
+
+
 {!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
 
-<?php $q= session::get('message_data'); 
-echo $q;
+<?php 
+//$q = session::get('message_data'); 
+//echo $q;
 ?>
 
                         <div class="chating-section">

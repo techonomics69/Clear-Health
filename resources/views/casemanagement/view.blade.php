@@ -619,7 +619,7 @@
          
                         	</div>
                         	<div class="sending lastimg">
-                        		<button type="submit" id="submit" onclick="myFunction()"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
+                        		<button type="submit" onclick="myFunction()"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
                         		<!-- <img src="{{asset('public/images/telegram.png')}}" alt=""> -->
                         	</div>
                         </div>

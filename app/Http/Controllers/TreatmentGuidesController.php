@@ -32,7 +32,7 @@ class TreatmentGuidesController extends Controller
     $regex = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
     $this->validate($request, [
 
-      'title' => 'required|unique:products,name|regex:/^[\pL\s\-]+$/u',
+      'title' => 'required',
       'sub_title' => 'required',
       'status' => 'required|not_in:0',
       'detail' => 'required',

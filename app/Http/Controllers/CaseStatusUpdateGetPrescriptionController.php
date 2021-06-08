@@ -44,6 +44,11 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
         $case_type_detail = getCaseType($user_id,$case_id,$system_case_id);
 
+        echo "<pre>";
+        print_r( $case_type_detail);
+        echo "<pre>";
+   
+
         if($value['md_case_status']!= 'completed'){
 
           $userQueAns = getQuestionAnswerFromUserid($user_id,$system_case_id);
@@ -179,7 +184,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
           }
         }
 
-      }
+      }     exit();
 
       //end code
     }

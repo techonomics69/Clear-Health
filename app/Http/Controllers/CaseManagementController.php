@@ -418,11 +418,10 @@ $sender = "admin";
       $message_data['mime_type'] = $file_mimeType;
     }*/
 
-//toastr()->success('message send');
+toastr()->success('Message send');
+return redirect()->back();
 
-    //return redirect()->back();
-
-return view('sendMessageNonMedical',compact('message_data'));
+//return view('sendMessageNonMedical',compact('message_data'));
     //return $this->sendResponse('sendMessageNonMedical','Message created successfully');
 
   }

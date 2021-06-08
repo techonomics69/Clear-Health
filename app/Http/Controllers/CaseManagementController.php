@@ -270,27 +270,24 @@ class CaseManagementController extends Controller
   }
 
 
-  public function upload_blood_test_report(Request $request)
-  {
+public function upload_blood_test_report(Request $request){
 
 
    $documents = $request->file('blood_work');
 
    $this->validate($request, [
     'blood_work' => 'required|mimes:jpg,jpeg,png,pdf',
-  ],[
+    ],[
     'blood_work.required' => 'Blood Work Test file field is required.' ,
     'blood_work.mimes' => 'Blood Work  File must be a file of type:jpg,jpeg,png,pdf' ,
     
-  ]);
+    ]);
 
-   
 
-   if(!empty($documents)){
-
+  if(!empty($documents)){
     $file =  $documents->getClientOriginalName();
     $doc_file_name =  time().'-'.$file;
-          //$doc_file_name = time() . '-' . $doc->getClientOriginalExtension();
+    //$doc_file_name = time() . '-' . $doc->getClientOriginalExtension();
 
     if (!file_exists(public_path('/ipledgeimports/blood_work'))) {
       File::makeDirectory(public_path('/ipledgeimports/blood_work'), 0777, true, true);
@@ -299,10 +296,6 @@ class CaseManagementController extends Controller
     $destinationPath = public_path('/ipledgeimports/blood_work');
     $documents->move($destinationPath, $doc_file_name);
 
-          //$input = array();
-          //$input = request()->except(['_token']);
-          //$input['files'] = 'public/ipledgeimports/' .$doc_file_name;
-          //$input = $request->all();
     $input['blood_work'] = $doc_file_name;
 
     CaseManagement::whereId($request['case_id'])->update($input);
@@ -358,108 +351,6 @@ public function get_token(){
 
   curl_close($curl);
   return $response;
-}
-
-public function getCaseStatus(){
-
-  $data = CaseManagement::all();
-
-  $r = $this->get_token();
-  $token_data = json_decode($r);
-  $token = $token_data->access_token;
-
-  foreach($data as $key=>$value){
-
-    $user_id = $value['user_id'];
-    $case_id = $value['md_case_id'];
-    $system_case_id = $value['id'];
-
-    $recommended_product = $value['recommended_product'];
-
-    if($value['md_case_status']!= 'completed'){
-
-        $userQueAns = getQuestionAnswerFromUserid($user_id,$system_case_id);
-
-          if(!empty($userQueAns)){
-            foreach ($userQueAns as $key => $value) {
-             $question = $value->question;
-             if($question == "What was your gender assigned at birth?"){
-                if(isset($value->answer) && $value->answer!=''){
-
-                  $gender =  $value->answer;
-                }
-             }
-          }
-
-        }
-
-    if($case_id != '' || $case_id != NULL){
-
-       $curl = curl_init();
-
-       curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id,
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => '',
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => 'GET',
-        CURLOPT_HTTPHEADER => array(
-          'Authorization: Bearer '.$token,
-          'Cookie: __cfduid=da01d92d82d19a6cccebfdc9852303eb81620627650'
-        ),
-      ));
-
-       $response = curl_exec($curl);
-
-       $MdCaseStatus = json_decode($response);
-
-       echo "<pre>";
-       print_r($MdCaseStatus);
-       echo "<pre>";
-       
-
-       curl_close($curl);
-
-
-       if($gender == "Female" && $recommended_product == 'Accutane'){
-
-        /*
-        1.   Telehealth Evaluation Requested -> sent to MD Integrations  (case status MD side = pending )
-        2.   Awaiting Live Consultation -> MD assigned, call not initiated ( MD guys will call ping our API using webhook and we will get notified that MD has been assigned)
-        3.   Awaiting Follow-Up -> (case status received as support from MD)
-        4.   Awaiting Prescription Approval
-        5.   Prescription Approved -> (prescription confirmed by dosespot/script is written i.e. case status received from MD = Dosespot confirmed)
-        6.   Awaiting Action Items
-        */
-
-       }else if($gender == "Male" && $recommended_product == 'Accutane'){
-        /*
-          Initial Accutane Male Flow:
-    
-          1. Telehealth Visit Requested/ Awaiting Clinician assigned - after vouched verification is done.
-          2. MD Assigned
-          3. Awaiting Prescription Approval
-          4. Prescription Approved
-        */
-
-       }else{
-        /*
-        Topical Male & Female:
-
-        1. Telehealth Evaluation Requested
-        2. Prescription Approved/Denied
-        */
-       }
-
-      }
-    }
-
-  }
-
-
 }
 
 }

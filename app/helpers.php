@@ -434,29 +434,8 @@ if(!empty($Patient_data)){
 
     //code to get user's question answer
 
-    /*$answer = QuizAnswer::join('quizzes', 'quizzes.id', '=', 'quiz_answers.question_id')->where('quiz_answers.user_id', $request['user_id'])->where('quiz_answers.case_id', $request['case_id'])->select( 'quizzes.question','quiz_answers.answer','quizzes.options_type')->get()->toArray();
-
-    $userquestion = array();
-    foreach($answer as $key=>$value){
-      $userquestion[$key]['question'] = $value['question'];
-      $userquestion[$key]['answer'] = $value['answer'];
-
-      if($value['options_type'] == "radio"){
-       $userquestion[$key]['type']= "boolean";
-     }else{
-       $userquestion[$key]['type']= "string";
-     }
-     
-     $userquestion[$key]['important']= true;
-   }
-   
-   $userquestion = json_encode($userquestion);*/ //old logic
 
    $userQueAns = getQuestionAnswerFromUserid($user_id,$case_id);
-
- //get weight of patient 
-
-   //$answer = QuizAnswer::join('quizzes', 'quizzes.id', '=', 'quiz_answers.question_id')->where('quiz_answers.user_id', $request['user_id'])->where('quiz_answers.case_id', $request['case_id'])->where('quiz_answers.case_id', $request['case_id'])->select( 'quizzes.question','quiz_answers.answer','quizzes.options_type')->get()->toArray();
 
 
    $accutan_strength = 30;

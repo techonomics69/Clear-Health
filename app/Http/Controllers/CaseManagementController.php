@@ -356,18 +356,15 @@ public function get_token(){
 
 public function sendMessageNonMedical(Request $request){
 
-  echo "<pre>";
-  print_r($request->all());
-  echo "</pre>";
-  die();
+
     $user_id = $request['user_id'];
 
     $case_id = (isset($request['md_case_id']) && $request['md_case_id']!='')?$request['md_case_id']:0;
     $system_case_id = $request['case_id'];
 
-    $users_message_type = (isset($request['users_message_type'])&&$request['users_message_type']!='')?$request['users_message_type']:'';//medical/non_medical
+    //$users_message_type = (isset($request['users_message_type'])&&$request['users_message_type']!='')?$request['users_message_type']:'';//medical/non_medical
 
-    $sender = $request['sender'];//user/admin
+    //$sender = $request['sender'];//user/admin
 
     $text = $request['text']; 
 
@@ -402,10 +399,13 @@ public function sendMessageNonMedical(Request $request){
     $input_data['user_id'] = $user_id;
     $input_data['case_id'] = $system_case_id;
     $input_data['text'] = $text;
-    $input_data['users_message_type'] = $users_message_type;
-    $input_data['sender'] = $sender;
+    //$input_data['users_message_type'] = $users_message_type;
+    //$input_data['sender'] = $sender;
     $message_data = Messages::create($input_data);
-
+echo "<pre>";
+  print_r($message_data);
+  echo "</pre>";
+  die();
     /*$message_file_data = array();
     $message_file_data['file_name'] = $doc_file_name;
     $message_file_data['file_path'] = $file_path;

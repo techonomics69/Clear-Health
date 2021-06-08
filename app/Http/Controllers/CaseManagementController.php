@@ -387,10 +387,10 @@ $sender = "admin";
     }
 
     $message_data['show_non_medical_screen'] = 1 ;
-echo "<pre>";
+/*echo "<pre>";
   print_r($message_data);
   echo "</pre>";
-  die();
+  die();*/
 return redirect()->back()->with('message_data');
 
   }

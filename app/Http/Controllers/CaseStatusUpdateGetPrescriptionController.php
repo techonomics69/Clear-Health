@@ -27,7 +27,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
     {
       $data = CaseManagement::all();
 
-      $r = $this->get_token();
+      $r = get_token();
       $token_data = json_decode($r);
       $token = $token_data->access_token;
 
@@ -41,7 +41,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
         $system_status = 'Telehealth Evaluation Requested';
 
-        $case_type_detail = getCaseType($user_id,$case_id);
+        $case_type_detail = getCaseType($user_id,$case_id,$system_case_id);
 
         if($value['md_case_status']!= 'completed'){
 
@@ -85,7 +85,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
          curl_close($curl);
 
-         if(!empty($MdCaseStatus)){
+        if(!empty($MdCaseStatus)){
 
           $md_case_status = $MdCaseStatus->status;
 
@@ -172,16 +172,13 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                 $md_case_data = Mdmanagement::create($inputmd_data);
               }
 
-            }
+        }
+            //md status completed
 
           }
         }
 
       }
-
-
-    }
-
 
       //end code
     }

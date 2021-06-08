@@ -226,13 +226,16 @@ public function addUserPic(Request $request)
   $data = $request->all();
   $user_id = $request['user_id'];
   $case_id = $request['case_id'];
-  $user_left_pic = $request->file('left_pic');
+  $user_left_pic = $request['left_pic'];
+  $user_right_pic = $request['right_pic'];
+  $user_straight_pic = $request['straight_pic'];
+  $user_other_pic = $request['other_pic'];
+  /*$user_left_pic = $request->file('left_pic');
   $user_right_pic = $request->file('right_pic');
   $user_straight_pic = $request->file('straight_pic');
-  $user_other_pic = $request->file('other_pic');
+  $user_other_pic = $request->file('other_pic');*/
 
-
-  $destinationPath = public_path('/images/Users');
+  /*$destinationPath = public_path('/images/Users');
 
   if(!empty($user_left_pic)){
     $left_pic =  $user_left_pic->getClientOriginalName();
@@ -304,7 +307,7 @@ public function addUserPic(Request $request)
 
   }else{
     $file_name_other_pic = NULL;
-  }
+  }*/
 
   $userpic=UserPics::where('user_id',$request['user_id'])->where('case_id',$request['case_id'])->first();
 

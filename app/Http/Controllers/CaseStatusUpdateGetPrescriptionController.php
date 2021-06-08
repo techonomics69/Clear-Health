@@ -180,7 +180,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
       }
 
 
-    }
+    }}
 
 
       //end code

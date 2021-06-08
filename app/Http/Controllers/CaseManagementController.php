@@ -400,7 +400,7 @@ public function sendMessageNonMedical(Request $request){
     $input_data['case_id'] = $system_case_id;
     $input_data['text'] = $text;
     $input_data['users_message_type'] = $users_message_type;
-    //$input_data['sender'] = $sender;
+    $input_data['sender'] = $sender;
     $message_data = Messages::create($input_data);
 echo "<pre>";
   print_r($message_data);

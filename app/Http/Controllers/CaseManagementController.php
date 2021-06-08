@@ -402,7 +402,7 @@ $sender = "admin";
 
 
 //return back()->with('message_data');
-return redirect('sendMessageNonMedical')->with(['message_data' => $message_data] );
+//return redirect('sendMessageNonMedical')->with(['message_data' => $message_data] );
 //return redirect('sendMessageNonMedical',compact('message_data'));
 
     //return $this->sendResponse('sendMessageNonMedical','Message created successfully');

@@ -309,7 +309,12 @@ public function addUserPic(Request $request)
   $userpic=UserPics::where('user_id',$request['user_id'])->where('case_id',$request['case_id'])->first();
 
   if(isset($userpic)){
-    $userpicUpdate = UserPics::where('id',$userpic->id)->update($file_name_left_pic,$file_name_straight_pic,$file_name_right_pic,$file_name_other_pic);
+    $userpicUpdate = UserPics::where('id',$userpic->id)->update(array(
+      'left_pic'=>$file_name_left_pic,
+      'straight_pic'=>$file_name_straight_pic,
+      'right_pic'=>$file_name_right_pic,
+      'other_pic' => $file_name_other_pic,
+    ));
     return $this->sendResponse(array(), 'User picture update successfully');
   }else{
 

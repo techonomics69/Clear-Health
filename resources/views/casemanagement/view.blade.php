@@ -583,7 +583,7 @@
 
  @if ($message = Session::get('message_data'))
     <div class="alert alert-success">
-        <p>{{ $message }}</p>
+        <p>{{ Session::get('message_data') }}</p>
     </div>
      @endif
 
@@ -591,7 +591,7 @@
 
 <?php 
 $test = Session::get('message_data');
-echo "TEStttttttttttt";
+//echo "TEStttttttttttt";
 print_r($test);
 //echo $q;
 ?>

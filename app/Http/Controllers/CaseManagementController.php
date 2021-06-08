@@ -368,7 +368,7 @@ public function sendMessageNonMedical(Request $request){
     //code to upload files ids
      $documents = $request->file('file');
 
-     if(!empty($documents)){
+    /* if(!empty($documents)){
       $file =  $documents->getClientOriginalName();
       $doc_file_name =  time().'-'.$file;
       
@@ -387,7 +387,7 @@ public function sendMessageNonMedical(Request $request){
       $doc_file_name = "";
       $file_path="";
       $file_mimeType ="";
-    }
+    }*/
     // end of code to upload files ids
     
     $input_data = array();
@@ -400,7 +400,7 @@ public function sendMessageNonMedical(Request $request){
     $input_data['sender'] = $sender;
     $message_data = Messages::create($input_data);
 
-    $message_file_data = array();
+    /*$message_file_data = array();
     $message_file_data['file_name'] = $doc_file_name;
     $message_file_data['file_path'] = $file_path;
     $message_file_data['mime_type'] = $file_mimeType;
@@ -410,7 +410,7 @@ public function sendMessageNonMedical(Request $request){
       $message_data['file_name'] = $doc_file_name;
       $message_data['file_path'] = $file_path;
       $message_data['mime_type'] = $file_mimeType;
-    }
+    }*/
 
     return $this->sendResponse($message_data,'Message created successfully');
 

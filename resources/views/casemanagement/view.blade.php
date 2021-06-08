@@ -578,7 +578,7 @@
                     <!--     <div class="header-chat">
                             <p>Brandon Koh,MD</p>
                         </div> -->
-<?php echo "testttttttttttttttttt"; ?>
+<?php echo "testttttttttttttttttt"; print_r($message_data); ?>
 
 {!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
 

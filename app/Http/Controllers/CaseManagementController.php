@@ -418,10 +418,10 @@ $sender = "admin";
       $message_data['file_path'] = $file_path;
       $message_data['mime_type'] = $file_mimeType;
     }
-echo "<pre>";
+/*echo "<pre>";
   print_r($message_data);
   echo "</pre>";
-  die();
+  die();*/
 toastr()->success('Message send');
 return redirect()->back();
 

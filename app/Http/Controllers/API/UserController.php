@@ -271,7 +271,7 @@ public function addUserPic(Request $request)
   }
 
   if(!empty($user_right_pic)){
-    $right_pic =  $user_left_pic->getClientOriginalName();
+    $right_pic =  $user_right_pic->getClientOriginalName();
     $file_name_right_pic =  time().'-'.$right_pic;
 
     if (!file_exists(public_path('/images/Users'))) {

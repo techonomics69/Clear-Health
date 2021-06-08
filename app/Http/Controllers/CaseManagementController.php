@@ -362,7 +362,7 @@ public function sendMessageNonMedical(Request $request){
     $case_id = (isset($request['md_case_id']) && $request['md_case_id']!='')?$request['md_case_id']:0;
     $system_case_id = $request['case_id'];
 
-    //$users_message_type = (isset($request['users_message_type'])&&$request['users_message_type']!='')?$request['users_message_type']:'';//medical/non_medical
+    $users_message_type = (isset($request['users_message_type'])&&$request['users_message_type']!='medical')?$request['users_message_type']:'';//medical/non_medical
 
     //$sender = $request['sender'];//user/admin
 
@@ -399,7 +399,7 @@ public function sendMessageNonMedical(Request $request){
     $input_data['user_id'] = $user_id;
     $input_data['case_id'] = $system_case_id;
     $input_data['text'] = $text;
-    //$input_data['users_message_type'] = $users_message_type;
+    $input_data['users_message_type'] = $users_message_type;
     //$input_data['sender'] = $sender;
     $message_data = Messages::create($input_data);
 echo "<pre>";

@@ -218,6 +218,7 @@ Route::group(['middleware' => ['auth']],function(){
     Route::post('admin/casemanagement/upload_blood_test_report', [CaseManagementController::class, 'upload_blood_test_report'])->name('upload_blood_work_test_report');
     Route::post('admin/casemanagement/i_pledge_agreement', [CaseManagementController::class, 'i_pledge_agreement'])->name('i_pledge_agreement');
     Route::post('CaseStatus',[CaseManagementController::class, 'getCaseStatus']);
+     Route::post('admin/casemanagement/sendMessageNonMedical', [CaseManagementController::class, 'sendMessageNonMedical'])->name('sendMessageNonMedical');
 
 
     //fees

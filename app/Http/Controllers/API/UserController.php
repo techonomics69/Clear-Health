@@ -323,7 +323,7 @@ public function addUserPic(Request $request)
       'right_pic'=>$file_name_right_pic,
       'other_pic' => $file_name_other_pic,*/
     ));
-    return $this->sendResponse($userpicUpdate, 'User picture update successfully');
+    return $this->sendResponse(array(), 'User picture update successfully');
   }else{
 
     $parent = UserPics::create(array(

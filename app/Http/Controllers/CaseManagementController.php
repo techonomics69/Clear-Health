@@ -418,6 +418,8 @@ $sender = "admin";
       $message_data['file_path'] = $file_path;
       $message_data['mime_type'] = $file_mimeType;
     }
+
+    $show_non_medical_screen =1;
 /*echo "<pre>";
   print_r($message_data);
   echo "</pre>";
@@ -425,7 +427,7 @@ $sender = "admin";
 //toastr()->success('Message send');
 //return redirect()->back();
 
-//return view('sendMessageNonMedical',compact('message_data'));
+return view('sendMessageNonMedical',compact('message_data','show_non_medical_screen'));
     //return $this->sendResponse('sendMessageNonMedical','Message created successfully');
 
   }

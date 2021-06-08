@@ -251,6 +251,10 @@ Route::group(['middleware' => ['auth']],function(){
     Route::get('admin/treatmentGuides/edit/{id}', [TreatmentGuidesController::class, 'edit'])->name('treatmentGuides.edit');
     Route::patch('admin/treatmentGuides/update/{id}', [TreatmentGuidesController::class, 'update'])->name('treatmentGuides.update');
     Route::delete('admin/treatmentGuides/destroy/{id}', [TreatmentGuidesController::class, 'destroy'])->name('treatmentGuides.destroy');
+
+
+    //cron 
+    Route::get('admin/CaseStatusUpdateGetPrescriptionController', [CaseStatusUpdateGetPrescriptionController::class, 'index'])->name('CaseStatusUpdateGetPrescriptionController');
     
 });
 

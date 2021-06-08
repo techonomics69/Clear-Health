@@ -398,7 +398,7 @@ $sender = "admin";
 //return redirect()->back();
 
 
-return Redirect()->route('casemanagement.view')->with( ['message_data' => $message_data] );
+return redirect()->route('sendMessageNonMedical')->with('message_data' , $message_data);
 
 
 //return back()->with('message_data');

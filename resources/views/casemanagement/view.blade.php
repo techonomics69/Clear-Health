@@ -592,7 +592,7 @@
 <?php 
 Session::get('message_data');
 echo "TEStttttttttttt";
-print_r($message_data);
+echo $message_data;
 //echo $q;
 ?>
 

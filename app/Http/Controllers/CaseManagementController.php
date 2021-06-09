@@ -17,6 +17,7 @@ use App\Models\Messages;
 use App\Models\MessageFiles;
 use Redirect;
 use Session;
+use File;
 
 
 class CaseManagementController extends Controller
@@ -127,7 +128,7 @@ class CaseManagementController extends Controller
      }
 
    }
-   
+
    $skincare_summary['product_name'] = implode(', ' ,$product_name);
    $skincare_summary["addon_product"] =implode(', ', $addon_product);
    
@@ -162,6 +163,51 @@ class CaseManagementController extends Controller
   }
 
 
+$message_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')->join('users', 'users.id', '=', 'messages.user_id')->select('messages.*','message_files.*','users.first_name','users.last_name')->where('user_id',$user_id)->OrderBy('messages.id','asc')->get();
+
+     $message_data = array();
+     foreach($message_details as $key=>$value){
+      $message_data[$key]['id'] = $value['id'];
+      $message_data[$key]['name'] = $value['first_name'].' '.$value['last_name'];
+      $message_data[$key]['message'] = $value['text'];
+
+      $date = strtotime($value['created_at']);
+
+      $message_data[$key]['date'] = date('M j', $date);
+      $message_data[$key]['created_at'] = $value['created_at'];
+
+      if($value['sender'] == 'admin'){
+        $messageStatus = 'received';
+      }else{
+        $messageStatus = 'sent';
+      }
+
+      $message_data[$key]['messageStatus'] = $messageStatus;
+
+      if($value['file_path']!=''){
+        $message_data[$key]['file_path'] = $value['file_path'];
+        $message_data[$key]['mime_type'] = $value['mime_type'];
+      }else{
+        $message_data[$key]['file_path'] = null;
+        $message_data[$key]['mime_type'] = null;
+      }
+
+      if($value['file_name']!=''){
+        $message_data[$key]['file_name'] = $value['file_name'];
+      }else{
+        $message_data[$key]['file_name'] = null;
+      }
+
+
+
+     }
+
+
+
+echo "<pre>";
+  print_r($message_data);
+  echo "</pre>";
+  die();
 
   return view('casemanagement.view',compact('user_case_management_data','category','general_que','accutane_que','topical_que','skincare_summary'));
 

@@ -629,10 +629,18 @@
 													if(isset($message['message']) && $message['message']!=''){
 														echo $message['message'];
 													}else{
+if(isset($message['file_name'])&& $message['file_name']) !='')
+{ ?>
+
+<img src="{{ asset('public/Message_files/'.$message['file_name']) }}" width='100'>	
+<?}else{
+	?>
+	<?php
+}
 ?>
 
 
-<img src="{{ asset('public/Message_files/'.$message['file_name']) }}" width='100'>
+
 
 <!-- http://103.101.59.95/dev.clearhealth/public/images/Message_files/1623238722-camera.png
 http://103.101.59.95/dev.clearhealth/public/Message_files/1623238668-telegram.png

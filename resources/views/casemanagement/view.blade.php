@@ -591,9 +591,9 @@ $data=json_decode(session()->get('message'));
 {!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
 <?php 
 
-foreach ($data as $key => $value) {
-	print_r($value);
-}
+//foreach ($data as $key => $value) {
+	print_r($data);
+//}
 
 ?>
 

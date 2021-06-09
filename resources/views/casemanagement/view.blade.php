@@ -631,7 +631,7 @@
                         	<ul>
                         		<li>
                         			<p>{{$message['message'] }}</p>
-                        			<h5>{{$message['message'] }}</h5>
+                        			<h5>{{$message['date'] }}</h5>
                         		</li>
                         		<li>
                         			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>

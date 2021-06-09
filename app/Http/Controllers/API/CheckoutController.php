@@ -425,18 +425,18 @@ public function getTaxes(Request $request){
 
       }  
 
-      echo "<pre>";
-          print_r($shipping_address);
-          echo "<pre>";
-          exit();     
+      $zip =  $shipping_address['zipcode'];
+      $state =  $shipping_address['state'];
+      $city = $shipping_address['city'];
+      $street =  $shipping_address['addressline1'];
+
+      if($shipping_address['addressline2']!=''){
+           $street .=  $shipping_address['addressline1'];
+      }
 
   $products_item  = json_encode($line_item);
 
-  
-
-   $shipping_address = $shipping_address;
-
- $minimum_shipping_amount = Fees::where('status','1')->where('fee_type','minimum_shipping_amount')->first();
+  $minimum_shipping_amount = Fees::where('status','1')->where('fee_type','minimum_shipping_amount')->first();
 
    
  if($ord_total < $minimum_shipping_amount){
@@ -456,10 +456,10 @@ public function getTaxes(Request $request){
           'from_city' => 'Westport',
           'from_street' => '141 Post Road East',
           'to_country' => 'US',
-          'to_zip' => '07446',
-          'to_state' => 'NJ',
-          'to_city' => 'Ramsey',
-          'to_street' => '63 W Main St',
+          'to_zip' => $zip,
+          'to_state' => $state,
+          'to_city' => $city,
+          'to_street' => $street,
           'amount' => $ord_total,
           'shipping' => $shipping_fee,
           'line_items' => $products_item,

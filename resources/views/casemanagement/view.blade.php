@@ -579,7 +579,7 @@
 												<div id="tab1" class="tab-pane fade in @if($msg_tab != 1) active show @endif">	
 													<div class="row" style="padding: 10px;">
 														<div class="col-md-12">
-															<div class="box-block mtb32" id="tab1">
+															<!-- <div class="box-block mtb32" id="tab1"> -->
 																<!-- <h3 class="font-weight-bold"><span class="text-underline">Medical Messgaes</span></h3> -->
 																<div class="right-cht">
 
@@ -605,7 +605,7 @@
 																	</div> 
 																</div>
 
-															</div>
+															<!-- </div> -->
 														</div>
 													</div>
 												</div>

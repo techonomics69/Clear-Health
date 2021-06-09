@@ -634,8 +634,19 @@
                         			<h5>Monday:10:20</h5>
                         		</li>
                         		<li>
-                        			<p> {{ $message['message'] }}</p>
-                        			<h5>{{ $message['date'] }}</h5>
+                        			<p> 
+                        				<?php 
+                        				if(isset($message['message']) && $message['message']!=''){
+                        					echo $message['message'];
+                        				}
+
+                        				?></p>
+                        			<h5><?php 
+                        				if(isset($message['date']) && $message['date']!=''){
+                        					echo $message['date'];
+                        				}
+
+                        				?></h5>
                         		</li>
                         	
                         		<!-- <li>

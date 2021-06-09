@@ -629,7 +629,10 @@
 													if(isset($message['message']) && $message['message']!=''){
 														echo $message['message'];
 													}else{
-														echo $message['file_name'];
+
+echo"<img src='http://103.101.59.95/dev.clearhealth/public/Message_files/1623238668-telegram.png' alt='Girl in a jacket' width='100'>";
+
+														
 													}
 
 													?>

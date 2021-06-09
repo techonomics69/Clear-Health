@@ -668,8 +668,8 @@
                         		<img src="{{asset('public/images/camera.png')}}" alt="">
                         	</div> -->
                         	<div class="attachment lastimg">
-                        		<input class="form-control" type="file" name="file">
-                        		<img src="{{asset('public/images/paperclip.png')}}" alt="">
+                        		<!-- <input class="form-control" type="file" name="file"> -->
+                        		<a href="" type="file" name="file"> <img src="{{asset('public/images/paperclip.png')}}" alt=""></a>
                         	</div>
                         	<div class="search">
                         		<input class="form-control" type="text" name="text" placeholder="Readonly input here..." >

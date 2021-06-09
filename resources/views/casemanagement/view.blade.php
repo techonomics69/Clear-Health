@@ -25,11 +25,11 @@
 
 	</style>
 
-	@if(session()->has('message'))
+	@if(Session()->has('message'))
 	@php
-	$message_data=json_decode(session()->get('message'));
+	$message_data=json_decode(Session()->get('message'));
 	$msg_tab=$message_data->show_non_medical_screen;
-	//print_r($msg_tab);
+	print_r($msg_tab);
 	@endphp
 	@endif
 
@@ -633,7 +633,7 @@
                         		<input class="form-control" type="text" name="text" placeholder="Readonly input here..." >
                         		<input class="form-control" type="hidden" name="user_id" value="{{$user_case_management_data['user_id']}}">
                         		<input class="form-control" type="hidden" name="case_id" value="{{$user_case_management_data['id']}}">
-                        		
+
                         	</div>
                         	<div class="sending lastimg">
                         		<button type="submit" onclick="myFunction()"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>

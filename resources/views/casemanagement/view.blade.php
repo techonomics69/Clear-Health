@@ -626,18 +626,34 @@
                         {!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
                         <div class="chating-section">
                         	@foreach ($message_details as $key => $message1)
-<?php  
-print_r($message1['sender']);
+                        	<?php  
+                        	//print_r($message1['sender']);
 //print_r($message_details['sender']); ?>
 @endforeach
-                        	<ul><?php if(isset($message_data)) {?>
-                        		@foreach ($message_data as $key => $message)
+<ul><?php if(isset($message_data)) {?>
+	@foreach ($message_data as $key => $message)
+	@foreach ($message_details as $key => $message1)
+	<?php if($message1['sender'] == 'user'){ ?>
+		<li>
+			<p>
+				<?php 
+				if(isset($message['message']) && $message['message']!=''){
+					echo $message['message'];
+				} ?>
+			</p>
+			<h5><?php 
+			if(isset($message['date']) && $message['date']!=''){
+				echo $message['date'];
+			}
 
-                        		
-                        		<li>
+			?></h5>
+		</li>
+	<?php }else{ ?>
+                        		<!-- <li>
                         			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
                         			<h5>Monday:10:20</h5>
-                        		</li>
+                        		</li> -->
+                        		
                         		<li>
                         			<p> 
                         				<?php 
@@ -646,14 +662,14 @@ print_r($message1['sender']);
                         				}
 
                         				?></p>
-                        			<h5><?php 
+                        				<h5><?php 
                         				if(isset($message['date']) && $message['date']!=''){
                         					echo $message['date'];
                         				}
 
                         				?></h5>
-                        		</li>
-                        	
+                        			</li>
+                        		<?php } ?>
                         		<!-- <li>
                         			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
                         			<h5>Monday:10:20</h5>
@@ -662,13 +678,13 @@ print_r($message1['sender']);
                         			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
                         			<h5>Monday:10:20</h5>
                         		</li> -->
-
 
                         		@endforeach
-                        		<?php }?>
-                        	</ul>
-                        </div>
-                        <div class="last-typing-section">
+                        		@endforeach
+                        	<?php }?>
+                        </ul>
+                    </div>
+                    <div class="last-typing-section">
                         	<!-- <div class="camera lastimg">
                         		<img src="{{asset('public/images/camera.png')}}" alt="">
                         	</div> -->

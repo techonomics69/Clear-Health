@@ -397,7 +397,13 @@ public function getTaxes(Request $request){
    //$orderlist['order_item'] = count($cart_ids);
 
    $products=array();
-   $cart_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->where('carts.user_id',$user_id)->where('carts.status','pending')->select('products.name AS product_name','products.image','products.discount_price','products.id as product_id','carts.quantity','carts.order_type','carts.pharmacy_pickup','carts.product_price')->get()->toArray();
+
+   $cart_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->join('checkout_address', 'checkout_address.cart_id', '=', 'carts.id')->where('carts.user_id',$user_id)->where('carts.status','pending')->select('checkout_address.*','products.name AS product_name','products.image','products.discount_price','products.id as product_id','carts.quantity','carts.order_type','carts.pharmacy_pickup','carts.product_price')->get()->toArray();
+
+  echo "<pre>";
+  print_r($cart_details);
+  echo "<pre>";
+  exit(); 
 
 
   $ord_total = 0;
@@ -417,6 +423,12 @@ public function getTaxes(Request $request){
       }      
 
   $products_item  = json_encode($line_item);
+
+  $shipping_address = Checkoutaddress::select('*')
+   ->where('checkout_address.cart_id',$orderlist['order_id'])
+   ->where('checkout_address.address_type',1)
+   ->OrderBy('id', 'DESC')
+   ->first();
 
  $minimum_shipping_amount = Fees::where('status','1')->where('fee_type','minimum_shipping_amount')->first();
 

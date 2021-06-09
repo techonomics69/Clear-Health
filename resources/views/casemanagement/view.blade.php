@@ -631,7 +631,7 @@
 													}else{
 if(isset($message['file_name']) && $message['file_name'] !='')
 { ?>
-<img src="{{ asset('public/Message_files/'.$message['file_name']) }}" type="application/pdf" width='100'>	
+<embed src="{{ asset('public/Message_files/'.$message['file_name']) }}" type="application/pdf" width='100'></embed>
 <? }else{ ?>
 <?php
 }

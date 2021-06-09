@@ -329,7 +329,7 @@ public function create_patient(Request $request)
       if(!empty($case_file_data)){
          return $this->sendResponse($case_file_data,'File Uploaded Successfully');
       }else{
-         return $this->sendResponse(array(),'Something Went Wrong1');
+         return $this->sendResponse(array(),'Something Went Wrong!');
       }
 
      

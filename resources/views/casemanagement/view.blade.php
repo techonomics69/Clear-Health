@@ -664,11 +664,11 @@
                         			</li>
                         		<?php } ?>
 
-
+@endforeach
                         		@endforeach
                         	<?php }?>
                         </ul>
-                        @endforeach
+                        
                     </div>
                     <div class="last-typing-section">
                         	<!-- <div class="camera lastimg">

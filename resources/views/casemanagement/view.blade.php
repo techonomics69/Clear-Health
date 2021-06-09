@@ -573,7 +573,7 @@ $msg_tab = 0;
 										<section class="card">
 											<ul class="nav nav-tabs" id="messages-tab-menu">
 												<li><a class="btn" data-toggle="tab" href="#tab1">Medical Messgaes</a></li>
-												<li><a class="btn" data-toggle="tab" href="#tab2">Non-Medical Messgaes</a></li>
+												<li><a class="btn @if($msg_tab == 1) active @endif" data-toggle="tab" href="#tab2">Non-Medical Messgaes</a></li>
 											</ul>
 											<div class="tab-content">
 												<div id="tab1" class="tab-pane fade in">	
@@ -586,7 +586,7 @@ $msg_tab = 0;
 													</div>
 												</div>
 
-												<div id="tab2" class="tab-pane fade in  @if($msg_tab == 1) active @endif">	
+												<div id="tab2" class="tab-pane fade in  @if($msg_tab == 1) active show @endif">	
 													<!-- <div class="row" style="padding: 10px;">
 														<div class="col-md-12">
 															<div class="box-block mtb32" id="tab1"> -->

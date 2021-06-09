@@ -176,7 +176,7 @@ $message_details = Messages::join('message_files', 'messages.id', '=', 'message_
       $message_data[$key]['date'] = date('M j', $date);
       $message_data[$key]['created_at'] = $value['created_at'];
 
-      if($value['sender'] == 'admin'){
+      if($value['sender'] == 'user'){
         $messageStatus = 'received';
       }else{
         $messageStatus = 'sent';
@@ -204,10 +204,10 @@ $message_details = Messages::join('message_files', 'messages.id', '=', 'message_
 
 
 
-/*echo "<pre>";
+echo "<pre>";
   print_r($message_data);
   echo "</pre>";
-  die();*/
+  die();
 
   return view('casemanagement.view',compact('user_case_management_data','category','general_que','accutane_que','topical_que','skincare_summary','message_data'));
 

@@ -418,7 +418,7 @@ public function getTaxes(Request $request){
 
       $shipping_address = Checkoutaddress::select('*')
       ->where('checkout_address.order_id',$orderlist['order_id'])
-      ->whereRaw("find_in_set($value['cart_id'],cart_id)")
+      ->whereRaw("find_in_set(".$value['cart_id'].",cart_id)")
       ->where('checkout_address.address_type',1)
       ->OrderBy('id', 'DESC')
       ->first();

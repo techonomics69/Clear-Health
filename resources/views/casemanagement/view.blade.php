@@ -629,8 +629,11 @@
 													if(isset($message['message']) && $message['message']!=''){
 														echo $message['message'];
 													}else{
+?>
 
-echo"<img src='{{ asset('public/images/Message_files/'.$message['file_path'] }}' alt='Girl in a jacket' width='100'>";
+ 
+<img src="{{ asset('public/images/Message_files/'.$message['file_path']) }}" alt='Girl in a jacket' width='100'>";
+<?php
 
 														
 													}

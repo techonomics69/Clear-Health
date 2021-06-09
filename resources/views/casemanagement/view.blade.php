@@ -628,7 +628,7 @@
                         	<ul>
                         		@foreach ($message_data as $key => $message)
 
-                        		
+                        		<?php print_r($message_data); ?>
                         		<li>
                         			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
                         			<h5>Monday:10:20</h5>

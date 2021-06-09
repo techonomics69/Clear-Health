@@ -221,8 +221,6 @@ Route::group(['middleware' => ['auth']],function(){
     Route::post('CaseStatus',[CaseManagementController::class, 'getCaseStatus']);
     Route::post('admin/casemanagement/sendMessageNonMedical', [CaseManagementController::class, 'sendMessageNonMedical'])->name('sendMessageNonMedical');
     Route::post('admin/casemanagement/getMessagesNonMedical', [CaseManagementController::class, 'getMessagesNonMedical'])->name('getMessagesNonMedical');
-    
-    Route::post('getMessagesNonMedical', [CaseManagementController::class, 'getMessagesNonMedical']);
 
 
     //fees

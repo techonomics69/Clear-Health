@@ -29,7 +29,7 @@
 @php
 $message_data=json_decode(session()->get('message'));
 
-print_r($message_data['show_non_medical_screen']);
+print_r($message_data->show_non_medical_screen);
 @endphp
 
 @endif

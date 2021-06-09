@@ -269,7 +269,7 @@ if(!empty($Patient_data)){
     //$file_temp_path = $documents->getpathName();
     //$file_mimeType = $documents->getClientMimeType();
 
-      $input_data = $request->all();
+      $input_data = array();
 
       $fields = [
         'name' => $name,

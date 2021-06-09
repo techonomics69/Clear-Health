@@ -437,7 +437,10 @@ public function getTaxes(Request $request){
   $products_item  = json_encode($line_item);
 
   $minimum_shipping_amount = Fees::where('status','1')->where('fee_type','minimum_shipping_amount')->first();
-
+echo "<pre>";
+print_r($ord_total);
+echo "<pre>";
+exit(); 
    
  if($ord_total < $minimum_shipping_amount){
   $shipping_fee = Fees::where('status','1')->where('fee_type','shipping_fee')->first();

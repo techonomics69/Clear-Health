@@ -629,39 +629,38 @@
                         	<ul><?php if(isset($message_data)) {?>
                         		@foreach ($message_data as $key => $message)
                         		@foreach ($message_details as $key => $user)
-                        		<li>
+                        		
                         		<?php if($user['sender'] == 'user'){ ?>
-                        			
+                        			<li>
                         				<p>
                         					<?php 
                         					if(isset($message['message']) && $message['message']!=''){
                         						echo $message['message'];
-                        					} ?>
+                        					}?>
                         				</p>
-                        				<h5><?php 
+                        				<h5>
+                        					<?php 
                         				if(isset($message['date']) && $message['date']!=''){
                         					echo $message['date'];
-                        				}
-
-                        				?></h5>
-                        			
+                        				}?>
+                        				</h5>
+                        			</li>
                         		<?php }else{ ?>
-                        		
-                        		</li>
                         		<li>
                         			<p> 
                         				<?php 
                         				if(isset($message['message']) && $message['message']!=''){
                         					echo $message['message'];
-                        				}
+                        				}?>
+                        				</p>
 
-                        				?></p>
-                        				<h5><?php 
+                        				<h5>
+                        				<?php 
                         				if(isset($message['date']) && $message['date']!=''){
                         					echo $message['date'];
-                        				}
-
-                        				?></h5>
+                        				}?>
+                        					
+                        				</h5>
                         			</li>
                         			<?php } ?>
 

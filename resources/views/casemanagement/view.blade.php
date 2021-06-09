@@ -590,7 +590,11 @@ $data=json_decode(session()->get('message'));
 
 {!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
 <?php 
-print_r($data);
+
+@foreach ($data as $key => $value) {
+	print_r($value);
+}
+
 ?>
 
                         <div class="chating-section">

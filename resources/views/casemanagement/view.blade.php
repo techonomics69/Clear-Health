@@ -617,36 +617,31 @@
 																
 
 																<div class="right-cht">
-                    <!--     <div class="header-chat">
-                            <p>Brandon Koh,MD</p>
-                        </div> -->
-
-
-
-                        {!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
-                        <div class="chating-section">
-                        	
-                        	<ul><?php if(isset($message_data)) {?>
-                        		@foreach ($message_details as $key => $user)
-                        		@foreach ($message_data as $key => $message)
-                        		
-                        		
-                        		<?php if($user['sender'] == 'user'){ ?>
-                        			<li>
-                        				<p>
-                        					<?php 
-                        					if(isset($message['message']) && $message['message']!=''){
-                        						echo $message['message'];
-                        					}?>
-                        				</p>
-                        				<h5>
-                        					<?php 
-                        					if(isset($message['date']) && $message['date']!=''){
-                        						echo $message['date'];
-                        					}?>
-                        				</h5>
-                        			</li>
-                        		<?php }else{ ?>
+																	
+																	{!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
+																	<div class="chating-section">
+																		
+																		<ul><?php if(isset($message_data)) {?>
+																			@foreach ($message_details as $key => $user)
+																			@foreach ($message_data as $key => $message)
+																			
+																			
+																			<?php if($user['sender'] == 'user'){ ?>
+																				<li>
+																					<p>
+																						<?php 
+																						if(isset($message['message']) && $message['message']!=''){
+																							echo $message['message'];
+																						}?>
+																					</p>
+																					<h5>
+																						<?php 
+																						if(isset($message['date']) && $message['date']!=''){
+																							echo $message['date'];
+																						}?>
+																					</h5>
+																				</li>
+																			<?php }else{ ?>
                         			<!-- <li>
                         				<p> 
                         					<?php 

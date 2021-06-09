@@ -634,17 +634,13 @@ if(isset($message['file_name']) && $message['file_name'] !='')
 
 <img src="{{ asset('public/Message_files/'.$message['file_name']) }}" width='100'>	
 <?}else{
+
 	?>
+	<embed src="{{ asset('public/Message_files/'.$message['file_name']) }}"   height="100px" width="500px">
 	<?php
 }
 ?>
 
-
-
-
-<!-- http://103.101.59.95/dev.clearhealth/public/images/Message_files/1623238722-camera.png
-http://103.101.59.95/dev.clearhealth/public/Message_files/1623238668-telegram.png
-http://103.101.59.95/dev.clearhealth/public/images/1623238722-camera.png -->
 <?php
 
 														

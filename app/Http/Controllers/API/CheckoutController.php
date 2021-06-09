@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Product;
 use App\Models\Cart;
 use App\Models\CaseManagement;
+use App\Models\Fees;
 use Validator;
 use Exception;
 
@@ -396,17 +397,35 @@ public function getTaxes(Request $request){
    //$orderlist['order_item'] = count($cart_ids);
 
    $products=array();
-   $cart_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->where('carts.user_id',$user_id)->where('carts.status','pending')->select('products.name AS product_name','products.image','products.discount_price','carts.quantity','carts.order_type','carts.pharmacy_pickup','carts.product_price as price')->get()->toArray();
+   $cart_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->where('carts.user_id',$user_id)->where('carts.status','pending')->select('products.name AS product_name','products.image','products.discount_price','products.id as product_id','carts.quantity','carts.order_type','carts.pharmacy_pickup','carts.product_price')->get()->toArray();
 
-   echo "<pre>";
-   print_r($cart_details);
-   echo "<pre>";
-   exit();
 
-   $pro_amount =0; 
-   $ord_total = 0;
-   $shipping_fee = ($orderlist['shipping_fee']!="" || $orderlist['shipping_fee']!= null)?$orderlist['shipping_fee']:0;
+  $ord_total = 0;
 
+  $line_item = array();
+
+  foreach($cart_details as $key=>$value){
+
+      $ord_total = $ord_total + (($value['product_price']*$value['quantity']) - ($value['discount_price']*$value['quantity']));
+
+      $line_item[$key]['id'] = $value['product_id'] ;
+      $line_item[$key]['quantity'] = $value['quantity'];
+      $line_item[$key]['product_tax_code'] = '53131619A0001';
+      $line_item[$key]['unit_price'] = $value['product_price'];        
+      $line_item[$key]['discount'] =  $value['discount_price'];
+
+      }      
+
+  $products_item  = json_encode($line_item);
+
+ $minimum_shipping_amount = Fees::where('status','1')->where('fee_type','minimum_shipping_amount')->first();
+
+   
+ if($ord_total < $minimum_shipping_amount){
+  $shipping_fee = Fees::where('status','1')->where('fee_type','shipping_fee')->first();
+ }else{
+  $shipping_fee = 0;
+ }
    
 
    $client = \TaxJar\Client::withApiKey('dcbaa17daefa7c485d84ee47793d1708');
@@ -423,17 +442,9 @@ public function getTaxes(Request $request){
           'to_state' => 'NJ',
           'to_city' => 'Ramsey',
           'to_street' => '63 W Main St',
-          'amount' => 16.50,
-          'shipping' => 1.5,
-          'line_items' => [
-            [
-              'id' => '1',
-              'quantity' => 1,
-              'product_tax_code' => '53131619A0001',
-              'unit_price' => 15.0,
-              'discount' => 0
-            ]
-          ]
+          'amount' => $ord_total,
+          'shipping' => $shipping_fee,
+          'line_items' => $products_item,
         ]);
 
         echo '<pre>';

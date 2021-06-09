@@ -581,11 +581,11 @@
 
  
 
- @if(session()->has('message_data'))
+ <!-- @if(session()->has('message_data'))
     <div class="alert alert-success">
         {{ session()->get('message_data') }}
     </div>
-@endif
+@endif -->
 
 {!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
 

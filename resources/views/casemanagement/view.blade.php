@@ -623,6 +623,7 @@
 									<ul><?php if(isset($message_data)) {?>
 										@foreach ($message_details as $key => $user)
 										
+
 										<?php if($user['sender'] == 'user'){ ?>
 											@foreach ($message_data as $key => $message)
 											<li>
@@ -640,9 +641,10 @@
 												</h5>
 											</li>
 											@endforeach
-										<?php } ?>
+										<?php }else{ ?>
 											
-
+										<?php } ?>
+										
 										@endforeach
 									<?php }?>
 								</ul>

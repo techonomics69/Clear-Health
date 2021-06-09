@@ -625,11 +625,12 @@
 
                         {!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
  <div class="chating-section">
+ 	<ul>
 @foreach ($message_data as $key => $message)
 
 <?php// print_r($message); ?>
                        
-                        	<ul>
+                        	
                         		<li>
                         			<p>{{$message['message'] }}</p>
                         			<h5>{{$message['date'] }}</h5>
@@ -646,9 +647,10 @@
                         			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
                         			<h5>Monday:10:20</h5>
                         		</li> -->
-                        	</ul>
+                        	
                         
 @endforeach
+</ul>
 </div>
                         <div class="last-typing-section">
                         	<!-- <div class="camera lastimg">

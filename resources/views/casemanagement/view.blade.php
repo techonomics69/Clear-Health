@@ -639,11 +639,10 @@
 													}?>
 												</h5>
 											</li>
-											@endforeach
 										<?php }else{ ?>
 											
 										<?php } ?>
-									
+										@endforeach
 										@endforeach
 									<?php }?>
 								</ul>

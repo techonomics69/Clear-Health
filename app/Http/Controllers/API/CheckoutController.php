@@ -441,11 +441,6 @@ public function getTaxes(Request $request){
 
   $products_item  = $line_item;
 
-  echo "<pre>";
-  print_r($products_item);
-  echo "<pre>";
-  exit(); 
-
   $minimum_shipping_amount = Fees::where('status','1')->where('fee_type','minimum_shipping_amount')->first();
  
    
@@ -472,7 +467,7 @@ public function getTaxes(Request $request){
           'to_street' => $street,
           'amount' => $ord_total,
           'shipping' => $shipping_fee,
-          'line_items' => [$products_item]
+          'line_items' => $products_item
         ]);
 
         echo '<pre>';

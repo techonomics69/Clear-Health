@@ -24,15 +24,20 @@
 		}
 
 	</style>
-
-@if(session()->has('message'))
 @php
-$message_data=json_decode(session()->get('message'));
-
-print_r($message_data);
+$msg_tab = 0;
 @endphp
+	@if(Session()->has('message'))
+	@php
+	$message_data = json_decode(Session()->get('message'));
+	$msg_tab=$message_data->show_non_medical_screen;
+	//print_r($msg_tab);
+	@endphp
+	@endif
 
-@endif
+	@php
+	Session::forget('message');
+	@endphp
 
 
 
@@ -83,17 +88,18 @@ print_r($message_data);
 			<div class="col-lg-12">
 				<section class="card" >
 					<ul class="nav nav-tabs" id="casemanagement-tab-menu">
-						<li><a class="btn active " data-toggle="tab" href="#profile">Profile</a></li>
+						<li><a class="btn @if($msg_tab != 1) active @endif " data-toggle="tab" href="#profile">Profile</a></li>
 						<li><a class="btn" data-toggle="tab" href="#questions">Questions</a></li>
 						<li><a class="btn" data-toggle="tab" href="#skincare_summary">Skincare Summary </a></li>
 						<li><a class="btn" data-toggle="tab" href="#action_items">Action Items </a></li>
-						<li><a class="btn" data-toggle="tab" href="#messages">Messages</a></li>
+						<li><a class="btn @if($msg_tab == 1) active @endif" data-toggle="tab" href="#messages">Messages</a></li>
+
 						<li><a class="btn" data-toggle="tab" href="#photos">Photos </a></li>
 						<li><a class="btn" data-toggle="tab" href="#payments">Payments </a></li>
 					</ul>
 					<div class="tab-content">
 						<!--start 1st tab-->
-						<div id="profile" class="tab-pane fade in active show">					    
+						<div id="profile" class="tab-pane fade in  @if($msg_tab != 1) active show @endif">					    
 							<div class="row" style="padding: 20px;">
 								<div class="col-md-12">
 									<section class="card">
@@ -593,7 +599,7 @@ print_r($message_data);
 
 
 
-{!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
+                        {!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
 
 
                         <div class="chating-section">
@@ -629,14 +635,14 @@ print_r($message_data);
                         		<input class="form-control" type="text" name="text" placeholder="Readonly input here..." >
                         		<input class="form-control" type="hidden" name="user_id" value="{{$user_case_management_data['user_id']}}">
                         		<input class="form-control" type="hidden" name="case_id" value="{{$user_case_management_data['id']}}">
-         
+
                         	</div>
                         	<div class="sending lastimg">
                         		<button type="submit" onclick="myFunction()"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
                         		<!-- <img src="{{asset('public/images/telegram.png')}}" alt=""> -->
                         	</div>
                         </div>
-                         {!! Form::close() !!}
+                        {!! Form::close() !!}
                     </div>														<!-- </div>
 
 
@@ -716,13 +722,13 @@ print_r($message_data);
 		$('#i_pledge_agreement_form').submit();
 	});
 
-$('form').submit(function(){
-        $(this).find('button[type=submit]').prop('disabled', true);
-    });
+	$('form').submit(function(){
+		$(this).find('button[type=submit]').prop('disabled', true);
+	});
 
-function myFunction() {
-  setTimeout(function(){ location.reload(true); }, 3000);
-}
+	function myFunction() {
+		setTimeout(function(){ location.reload(true); }, 3000);
+	}
 </script>
 
 <!-- <script>

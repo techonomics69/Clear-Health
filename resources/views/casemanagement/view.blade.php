@@ -25,15 +25,17 @@
 
 	</style>
 
-@if(session()->has('message'))
-@php
-$message_data=json_decode(session()->get('message'));
+	@if(session()->has('message'))
+	@php
+	$message_data=json_decode(session()->get('message'));
+	$msg_tab=$message_data->show_non_medical_screen;
+	//print_r($msg_tab);
+	@endphp
+	@endif
 
-$msg_tab=$message_data->show_non_medical_screen;
-//print_r($msg_tab);
-@endphp
-
-@endif
+	@php
+	Session::forget('message');
+	@endphp
 
 
 
@@ -595,7 +597,7 @@ $msg_tab=$message_data->show_non_medical_screen;
 
 
 
-{!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
+                        {!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
 
 
                         <div class="chating-section">
@@ -631,14 +633,14 @@ $msg_tab=$message_data->show_non_medical_screen;
                         		<input class="form-control" type="text" name="text" placeholder="Readonly input here..." >
                         		<input class="form-control" type="hidden" name="user_id" value="{{$user_case_management_data['user_id']}}">
                         		<input class="form-control" type="hidden" name="case_id" value="{{$user_case_management_data['id']}}">
-         
+                        		
                         	</div>
                         	<div class="sending lastimg">
                         		<button type="submit" onclick="myFunction()"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
                         		<!-- <img src="{{asset('public/images/telegram.png')}}" alt=""> -->
                         	</div>
                         </div>
-                         {!! Form::close() !!}
+                        {!! Form::close() !!}
                     </div>														<!-- </div>
 
 
@@ -718,13 +720,13 @@ $msg_tab=$message_data->show_non_medical_screen;
 		$('#i_pledge_agreement_form').submit();
 	});
 
-$('form').submit(function(){
-        $(this).find('button[type=submit]').prop('disabled', true);
-    });
+	$('form').submit(function(){
+		$(this).find('button[type=submit]').prop('disabled', true);
+	});
 
-function myFunction() {
-  setTimeout(function(){ location.reload(true); }, 3000);
-}
+	function myFunction() {
+		setTimeout(function(){ location.reload(true); }, 3000);
+	}
 </script>
 
 <!-- <script>

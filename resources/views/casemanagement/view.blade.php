@@ -668,7 +668,7 @@
                         		<img src="{{asset('public/images/camera.png')}}" alt="">
                         	</div> -->
                         	<div class="attachment lastimg">
-                        		<input class="form-control" type="file" name="file" disabled="disabled">
+                        		<input class="form-control" type="file" name="file">
                         		<img src="{{asset('public/images/paperclip.png')}}" alt="">
                         	</div>
                         	<div class="search">

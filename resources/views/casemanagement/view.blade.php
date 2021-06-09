@@ -579,14 +579,6 @@
                             <p>Brandon Koh,MD</p>
                         </div> -->
 
- 
-
- <!-- @if(session()->has('message_data'))
-    <div class="alert alert-success">
-        {{ session()->get('message_data') }}
-    </div>
-@endif -->
-
 @if(session()->has('message'))
 @php
 $data=json_decode(session()->get('message'));
@@ -597,7 +589,9 @@ $data=json_decode(session()->get('message'));
 @endif
 
 {!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
-
+<?php 
+print_r($data);
+?>
 
                         <div class="chating-section">
                         	<ul>

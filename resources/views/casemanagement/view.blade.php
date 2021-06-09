@@ -30,7 +30,7 @@
 $message_data=json_decode(session()->get('message'));
 
 $msg_tab=$message_data->show_non_medical_screen;
-print_r($msg_tab);
+//print_r($msg_tab);
 @endphp
 
 @endif
@@ -88,7 +88,7 @@ print_r($msg_tab);
 						<li><a class="btn" data-toggle="tab" href="#questions">Questions</a></li>
 						<li><a class="btn" data-toggle="tab" href="#skincare_summary">Skincare Summary </a></li>
 						<li><a class="btn" data-toggle="tab" href="#action_items">Action Items </a></li>
-						<li><a class="btn" data-toggle="tab" href="#messages">Messages</a></li>
+						<li><a class="btn @if($msg_tab == 1) active" data-toggle="tab" href="#messages">Messages</a></li>
 						<li><a class="btn" data-toggle="tab" href="#photos">Photos </a></li>
 						<li><a class="btn" data-toggle="tab" href="#payments">Payments </a></li>
 					</ul>

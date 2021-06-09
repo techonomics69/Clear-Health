@@ -619,14 +619,8 @@
 							<div class="right-cht">
 								{!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
 								<div class="chating-section">
-<?php //echo "<pre>"; print_r($message_data); echo "</pre>"; die(); ?>
-
-<?php //echo "<pre>"; print_r($message_details); echo "</pre>"; die(); ?>
 									<ul><?php if(isset($message_data)) {?>
-										
 											@foreach ($message_data as $key => $message)
-
-
 											<li>
 												<p>
 													<?php 
@@ -645,7 +639,6 @@
 										
 									<?php }?>
 								</ul>
-
 							</div>
 																<div class="last-typing-section">
                         	<!-- <div class="camera lastimg">

@@ -24,9 +24,9 @@
 		}
 
 	</style>
-@php
-$msg_tab = 0;
-@endphp
+	@php
+	$msg_tab = 0;
+	@endphp
 	@if(Session()->has('message'))
 	@php
 	$message_data = json_decode(Session()->get('message'));
@@ -572,16 +572,40 @@ $msg_tab = 0;
 									<div class="col-md-12">
 										<section class="card">
 											<ul class="nav nav-tabs" id="messages-tab-menu">
-												<li><a class="btn" data-toggle="tab" href="#tab1">Medical Messgaes</a></li>
+												<li><a class="btn @if($msg_tab != 1) active @endif" data-toggle="tab" href="#tab1">Medical Messgaes</a></li>
 												<li><a class="btn @if($msg_tab == 1) active @endif" data-toggle="tab" href="#tab2">Non-Medical Messgaes</a></li>
 											</ul>
 											<div class="tab-content">
-												<div id="tab1" class="tab-pane fade in">	
+												<div id="tab1" class="tab-pane fade in @if($msg_tab != 1) active show @endif">	
 													<div class="row" style="padding: 10px;">
 														<div class="col-md-12">
-															<div class="box-block mtb32" id="tab1">
-																<h3 class="font-weight-bold"><span class="text-underline">Medical Messgaes</span></h3>
-															</div>
+															<!-- <div class="box-block mtb32" id="tab1"> -->
+																<!-- <h3 class="font-weight-bold"><span class="text-underline">Medical Messgaes</span></h3> -->
+																<div class="right-cht">
+
+																	<div class="chating-section">
+																		<ul>
+																			<li>
+																				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+																				<h5>Monday:10:20</h5>
+																			</li>
+																			<li>
+																				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+																				<h5>Monday:10:20</h5>
+																			</li>
+																			<li>
+																				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+																				<h5>Monday:10:20</h5>
+																			</li>
+																			<li>
+																				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+																				<h5>Monday:10:20</h5>
+																			</li>
+																		</ul>
+																	</div> 
+																</div>
+
+															<!-- </div> -->
 														</div>
 													</div>
 												</div>

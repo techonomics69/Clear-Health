@@ -630,7 +630,7 @@
                         <div class="chating-section">
                         	<ul>
                         		<li>
-                        			<p><?php print_r($msg); ?></p>
+                        			<p>{{$msg['message'] }}</p>
                         			<h5>Monday:10:20</h5>
                         		</li>
                         		<li>

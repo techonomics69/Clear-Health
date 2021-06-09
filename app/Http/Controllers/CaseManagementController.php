@@ -204,9 +204,9 @@ $message_details = Messages::join('message_files', 'messages.id', '=', 'message_
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
-    $case_id = $request['case_id'];
+    //$case_id = $request['case_id'];
     //$case_message_id = $request['system_case_id'];
-    $channel = $request['channel'];
+    //$channel = $request['channel'];
 
 
 

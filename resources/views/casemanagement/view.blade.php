@@ -646,9 +646,8 @@
                         					}?>
                         				</h5>
                         			</li>
-                        		
+                        		<?php }else{ ?>
                         			<li>
-                        				<?php }else{ ?>
                         				<p> 
                         					<?php 
                         					if(isset($message['message']) && $message['message']!=''){
@@ -664,7 +663,7 @@
                         					
                         				</h5>
                         			</li>
-
+                        			
                         		<?php } ?>
                         		@endforeach
                         		@endforeach

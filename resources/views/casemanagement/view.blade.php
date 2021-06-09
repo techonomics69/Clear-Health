@@ -630,7 +630,7 @@
 														echo $message['message'];
 													}else{
 
-echo"<img src='http://103.101.59.95/dev.clearhealth/public/Message_files/1623238668-telegram.png' alt='Girl in a jacket' width='100'>";
+echo"<img src='{{ asset('public/images//Message_files/'.$message->file) }}' alt='Girl in a jacket' width='100'>";
 
 														
 													}

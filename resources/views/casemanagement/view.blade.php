@@ -587,7 +587,7 @@
 																		<ul>
 																		<li>
 																				<p>@foreach ($message_data as $key => $msg)
-{{ $message_data['message']}}
+<?php print_r($msg); ?>
 @endforeach</p>
 
 																				<h5></h5>

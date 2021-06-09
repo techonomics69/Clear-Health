@@ -641,11 +641,11 @@
 												</h5>
 											</li>
 											@endforeach
-											</ul>
+											
 										<?php }else{ ?>
 											
 										<?php } ?>
-										
+										</ul>
 										@endforeach
 									<?php }?>
 								

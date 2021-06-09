@@ -638,7 +638,7 @@ $msg_tab = 0;
 
                         	</div>
                         	<div class="sending lastimg">
-                        		<button type="submit" onclick="myFunction()"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
+                        		<button type="submit"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
                         		<!-- <img src="{{asset('public/images/telegram.png')}}" alt=""> -->
                         	</div>
                         </div>
@@ -726,9 +726,6 @@ $msg_tab = 0;
 		$(this).find('button[type=submit]').prop('disabled', true);
 	});
 
-	function myFunction() {
-		setTimeout(function(){ location.reload(true); }, 3000);
-	}
 </script>
 
 <!-- <script>

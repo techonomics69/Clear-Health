@@ -591,7 +591,7 @@
 @php
 $data=json_decode(session()->get('message'));
 
-<!-- print_r($data); -->
+//print_r($data);
 @endphp
 
 @endif

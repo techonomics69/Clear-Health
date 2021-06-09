@@ -587,29 +587,13 @@
     </div>
 @endif -->
 
+@if(session()->has('message'))
 
+{{ session()->get('message') }}
 
-
-
+@endif
 
 {!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
-
-
-  @foreach(session()->get('message_data')  as $in)
-          <tr>
-                   <td>{{$in}}</td>
-            </tr>
-   @endforeach
-
-
-
-
-<?php 
-Session::get('message_data');
-echo "TEStttttttttttt";
-echo $message_data;
-//echo $q;
-?>
 
                         <div class="chating-section">
                         	<ul>

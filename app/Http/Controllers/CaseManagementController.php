@@ -164,7 +164,7 @@
       ->join('users', 'users.id', '=', 'messages.user_id')
       ->join('case_managements','messages.case_id', '=', 'messages.id')
       ->select('messages.*','message_files.*','users.first_name','users.last_name')
-      ->where('case_id',$id)
+      ->where('messages.id',$id)
       ->OrderBy('messages.id','desc')
       ->get();
 

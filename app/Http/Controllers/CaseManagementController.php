@@ -162,9 +162,9 @@
 
       $message_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')
       ->join('users', 'users.id', '=', 'messages.user_id')
-      ->join('case_managements','messages.case_id', '=', 'messages.id')
+      ->join('case_managements','messages.case_id', '=', 'case_managements.id')
       ->select('messages.*','message_files.*','users.first_name','users.last_name')
-      ->where('messages.id',$id)
+      ->where('case_managements.id',$id)
       ->OrderBy('messages.id','desc')
       ->get();
 

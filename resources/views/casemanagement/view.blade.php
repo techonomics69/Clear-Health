@@ -90,7 +90,7 @@
 						<li><a class="btn" data-toggle="tab" href="#questions">Questions</a></li>
 						<li><a class="btn" data-toggle="tab" href="#skincare_summary">Skincare Summary </a></li>
 						<li><a class="btn" data-toggle="tab" href="#action_items">Action Items </a></li>
-						<li><a class="btn @if($msg_tab == 1) active @endif" data-toggle="tab" href="#messages">Messages</a></li>
+						<li><a class="btn active" data-toggle="tab" href="#messages">Messages</a></li>
 
 						<li><a class="btn" data-toggle="tab" href="#photos">Photos </a></li>
 						<li><a class="btn" data-toggle="tab" href="#payments">Payments </a></li>

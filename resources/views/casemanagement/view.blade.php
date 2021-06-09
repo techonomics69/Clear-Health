@@ -720,13 +720,16 @@ $('form').submit(function(){
         $(this).find('button[type=submit]').prop('disabled', true);
     });
 
-</script>
-
-<script>
 function myFunction() {
   setTimeout(function(){ location.reload(true); }, 3000);
 }
 </script>
+
+<!-- <script>
+function myFunction() {
+  setTimeout(function(){ location.reload(true); }, 3000);
+}
+</script> -->
 @if (count($errors) > 0)
 <script type="text/javascript">
 	$('html, body').animate({

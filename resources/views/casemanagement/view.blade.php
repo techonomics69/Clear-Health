@@ -726,6 +726,9 @@ $msg_tab = 0;
 		$(this).find('button[type=submit]').prop('disabled', true);
 	});
 
+	function myFunction() {
+		setTimeout(function(){ location.reload(true); }, 3000);
+	}
 </script>
 
 <!-- <script>

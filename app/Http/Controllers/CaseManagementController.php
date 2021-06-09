@@ -200,74 +200,12 @@ $message_details = Messages::join('message_files', 'messages.id', '=', 'message_
 
      }
 
-    $r = get_token();
-    $token_data = json_decode($r);
-    $token = $token_data->access_token;
-
-    //$case_id = $request['case_id'];
-    //$case_message_id = $request['system_case_id'];
-    //$channel = $request['channel'];
 
 
-
-    $curl = curl_init();
-
-    curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/messages?channel='.$channel,
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_ENCODING => '',
-      CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 0,
-      CURLOPT_FOLLOWLOCATION => true,
-      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => 'GET',
-      CURLOPT_HTTPHEADER => array(
-        'Authorization: Bearer '.$token,
-        'Cookie: __cfduid=da01d92d82d19a6cccebfdc9852303eb81620627650'
-      ),
-    ));
-
-    $response = curl_exec($curl);
-
-    curl_close($curl);
-    
-    $data = json_decode($response);
-
-    $msg_history = array();
-
-    $i = 0;
-    foreach($data as $key=>$value){
-      $msg_history[$i]['message'] = $value->text;
-      $date = strtotime($value->created_at);  
-      $msg_history[$i]['msg_date'] = date('M j', $date);
-      $msg_history[$i]['created_at'] = $value->created_at;
-      $msg_history[$i]['read_at'] = $value->created_at;
-      $msg_history[$i]['messageStatus'] = 'sent';
-
-      if(!empty($value->message_files)){
-       $msg_history[$i]['message_files'] = $value->message_files;
-      }
-
-      if(!empty($value->clinician)){
-        $i++;
-        $msg_history[$i]['message'] = $value->text;
-        $date1 = strtotime($value->created_at);
-          $msg_history[$i]['msg_date'] = date('M j', $date);
-          $msg_history[$i]['created_at'] = $value->created_at;
-        $msg_history[$i]['read_at'] = $value->read_at;
-        $msg_history[$i]['messageStatus'] = 'received';
-      }
-
-      $i++;
-    }
-
-
-
-
-echo "<pre>";
-  print_r($msg_history);
+/*echo "<pre>";
+  print_r($message_data);
   echo "</pre>";
-  die();
+  die();*/
 
   return view('casemanagement.view',compact('user_case_management_data','category','general_que','accutane_que','topical_que','skincare_summary','message_data','message_details'));
 

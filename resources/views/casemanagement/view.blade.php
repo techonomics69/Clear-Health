@@ -627,7 +627,7 @@
                         <div class="chating-section">
                         	<ul><?php if(isset($message_data)) {?>
                         		@foreach ($message_data as $key => $message)
-
+<?php  print_r($message['sender']); ?>
                         		
                         		<li>
                         			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>

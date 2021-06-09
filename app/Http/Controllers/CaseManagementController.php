@@ -198,8 +198,6 @@ $message_details = Messages::join('message_files', 'messages.id', '=', 'message_
         $message_data[$key]['file_name'] = null;
       }
 
-
-
      }
 
 

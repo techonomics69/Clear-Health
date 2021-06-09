@@ -585,12 +585,9 @@
 
 																	<div class="chating-section">
 																		<ul>
-																		<li>
-																				<p>@foreach ($message_data as $key => $msg)
-<?php print_r($msg); ?>
-@endforeach</p>
-
-																				<h5></h5>
+																			<li>
+																				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+																				<h5>Monday:10:20</h5>
 																			</li>
 																			<li>
 																				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
@@ -628,11 +625,12 @@
 
                         {!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
 
+@foreach ($message_data as $key => $msg)
 
                         <div class="chating-section">
                         	<ul>
                         		<li>
-                        			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                        			<p>{{ $msg->message }}</p>
                         			<h5>Monday:10:20</h5>
                         		</li>
                         		<li>
@@ -649,7 +647,7 @@
                         		</li>
                         	</ul>
                         </div>
-
+@endforeach
                         <div class="last-typing-section">
                         	<!-- <div class="camera lastimg">
                         		<img src="{{asset('public/images/camera.png')}}" alt="">

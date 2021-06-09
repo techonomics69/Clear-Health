@@ -585,9 +585,12 @@
 
 																	<div class="chating-section">
 																		<ul>
-																			<li>
-																				<p>{{ $message_data['message']}}</p>
-																				<h5>{{$message_data['date'] }}</h5>
+																		<li>
+																				<p>@foreach ($message_data as $key => $msg)
+{{ $message_data['message']}}
+@endforeach</p>
+
+																				<h5></h5>
 																			</li>
 																			<li>
 																				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>

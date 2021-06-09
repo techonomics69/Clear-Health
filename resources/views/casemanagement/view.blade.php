@@ -88,7 +88,7 @@ $msg_tab = 0;
 			<div class="col-lg-12">
 				<section class="card" >
 					<ul class="nav nav-tabs" id="casemanagement-tab-menu">
-						<li><a class="btn active " data-toggle="tab" href="#profile">Profile</a></li>
+						<li><a class="btn @if($msg_tab != 1) active @endif " data-toggle="tab" href="#profile">Profile</a></li>
 						<li><a class="btn" data-toggle="tab" href="#questions">Questions</a></li>
 						<li><a class="btn" data-toggle="tab" href="#skincare_summary">Skincare Summary </a></li>
 						<li><a class="btn" data-toggle="tab" href="#action_items">Action Items </a></li>
@@ -99,7 +99,7 @@ $msg_tab = 0;
 					</ul>
 					<div class="tab-content">
 						<!--start 1st tab-->
-						<div id="profile" class="tab-pane fade in active show">					    
+						<div id="profile" class="tab-pane fade in  @if($msg_tab != 1) active show @endif">					    
 							<div class="row" style="padding: 20px;">
 								<div class="col-md-12">
 									<section class="card">

@@ -588,12 +588,16 @@
 @endif -->
 
 @if(session()->has('message'))
+@php
+$data=json_decode(session()->get('message'));
 
-{{ session()->get('message') }}
+print_r($data);
+@endphp
 
 @endif
 
 {!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
+
 
                         <div class="chating-section">
                         	<ul>

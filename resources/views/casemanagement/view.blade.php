@@ -25,6 +25,18 @@
 
 	</style>
 
+@if(session()->has('message'))
+@php
+$message_data=json_decode(session()->get('message'));
+
+print_r($message_data);
+@endphp
+
+@endif
+
+
+
+
 	{{-- @if(session()->has('que_current_tab'))
 	@php
 	$current_tab_id = 'home'.session()->get('que_current_tab') ;
@@ -579,14 +591,7 @@
                             <p>Brandon Koh,MD</p>
                         </div> -->
 
-@if(session()->has('message'))
-@php
-$data=json_decode(session()->get('message'));
 
-//print_r($data);
-@endphp
-
-@endif
 
 {!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
 <?php 

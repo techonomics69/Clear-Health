@@ -619,13 +619,15 @@
 							<div class="right-cht">
 								{!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
 								<div class="chating-section">
-
-									
+<?php print_r($message_data);?>
+									<ul><?php if(isset($message_data)) {?>
 										@foreach ($message_details as $key => $user)
 										
+
 										<?php if($user['sender'] == 'user'){ ?>
-											<ul><?php if(isset($message_data)) {?>
 											@foreach ($message_data as $key => $message)
+
+
 											<li>
 												<p>
 													<?php 
@@ -641,14 +643,13 @@
 												</h5>
 											</li>
 											@endforeach
-											
 										<?php }else{ ?>
 											
 										<?php } ?>
-										</ul>
+										
 										@endforeach
 									<?php }?>
-								
+								</ul>
 
 							</div>
 																<div class="last-typing-section">

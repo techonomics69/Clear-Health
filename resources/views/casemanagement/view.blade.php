@@ -590,9 +590,9 @@
 {!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
 
 <?php 
-$test = Session::get('message_data');
+Session::get('message_data');
 echo "TEStttttttttttt";
-print_r($test);
+print_r($message_data);
 //echo $q;
 ?>
 

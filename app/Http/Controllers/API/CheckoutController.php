@@ -470,10 +470,11 @@ public function getTaxes(Request $request){
           'line_items' => $products_item
         ]);
 
-        echo '<pre>';
-        print_r($order_taxes->amount_to_collect);
-        echo '</pre>';
-        exit();
+      if(isset($order_taxes->amount_to_collect)){
+           return $this->sendResponse($order_taxes->amount_to_collect, 'Tax retrieved successfully.');
+       }else{
+        return $this->sendResponse(array(), 'No Data Found.');
+    }      
 
 }
 }

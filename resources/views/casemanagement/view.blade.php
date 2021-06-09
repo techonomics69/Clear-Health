@@ -628,7 +628,11 @@
 													<?php 
 													if(isset($message['message']) && $message['message']!=''){
 														echo $message['message'];
-													}?>
+													}else{
+														echo $message['file_name'];
+													}
+
+													?>
 												</p>
 												<h5>
 													<?php 

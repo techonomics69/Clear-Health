@@ -649,7 +649,7 @@
 											
 										<?php } ?> -->
 										
-										@endforeach
+										<!-- @endforeach -->
 									<?php }?>
 								</ul>
 

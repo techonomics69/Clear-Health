@@ -624,7 +624,6 @@
 										@foreach ($message_details as $key => $user)
 										@foreach ($message_data as $key => $message)
 
-
 										<?php if($user['sender'] == 'user'){ ?>
 											<li>
 												<p>

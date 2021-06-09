@@ -392,7 +392,9 @@ $sender = "admin";
   echo "</pre>";
   die();*/
   //return redirect()->back()->with('message_data');
+  //$msg= "Data inserted for record id: {$row['record_id']}";
 
+    //return redirect()->back()->with(compact('msg');
 return redirect()->back()->with(compact('message_data'));
 
 //return redirect()->back()->with('message_data','its work');

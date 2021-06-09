@@ -29,7 +29,8 @@
 @php
 $message_data=json_decode(session()->get('message'));
 
-print_r($message_data->show_non_medical_screen);
+$msg_tab=$message_data->show_non_medical_screen;
+print_r($msg_tab);
 @endphp
 
 @endif

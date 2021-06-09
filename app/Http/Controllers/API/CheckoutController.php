@@ -402,10 +402,10 @@ public function getTaxes(Request $request){
 
     $cart_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->where('carts.user_id',$user_id)->where('carts.status','pending')->select('products.name AS product_name','products.image','products.discount_price','products.id as product_id','carts.quantity','carts.order_type','carts.pharmacy_pickup','carts.product_price','carts.id as cart_id')->get()->toArray();
 
-      echo "<pre>";
+      /*echo "<pre>";
       print_r($cart_details);
       echo "<pre>";
-      exit(); 
+      exit(); */
 
   $ord_total = 0;
 
@@ -443,7 +443,7 @@ public function getTaxes(Request $request){
 
   $minimum_shipping_amount = Fees::where('status','1')->where('fee_type','minimum_shipping_amount')->first();
 echo "<pre>";
-print_r($ord_total);
+print_r(strval($ord_total);
 echo "<pre>";
 exit(); 
    

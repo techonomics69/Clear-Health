@@ -567,7 +567,7 @@ $msg_tab = 0;
 							<!--end 4th tab-->
 
 							<!--start 5th tab-->
-							<div id="messages" class="tab-pane fade in">
+							<div id="messages" class="tab-pane fade in @if($msg_tab == 1) active show @endif" >
 								<div class="row" style="padding: 20px;">
 									<div class="col-md-12">
 										<section class="card">

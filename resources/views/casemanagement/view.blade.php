@@ -645,7 +645,7 @@
 
                         				?></h5>
                         			
-                        		<?php } ?>
+                        		<?php }else{ ?>
                         		
                         		</li>
                         		<li>
@@ -663,7 +663,7 @@
 
                         				?></h5>
                         			</li>
-                        			<?php //} ?>
+                        			<?php } ?>
 
                         			@endforeach
                         			@endforeach

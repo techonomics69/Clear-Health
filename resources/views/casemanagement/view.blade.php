@@ -628,7 +628,7 @@
 
 										<?php if($user['sender'] == 'user'){ ?>
 											@foreach ($message_data as $key => $message)
-
+{{dd($message_data)}}
 
 											<li>
 												<p>

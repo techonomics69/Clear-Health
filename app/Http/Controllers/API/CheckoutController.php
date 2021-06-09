@@ -402,6 +402,11 @@ public function getTaxes(Request $request){
 
     $cart_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->where('carts.user_id',$user_id)->where('carts.status','pending')->select('products.name AS product_name','products.image','products.discount_price','products.id as product_id','carts.quantity','carts.order_type','carts.pharmacy_pickup','carts.product_price','carts.id as cart_id')->get()->toArray();
 
+      /*echo "<pre>";
+      print_r($cart_details);
+      echo "<pre>";
+      exit(); */
+
   $ord_total = 0;
 
   $line_item = array();
@@ -434,12 +439,12 @@ public function getTaxes(Request $request){
            $street .=  $shipping_address['addressline1'];
       }
 
-  $products_item  = json_encode($line_item);
+  $products_item  = $line_item;
 
   $minimum_shipping_amount = Fees::where('status','1')->where('fee_type','minimum_shipping_amount')->first();
-
+ 
    
- if($ord_total < $minimum_shipping_amount){
+ if($ord_total > 0 && $ord_total < $minimum_shipping_amount){
   $shipping_fee = Fees::where('status','1')->where('fee_type','shipping_fee')->first();
  }else{
   $shipping_fee = 0;
@@ -462,7 +467,7 @@ public function getTaxes(Request $request){
           'to_street' => $street,
           'amount' => $ord_total,
           'shipping' => $shipping_fee,
-          'line_items' => $products_item,
+          'line_items' => $products_item
         ]);
 
         echo '<pre>';

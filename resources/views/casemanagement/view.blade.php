@@ -594,13 +594,7 @@ print_r($message_data);
 
 
 {!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
-<?php 
 
-//foreach ($data as $key => $value) {
-	print_r($data);
-//}
-
-?>
 
                         <div class="chating-section">
                         	<ul>

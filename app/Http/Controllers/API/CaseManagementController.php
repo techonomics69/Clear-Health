@@ -331,8 +331,23 @@ public function create_patient(Request $request)
       }else{
          return $this->sendResponse(array(),'Something Went Wrong!');
       }
-
      
+  }
+
+  public function getTestReport(Request $request){
+      $name = $request['name'];
+      $user_id = $request['user_id'];
+      $case_id = $request['case_id'];
+      $system_case_id = $request['system_case_id'];
+
+      $file_data = CaseFiles::select('case_id','system_case_id','user_id','md_file_name','md_mime_type','md_url','md_url_thumbnail','md_file_id','created_at')->where(['md_file_name'=>$name, 'user_id' => $user_id , 'case_id' => $case_id , 'system_case_id' => $system_case_id])->first();
+
+      if(!empty($case_file_data)){
+         return $this->sendResponse($case_file_data,'File Uploaded Successfully');
+      }else{
+         return $this->sendResponse(array(),'Something Went Wrong!');
+      }
+
   }
 
   public function getPharmacies(Request $request){

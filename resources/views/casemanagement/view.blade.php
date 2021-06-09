@@ -631,7 +631,7 @@
 																					}else{
 																						if(isset($message['file_name']) && $message['file_name'] !='')
 																							{ ?>
-				<img src="{{ asset('public/Message_files/'.$message['file_name']) }}"width='100'>
+				<img src="{{ asset('public/Message_files/'.$message['file_name']) }}" type="media_type"width='100'>
 				<a target="_blank" download="" href="{{ asset('public/Message_files/'.$message['file_name']) }}"> Download</a>	
 																							<? }else{ ?>
 																								<?php

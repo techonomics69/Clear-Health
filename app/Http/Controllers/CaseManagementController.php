@@ -395,4 +395,58 @@ $sender = "admin";
 return redirect()->back()->with('message',$message_data);
 
   }
+
+public function getMessagesNonMedical(Request $request){
+   
+    $user_id = $request['user_id'];
+
+     $message_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')->join('users', 'users.id', '=', 'messages.user_id')->select('messages.*','message_files.*','users.first_name','users.last_name')->where('user_id',$user_id)->OrderBy('messages.id','asc')->get();
+
+     $message_data = array();
+     foreach($message_details as $key=>$value){
+      $message_data[$key]['id'] = $value['id'];
+      $message_data[$key]['name'] = $value['first_name'].' '.$value['last_name'];
+      $message_data[$key]['message'] = $value['text'];
+
+      $date = strtotime($value['created_at']);
+
+      $message_data[$key]['date'] = date('M j', $date);
+      $message_data[$key]['created_at'] = $value['created_at'];
+
+      if($value['sender'] == 'admin'){
+        $messageStatus = 'received';
+      }else{
+        $messageStatus = 'sent';
+      }
+
+      $message_data[$key]['messageStatus'] = $messageStatus;
+
+      if($value['file_path']!=''){
+        $message_data[$key]['file_path'] = $value['file_path'];
+        $message_data[$key]['mime_type'] = $value['mime_type'];
+      }else{
+        $message_data[$key]['file_path'] = null;
+        $message_data[$key]['mime_type'] = null;
+      }
+
+      if($value['file_name']!=''){
+        $message_data[$key]['file_name'] = $value['file_name'];
+      }else{
+        $message_data[$key]['file_name'] = null;
+      }
+
+     }
+
+echo "<pre>";
+print_r($message_data);
+echo "</pre>";
+die();
+    /*if(!empty($message_data) && count($message_data)>0 ){
+      return $this->sendResponse($message_data,'Message retrieved successfully');
+    }else{
+      return $this->sendResponse(array(),'No data found');
+    }*/
+  }
+
+
 }

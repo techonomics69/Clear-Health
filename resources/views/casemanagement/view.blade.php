@@ -617,15 +617,15 @@
 																
 
 																<div class="right-cht">
-																	
+
 																	{!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
 																	<div class="chating-section">
-																		
+
 																		<ul><?php if(isset($message_data)) {?>
 																			@foreach ($message_details as $key => $user)
 																			@foreach ($message_data as $key => $message)
-																			
-																			
+
+
 																			<?php if($user['sender'] == 'user'){ ?>
 																				<li>
 																					<p>
@@ -642,6 +642,7 @@
 																					</h5>
 																				</li>
 																			<?php }else{ ?>
+																				<?php echo "123"; ?>
                         			<!-- <li>
                         				<p> 
                         					<?php 

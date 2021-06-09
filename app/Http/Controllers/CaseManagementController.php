@@ -391,7 +391,10 @@ $sender = "admin";
   print_r($message_data);
   echo "</pre>";
   die();*/
-  return redirect()->back()->with('message_data');
+  //return redirect()->back()->with('message_data');
+
+return redirect()->back()->with(compact('message_data'));
+
 //return redirect()->back()->with('message_data','its work');
 
   }

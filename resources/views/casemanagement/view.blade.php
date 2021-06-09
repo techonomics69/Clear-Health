@@ -631,13 +631,9 @@
 													}else{
 if(isset($message['file_name']) && $message['file_name'] !='')
 { ?>
-
-<img src="{{ asset('public/Message_files/'.$message['file_name']) }}" width='100'>	
-<?}else{
-
-	?>
-	<embed src="{{ asset('public/Message_files/'.$message['file_name']) }}"   height="100px" width="500px">
-	<?php
+<img src="{{ asset('public/Message_files/'.$message['file_name']) }}" type="application/pdf" width='100'>	
+<? }else{ ?>
+<?php
 }
 ?>
 

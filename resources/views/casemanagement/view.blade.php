@@ -627,7 +627,7 @@
                         <div class="chating-section">
                         	@foreach ($message_details as $key => $message1)
 <?php  
-print_r($message_details);
+print_r($message1['sender']);
 //print_r($message_details['sender']); ?>
 @endforeach
                         	<ul><?php if(isset($message_data)) {?>

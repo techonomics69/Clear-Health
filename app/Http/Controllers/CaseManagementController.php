@@ -168,6 +168,7 @@
       ->OrderBy('messages.id','desc')
       ->get();
 
+
       $message_data = array();
       foreach($message_details as $key=>$value){
       $message_data[$key]['id'] = $value['id'];

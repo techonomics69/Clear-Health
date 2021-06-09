@@ -623,12 +623,9 @@
 
 <?php //echo "<pre>"; print_r($message_details); echo "</pre>"; die(); ?>
 									<ul><?php if(isset($message_data)) {?>
-										<!-- @foreach ($message_details as $key => $user) -->
 										
-
-										<!-- <?php //if($user['sender'] == 'user'){ ?> -->
 											@foreach ($message_data as $key => $message)
-<!-- {{dd($message_data)}} -->
+
 
 											<li>
 												<p>
@@ -645,11 +642,7 @@
 												</h5>
 											</li>
 											@endforeach
-										<!-- <?php }//else{ ?>
-											
-										<?php } ?> -->
 										
-										<!-- @endforeach -->
 									<?php }?>
 								</ul>
 

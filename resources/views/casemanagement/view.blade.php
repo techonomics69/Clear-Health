@@ -621,6 +621,8 @@
 								<div class="chating-section">
 									<ul><?php if(isset($message_data)) {?>
 											@foreach ($message_data as $key => $message)
+
+										<?php print_r($message); ?>
 											<li>
 												<p>
 													<?php 
@@ -636,11 +638,10 @@
 												</h5>
 											</li>
 											@endforeach
-										
 									<?php }?>
 								</ul>
 							</div>
-																<div class="last-typing-section">
+							<div class="last-typing-section">
                         	<!-- <div class="camera lastimg">
                         		<img src="{{asset('public/images/camera.png')}}" alt="">
                         	</div> -->
@@ -649,7 +650,7 @@
                         		<img src="{{asset('public/images/paperclip.png')}}" alt="">
                         	</div>
                         	<div class="search">
-                        		<input class="form-control" type="text" name="text" placeholder="Readonly input here..." >
+                        		<input class="form-control" type="text" name="text" placeholder="Text input here..." >
                         		<input class="form-control" type="hidden" name="user_id" value="{{$user_case_management_data['user_id']}}">
                         		<input class="form-control" type="hidden" name="case_id" value="{{$user_case_management_data['id']}}">
 

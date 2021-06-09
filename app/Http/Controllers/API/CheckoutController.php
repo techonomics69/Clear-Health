@@ -439,7 +439,7 @@ public function getTaxes(Request $request){
            $street .=  $shipping_address['addressline1'];
       }
 
-  $products_item  = json_encode($line_item);
+  $products_item  = $line_item;
 
   echo "<pre>";
   print_r($products_item);

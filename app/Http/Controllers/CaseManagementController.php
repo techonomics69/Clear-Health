@@ -197,7 +197,7 @@
 
      }
           echo "<pre>";
-          print_r($message_data);
+          print_r($message_details);
           echo "</pre>";
           die();
 

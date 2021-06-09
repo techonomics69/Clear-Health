@@ -625,15 +625,11 @@
 
                         {!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
                         <div class="chating-section">
-                        	@foreach ($message_details as $key => $message1)
-                        	<?php  
-                        	//print_r($message1['sender']);
-//print_r($message_details['sender']); ?>
-@endforeach
+                        	
 <ul><?php if(isset($message_data)) {?>
 	@foreach ($message_data as $key => $message)
-	@foreach ($message_details as $key => $message1)
-	<?php if($message1['sender'] == 'user'){ ?>
+	@foreach ($message_details as $key => $user)
+	<?php if($user['sender'] == 'user'){ ?>
 		<li>
 			<p>
 				<?php 

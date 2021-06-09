@@ -25,6 +25,18 @@
 
 	</style>
 
+@if(session()->has('message'))
+@php
+$message_data=json_decode(session()->get('message'));
+
+$msg_tab=$message_data->show_non_medical_screen;
+//print_r($msg_tab);
+@endphp
+
+@endif
+
+
+
 
 	{{-- @if(session()->has('que_current_tab'))
 	@php
@@ -70,12 +82,6 @@
 		</div>
 		<div class="row">
 			<div class="col-lg-12">
-
-				@if(session()->has('message'))
-@php
-$message_data=json_decode(session()->get('message'));
-
-$msg_tab=$message_data->show_non_medical_screen;
 				<section class="card" >
 					<ul class="nav nav-tabs" id="casemanagement-tab-menu">
 						<li><a class="btn active " data-toggle="tab" href="#profile">Profile</a></li>
@@ -83,6 +89,7 @@ $msg_tab=$message_data->show_non_medical_screen;
 						<li><a class="btn" data-toggle="tab" href="#skincare_summary">Skincare Summary </a></li>
 						<li><a class="btn" data-toggle="tab" href="#action_items">Action Items </a></li>
 						<li><a class="btn @if($msg_tab == 1) active @endif" data-toggle="tab" href="#messages">Messages</a></li>
+
 						<li><a class="btn" data-toggle="tab" href="#photos">Photos </a></li>
 						<li><a class="btn" data-toggle="tab" href="#payments">Payments </a></li>
 					</ul>
@@ -132,9 +139,6 @@ $msg_tab=$message_data->show_non_medical_screen;
 
 										</div>
 									</section>
-									@endphp
-
-@endif
 								</div>
 							</div>
 						</div>  

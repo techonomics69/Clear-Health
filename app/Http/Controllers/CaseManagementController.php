@@ -176,7 +176,7 @@ $message_details = Messages::join('message_files', 'messages.id', '=', 'message_
       $message_data[$key]['date'] = date('M j', $date);
       $message_data[$key]['created_at'] = $value['created_at'];
 
-      if($value['sender'] == 'admin'){
+      if($value['sender'] == 'user'){
         $messageStatus = 'received';
       }else{
         $messageStatus = 'sent';

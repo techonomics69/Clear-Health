@@ -160,7 +160,7 @@
       $topical_que=[];
       }
 
-      $message_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')
+      /*$message_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')
       ->join('users', 'users.id', '=', 'messages.user_id')
       ->join('case_managements','messages.case_id', '=', 'case_managements.id')
       ->select('messages.*','message_files.*','users.first_name','users.last_name')
@@ -203,7 +203,7 @@
       }
 
       }
-      /*echo "<pre>";
+      echo "<pre>";
       print_r($message_data);
       echo "</pre>";
       die();

@@ -626,29 +626,26 @@
                         {!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
                         <div class="chating-section">
                         	
-<ul><?php if(isset($message_data)) {?>
-	@foreach ($message_data as $key => $message)
-	@foreach ($message_details as $key => $user)
-	<?php if($user['sender'] == 'user'){ ?>
-		<li>
-			<p>
-				<?php 
-				if(isset($message['message']) && $message['message']!=''){
-					echo $message['message'];
-				} ?>
-			</p>
-			<h5><?php 
-			if(isset($message['date']) && $message['date']!=''){
-				echo $message['date'];
-			}
+                        	<ul><?php if(isset($message_data)) {?>
+                        		@foreach ($message_data as $key => $message)
+                        		@foreach ($message_details as $key => $user)
+                        		<?php if($user['sender'] == 'user'){ ?>
+                        			<li>
+                        				<p>
+                        					<?php 
+                        					if(isset($message['message']) && $message['message']!=''){
+                        						echo $message['message'];
+                        					} ?>
+                        				</p>
+                        				<h5><?php 
+                        				if(isset($message['date']) && $message['date']!=''){
+                        					echo $message['date'];
+                        				}
 
-			?></h5>
-		</li>
-	<?php } ?>
-                        		<!-- <li>
-                        			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                        			<h5>Monday:10:20</h5>
-                        		</li> -->
+                        				?></h5>
+                        			</li>
+                        		<?php } ?>
+                        		
                         		
                         		<li>
                         			<p> 
@@ -665,22 +662,14 @@
 
                         				?></h5>
                         			</li>
-                        		<?php //} ?>
-                        		<!-- <li>
-                        			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                        			<h5>Monday:10:20</h5>
-                        		</li> -->
-                        		<!-- <li>
-                        			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                        			<h5>Monday:10:20</h5>
-                        		</li> -->
+                        			<?php //} ?>
 
-                        		@endforeach
-                        		@endforeach
-                        	<?php }?>
-                        </ul>
-                    </div>
-                    <div class="last-typing-section">
+                        			@endforeach
+                        			@endforeach
+                        		<?php }?>
+                        	</ul>
+                        </div>
+                        <div class="last-typing-section">
                         	<!-- <div class="camera lastimg">
                         		<img src="{{asset('public/images/camera.png')}}" alt="">
                         	</div> -->

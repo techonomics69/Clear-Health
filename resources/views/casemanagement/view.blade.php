@@ -641,10 +641,10 @@
                         			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
                         			<h5>Monday:10:20</h5>
                         		</li> -->
-                        		<li>
+                        		<!-- <li>
                         			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
                         			<h5>Monday:10:20</h5>
-                        		</li>
+                        		</li> -->
                         	</ul>
                         </div>
 @endforeach

@@ -117,6 +117,8 @@ Route::post('getToken', [CaseManagementController::class, 'get_token']);
     Route::get('DeleteFile/{id}', [CaseManagementController::class, 'DeleteFile']);
     Route::post('getMdDetailForMessage', [CaseManagementController::class, 'getMdDetailForMessage']);
     Route::post('DetachNonmedicalMessageWithFile', [CaseManagementController::class, 'DetachNonmedicalMessageWithFile']);
+
+     Route::post('getTestReport', [CaseManagementController::class, 'getTestReport']);
     //end of md api
 
     //system message API

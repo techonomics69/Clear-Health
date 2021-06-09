@@ -631,8 +631,8 @@
 													}else{
 ?>
 
- 
-<img src="{{ asset('public/images/Message_files/'.$message['file_path']) }}" alt='Girl in a jacket' width='100'>";
+
+<img src="{{ asset('public/images/Message_files/'.$message['file_name']) }}" alt='Girl in a jacket' width='100'>
 <?php
 
 														

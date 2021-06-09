@@ -616,46 +616,46 @@
 															<div class="box-block mtb32" id="tab1"> -->
 																
 
-							<div class="right-cht">
-								{!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
-								<div class="chating-section">
-									<ul><?php if(isset($message_data)) {?>
-											@foreach ($message_data as $key => $message)
+																<div class="right-cht">
+																	{!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
+																	<div class="chating-section">
+																		<ul><?php if(isset($message_data)) {?>
+																			@foreach ($message_data as $key => $message)
 
-										<?php //print_r($message); ?>
-											<li>
-												<p>
-													<?php 
-													if(isset($message['message']) && $message['message']!=''){
-														echo $message['message'];
-													}else{
-if(isset($message['file_name']) && $message['file_name'] !='')
-{ ?>
-<img src="{{ asset('public/Message_files/'.$message['file_name']) }}"width='100'>	
-<? }else{ ?>
-<?php
-}
-?>
+																			<?php //print_r($message); ?>
+																			<li>
+																				<p>
+																					<?php 
+																					if(isset($message['message']) && $message['message']!=''){
+																						echo $message['message'];
+																					}else{
+																						if(isset($message['file_name']) && $message['file_name'] !='')
+																							{ ?>
+																								<img src="{{ asset('public/Message_files/'.$message['file_name']) }}"width='100'>	
+																							<? }else{ ?>
+																								<?php
+																							}
+																							?>
 
-<?php
+																							<?php
 
-														
-													}
+																							
+																						}
 
-													?>
-												</p>
-												<h5>
-													<?php 
-													if(isset($message['date']) && $message['date']!=''){
-														echo $message['date'];
-													}?>
-												</h5>
-											</li>
-											@endforeach
-									<?php }?>
-								</ul>
-							</div>
-							<div class="last-typing-section">
+																						?>
+																					</p>
+																					<h5>
+																						<?php 
+																						if(isset($message['date']) && $message['date']!=''){
+																							echo $message['date'];
+																						}?>
+																					</h5>
+																				</li>
+																				@endforeach
+																			<?php }?>
+																		</ul>
+																	</div>
+																	<div class="last-typing-section">
                         	<!-- <div class="camera lastimg">
                         		<img src="{{asset('public/images/camera.png')}}" alt="">
                         	</div> -->

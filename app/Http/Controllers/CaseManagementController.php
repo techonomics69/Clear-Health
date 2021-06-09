@@ -203,11 +203,11 @@
       }
 
       }
-      echo "<pre>";
+      /*echo "<pre>";
       print_r($message_data);
       echo "</pre>";
       die();
-
+*/
 
       return view('casemanagement.view',compact('user_case_management_data','category','general_que','accutane_que','topical_que','skincare_summary'));
 

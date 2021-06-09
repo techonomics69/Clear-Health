@@ -629,7 +629,7 @@
 													if(isset($message['message']) && $message['message']!=''){
 														echo $message['message'];
 													}else{
-if(isset($message['file_name'])&& $message['file_name']) !='')
+if(isset($message['file_name']) && $message['file_name'] !='')
 { ?>
 
 <img src="{{ asset('public/Message_files/'.$message['file_name']) }}" width='100'>	

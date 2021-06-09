@@ -625,13 +625,13 @@
 
                         {!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
 
-@foreach ($message_data as $key => $msg)
-
+@foreach ($message_data as $key => $message)
+<?php print_r($message); ?>
                         <div class="chating-section">
                         	<ul>
                         		<li>
-                        			<p>{{$msg['message'] }}</p>
-                        			<h5>Monday:10:20</h5>
+                        			<p>{{$message['message'] }}</p>
+                        			<h5>{{$msmessageg['message'] }}</h5>
                         		</li>
                         		<li>
                         			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>

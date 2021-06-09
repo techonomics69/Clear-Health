@@ -443,7 +443,7 @@ public function getTaxes(Request $request){
 
   $minimum_shipping_amount = Fees::where('status','1')->where('fee_type','minimum_shipping_amount')->first();
 echo "<pre>";
-print_r(strval($ord_total);
+print_r(strval($ord_total));
 echo "<pre>";
 exit(); 
    

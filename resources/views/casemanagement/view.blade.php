@@ -605,12 +605,12 @@
 																	</div> 
 																</div>
 
-															<!-- </div> -->
+																<!-- </div> -->
+															</div>
 														</div>
 													</div>
-												</div>
 
-												<div id="tab2" class="tab-pane fade in  @if($msg_tab == 1) active show @endif">	
+													<div id="tab2" class="tab-pane fade in  @if($msg_tab == 1) active show @endif">	
 													<!-- <div class="row" style="padding: 10px;">
 														<div class="col-md-12">
 															<div class="box-block mtb32" id="tab1"> -->
@@ -624,13 +624,13 @@
 
 
                         {!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
- <div class="chating-section">
- 	<ul>
-@foreach ($message_data as $key => $message)
+                        <div class="chating-section">
+                        	<ul>
+                        		@foreach ($message_data as $key => $message)
 
-<?php// print_r($message); ?>
-                       
-                        	
+                        		<?php// print_r($message); ?>
+                        		
+                        		
                         		<li>
                         			<p>{{ $message['message'] }}</p>
                         			<h5>{{ $message['date'] }}</h5>
@@ -647,11 +647,11 @@
                         			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
                         			<h5>Monday:10:20</h5>
                         		</li> -->
-                        	
-                        
-@endforeach
-</ul>
-</div>
+                        		
+                        		
+                        		@endforeach
+                        	</ul>
+                        </div>
                         <div class="last-typing-section">
                         	<!-- <div class="camera lastimg">
                         		<img src="{{asset('public/images/camera.png')}}" alt="">
@@ -678,60 +678,50 @@
 														</div>
 													</div> -->
 												</div>
-
-											<!-- <div class="card-body">
-
-												<div class="box-block mtb32" id="tab1">
-													<h3 class="font-weight-bold"><span class="text-underline">Messages</span></h3>
-												</div>
-												<div class="box-block mtb32" id="tab2">
-													<h3 class="font-weight-bold"><span class="text-underline">Messages goes here</span></h3>
-												</div>
-											</div> -->
-										</div>
-									</section>
-								</div>
-							</div>
-						</div>
-						<!--end 5th tab-->
-
-						<!--start 6th tab-->
-						<div id="photos" class="tab-pane fade in ">
-							<div class="row" style="padding: 20px;">
-								<div class="col-md-12">
-									<section class="card">
-										<div class="card-body">
-											<div class="box-block mtb32">
-												<h3 class="font-weight-bold"><span class="text-underline">Photos</span></h3>
 											</div>
-										</div>
-									</section>
+										</section>
+									</div>
 								</div>
 							</div>
-						</div>
-						<!--end 6th tab-->
+							<!--end 5th tab-->
 
-						<!--start 7th tab-->
-						<div id="payments" class="tab-pane fade in ">
-							<div class="row" style="padding: 20px;">
-								<div class="col-md-12">
-									<section class="card">
-										<div class="card-body">
-											<div class="box-block mtb32">
-												<h3 class="font-weight-bold"><span class="text-underline">Payments</span></h3>
+							<!--start 6th tab-->
+							<div id="photos" class="tab-pane fade in ">
+								<div class="row" style="padding: 20px;">
+									<div class="col-md-12">
+										<section class="card">
+											<div class="card-body">
+												<div class="box-block mtb32">
+													<h3 class="font-weight-bold"><span class="text-underline">Photos</span></h3>
+												</div>
 											</div>
-										</div>
-									</section>
+										</section>
+									</div>
 								</div>
 							</div>
+							<!--end 6th tab-->
+
+							<!--start 7th tab-->
+							<div id="payments" class="tab-pane fade in ">
+								<div class="row" style="padding: 20px;">
+									<div class="col-md-12">
+										<section class="card">
+											<div class="card-body">
+												<div class="box-block mtb32">
+													<h3 class="font-weight-bold"><span class="text-underline">Payments</span></h3>
+												</div>
+											</div>
+										</section>
+									</div>
+								</div>
+							</div>
+							<!--end 7th tab--> 
 						</div>
-						<!--end 7th tab--> 
 					</div>
-				</div>
-			</section>
+				</section>
+			</div>
 		</div>
 	</div>
-</div>
 </div>
 @endsection
 

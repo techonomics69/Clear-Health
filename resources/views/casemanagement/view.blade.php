@@ -630,7 +630,7 @@
 														echo $message['message'];
 													}else{
 
-echo"<img src='{{ asset('public/images//Message_files/'.$message['file_path'] }}' alt='Girl in a jacket' width='100'>";
+echo"<img src='{{ asset('public/images/Message_files/'.$message['file_path'] }}' alt='Girl in a jacket' width='100'>";
 
 														
 													}

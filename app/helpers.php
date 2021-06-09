@@ -238,17 +238,17 @@ if(!empty($Patient_data)){
   }
 
 
-    function createCaseFile(Request $request){
+    function createCaseFile($documents,$name,$user_id,$case_id,$system_case_id){
 
-      $r = $this->get_token();
+      $r = get_token();
       $token_data = json_decode($r);
       $token = $token_data->access_token;
 
-      $documents = $request->file('file');
+    /*  $documents = $request->file('file');
       $name = $request->name;
       $user_id = $request->user_id;
       $case_id = $request->case_id;
-      $system_case_id = $request->system_case_id;
+      $system_case_id = $request->system_case_id;*/
 
       if(!empty($documents)){
         $file =  $documents->getClientOriginalName();
@@ -353,9 +353,13 @@ if(!empty($Patient_data)){
 
 
     //end of code to attach file to case_id
+    if(!empty($case_file_data)){
+       return $case_file_data;
+    }else{
+       return array();
+    }
 
-
-    return $this->sendResponse($case_file_data,'File Created Successfully');
+   
 
   }
 

@@ -317,7 +317,22 @@ public function create_patient(Request $request)
   }
 
   public function createCaseFile(Request $request){
-    createCaseFile();
+
+      $documents = $request->file('file');
+      $name = $request->name;
+      $user_id = $request->user_id;
+      $case_id = $request->case_id;
+      $system_case_id = $request->system_case_id;
+
+      $case_file_data = createCaseFile( $documents,$name,$user_id,$case_id,$system_case_id);
+
+      if(!empty($case_file_data)){
+         return $this->sendResponse($case_file_data,'File Uploaded Successfully');
+      }else{
+         return $this->sendResponse(array(),'Something Went Wrong1');
+      }
+
+     
   }
 
   public function getPharmacies(Request $request){

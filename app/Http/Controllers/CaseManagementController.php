@@ -163,7 +163,7 @@ class CaseManagementController extends Controller
   }
 
 
-$message_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')->join('users', 'users.id', '=', 'messages.user_id')->select('messages.*','message_files.*','users.first_name','users.last_name')->where('user_id',$user_id)->OrderBy('messages.id','asc')->get();
+$message_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')->join('users', 'users.id', '=', 'messages.user_id')->select('messages.*','message_files.*','users.first_name','users.last_name')->where('user_id',$user_case_management_data['user_id'])->OrderBy('messages.id','asc')->get();
 
      $message_data = array();
      foreach($message_details as $key=>$value){

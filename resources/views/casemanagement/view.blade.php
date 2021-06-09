@@ -625,8 +625,9 @@
 
                         {!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
                         <div class="chating-section">
-                        	@foreach ($message_details as $key => $user)
+                        	
                         	<ul><?php if(isset($message_data)) {?>
+                        		@foreach ($message_details as $key => $user)
                         		@foreach ($message_data as $key => $message)
                         		
                         		
@@ -663,8 +664,7 @@
                         				</h5>
                         			</li>
                         		<?php } ?>
-
-@endforeach
+                        		@endforeach
                         		@endforeach
                         	<?php }?>
                         </ul>

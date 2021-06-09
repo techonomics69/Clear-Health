@@ -619,20 +619,30 @@
 							<div class="right-cht">
 								{!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
 								<div class="chating-section">
-<?php //echo "<pre>"; print_r($message_data); echo "</pre>"; die(); ?>
-
-<?php //echo "<pre>"; print_r($message_details); echo "</pre>"; die(); ?>
 									<ul><?php if(isset($message_data)) {?>
-										
 											@foreach ($message_data as $key => $message)
 
-
+										<?php //print_r($message); ?>
 											<li>
 												<p>
 													<?php 
 													if(isset($message['message']) && $message['message']!=''){
 														echo $message['message'];
-													}?>
+													}else{
+?>
+
+
+<img src="{{ asset('public/Message_files/'.$message['file_name']) }}" width='100'>
+
+<!-- http://103.101.59.95/dev.clearhealth/public/images/Message_files/1623238722-camera.png
+http://103.101.59.95/dev.clearhealth/public/Message_files/1623238668-telegram.png
+http://103.101.59.95/dev.clearhealth/public/images/1623238722-camera.png -->
+<?php
+
+														
+													}
+
+													?>
 												</p>
 												<h5>
 													<?php 
@@ -642,12 +652,10 @@
 												</h5>
 											</li>
 											@endforeach
-										
 									<?php }?>
 								</ul>
-
 							</div>
-																<div class="last-typing-section">
+							<div class="last-typing-section">
                         	<!-- <div class="camera lastimg">
                         		<img src="{{asset('public/images/camera.png')}}" alt="">
                         	</div> -->
@@ -656,7 +664,7 @@
                         		<img src="{{asset('public/images/paperclip.png')}}" alt="">
                         	</div>
                         	<div class="search">
-                        		<input class="form-control" type="text" name="text" placeholder="Readonly input here..." >
+                        		<input class="form-control" type="text" name="text" placeholder="Text input here..." >
                         		<input class="form-control" type="hidden" name="user_id" value="{{$user_case_management_data['user_id']}}">
                         		<input class="form-control" type="hidden" name="case_id" value="{{$user_case_management_data['id']}}">
 

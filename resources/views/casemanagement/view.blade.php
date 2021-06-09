@@ -576,7 +576,7 @@ $msg_tab = 0;
 												<li><a class="btn" data-toggle="tab" href="#tab2">Non-Medical Messgaes</a></li>
 											</ul>
 											<div class="tab-content">
-												<div id="tab1" class="tab-pane fade in @if($msg_tab == 1) active show @endif">	
+												<div id="tab1" class="tab-pane fade in @if($msg_tab == 1) active @endif">	
 													<div class="row" style="padding: 10px;">
 														<div class="col-md-12">
 															<div class="box-block mtb32" id="tab1">

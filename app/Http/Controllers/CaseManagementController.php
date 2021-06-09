@@ -16,9 +16,8 @@
       use App\Models\Messages;
       use App\Models\MessageFiles;
       use Redirect;
-      use Session;
-
-
+      
+      
       class CaseManagementController extends Controller
       {
         /**
@@ -127,7 +126,7 @@
          }
 
        }
-       
+
        $skincare_summary['product_name'] = implode(', ' ,$product_name);
        $skincare_summary["addon_product"] =implode(', ', $addon_product);
        
@@ -195,8 +194,6 @@
       }else{
         $message_data[$key]['file_name'] = null;
       }
-
-
 
      }
           echo "<pre>";

@@ -647,23 +647,23 @@
                         				</h5>
                         			</li>
                         		<?php }else{ ?>
-                        			<li>
+                        			<!-- <li>
                         				<p> 
                         					<?php 
-                        					if(isset($message['message']) && $message['message']!=''){
-                        						echo $message['message'];
+                        					//if(isset($message['message']) && $message['message']!=''){
+                        						//echo $message['message'];
                         					}?>
                         				</p>
 
                         				<h5>
                         					<?php 
-                        					if(isset($message['date']) && $message['date']!=''){
-                        						echo $message['date'];
+                        					//if(isset($message['date']) && $message['date']!=''){
+                        						//echo $message['date'];
                         					}?>
                         					
                         				</h5>
-                        			</li>
-                        			
+                        			</li> -->
+
                         		<?php } ?>
                         		@endforeach
                         		@endforeach

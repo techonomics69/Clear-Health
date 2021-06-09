@@ -417,7 +417,6 @@ public function getTaxes(Request $request){
       $line_item[$key]['discount'] =  $value['discount_price'];
 
       $shipping_address = Checkoutaddress::select('*')
-      ->where('checkout_address.order_id',$orderlist['order_id'])
       ->whereRaw("find_in_set(".$value['cart_id'].",cart_id)")
       ->where('checkout_address.address_type',1)
       ->OrderBy('id', 'DESC')

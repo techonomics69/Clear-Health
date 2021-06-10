@@ -211,10 +211,7 @@ class CaseManagementController extends Controller
     //$case_message_id = $request['system_case_id'];
     $channel = 'patient';
 
-echo "<pre>";
-  print_r($token);
-  echo "</pre>";
-  die();
+
 
     $curl = curl_init();
 
@@ -234,7 +231,10 @@ echo "<pre>";
     ));
 
     $response = curl_exec($curl);
-
+echo "<pre>";
+  print_r($response);
+  echo "</pre>";
+  die();
     curl_close($curl);
     
     $data = json_decode($response);

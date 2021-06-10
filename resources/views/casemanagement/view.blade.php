@@ -784,11 +784,12 @@ width: 100%;
 
 <script type="text/javascript">
 
-	
+
 	$(document).on('submit','#msgForm',function(e){
         e.preventDefault();
       console.log("Hello world!");
-        $.ajax({
+      });
+        /*$.ajax({
         method:"POST",
         url: "{{ route('sendMessageNonMedical') }}",
         data:{"_token": "{{ csrf_token() }}",
@@ -797,7 +798,7 @@ width: 100%;
         $('#msg').html(data);
         $('#msgForm').find('input').val('')
     }});
-});
+});*/
 
 
 </script>

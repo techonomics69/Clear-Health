@@ -97,7 +97,7 @@ Session::forget('que_current_tab');
 <li><a class="btn" data-toggle="tab" href="#questions">Questions</a></li>
 <li><a class="btn" data-toggle="tab" href="#skincare_summary">Skincare Summary </a></li>
 <li><a class="btn" data-toggle="tab" href="#action_items">Action Items </a></li>
-<li><a class="btn @if($msg_tab == 1) active @endif" data-toggle="tab" href="#messages">Messages</a></li>
+<li><a class="btn non_medical_msg" data-toggle="tab" href="#messages">Messages</a></li>
 
 <li><a class="btn" data-toggle="tab" href="#photos">Photos </a></li>
 <li><a class="btn" data-toggle="tab" href="#payments">Payments </a></li>
@@ -572,13 +572,13 @@ if($user_case_management_data['product_type'] == "accutane"){?>
 <!--end 4th tab-->
 
 <!--start 5th tab-->
-<div id="messages" class="tab-pane fade in @if($msg_tab == 1) active show  @endif" >
+<div id="messages" class="tab-pane fade in non_medical_msg" >
 <div class="row" style="padding: 20px;">
 <div class="col-md-12">
 <section class="card">
 	<ul class="nav nav-tabs" id="messages-tab-menu">
 		<li><a class="btn @if($msg_tab != 1) active @endif" data-toggle="tab" href="#tab1">Medical Messgaes</a></li>
-		<li><a class="btn @if($msg_tab == 1) active @endif" data-toggle="tab" href="#tab2">Non-Medical Messgaes</a></li>
+		<li><a class="btn non_medical_msg" data-toggle="tab" href="#tab2">Non-Medical Messgaes</a></li>
 	</ul>
 	<div class="tab-content">
 		<div id="tab1" class="tab-pane fade in @if($msg_tab != 1) active show @endif">	
@@ -615,7 +615,7 @@ if($user_case_management_data['product_type'] == "accutane"){?>
 				</div>
 			</div>
 
-			<div id="tab2" class="tab-pane fade in  @if($msg_tab == 1) active show @endif">	
+			<div id="tab2" class="tab-pane fade in  non_medical_msg">	
 			<!-- <div class="row" style="padding: 10px;">
 				<div class="col-md-12">
 					<div class="box-block mtb32" id="tab1"> -->
@@ -784,7 +784,9 @@ $(document).ready(function() {
 				dataType:"json",
 				//cache: false,
 				success: function(response){
-					alert(response);
+        $(".non_medical_msg").addClass("active");
+       
+					//alert(response);
 					// location.reload();
        
       }

@@ -801,8 +801,10 @@
 					//alert(response.msg_date);
  /*$("p").append(" <b>Appended text</b>.");*/
 					//$( ".chating-section" ).append(" <li><p>".response.text."</p></li>.") ;
-$(".chating-section ul").append("<li>"+"<p>"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>") ;
-
+$(".chating-section ul").append("<li class='lastmsg'>"+"<p>"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>") ;
+ $('html, body').animate({
+         scrollTop: $(".lastmsg").offset().top
+     }, 1500);
 					// $(".removemsg").removeClass("active") ; 
 					 //$(".nonmedicalmsg").addClass("active") ; 
 					 //location.reload();

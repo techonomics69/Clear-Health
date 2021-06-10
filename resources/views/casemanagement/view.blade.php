@@ -625,7 +625,7 @@ if($user_case_management_data['product_type'] == "accutane"){?>
 									<li>
 										<p>
 											<?php 
-											if(isset($message['message']) && $message['message'] !=''){
+											if(isset($message['message']) && $message['message']!=''){
 												echo $message['message'];
 											}else{
 												if(isset($message['file_name']) && $message['file_name'] !='')
@@ -633,16 +633,12 @@ if($user_case_management_data['product_type'] == "accutane"){?>
 <img src="{{ asset('public/Message_files/'.$message['file_name']) }}" type="media_type"width='100'>
 <a target="_blank" download="" href="{{ asset('public/Message_files/'.$message['file_name']) }}"> Download</a>	
 													<? }else{ ?>
-														<img src="{{ asset('public/Message_files/'.$message['file_name']) }}" type="media_type"width='100'>
-<a target="_blank" download="" href="{{ asset('public/Message_files/'.$message['file_name']) }}"> Download</a>	
 														<?php
-
-
 													}
 													?>
 
 													<?php
-echo $message['message'];
+
 
 												}
 
@@ -652,9 +648,7 @@ echo $message['message'];
 												<?php 
 												if(isset($message['date']) && $message['date']!=''){
 													echo $message['date'];
-												}else{
-echo $message['date'];
-}?>
+												}?>
 											</h5>
 										</li>
 										@endforeach

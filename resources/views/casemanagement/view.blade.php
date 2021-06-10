@@ -805,6 +805,7 @@ $(document).ready(function() {
 				success: function(response)
 				{
 					alert("Data submit !");
+					reload();
 					/*var dataResult = JSON.parse(dataResult);
 					if(dataResult.statusCode==200){
 						$("#btnsubmit").removeAttr("disabled");

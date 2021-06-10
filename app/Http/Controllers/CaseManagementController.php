@@ -230,9 +230,9 @@ class CaseManagementController extends Controller
       ),
     ));
 
-    $response = curl_exec($response);
+    $response = curl_exec($curl);
 echo "<pre>";
-  print_r($curl);
+  print_r($response);
   echo "</pre>";
   die();
     curl_close($curl);

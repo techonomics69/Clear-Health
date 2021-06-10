@@ -139,7 +139,8 @@ class CartController extends BaseController
         try{
             //$cart = Cart::where('user_id', $id)->where('order_type', '!=', 'Prescribed')->get();
 
-            $cart = Cart::where('user_id', $id)->where('order_type', null)->where('status','pending')->get();
+            /*$cart = Cart::where('user_id', $id)->where('order_type', null)->where('status','pending')->get();*/
+            $cart = Cart::where('user_id', $id)->where('order_type', "Non-Prescribe")->where('status','pending')->get();
             $data=array();
             foreach ($cart as $key => $value) {
 

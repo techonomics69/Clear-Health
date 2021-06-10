@@ -785,7 +785,13 @@ width: 100%;
 
 }
 </style>
+
 @section('scriptsection')
+<script>
+$(document).ready(function() {
+    alert("I am an alert box!");
+});	
+</script>
 <script>
 $(document).ready(function() {
 	alert('safsfsdf');
@@ -832,5 +838,4 @@ $(document).ready(function() {
 	});
 });
 </script>
-
 @endsection

@@ -796,13 +796,13 @@
 				//cache: false,
 				success: function(response){
 					//myVar = response;
-					alert(response.text);
+					//alert(response.text);
 
 					//$( ".chating-section" ).append( $( "<li><p>".response.text."</p>" , "<h5>".response.date."</h5></li>") );
 
 					// $(".removemsg").removeClass("active") ; 
 					 //$(".nonmedicalmsg").addClass("active") ; 
-					 //location.reload();
+					 location.reload();
 					   
 					}
 				});

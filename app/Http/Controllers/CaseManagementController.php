@@ -438,8 +438,8 @@ $sender = "admin";
   print_r($message_data);
   echo "</pre>";
   die();*/
-echo "success";
-//return redirect()->back()->with('message',$message_data);
+
+return redirect()->back()->with('message',$message_data);
 
   }
 

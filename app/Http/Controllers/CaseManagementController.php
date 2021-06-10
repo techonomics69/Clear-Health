@@ -211,7 +211,10 @@ class CaseManagementController extends Controller
     //$case_message_id = $request['system_case_id'];
     $channel = 'patient';
 
-
+echo "<pre>";
+  print_r( $case_id );
+  echo "</pre>";
+  die();
 
     $curl = curl_init();
 
@@ -274,10 +277,10 @@ class CaseManagementController extends Controller
 
 
 
-echo "<pre>";
+/*echo "<pre>";
   print_r($msg_history);
   echo "</pre>";
-  die();
+  die();*/
 
   return view('casemanagement.view',compact('user_case_management_data','category','general_que','accutane_que','topical_que','skincare_summary','message_data','message_details'));
 

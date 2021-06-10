@@ -424,10 +424,10 @@ $sender = "admin";
    $message_data['msg_date']= $message_data['created_at']->format('M j'); 
 
     //$message_data['date'] = date('M j', $message_data['created_at']);
-echo "<pre>";
+/*echo "<pre>";
   print_r($message_data);
   echo "</pre>";
-  die();
+  die();*/
     $message_file_data = array();
     $message_file_data['file_name'] = $doc_file_name;
     $message_file_data['file_path'] = $file_path;

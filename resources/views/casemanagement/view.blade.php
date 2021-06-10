@@ -798,7 +798,7 @@
 				//cache: false,
 				success: function(response){
 					//myVar = response;
-					alert(response.created_at);
+					alert(response.msg_date);
  /*$("p").append(" <b>Appended text</b>.");*/
 					//$( ".chating-section" ).append(" <li><p>".response.text."</p></li>.") ;
 $(".chating-section ul").append("<li>"+"<p>"+response.text+"</p>"+"<h5>"+response.created_at+"<h5>"+"</li>") ;

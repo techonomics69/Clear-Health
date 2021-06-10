@@ -231,10 +231,10 @@ class CaseManagementController extends Controller
     ));
 
     $response = curl_exec($curl);
-echo "<pre>";
+/*echo "<pre>";
   print_r($response);
   echo "</pre>";
-  die();
+  die();*/
     curl_close($curl);
     
     $data = json_decode($response);

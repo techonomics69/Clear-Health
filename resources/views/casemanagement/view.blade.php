@@ -772,7 +772,7 @@ $(document).ready(function() {
 		/*if(file!="" && text!="" && user_id!="" && case_id!=""){*/
 			$.ajax({
 				url: "sendMessageNonMedical",
-				method: "POST",
+				type: "POST",
 				data: {
 					"_token": "{{ csrf_token() }}",
 					"file": file,

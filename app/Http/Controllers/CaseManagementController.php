@@ -425,7 +425,7 @@ $sender = "admin";
 
     //$message_data['date'] = date('M j', $message_data['created_at']);
 echo "<pre>";
-  print_r($message_data['created_at']->date());
+  print_r($message_data['created_at']->format('M j'););
   echo "</pre>";
   die();
     $message_file_data = array();

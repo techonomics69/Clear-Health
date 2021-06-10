@@ -796,7 +796,7 @@
 				//cache: false,
 				success: function(response){
 					//myVar = response;
-					alert(response.date);
+					//alert(response.date);
 
 					//$( ".chating-section" ).append( $( "<li><p>".response.text."</p>" , "<h5>".response.date."</h5></li>") );
 

@@ -783,9 +783,10 @@ width: 100%;
 </style>
 
 <script type="text/javascript">
+
+
 	$(document).on('submit','#msgForm',function(e){
         e.preventDefault();
-      console.log("Hello world!");
         $.ajax({
         method:"POST",
         url: "{{ route('sendMessageNonMedical') }}",
@@ -799,4 +800,14 @@ width: 100%;
 
 
 </script>
+<script type="text/javascript">
+               $(document).ready(function()
+                {    
+              $("a").click(function(event)
+               {            
+                event.preventDefault();
+                alert("prevented");
+               });
+                });
+             </script>
 

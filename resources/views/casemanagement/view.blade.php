@@ -762,6 +762,7 @@ setTimeout(function(){ location.reload(true); }, 3000);
 <script>
 $(document).ready(function() {
 	$('#btnsubmit').on('click', function() {
+			alert("Data submit !");
 		$("#btnsubmit").attr("disabled", "disabled");
 		var file = $('#file').val();
 		var text = $('#text').val();
@@ -779,6 +780,7 @@ $(document).ready(function() {
 					"user_id": user_id,
 					"case_id": case_id				
 				},
+
 				//cache: false,
 				success: function(response)
 				{

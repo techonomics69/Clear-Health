@@ -760,6 +760,7 @@ padding: 0.5rem;
 }
  .chating-section ul li:nth-child(even) {
    margin-left: 299px;
+   background: #0000ff14;
 }
  .chating-section ul li:nth-child(even) p {
    background: #00f 14;

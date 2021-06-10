@@ -797,8 +797,8 @@
 				success: function(response){
 					//myVar = response;
 					//alert(response.created_at);
-
-					$( ".chating-section" ).append( $( "<li>""<p>"."</p>""</li>") );
+ //$("p").append(" <b>Appended text</b>.");
+					$( ".chating-section" ).append(" <b>Appended text</b>.") ;
 
 					// $(".removemsg").removeClass("active") ; 
 					 //$(".nonmedicalmsg").addClass("active") ; 

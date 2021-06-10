@@ -789,6 +789,7 @@ width: 100%;
 <script>
 $(document).ready(function() {
 	$('#btnsubmit').on('click', function() {
+		alert('hii');
 		$("#btnsubmit").attr("disabled", "disabled");
 		var file = $('#file').val();
 		var text = $('#text').val();

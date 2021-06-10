@@ -668,13 +668,16 @@
 
 	<div class="variants">
 		<div class='file'>
-			<label for='input-file'>
+			<label for='file'>
 				<img src="{{asset('public/images/paperclip.png')}}" alt="">
 			</label>
 			<input id='file' type='file' name="file" (change)="uploadFile($event)"/>
 		</div>
 	</div>
 </div>
+
+
+   
 
 <!-- <div class="attachment lastimg">
 <input class="form-control" type="file" name="file" id="file">

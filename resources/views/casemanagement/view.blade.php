@@ -783,9 +783,10 @@ $(document).ready(function() {
 
 				//cache: false,
 				success: function(response){
-        toastr.success('Upsell Upadated');
+					alert("Data submit !");
+       
       }
-      
+
 				/*success: function(response)
 				{
 					alert("Data submit !");

@@ -785,7 +785,7 @@ width: 100%;
 
 }
 </style>
-@section('script')
+@section('scriptsection')
 <script>
 $(document).ready(function() {
 	alert('safsfsdf');

@@ -767,11 +767,7 @@ scrollTop: $("#testreoprtdiv").offset().top
 </script>
 @endif
 
-<script>
-function myFunction() {
-  alert("I am an alert box!");
-}
-</script>
+
 @endsection
 <style>
 .tab-content h4{
@@ -803,5 +799,11 @@ width: 100%;
 });
 
 
+</script>
+
+<script>
+function myFunction() {
+  alert("I am an alert box!");
+}
 </script>
 

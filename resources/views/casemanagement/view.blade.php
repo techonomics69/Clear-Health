@@ -783,8 +783,9 @@ width: 100%;
 </style>
 
 <script>
-$(document).ready(function() {
+//$(document).ready(function() {
 	$('#btnsubmit').on('click', function() {
+		alert("hii");
 		$("#btnsubmit").attr("disabled", "disabled");
 		var file = $('#file').val();
 		var text = $('#text').val();
@@ -824,6 +825,6 @@ $(document).ready(function() {
 			alert('Please fill all the field !');
 		}
 	});
-});
+//});
 </script>
 

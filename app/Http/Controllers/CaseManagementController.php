@@ -421,11 +421,11 @@ $sender = "admin";
     $input_data['sender'] = $sender;
 
     $message_data = Messages::create($input_data);
-    $message_data['created_at']->format('M j');
+    $test=$message_data['created_at']->format('M j');
 
     //$message_data['date'] = date('M j', $message_data['created_at']);
 echo "<pre>";
-  print_r($message_data['created_at']->format('M j'));
+  print_r($test);
   echo "</pre>";
   die();
     $message_file_data = array();

@@ -622,7 +622,7 @@ if($user_case_management_data['product_type'] == "accutane"){?>
 						
 						<div class="right-cht">
 							 <p id="msg"></p>
-							{!! Form::open(array('method'=>'POST', 'enctype'=>"multipart/form-data", 'id'=>"msgForm")) !!}
+							{!! Form::open(array('enctype'=>"multipart/form-data", 'id'=>"msgForm")) !!}
 							<div class="chating-section">
 								<ul><?php if(isset($message_data)) {?>
 									@foreach ($message_data as $key => $message)
@@ -783,10 +783,9 @@ $(document).ready(function() {
 
 				//cache: false,
 				success: function(response){
-					
+					alert("Data submit !");
        
       }
-
 				/*success: function(response)
 				{
 					alert("Data submit !");
@@ -804,10 +803,6 @@ $(document).ready(function() {
 					
 				}*/
 			});
-		/*}else{
-			alert('Please fill all the field !');
-		}*/
-		alert("Data submit !");
 	});
 });
 </script>

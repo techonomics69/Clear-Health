@@ -786,8 +786,9 @@ $(document).ready(function() {
 				success: function(response){
 					 myVar = response;
 					 //alert(myVar);
-					 location.reload();
-        $(".non_medical_msg").addClass("active");
+       
+         location.reload();
+         setTimeout(function(){ $(".non_medical_msg").addClass("active") }, 2000);
        
 					//alert(response);
 					

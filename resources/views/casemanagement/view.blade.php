@@ -800,6 +800,7 @@
 					//$( ".chating-section" ).append(" <li><p>".response.text."</p></li>.") ;
 $(".chating-section ul").append("<li>"+response.text+"</li>"+"<li>"+response.created_at+"</li>") ;
 
+
 					// $(".removemsg").removeClass("active") ; 
 					 //$(".nonmedicalmsg").addClass("active") ; 
 					 //location.reload();

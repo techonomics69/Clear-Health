@@ -10,7 +10,7 @@
 </div>
 @endif
 
-@section('scriptsection')
+@section('script')
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 @endsection
 
@@ -758,11 +758,54 @@ setTimeout(function(){ location.reload(true); }, 3000);
 }
 </script>
 
-<!-- <script>
-function myFunction() {
-setTimeout(function(){ location.reload(true); }, 3000);
-}
-</script> -->
+
+<script>
+$(document).ready(function() {
+	$('#btnsubmit').on('click', function() {
+			alert("Data submit !");
+		$("#btnsubmit").attr("disabled", "disabled");
+		var file = $('#file').val();
+		var text = $('#text').val();
+		var user_id = $('#user_id').val();
+		var case_id = $('#case_id').val();
+		
+		/*if(file!="" && text!="" && user_id!="" && case_id!=""){*/
+			$.ajax({
+				url: "sendMessageNonMedical",
+				type: "POST",
+				data: {
+					"_token": "{{ csrf_token() }}",
+					"file": file,
+					"text": text,
+					"user_id": user_id,
+					"case_id": case_id				
+				},
+
+				//cache: false,
+				success: function(response)
+				{
+					alert("Data submit !");
+					reload();
+					/*var dataResult = JSON.parse(dataResult);
+					if(dataResult.statusCode==200){
+						$("#btnsubmit").removeAttr("disabled");
+						$('#msgForm').find('input:text').val('');
+						//$("#success").show();
+						//$('#success').html('Data added successfully !'); 						
+					}
+					else if(dataResult.statusCode==201){
+					   //alert("Error occured !");
+					}*/
+					
+				}
+			});
+		/*}else{
+			alert('Please fill all the field !');
+		}*/
+	});
+});
+</script>
+
 @if (count($errors) > 0)
 <script type="text/javascript">
 $('html, body').animate({
@@ -785,52 +828,3 @@ width: 100%;
 
 }
 </style>
-
-@section('scriptsection')
-<script>
-$(document).ready(function() {
-	 alert("I am an alert box!");
-	$('#btnsubmit').on('click', function() {
-		alert('hii');
-		$("#btnsubmit").attr("disabled", "disabled");
-		var file = $('#file').val();
-		var text = $('#text').val();
-		var user_id = $('#user_id').val();
-		var case_id = $('#case_id').val();
-		
-		if(file!="" && text!="" && user_id!="" && case_id!=""){
-			$.ajax({
-				url: "sendMessageNonMedical",
-				type: "POST",
-				data: {
-					"_token": "{{ csrf_token() }}",
-					"file": file,
-					"text": text,
-					"user_id": user_id,
-					"case_id": case_id				
-				},
-				//cache: false,
-				success: function(response)
-				{
-					alert("Data submit !");
-					reload();
-					/*var dataResult = JSON.parse(dataResult);
-					if(dataResult.statusCode==200){
-						$("#btnsubmit").removeAttr("disabled");
-						$('#msgForm').find('input:text').val('');
-						//$("#success").show();
-						//$('#success').html('Data added successfully !'); 						
-					}
-					else if(dataResult.statusCode==201){
-					   //alert("Error occured !");
-					}*/
-					
-				}
-			});
-		}else{
-			alert('Please fill all the field !');
-		}
-	});
-});
-</script>
-@endsection

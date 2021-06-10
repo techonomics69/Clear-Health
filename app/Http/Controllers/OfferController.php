@@ -34,7 +34,7 @@ class OfferController extends Controller
 		//$data = Offers::where('to_date','>=',Carbon::now()->toDateString())->orderBy('id','DESC')->get();
 		$data = Offers::orderBy('id','DESC')->get();//->where('to_date','>=',Carbon::now()->toDateString())where('from_date','>=',Carbon::now()->toDateString())
 		//$affected = DB::table('offers')->update(['view_status' => 1]);
-		return view('admin.offers.index',compact('data','headerLeftContent','headerRightContent'));
+		return view('offers.index',compact('data','headerLeftContent','headerRightContent'));
 	}
 
 
@@ -67,7 +67,7 @@ class OfferController extends Controller
 		$addonProducts = AddonProducts::orderBy('id','DESC')->get();
 
 
-		return view('admin.offers.create',compact('headerLeftContent','headerRightContent','vehicle','addonProducts'));
+		return view('offers.create',compact('headerLeftContent','headerRightContent','vehicle','addonProducts'));
 	}
 
 	
@@ -219,7 +219,7 @@ class OfferController extends Controller
         <li class="breadcrumb-item active">Edit Offer</li> 
         </ol>';
 
-		return view('admin.offers.edit',compact('offer','vehicle','addonProducts','headerLeftContent','headerRightContent'));
+		return view('offers.edit',compact('offer','vehicle','addonProducts','headerLeftContent','headerRightContent'));
 	}
 
 

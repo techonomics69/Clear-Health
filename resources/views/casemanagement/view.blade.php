@@ -784,10 +784,11 @@ $(document).ready(function() {
 				dataType:"json",
 				//cache: false,
 				success: function(response){
-						alert(response);
-        $(".non_medical_msg").addClass("active show");
+					 myVar = response;
+					 alert(myVar);
+        $(".non_medical_msg").addClass("active");
        
-					alert(response);
+					//alert(response);
 					// location.reload();
        
       }

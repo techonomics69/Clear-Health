@@ -133,6 +133,12 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                 if($md_case_status == 'dosespot confirmed' && $value['pregnancy_test']!= NULL && $value['blood_work']!= NULL && $value['i_pledge_agreement']!= NULL){
 
                   $system_status = 'Awaiting Action Items';
+
+                  $response = $this->getPrescription($case_id);
+
+                  $prescription_data = json_decode($response);
+
+
                 }
 
           }else if($gender == "Male" && $recommended_product == 'Accutane'){
@@ -276,6 +282,37 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
         //
     }
 
+
+    public function getPrescription($case_id){
+
+      $r = get_token();
+      $token_data = json_decode($r);
+      $token = $token_data->access_token;
+
+      $curl = curl_init();
+
+      curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/prescriptions',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'GET',
+        CURLOPT_HTTPHEADER => array(
+          'Authorization: Bearer '.$token
+        ),
+      ));
+
+      $response = curl_exec($curl);
+
+      curl_close($curl);
+      //echo $response;
+
+      return $response;
+
+    }
 
 
 

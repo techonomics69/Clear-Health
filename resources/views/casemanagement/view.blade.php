@@ -785,7 +785,7 @@ width: 100%;
 <script type="text/javascript">
 	$(document).on('submit','#msgForm',function(e){
         e.preventDefault();
-       consol.log("test");
+      console.log("Hello world!");
         $.ajax({
         method:"POST",
         url: "{{ route('sendMessageNonMedical') }}",

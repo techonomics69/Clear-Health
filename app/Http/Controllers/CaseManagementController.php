@@ -373,7 +373,7 @@ public function get_token(){
 }
 
 public function sendMessageNonMedical(Request $request){
-die("text");
+
 
     $user_id = $request['user_id'];
 

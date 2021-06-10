@@ -30,8 +30,8 @@ class CreateCasePrescriptionsTable extends Migration
             $table->string('partner_medication')->nullable();
             $table->string('dispense_unit_id')->nullable();
             $table->string('preferred_pharmacy_id')->nullable();
-            $table->string('medication_id')->nullable();
-            $table->string('compound_id')->nullable();
+            $table->string('prescription_medication_id')->nullable();
+            $table->string('prescription_compound_id')->nullable();
             $table->string('user_id')->nullable();
             $table->string('case_id')->nullable();
             $table->string('system_case_id')->nullable();

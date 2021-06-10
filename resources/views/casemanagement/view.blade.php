@@ -621,7 +621,6 @@
 					<div class="box-block mtb32" id="tab1"> -->
 						
 						<div class="right-cht">
-							<p id="msg"></p>
 							{!! Form::open(array('method'=>'POST', 'enctype'=>"multipart/form-data", 'id'=>"msgForm")) !!}
 							<div class="chating-section">
 								<ul id="getmsg"><?php if(isset($message_data)) {?>
@@ -799,7 +798,7 @@
 					//alert(response.created_at);
  /*$("p").append(" <b>Appended text</b>.");*/
 					//$( ".chating-section" ).append(" <li><p>".response.text."</p></li>.") ;
-$("#getmsg").append("<li>"+response.text+"</li>") ;
+$(".right-cht").append("<li>"+response.text+"</li>") ;
 
 					// $(".removemsg").removeClass("active") ; 
 					 //$(".nonmedicalmsg").addClass("active") ; 

@@ -762,7 +762,7 @@ setTimeout(function(){ location.reload(true); }, 3000);
 <script>
 $(document).ready(function() {
 	$('#btnsubmit').on('click', function() {
-			alert("Data submit !");
+
 		$("#btnsubmit").attr("disabled", "disabled");
 		var file = $('#file').val();
 		var text = $('#text').val();
@@ -772,7 +772,7 @@ $(document).ready(function() {
 		/*if(file!="" && text!="" && user_id!="" && case_id!=""){*/
 			$.ajax({
 				url: "sendMessageNonMedical",
-				type: "POST",
+				method: "POST",
 				data: {
 					"_token": "{{ csrf_token() }}",
 					"file": file,

@@ -784,9 +784,10 @@ $(document).ready(function() {
 				dataType:"json",
 				//cache: false,
 				success: function(response){
+						alert(response);
         $(".non_medical_msg").addClass("active show");
        
-					//alert(response);
+					alert(response);
 					// location.reload();
        
       }

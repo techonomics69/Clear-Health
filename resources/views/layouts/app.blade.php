@@ -723,6 +723,28 @@ data-open="click" data-menu="vertical-menu" data-col="2-columns">
                   </li>  
                   {{-- @endcanany --}}
 
+                  <!-- -->
+                    {{--   @Offers & Promotions(['quiz-list','quiz-create', 'quiz-edit', 'quiz-delete','quizCategory-list','quizCategory-create','quizCategory-edit','quizCategory-delete']) --}}
+                    <li class="nav-item sub-menu has-sub offer-promotion-sub-menu {{-- {{ Request::is('admin/ipledgeimports') ? 'active' : '' }} --}}">
+                      <a class="menu-item" href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg"  id="bold" enable-background="new 0 0 24 24"  viewBox="0 0 24 24" width="20"><path d="m13.735 21.795-4.5-4.25c-.15-.141-.235-.338-.235-.545s.085-.404.235-.545l4.5-4.25c.476-.448 1.265-.114 1.265.545v2.25h5.25c1.24 0 2.25-1.009 2.25-2.25 0-.414.336-.75.75-.75s.75.336.75.75v1.5c0 2.619-2.131 4.75-4.75 4.75h-4.25v2.25c0 .662-.792.992-1.265.545z"/><path d="m12 0c-6.617 0-12 5.383-12 12s5.383 12 12 12c.518 0 1.026-.044 1.527-.108-.394-.108-.856-.35-1.166-.643-4.732-4.47-5.087-4.564-5.312-5.77-.218-1.221.288-1.983 1.119-2.767-.067-.549-.109-1.125-.136-1.712h1.948s2.51-2.437 3.02-2.697v-2.329c.88-.035 1.742-.115 2.575-.24.181.884.314 1.842.377 2.862.804.636 1.048 1.426 1.048 2.404h.976c.013-.33.024-.661.024-1 0-1.672-.156-3.242-.439-4.663.982-.246 1.899-.553 2.715-.923.793 1.174 1.346 2.523 1.583 3.977.409-.242.881-.391 1.391-.391.199 0 .392.024.579.064-.93-5.697-5.872-10.064-11.829-10.064zm-9.949 11c.168-1.688.758-3.255 1.662-4.591.819.373 1.739.681 2.726.928-.225 1.133-.366 2.363-.415 3.663zm3.017-6.191c.865-.834 1.875-1.517 2.994-1.998-.438.744-.817 1.616-1.127 2.593-.666-.166-1.291-.365-1.867-.595zm5.932-2.424v3.59c-.705-.03-1.392-.095-2.059-.186.552-1.633 1.289-2.83 2.059-3.404zm-2.943 18.795c-1.116-.481-2.125-1.158-2.988-1.99.577-.229 1.201-.428 1.866-.594.309.975.686 1.843 1.122 2.584zm-1.618-4.516c-.983.246-1.901.553-2.717.923-.905-1.337-1.502-2.898-1.67-4.587h3.972c.049 1.3.19 2.531.415 3.664zm1.584-5.664c.051-1.171.193-2.266.398-3.266.834.124 1.698.205 2.579.24v3.026zm4.977-5.025v-3.594c.769.574 1.506 1.775 2.057 3.408-.667.091-1.353.156-2.057.186zm2.945-3.151c1.113.482 2.12 1.157 2.98 1.989-.575.229-1.197.427-1.86.592-.308-.973-.685-1.84-1.12-2.581z"/></svg>
+                        <span class="" data-i18n="">Offers & Promotions</span>                             
+                      </a>
+                      <ul class="menu-content">
+                        <li class="sub-menu offer-promotion-list">
+                          <a href="{{ route('offer.index') }}">
+                           Offers & Promotions List
+                         </a>                          
+                       </li>
+                       <li class="sub-menu offer-promotion-create">
+                        <a href="{{ route('offer.create') }}">
+                         Offers & Promotions Create
+                        </a>                          
+                      </li>                                                               
+                    </ul> 
+                  </li>  
+                  {{-- @endcanany --}}
+
                   <!---->
 
                   @canany(['blog-list', 'blog-create', 'blog-edit', 'blog-delete, faq-list','faq-create', 'faq-edit', 'faq-delete', 'tag-list', 'tag-create', 'tag-edit', 'tag-delete', 'testimonial-list', 'testimonial-create', 'testimonial-edit', 'testimonial-delete'])
@@ -1082,6 +1104,17 @@ data-open="click" data-menu="vertical-menu" data-col="2-columns">
                       else{
                         $(".ordermanagement-sub-menu").addClass('open active');
                         $(".ordermanagement-list").addClass('active');
+                      }
+                    }
+
+                    else if(pagename == "offers"){
+                      if(splitUrl[splitUrl.length-1]=="create"){
+                        $(".offer-promotion-sub-menu").addClass('open active');
+                        $(".offer-promotion-create").addClass('active');
+                      }
+                      else{
+                        $(".offer-promotion-sub-menu").addClass('open active');
+                        $(".offer-promotion-list").addClass('active');
                       }
                     }
 

@@ -768,7 +768,7 @@ $(document).ready(function() {
 		var user_id = $('#user_id').val();
 		var case_id = $('#case_id').val();
 		
-		if(file!="" && text!="" && user_id!="" && case_id!=""){
+		/*if(file!="" && text!="" && user_id!="" && case_id!=""){*/
 			$.ajax({
 				url: "sendMessageNonMedical",
 				type: "POST",
@@ -797,9 +797,9 @@ $(document).ready(function() {
 					
 				}
 			});
-		}else{
+		/*}else{
 			alert('Please fill all the field !');
-		}
+		}*/
 	});
 });
 </script>

@@ -796,9 +796,9 @@
 				//cache: false,
 				success: function(response){
 					//myVar = response;
-					alert(response.created_at);
+					//alert(response.created_at);
 
-					$( ".chating-section" ).append( $( "<li><p>"response.text"</p>" , "<h5>"response.created_at"</h5></li>") );
+					$( ".chating-section" ).append( $( "<li><p>"response.text"</p>") );
 
 					// $(".removemsg").removeClass("active") ; 
 					 //$(".nonmedicalmsg").addClass("active") ; 

@@ -423,9 +423,9 @@ $sender = "admin";
     $message_data = Messages::create($input_data);
 
 
-    $message_data['date'] = date('M j', $message_data['created_at']);
+    //$message_data['date'] = date('M j', $message_data['created_at']);
 echo "<pre>";
-  print_r($message_data);
+  print_r($message_data['created_at']);
   echo "</pre>";
   die();
     $message_file_data = array();

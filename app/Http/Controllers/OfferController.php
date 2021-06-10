@@ -6,21 +6,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\City;
-use App\Brand;
-use App\Models;
-use App\State;
-use App\So_User;
 use App\Offers;
-use App\Offersonvehicle;
-use App\Offersaddon;
 use Carbon\Carbon;
-use App\Vehicle;
-
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
-
-use App\AddonProducts;
 
 use DB;
 use Hash;
@@ -36,22 +23,15 @@ class OfferController extends Controller
 
 	function __construct()
 	{
-		$this->middleware('auth:admin');
-		$this->middleware('permission:offer_view|offer_add|offer_edit|offer_delete', ['only' => ['index', 'show']]);
-		$this->middleware('permission:offer_add', ['only' => ['create', 'store']]);
-		$this->middleware('permission:offer_edit', ['only' => ['edit', 'update']]);
-		$this->middleware('permission:offer_delete', ['only' => ['destroy']]);
+		
 	}
 	
 	public function index(Request $request)
 	{	
 		$headerLeftContent = "<p class='name-page'>Offers</p>";
-
-		if (Auth::user()->hasAllPermissions('offer_add')) {
-		  $headerRightContent = "<p><a class='btn btn-light' href=".url('/')."/admin/offers/create>&plus; Create New Offer</a></p>";
-		}else{
-			 $headerRightContent = '';
-		}
+		
+		$headerRightContent = "<p><a class='btn btn-light' href=".url('/')."/admin/offers/create>&plus; Create New Offer</a></p>";
+		
 		
 		//$data = Offers::where('to_date','>=',Carbon::now()->toDateString())->orderBy('id','DESC')->get();
 		$data = Offers::orderBy('id','DESC')->get();//->where('to_date','>=',Carbon::now()->toDateString())where('from_date','>=',Carbon::now()->toDateString())

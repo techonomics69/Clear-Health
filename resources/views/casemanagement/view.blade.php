@@ -11,6 +11,7 @@
 @endif
 
 @section('script')
+<script src="{!!url('/js/jquery.min.js')!!}"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 @endsection
 
@@ -789,12 +790,7 @@ width: 100%;
 @section('scriptsection')
 <script>
 $(document).ready(function() {
-    alert("I am an alert box!");
-});	
-</script>
-<script>
-$(document).ready(function() {
-	alert('safsfsdf');
+	 alert("I am an alert box!");
 	$('#btnsubmit').on('click', function() {
 		alert('hii');
 		$("#btnsubmit").attr("disabled", "disabled");

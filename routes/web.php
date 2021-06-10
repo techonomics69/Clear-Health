@@ -261,7 +261,7 @@ Route::group(['middleware' => ['auth']],function(){
 
     /*offer's CRUD*/
     //Route::resource('admin/offers', [OfferController::class]);
-     Route::get('admin/offers', [OfferController::class, 'index'])->name('offers.index');
+    Route::get('admin/offers', [OfferController::class, 'index'])->name('offers.index');
     Route::get('admin/offers/create', [OfferController::class, 'create'])->name('offers.create');
     Route::post('admin/offers/store', [OfferController::class, 'store'])->name('offers.store');
     Route::get('admin/offers/show/{id}', [OfferController::class, 'show'])->name('offers.show');

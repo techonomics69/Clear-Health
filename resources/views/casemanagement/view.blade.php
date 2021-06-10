@@ -789,10 +789,10 @@ $(document).ready(function() {
 		var text = $('#text').val();
 		var user_id = $('#user_id').val();
 		var case_id = $('#case_id').val();
-		var city = $('#city').val();
-		if(name!="" && email!="" && phone!="" && city!=""){
+		
+		if(file!="" && text!="" && user_id!="" && case_id!=""){
 			$.ajax({
-				url: "save.php",
+				url: "sendMessageNonMedical",
 				type: "POST",
 				data: {
 					"_token": "{{ csrf_token() }}",
@@ -802,22 +802,23 @@ $(document).ready(function() {
 					"case_id": case_id				
 				},
 				cache: false,
-				success: function(dataResult){
-					var dataResult = JSON.parse(dataResult);
+				success: function(response)
+				{
+					alert("Data submit !");
+					/*var dataResult = JSON.parse(dataResult);
 					if(dataResult.statusCode==200){
-						$("#butsave").removeAttr("disabled");
-						$('#fupForm').find('input:text').val('');
-						$("#success").show();
-						$('#success').html('Data added successfully !'); 						
+						$("#btnsubmit").removeAttr("disabled");
+						$('#msgForm').find('input:text').val('');
+						//$("#success").show();
+						//$('#success').html('Data added successfully !'); 						
 					}
 					else if(dataResult.statusCode==201){
-					   alert("Error occured !");
-					}
+					   //alert("Error occured !");
+					}*/
 					
 				}
 			});
-		}
-		else{
+		}else{
 			alert('Please fill all the field !');
 		}
 	});

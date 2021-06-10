@@ -781,44 +781,27 @@
 			var user_id = $('#user_id').val();
 			var case_id = $('#case_id').val();
 
-			/*if(file!="" && text!="" && user_id!="" && case_id!=""){*/
-				$.ajax({
-					url: "{{URL('admin/casemanagement/sendMessageNonMedical')}}",
+			$.ajax({
+				url: "{{URL('admin/casemanagement/sendMessageNonMedical')}}",
 
-					type: "POST",
-					data: {
-						"_token": "{{ csrf_token() }}",
-						"file": file,
-						"text": text,
-						"user_id": user_id,
-						"case_id": case_id				
-					},
-					dataType:"json",
+				type: "POST",
+				data: {
+					"_token": "{{ csrf_token() }}",
+					"file": file,
+					"text": text,
+					"user_id": user_id,
+					"case_id": case_id				
+				},
+				dataType:"json",
 				//cache: false,
 				success: function(response){
 					myVar = response;
 					 //alert(myVar);
 					 location.reload();
-					 $(".nonmedicalmsg").addClass("active")    
+					 $(".nonmedicalmsg").addClass("active") ;   
 					}
-				/*success: function(response)
-				{
-					alert("Data submit !");
-					reload();
-					var dataResult = JSON.parse(dataResult);
-					if(dataResult.statusCode==200){
-						$("#btnsubmit").removeAttr("disabled");
-						$('#msgForm').find('input:text').val('');
-						//$("#success").show();
-						//$('#success').html('Data added successfully !'); 						
-					}
-					else if(dataResult.statusCode==201){
-					   //alert("Error occured !");
-					}
-					
-				}*/
-			});
-			});
+				});
+		});
 	});
 </script>
 

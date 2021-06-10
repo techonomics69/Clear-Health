@@ -10,7 +10,7 @@
 </div>
 @endif
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 <style type="text/css">
 #casemanagement-tab-menu li a.active{
 background-color: #43bfc1;

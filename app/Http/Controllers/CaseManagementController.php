@@ -439,8 +439,7 @@ $sender = "admin";
   echo "</pre>";
   die();*/
 
-return redirect()->back()->with('message',$message_data);
-
+   return $message_data['show_non_medical_screen'];
   }
 
 

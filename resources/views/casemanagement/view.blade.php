@@ -771,7 +771,8 @@ $(document).ready(function() {
 		
 		/*if(file!="" && text!="" && user_id!="" && case_id!=""){*/
 			$.ajax({
-				url: "sendMessageNonMedical",
+				url: "{{URL('admin/casemanagement/sendMessageNonMedical')}}",
+
 				type: "POST",
 				data: {
 					"_token": "{{ csrf_token() }}",
@@ -780,10 +781,11 @@ $(document).ready(function() {
 					"user_id": user_id,
 					"case_id": case_id				
 				},
-
+				dataType:"json",
 				//cache: false,
 				success: function(response){
-					alert("Data submit !");
+					alert(response);
+					// location.reload();
        
       }
 				/*success: function(response)

@@ -677,7 +677,7 @@
 </div>
 
 
-   
+
 
 <!-- <div class="attachment lastimg">
 <input class="form-control" type="file" name="file" id="file">
@@ -795,18 +795,12 @@
 					"case_id": case_id				
 				},
 				dataType:"json",
-				//cache: false,
+				
 				success: function(response){
-					//myVar = response;
-					alert(response.created_at);
- /*$("p").append(" <b>Appended text</b>.");*/
-					//$( ".chating-section" ).append(" <li><p>".response.text."</p></li>.") ;
-$(".chating-section ul").append("<li>"+"<p>"+response.text+"</p>"+"<h5>"+response.created_at+"<h5>"+"</li>") ;
+					$(".chating-section ul").append("<li>"+"<p>"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>") ;
 
-					// $(".removemsg").removeClass("active") ; 
-					 //$(".nonmedicalmsg").addClass("active") ; 
 					 //location.reload();
-					   
+					 
 					}
 				});
 		});

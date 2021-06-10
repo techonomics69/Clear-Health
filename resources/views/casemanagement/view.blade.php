@@ -97,7 +97,7 @@ Session::forget('que_current_tab');
 <li><a class="btn" data-toggle="tab" href="#questions">Questions</a></li>
 <li><a class="btn" data-toggle="tab" href="#skincare_summary">Skincare Summary </a></li>
 <li><a class="btn" data-toggle="tab" href="#action_items">Action Items </a></li>
-<li><a class="btn non_medical_msg" data-toggle="tab" href="#messages">Messages</a></li>
+<li><a class="btn" data-toggle="tab" href="#messages">Messages</a></li>
 
 <li><a class="btn" data-toggle="tab" href="#photos">Photos </a></li>
 <li><a class="btn" data-toggle="tab" href="#payments">Payments </a></li>

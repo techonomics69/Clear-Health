@@ -439,7 +439,7 @@ $sender = "admin";
   echo "</pre>";
   die();*/
 
-   return $message_data['show_non_medical_screen'];
+   return $message_data;
   }
 
 

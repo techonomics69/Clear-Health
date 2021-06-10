@@ -795,11 +795,12 @@
 				dataType:"json",
 				//cache: false,
 				success: function(response){
-					myVar = response;
+					//myVar = response;
 					 //alert(myVar);
-					 location.reload();
 					 $(".removemsg").removeClass("active") ; 
-					 $(".nonmedicalmsg").addClass("active") ;   
+					 $(".nonmedicalmsg").addClass("active") ; 
+					 location.reload();
+					   
 					}
 				});
 		});

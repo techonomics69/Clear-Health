@@ -445,6 +445,10 @@ public function getTaxes(Request $request){
  echo "<pre>";
  print_r($ord_total);
  echo "<pre>";
+
+  echo "<pre>";
+ print_r($minimum_shipping_amount);
+ echo "<pre>";
  exit();
    
  if($ord_total > 0 && $ord_total < $minimum_shipping_amount){

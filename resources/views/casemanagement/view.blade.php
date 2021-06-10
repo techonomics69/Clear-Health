@@ -671,7 +671,7 @@ if($user_case_management_data['product_type'] == "accutane"){?>
 
 </div>
 <div class="sending lastimg">
-<button type="submit"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
+<button type="submit" onclick="myFunction()"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
 <!-- <img src="{{asset('public/images/telegram.png')}}" alt=""> -->
 </div>
 </div>
@@ -767,6 +767,11 @@ scrollTop: $("#testreoprtdiv").offset().top
 </script>
 @endif
 
+<script>
+function myFunction() {
+  alert("I am an alert box!");
+}
+</script>
 @endsection
 <style>
 .tab-content h4{

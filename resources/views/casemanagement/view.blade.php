@@ -10,7 +10,11 @@
 </div>
 @endif
 
+@section('script')
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+@endsection
+
+
 <style type="text/css">
 #casemanagement-tab-menu li a.active{
 background-color: #43bfc1;
@@ -781,11 +785,10 @@ width: 100%;
 
 }
 </style>
-
+@section('script')
 <script>
-//$(document).ready(function() {
+$(document).ready(function() {
 	$('#btnsubmit').on('click', function() {
-		alert("hii");
 		$("#btnsubmit").attr("disabled", "disabled");
 		var file = $('#file').val();
 		var text = $('#text').val();
@@ -825,6 +828,7 @@ width: 100%;
 			alert('Please fill all the field !');
 		}
 	});
-//});
+});
 </script>
 
+@endsection

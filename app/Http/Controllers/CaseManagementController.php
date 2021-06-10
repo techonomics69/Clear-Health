@@ -439,7 +439,7 @@ $sender = "admin";
   echo "</pre>";
   die();*/
 
-return redirect()->back()->with('message',$message_data);
+//return redirect()->back()->with('message',$message_data);
 
   }
 

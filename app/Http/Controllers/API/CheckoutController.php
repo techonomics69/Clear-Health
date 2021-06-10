@@ -456,7 +456,7 @@ public function getTaxes(Request $request){
     $order_taxes = $client->taxForOrder([
           'from_country' => 'US',
           'from_zip' => '06880',
-          'from_state' => 'Conneticut',
+          'from_state' => 'CT',
           'from_city' => 'Westport',
           'from_street' => '141 Post Road East',
           'to_country' => 'US',

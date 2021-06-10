@@ -615,7 +615,7 @@ if($user_case_management_data['product_type'] == "accutane"){?>
 				</div>
 			</div>
 
-			<div id="nonmedical" class="tab-pane fade in  nonmedicalmsg">	
+			<div id="nonmedical" class="tab-pane fade in nonmedicalmsg">	
 			<!-- <div class="row" style="padding: 10px;">
 				<div class="col-md-12">
 					<div class="box-block mtb32" id="tab1"> -->
@@ -786,14 +786,8 @@ $(document).ready(function() {
 				success: function(response){
 					 myVar = response;
 					 //alert(myVar);
-       
          location.reload();
-
-         setTimeout(function(){  
-         	alert("myVar"); 
-         	$(".nonmedicalmsg").addClass("active") 
-         }, 2000);
-           
+         	$(".nonmedicalmsg").addClass("active")    
       }
 				/*success: function(response)
 				{

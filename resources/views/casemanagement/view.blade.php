@@ -778,7 +778,7 @@ $(document).ready(function() {
 					"file": file,
 					"text": text,
 					"user_id": user_id,
-								
+					"case_id": case_id				
 				},
 
 				//cache: false,

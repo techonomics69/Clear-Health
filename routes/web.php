@@ -25,6 +25,7 @@ use App\Http\Controllers\MdManagementController;
 use App\Http\Controllers\OrderManagementController;
 use App\Http\Controllers\TreatmentGuidesController;
 use App\Http\Controllers\CaseStatusUpdateGetPrescriptionController;
+use App\Http\Controllers\OfferController;
 
 
 /*
@@ -259,7 +260,14 @@ Route::group(['middleware' => ['auth']],function(){
     Route::get('admin/CaseStatusUpdateGetPrescriptionController', [CaseStatusUpdateGetPrescriptionController::class, 'index'])->name('CaseStatusUpdateGetPrescriptionController');
 
     /*offer's CRUD*/
-    Route::resource('admin/offers',, [OfferController::class]);
+    //Route::resource('admin/offers', [OfferController::class]);
+     Route::get('admin/offers', [OfferController::class, 'index'])->name('offers.index');
+    Route::get('admin/offers/create', [OfferController::class, 'create'])->name('offers.create');
+    Route::post('admin/offers/store', [OfferController::class, 'store'])->name('offers.store');
+    Route::get('admin/offers/show/{id}', [OfferController::class, 'show'])->name('offers.show');
+    Route::get('admin/offers/edit/{id}', [OfferController::class, 'edit'])->name('offers.edit');
+    Route::patch('admin/offers/update/{id}', [OfferController::class, 'update'])->name('offers.update');
+    Route::delete('admin/offers/destroy/{id}', [OfferController::class, 'destroy'])->name('offers.destroy');  
     Route::post('admin/offers/delete/{id}', [OfferController::class, 'destroy'])->name('offers.destroy');
     
 });

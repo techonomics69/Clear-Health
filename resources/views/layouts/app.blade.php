@@ -732,12 +732,12 @@ data-open="click" data-menu="vertical-menu" data-col="2-columns">
                       </a>
                       <ul class="menu-content">
                         <li class="sub-menu offer-promotion-list">
-                          <a href="{{ route('offer.index') }}">
+                          <a href="{{ route('offers.index') }}">
                            Offers & Promotions List
                          </a>                          
                        </li>
                        <li class="sub-menu offer-promotion-create">
-                        <a href="{{ route('offer.create') }}">
+                        <a href="{{ route('offers.create') }}">
                          Offers & Promotions Create
                         </a>                          
                       </li>                                                               

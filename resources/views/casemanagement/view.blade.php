@@ -788,6 +788,7 @@ width: 100%;
 @section('script')
 <script>
 $(document).ready(function() {
+	alert('safsfsdf');
 	$('#btnsubmit').on('click', function() {
 		alert('hii');
 		$("#btnsubmit").attr("disabled", "disabled");

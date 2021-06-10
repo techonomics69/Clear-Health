@@ -771,7 +771,7 @@ $(document).ready(function() {
 		
 		/*if(file!="" && text!="" && user_id!="" && case_id!=""){*/
 			$.ajax({
-				url: "{{URL('/sendMessageNonMedical')}}",
+				url: "{{URL('admin/casemanagement/sendMessageNonMedical')}}",
 				
 				type: "POST",
 				data: {

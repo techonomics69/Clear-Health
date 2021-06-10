@@ -785,7 +785,7 @@ width: 100%;
 
 }
 </style>
-@section('scriptsection')
+@section('script')
 <script type="text/javascript">
 $(document).ready(function() {
 	alert('safsfsdf');
@@ -832,5 +832,4 @@ $(document).ready(function() {
 	});
 });
 </script>
-
 @endsection

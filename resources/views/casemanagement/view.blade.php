@@ -784,7 +784,7 @@ $(document).ready(function() {
 				dataType:"json",
 				//cache: false,
 				success: function(response){
-        $(".non_medical_msg").addClass("active");
+        $(".non_medical_msg").addClass("active show");
        
 					//alert(response);
 					// location.reload();

@@ -804,7 +804,7 @@
 $(".chating-section ul").append("<li class='lastmsg'>"+"<p>"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>") ;
  $('html, body').animate({
          scrollTop: $(".lastmsg").offset().top
-     }, 1500);
+     }, 1000);
 					// $(".removemsg").removeClass("active") ; 
 					 //$(".nonmedicalmsg").addClass("active") ; 
 					 //location.reload();

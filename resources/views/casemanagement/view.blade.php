@@ -796,7 +796,7 @@
 				//cache: false,
 				success: function(response){
 					//myVar = response;
-					alert(response->text);
+					alert(response);
 					 $(".removemsg").removeClass("active") ; 
 					 $(".nonmedicalmsg").addClass("active") ; 
 					 location.reload();

@@ -799,7 +799,7 @@
 					//alert(response.created_at);
  /*$("p").append(" <b>Appended text</b>.");*/
 					//$( ".chating-section" ).append(" <li><p>".response.text."</p></li>.") ;
-$( ".chating-section" ).append("<li>"+response.created_at+"</li>.") ;
+$( ".chating-section" ).append("<li>"+response.text+"</li>") ;
 
 					// $(".removemsg").removeClass("active") ; 
 					 //$(".nonmedicalmsg").addClass("active") ; 

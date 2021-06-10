@@ -671,7 +671,7 @@ if($user_case_management_data['product_type'] == "accutane"){?>
 
 </div>
 <div class="sending lastimg">
-<button type="submit" onclick="myFunction()"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
+<button type="submit"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
 <!-- <img src="{{asset('public/images/telegram.png')}}" alt=""> -->
 </div>
 </div>
@@ -767,7 +767,6 @@ scrollTop: $("#testreoprtdiv").offset().top
 </script>
 @endif
 
-
 @endsection
 <style>
 .tab-content h4{
@@ -784,7 +783,9 @@ width: 100%;
 </style>
 
 <script type="text/javascript">
-	$(document).on('submit','#msgForm',function(e){
+
+	console.log("hello");
+	/*$(document).on('submit','#msgForm',function(e){
         e.preventDefault();
       console.log("Hello world!");
         $.ajax({
@@ -796,14 +797,8 @@ width: 100%;
         $('#msg').html(data);
         $('#msgForm').find('input').val('')
     }});
-});
+});*/
 
 
-</script>
-
-<script>
-function myFunction() {
-  alert("I am an alert box!");
-}
 </script>
 

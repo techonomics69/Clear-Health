@@ -784,7 +784,8 @@ $(document).ready(function() {
 				dataType:"json",
 				//cache: false,
 				success: function(response){
-					 location.reload();
+					alert(response);
+					// location.reload();
        
       }
 				/*success: function(response)

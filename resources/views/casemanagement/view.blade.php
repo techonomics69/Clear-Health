@@ -789,7 +789,7 @@ $(document).ready(function() {
         $(".non_medical_msg").addClass("active");
        
 					//alert(response);
-					// location.reload();
+					location.reload();
        
       }
 				/*success: function(response)

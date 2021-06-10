@@ -665,10 +665,27 @@ if($user_case_management_data['product_type'] == "accutane"){?>
 <!-- <div class="camera lastimg">
 <img src="{{asset('public/images/camera.png')}}" alt="">
 </div> -->
-<div class="attachment lastimg">
+<div class="attachment lastimg pinclip">
+                                        
+                                          <div class="variants">
+                                            <div class='file'>
+                                              <label for='input-file'>
+                                                <img src="{{asset('public/images/paperclip.png')}}" alt="">
+                                              </label>
+                                              <input id='input-file' type='file' (change)="uploadFile($event)"/>
+                                            </div>
+                                          </div>
+                                    </div>
+
+
+
+
+
+
+<!-- <div class="attachment lastimg">
 <input class="form-control" type="file" name="file" id="file">
 <img src="{{asset('public/images/paperclip.png')}}" alt="">
-</div>
+</div> -->
 <div class="search">
 <input class="form-control" type="text" name="text" placeholder="Text input here..." id="text">
 <input class="form-control" type="hidden" name="user_id" value="{{$user_case_management_data['user_id']}}" id="user_id">

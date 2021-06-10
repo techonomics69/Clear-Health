@@ -577,11 +577,11 @@ if($user_case_management_data['product_type'] == "accutane"){?>
 <div class="col-md-12">
 <section class="card">
 	<ul class="nav nav-tabs" id="messages-tab-menu">
-		<li><a class="btn @if($msg_tab != 1) active @endif" data-toggle="tab" href="#Medical">Medical Messgaes</a></li>
+		<li><a class="btn @if($msg_tab != 1) active @endif" data-toggle="tab" href="#medical">Medical Messgaes</a></li>
 		<li><a class="btn non_medical_msg" data-toggle="tab" href="#nonmedical">Non-Medical Messgaes</a></li>
 	</ul>
 	<div class="tab-content">
-		<div id="Medical" class="tab-pane fade in @if($msg_tab != 1) active show @endif">	
+		<div id="medical" class="tab-pane fade in @if($msg_tab != 1) active show @endif">	
 			<div class="row" style="padding: 10px;">
 				<div class="col-md-12">
 					<!-- <div class="box-block mtb32" id="tab1"> -->
@@ -615,7 +615,7 @@ if($user_case_management_data['product_type'] == "accutane"){?>
 				</div>
 			</div>
 
-			<div id="Medical" class="tab-pane fade in  non_medical_msg">	
+			<div id="nonmedical" class="tab-pane fade in  non_medical_msg">	
 			<!-- <div class="row" style="padding: 10px;">
 				<div class="col-md-12">
 					<div class="box-block mtb32" id="tab1"> -->

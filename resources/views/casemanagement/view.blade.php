@@ -802,7 +802,7 @@
 
 					// $(".removemsg").removeClass("active") ; 
 					 //$(".nonmedicalmsg").addClass("active") ; 
-					 //location.reload();
+					 location.reload();
 					   
 					}
 				});

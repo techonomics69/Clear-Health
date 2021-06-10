@@ -785,15 +785,8 @@ $(document).ready(function() {
 				success: function(response){
         toastr.success('Upsell Upadated');
       }
-			});
-
-	});
-
-});
-
-</script>
-
-				<!-- /*success: function(response)
+      
+				/*success: function(response)
 				{
 					alert("Data submit !");
 					reload();
@@ -809,13 +802,13 @@ $(document).ready(function() {
 					}
 					
 				}*/
-			//});
+			});
 		/*}else{
 			alert('Please fill all the field !');
 		}*/
-	//});
-//}); -->
-
+	});
+});
+</script>
 
 @if (count($errors) > 0)
 <script type="text/javascript">

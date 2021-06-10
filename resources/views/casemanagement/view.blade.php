@@ -785,11 +785,12 @@ $(document).ready(function() {
 				//cache: false,
 				success: function(response){
 					 myVar = response;
-					 alert(myVar);
+					 //alert(myVar);
+					 location.reload();
         $(".non_medical_msg").addClass("active");
        
 					//alert(response);
-					location.reload();
+					
        
       }
 				/*success: function(response)

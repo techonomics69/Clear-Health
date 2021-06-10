@@ -801,7 +801,7 @@ $(document).ready(function() {
 					"user_id": user_id,
 					"case_id": case_id				
 				},
-				cache: false,
+				//cache: false,
 				success: function(response)
 				{
 					alert("Data submit !");

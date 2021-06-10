@@ -423,7 +423,7 @@ $sender = "admin";
     $message_data = Messages::create($input_data);
 
 
-   // $message_data['date'] = date('M j', $message_data);
+    $message_data['date'] = date('M j', $message_data['created_at']);
 echo "<pre>";
   print_r($message_data);
   echo "</pre>";

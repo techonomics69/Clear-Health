@@ -784,8 +784,8 @@ width: 100%;
 
 <script type="text/javascript">
 
-	console.log("hello");
-	/*$(document).on('submit','#msgForm',function(e){
+	
+	$(document).on('submit','#msgForm',function(e){
         e.preventDefault();
       console.log("Hello world!");
         $.ajax({
@@ -797,7 +797,7 @@ width: 100%;
         $('#msg').html(data);
         $('#msgForm').find('input').val('')
     }});
-});*/
+});
 
 
 </script>

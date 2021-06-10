@@ -771,7 +771,8 @@ $(document).ready(function() {
 		
 		/*if(file!="" && text!="" && user_id!="" && case_id!=""){*/
 			$.ajax({
-				url: "sendMessageNonMedical",
+				url: "{{URL('/sendMessageNonMedical')}}",
+				
 				type: "POST",
 				data: {
 					"_token": "{{ csrf_token() }}",
@@ -780,7 +781,7 @@ $(document).ready(function() {
 					"user_id": user_id,
 					"case_id": case_id				
 				},
-dataType:"json",
+				dataType:"json",
 				//cache: false,
 				success: function(response){
 					alert("Data submit !");

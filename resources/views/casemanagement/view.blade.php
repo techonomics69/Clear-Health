@@ -617,7 +617,7 @@ if($user_case_management_data['product_type'] == "accutane"){?>
 						
 						<div class="right-cht">
 							 <p id="msg"></p>
-							{!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data",'id="msgForm"')) !!}
+							{!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data", 'id'=>"msgForm")) !!}
 							<div class="chating-section">
 								<ul><?php if(isset($message_data)) {?>
 									@foreach ($message_data as $key => $message)
@@ -661,17 +661,16 @@ if($user_case_management_data['product_type'] == "accutane"){?>
 <img src="{{asset('public/images/camera.png')}}" alt="">
 </div> -->
 <div class="attachment lastimg">
-<input class="form-control" type="file" name="file">
+<input class="form-control" type="file" name="file" id="file">
 <img src="{{asset('public/images/paperclip.png')}}" alt="">
 </div>
 <div class="search">
-<input class="form-control" type="text" name="text" placeholder="Text input here..." >
-<input class="form-control" type="hidden" name="user_id" value="{{$user_case_management_data['user_id']}}">
-<input class="form-control" type="hidden" name="case_id" value="{{$user_case_management_data['id']}}">
-
+<input class="form-control" type="text" name="text" placeholder="Text input here..." id="text">
+<input class="form-control" type="hidden" name="user_id" value="{{$user_case_management_data['user_id']}}" id="user_id">
+<input class="form-control" type="hidden" name="case_id" value="{{$user_case_management_data['id']}}" id="case_id">
 </div>
 <div class="sending lastimg">
-<button type="submit"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
+<button type="submit" id="btnsubmit"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
 <!-- <img src="{{asset('public/images/telegram.png')}}" alt=""> -->
 </div>
 </div>
@@ -782,32 +781,46 @@ width: 100%;
 }
 </style>
 
-<script type="text/javascript">
-
-
-	$(document).on('submit','#msgForm',function(e){
-        e.preventDefault();
-        $.ajax({
-        method:"POST",
-        url: "{{ route('sendMessageNonMedical') }}",
-        data:{"_token": "{{ csrf_token() }}",
-        $(this).serialize()},
-        success: function(data){
-        $('#msg').html(data);
-        $('#msgForm').find('input').val('')
-    }});
+<script>
+$(document).ready(function() {
+	$('#btnsubmit').on('click', function() {
+		$("#btnsubmit").attr("disabled", "disabled");
+		var file = $('#file').val();
+		var text = $('#text').val();
+		var user_id = $('#user_id').val();
+		var case_id = $('#case_id').val();
+		var city = $('#city').val();
+		if(name!="" && email!="" && phone!="" && city!=""){
+			$.ajax({
+				url: "save.php",
+				type: "POST",
+				data: {
+					"_token": "{{ csrf_token() }}",
+					"file": file,
+					"text": text,
+					"user_id": user_id,
+					"case_id": case_id				
+				},
+				cache: false,
+				success: function(dataResult){
+					var dataResult = JSON.parse(dataResult);
+					if(dataResult.statusCode==200){
+						$("#butsave").removeAttr("disabled");
+						$('#fupForm').find('input:text').val('');
+						$("#success").show();
+						$('#success').html('Data added successfully !'); 						
+					}
+					else if(dataResult.statusCode==201){
+					   alert("Error occured !");
+					}
+					
+				}
+			});
+		}
+		else{
+			alert('Please fill all the field !');
+		}
+	});
 });
-
-
 </script>
-<script type="text/javascript">
-               $(document).ready(function()
-                {    
-              $("a").click(function(event)
-               {            
-                event.preventDefault();
-                alert("prevented");
-               });
-                });
-             </script>
 

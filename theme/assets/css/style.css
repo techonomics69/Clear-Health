@@ -747,6 +747,7 @@ padding: 0.5rem;
    */
    padding: 11px;
    margin: 10px 10px;
+   background: #cc6a6a21;
 }
 .chating-section ul li:nth-child(odd) p {
     background: #f44336 0d;

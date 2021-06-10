@@ -786,7 +786,7 @@ width: 100%;
 }
 </style>
 @section('scriptsection')
-<script>
+<script type="text/javascript">
 $(document).ready(function() {
 	alert('safsfsdf');
 	$('#btnsubmit').on('click', function() {

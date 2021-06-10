@@ -789,12 +789,7 @@ width: 100%;
 @section('scriptsection')
 <script>
 $(document).ready(function() {
-    alert("I am an alert box!");
-});	
-</script>
-<script>
-$(document).ready(function() {
-	alert('safsfsdf');
+	 alert("I am an alert box!");
 	$('#btnsubmit').on('click', function() {
 		alert('hii');
 		$("#btnsubmit").attr("disabled", "disabled");

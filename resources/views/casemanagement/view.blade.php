@@ -762,7 +762,7 @@ setTimeout(function(){ location.reload(true); }, 3000);
 <script>
 $(document).ready(function() {
 	$('#btnsubmit').on('click', function() {
-			alert("Data submit !");
+
 		$("#btnsubmit").attr("disabled", "disabled");
 		var file = $('#file').val();
 		var text = $('#text').val();
@@ -782,11 +782,15 @@ $(document).ready(function() {
 				},
 
 				//cache: false,
-				success: function(response)
+				success: function(response){
+					alert("Data submit !");
+       
+      }
+				/*success: function(response)
 				{
 					alert("Data submit !");
 					reload();
-					/*var dataResult = JSON.parse(dataResult);
+					var dataResult = JSON.parse(dataResult);
 					if(dataResult.statusCode==200){
 						$("#btnsubmit").removeAttr("disabled");
 						$('#msgForm').find('input:text').val('');
@@ -795,13 +799,10 @@ $(document).ready(function() {
 					}
 					else if(dataResult.statusCode==201){
 					   //alert("Error occured !");
-					}*/
+					}
 					
-				}
+				}*/
 			});
-		/*}else{
-			alert('Please fill all the field !');
-		}*/
 	});
 });
 </script>

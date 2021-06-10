@@ -10,7 +10,7 @@
 </div>
 @endif
 
-@section('scriptsection')
+@section('script')
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 @endsection
 
@@ -758,35 +758,7 @@ setTimeout(function(){ location.reload(true); }, 3000);
 }
 </script>
 
-<!-- <script>
-function myFunction() {
-setTimeout(function(){ location.reload(true); }, 3000);
-}
-</script> -->
-@if (count($errors) > 0)
-<script type="text/javascript">
-$('html, body').animate({
-scrollTop: $("#testreoprtdiv").offset().top
-}, 2000);
-</script>
-@endif
 
-@endsection
-<style>
-.tab-content h4{
-font-size:16px;
-}
-.tab-content p{
-font-size:16px;
-margin-bottom:0;
-}
-.inner-section {
-width: 100%;
-
-}
-</style>
-
-@section('scriptsection')
 <script>
 $(document).ready(function() {
 	 alert("I am an alert box!");
@@ -833,4 +805,34 @@ $(document).ready(function() {
 	});
 });
 </script>
+<!-- <script>
+function myFunction() {
+setTimeout(function(){ location.reload(true); }, 3000);
+}
+</script> -->
+@if (count($errors) > 0)
+<script type="text/javascript">
+$('html, body').animate({
+scrollTop: $("#testreoprtdiv").offset().top
+}, 2000);
+</script>
+@endif
+
+@endsection
+<style>
+.tab-content h4{
+font-size:16px;
+}
+.tab-content p{
+font-size:16px;
+margin-bottom:0;
+}
+.inner-section {
+width: 100%;
+
+}
+</style>
+
+@section('scriptsection')
+
 @endsection

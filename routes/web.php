@@ -259,7 +259,7 @@ Route::group(['middleware' => ['auth']],function(){
     Route::get('admin/CaseStatusUpdateGetPrescriptionController', [CaseStatusUpdateGetPrescriptionController::class, 'index'])->name('CaseStatusUpdateGetPrescriptionController');
 
     /*offer's CRUD*/
-    Route::resource('admin/offers',, [OfferController::class]);
+    Route::resource('admin/offers', [OfferController::class]);
     Route::post('admin/offers/delete/{id}', [OfferController::class, 'destroy'])->name('offers.destroy');
     
 });

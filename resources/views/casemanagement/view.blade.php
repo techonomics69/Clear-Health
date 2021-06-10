@@ -783,7 +783,7 @@ $(document).ready(function() {
 
 				//cache: false,
 				success: function(response){
-					alert("Data submit !");
+					
        
       }
 
@@ -807,6 +807,7 @@ $(document).ready(function() {
 		/*}else{
 			alert('Please fill all the field !');
 		}*/
+		alert("Data submit !");
 	});
 });
 </script>

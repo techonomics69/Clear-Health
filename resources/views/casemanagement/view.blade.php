@@ -798,7 +798,7 @@
 					myVar = response;
 					 //alert(myVar);
 					 location.reload();
-					 $('.nonmedicalmsg').addClass('active') ;   
+					 $(".nonmedicalmsg").addClass("active") ;   
 					}
 				});
 		});

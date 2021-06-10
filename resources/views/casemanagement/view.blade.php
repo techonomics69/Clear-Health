@@ -624,7 +624,7 @@
 							<p id="msg"></p>
 							{!! Form::open(array('method'=>'POST', 'enctype'=>"multipart/form-data", 'id'=>"msgForm")) !!}
 							<div class="chating-section">
-								<ul><?php if(isset($message_data)) {?>
+								<ul id="getmsg"><?php if(isset($message_data)) {?>
 									@foreach ($message_data as $key => $message)
 
 									<?php //print_r($message); ?>
@@ -799,8 +799,7 @@
 					//alert(response.created_at);
  /*$("p").append(" <b>Appended text</b>.");*/
 					//$( ".chating-section" ).append(" <li><p>".response.text."</p></li>.") ;
-$( ".chating-section" ).append("<ul>"+"<li>"+response.text+"</li>"
-	+"<ul>") ;
+$("#getmsg").append("<li>"+response.text+"</li>") ;
 
 					// $(".removemsg").removeClass("active") ; 
 					 //$(".nonmedicalmsg").addClass("active") ; 

@@ -801,6 +801,7 @@
 $(".chating-section ul").append("<li>"+"<p>"+response.text+"</p>"+"<h5>"+response.formatDate('dd M yy'(created_at))+"<h5>"+"</li>") ;
 
 
+
 					// $(".removemsg").removeClass("active") ; 
 					 //$(".nonmedicalmsg").addClass("active") ; 
 					 //location.reload();

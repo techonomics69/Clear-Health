@@ -14,6 +14,9 @@ use App\Models\Checkout;
 use App\Models\Cart;
 use App\Models\Product;
 use App\Models\Mdmanagement;
+use App\Models\CasePrescriptions;
+use App\Models\PrescriptionCompound;
+use App\Models\PrescriptionMedication;
 use Session;
 
 
@@ -42,7 +45,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
         $system_status = 'Telehealth Evaluation Requested';
 
-   
+
 
         if($value['md_case_status']!= 'completed'){
 
@@ -55,10 +58,10 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                if(isset($value->answer) && $value->answer!=''){
 
                 $gender =  $value->answer;
-               }
-             }
+              }
             }
           }
+        }
 
         if($case_id != '' || $case_id != NULL){
 
@@ -85,7 +88,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
          curl_close($curl);
 
-        if(!empty($MdCaseStatus)){
+         if(!empty($MdCaseStatus)){
 
           $md_case_status = $MdCaseStatus->status;
 
@@ -97,7 +100,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
           $case_type = getCaseType($user_id,$case_id,$system_case_id);
 
-        
+
 
           if($gender == "Female" && $recommended_product == 'Accutane' && $case_type = 'new'){
 
@@ -136,12 +139,64 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                   $response = $this->getPrescription($case_id);
 
-                  $prescription_data = json_decode($response);
+                  if(!empty($response)){
+                    $prescription_data = json_decode($response);
+
+                    $input_prescription['dosespot_prescription_id'] = $prescription_data->dosespot_prescription_id;
+                    $input_prescription['dosespot_prescription_sync_status'] = $prescription_data->dosespot_prescription_sync_status;
+                    $input_prescription['dosespot_confirmation_status'] = $prescription_data->dosespot_confirmation_status;
+                    $input_prescription['dosespot_confirmation_status_details'] = $prescription_data->dosespot_confirmation_status_details;
+                    $input_prescription['refills'] = $prescription_data->refills;
+                    $input_prescription['quantity'] = $prescription_data->quantity;
+                    $input_prescription['days_supply'] = $prescription_data->days_supply;
+                    $input_prescription['no_substitutions'] = $prescription_data->no_substitutions;
+                    $input_prescription['pharmacy_notes'] = $prescription_data->pharmacy_notes;
+                    $input_prescription['directions'] = $prescription_data->directions;
+                    $input_prescription['dispense_unit_id'] = $prescription_data->dispense_unit_id;
+                    $input_prescription['preferred_pharmacy_id'] = $prescription_data->preferred_pharmacy_id;
+                    $input_prescription['case_id'] = $case_id;
+                    $input_prescription['user_id'] = $user_id;
+                    $input_prescription['system_case_id'] = $case_id;
+
+                    $CasePrescription_data = CasePrescriptions::create($input_prescription);
+
+                    if(isset($prescription_data->medication) && !empty($prescription_data->medication)){
+                      $input_medication['dosespot_medication_id'] = $prescription_data->medication->dosespot_medication_id;
+                      $input_medication['dispense_unit_id'] = $prescription_data->medication->dispense_unit_id;
+                      $input_medication['dose_form'] = $prescription_data->medication->dose_form;
+                      $input_medication['route'] = $prescription_data->medication->route;
+                      $input_medication['strength'] = $prescription_data->medication->strength;
+                      $input_medication['generic_product_name'] = $prescription_data->medication->generic_product_name;
+                      $input_medication['lexi_gen_product_id'] = $prescription_data->medication->lexi_gen_product_id;
+                      $input_medication['lexi_drug_syn_id'] = $prescription_data->medication->lexi_drug_syn_id;
+                      $input_medication['lexi_synonym_type_id'] = $prescription_data->medication->lexi_synonym_type_id;
+                      $input_medication['lexi_gen_drug_id'] = $prescription_data->medication->lexi_gen_drug_id;
+                      $input_medication['rx_cui'] = $prescription_data->medication->rx_cui;
+                      $input_medication['otc'] = $prescription_data->medication->otc;
+                      $input_medication['ndc'] = $prescription_data->medication->ndc;
+                      $input_medication['schedule'] = $prescription_data->medication->schedule;
+                      $input_medication['display_name'] = $prescription_data->medication->display_name;
+                      $input_medication['monograph_path'] = $prescription_data->medication->monograph_path;
+                      $input_medication['drug_classification'] = $prescription_data->medication->drug_classification;
+                      $input_medication['state_schedules'] = $prescription_data->medication->state_schedules;
+
+                      $CasePrescription_data = PrescriptionMedication::create($input_medication);
+
+                    }
 
 
-                }
 
-          }else if($gender == "Male" && $recommended_product == 'Accutane'){
+                    if(!empty($prescription_data->partner_compound)){
+                     $input_compound['partner_compound_id'] = $prescription_data->partner_compound->partner_compound_id;
+                     $input_compound['title'] = $prescription_data->partner_compound->title;
+
+                     $CasePrescription_data = PrescriptionCompound::create($input_compound);
+                   }
+                 }       
+
+               }
+
+             }else if($gender == "Male" && $recommended_product == 'Accutane'){
                 /*
                   Initial Accutane Male Flow:
             
@@ -151,23 +206,82 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                   4. Prescription Approved
                 */
 
-                if(($md_status != null || $value['md_status']!= null) && $md_case_status == 'pending' && $case_type = 'new'){
+                  if(($md_status != null || $value['md_status']!= null) && $md_case_status == 'pending' && $case_type = 'new'){
 
-                  $system_status = 'MD Assigned';
-                }
+                    $system_status = 'MD Assigned';
+                  }
 
-                if($md_case_status =='support' && $case_type = 'new'){
+                  if($md_case_status =='support' && $case_type = 'new'){
 
-                  $system_status = ' Awaiting Prescription Approval';
-                }
+                    $system_status = ' Awaiting Prescription Approval';
+                  }
 
-                if($md_case_status == 'dosespot confirmed' && $case_type = 'new'){
+                  if($md_case_status == 'dosespot confirmed' && $case_type = 'new'){
 
-                  $system_status = 'Prescription Approved';
-                }
-                
+                    $system_status = 'Prescription Approved';
 
-         }else{
+
+
+                  $response = $this->getPrescription($case_id);
+
+                  if(!empty($response)){
+                    $prescription_data = json_decode($response);
+
+                    $input_prescription['dosespot_prescription_id'] = $prescription_data->dosespot_prescription_id;
+                    $input_prescription['dosespot_prescription_sync_status'] = $prescription_data->dosespot_prescription_sync_status;
+                    $input_prescription['dosespot_confirmation_status'] = $prescription_data->dosespot_confirmation_status;
+                    $input_prescription['dosespot_confirmation_status_details'] = $prescription_data->dosespot_confirmation_status_details;
+                    $input_prescription['refills'] = $prescription_data->refills;
+                    $input_prescription['quantity'] = $prescription_data->quantity;
+                    $input_prescription['days_supply'] = $prescription_data->days_supply;
+                    $input_prescription['no_substitutions'] = $prescription_data->no_substitutions;
+                    $input_prescription['pharmacy_notes'] = $prescription_data->pharmacy_notes;
+                    $input_prescription['directions'] = $prescription_data->directions;
+                    $input_prescription['dispense_unit_id'] = $prescription_data->dispense_unit_id;
+                    $input_prescription['preferred_pharmacy_id'] = $prescription_data->preferred_pharmacy_id;
+                    $input_prescription['case_id'] = $case_id;
+                    $input_prescription['user_id'] = $user_id;
+                    $input_prescription['system_case_id'] = $case_id;
+
+                    $CasePrescription_data = CasePrescriptions::create($input_prescription);
+
+                    if(isset($prescription_data->medication) && !empty($prescription_data->medication)){
+                      $input_medication['dosespot_medication_id'] = $prescription_data->medication->dosespot_medication_id;
+                      $input_medication['dispense_unit_id'] = $prescription_data->medication->dispense_unit_id;
+                      $input_medication['dose_form'] = $prescription_data->medication->dose_form;
+                      $input_medication['route'] = $prescription_data->medication->route;
+                      $input_medication['strength'] = $prescription_data->medication->strength;
+                      $input_medication['generic_product_name'] = $prescription_data->medication->generic_product_name;
+                      $input_medication['lexi_gen_product_id'] = $prescription_data->medication->lexi_gen_product_id;
+                      $input_medication['lexi_drug_syn_id'] = $prescription_data->medication->lexi_drug_syn_id;
+                      $input_medication['lexi_synonym_type_id'] = $prescription_data->medication->lexi_synonym_type_id;
+                      $input_medication['lexi_gen_drug_id'] = $prescription_data->medication->lexi_gen_drug_id;
+                      $input_medication['rx_cui'] = $prescription_data->medication->rx_cui;
+                      $input_medication['otc'] = $prescription_data->medication->otc;
+                      $input_medication['ndc'] = $prescription_data->medication->ndc;
+                      $input_medication['schedule'] = $prescription_data->medication->schedule;
+                      $input_medication['display_name'] = $prescription_data->medication->display_name;
+                      $input_medication['monograph_path'] = $prescription_data->medication->monograph_path;
+                      $input_medication['drug_classification'] = $prescription_data->medication->drug_classification;
+                      $input_medication['state_schedules'] = $prescription_data->medication->state_schedules;
+
+                      $CasePrescription_data = PrescriptionMedication::create($input_medication);
+
+                    }
+
+                    
+
+                    if(!empty($prescription_data->partner_compound)){
+                     $input_compound['partner_compound_id'] = $prescription_data->partner_compound->partner_compound_id;
+                     $input_compound['title'] = $prescription_data->partner_compound->title;
+
+                     $CasePrescription_data = PrescriptionCompound::create($input_compound);
+                   }
+                 }
+                  }
+
+
+                }else{
                 /*
                 Topical Male & Female:
 
@@ -178,6 +292,66 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                 if($md_case_status == 'dosespot confirmed' && $case_type = 'new'){
 
                   $system_status = 'Prescription Approved';
+
+
+
+                  
+                  $response = $this->getPrescription($case_id);
+
+                  if(!empty($response)){
+                    $prescription_data = json_decode($response);
+
+                    $input_prescription['dosespot_prescription_id'] = $prescription_data->dosespot_prescription_id;
+                    $input_prescription['dosespot_prescription_sync_status'] = $prescription_data->dosespot_prescription_sync_status;
+                    $input_prescription['dosespot_confirmation_status'] = $prescription_data->dosespot_confirmation_status;
+                    $input_prescription['dosespot_confirmation_status_details'] = $prescription_data->dosespot_confirmation_status_details;
+                    $input_prescription['refills'] = $prescription_data->refills;
+                    $input_prescription['quantity'] = $prescription_data->quantity;
+                    $input_prescription['days_supply'] = $prescription_data->days_supply;
+                    $input_prescription['no_substitutions'] = $prescription_data->no_substitutions;
+                    $input_prescription['pharmacy_notes'] = $prescription_data->pharmacy_notes;
+                    $input_prescription['directions'] = $prescription_data->directions;
+                    $input_prescription['dispense_unit_id'] = $prescription_data->dispense_unit_id;
+                    $input_prescription['preferred_pharmacy_id'] = $prescription_data->preferred_pharmacy_id;
+                    $input_prescription['case_id'] = $case_id;
+                    $input_prescription['user_id'] = $user_id;
+                    $input_prescription['system_case_id'] = $case_id;
+
+                    $CasePrescription_data = CasePrescriptions::create($input_prescription);
+
+                    if(isset($prescription_data->medication) && !empty($prescription_data->medication)){
+                      $input_medication['dosespot_medication_id'] = $prescription_data->medication->dosespot_medication_id;
+                      $input_medication['dispense_unit_id'] = $prescription_data->medication->dispense_unit_id;
+                      $input_medication['dose_form'] = $prescription_data->medication->dose_form;
+                      $input_medication['route'] = $prescription_data->medication->route;
+                      $input_medication['strength'] = $prescription_data->medication->strength;
+                      $input_medication['generic_product_name'] = $prescription_data->medication->generic_product_name;
+                      $input_medication['lexi_gen_product_id'] = $prescription_data->medication->lexi_gen_product_id;
+                      $input_medication['lexi_drug_syn_id'] = $prescription_data->medication->lexi_drug_syn_id;
+                      $input_medication['lexi_synonym_type_id'] = $prescription_data->medication->lexi_synonym_type_id;
+                      $input_medication['lexi_gen_drug_id'] = $prescription_data->medication->lexi_gen_drug_id;
+                      $input_medication['rx_cui'] = $prescription_data->medication->rx_cui;
+                      $input_medication['otc'] = $prescription_data->medication->otc;
+                      $input_medication['ndc'] = $prescription_data->medication->ndc;
+                      $input_medication['schedule'] = $prescription_data->medication->schedule;
+                      $input_medication['display_name'] = $prescription_data->medication->display_name;
+                      $input_medication['monograph_path'] = $prescription_data->medication->monograph_path;
+                      $input_medication['drug_classification'] = $prescription_data->medication->drug_classification;
+                      $input_medication['state_schedules'] = $prescription_data->medication->state_schedules;
+
+                      $CasePrescription_data = PrescriptionMedication::create($input_medication);
+
+                    }
+
+                    
+
+                    if(!empty($prescription_data->partner_compound)){
+                     $input_compound['partner_compound_id'] = $prescription_data->partner_compound->partner_compound_id;
+                     $input_compound['title'] = $prescription_data->partner_compound->title;
+
+                     $CasePrescription_data = PrescriptionCompound::create($input_compound);
+                   }
+                 }
                 }
               }
 
@@ -203,7 +377,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                 $md_case_data = Mdmanagement::create($inputmd_data);
               }
 
-        }
+            }
             //md status completed
 
           }

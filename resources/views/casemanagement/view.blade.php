@@ -616,7 +616,8 @@ if($user_case_management_data['product_type'] == "accutane"){?>
 					<div class="box-block mtb32" id="tab1"> -->
 						
 						<div class="right-cht">
-							{!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
+							 <p id="msg"></p>
+							{!! Form::open(array('route' => 'sendMessageNonMedical','method'=>'POST', 'enctype'=>"multipart/form-data",'id="msgForm"')) !!}
 							<div class="chating-section">
 								<ul><?php if(isset($message_data)) {?>
 									@foreach ($message_data as $key => $message)
@@ -781,4 +782,22 @@ width: 100%;
 }
 </style>
 
+<script type="text/javascript">
+
+	$(document).on('submit','#msgForm',function(e){
+        e.preventDefault();
+       
+        $.ajax({
+        method:"POST",
+        url: "{{ route('sendMessageNonMedical') }}",
+        data:{"_token": "{{ csrf_token() }}",
+        $(this).serialize()},
+        success: function(data){
+        $('#msg').html(data);
+        $('#msgForm').find('input').val('')
+    }});
+});
+
+
+</script>
 

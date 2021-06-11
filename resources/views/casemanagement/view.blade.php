@@ -765,11 +765,11 @@
 
 				type: "POST",
 				data: {
-					"_token": "{{ csrf_token() }}",
-					"file": file,
-					"text": text,
-					"user_id": user_id,
-					"case_id": case_id				
+					_token: "{{ csrf_token() }}",
+					file: file,
+					text: text,
+					user_id: user_id,
+					case_id: case_id				
 				},
 				dataType:"json",
 				

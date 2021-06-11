@@ -468,7 +468,7 @@ $sender = "admin";
 
 
 echo"<pre>";
-print_r($documents);
+print_r($request->all());
 echo"</pre>";
 die();
 

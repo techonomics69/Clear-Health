@@ -95,6 +95,20 @@
 			"oSearch": { "bSmart": false, "bRegex": true }
 		});
 	});
+
+	function deleteoffer(e){
+			swal({
+				title: "Are you sure?",
+				text: "",
+				icon: "warning",
+				buttons: true,
+				dangerMode: true,
+			}).then((willDelete) => {
+				if (willDelete) {
+					$('.btn_submit'+e)[0].click();    
+				} 
+			});
+		};
 </script>
 @endsection
 

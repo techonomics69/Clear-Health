@@ -466,6 +466,12 @@ $sender = "admin";
     //code to upload files ids
      $documents = $request->file('file');
 
+
+echo"<pre>";
+print_r($documents)
+echo"</pre>";
+die();
+
      if(!empty($documents)){
       $file =  $documents->getClientOriginalName();
       $doc_file_name =  time().'-'.$file;

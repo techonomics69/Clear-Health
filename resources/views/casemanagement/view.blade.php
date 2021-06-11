@@ -754,6 +754,7 @@
 <script>
 	$(document).ready(function() {
 		$('#btnsubmit').on('click', function(event) {
+			alert("test");
 
 			//$("#btnsubmit").attr("disabled", "disabled");
 			/*var file = $('#file').val();

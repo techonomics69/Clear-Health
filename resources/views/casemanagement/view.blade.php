@@ -758,12 +758,12 @@
 			var text  = $('#text').val();
 			var user_id = $('#user_id').val();
 			var case_id = $('#case_id').val();
-			var form_data = new FormData();
-        	form_data.append('file', file);
-        	form_data.append('text', text);
-        	form_data.append('user_id', user_id);
-        	form_data.append('case_id', case_id);
-        	form_data.append('_token', '{{csrf_token()}}');
+			var formData = new FormData();
+        	formData.append('file', file);
+        	formData.append('text', text);
+        	formData.append('user_id', user_id);
+        	formData.append('case_id', case_id);
+        	formData.append('_token', '{{csrf_token()}}');
 
 
 
@@ -771,7 +771,7 @@
 			//var formData = $(this);
 			//alert("test");
 			//alert(formData);
-			console.log('formdata:', form_data);
+			console.log('formdata:', formData);
 			$.ajax({
 				url: "{{URL('admin/casemanagement/sendMessageNonMedical')}}",
 				type: "POST",

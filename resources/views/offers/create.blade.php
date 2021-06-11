@@ -140,8 +140,13 @@
 
     $(document).ready(function() {
         $(function () {
-            $('.available_date').datepicker();
+            $('.from_date').datepicker();
         });
+
+        $(function () {
+            $('.to_date').datepicker();
         });
+
+    });
 </script>
 @endsection

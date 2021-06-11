@@ -754,15 +754,15 @@
 	$(document).ready(function() {
 		$('#btnsubmit').on('click', function(event) {
 			event.preventDefault();
-			var file_data = $('#file').prop('files')[0];
-			var file_data = $('#text').val();
-			var file_data = $('#user_id').val();
-			var file_data = $('#case_id').val();
+			var file = $('#file').prop('files')[0];
+			var text  = $('#text').val();
+			var user_id = $('#user_id').val();
+			var case_id = $('#case_id').val();
 			var form_data = new FormData();
-        	form_data.append('file', file_data);
-        	form_data.append('text', file_data);
-        	form_data.append('user_id', file_data);
-        	form_data.append('case_id', file_data);
+        	form_data.append('file', file);
+        	form_data.append('text', text);
+        	form_data.append('user_id', user_id);
+        	form_data.append('case_id', case_id);
 
 
 

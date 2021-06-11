@@ -774,9 +774,8 @@
       			processData: false,
       			contentType: false,
 				success: function(response){
-					$(".chating-section ul").append("<li>"+"<p>"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");
-					
-					
+					alert(response.file_path);
+					$(".chating-section ul").append("<li>"+"<p>"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");					
 				}
 			});
 		});

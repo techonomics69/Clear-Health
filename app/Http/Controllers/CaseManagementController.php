@@ -203,18 +203,12 @@ class CaseManagementController extends Controller
 
 // Medical msg
 
- $r = get_token();
+    $r = get_token();
     $token_data = json_decode($r);
     $token = $token_data->access_token;
-
     $case_id = $user_case_management_data['md_case_id'];
-    //$case_message_id = $request['system_case_id'];
     $channel = 'patient';
-
-
-
     $curl = curl_init();
-
     curl_setopt_array($curl, array(
       CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/messages?channel='.$channel,
       CURLOPT_RETURNTRANSFER => true,
@@ -231,18 +225,9 @@ class CaseManagementController extends Controller
     ));
 
     $response = curl_exec($curl);
-
-  /*echo "<pre>";
-  print_r($response);
-  echo "</pre>";
-  die();*/
-
     curl_close($curl);
-    
     $data = json_decode($response);
-
     $msg_history = array();
-
     $i = 0;
     foreach($data as $key=>$value){
       $msg_history[$i]['message'] = $value->text;

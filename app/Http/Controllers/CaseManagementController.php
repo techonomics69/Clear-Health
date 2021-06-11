@@ -234,7 +234,7 @@ class CaseManagementController extends Controller
 
 
   echo "<pre>";
-  print_r($channel);
+  print_r('https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/messages?channel='.$channel);
   echo "</pre>";
   die();
 

@@ -770,7 +770,7 @@
 			//var formData = $(this);
 			//alert("test");
 			//alert(formData);
-			console.log('formdata:', case_id)
+			console.log('formdata:', form_data)
 			$.ajax({
 				url: "{{URL('admin/casemanagement/sendMessageNonMedical')}}",
 				type: "POST",
@@ -779,6 +779,14 @@
 				
 				dataType:"json",
 				
+ //dataType:'json',
+      async:false,
+     // type:'post',
+      processData: false,
+      contentType: false,
+
+
+
 				success: function(response){
 					$(".chating-section ul").append("<li>"+"<p>"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>") ; 
 				}

@@ -46,28 +46,7 @@ class OfferController extends Controller
 
 	public function create()
 	{	
-		//$roles = Role::pluck('name','id')->all();
-		//$states = State::pluck('name','id')->all();
-		//$franchise = Franchise::select('name')->get();
-		$headerLeftContent = "<p class='name-page'>Create New Offer</p>";
-
-		$headerRightContent = '<ol class="breadcrumb m-0">
-		<li class="breadcrumb-item"><a href="' . url('/admin/home'). '">Dashboard</a></li>
-		<li class="breadcrumb-item"><a href="'.url('/admin/offers/').'">Offers</a></li>
-		<li class="breadcrumb-item active">Create Offer</li> 
-		</ol>';
-
-		$vehicle = Vehicle::join('brand', 'vehicles.brand_name', '=', 'brand.id')
-				->join('model', 'vehicles.model', '=', 'model.id')
-				->orderBy('vehicles.id','DESC')
-				->select('vehicles.id AS vehicle_id','vehicles.vehicle_ref','model.model_name','brand.brand_name','vehicles.trim','vehicles.km_driven','vehicles.year','vehicles.status')
-				->where('vehicles.status',1)
-				->get();
-
-		$addonProducts = AddonProducts::orderBy('id','DESC')->get();
-
-
-		return view('offers.create',compact('headerLeftContent','headerRightContent','vehicle','addonProducts'));
+		return view('offers.create',compact('');
 	}
 
 	

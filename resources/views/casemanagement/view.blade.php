@@ -590,27 +590,15 @@
 
 										<div class="chating-section">
 											<ul>
-<?php if(isset($msg_history)) {?>
-									@foreach ($msg_history as $key => $md_message)
+												<?php if(isset($msg_history)) {?>
+													@foreach ($msg_history as $key => $md_message)
 
-												<li>
-													<p>{{ $md_message['message'] }}</p>
-													<h5>{{ $md_message['msg_date'] }}</h5>
-												</li>
-												@endforeach
-											<?php } ?>
-												<!-- <li>
-													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-													<h5>Monday:10:20</h5>
-												</li>
-												<li>
-													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-													<h5>Monday:10:20</h5>
-												</li>
-												<li>
-													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-													<h5>Monday:10:20</h5>
-												</li> -->
+													<li>
+														<p>{{ $md_message['message'] }}</p>
+														<h5>{{ $md_message['msg_date'] }}</h5>
+													</li>
+													@endforeach
+												<?php } ?>
 											</ul>
 										</div> 
 									</div>
@@ -646,12 +634,8 @@
 														<?php
 													}
 													?>
-
 													<?php
-
-
 												}
-
 												?>
 											</p>
 											<h5>

@@ -776,7 +776,7 @@
 				processData: false,
 				contentType: false,
 				success: function(response){
-					if(response == null){ 
+					if(response.text == null){ 
 						$(".chating-section ul").append("<li>"+"<p>"+"<img src={{URL('/')}}/public/Message_files/" +response.file_name+ ">"+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");
 					}else{
 						$(".chating-section ul").append("<li>"+"<p>"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");	

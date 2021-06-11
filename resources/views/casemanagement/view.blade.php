@@ -619,25 +619,25 @@
 												echo $message['message'];
 											}else{
 												?>
-														<img src="{{ asset('public/Message_files/'.$message['file_name']) }}" type="media_type"width='100'>
-														<a target="_blank" download="" href="{{ asset('public/Message_files/'.$message['file_name']) }}"> Download</a>	
-													
-													<?php
-												}
-												?>
-											</p>
-											<h5>
-												<?php 
-												if(isset($message['date']) && $message['date']!=''){
-													echo $message['date'];
-												}?>
-											</h5>
-										</li>
-										@endforeach
-									<?php }?>
-								</ul>
-							</div>
-							<div class="last-typing-section">
+												<img src="{{ asset('public/Message_files/'.$message['file_name']) }}" type="media_type"width='100'>
+												<a target="_blank" download="" href="{{ asset('public/Message_files/'.$message['file_name']) }}"> Download</a>	
+												
+												<?php
+											}
+											?>
+										</p>
+										<h5>
+											<?php 
+											if(isset($message['date']) && $message['date']!=''){
+												echo $message['date'];
+											}?>
+										</h5>
+									</li>
+									@endforeach
+								<?php }?>
+							</ul>
+						</div>
+						<div class="last-typing-section">
 <!-- <div class="camera lastimg">
 <img src="{{asset('public/images/camera.png')}}" alt="">
 </div> -->
@@ -752,10 +752,10 @@
 
 <script>
 	$(document).ready(function() {
-		$('#btnsubmit').on('submit', function(event) {
-			 event.preventDefault();
+		$('#msgForm').on('submit', function(event) {
+			event.preventDefault();
 			
-			var formData = new FormData($(this));
+			var formData = new FormData($(this)[0]);
 			//var formData = $(this);
 			//alert("test");
 			//alert(formData);
@@ -765,22 +765,13 @@
 				type: "POST",
 				data: formData,
 
-				/*data: {
-					_token: "{{ csrf_token() }}",
-					file: file,
-					text: text,
-					user_id: user_id,
-					case_id: case_id				
-				},*/
+				
 				dataType:"json",
 				
 				success: function(response){
-					$(".chating-section ul").append("<li>"+"<p>"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>") ;
-
-					 //location.reload();
-					 
-					}
-				});
+					$(".chating-section ul").append("<li>"+"<p>"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>") ; 
+				}
+			});
 		});
 	});
 </script>

@@ -763,7 +763,7 @@
 			$.ajax({
 				url: "{{URL('admin/casemanagement/sendMessageNonMedical')}}",
 				type: "POST",
-				data: new FormData($(this)[0],
+				data: new FormData($(this)[0]),
 
 				/*data: {
 					_token: "{{ csrf_token() }}",

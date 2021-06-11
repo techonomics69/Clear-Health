@@ -776,7 +776,9 @@
 				success: function(response){
 					/*alert(response.file_path);*/
 					//$(".chating-section ul").append("<li>"+"<p>"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");			
-					$(".chating-section ul").append("<li>"+"<p>"+"<img width='100' src={{URL('/')}}/public/Message_files/" +response.file_name+ "/>"+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");	 
+					$(".chating-section ul").append("<li>"+"<p>"+"<img src={{URL('/')}}/public/Message_files/" +response.file_name+ ">"+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");	 
+					
+
 				}
 			});
 		});

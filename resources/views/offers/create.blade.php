@@ -181,7 +181,9 @@
             //$('.offer_amount').hide();
             //$('.offer_gift').hide();
             //$('.offer_addon').hide();
-            $('.promocode_section').hide();
+            //$('.promocode_section').hide();
+
+            alert('hii');
 
             var valueSelected = this.value;
 

@@ -755,15 +755,15 @@
 		$('#msgForm').on('submit', function(event) {
 			 event.preventDefault();
 			
-			var formData = new FormData($(this)[0]);
+			//var formData = new FormData($(this)[0]);
 			//var formData = new FormData(this);
 			//alert("test");
 			//alert(formData);
-			console.log('formdata:', formData)
+			//console.log('formdata:', formData)
 			$.ajax({
 				url: "{{URL('admin/casemanagement/sendMessageNonMedical')}}",
 				type: "POST",
-				data: formData,
+				data: new FormData($(this)[0],
 
 				/*data: {
 					_token: "{{ csrf_token() }}",

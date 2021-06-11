@@ -203,18 +203,12 @@ class CaseManagementController extends Controller
 
 // Medical msg
 
- /*$r = get_token();
+    /*$r = get_token();
     $token_data = json_decode($r);
     $token = $token_data->access_token;
-
     $case_id = $user_case_management_data['md_case_id'];
-    //$case_message_id = $request['system_case_id'];
     $channel = 'patient';
-
-
-
     $curl = curl_init();
-
     curl_setopt_array($curl, array(
       CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/messages?channel='.$channel,
       CURLOPT_RETURNTRANSFER => true,
@@ -230,19 +224,10 @@ class CaseManagementController extends Controller
       ),
     ));
 
-    $response = curl_exec($curl);*/
-
-  /*echo "<pre>";
-  print_r($response);
-  echo "</pre>";
-  die();*/
-
-    /*curl_close($curl);
-    
+    $response = curl_exec($curl);
+    curl_close($curl);
     $data = json_decode($response);
-
     $msg_history = array();
-
     $i = 0;
     foreach($data as $key=>$value){
       $msg_history[$i]['message'] = $value->text;
@@ -456,20 +441,10 @@ public function sendMessageNonMedical(Request $request){
 
     $case_id = (isset($request['md_case_id']) && $request['md_case_id']!='')?$request['md_case_id']:0;
     $system_case_id = $request['case_id'];
-
-    //$users_message_type = (isset($request['users_message_type'])&&$request['users_message_type']!='')?$request['users_message_type']:'';//medical/non_medical
-$users_message_type = 'Non-Medical';
-    //$sender = $request['sender']; //user/admin
-$sender = "admin";
+    $users_message_type = 'Non-Medical';
+    $sender = "admin";
     $text = $request['text']; 
-
-    //code to upload files ids
-     $documents = $request->file('file');
-
-echo"<pre>";
-print_r($documents);
-echo"</pre>";
-die();
+    $documents = $request->file('file');
 
      if(!empty($documents)){
       $file =  $documents->getClientOriginalName();
@@ -503,7 +478,7 @@ die();
     $input_data['sender'] = $sender;
 
     $message_data = Messages::create($input_data);
-   $message_data['msg_date']= $message_data['created_at']->format('M j'); 
+    $message_data['msg_date']= $message_data['created_at']->format('M j'); 
 
     //$message_data['date'] = date('M j', $message_data['created_at']);
 /*echo "<pre>";

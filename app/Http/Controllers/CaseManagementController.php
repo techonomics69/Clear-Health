@@ -466,10 +466,10 @@ $sender = "admin";
     //code to upload files ids
      $documents = $request->file('file');
 
-echo"<pre>";
+/*echo"<pre>";
 print_r($documents);
 echo"</pre>";
-die();
+die();*/
 
      if(!empty($documents)){
       $file =  $documents->getClientOriginalName();

@@ -648,12 +648,10 @@
 			<label for='file'>
 				<img src="{{asset('public/images/paperclip.png')}}" alt="">
 			</label>
-			<input id="file" type="file" name="file" (change)="uploadFile($event)"/>
+			<input id="file" type="file" name="file">
 		</div>
 	</div>
 </div>
-
-
 
 
 <!-- <div class="attachment lastimg">
@@ -757,11 +755,11 @@
 		$('#msgForm').on('submit', function(event) {
 			 event.preventDefault();
 			
-			var formData = new FormData($(this)[0]);
-			//var formData = new FormData(this);
+			//var formData = new FormData($(this)[0]);
+			var formData =$(this);
 			//alert("test");
 			//alert(formData);
-			console.log('formdata:', $(this)[0])
+			console.log('formdata:', formData)
 			$.ajax({
 				url: "{{URL('admin/casemanagement/sendMessageNonMedical')}}",
 				type: "POST",

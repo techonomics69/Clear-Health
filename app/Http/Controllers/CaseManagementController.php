@@ -203,7 +203,7 @@ class CaseManagementController extends Controller
 
 // Medical msg
 
- /*$r = get_token();
+ $r = get_token();
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
@@ -230,14 +230,14 @@ class CaseManagementController extends Controller
       ),
     ));
 
-    $response = curl_exec($curl);*/
+    $response = curl_exec($curl);
 
   /*echo "<pre>";
   print_r($response);
   echo "</pre>";
   die();*/
 
-    /*curl_close($curl);
+    curl_close($curl);
     
     $data = json_decode($response);
 
@@ -267,7 +267,7 @@ class CaseManagementController extends Controller
       }
 
       $i++;
-    }*/
+    }
 
    /* if(!empty($msg_history) && count($msg_history)>0 ){
       return $this->sendResponse($msg_history,'Message retrieved successfully');
@@ -284,7 +284,7 @@ class CaseManagementController extends Controller
   echo "</pre>";
   die();*/
 
-  return view('casemanagement.view',compact('user_case_management_data','category','general_que','accutane_que','topical_que','skincare_summary','message_data','message_details'));
+  return view('casemanagement.view',compact('user_case_management_data','category','general_que','accutane_que','topical_que','skincare_summary','message_data','message_details','msg_history'));
 
 }
 

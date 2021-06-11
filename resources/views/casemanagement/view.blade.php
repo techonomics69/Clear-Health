@@ -590,12 +590,14 @@
 
 										<div class="chating-section">
 											<ul>
-
+<?php if(isset($msg_history)) {?>
+									@foreach ($msg_history as $key => $md_message)
 
 												<li>
-													<p>{{ $msg_history['message']}}</p>
+													<p>{{ $md_message['message']}}</p>
 													<h5>Monday:10:20</h5>
 												</li>
+											<?php } ?>
 												<!-- <li>
 													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
 													<h5>Monday:10:20</h5>

@@ -621,7 +621,7 @@
 												?>
 												<img src="{{ asset('public/Message_files/'.$message['file_name']) }}" type="media_type"width='100'>
 												<a target="_blank" download="" href="{{ asset('public/Message_files/'.$message['file_name']) }}"> Download</a>	
-												
+
 												<?php
 											}
 											?>
@@ -752,7 +752,7 @@
 
 <script>
 	$(document).ready(function() {
-		$('#msgForm').on('submit', function(event) {
+		$('form').on('submit', function(event) {
 			event.preventDefault();
 			
 			var formData = new FormData($(this)[0]);

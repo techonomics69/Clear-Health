@@ -626,14 +626,14 @@
 											if(isset($message['message']) && $message['message']!=''){
 												echo $message['message'];
 											}else{
-												if(isset($message['file_name']) && $message['file_name'] !='')
-													{ ?>
+												/*if(isset($message['file_name']) && $message['file_name'] !='')
+													{*/ ?>
 														<img src="{{ asset('public/Message_files/'.$message['file_name']) }}" type="media_type"width='100'>
 														<a target="_blank" download="" href="{{ asset('public/Message_files/'.$message['file_name']) }}"> Download</a>	
-													<? }else{ ?>
+													<!-- <? }//else{ ?>
 														<?php
 													}
-													?>
+													?> -->
 													<?php
 												}
 												?>

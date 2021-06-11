@@ -766,12 +766,12 @@
 			
 			//var formData = new FormData($(this)[0]);
 			var formData = new FormData(this);
-			alert("test");
+			//alert("test");
 			$.ajax({
 				url: "{{URL('admin/casemanagement/sendMessageNonMedical')}}",
 				type: "POST",
 				data: formData,
-				
+
 				/*data: {
 					_token: "{{ csrf_token() }}",
 					file: file,

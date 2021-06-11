@@ -57,9 +57,9 @@
 										<td>{{ $offer->from_date}}</td>
 										<td>{{ $offer->to_date}}</td>
 										<td>
-											<form action="{{ url('offers/delete',$offer->id) }}" method="POST" enctype="multipart/form-data">
+										
 
-												@csrf
+									
 
 												 <a class="icons edit-icon" href="{{ route('offers.edit',$offer->id) }}"><i class="fa fa-edit"></i></a>
 
@@ -75,7 +75,6 @@
 												{{-- <a class="btn btn-light edit-icon user_delete" href="javascript:void(0)" id="{{$offer->id}}" onclick="deleteoffer({{$offer->id}})"><i class="fa fa-trash" aria-hidden="true"></i></a> --}}
 												
 
-											</form>
 										</td>
 									</tr>
 									@endforeach

@@ -775,7 +775,7 @@
 			$.ajax({
 				url: "{{URL('admin/casemanagement/sendMessageNonMedical')}}",
 				type: "POST",
-				data: form_data,
+				data: formData,
 				dataType:"json",
 				
  //dataType:'json',

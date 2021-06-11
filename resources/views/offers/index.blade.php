@@ -41,8 +41,8 @@
 									<tr>
 										<th width="60px">SR No</th>
 										<th>No</th>
-										<th>Title</th>
-										<th>description</th>
+										<th>Promocode</th>
+										<th>Description</th>
 										<th>Start Date</th>
 										<th>End Date</th>
 										<th width="200px">Action</th>
@@ -53,10 +53,10 @@
 									@foreach ($data as $key => $offer)
 									<tr>
 										<td>{{ ++$i }}</td>  
-										<td>{{ $offer->title }}</td>
+										<td>{{ $offer->promocode }}</td>
 										<td>{{ $offer->description }}</td>
 										<td>{{ $offer->from_date}}</td>
-										<td>{{$offer ->to_date}}</td>
+										<td>{{ $offer->to_date}}</td>
 										<td>
 											<form action="{{ url('offers/delete',$offer->id) }}" method="POST" enctype="multipart/form-data">
 
@@ -64,13 +64,12 @@
 
 												<button type="submit" class="btn_submit{{$offer->id}}" style="display:none;"></button>
 
-												@can('offer_edit')
+												
 												<a class="btn btn-light edit-icon" href="{{ route('offers.edit',$offer->id) }}"><i class="fa fa-edit"></i></a>
-												@endcan
-
-												@can('offer_delete')
+											
+											
 												<a class="btn btn-light edit-icon user_delete" href="javascript:void(0)" id="{{$offer->id}}" onclick="deleteoffer({{$offer->id}})"><i class="fa fa-trash" aria-hidden="true"></i></a>
-												@endcan
+												
 
 											</form>
 										</td>

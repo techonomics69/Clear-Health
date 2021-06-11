@@ -764,13 +764,12 @@
 			var case_id = $('#case_id').val();*/
 			 event.preventDefault();
 			
-			var formData = new FormData($(this)[0]);
+			//var formData = new FormData($(this)[0]);
 			alert("test");
 			$.ajax({
 				url: "{{URL('admin/casemanagement/sendMessageNonMedical')}}",
-
 				type: "POST",
-				data: formData,
+				data: new FormData(this),
 				/*data: {
 					_token: "{{ csrf_token() }}",
 					file: file,

@@ -63,95 +63,27 @@ class OfferController extends Controller
 
 		//dd($request->all());
 		$this->validate($request, [
-			'title' => 'required',
+			'promocode' => 'required',
 			'from_date' => 'required',
 			'to_date' => 'required',
 			'description' => 'required',
-			//'photo' => 'mimes:jpeg,jpg,png,PNG,JPG,JPEG',	
-			'offer_type' => 'required',	
-			'vehicle'=> 'required',	
+			'promocode_type' => 'required',
+			'promocode_value' => 'required',	
 		]);
-
-	/*foreach($request->vehicle as $vehicle){
-
-			echo "<pre>";
-			print_r($vehicle);
-			echo "<pre>";
-			exit();	
-
-	}
-*/
-
-		if(isset($request->percentage) && $request->percentage != null){
-			$this->validate($request, [
-			'percentage'=>'numeric',
-			
-		]);
-		}
-
-		if(isset($request->amount) && $request->amount != null){
-			$this->validate($request, [
-			'amount' =>'numeric',
-		]);
-		}
-
-		if(isset($request->offer_type) && $request->offer_type == 5){
-			$this->validate($request, [
-			'promocode' =>'required',
-			'promocode_type' =>'required',
-			'promocode_value' =>'required',
-		]);
-		}
-
-
 
 		$offer = Offers::create(array(
-			'title'=>$request->title,
+			'promocode'=>$request->promocode,
 			'from_date'=>date('Y-m-d', strtotime($request->from_date)),
 			'to_date'=>date('Y-m-d', strtotime($request->to_date)),
 			'description'=>$request->description,
-			'offer_type'=>$request->offer_type,
-			'percentage'=>isset($request->percentage) ? $request->percentage:0,
-			'amount'=>isset($request->amount) ? $request->amount:0,
-			'gift'=>isset($request->gift) ? $request->gift:'',
-			'addon'=>isset($request->addon) ? implode(',', $request->addon):'',
-			'vehicle'=>isset($request->vehicle) ? implode(',', $request->vehicle):'',
-			'promocode'=>isset($request->promocode) ? $request->promocode:'',
-			'promocode_type'=>isset($request->promocode_type) ? $request->promocode_type:'',
-			'promocode_value'=>isset($request->promocode_value) ? $request->promocode_value:'',
-			'promocode_description'=>isset($request->promocode_description) ? $request->promocode_description:'',
-
+			'promocode_type'=>$request->promocode_type,
+			'promocode_value'=>$request->promocode_value,
 		));
-		$insertedId = $offer->id;
-		$input=array();
-		$input_addon=array();
-		$input['offer_id'] = $insertedId;
-
-		if(isset($request->vehicle)){
-			foreach ($request->vehicle as  $vahi) {
-				$input['vehicle_id'] = $vahi;
-			$offer_vehicle = Offersonvehicle::create($input);
-			}
-			
-
-			
-		}
-
-		$input_addon['offer_id'] = $insertedId;
-
-		if(isset($request->addon)){
-			foreach ($request->addon as  $addon) {
-				$input_addon['addon_id'] = $addon;
-				$offer_addon = Offersaddon::create($input_addon);
-			}
-			
-
-			
-		}
-
+		
+		
 		toastr()->success('Offer created successfully');
-		//return redirect()->back();
-		return redirect('/admin/offers');
+
+        return redirect()->route('offers.index');
 	}
 
 	

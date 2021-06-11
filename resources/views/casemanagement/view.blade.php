@@ -756,10 +756,10 @@
 			 event.preventDefault();
 			
 			//var formData = new FormData($(this)[0]);
-			var formData = new FormData($(this));
+			var formData =$(this);
 			//alert("test");
 			//alert(formData);
-			console.log('formdata:', this)
+			console.log('formdata:', formData)
 			$.ajax({
 				url: "{{URL('admin/casemanagement/sendMessageNonMedical')}}",
 				type: "POST",

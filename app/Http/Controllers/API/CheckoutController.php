@@ -487,10 +487,10 @@ exit();*/
           'line_items' => $products_item
         ]);
 
-    echo "<pre>";
+/*    echo "<pre>";
     print_r($order_taxes);
     echo "<pre>";
-    exit(); 
+    exit(); */
 
       if(isset($order_taxes->amount_to_collect)){
            return $this->sendResponse($order_taxes->amount_to_collect, 'Tax retrieved successfully.');

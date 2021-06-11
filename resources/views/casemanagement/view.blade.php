@@ -779,10 +779,11 @@
 						//$(".chating-section ul").append("<li>"+"<p>"+"<img src={{URL('/')}}/public/Message_files/" +response.file_name+ ">"+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");
 					/*alert(response.text);*/
 					//$(".chating-section ul").append("<li>"+"<p>"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");			
-				}else{
-					"test"
+				};
+				//else{
+					//"test"
 					//$(".chating-section ul").append("<li>"+"<p>"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");
-				}
+				//}
 			});
 		});
 	});

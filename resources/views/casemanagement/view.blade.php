@@ -755,8 +755,7 @@
 
 <script>
 	$(document).ready(function() {
-		 $('#msgForm').submit(function(event) {
-		//$('#msgForm').on('submit', function(event) {
+		$('#msgForm').on('submit', function(event) {
 			 event.preventDefault();
 			
 			//var formData = new FormData($(this)[0]);

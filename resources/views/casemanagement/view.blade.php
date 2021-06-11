@@ -759,7 +759,7 @@
 			//var formData = new FormData(this);
 			//alert("test");
 			//alert(formData);
-			//console.log('formdata:', formData)
+			console.log('formdata:', formData)
 			$.ajax({
 				url: "{{URL('admin/casemanagement/sendMessageNonMedical')}}",
 				type: "POST",

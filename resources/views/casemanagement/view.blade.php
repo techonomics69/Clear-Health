@@ -619,25 +619,25 @@
 												echo $message['message'];
 											}else{
 												?>
-														<img src="{{ asset('public/Message_files/'.$message['file_name']) }}" type="media_type"width='100'>
-														<a target="_blank" download="" href="{{ asset('public/Message_files/'.$message['file_name']) }}"> Download</a>	
-													
-													<?php
-												}
-												?>
-											</p>
-											<h5>
-												<?php 
-												if(isset($message['date']) && $message['date']!=''){
-													echo $message['date'];
-												}?>
-											</h5>
-										</li>
-										@endforeach
-									<?php }?>
-								</ul>
-							</div>
-							<div class="last-typing-section">
+												<img src="{{ asset('public/Message_files/'.$message['file_name']) }}" type="media_type"width='100'>
+												<a target="_blank" download="" href="{{ asset('public/Message_files/'.$message['file_name']) }}"> Download</a>	
+
+												<?php
+											}
+											?>
+										</p>
+										<h5>
+											<?php 
+											if(isset($message['date']) && $message['date']!=''){
+												echo $message['date'];
+											}?>
+										</h5>
+									</li>
+									@endforeach
+								<?php }?>
+							</ul>
+						</div>
+						<div class="last-typing-section">
 <!-- <div class="camera lastimg">
 <img src="{{asset('public/images/camera.png')}}" alt="">
 </div> -->
@@ -752,35 +752,37 @@
 
 <script>
 	$(document).ready(function() {
-		$('#btnsubmit').on('submit', function(event) {
-			 event.preventDefault();
-			
-			var formData = new FormData($(this));
+		$('#btnsubmit').on('click', function(event) {
+			event.preventDefault();
+			//var file_data = $('#file').prop('files')[0];
+			//var file_data = $('#text').val();
+			var file_data = $('#user_id').val();
+			//var file_data = $('#case_id').val();
+			var form_data = new FormData();
+        	/*form_data.append('file', file_data);
+        	form_data.append('text', file_data);
+        	form_data.append('user_id', file_data);
+        	form_data.append('case_id', file_data);*/
+
+
+
+			//var formData = new FormData($(this)[0]);
 			//var formData = $(this);
 			//alert("test");
 			//alert(formData);
-			console.log('formdata:', formData)
+			console.log('formdata:', file_data)
 			$.ajax({
 				url: "{{URL('admin/casemanagement/sendMessageNonMedical')}}",
 				type: "POST",
 				data: formData,
 
-				/*data: {
-					_token: "{{ csrf_token() }}",
-					file: file,
-					text: text,
-					user_id: user_id,
-					case_id: case_id				
-				},*/
+				
 				dataType:"json",
 				
 				success: function(response){
-					$(".chating-section ul").append("<li>"+"<p>"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>") ;
-
-					 //location.reload();
-					 
-					}
-				});
+					$(".chating-section ul").append("<li>"+"<p>"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>") ; 
+				}
+			});
 		});
 	});
 </script>

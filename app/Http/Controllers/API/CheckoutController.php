@@ -449,19 +449,19 @@ public function getTaxes(Request $request){
    $client->setApiConfig('api_url', \TaxJar\Client::SANDBOX_API_URL);
 
     $order_taxes = $client->taxForOrder([
-          /*'from_country' => 'US',
+          'from_country' => 'US',
           'from_zip' => '06880',
           'from_state' => 'CT',
           'from_city' => 'Westport',
           'from_street' => '141 Post Road East',
-          'to_country' => 'US',*/
+          'to_country' => 'US',
 
-          'from_country' => 'US',
+          /*'from_country' => 'US',
           'from_zip' => '07001',
           'from_state' => 'NJ',
           'from_city' => 'Avenel',
           'from_street' => '305 W Village Dr',
-          'to_country' => 'US',
+          'to_country' => 'US',*/
           'to_zip' => $zip,
           'to_state' => $state,
           'to_city' => $city,

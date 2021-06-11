@@ -26,7 +26,7 @@
 			<div class="content-header-right col-md-6 col-12 mb-2">
 				<div class="pull-right">
 
-					<a class="btn btn-secondry" href="{{ route('offers.create') }}"><i class="fa fa-plus" aria-hidden="true"></i> Create New Offer</a>
+					<a class="btn btn-secondry" href="{{route('offers.create') }}"><i class="fa fa-plus" aria-hidden="true"></i> Create New Offer</a>
 
 				</div>
 			</div>

@@ -456,20 +456,10 @@ public function sendMessageNonMedical(Request $request){
 
     $case_id = (isset($request['md_case_id']) && $request['md_case_id']!='')?$request['md_case_id']:0;
     $system_case_id = $request['case_id'];
-
-    //$users_message_type = (isset($request['users_message_type'])&&$request['users_message_type']!='')?$request['users_message_type']:'';//medical/non_medical
-$users_message_type = 'Non-Medical';
-    //$sender = $request['sender']; //user/admin
-$sender = "admin";
+    $users_message_type = 'Non-Medical';
+    $sender = "admin";
     $text = $request['text']; 
-
-    //code to upload files ids
-     $documents = $request->file('file');
-
-/*echo"<pre>";
-print_r($documents);
-echo"</pre>";
-die();*/
+    $documents = $request->file('file');
 
      if(!empty($documents)){
       $file =  $documents->getClientOriginalName();

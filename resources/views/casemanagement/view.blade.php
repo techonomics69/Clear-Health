@@ -765,19 +765,14 @@
         	formData.append('case_id', case_id);
         	formData.append('_token', '{{csrf_token()}}');
 
-
-
 			$.ajax({
 				url: "{{URL('admin/casemanagement/sendMessageNonMedical')}}",
 				type: "POST",
 				data: formData,
 				dataType:"json",
-				
-
-      async:false,
-  
-      processData: false,
-      contentType: false,
+      			async:false,
+      			processData: false,
+      			contentType: false,
 				success: function(response){
 					$(".chating-section ul").append("<li>"+"<p>"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>") ; 
 				}

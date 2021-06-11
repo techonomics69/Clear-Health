@@ -752,13 +752,14 @@
 
 <script>
 	$(document).ready(function() {
-		$('#btnsubmit').on('click', function() {
+		$('#btnsubmit').on('click', function(event) {
 
-			$("#btnsubmit").attr("disabled", "disabled");
+			//$("#btnsubmit").attr("disabled", "disabled");
 			/*var file = $('#file').val();
 			var text = $('#text').val();
 			var user_id = $('#user_id').val();
 			var case_id = $('#case_id').val();*/
+			 event.preventDefault();
 			var formData = new FormData($(this)[0]);
 			$.ajax({
 				url: "{{URL('admin/casemanagement/sendMessageNonMedical')}}",

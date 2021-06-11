@@ -207,7 +207,7 @@ class CaseManagementController extends Controller
     $token_data = json_decode($r);
     $token = $token_data->access_token;
 
-    $case_id = $user_case_management_data['id'];
+    $case_id = $user_case_management_data['md_case_id'];
     //$case_message_id = $request['system_case_id'];
     $channel = 'patient';
 
@@ -232,12 +232,17 @@ class CaseManagementController extends Controller
 
     $response = curl_exec($curl);
 
+ echo "<pre>";
+  print_r($response);
+  echo "</pre>";
+  die();
 
+/*
   echo "<pre>";
   print_r('https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/messages?channel='.$channel);
   echo "</pre>";
   die();
-
+*/
     curl_close($curl);
     
     $data = json_decode($response);

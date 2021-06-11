@@ -763,6 +763,7 @@
         	form_data.append('text', text);
         	form_data.append('user_id', user_id);
         	form_data.append('case_id', case_id);
+        	form_data.append('_token', '{{csrf_token()}}');
 
 
 

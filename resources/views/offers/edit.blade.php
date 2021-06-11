@@ -46,7 +46,7 @@
                     <div class="card-body">
                         <form action="{{ route('offers.update',$offer->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            {{-- @method('PATCH') --}}                    
+                            @method('PATCH')                    
 
 
 

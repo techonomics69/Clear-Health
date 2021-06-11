@@ -128,11 +128,7 @@
             $('#storeUser').submit();
         });
 
-        $(document).ready(function() {
-        $(function () {
-            $('.available_date').datepicker();
-        });
-        });
+        
 
   </script>
 @endsection
@@ -141,5 +137,11 @@
     $('form').submit(function(){
         $(this).find('button[type=submit]').prop('disabled', true);
     });
+
+    $(document).ready(function() {
+        $(function () {
+            $('.available_date').datepicker();
+        });
+        });
 </script>
 @endsection

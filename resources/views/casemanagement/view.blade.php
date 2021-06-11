@@ -594,8 +594,8 @@
 									@foreach ($msg_history as $key => $md_message)
 
 												<li>
-													<p>{{ $md_message['message']}}</p>
-													<h5>Monday:10:20</h5>
+													<p>{{ $md_message['message'] }}</p>
+													<h5>{{ $md_message['msg_date'] }}</h5>
 												</li>
 												@endforeach
 											<?php } ?>

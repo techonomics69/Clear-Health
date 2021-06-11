@@ -662,7 +662,6 @@
 </div> -->
 <div class="search">
 	<input class="form-control" type="text" name="text" placeholder="Text input here..." id="text">
-	<input type="hidden" name="_token" value="{{ csrf_token() }}">
 	<input class="form-control" type="hidden" name="user_id" value="{{$user_case_management_data['user_id']}}" id="user_id">
 	<input class="form-control" type="hidden" name="case_id" value="{{$user_case_management_data['id']}}" id="case_id">
 </div>
@@ -765,14 +764,13 @@
 				url: "{{URL('admin/casemanagement/sendMessageNonMedical')}}",
 
 				type: "POST",
-				data:new FormData(this),
-				/*data: {
+				data: {
 					_token: "{{ csrf_token() }}",
 					file: file,
 					text: text,
 					user_id: user_id,
 					case_id: case_id				
-				},*/
+				},
 				dataType:"json",
 				
 				success: function(response){

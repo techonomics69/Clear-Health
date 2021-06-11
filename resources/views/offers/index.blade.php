@@ -56,7 +56,7 @@
 										<td>{{ $offer->promocode }}</td>
 										<td>{{ $offer->description }}</td>
 										<td>{{ $offer->from_date}}</td>
-										<td>{{$offer ->to_date}}</td>
+										<td>{{ $offer->to_date}}</td>
 										<td>
 											<form action="{{ url('offers/delete',$offer->id) }}" method="POST" enctype="multipart/form-data">
 

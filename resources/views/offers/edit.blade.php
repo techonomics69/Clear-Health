@@ -194,3 +194,18 @@
 @jquery
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 @endsection
+
+@section('scriptsection')
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(function () {
+            $('.from_date').datepicker();
+        });
+
+        $(function () {
+            $('.to_date').datepicker();
+        });
+
+    });
+</script>
+@endsection

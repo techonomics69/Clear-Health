@@ -285,12 +285,12 @@ class CaseManagementController extends Controller
 
 
 
-  echo "<pre>";
+ /* echo "<pre>";
   print_r($msg_history);
   echo "</pre>";
-  die();
+  die();*/
 
-  return view('casemanagement.view',compact('user_case_management_data','category','general_que','accutane_que','topical_que','skincare_summary','message_data','message_details'));
+  return view('casemanagement.view',compact('user_case_management_data','category','general_que','accutane_que','topical_que','skincare_summary','message_data','message_details','msg_history'));
 
 }
 

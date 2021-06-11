@@ -481,10 +481,7 @@ public function sendMessageNonMedical(Request $request){
     $message_data['msg_date']= $message_data['created_at']->format('M j'); 
 
     //$message_data['date'] = date('M j', $message_data['created_at']);
-/*echo "<pre>";
-  print_r($message_data);
-  echo "</pre>";
-  die();*/
+
     $message_file_data = array();
     $message_file_data['file_name'] = $doc_file_name;
     $message_file_data['file_path'] = $file_path;
@@ -499,7 +496,10 @@ public function sendMessageNonMedical(Request $request){
 
     $message_data['show_non_medical_screen'] = 1 ;
 
-
+echo "<pre>";
+  print_r($message_data);
+  echo "</pre>";
+  die();
    return $message_data;
   }
 

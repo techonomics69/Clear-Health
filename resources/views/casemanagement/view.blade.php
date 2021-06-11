@@ -756,7 +756,7 @@
 			 event.preventDefault();
 			
 			//var formData = new FormData($(this)[0]);
-			var formData = new FormData(this);
+			var formData = new FormData($(this));
 			//alert("test");
 			//alert(formData);
 			console.log('formdata:', this)

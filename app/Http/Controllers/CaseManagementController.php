@@ -234,7 +234,7 @@ class CaseManagementController extends Controller
 
 
  echo "<pre>";
-  print_r($response);
+  print_r($curl);
   echo "</pre>";
   die();
 

@@ -284,7 +284,7 @@ class CaseManagementController extends Controller
   echo "</pre>";
   die();*/
 
-  return view('casemanagement.view',compact('user_case_management_data','category','general_que','accutane_que','topical_que','skincare_summary','message_data','message_details','msg_history'));
+  return view('casemanagement.view',compact('user_case_management_data','category','general_que','accutane_que','topical_que','skincare_summary','message_data','message_details'));
 
 }
 

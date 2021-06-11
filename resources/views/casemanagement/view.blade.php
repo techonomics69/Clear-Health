@@ -761,7 +761,7 @@
 			var case_id = $('#case_id').val();
 
 			$.ajax({
-				url: "{{URL('admin/casemanagement/sendMessageNonMedical/')}}",
+				url: "{{URL('admin/casemanagement/sendMessageNonMedical')}}",
 
 				type: "POST",
 				data: {

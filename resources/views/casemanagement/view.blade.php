@@ -754,7 +754,7 @@
 
 <script>
 	$(document).ready(function() {
-		$('#btnsubmit').on('submit', function(event) {
+		$('#msgForm').on('submit', function(event) {
 			alert("test");
 
 			//$("#btnsubmit").attr("disabled", "disabled");

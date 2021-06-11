@@ -231,10 +231,12 @@ class CaseManagementController extends Controller
     ));
 
     $response = curl_exec($curl);
-/*echo "<pre>";
+
+ echo "<pre>";
   print_r($response);
   echo "</pre>";
-  die();*/
+  die();
+
     curl_close($curl);
     
     $data = json_decode($response);
@@ -277,10 +279,10 @@ class CaseManagementController extends Controller
 
 
 
-  echo "<pre>";
+ /* echo "<pre>";
   print_r($msg_history);
   echo "</pre>";
-  die();
+  die();*/
 
   return view('casemanagement.view',compact('user_case_management_data','category','general_que','accutane_que','topical_que','skincare_summary','message_data','message_details'));
 

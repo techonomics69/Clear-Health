@@ -90,6 +90,14 @@
                                         {!! Form::text('to_date', null, array('placeholder' => '','class' => 'form-control')) !!}
                                     </div>
                                 </div>
+
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <strong>Available Date:</strong>
+                                        <span class="required">*</span>
+                                        {!! Form::text('available_date', null, array('placeholder' => 'Available Date','class' => 'form-control available_date', 'readonly' => 'readonly')) !!}
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="row">
@@ -120,7 +128,13 @@
             $('#storeUser').submit();
         });
 
-</script>
+        $(document).ready(function() {
+        $(function () {
+            $('.available_date').datepicker();
+        });
+        });
+
+  </script>
 @endsection
 @section('scriptsection')
 <script type="text/javascript">

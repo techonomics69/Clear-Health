@@ -762,6 +762,7 @@
 			var user_id = $('#user_id').val();
 			var case_id = $('#case_id').val();*/
 			 event.preventDefault();
+			 alert("test");
 			var formData = new FormData($(this)[0]);
 			$.ajax({
 				url: "{{URL('admin/casemanagement/sendMessageNonMedical')}}",

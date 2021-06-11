@@ -81,13 +81,13 @@
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>From</label><span class="required">*</span>
-                                        {!! Form::text('from_date', null, array('placeholder' => '','class' => 'form-control')) !!}
+                                        {!! Form::text('from_date', null, array('placeholder' => '','class' => 'form-control from_date')) !!}
                                     </div>
                                 </div>
                                  <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>To</label><span class="required">*</span>
-                                        {!! Form::text('to_date', null, array('placeholder' => '','class' => 'form-control')) !!}
+                                        {!! Form::text('to_date', null, array('placeholder' => '','class' => 'form-control to_date')) !!}
                                     </div>
                                 </div>
 

@@ -765,7 +765,7 @@
 				url: "{{URL('admin/casemanagement/sendMessageNonMedical')}}",
 
 				type: "POST",
-				 data: formData,
+				data:new FormData(this),
 				/*data: {
 					_token: "{{ csrf_token() }}",
 					file: file,

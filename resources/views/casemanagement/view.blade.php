@@ -648,7 +648,7 @@
 			<label for='file'>
 				<img src="{{asset('public/images/paperclip.png')}}" alt="">
 			</label>
-			<input id='file' type='file' (change)="uploadFile($event)"/>
+			<input id='file' type='file' name="file" (change)="uploadFile($event)"/>
 		</div>
 	</div>
 </div>
@@ -761,7 +761,7 @@
 			var case_id = $('#case_id').val();
 
 			$.ajax({
-				url: "{{URL('admin/casemanagement/sendMessageNonMedical')}}",
+				url: "{{URL('/admin/casemanagement/sendMessageNonMedical')}}",
 
 				type: "POST",
 				data: {

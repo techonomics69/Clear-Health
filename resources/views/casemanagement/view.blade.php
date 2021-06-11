@@ -669,7 +669,7 @@
 <div class="sending lastimg">
 
 	<!-- <button type="submit" id="btnsubmit"> -->
-		<input type="submit" id="btnsubmit"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
+		<input type="submit" id="btnsubmit"><img src="{{asset('public/images/telegram.png')}}" alt="">
 	<!-- <img src="{{asset('public/images/telegram.png')}}" alt=""> -->
 </div>
 </div>

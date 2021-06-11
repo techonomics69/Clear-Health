@@ -467,10 +467,10 @@ $sender = "admin";
      $documents = $request->file('file');
 
 
-echo"<pre>";
+/*echo"<pre>";
 print_r($request->all());
 echo"</pre>";
-die();
+die();*/
 
      if(!empty($documents)){
       $file =  $documents->getClientOriginalName();

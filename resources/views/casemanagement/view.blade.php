@@ -755,7 +755,7 @@
 		$('#btnsubmit').on('click', function(event) {
 			event.preventDefault();
 			var file_data = $('#file').prop('files')[0];
-			var formData = new FormData($(this)[0]);
+			//var formData = new FormData($(this)[0]);
 			//var formData = $(this);
 			//alert("test");
 			//alert(formData);

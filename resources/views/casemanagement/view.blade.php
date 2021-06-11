@@ -760,9 +760,9 @@
 			var file_data = $('#case_id').val();
 			var form_data = new FormData();
         	form_data.append('file', file_data);
-        	form_data.append('text', file_data);
-        	form_data.append('user_id', file_data);
-        	form_data.append('case_id', file_data);
+        	//form_data.append('text', file_data);
+        	//form_data.append('user_id', file_data);
+        	//form_data.append('case_id', file_data);
 
 
 

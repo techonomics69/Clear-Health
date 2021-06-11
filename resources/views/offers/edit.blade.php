@@ -54,7 +54,7 @@
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>Promocode</label><span class="required">*</span>
-                                        {!! Form::text('promocode', null, array('placeholder' => 'Promocode','class' => 'form-control')) !!}
+                                        {!! Form::text('promocode', $offer->promocode, array('placeholder' => 'Promocode','class' => 'form-control')) !!}
                                     </div>
                                 </div>
 
@@ -68,7 +68,7 @@
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>Promocode Value</label><span class="required">*</span>
-                                        {!! Form::text('promocode_value', null, array('placeholder' => '','class' => 'form-control')) !!}
+                                        {!! Form::text('promocode_value', $offer->promocode_value, array('placeholder' => '','class' => 'form-control')) !!}
                                     </div>
                                 </div>
 
@@ -87,7 +87,7 @@
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>To</label><span class="required">*</span>
-                                        {!! Form::text('to_date', null, array('placeholder' => '','class' => 'form-control to_date')) !!}
+                                        {!! Form::text('to_date', date('d-m-Y', strtotime($offer->to_date)), array('placeholder' => '','class' => 'form-control to_date')) !!}
                                     </div>
                                 </div>
                                 

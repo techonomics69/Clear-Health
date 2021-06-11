@@ -765,6 +765,7 @@
 			 event.preventDefault();
 			
 			var formData = new FormData($(this)[0]);
+			alert("test");
 			$.ajax({
 				url: "{{URL('admin/casemanagement/sendMessageNonMedical')}}",
 

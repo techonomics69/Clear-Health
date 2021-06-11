@@ -161,7 +161,7 @@ class OfferController extends Controller
 	public function destroy($id)
 	{
 		$offers = Offers::find($id);
-		$product->delete();
+		$offers->delete();
 		/*if ($offers) :
 			Offers::find($id)->delete();
 		endif;*/

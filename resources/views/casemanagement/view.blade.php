@@ -761,7 +761,8 @@
 			//var formData = new FormData($(this)[0]);
 			//var formData = new FormData(this);
 			//alert("test");
-			console.log('form data', FormData)
+			alert(FormData);
+			//console.log('form data', FormData)
 			$.ajax({
 				url: "{{URL('admin/casemanagement/sendMessageNonMedical')}}",
 				type: "POST",

@@ -445,6 +445,17 @@ public function getTaxes(Request $request){
   $shipping_fee = 0;
  }
 
+
+echo "<pre>";
+print_r($ord_total);
+echo "<pre>";
+ 
+
+echo "<pre>";
+print_r($minimum_shipping_amount['amount']);
+echo "<pre>";
+exit(); 
+
    $client = \TaxJar\Client::withApiKey('dcbaa17daefa7c485d84ee47793d1708');
    $client->setApiConfig('api_url', \TaxJar\Client::SANDBOX_API_URL);
 

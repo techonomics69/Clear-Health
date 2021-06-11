@@ -52,11 +52,24 @@
 
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
-                                        <label>Title</label><span class="required">*</span>
-                                        {!! Form::text('title', null, array('placeholder' => 'Title','class' => 'form-control')) !!}
+                                        <label>Promocode</label><span class="required">*</span>
+                                        {!! Form::text('promocode', null, array('placeholder' => 'Promocode','class' => 'form-control')) !!}
                                     </div>
                                 </div>
 
+                                 <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Promocode Type</label><span class="required">*</span>
+                                        {!! Form::select('promocode_type', ['0'=>'Please Select','1'=>'Percentage','2'=>'Amount'], null, ['class' => 'form-control'],['id' => 'offer_type']) !!}
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Promocode Value</label><span class="required">*</span>
+                                        {!! Form::text('promocode_value', null, array('placeholder' => '','class' => 'form-control')) !!}
+                                    </div>
+                                </div>
 
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
@@ -77,55 +90,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-4 col-md-6 col-sm-6">
-                                    <div class="form-group">
-                                        <label>Offer Type</label><span class="required">*</span>
-                                        {!! Form::select('offer_type', ['0'=>'Please Select','1'=>'Promocode'], null, ['class' => 'form-control'],['id' => 'offer_type']) !!}
-                                    </div>
-                                </div>
-
-
                             </div>
-
-                            <div class="row promocode_section" style="display: none;">
-                                <div class="col-lg-3 col-md-6 col-sm-6 " >
-                                    <div class="form-group">
-                                        <label>Promocode</label><span class="required">*</span>
-                                        <input type="text" name="promocode" id="promocode" class="form-control" value="{{old('promocode')}}">
-                                    </div>
-                                    <div class="form-group error_promo" style="color: red;display: none;">Promocode field is required</div>
-                                </div>
-                                <div class="col-lg-3 col-md-6 col-sm-6">
-                                    <div class="form-group">
-                                        <label>Promocode Type</label><span class="required">*</span>
-                                        <select id="promocode_type" name="promocode_type" class="form-control">
-                                            <option value="0">Select Type</option>
-                                            <option value="1" @if(old('promocode_type') == 1) selected @endif>Percentage</option>
-                                            <option value="2" @if(old('promocode_type') == 2) selected @endif>Amount</option>
-
-
-                                        </select>
-                                    </div>
-                                    <div class="form-group error_promocode_type" style="color: red;display: none;">Please Select Promocode type.</div>
-                                </div>
-                                <div class="col-lg-3 col-md-6 col-sm-6 " >
-                                    <div class="form-group">
-                                        <label>Promocode Value</label><span class="required">*</span>
-                                        <input type="text" name="promocode_value" id="promocode_value" class="form-control" onkeypress="return isNumber(event)" value="{{old('promocode_value')}}">
-
-                                    </div>
-                                    <div class="form-group error_promo_value" style="color: red;display: none;">Promocode value field is required</div>
-                                </div>
-                                <div class="col-lg-3 col-md-6 col-sm-6 " >
-                                    <div class="form-group">
-                                        <label>Description</label>
-                                        <input type="text" name="promocode_description" id="promocode_description" class="form-control" value="{{old('promocode_description')}}">
-
-                                    </div>
-                                    <div class="form-group error_promo_description" style="color: red;display: none;">description field is required</div>
-                                </div>
-                            </div>
-
                             <div class="row">
                                 <div class="col-lg-12 submit-buton text-right">
                                     <a  href="{{ route('offers.index') }}"><button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button></a>

@@ -757,8 +757,8 @@
 			var file_data = $('#file').prop('files')[0];
 			var file_data = $('#text').val();
 			var file_data = $('#user_id').val();
-			var file_data = $('#case_id').val();
-			var form_data = new FormData();
+			//var file_data = $('#case_id').val();
+			//var form_data = new FormData();
         	form_data.append('file', file_data);
 
 

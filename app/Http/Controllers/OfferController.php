@@ -26,15 +26,13 @@ class OfferController extends Controller
 	
 	public function index(Request $request)
 	{	
-		$headerLeftContent = "<p class='name-page'>Offers</p>";
 		
-		$headerRightContent = "<p><a class='btn btn-light' href=".url('/')."/admin/offers/create>&plus; Create New Offer</a></p>";
 		
 		
 		//$data = Offers::where('to_date','>=',Carbon::now()->toDateString())->orderBy('id','DESC')->get();
 		$data = Offers::orderBy('id','DESC')->get();//->where('to_date','>=',Carbon::now()->toDateString())where('from_date','>=',Carbon::now()->toDateString())
 		//$affected = DB::table('offers')->update(['view_status' => 1]);
-		return view('offers.index',compact('data','headerLeftContent','headerRightContent'));
+		return view('offers.index',compact('data'));
 	}
 
 

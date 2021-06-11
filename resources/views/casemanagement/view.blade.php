@@ -755,22 +755,23 @@
 		$('#btnsubmit').on('click', function() {
 
 			$("#btnsubmit").attr("disabled", "disabled");
-			var file = $('#file').val();
+			/*var file = $('#file').val();
 			var text = $('#text').val();
 			var user_id = $('#user_id').val();
-			var case_id = $('#case_id').val();
-
+			var case_id = $('#case_id').val();*/
+			var formData = new FormData($(this)[0]);
 			$.ajax({
 				url: "{{URL('admin/casemanagement/sendMessageNonMedical')}}",
 
 				type: "POST",
-				data: {
+				data: formData,
+				/*data: {
 					_token: "{{ csrf_token() }}",
 					file: file,
 					text: text,
 					user_id: user_id,
 					case_id: case_id				
-				},
+				},*/
 				dataType:"json",
 				
 				success: function(response){

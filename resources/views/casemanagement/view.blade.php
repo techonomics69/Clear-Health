@@ -755,7 +755,7 @@
 <script>
 	$(document).ready(function() {
 		$('#btnsubmit').on('submit', function(event) {
-			//alert("test");
+			alert("test");
 
 			//$("#btnsubmit").attr("disabled", "disabled");
 			/*var file = $('#file').val();
@@ -763,7 +763,7 @@
 			var user_id = $('#user_id').val();
 			var case_id = $('#case_id').val();*/
 			 event.preventDefault();
-			 alert("test");
+			
 			var formData = new FormData($(this)[0]);
 			$.ajax({
 				url: "{{URL('admin/casemanagement/sendMessageNonMedical')}}",

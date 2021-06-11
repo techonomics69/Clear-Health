@@ -400,7 +400,7 @@ public function getTaxes(Request $request){
 /*
    $cart_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->join('checkout_address', 'checkout_address.cart_id', '=', 'carts.id')->where('carts.user_id',$user_id)->where('carts.status','pending')->select('checkout_address.*','products.name AS product_name','products.image','products.discount_price','products.id as product_id','carts.quantity','carts.order_type','carts.pharmacy_pickup','carts.product_price')->get()->toArray();*/
 
-    $cart_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->where('carts.user_id',$user_id)->where('carts.status','pending')->select('products.name AS product_name','products.image','products.discount_price','products.id as product_id','carts.quantity','carts.order_type','carts.pharmacy_pickup','carts.product_price','carts.id as cart_id')->get()->toArray();
+    $cart_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->where('carts.user_id',$user_id)->where('carts.status','pending')->select('products.name AS product_name','products.image','products.discount_price','products.id as product_id','carts.quantity','carts.order_type','carts.pharmacy_pickup','products.price as product_price','carts.id as cart_id')->get()->toArray();
 
 
   $ord_total = 0;

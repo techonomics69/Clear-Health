@@ -667,7 +667,7 @@
 	<input class="form-control" type="hidden" name="case_id" value="{{$user_case_management_data['id']}}" id="case_id">
 </div>
 <div class="sending lastimg">
-	
+
 	<button type="submit" id="btnsubmit"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
 	<!-- <img src="{{asset('public/images/telegram.png')}}" alt=""> -->
 </div>
@@ -755,7 +755,7 @@
 <script>
 	$(document).ready(function() {
 		$('#msgForm').on('submit', function(event) {
-			alert("test");
+			
 
 			//$("#btnsubmit").attr("disabled", "disabled");
 			/*var file = $('#file').val();

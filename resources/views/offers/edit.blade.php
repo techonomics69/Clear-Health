@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'clearHealth | Customer')
+@section('title', 'clearHealth | Offers & Promotions')
 @section('content')
 
 <div class="app-content content">
@@ -17,19 +17,19 @@
     <div class="content-wrapper">
     <div class="content-header row">
             <div class="content-header-left col-md-6 col-12 mb-2">
-                <h3 class="content-header-title mb-0">Customers</h3>
+                <h3 class="content-header-title mb-0">Offers & Promotions</h3>
                 <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12 d-flex">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{url('/admin/dashboard')}}">Dashboard</a></li>
-                                <li class="breadcrumb-item active">Edit customer</li>
+                                <li class="breadcrumb-item active">Edit Offers</li>
                             </ol>
                         </div>
                 </div>
             </div>
             <div class="content-header-right col-md-6 col-12 mb-2">
                 <div class="pull-right">
-                    <a class="btn btn-secondry " href="{{ route('customers.index') }}">Back</a>
+                    <a class="btn btn-secondry " href="{{ route('offers.index') }}">Back</a>
                 </div>
             </div>
         </div>
@@ -44,28 +44,59 @@
                         </div>
                     </header> --}}
                     <div class="card-body">
-                        <form action="{{ route('customers.update',$user->id) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('offers.update',$offer->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            @method('PATCH')                    
+                            {{-- @method('PATCH') --}}                    
 
 
 
                             <div class="row">
-                                
-                                
+                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Promocode</label><span class="required">*</span>
+                                        {!! Form::text('promocode', null, array('placeholder' => 'Promocode','class' => 'form-control')) !!}
+                                    </div>
+                                </div>
+
+                                 <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Promocode Type</label><span class="required">*</span>
+                                        {!! Form::select('promocode_type', ['0'=>'Please Select','1'=>'Percentage','2'=>'Amount'], null, ['class' => 'form-control'],['id' => 'offer_type']) !!}
+                                    </div>
+                                </div>
 
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
-                                        <label>Email</label><span class="required">*</span>
-                                        {!! Form::text('email', $user->email, array('placeholder' => 'Email','class' => 'form-control')) !!}
+                                        <label>Promocode Value</label><span class="required">*</span>
+                                        {!! Form::text('promocode_value', null, array('placeholder' => '','class' => 'form-control')) !!}
                                     </div>
                                 </div>
+
+                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Description</label><span class="required">*</span>
+                                        {!! Form::text('description', null, array('placeholder' => 'Description','class' => 'form-control')) !!}
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label>From</label><span class="required">*</span>
+                                        {!! Form::text('from_date', null, array('placeholder' => '','class' => 'form-control from_date')) !!}
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label>To</label><span class="required">*</span>
+                                        {!! Form::text('to_date', null, array('placeholder' => '','class' => 'form-control to_date')) !!}
+                                    </div>
+                                </div>
+                                
                             </div>
 
 
                             <div class="row">
                                 <div class="col-lg-12 submit-buton text-right">
-                                    <a  href="{{ route('customers.index') }}"><button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button></a>
+                                    <a  href="{{ route('offers.index') }}"><button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button></a>
                                     <button type="submit" class="btn btn-secondry" data-dismiss="modal">Submit</button>
                                 </div>
                             </div>
@@ -162,48 +193,4 @@
 @section('footerSection')
 @jquery
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-<script type="text/javascript">
-    //$('#roles').select2();
-    function getCity(stateID){
-            $.ajax({
-                type:"GET",
-                url:"{{url('admin/franchise/get-city-list')}}?state_id="+stateID,
-                success:function(res){ 
-                    if(res){
-                        $("#inputCity").empty();
-                        var html = "";
-                        html += '<option>Select City</option>';           
-                        $("#inputCity").append('<option>Select City</option>');
-                        $.each(res,function(key,value){
-                            html +='<option value="'+value.id+'">'+value.city_name+'</option>';
-                        });
-
-                        $("#inputCity").html(html).trigger('change');;
-
-                    }else{
-                        $("#inputCity").empty();
-                    }
-                }
-            });
-        }
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#imagePreview').css('background-image', 'url(' + e.target.result + ')');
-                $('#imagePreview').hide();
-                $('#imagePreview').fadeIn(650);
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    // $("#imageUpload").change(function () {
-    //     readURL(this);
-    // });
-
-    $(document).on('click','.btnUpload',function(){
-        $("#userImg").click();
-    });
-
-</script>
 @endsection

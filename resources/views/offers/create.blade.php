@@ -113,15 +113,6 @@
 </div>
 @endsection
 @section('footerSection')   
-<script type="text/javascript">     
-    $(document).on('click', '#userSubmit', function() {
-        $(this).html('Loading..').attr('disabled','disabled');
-        $('#storeUser').submit();
-    });
-
-
-
-</script>
 @endsection
 @section('scriptsection')
 <script type="text/javascript">
@@ -136,26 +127,6 @@
 
         $(function () {
             $('.to_date').datepicker();
-        });
-
-
-        $('#offer_type').on('change', function (e) {
-            //var optionSelected = $("option:selected", this);
-
-            //$('.offer_percentage').hide();
-            //$('.offer_amount').hide();
-            //$('.offer_gift').hide();
-            //$('.offer_addon').hide();
-            //$('.promocode_section').hide();
-
-            alert('hii');
-
-            var valueSelected = this.value;
-
-            if(valueSelected == 1){
-                $('.promocode_section').show();
-            }
-            
         });
 
     });

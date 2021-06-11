@@ -230,7 +230,7 @@ class CaseManagementController extends Controller
       ),
     ));
 
-    $response = curl_exec($curl);
+    $response = curl_exec($token);
 
 
  echo "<pre>";

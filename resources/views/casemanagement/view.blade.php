@@ -662,8 +662,7 @@
 </div> -->
 <div class="search">
 	<input class="form-control" type="text" name="text" placeholder="Text input here..." id="text">
-	 <input type = "hidden" id ="_token" name = "_token" value = '<?php echo csrf_token(); ?>'>
-	<!-- <input type="hidden" id ="_token" name="_token" value="{{ csrf_token() }}"> -->
+	<input type="hidden" id ="_token" name="_token" value="{{ csrf_token() }}">
 
 	<input class="form-control" type="hidden" name="user_id" value="{{$user_case_management_data['user_id']}}" id="user_id">
 	<input class="form-control" type="hidden" name="case_id" value="{{$user_case_management_data['id']}}" id="case_id">
@@ -757,13 +756,6 @@
 <script>
 	$(document).ready(function() {
 		$('#msgForm').on('submit', function(event) {
-			
-
-			//$("#btnsubmit").attr("disabled", "disabled");
-			/*var file = $('#file').val();
-			var text = $('#text').val();
-			var user_id = $('#user_id').val();
-			var case_id = $('#case_id').val();*/
 			 event.preventDefault();
 			
 			//var formData = new FormData($(this)[0]);

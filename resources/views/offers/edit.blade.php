@@ -75,13 +75,13 @@
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>Description</label><span class="required">*</span>
-                                        {!! Form::text('description',$offer->description, null, array('placeholder' => 'Description','class' => 'form-control')) !!}
+                                        {!! Form::text('description', $offer->description , array('placeholder' => 'Description','class' => 'form-control')) !!}
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>From</label><span class="required">*</span>
-                                        {!! Form::text('from_date',date('d-m-Y', strtotime($offer->from_date)), null, array('placeholder' => '','class' => 'form-control from_date')) !!}
+                                        {!! Form::text('from_date',date('d-m-Y', strtotime($offer->from_date)), array('placeholder' => '','class' => 'form-control from_date')) !!}
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6">

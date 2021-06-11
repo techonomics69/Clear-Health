@@ -662,12 +662,14 @@
 </div> -->
 <div class="search">
 	<input class="form-control" type="text" name="text" placeholder="Text input here..." id="text">
-	<input type="hidden" name="_token" value="{{ csrf_token()}}">
+	<input type="hidden" id ="_token" name="_token" value="{{ csrf_token() }}">
+
 	<input class="form-control" type="hidden" name="user_id" value="{{$user_case_management_data['user_id']}}" id="user_id">
 	<input class="form-control" type="hidden" name="case_id" value="{{$user_case_management_data['id']}}" id="case_id">
 </div>
 <div class="sending lastimg">
-	<button type="button" id="btnsubmit"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
+
+	<button type="submit" id="btnsubmit"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
 	<!-- <img src="{{asset('public/images/telegram.png')}}" alt=""> -->
 </div>
 </div>
@@ -753,21 +755,19 @@
 
 <script>
 	$(document).ready(function() {
-		$('#btnsubmit').on('click', function(event) {
-			alert("test");
-
-			//$("#btnsubmit").attr("disabled", "disabled");
-			/*var file = $('#file').val();
-			var text = $('#text').val();
-			var user_id = $('#user_id').val();
-			var case_id = $('#case_id').val();*/
+		$('#msgForm').on('submit', function(event) {
 			 event.preventDefault();
-			var formData = new FormData($(this)[0]);
+			
+			//var formData = new FormData($(this)[0]);
+			var formData = new FormData(this);
+			//alert("test");
+			//alert(formData);
+			console.log('form data', formData)
 			$.ajax({
 				url: "{{URL('admin/casemanagement/sendMessageNonMedical')}}",
-
 				type: "POST",
 				data: formData,
+
 				/*data: {
 					_token: "{{ csrf_token() }}",
 					file: file,

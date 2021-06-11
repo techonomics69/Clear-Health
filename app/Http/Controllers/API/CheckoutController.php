@@ -402,9 +402,9 @@ public function getTaxes(Request $request){
 
     $cart_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->where('carts.user_id',$user_id)->where('carts.status','pending')->select('products.name AS product_name','products.image','products.discount_price','products.id as product_id','carts.quantity','carts.order_type','carts.pharmacy_pickup','products.price as product_price','carts.id as cart_id')->get()->toArray();
 
-  echo "<pre>";
+  /*echo "<pre>";
   print_r($cart_details);
-  echo "<pre>";
+  echo "<pre>";*/
   
 
 
@@ -451,15 +451,15 @@ public function getTaxes(Request $request){
  }
 
 
-echo "<pre>";
+/*echo "<pre>";
 print_r($ord_total);
-echo "<pre>";
+echo "<pre>";*/
  
 
-echo "<pre>";
+/*echo "<pre>";
 print_r($minimum_shipping_amount['amount']);
 echo "<pre>";
-exit(); 
+exit();*/ 
 
    $client = \TaxJar\Client::withApiKey('dcbaa17daefa7c485d84ee47793d1708');
    $client->setApiConfig('api_url', \TaxJar\Client::SANDBOX_API_URL);
@@ -486,6 +486,11 @@ exit();
           'shipping' => $shipping_fee,
           'line_items' => $products_item
         ]);
+
+    echo "<pre>";
+    print_r($order_taxes);
+    echo "<pre>";
+    exit(); 
 
       if(isset($order_taxes->amount_to_collect)){
            return $this->sendResponse($order_taxes->amount_to_collect, 'Tax retrieved successfully.');

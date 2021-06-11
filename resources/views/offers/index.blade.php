@@ -40,7 +40,6 @@
 								<thead>
 									<tr>
 										<th width="60px">SR No</th>
-										<th>No</th>
 										<th>Promocode</th>
 										<th>Description</th>
 										<th>Start Date</th>

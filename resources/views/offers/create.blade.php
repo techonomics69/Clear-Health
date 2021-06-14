@@ -126,7 +126,7 @@ rel="Stylesheet"type="text/css"/>
         $(this).find('button[type=submit]').prop('disabled', true);
     });
 
-    $(document).ready(function() {
+    /*$(document).ready(function() {
         $(function () {
             $('.from_date').datepicker();
         });
@@ -135,7 +135,29 @@ rel="Stylesheet"type="text/css"/>
             $('.to_date').datepicker();
         });
 
-    });
+    });*/
+
+   $(document).ready(function ($) {
+        
+            $("#from_date").datepicker({
+                //numberOfMonths: 2,
+                minDate: new Date(),
+                onSelect: function (selected) {
+                    var dt = new Date(selected);
+                    dt.setDate(dt.getDate());
+                    $("#to_date").datepicker("option", "minDate", dt);
+                }
+            });
+            $("#to_date").datepicker({
+                //numberOfMonths: 2,
+                minDate: new Date(),
+                onSelect: function (selected) {
+                    var dt = new Date(selected);
+                    dt.setDate(dt.getDate());
+                    $("#from_date").datepicker("option", "maxDate", dt);
+                }
+            });
+        });
 
  $(document).ready(function checkdate(){
             var d1 = $('#from_date').val();

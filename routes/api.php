@@ -21,6 +21,7 @@ use App\Http\Controllers\API\CheckoutController;
 use App\Http\Controllers\API\AnswerController;
 use App\Http\Controllers\API\TreatmentGuidesController;
 use App\Http\Controllers\API\ChangePasswordController;
+use App\Http\Controllers\API\OfferController;
 
 /*
 |--------------------------------------------------------------------------
@@ -129,6 +130,9 @@ Route::post('getToken', [CaseManagementController::class, 'get_token']);
     Route::post('user/add_user_pic', [UserController::class, 'addUserPic']);
     Route::post('user/get_user_pic', [UserController::class, 'getUserPic']);
     Route::post('add_recomeended_product', [CaseManagementController::class, 'add_recomeended_product']);
+
+    //Offer & Promotion
+     Route::resource('offerPromotion', OfferController::class);
 
     //Answer API
     Route::post('answer',[AnswerController::class, 'answer']);

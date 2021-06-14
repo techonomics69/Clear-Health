@@ -605,7 +605,7 @@
 								<div class="chating-section">
 									<ul><?php if(isset($message_data)) {?>
 										@foreach ($message_data as $key => $message)
-										<li class= <?php $message['sender'] == 'admin' ?  "left": "right" ?>>
+										<li class= <?php $message['sender'] == 'admin' ?  "left": "right"; ?>>
 											<p>
 												<?php 
 												if(isset($message['message']) && $message['message']!=''){

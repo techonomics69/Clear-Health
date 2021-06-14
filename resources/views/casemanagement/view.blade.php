@@ -633,7 +633,7 @@
 										
 										@endforeach
 									
-									<?php }?>
+									
 								</ul>
 
 							</div>

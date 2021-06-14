@@ -59,7 +59,7 @@ rel="Stylesheet"type="text/css"/> -->
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>Promocode</label><span class="required">*</span>
-                                        {!! Form::text('promocode', null, array('placeholder' => 'Promocode','class' => 'form-control')old('promocode') !!}
+                                        {!! Form::text('promocode', null, array('placeholder' => 'Promocode','class' => 'form-control', 'old' => 'promocode') )!!}
                                     </div>
                                 </div>
 

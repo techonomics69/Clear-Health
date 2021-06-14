@@ -129,7 +129,7 @@
 
     });
 
-function checkdate(){
+ $(document).ready(function checkdate(){
             var d1 = $('#from_date').val();
             var d2 = $('#to_date').val();
             var date1 = Date.parse(d1);
@@ -149,7 +149,6 @@ function checkdate(){
                 return true;
             }
 
-        }
-
+        });
 </script>
 @endsection

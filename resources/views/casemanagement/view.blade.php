@@ -27,7 +27,9 @@
 			background-color: #43bfc1;
 			color: #ffffff;
 		}
-
+.outermessage .chating-section ul li.right {
+    margin-left: 100px;
+}
 	</style>
 	@php
 	$msg_tab = 0;
@@ -605,7 +607,7 @@
 								<div class="chating-section">
 									<ul><?php if(isset($message_data)) {?>
 										@foreach ($message_data as $key => $message)
-										<li>
+										<li class="right">
 											<p>
 												<?php 
 												if(isset($message['message']) && $message['message']!=''){

@@ -603,8 +603,21 @@
 							<div class="right-cht">
 								{!! Form::open(array('method'=>'POST', 'enctype'=>"multipart/form-data", 'id'=>"msgForm")) !!}
 								<div class="chating-section">
-									@foreach ($message_details as $key => $message_data)
-									<?php print_r($message_data->sender); ?>
+									@foreach ($message_details as $key => $message_sender)
+									<?php
+									print_r($message_sender->sender); 
+									if($message_sender->sender == 'admin') {
+										?>
+
+
+
+										<?php
+
+}else{
+
+}
+?> 
+									
 									@endforeach
 									<ul><?php if(isset($message_data)) {?>
 										@foreach ($message_data as $key => $message)

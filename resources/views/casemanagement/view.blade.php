@@ -605,22 +605,16 @@
 								<div class="chating-section">
 									@foreach ($message_details as $key => $message_sender)
 									<?php
-									print_r($message_sender->sender); 
-									if($message_sender->sender == 'admin') {
-										?>
-
-
-
-										<?php
-
-}else{
-
-}
-?> 
+									//print_r($message_sender->sender); 
+									//if($message_sender->sender == 'admin') {}else{}?> 
 									
-									@endforeach
+									
 									<ul><?php if(isset($message_data)) {?>
 										@foreach ($message_data as $key => $message)
+										<?php
+									//print_r($message_sender->sender); 
+									if($message_sender->sender == 'admin') {
+										?>
 										<li>
 											<p>
 												<?php 
@@ -641,8 +635,31 @@
 												}?>
 											</h5>
 										</li>
+									<?php }else{ ?>
+										<li>
+											<p>
+												<?php 
+												if(isset($message['message']) && $message['message']!=''){
+													echo $message['message'];
+												}else{
+													?>
+													<img src="{{ asset('public/Message_files/'.$message['file_name']) }}" type="media_type"width='100'>
+													<a target="_blank" download="" href="{{ asset('public/Message_files/'.$message['file_name']) }}"> Download</a>	
+													<?php
+												}
+												?>
+											</p>
+											<h5>
+												<?php 
+												if(isset($message['date']) && $message['date']!=''){
+													echo $message['date'];
+												}?>
+											</h5>
+										</li>
+									} ?>
 										@endforeach
 									<?php }?>
+									@endforeach
 								</ul>
 							</div>
 							<div class="last-typing-section">

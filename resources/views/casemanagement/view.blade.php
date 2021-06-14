@@ -609,11 +609,12 @@
 
 
 										<li 
-										<?php if($message['sender'] == 'admin'){ ?>
+										<?php if($message['sender'] == 'admin'): ?>
 										 class="right" 
-										<?php } else { ?>
+										<?php  else :?>
 										 	class="left" 
-										 	<?php } ?> >
+										 	<?php endif ?> 
+										 	>
 											<p>
 												<?php 
 												if(isset($message['message']) && $message['message']!=''){

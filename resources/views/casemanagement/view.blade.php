@@ -606,7 +606,7 @@
 									<ul><?php if(isset($message_data)) {?>
 										@foreach ($message_data as $key => $message)
 
-<?php if($message['sender'] == 'admin'){ ?>
+<?php if($message['sender'] == 'user'){ ?>
 
 	<?php print_r($message['message']); ?>
 										<li>

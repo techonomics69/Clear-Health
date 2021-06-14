@@ -662,7 +662,7 @@
 									<?php }?>
 
 								</ul>
-								<?php }?>
+								
 								@endforeach
 							</div>
 							<div class="last-typing-section">

@@ -58,10 +58,6 @@ class OfferController extends Controller
 	*/
 	public function store(Request $request)
 	{
-		echo'<pre>';
-		print_r($request->all());
-		echo'</pre>';
-		die();
 		$this->validate($request, [
 			'promocode' => 'required',
 			'from_date' => 'required',

@@ -170,6 +170,7 @@ class CaseManagementController extends Controller
       $message_data[$key]['id'] = $value['id'];
       $message_data[$key]['name'] = $value['first_name'].' '.$value['last_name'];
       $message_data[$key]['message'] = $value['text'];
+      $message_data[$key]['sender'] = $value['sender'];
 
       $date = strtotime($value['created_at']);
 
@@ -261,10 +262,10 @@ class CaseManagementController extends Controller
     }*/
 
 
-  /*echo "<pre>";
-  print_r($message_details);
+  echo "<pre>";
+  print_r($message_data);
   echo "</pre>";
-  die();*/
+  die();
 
   return view('casemanagement.view',compact('user_case_management_data','category','general_que','accutane_que','topical_que','skincare_summary','message_data','message_details'));
 

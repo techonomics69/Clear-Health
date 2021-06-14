@@ -86,16 +86,16 @@ rel="Stylesheet"type="text/css"/>
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>From</label><span class="required">*</span>
-                                        <!-- {!! Form::text('from_date', null, array('placeholder' => '','class' => 'form-control from_date', 'onblur' => 'checkdate()','id'=>'from_date')) !!} -->
-                                        <input type="text" name="from_date" class="form-control from_date" onblur="checkdate()" id="from_date" data-provide="datepicker">
+                                        {!! Form::text('from_date', null, array('placeholder' => '','class' => 'form-control from_date', 'onblur' => 'checkdate()','id'=>'from_date')) !!}
+                                        <!-- <input type="text" name="from_date" class="form-control from_date" onblur="checkdate()" id="from_date" data-provide="datepicker"> -->
 
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>To</label><span class="required">*</span>
-                                        <!-- {!! Form::text('to_date', null, array('placeholder' => '','class' => 'form-control to_date','onblur' => 'checkdate()','id'=>'to_date')) !!} -->
-                                        <input type="text" name="to_date" class="form-control  to_date" onblur="checkdate()" id="to_date" data-provide="datepicker">
+                                        {!! Form::text('to_date', null, array('placeholder' => '','class' => 'form-control to_date','onblur' => 'checkdate()','id'=>'to_date')) !!}
+                                        <!-- <input type="text" name="to_date" class="form-control  to_date" onblur="checkdate()" id="to_date" data-provide="datepicker"> -->
                                     </div>
                                 </div>
 

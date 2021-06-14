@@ -606,9 +606,10 @@
 									@foreach ($message_details as $key => $message_sender)
 									<?php
 									//print_r($message_sender->sender); 
-									if($message_sender->sender == 'admin') {
+									//if($message_sender->sender == 'admin') {
 										?>
-									<ul><?php if(isset($message_data)) {?>
+									<ul>
+										<?php if(isset($message_data)) {?>
 										@foreach ($message_data as $key => $message)
 										
 										<li>
@@ -630,32 +631,11 @@
 													echo $message['date'];
 												}?>
 											</h5>
-										
-									<?php }else{ ?>
-										
-											<p>
-												<?php 
-												if(isset($message['message']) && $message['message']!=''){
-													echo $message['message'];
-												}else{
-													?>
-													<img src="{{ asset('public/Message_files/'.$message['file_name']) }}" type="media_type"width='100'>
-													<a target="_blank" download="" href="{{ asset('public/Message_files/'.$message['file_name']) }}"> Download</a>	
-													<?php
-												}
-												?>
-											</p>
-											<h5>
-												<?php 
-												if(isset($message['date']) && $message['date']!=''){
-													echo $message['date'];
-												}?>
-											</h5>
+				
 										</li>
 									} ?>
 									@endforeach
 								</ul>
-							<?php } ?>
 								@endforeach
 							</div>
 							<div class="last-typing-section">

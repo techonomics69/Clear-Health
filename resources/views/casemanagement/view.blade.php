@@ -657,8 +657,9 @@
 											</h5>
 										</li>
 									} ?>
-										@endforeach
 									<?php }?>
+										@endforeach
+									
 
 								</ul>
 								@endforeach

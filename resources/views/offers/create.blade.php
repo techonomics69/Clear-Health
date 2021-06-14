@@ -80,13 +80,14 @@
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>From</label><span class="required">*</span>
-                                        {!! Form::text('from_date', null, array('placeholder' => '','class' => 'form-control from_date')) !!}
+                                        {!! Form::text('from_date', null, array('placeholder' => '','class' => 'form-control from_date', 'onblur' => 'checkdate()','id'=>'from_date')) !!}
+
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>To</label><span class="required">*</span>
-                                        {!! Form::text('to_date', null, array('placeholder' => '','class' => 'form-control to_date')) !!}
+                                        {!! Form::text('to_date', null, array('placeholder' => '','class' => 'form-control to_date','onblur' => 'checkdate()','id'=>'to_date')) !!}
                                     </div>
                                 </div>
 
@@ -97,9 +98,6 @@
                                     <button type="submit" class="btn btn-secondry" data-dismiss="modal" id="offer_submit_btn">Submit</button>
                                 </div>
                             </div>
-
-
-
 
                         </form>
                     </div>
@@ -130,5 +128,28 @@
         });
 
     });
+
+function checkdate(){
+            var d1 = $('#from_date').val();
+            var d2 = $('#to_date').val();
+            var date1 = Date.parse(d1);
+            var date2 = Date.parse(d2);
+
+            /*alert(date1+"---"+date2);*/
+            if (date2 < date1) {
+
+                $('.date_error').show();
+                setTimeout(function(){$('.date_error').hide();}, 3000);
+                return false;
+                
+            }
+            else{
+
+                $('.date_error').hide();
+                return true;
+            }
+
+        }
+
 </script>
 @endsection

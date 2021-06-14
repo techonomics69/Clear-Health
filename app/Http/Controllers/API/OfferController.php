@@ -35,10 +35,10 @@ class OfferController extends BaseController
             if(($offer->from_date <= $cuurentDate) && ($offer->to_date >= $cuurentDate)):                
                 return $this->sendResponse($offer, 'Offers retrieved successfully.'); 
             else:                 
-                return $this->sendResponse([], 'Invalid Gift card code'); 
+                return $this->sendError('Invalid Gift card code'); 
             endif;            
         else:
-           return $this->sendResponse([], 'Invalid Gift card code'); 
+           return $this->sendError('Invalid Gift card code'); 
         endif;        
     }
 }

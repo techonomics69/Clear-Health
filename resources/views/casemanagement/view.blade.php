@@ -606,15 +606,11 @@
 									@foreach ($message_details as $key => $message_sender)
 									<?php
 									//print_r($message_sender->sender); 
-									//if($message_sender->sender == 'admin') {}else{}?> 
-									
-									
-									<ul><?php if(isset($message_data)) {?>
-										@foreach ($message_data as $key => $message)
-										<?php
-									//print_r($message_sender->sender); 
 									if($message_sender->sender == 'admin') {
 										?>
+									<ul><?php if(isset($message_data)) {?>
+										@foreach ($message_data as $key => $message)
+										
 										<li>
 											<p>
 												<?php 
@@ -657,11 +653,10 @@
 											</h5>
 										</li>
 									} ?>
-									<?php }?>
-										@endforeach
 									
-
+										@endforeach
 								</ul>
+							<?php } ?>
 								@endforeach
 							</div>
 							<div class="last-typing-section">

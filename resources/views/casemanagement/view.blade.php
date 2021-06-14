@@ -603,7 +603,7 @@
 							<div class="right-cht">
 								{!! Form::open(array('method'=>'POST', 'enctype'=>"multipart/form-data", 'id'=>"msgForm")) !!}
 								<div class="chating-section">
-									<!-- @foreach ($message_details as $key => $message_sender) -->
+								
 									
 									<ul>
 										<?php if(isset($message_data)) {?>
@@ -633,7 +633,7 @@
 									} ?>
 									@endforeach
 								</ul>
-								<!-- @endforeach -->
+								
 							</div>
 							<div class="last-typing-section">
 <!-- <div class="camera lastimg">

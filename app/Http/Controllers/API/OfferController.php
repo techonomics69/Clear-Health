@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Models\Offers;
 use Validator;
-
+use \Carbon\Carbon;
    
 class OfferController extends BaseController
 {
@@ -25,5 +25,20 @@ class OfferController extends BaseController
     public function show($id)
     {
         
+    }
+
+     public function applyGiftCart(Request $request){        
+        $offer = Offers::where('promocode', $request->code)->first();
+        if(isset($offer) && !empty($offer)):
+            $date = Carbon::now();
+            $cuurentDate = $date->format('Y-m-d');
+            if(($offer->from_date <= $cuurentDate) && ($offer->to_date >= $cuurentDate)):                
+                return $this->sendResponse($offer, 'Offers retrieved successfully.'); 
+            else:                 
+                return $this->sendResponse([], 'Invalid Gift card code'); 
+            endif;            
+        else:
+           return $this->sendResponse([], 'Invalid Gift card code'); 
+        endif;        
     }
 }

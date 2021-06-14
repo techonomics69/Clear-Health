@@ -57,20 +57,24 @@
 										<td>{{ $offer->from_date}}</td>
 										<td>{{ $offer->to_date}}</td>
 										<td>
-											<form action="{{ url('offers/delete',$offer->id) }}" method="POST" enctype="multipart/form-data">
+										
 
-												@csrf
+									
 
-												<button type="submit" class="btn_submit{{$offer->id}}" style="display:none;"></button>
+												 <a class="icons edit-icon" href="{{ route('offers.edit',$offer->id) }}"><i class="fa fa-edit"></i></a>
 
+
+												{!! Form::open(['method' => 'DELETE','route' => ['offers.destroy', $offer->id],'style'=>'display:inline']) !!}
+												<a class="icons edit-icon customer_delete" href="#" id="{{$offer->id}}" onclick="deleteCustomer({{$offer->id}})">
+													<i class="fa fa-trash" aria-hidden="true"></i>
+												</a>
+
+												<button type="submit" class="btn_delete{{$offer->id}}" style="display:none;"></button>               
+												{!! Form::close() !!}
+
+												{{-- <a class="btn btn-light edit-icon user_delete" href="javascript:void(0)" id="{{$offer->id}}" onclick="deleteoffer({{$offer->id}})"><i class="fa fa-trash" aria-hidden="true"></i></a> --}}
 												
-												<a class="btn btn-light edit-icon" href="{{ route('offers.edit',$offer->id) }}"><i class="fa fa-edit"></i></a>
-											
-											
-												<a class="btn btn-light edit-icon user_delete" href="javascript:void(0)" id="{{$offer->id}}" onclick="deleteoffer({{$offer->id}})"><i class="fa fa-trash" aria-hidden="true"></i></a>
-												
 
-											</form>
 										</td>
 									</tr>
 									@endforeach
@@ -95,6 +99,22 @@
 			"oSearch": { "bSmart": false, "bRegex": true }
 		});
 	});
+
+	function deleteCustomer(e){
+     swal({
+        title: "Are you sure want to delete?",
+        text: "You will not be able to recover this !",
+        icon: "../public/icon/delete.png",
+        imageSize: '60x60',          
+        buttons: true,
+        dangerMode: false,
+        buttons: ["No, cancel Please!",'Yes, delete it!']
+      }).then((willDelete) => {
+            if (willDelete) {
+         $('.btn_delete'+e)[0].click();    
+            } 
+        });
+  };
 </script>
 @endsection
 

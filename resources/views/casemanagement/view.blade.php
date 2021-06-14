@@ -635,8 +635,9 @@
 										</li>
 										@endforeach
 									<?php }?>
+									@endforeach
 								</ul>
-								@endforeach
+
 							</div>
 							<div class="last-typing-section">
 <!-- <div class="camera lastimg">

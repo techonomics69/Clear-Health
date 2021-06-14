@@ -605,9 +605,9 @@
 								<div class="chating-section">
 									@foreach ($message_details as $key => $message_sender)
 									<?php //print_r($message_sender->sender);
-									if($message_sender->sender == 'admin'){
+									/*if($message_sender->sender == 'admin'){
 									}else{
-								}
+								}*/
 								 ?>
 									
 									<ul><?php if(isset($message_data)) {?>

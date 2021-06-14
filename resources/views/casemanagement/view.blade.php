@@ -581,13 +581,12 @@
 					<li><a class="btn nonmedicalmsg" data-toggle="tab" href="#nonmedical">Non-Medical Messgaes</a></li>
 				</ul>
 				<div class="tab-content">
-					<div id="medical" class="tab-pane fade in @if($msg_tab != 1) active show @endif">	
+					<div id="medical" class="tab-pane fade in @if($msg_tab != 1) active show @endif">
 						<div class="row" style="padding: 10px;">
 							<div class="col-md-12">
 								<!-- <div class="box-block mtb32" id="tab1"> -->
 									<!-- <h3 class="font-weight-bold"><span class="text-underline">Medical Messgaes</span></h3> -->
 									<div class="right-cht">
-
 										<div class="chating-section">
 											<ul>
 												
@@ -601,48 +600,40 @@
 						</div>
 
 						<div id="nonmedical" class="tab-pane fade in nonmedicalmsg">	
-			<!-- <div class="row" style="padding: 10px;">
-				<div class="col-md-12">
-					<div class="box-block mtb32" id="tab1"> -->
-						
-						<div class="right-cht">
-							{!! Form::open(array('method'=>'POST', 'enctype'=>"multipart/form-data", 'id'=>"msgForm")) !!}
-							<div class="chating-section">
-								<ul><?php if(isset($message_data)) {?>
-									@foreach ($message_data as $key => $message)
-
-									<?php //print_r($message); ?>
-									<li>
-										<p>
-											<?php 
-											if(isset($message['message']) && $message['message']!=''){
-												echo $message['message'];
-											}else{
+							<div class="right-cht">
+								{!! Form::open(array('method'=>'POST', 'enctype'=>"multipart/form-data", 'id'=>"msgForm")) !!}
+								<div class="chating-section">
+									<ul><?php if(isset($message_data)) {?>
+										@foreach ($message_data as $key => $message)
+										<li>
+											<p>
+												<?php 
+												if(isset($message['message']) && $message['message']!=''){
+													echo $message['message'];
+												}else{
+													?>
+													<img src="{{ asset('public/Message_files/'.$message['file_name']) }}" type="media_type"width='100'>
+													<a target="_blank" download="" href="{{ asset('public/Message_files/'.$message['file_name']) }}"> Download</a>	
+													<?php
+												}
 												?>
-												<img src="{{ asset('public/Message_files/'.$message['file_name']) }}" type="media_type"width='100'>
-												<a target="_blank" download="" href="{{ asset('public/Message_files/'.$message['file_name']) }}"> Download</a>	
-
-												<?php
-											}
-											?>
-										</p>
-										<h5>
-											<?php 
-											if(isset($message['date']) && $message['date']!=''){
-												echo $message['date'];
-											}?>
-										</h5>
-									</li>
-									@endforeach
-								<?php }?>
-							</ul>
-						</div>
-						<div class="last-typing-section">
+											</p>
+											<h5>
+												<?php 
+												if(isset($message['date']) && $message['date']!=''){
+													echo $message['date'];
+												}?>
+											</h5>
+										</li>
+										@endforeach
+									<?php }?>
+								</ul>
+							</div>
+							<div class="last-typing-section">
 <!-- <div class="camera lastimg">
 <img src="{{asset('public/images/camera.png')}}" alt="">
 </div> -->
 <div class="attachment lastimg pinclip">
-
 	<div class="variants">
 		<div class='file'>
 			<label for='file'>
@@ -652,8 +643,6 @@
 		</div>
 	</div>
 </div>
-
-
 <!-- <div class="attachment lastimg">
 <input class="form-control" type="file" name="file" id="file">
 <img src="{{asset('public/images/paperclip.png')}}" alt="">
@@ -665,19 +654,13 @@
 	<input type="hidden" name="case_id" value="{{$user_case_management_data['id']}}" id="case_id">
 </div>
 <div class="sending lastimg">
-
 	<button type="submit" id="btnsubmit"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
-	<!-- <img src="{{asset('public/images/telegram.png')}}" alt=""> -->
 </div>
 </div>
 {!! Form::close() !!}
-</div>														<!-- </div>
-
-
-				</div>
-			</div> -->
-		</div>
-	</div>
+</div>														
+</div>
+</div>
 </section>
 </div>
 </div>

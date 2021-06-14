@@ -603,7 +603,9 @@
 							<div class="right-cht">
 								{!! Form::open(array('method'=>'POST', 'enctype'=>"multipart/form-data", 'id'=>"msgForm")) !!}
 								<div class="chating-section">
+									@foreach ($message_details as $key => $message_sender)
 									
+									@endforeach
 									<ul><?php if(isset($message_data)) {?>
 										@foreach ($message_data as $key => $message)
 										<li>
@@ -619,7 +621,7 @@
 												}
 												?>
 											</p>
-											
+
 											<h5>
 												<?php 
 												if(isset($message['date']) && $message['date']!=''){

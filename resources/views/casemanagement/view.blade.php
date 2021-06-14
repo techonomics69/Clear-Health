@@ -608,7 +608,7 @@
 
 
 
-										<li class= <?php $message['sender'] == 'admin' ?  "left": "right"; ?>>
+										<li class= <?php $message['sender'] == 'admin' ?  "left": "right" ?>>
 											<p>
 												<?php 
 												if(isset($message['message']) && $message['message']!=''){

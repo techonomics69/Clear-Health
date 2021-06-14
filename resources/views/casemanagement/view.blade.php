@@ -608,7 +608,7 @@
 
 <?php if($message['sender'] == 'admin'){ ?>
 
-										<li class="right">
+										<li>
 											<p>
 												<?php 
 												if(isset($message['message']) && $message['message']!=''){
@@ -630,7 +630,7 @@
 											</h5>
 										</li>
 									<?php }else{ ?>
-									<li class="left">
+									<li>
 											<p>
 												<?php 
 												if(isset($message['message']) && $message['message']!=''){

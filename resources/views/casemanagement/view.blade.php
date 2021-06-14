@@ -608,13 +608,7 @@
 
 
 
-										<li 
-										<?php if($message['sender'] == 'admin'): ?>
-										 class="right" 
-										<?php  else :?>
-										 	class="left" 
-										 	<?php endif ?> 
-										 	>
+										<li class= <?php $message['sender'] == 'admin' ? echo "left":echo "right"; ?>>
 											<p>
 												<?php 
 												if(isset($message['message']) && $message['message']!=''){

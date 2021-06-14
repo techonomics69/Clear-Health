@@ -48,8 +48,6 @@
                             @csrf
                             @method('PATCH')                    
 
-
-
                             <div class="row">
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
@@ -61,7 +59,7 @@
                                  <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>Promocode Type</label><span class="required">*</span>
-                                        {!! Form::select('promocode_type', ['0'=>'Please Select','1'=>'Percentage','2'=>'Amount'], null, ['class' => 'form-control'],['id' => 'offer_type']) !!}
+                                        {!! Form::select('promocode_type', ['0'=>'Please Select','1'=>'Percentage','2'=>'Amount'], null, ['class' => 'form-control'],['id' => 'promocode_type']) !!}
                                     </div>
                                 </div>
 

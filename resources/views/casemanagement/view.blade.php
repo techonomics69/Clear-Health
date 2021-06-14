@@ -608,13 +608,13 @@
 									//print_r($message_sender->sender); 
 									//if($message_sender->sender == 'admin') {}else{}?> 
 									
-									
-									<ul><?php if(isset($message_data)) {?>
-										@foreach ($message_data as $key => $message)
-										<?php
+									<?php
 									//print_r($message_sender->sender); 
 									if($message_sender->sender == 'admin') {
 										?>
+									<ul><?php if(isset($message_data)) {?>
+										@foreach ($message_data as $key => $message)
+										
 										<li>
 											<p>
 												<?php 
@@ -659,8 +659,9 @@
 									} ?>
 										@endforeach
 									<?php }?>
-									@endforeach
+
 								</ul>
+								@endforeach
 							</div>
 							<div class="last-typing-section">
 <!-- <div class="camera lastimg">

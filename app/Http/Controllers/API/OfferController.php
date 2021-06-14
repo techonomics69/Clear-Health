@@ -27,7 +27,7 @@ class OfferController extends BaseController
         
     }
 
-     public function applyGiftCart(Request $request){        
+     public function applyGiftCard(Request $request){        
         $offer = Offers::where('promocode', $request->code)->first();
         if(isset($offer) && !empty($offer)):
             $date = Carbon::now();

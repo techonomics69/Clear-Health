@@ -133,7 +133,7 @@ Route::post('getToken', [CaseManagementController::class, 'get_token']);
 
     //Offer & Promotion
      Route::resource('offerPromotion', OfferController::class);
-     Route::post("applyGiftCart", [OfferController::class, 'applyGiftCard']);
+     Route::post("applyGiftCard", [OfferController::class, 'applyGiftCard']);
 
     //Answer API
     Route::post('answer',[AnswerController::class, 'answer']);

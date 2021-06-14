@@ -777,7 +777,7 @@
 				contentType: false,
 				success: function(response){
 					if(response.text == null){ 
-						$(".chating-section ul").append("<li>"+"<p>"+"<img width='100' src={{URL('/')}}/public/Message_files/" +response.file_name+ ">"+ "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/"+response.file_name+">" + "Download" + "</a>"+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");
+						$(".chating-section ul").append("<li>"+"<p>"+"<img width='100' src={{URL('/')}}/public/Message_files/" +response.file_name+ ">"+ "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/"+response.file_name+">" + " Download " + "</a>"+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");
 					}else{
 						$(".chating-section ul").append("<li>"+"<p>"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");	
 					}

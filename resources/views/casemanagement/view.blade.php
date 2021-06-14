@@ -621,6 +621,7 @@
 												}
 												?>
 											</p>
+											
 											<h5>
 												<?php 
 												if(isset($message['date']) && $message['date']!=''){

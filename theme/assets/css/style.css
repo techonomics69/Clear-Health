@@ -800,25 +800,25 @@ padding: 0.5rem;
    margin: 10px 10px;
    background: #cc6a6a21;
 }
-.chating-section ul li:nth-child(odd) p {
+.chating-section ul li.right p {
     background: #f44336 0d;
     padding: 11px;
     margin-bottom: 0px;
 }
- .chating-section ul li:nth-child(odd) h5 {
+ .chating-section ul li.right h5 {
    text-align: right;
    margin: 0;
 }
- .chating-section ul li:nth-child(even) {
+ .chating-section ul li.left {
    margin-left: 299px;
    background: #0000ff14;
 }
- .chating-section ul li:nth-child(even) p {
+ .chating-section ul li.left p {
    background: #00f 14;
    padding: 11px;
    margin-bottom: 0px;
 }
- .chating-section ul li:nth-child(even) h5 {
+ .chating-section ul li.left h5 {
    text-align: right;
    margin: 0;
 }

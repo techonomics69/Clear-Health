@@ -126,7 +126,7 @@ rel="Stylesheet"type="text/css"/>
         $(this).find('button[type=submit]').prop('disabled', true);
     });
 
-   /* $(document).ready(function() {
+    $(document).ready(function() {
         $(function () {
             $('.from_date').datepicker();
         });
@@ -136,7 +136,7 @@ rel="Stylesheet"type="text/css"/>
         });
 
     });
-*/
+
  $(document).ready(function checkdate(){
             var d1 = $('#from_date').val();
             var d2 = $('#to_date').val();

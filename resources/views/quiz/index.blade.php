@@ -51,14 +51,14 @@
 							</div>
 					</div>
 				</div>
-				{{-- <div class="content-header-right col-md-6 col-12 mb-2">
+				 <div class="content-header-right col-md-6 col-12 mb-2">
 						<div class="pull-right">
 						@can('quiz-create')					
 							<a class="btn btn-secondry" href="{{ route('quiz.create') }}"><i class="fa fa-plus" aria-hidden="true"></i> Create New Question</a>
 						@endcan	
 						</div>
 				</div>
- --}}			</div>
+ 			</div>
 		<div class="row">
 			<div class="col-lg-12">
 				<section class="card" >

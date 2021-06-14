@@ -653,8 +653,7 @@
 											</h5>
 										</li>
 									} ?>
-									
-										@endforeach
+									@endforeach
 								</ul>
 							<?php } ?>
 								@endforeach

@@ -608,13 +608,13 @@
 									//print_r($message_sender->sender); 
 									//if($message_sender->sender == 'admin') {}else{}?> 
 									
-									<?php
+									
+									<ul><?php if(isset($message_data)) {?>
+										@foreach ($message_data as $key => $message)
+										<?php
 									//print_r($message_sender->sender); 
 									if($message_sender->sender == 'admin') {
 										?>
-									<ul><?php if(isset($message_data)) {?>
-										@foreach ($message_data as $key => $message)
-										
 										<li>
 											<p>
 												<?php 
@@ -634,9 +634,9 @@
 													echo $message['date'];
 												}?>
 											</h5>
-										</li>
+										
 									<?php }else{ ?>
-										<li>
+										
 											<p>
 												<?php 
 												if(isset($message['message']) && $message['message']!=''){
@@ -658,11 +658,9 @@
 										</li>
 									} ?>
 										@endforeach
-									
 									<?php }?>
 
 								</ul>
-								
 								@endforeach
 							</div>
 							<div class="last-typing-section">

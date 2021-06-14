@@ -606,8 +606,8 @@
 									<ul><?php if(isset($message_data)) {?>
 										@foreach ($message_data as $key => $message)
 										
-		<li class = <?php if($message['sender'] == 'admin') { ?>"left"<?php }else{ ?>
-		"right" <?php } ?>>
+		<li class = <?php if($message['sender'] == 'admin') { ?>"right"<?php }else{ ?>
+		"left" <?php } ?>>
 											<p>
 												<?php 
 												if(isset($message['message']) && $message['message']!=''){

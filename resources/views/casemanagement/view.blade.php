@@ -605,7 +605,7 @@
 								<div class="chating-section">
 									@foreach ($message_details as $key => $message_data)
 									<?php //print_r($message_data); ?>
-									@endforeach
+									
 									<ul><?php if(isset($message_data)) {?>
 										@foreach ($message_data as $key => $message)
 										<li>
@@ -631,6 +631,7 @@
 										@endforeach
 									<?php }?>
 								</ul>
+								@endforeach
 							</div>
 							<div class="last-typing-section">
 <!-- <div class="camera lastimg">

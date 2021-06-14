@@ -609,7 +609,7 @@
 									}else{
 								}*/
 								 ?>
-									
+									@endforeach
 									<ul><?php if(isset($message_data)) {?>
 										@foreach ($message_data as $key => $message)
 										<li>
@@ -635,9 +635,8 @@
 										</li>
 										@endforeach
 									<?php }?>
-									@endforeach
 								</ul>
-
+								
 							</div>
 							<div class="last-typing-section">
 <!-- <div class="camera lastimg">

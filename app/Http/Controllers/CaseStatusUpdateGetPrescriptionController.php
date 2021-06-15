@@ -466,78 +466,105 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
      $gender =  $patient_data['gender'];
 
      if($gender == 1){
-        $patient_gender = 'Male';
-      }else if($gender == 2){
-        $patient_gender = 'Female';
-      }else{
-        $patient_gender = 'Not known';
-      }
+      $patient_gender = 'Male';
+    }else if($gender == 2){
+      $patient_gender = 'Female';
+    }else{
+      $patient_gender = 'Not known';
+    }
       /*  0 = Not known;
           1 = Male;
           2 = Female;
           9 = Not applicable.
       */
 
-      $patient_dob = date('Ymd', strtotime($patient_data['dob']));
+          $patient_dob = date('Ymd', strtotime($patient_data['dob']));
 
 
 
-     $curl = curl_init();
+          $curl = curl_init();
 
-     curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://api.curexa.com/orders',
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_ENCODING => '',
-      CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 0,
-      CURLOPT_FOLLOWLOCATION => true,
-      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => 'POST',
-      CURLOPT_POSTFIELDS =>'{
-        "order_id": '.$order_id.',
-        "patient_id":'. $patient_id.',
-        "patient_first_name": '.$patient_data['first_name'].',
-        "patient_last_name": '.$patient_data['last_name'].',
-        "patient_dob": '.$patient_dob.',
-        "patient_gender":'.$patient_gender.',
-        "carrier":"FEDEX",
-        "shipping_method":"",
-        "address_to_name":'.$shipping_address['patient_firstname'].' '.$shipping_address['patient_lastname'].',
-        "address_to_street1":'.$shipping_address['addressline1'].',
-        "address_to_street2":'.$shipping_address['addressline2'].',
-        "address_to_city":'.$shipping_address['city'].',
-        "address_to_state":'.$shipping_address['state'].',
-        "address_to_zip":'.$shipping_address['zipcode'].',
-        "address_to_country":"US",
-        "address_to_phone":'.$shipping_address['phone'].',
-        "notes":"Test",
-        "patient_known_allergies":'.(isset($allergies))?$allergies:''.',
-        "patient_other_medications":'.(isset($current_medications))?$current_medications:''.'
-      }',
-      CURLOPT_HTTPHEADER => array(
-        'Authorization: Basic Y2xlYXJoZWFsdGhfdGVzdF9Ya1Fzdk1sbVFKbXRWSlBIbGJnWE9WSVd3UU5ETXQxNDpvRW5NZTJITnZndGQzaW9wNm96aWdTZHRmZUJkQUNCNw==',
-        'Content-Type: application/json'
-      ),
-    ));
+          curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.curexa.com/orders',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS =>'{
+              "order_id": '.$order_id.',
+              "patient_id":'. $patient_id.',
+              "patient_first_name": '.$patient_data['first_name'].',
+              "patient_last_name": '.$patient_data['last_name'].',
+              "patient_dob": '.$patient_dob.',
+              "patient_gender":'.$patient_gender.',
+              "carrier":"FEDEX",
+              "shipping_method":"",
+              "address_to_name":'.$shipping_address['patient_firstname'].' '.$shipping_address['patient_lastname'].',
+              "address_to_street1":'.$shipping_address['addressline1'].',
+              "address_to_street2":'.$shipping_address['addressline2'].',
+              "address_to_city":'.$shipping_address['city'].',
+              "address_to_state":'.$shipping_address['state'].',
+              "address_to_zip":'.$shipping_address['zipcode'].',
+              "address_to_country":"US",
+              "address_to_phone":'.$shipping_address['phone'].',
+              "notes":"Test",
+              "patient_known_allergies":'.(isset($allergies))?$allergies:''.',
+              "patient_other_medications":'.(isset($current_medications))?$current_medications:''.'
+            }',
+            CURLOPT_HTTPHEADER => array(
+              'Authorization: Basic Y2xlYXJoZWFsdGhfdGVzdF9Ya1Fzdk1sbVFKbXRWSlBIbGJnWE9WSVd3UU5ETXQxNDpvRW5NZTJITnZndGQzaW9wNm96aWdTZHRmZUJkQUNCNw==',
+              'Content-Type: application/json'
+            ),
+          ));
 
-     $response = curl_exec($curl);
+          $response = curl_exec($curl);
 
-     curl_close($curl);
-     echo $response;
+          curl_close($curl);
+          echo $response;
 
-   }
-
-
-
-
- }
+        }
 
 
 
 
+      }
+
+
+      public function curexa_order_status($order_id){
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => 'https://api.curexa.com/order_status',
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => '',
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 0,
+          CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => 'POST',
+          CURLOPT_POSTFIELDS =>'{
+            "order_id": '.$order_id.'
+          }',
+          CURLOPT_HTTPHEADER => array(
+            'Authorization: Basic Y2xlYXJoZWFsdGhfdGVzdF9Ya1Fzdk1sbVFKbXRWSlBIbGJnWE9WSVd3UU5ETXQxNDpvRW5NZTJITnZndGQzaW9wNm96aWdTZHRmZUJkQUNCNw==',
+            'Content-Type: application/json'
+          ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        echo $response;
+      }
 
 
 
 
 
-}
+
+
+
+    }

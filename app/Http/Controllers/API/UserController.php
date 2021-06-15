@@ -170,22 +170,10 @@ public function updateVerifiedByVouch(Request $request){
 
         $patient_id = $user['md_patient_id'];
 
-        echo "<pre> in iff";
-        print_r($patient_id);
-        echo "<pre>";
-        exit(); 
-
-
       }else{
-
           //call create patient api
         $patient_id = create_patient($user_id,$case_id,$order_id);
-            //end of code create patient api
-
-        echo "<pre>in else";
-        print_r($patient_id);
-        echo "<pre>";
-        exit(); 
+            //end of code create patient api 
       }
 
 

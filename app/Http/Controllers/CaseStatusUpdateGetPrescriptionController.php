@@ -17,6 +17,7 @@ use App\Models\Mdmanagement;
 use App\Models\CasePrescriptions;
 use App\Models\PrescriptionCompound;
 use App\Models\PrescriptionMedication;
+use App\Models\Mdpatient;
 use Session;
 
 
@@ -145,7 +146,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                   //curexa create order api
 
-                  $this->curexa_create_order($user_id,);
+                  $this->curexa_create_order($user_id,$case_id,$system_case_id);
 
                   //end of curexa  create order api      
 
@@ -184,7 +185,9 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                     }
 
 
-                    //curexa create order api
+                    //curexa create order api   
+
+                    $this->curexa_create_order($user_id,$case_id,$system_case_id);
 
                     //end of curexa  create order api
 
@@ -214,6 +217,8 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                   }  
 
                   //curexa create order api
+
+                  $this->curexa_create_order($user_id,$case_id,$system_case_id);
 
                   //end of curexa  create order api
                 }
@@ -409,11 +414,77 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
    }
 
-   public function curexa_create_order($user_id,$order_id){
 
-    $curl = curl_init();
+   public function curexa_create_order($user_id,$case_id,$system_case_id){
 
-    curl_setopt_array($curl, array(
+    $order_data = Checkout::where([['user_id', $user_id],['case_id', $case_id],['md_case_id', $system_case_id]])->get()->toArray();
+
+    $order_id = $order_data['order_id'];
+
+    $user = User::find($user_id);
+
+
+    $userQueAns = getQuestionAnswerFromUserid($user_id,$case_id);
+    foreach ($userQueAns as $key => $value) {
+
+      $question = $value->question;
+
+      if($question == "Please list medications that you are allergic to."){
+        if(isset($value->answer) && $value->answer!=''){
+
+          $allergies =  $value->answer;
+
+        }
+      }
+
+      if($question == "Please list any other medications that you’re currently taking."){
+        if(isset($value->answer) && $value->answer!=''){
+
+          $current_medications =  $value->answer;
+
+        }
+      }
+
+    }
+
+
+
+    $shipping_address = Checkoutaddress::select('*')
+    ->where('checkout_address.order_id',$order_id)
+    ->where('checkout_address.address_type',1)
+    ->OrderBy('id', 'DESC')
+    ->first();
+
+
+
+    $patient_id = $user['md_patient_id'];
+
+    if($patient_id != '' || $patient_id != NULL ){
+
+     $patient_data =   Mdpatient::where('patient_id', $patient_id)->get()->toArray();
+
+     $gender =  $patient_data['gender'];
+
+     if($gender == 1){
+        $patient_gender = 'Male';
+      }else if($gender == 2){
+        $patient_gender = 'Female';
+      }else{
+        $patient_gender = 'Not known';
+      }
+      /*  0 = Not known;
+          1 = Male;
+          2 = Female;
+          9 = Not applicable.
+      */
+
+      $patient_dob = date('Ymd', strtotime($patient_data['dob']));
+
+
+
+     $curl = curl_init();
+
+     curl_setopt_array($curl, array(
       CURLOPT_URL => 'https://api.curexa.com/orders',
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => '',
@@ -423,25 +494,25 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => 'POST',
       CURLOPT_POSTFIELDS =>'{
-        "order_id": "ORD-2021-00000425",
-        "patient_id": "1586",
-        "patient_first_name": "Test",
-        "patient_last_name": "Test",
-        "patient_dob": "20001204",
-        "patient_gender":"male",
+        "order_id": '.$order_id.',
+        "patient_id":'. $patient_id.',
+        "patient_first_name": '.$patient_data['first_name'].',
+        "patient_last_name": '.$patient_data['last_name'].',
+        "patient_dob": '.$patient_dob.',
+        "patient_gender":'.$patient_gender.',
         "carrier":"FEDEX",
         "shipping_method":"",
-        "address_to_name":"Test",
-        "address_to_street1":"1313 Mockingbird Lane",
-        "address_to_street2":"Apt 7",
-        "address_to_city":"Pensacola",
-        "address_to_state":"FL",
-        "address_to_zip":"32501",
+        "address_to_name":'.$shipping_address['patient_firstname'].' '.$shipping_address['patient_lastname'].',
+        "address_to_street1":'.$shipping_address['addressline1'].',
+        "address_to_street2":'.$shipping_address['addressline2'].',
+        "address_to_city":'.$shipping_address['city'].',
+        "address_to_state":'.$shipping_address['state'].',
+        "address_to_zip":'.$shipping_address['zipcode'].',
         "address_to_country":"US",
-        "address_to_phone":"8505551212",
+        "address_to_phone":'.$shipping_address['phone'].',
         "notes":"Test",
-        "patient_known_allergies":"",
-        "patient_other_medications":""
+        "patient_known_allergies":'.(isset($allergies))?$allergies:''.',
+        "patient_other_medications":'.(isset($current_medications))?$current_medications:''.'
       }',
       CURLOPT_HTTPHEADER => array(
         'Authorization: Basic Y2xlYXJoZWFsdGhfdGVzdF9Ya1Fzdk1sbVFKbXRWSlBIbGJnWE9WSVd3UU5ETXQxNDpvRW5NZTJITnZndGQzaW9wNm96aWdTZHRmZUJkQUNCNw==',
@@ -449,11 +520,17 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
       ),
     ));
 
-    $response = curl_exec($curl);
+     $response = curl_exec($curl);
 
-    curl_close($curl);
-    echo $response;
-  }
+     curl_close($curl);
+     echo $response;
+
+   }
+
+
+
+
+ }
 
 
 

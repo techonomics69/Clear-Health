@@ -189,7 +189,7 @@ public function updateVerifiedByVouch(Request $request){
 
        $preferred_pharmacy_id = $pharmacy_data['pharmacy_pickup'];
 
-       $response = CreateCase($user_id,$case_id,$preferred_pharmacy_id,$patient_id);
+       $response = CreateCase($user_id,$case_id,$preferred_pharmacy_id,$patient_id,$order_id);
 
        $response = json_decode($response);
 

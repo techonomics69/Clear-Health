@@ -141,7 +141,13 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                   if(!empty($response)){
                     $this->save_prescription_response($response);
-                  }       
+                  } 
+
+                  //curexa create order api
+
+                  $this->curexa_create_order($user_id,);
+
+                  //end of curexa  create order api      
 
                 }
 
@@ -176,6 +182,13 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                     if(!empty($response)){
                       $this->save_prescription_response($response);
                     }
+
+
+                    //curexa create order api
+
+                    //end of curexa  create order api
+
+
                   }
 
 
@@ -199,6 +212,10 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                   if(!empty($response)){
                     $this->save_prescription_response($response);
                   }  
+
+                  //curexa create order api
+
+                  //end of curexa  create order api
                 }
               }
 
@@ -392,7 +409,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
    }
 
-   public function curexa_create_order(){
+   public function curexa_create_order($user_id,$order_id){
 
     $curl = curl_init();
 

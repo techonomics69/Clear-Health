@@ -21,6 +21,7 @@ use App\Models\Answers;
 use App\Models\MessageFiles;
 use App\Models\Messages;
 use App\Models\Checkoutaddress;
+use App\Models\Checkout;
 use App\Models\Cart;
 
 function get_token(){
@@ -221,6 +222,8 @@ if(!empty($Patient_data)){
 
   $md_patient_data = Mdpatient::create($input_data);
 
+  $update_user =  User::where('id',$user_id)->update(['md_patient_id' => $Patient_data->patient_id]);
+
             //$info = curl_getinfo($curl);
 
        /*if(curl_exec($curl) == false)
@@ -396,7 +399,7 @@ if(!empty($Patient_data)){
 
   }
 
-  function CreateCase($user_id,$case_id,$preferred_pharmacy_id,$patient_id){
+  function CreateCase($user_id,$case_id,$preferred_pharmacy_id,$patient_id,$order_id){
     $r = get_token();
     $token_data = json_decode($r);
     $token = $token_data->access_token;
@@ -651,7 +654,7 @@ if(!empty($Patient_data)){
     $input_data['prioritized_reason'] = $case_data->prioritized_reason;
     $input_data['cancelled_at'] = $case_data->prioritized_reason;
     $input_data['md_created_at'] = $case_data->created_at;
-      //$input_data['md_created_at'] = $case_data->case_assignment->created_at;
+    $input_data['md_created_at'] = $case_data->case_assignment->created_at;
     $input_data['support_reason'] = $case_data->support_reason;
     $input_data['case_id'] = $case_data->case_id;
     $input_data['status'] = $case_data->status;
@@ -662,11 +665,13 @@ if(!empty($Patient_data)){
 
     $case_management  =  CaseManagement::where('id',$case_id)->where('user_id',$user_id)->update(['md_case_status' => $case_data->status,'system_status' => 'Telehealth Evaluation Requested']);
 
+     $update_order_data  =  Checkout::where('case_id',$case_id)->where('user_id',$user_id)->where('order_id',$order_id)->update(['md_case_id' => $case_data->case_id]);
+
     curl_close($curl);
 
       //code for update md details
 
-      /*$inputmd_data['status'] = $status;
+      $inputmd_data['status'] = $status;
       $inputmd_data['image'] = "";
       $inputmd_data['language_id'] = "";
       $inputmd_data['md_id'] = $case_data->case_assignment->clinician->clinician_id;
@@ -679,7 +684,7 @@ if(!empty($Patient_data)){
         $mdmanagement_data->update($inputmd_data);
       }else{
         $md_case_data = Mdmanagement::create($inputmd_data);
-      }*/
+      }
 
 
 

@@ -159,10 +159,7 @@ public function updateVerifiedByVouch(Request $request){
 
     $data = User::where('id',$user_id)->update(['verified_by_vouch' => $request['verified_by_vouch']]);
 
-    
-
     $user = User::find($user_id);
-
     
     $orderdata = checkout::where('checkout.order_id',$order_id)->where('checkout.case_id',$case_id)->where('checkout.user_id',$user_id)->first();
 
@@ -172,16 +169,16 @@ public function updateVerifiedByVouch(Request $request){
       if($user['md_patient_id']!='' || $user['md_patient_id'] != null){
 
         $patient_id = $user['md_patient_id'];
-        
+
 
       }else{
-        
+
           //call create patient api
         $patient_id = create_patient($user_id,$case_id,$order_id);
             //end of code create patient api
       }
 
-      
+
 
 
       if($patient_id != '' && $data == 1){

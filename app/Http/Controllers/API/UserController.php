@@ -159,6 +159,11 @@ public function updateVerifiedByVouch(Request $request){
 
     $data = User::where('id',$user_id)->update(['verified_by_vouch' => $request['verified_by_vouch']]);
 
+    echo "<pre>";
+    print_r($data);
+    echo "<pre>";
+    exit(); 
+
         //$user = User::find($id);
 
     $orderdata = checkout::where('checkout.order_id',$order_id)->where('checkout.case_id',$case_id)->where('checkout.user_id',$user_id)->first();

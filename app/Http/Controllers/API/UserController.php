@@ -163,19 +163,25 @@ public function updateVerifiedByVouch(Request $request){
 
     $user = User::find($user_id);
 
-    echo "<pre>";
-    print_r($user);
-    echo "<pre>";
-    exit(); 
-
+    
     $orderdata = checkout::where('checkout.order_id',$order_id)->where('checkout.case_id',$case_id)->where('checkout.user_id',$user_id)->first();
 
-        //code gor md create case
+        //code for md create case
     if($orderdata['medication_type'] == 1){
 
-            //call create patient api
-      $patient_id = create_patient($user_id,$case_id,$order_id);
+      if($user['md_patient_id']!='' || $user['md_patient_id'] != null){
+
+        $patient_id = $user['md_patient_id'];
+        
+
+      }else{
+        
+          //call create patient api
+        $patient_id = create_patient($user_id,$case_id,$order_id);
             //end of code create patient api
+      }
+
+      
 
 
       if($patient_id != '' && $data == 1){

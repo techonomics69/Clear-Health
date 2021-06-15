@@ -654,7 +654,7 @@ if(!empty($Patient_data)){
     $input_data['prioritized_reason'] = $case_data->prioritized_reason;
     $input_data['cancelled_at'] = $case_data->prioritized_reason;
     $input_data['md_created_at'] = $case_data->created_at;
-    $input_data['md_created_at'] = $case_data->case_assignment->created_at;
+    //$input_data['md_created_at'] = $case_data->case_assignment->created_at;
     $input_data['support_reason'] = $case_data->support_reason;
     $input_data['case_id'] = $case_data->case_id;
     $input_data['status'] = $case_data->status;
@@ -671,7 +671,7 @@ if(!empty($Patient_data)){
 
       //code for update md details
 
-      $inputmd_data['status'] = $status;
+     /* $inputmd_data['status'] = $status;
       $inputmd_data['image'] = "";
       $inputmd_data['language_id'] = "";
       $inputmd_data['md_id'] = $case_data->case_assignment->clinician->clinician_id;
@@ -684,7 +684,7 @@ if(!empty($Patient_data)){
         $mdmanagement_data->update($inputmd_data);
       }else{
         $md_case_data = Mdmanagement::create($inputmd_data);
-      }
+      }*/
 
 
 

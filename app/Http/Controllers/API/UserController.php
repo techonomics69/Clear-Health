@@ -161,7 +161,7 @@ public function updateVerifiedByVouch(Request $request){
 
     
 
-    $user = User::find($id);
+    $user = User::find($user_id);
 
     echo "<pre>";
     print_r($user);

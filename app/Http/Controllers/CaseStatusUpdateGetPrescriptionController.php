@@ -239,11 +239,17 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                 $md_case_data = Mdmanagement::create($inputmd_data);
               }
 
+              if($value['curexa_order_id']!= '' || $value['curexa_order_id']!= NULL){
+                  $curexa_order_status = $this->curexa_order_status();
+              }
+
             }
             //md status completed
 
           }
         }
+
+
 
       }
 

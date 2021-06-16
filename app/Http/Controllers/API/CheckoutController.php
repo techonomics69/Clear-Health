@@ -453,40 +453,11 @@ $para['state'] = $state;
 $para['city'] = $city;
 $para['street'] = $street;
 $para['ord_total'] = $ord_total;
-$para['shipping_fee'] = $shipping_fee;
+$para['shipping_fee'] = $shipping_fee['amount'];
 $para['products_item'] = $products_item;
- 	/*	echo "<pre>";
- 		print_r($zip);
- 		echo "<pre>";
-
- 		echo "<pre>";
- 		print_r($state);
- 		echo "<pre>";
-
-
- 		echo "<pre>";
- 		print_r($city);
- 		echo "<pre>";
-
-
- 		echo "<pre>";
- 		print_r($street);
- 		echo "<pre>";
-
-
- 		echo "<pre>";
- 		print_r($ord_total);
- 		echo "<pre>";
-
- 		echo "<pre>";
- 		print_r($shipping_fee);
- 		echo "<pre>";
-
- 		echo "<pre>";
- 		print_r($products_item);
- 		echo "<pre>";*/
  	
-  $filename = "LOG_".strtotime(date('Y-m-d H:i:s')).".txt";
+
+$filename = "LOG_".strtotime(date('Y-m-d H:i:s')).".txt";
 $file = fopen($_SERVER['DOCUMENT_ROOT'].'/dev.clearhealth/storage/logs/'.$filename, 'w');
 $txt = json_encode($para);
 fwrite($file, $txt);
@@ -515,7 +486,7 @@ fclose($file);
           'to_city' => $city,
           'to_street' => $street,
           'amount' => $ord_total,
-          'shipping' => $shipping_fee,
+          'shipping' => $shipping_fee['amount'],
           'line_items' => $products_item
         ]);
 

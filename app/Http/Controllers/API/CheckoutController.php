@@ -409,7 +409,7 @@ public function getTaxes(Request $request){
 
   foreach($cart_details as $key=>$value){
 
-      $ord_total = $ord_total + (($value['product_price']*$value['quantity']) - ($value['discount_price']*$value['quantity']));
+      $ord_total = $ord_total + ($value['product_price']*$value['quantity']);
 
       $line_item[$key]['id'] = $value['product_id'] ;
       $line_item[$key]['quantity'] = $value['quantity'];

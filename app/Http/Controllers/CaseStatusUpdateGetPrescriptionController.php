@@ -128,12 +128,6 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                 if($md_case_status == 'dosespot confirmed' && $case_type = 'follow_up'){
 
                   $system_status = 'Prescription Approved';
-                }
-                
-
-                if($md_case_status == 'dosespot confirmed' && $value['pregnancy_test']!= NULL && $value['blood_work']!= NULL && $value['i_pledge_agreement']!= NULL){
-
-                  $system_status = 'Awaiting Action Items';
 
                   $response = $this->getPrescription($case_id);
 
@@ -145,7 +139,13 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                   $this->curexa_create_order($user_id,$case_id,$system_case_id);
 
-                  //end of curexa  create order api      
+                  //end of curexa  create order api    
+                }
+                
+
+                if($md_case_status == 'dosespot confirmed' && $value['pregnancy_test']!= NULL && $value['blood_work']!= NULL && $value['i_pledge_agreement']!= NULL){
+
+                  $system_status = 'Awaiting Action Items';  
 
                 }
 
@@ -172,8 +172,6 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                   if($md_case_status == 'dosespot confirmed' && $case_type = 'new'){
 
                     $system_status = 'Prescription Approved';
-
-
 
                     $response = $this->getPrescription($case_id);
 
@@ -203,8 +201,6 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                 if($md_case_status == 'dosespot confirmed' && $case_type = 'new'){
 
                   $system_status = 'Prescription Approved';
-
-
 
                   
                   $response = $this->getPrescription($case_id);

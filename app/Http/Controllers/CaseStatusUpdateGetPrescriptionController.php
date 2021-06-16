@@ -47,7 +47,6 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
         $system_status = 'Telehealth Evaluation Requested';
 
 
-
         if($value['md_case_status']!= 'completed'){
 
           $userQueAns = getQuestionAnswerFromUserid($user_id,$system_case_id);
@@ -100,8 +99,6 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
           }
 
           $case_type = getCaseType($user_id,$case_id,$system_case_id);
-
-
 
           if($gender == "Female" && $recommended_product == 'Accutane' && $case_type = 'new'){
 

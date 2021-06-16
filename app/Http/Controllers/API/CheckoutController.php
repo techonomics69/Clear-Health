@@ -445,7 +445,7 @@ public function getTaxes(Request $request){
   $shipping_fee = 0;
  }
 
- 		echo "<pre>";
+ 	/*	echo "<pre>";
  		print_r($zip);
  		echo "<pre>";
 
@@ -474,9 +474,8 @@ public function getTaxes(Request $request){
 
  		echo "<pre>";
  		print_r($products_item);
- 		echo "<pre>";
- 		exit();
-
+ 		echo "<pre>";*/
+ 	
 
    $client = \TaxJar\Client::withApiKey('dcbaa17daefa7c485d84ee47793d1708');
    $client->setApiConfig('api_url', \TaxJar\Client::SANDBOX_API_URL);

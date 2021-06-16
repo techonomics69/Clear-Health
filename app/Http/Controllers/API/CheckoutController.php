@@ -432,7 +432,7 @@ public function getTaxes(Request $request){
       $street =  $shipping_address['addressline1'];
 
       if($shipping_address['addressline2']!=''){
-           $street .=  $shipping_address['addressline1'];
+           $street =  $shipping_address['addressline2'];
       }
 
   $products_item  = $line_item;

@@ -476,6 +476,8 @@ public function getTaxes(Request $request){
     echo "<pre>";
     exit(); */
 
+    Log::debug("taxjar log");
+
       if(isset($order_taxes->amount_to_collect)){
            return $this->sendResponse($order_taxes->amount_to_collect, 'Tax retrieved successfully.');
        }else{

@@ -445,6 +445,38 @@ public function getTaxes(Request $request){
   $shipping_fee = 0;
  }
 
+ 		echo "<pre>";
+ 		print_r($zip);
+ 		echo "<pre>";
+
+ 		echo "<pre>";
+ 		print_r($state);
+ 		echo "<pre>";
+
+
+ 		echo "<pre>";
+ 		print_r($city);
+ 		echo "<pre>";
+
+
+ 		echo "<pre>";
+ 		print_r($street);
+ 		echo "<pre>";
+
+
+ 		echo "<pre>";
+ 		print_r($ord_total);
+ 		echo "<pre>";
+
+ 		echo "<pre>";
+ 		print_r($shipping_fee);
+ 		echo "<pre>";
+
+ 		echo "<pre>";
+ 		print_r($products_item);
+ 		echo "<pre>";
+ 		exit();
+
 
    $client = \TaxJar\Client::withApiKey('dcbaa17daefa7c485d84ee47793d1708');
    $client->setApiConfig('api_url', \TaxJar\Client::SANDBOX_API_URL);
@@ -477,7 +509,11 @@ public function getTaxes(Request $request){
     echo "<pre>";
     exit(); */
 
-    Log::info("taxjar log");
+   $filename = "LOG_".strtotime(date('Y-m-d H:i:s')).".txt";
+$file = fopen($_SERVER['DOCUMENT_ROOT'].'/dev.clearhealth/storage/logs/'.$filename, 'w');
+$txt = "user id date";
+fwrite($file, $txt);
+fclose($file);
 
       if(isset($order_taxes->amount_to_collect)){
            return $this->sendResponse($order_taxes->amount_to_collect, 'Tax retrieved successfully.');

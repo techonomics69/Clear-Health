@@ -13,6 +13,7 @@ use App\Models\CaseManagement;
 use App\Models\Fees;
 use Validator;
 use Exception;
+use log;
 
 class CheckoutController extends BaseController
 {
@@ -476,7 +477,7 @@ public function getTaxes(Request $request){
     echo "<pre>";
     exit(); */
 
-    Log::debug("taxjar log");
+    Log::info("taxjar log");
 
       if(isset($order_taxes->amount_to_collect)){
            return $this->sendResponse($order_taxes->amount_to_collect, 'Tax retrieved successfully.');

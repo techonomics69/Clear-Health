@@ -415,7 +415,7 @@ public function getTaxes(Request $request){
       $line_item[$key]['quantity'] = $value['quantity'];
       $line_item[$key]['product_tax_code'] = '53131619A0001';
       $line_item[$key]['unit_price'] = $value['product_price'];        
-      $line_item[$key]['discount'] =  $value['discount_price'];
+      $line_item[$key]['discount'] =  0;//$value['discount_price'];
 
       $shipping_address = Checkoutaddress::select('*')
       //->whereRaw("find_in_set(".$value['cart_id'].",cart_id)")

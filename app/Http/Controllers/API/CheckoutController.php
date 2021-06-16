@@ -446,7 +446,7 @@ public function getTaxes(Request $request){
  }
 
 
-$para = array();
+/*$para = array();
 
 $para['zip'] = $zip;
 $para['state'] = $state;
@@ -461,7 +461,7 @@ $filename = "LOG_".strtotime(date('Y-m-d H:i:s')).".txt";
 $file = fopen($_SERVER['DOCUMENT_ROOT'].'/dev.clearhealth/storage/logs/'.$filename, 'w');
 $txt = json_encode($para);
 fwrite($file, $txt);
-fclose($file);
+fclose($file);*/
 
 
    $client = \TaxJar\Client::withApiKey('dcbaa17daefa7c485d84ee47793d1708');

@@ -488,7 +488,7 @@ $para['products_item'] = $products_item;
  	
   $filename = "LOG_".strtotime(date('Y-m-d H:i:s')).".txt";
 $file = fopen($_SERVER['DOCUMENT_ROOT'].'/dev.clearhealth/storage/logs/'.$filename, 'w');
-$txt = json_decode($para);
+$txt = json_encode($para);
 fwrite($file, $txt);
 fclose($file);
 

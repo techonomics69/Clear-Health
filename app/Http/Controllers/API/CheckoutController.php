@@ -445,6 +445,16 @@ public function getTaxes(Request $request){
   $shipping_fee = 0;
  }
 
+
+$para = array();
+
+$para['zip'] = $zip;
+$para['state'] = $state;
+$para['city'] = $city;
+$para['street'] = $street;
+$para['ord_total'] = $ord_total;
+$para['shipping_fee'] = $shipping_fee;
+$para['products_item'] = $products_item;
  	/*	echo "<pre>";
  		print_r($zip);
  		echo "<pre>";
@@ -478,7 +488,7 @@ public function getTaxes(Request $request){
  	
   $filename = "LOG_".strtotime(date('Y-m-d H:i:s')).".txt";
 $file = fopen($_SERVER['DOCUMENT_ROOT'].'/dev.clearhealth/storage/logs/'.$filename, 'w');
-$txt = "user id date";
+$txt = json_decode($para);
 fwrite($file, $txt);
 fclose($file);
 

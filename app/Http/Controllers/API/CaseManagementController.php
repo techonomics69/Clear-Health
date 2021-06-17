@@ -1154,7 +1154,7 @@ public function createMessage(Request $request){
 
         $followUpAns = FollowUp::where('user_id', $data['user_id'])->where('case_id', $data['case_id'])->first();
         if(!empty($followUpAns)):
-           $followUpAns = $answer->update($data);
+           $followUpAns = $followUpAns->update($data);
        else:
            $followUpAns = FollowUp::create($data);
        endif;

@@ -254,6 +254,10 @@ class CaseManagementController extends Controller
       }
 
       $i++;
+echo"<pre>";
+print_r($msg_history);
+echo"</pre>";
+die();
     }
 }
    /* if(!empty($msg_history) && count($msg_history)>0 ){

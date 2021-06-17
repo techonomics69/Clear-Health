@@ -104,7 +104,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
           $case_type = getCaseType($user_id,$case_id,$system_case_id);
 
-          $support_reason = Mdcases::select('support_reason')->where('case_id',$case_id)->get()->toArray();
+          $support_reason = Mdcases::select('support_reason')->where('case_id',$case_id)->get();
 
           echo "<pre>";
           print_r($support_reason);

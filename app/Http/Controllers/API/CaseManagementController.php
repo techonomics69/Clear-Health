@@ -1178,7 +1178,7 @@ public function createMessage(Request $request){
 
     }
 
-    public function updateFieldInCaseManagement(Request $request){
+    /*public function updateFieldInCaseManagement(Request $request){
 
       $user_id = $request['user_id'];
       $case_id = $request['case_id'];
@@ -1201,7 +1201,7 @@ public function createMessage(Request $request){
       return $this->sendResponse($data,'Field Updated Successfully.');
 
 
-    }
+    }*/
 
 
 }

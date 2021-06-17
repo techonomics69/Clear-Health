@@ -17,6 +17,7 @@ class CreateFollowUpTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->string('case_id');
+            $table->string('md_case_id');
             $table->string('answer');
             $table->string('left_face');
             $table->string('right_face');

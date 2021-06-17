@@ -589,7 +589,8 @@
 									<div class="right-cht">
 										<div class="chating-section">
 											<ul>
-												
+												<li class ="left">
+												</li>
 											</ul>
 										</div> 
 									</div>

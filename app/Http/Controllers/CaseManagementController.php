@@ -241,7 +241,7 @@ class CaseManagementController extends Controller
 
       if(!empty($value->message_files)){
        $msg_history[$i]['message_files'] = $value->message_files;
-    /*   echo"<pre>";
+       /*echo"<pre>";
 print_r( $msg_history[$i]['message_files']);
 echo"</pre>";
 die();*/

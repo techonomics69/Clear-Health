@@ -56,12 +56,12 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
           $userQueAns = getQuestionAnswerFromUserid($user_id,$system_case_id);
 
           if(!empty($userQueAns)){
-            foreach ($userQueAns as $key => $value) {
-             $question = $value->question;
+            foreach ($userQueAns as $k => $val) {
+             $question = $val->question;
              if($question == "What was your gender assigned at birth?"){
-               if(isset($value->answer) && $value->answer!=''){
+               if(isset($val->answer) && $val->answer!=''){
 
-                $gender =  $value->answer;
+                $gender =  $val->answer;
               }
             }
           }

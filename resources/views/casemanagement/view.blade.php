@@ -589,7 +589,7 @@
 									<div class="right-cht">
 										<div class="chating-section">
 											<ul>
-												<?php print_r($msg_history); ?>
+												
 												@foreach ($msg_history as $key => $md_message)
 													<li class="left">
 											<p>

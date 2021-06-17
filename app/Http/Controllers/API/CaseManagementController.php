@@ -1178,5 +1178,30 @@ public function createMessage(Request $request){
 
     }
 
+    public function updateFieldInCaseManagement(Request $request){
+
+      $user_id = $request['user_id'];
+      $case_id = $request['case_id'];
+      $md_case_id = $request['md_case_id'];
+
+      $update_data = array();
+
+      if(isset($request['abstinence_form'])){
+        $update_data['abstinence_form'] =  $abstinence_form = $request['abstinence_form'];
+
+      }
+
+      if(isset($request['sign_ipledge_consent'])){
+        $update_data['sign_ipledge_consent'] =  $sign_ipledge_consent = $request['sign_ipledge_consent'];
+      }
+      
+
+      $data  =  CaseManagement::where([['user_id',$user_id], ['id', $case_id],['md_case_id', $md_case_id]])->update($update_data);
+
+      return $this->sendResponse($data,'Field Updated Successfully.');
+
+
+    }
+
 
 }

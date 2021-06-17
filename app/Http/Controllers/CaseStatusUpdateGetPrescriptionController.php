@@ -133,13 +133,25 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                   if(!empty($response)){
                     $this->save_prescription_response($response);
+                    $prescription_data = json_decode($response);
+
+                     //curexa create order api
+                    $curexa_para = array();
+                    $curexa_para['user_id'] = $user_id;
+                    $curexa_para['case_id'] = $case_id;
+                    $curexa_para['system_case_id'] = $system_case_id;
+                    $curexa_para['rx_id'] =  $prescription_data->dosespot_prescription_id;
+                    $curexa_para['quantity_dispensed'] = 30;
+                    $curexa_para['days_supply'] = $prescription_data->days_supply;
+                    $curexa_para['medication_sig'] = $prescription_data->directions;
+                
+
+                    $this->curexa_create_order($curexa_para);
+
+                    //end of curexa  create order api 
                   } 
 
-                  //curexa create order api
-
-                  $this->curexa_create_order($user_id,$case_id,$system_case_id);
-
-                  //end of curexa  create order api    
+                    
                 }
                 
 
@@ -177,14 +189,16 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                     if(!empty($response)){
                       $this->save_prescription_response($response);
-                    }
 
-
-                    //curexa create order api   
+                      //curexa create order api   
 
                     $this->curexa_create_order($user_id,$case_id,$system_case_id);
 
                     //end of curexa  create order api
+                    }
+
+
+                    
 
 
                   }
@@ -207,13 +221,15 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                   if(!empty($response)){
                     $this->save_prescription_response($response);
-                  }  
+
 
                   //curexa create order api
 
                   $this->curexa_create_order($user_id,$case_id,$system_case_id);
 
                   //end of curexa  create order api
+                  }  
+
                 }
               }
 
@@ -414,7 +430,14 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
    }
 
 
-   public function curexa_create_order($user_id,$case_id,$system_case_id){
+   public function curexa_create_order($curexa_para){
+
+     $user_id = $curexa_para['user_id'];
+     $case_id = $curexa_para['case_id'];
+     $system_case_id =$curexa_para['system_case_id'] ;
+
+     $md_deatail = Mdmanagement::where([['case_id', $case_id]])->get()->toArray();
+     
 
     $order_data = Checkout::where([['user_id', $user_id],['case_id', $case_id],['md_case_id', $system_case_id]])->get()->toArray();
 
@@ -480,6 +503,16 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
           $patient_dob = date('Ymd', strtotime($patient_data['dob']));
 
 
+          $rx_items= array();
+
+          $rx_items['rx_id'] = $curexa_para['rx_id'];
+          $rx_items['quantity_dispensed'] = $curexa_para['quantity_dispensed'];
+          $rx_items['days_supply'] = $curexa_para['days_supply'];
+          $rx_items['prescribing_doctor'] =  $md_deatail['name'];
+          $rx_items['medication_sig'] = $curexa_para['medication_sig'];
+          $rx_items['non_child_resistant_acknowledgment'] = false;
+
+
 
           $curl = curl_init();
 
@@ -511,7 +544,8 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
               "address_to_phone":'.$shipping_address['phone'].',
               "notes":"Test",
               "patient_known_allergies":'.(isset($allergies))?$allergies:''.',
-              "patient_other_medications":'.(isset($current_medications))?$current_medications:''.'
+              "patient_other_medications":'.(isset($current_medications))?$current_medications:''.',
+              "rx_items":'.json_encode($rx_items).'
             }',
             CURLOPT_HTTPHEADER => array(
               'Authorization: Basic Y2xlYXJoZWFsdGhfdGVzdF9Ya1Fzdk1sbVFKbXRWSlBIbGJnWE9WSVd3UU5ETXQxNDpvRW5NZTJITnZndGQzaW9wNm96aWdTZHRmZUJkQUNCNw==',

@@ -597,7 +597,7 @@
 												if(isset($md_message['message']) &&  $md_message['message']!=''){
 													echo $md_message['message'];
 												}else{
-													echo $md_message['url'];
+													//echo $md_message['url'];
 													?>
 													<!-- <img src="$md_message['url']" type="media_type"width='100'>
 													<a target="_blank" download="" href="$md_message['url']"> Download</a> -->	

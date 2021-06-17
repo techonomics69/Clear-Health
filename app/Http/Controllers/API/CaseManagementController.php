@@ -1166,5 +1166,16 @@ public function createMessage(Request $request){
 
   }
 
+   public function getFollowUpAnswer(Request $request)
+    {
+        try{
+           $answer = FollowUp::where('user_id', $request['user_id'])->where('case_id', $request['case_id'])->first();
+            return $this->sendResponse($answer, 'Follow Up Answer Retrieved Successfully.');
+        }catch(\Exception $ex){
+            return $this->sendError('Server error', array($ex->getMessage()));
+        }
+
+    }
+
 
 }

@@ -1159,7 +1159,7 @@ public function createMessage(Request $request){
            $followUpAns = FollowUp::create($data);
        endif;
 
-       return $this->sendResponse(array(), 'Follow Up Answer Submitted Successfully');
+       return $this->sendResponse($followUpAns, 'Follow Up Answer Submitted Successfully');
    }catch(\Exception $ex){
       return $this->sendError('Server error',array($ex->getMessage()));
    }

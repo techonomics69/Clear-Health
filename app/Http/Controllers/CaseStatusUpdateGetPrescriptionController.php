@@ -19,6 +19,7 @@ use App\Models\PrescriptionCompound;
 use App\Models\PrescriptionMedication;
 use App\Models\Mdpatient;
 use App\Models\CurexaOrder;
+use App\Models\Mdcases;
 use Session;
 
 
@@ -100,6 +101,13 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
           }
 
           $case_type = getCaseType($user_id,$case_id,$system_case_id);
+
+          $support_reason = Mdcases::where('case_id',$case_id)->pluck('support_reason');
+
+          echo "<pre>";
+          print_r($support_reason);
+          echo "<pre>";
+          exit();
 
           if($gender == "Female" && $recommended_product == 'Accutane' && $case_type = 'new'){
 

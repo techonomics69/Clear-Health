@@ -599,8 +599,8 @@
 													echo $md_message['message'];
 												}else{
 													?>
-													<img src="{{ asset('public/Message_files/'.$md_message['file_name']) }}" type="media_type"width='100'>
-													<a target="_blank" download="" href="{{ asset('public/Message_files/'. $md_message['file_name']) }}"> Download</a>	
+													<img src="{{ asset('public/Message_files/'.$md_message['message_files']) }}" type="media_type"width='100'>
+													<a target="_blank" download="" href="{{ asset('public/Message_files/'. $md_message['message_files']) }}"> Download</a>	
 													<?php
 												}
 												?>

@@ -230,6 +230,7 @@ class CaseManagementController extends Controller
     $data = json_decode($response);
     $msg_history = array();
     $i = 0;
+    if(isset($data)){
     foreach($data as $key=>$value){
       $msg_history[$i]['message'] = $value->text;
       $date = strtotime($value->created_at);  
@@ -254,7 +255,7 @@ class CaseManagementController extends Controller
 
       $i++;
     }
-
+}
    /* if(!empty($msg_history) && count($msg_history)>0 ){
       return $this->sendResponse($msg_history,'Message retrieved successfully');
     }else{

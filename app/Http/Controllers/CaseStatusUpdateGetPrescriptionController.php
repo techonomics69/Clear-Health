@@ -145,19 +145,16 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                     $curexa_para['quantity_dispensed'] = 30;
                     $curexa_para['days_supply'] = $prescription_data->days_supply;
                     $curexa_para['medication_sig'] = $prescription_data->directions;
-                
+
 
                     $curexa_create_order_data = $this->curexa_create_order($curexa_para);
 
-                    echo "<pre>";
-                    print_r($curexa_create_order_data);
-                    echo "<pre>";
-                    exit();
+                    $this->store_curexa_order_data($curexa_create_order_data);
 
                     //end of curexa  create order api 
                   } 
 
-                    
+
                 }
                 
 
@@ -198,22 +195,19 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                       //curexa create order api   
 
-                    $curexa_para = array();
-                    $curexa_para['user_id'] = $user_id;
-                    $curexa_para['case_id'] = $case_id;
-                    $curexa_para['system_case_id'] = $system_case_id;
-                    $curexa_para['rx_id'] =  $prescription_data->dosespot_prescription_id;
-                    $curexa_para['quantity_dispensed'] = 30;
-                    $curexa_para['days_supply'] = $prescription_data->days_supply;
-                    $curexa_para['medication_sig'] = $prescription_data->directions;
-                
+                      $curexa_para = array();
+                      $curexa_para['user_id'] = $user_id;
+                      $curexa_para['case_id'] = $case_id;
+                      $curexa_para['system_case_id'] = $system_case_id;
+                      $curexa_para['rx_id'] =  $prescription_data->dosespot_prescription_id;
+                      $curexa_para['quantity_dispensed'] = 30;
+                      $curexa_para['days_supply'] = $prescription_data->days_supply;
+                      $curexa_para['medication_sig'] = $prescription_data->directions;
 
-                    $curexa_create_order_data = $this->curexa_create_order($curexa_para);
 
-                    echo "<pre>";
-                    print_r($curexa_create_order_data);
-                    echo "<pre>";
-                    exit();
+                      $curexa_create_order_data = $this->curexa_create_order($curexa_para);
+
+                      $this->store_curexa_order_data($curexa_create_order_data);
 
                     //end of curexa  create order api
                     }
@@ -246,7 +240,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                   //curexa create order api
 
-                  $curexa_para = array();
+                    $curexa_para = array();
                     $curexa_para['user_id'] = $user_id;
                     $curexa_para['case_id'] = $case_id;
                     $curexa_para['system_case_id'] = $system_case_id;
@@ -254,30 +248,11 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                     $curexa_para['quantity_dispensed'] = 30;
                     $curexa_para['days_supply'] = $prescription_data->days_supply;
                     $curexa_para['medication_sig'] = $prescription_data->directions;
-                
+
 
                     $curexa_create_order_data = $this->curexa_create_order($curexa_para);
 
-                    $curexa_order_data = json_decode($curexa_create_order_data);
-
-                    echo "<pre>";
-                    print_r($curexa_create_order_data);
-                    echo "<pre>";
-                    exit();
-
-                    $order_data = array();
-                    $order_data['order_id'] = $curexa_order_data['order_id'];
-                    $order_data['rx_item_count'] = $curexa_order_data['rx_item_count'];
-                    $order_data['otc_item_count'] = $curexa_order_data['otc_item_count'];
-                    $order_data['status'] = $curexa_order_data['status'];
-                    $order_data['message'] = $curexa_order_data['message'];
-
-
-
-                    $inserted_data = CurexaOrder::create($order_data);
-                    $curexa_order_id = $inserted_data->id;
-
-                    $case_management  =  CaseManagement::where('id', $system_case_id)->where('md_case_id', $case_id)->where('user_id',$user_id)->update(['curexa_order_id' => $curexa_order_id]);
+                    $this->store_curexa_order_data($curexa_create_order_data);
 
                   //end of curexa  create order api
                   }  
@@ -308,12 +283,11 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
               }
 
               if($value['curexa_order_id']!= '' || $value['curexa_order_id']!= NULL){
-                  $curexa_order_status = $this->curexa_order_status();
+                $curexa_order_status = $this->curexa_order_status();
 
-                    echo "<pre>";
-                    print_r($curexa_order_status);
-                    echo "<pre>";
-                    exit();
+                $curexa_ord_status = json_decode($curexa_order_status);
+
+                $CurexaOrderStatus  =  CurexaOrder::where('id',$value['curexa_order_id'])->update(['order_status' => $curexa_ord_status->status,'status_details' => $curexa_ord_status->status_details,'tracking_number'=> $curexa_ord_status->tracking_number]);
               }
 
             }
@@ -496,15 +470,15 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
      $md_deatail = Mdmanagement::where([['case_id', $case_id]])->get()->toArray();
      
 
-    $order_data = Checkout::where([['user_id', $user_id],['case_id', $case_id],['md_case_id', $system_case_id]])->get()->toArray();
+     $order_data = Checkout::where([['user_id', $user_id],['case_id', $case_id],['md_case_id', $system_case_id]])->get()->toArray();
 
-    $order_id = $order_data['order_id'];
+     $order_id = $order_data['order_id'];
 
-    $user = User::find($user_id);
+     $user = User::find($user_id);
 
 
-    $userQueAns = getQuestionAnswerFromUserid($user_id,$case_id);
-    foreach ($userQueAns as $key => $value) {
+     $userQueAns = getQuestionAnswerFromUserid($user_id,$case_id);
+     foreach ($userQueAns as $key => $value) {
 
       $question = $value->question;
 
@@ -648,6 +622,22 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
         curl_close($curl);
         return $response;
+      }
+
+      public function store_curexa_order_data($curexa_create_order_data){
+        $curexa_order_data = json_decode($curexa_create_order_data);
+
+        $order_data = array();
+        $order_data['order_id'] = $curexa_order_data['order_id'];
+        $order_data['rx_item_count'] = $curexa_order_data['rx_item_count'];
+        $order_data['otc_item_count'] = $curexa_order_data['otc_item_count'];
+        $order_data['status'] = $curexa_order_data['status'];
+        $order_data['message'] = $curexa_order_data['message'];
+
+        $inserted_data = CurexaOrder::create($order_data);
+        $curexa_order_id = $inserted_data->id;
+
+        $case_management  =  CaseManagement::where('id', $system_case_id)->where('md_case_id', $case_id)->where('user_id',$user_id)->update(['curexa_order_id' => $curexa_order_id]);
       }
 
 

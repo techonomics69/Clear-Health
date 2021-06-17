@@ -1152,11 +1152,11 @@ public function createMessage(Request $request){
             return $this->sendError('Validation Error.', $validator->errors()->all());       
         }
 
-        $answer = FollowUp::where('user_id', $data['user_id'])->where('case_id', $data['case_id'])->first();
-        if(!empty($answer)):
-           $answer->update($data);
+        $followUpAns = FollowUp::where('user_id', $data['user_id'])->where('case_id', $data['case_id'])->first();
+        if(!empty($followUpAns)):
+           $followUpAns = $answer->update($data);
        else:
-           $quizAns = FollowUp::create($data);
+           $followUpAns = FollowUp::create($data);
        endif;
 
        return $this->sendResponse(array(), 'Follow Up Answer Submitted Successfully');

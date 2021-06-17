@@ -44,6 +44,8 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
         $case_id = $value['md_case_id'];
         $system_case_id = $value['id'];
 
+        $gender = 'Not known';//0;
+
         $recommended_product = $value['recommended_product'];
 
         $system_status = 'Telehealth Evaluation Requested';

@@ -107,7 +107,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
           echo "<pre>";
           print_r($support_reason);
           echo "<pre>";
-          exit();
+        
 
           if($gender == "Female" && $recommended_product == 'Accutane' && $case_type = 'new'){
 

@@ -592,9 +592,20 @@
 												@foreach ($msg_history as $key => $md_message)
 
 													<li class="left">
-														<p>{{ $md_message['message'] }}</p>
-														<img src="{{ asset('public/Message_files/'.$message['file_name']) }}" type="media_type"width='100'>
-													<a target="_blank" download="" href="{{ asset('public/Message_files/'.$message['file_name']) }}"> Download</a>
+
+											<p>
+												<?php 
+												if(isset($md_message['message']) &&  $md_message['message']!=''){
+													echo $md_message['message'];
+												}else{
+													?>
+													<img src="{{ asset('public/Message_files/'.$md_message['file_name']) }}" type="media_type"width='100'>
+													<a target="_blank" download="" href="{{ asset('public/Message_files/'. $md_message['file_name']) }}"> Download</a>	
+													<?php
+												}
+												?>
+											</p>
+
 														<h5>{{ $md_message['msg_date'] }}</h5>
 													</li>
 													@endforeach

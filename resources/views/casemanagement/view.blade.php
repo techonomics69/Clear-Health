@@ -591,17 +591,15 @@
 											<ul>
 												<?php print_r($msg_history); ?>
 												@foreach ($msg_history as $key => $md_message)
-
 													<li class="left">
-
 											<p>
 												<?php 
 												if(isset($md_message['message']) &&  $md_message['message']!=''){
 													echo $md_message['message'];
 												}else{
 													?>
-													<img src="{{ asset('public/Message_files/'.$md_message['message_files']) }}" type="media_type"width='100'>
-													<a target="_blank" download="" href="{{ asset('public/Message_files/'. $md_message['message_files']) }}"> Download</a>	
+													<img src="{{ asset('public/MD_Case_files/'.$md_message['message_files']) }}" type="media_type"width='100'>
+													<a target="_blank" download="" href="{{ asset('public/MD_Case_files/'. $md_message['message_files']) }}"> Download</a>	
 													<?php
 												}
 												?>

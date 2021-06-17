@@ -14,8 +14,8 @@ class AddAbstinenceFormSignIPledgeConsentIPledgeUsernameIPledgePasswordFieldsToC
     public function up()
     {
         Schema::table('case_managements', function (Blueprint $table) {
-            $table->string('abstinence_form')->nullable()->after('follow_up');
-            $table->string('sign_ipledge_consent')->nullable()->after('abstinence_form');
+            $table->string('abstinence_form')->after('follow_up')->default('0')->comment = '0=submited,1=not_submited';
+            $table->string('sign_ipledge_consent')->after('abstinence_form')->default('0')->comment = '0=not_signed,1=signed';
             $table->string('ipledge_username')->nullable()->after('sign_ipledge_consent');
             $table->string('ipledge_password')->nullable()->after('ipledge_username');
         });

@@ -241,6 +241,10 @@ class CaseManagementController extends Controller
 
       if(!empty($value->message_files)){
        $msg_history[$i]['message_files'] = $value->message_files;
+       echo"<pre>";
+print_r( $msg_history[$i]['message_files']);
+echo"</pre>";
+die();
       }
 
       if(!empty($value->clinician)){
@@ -254,10 +258,7 @@ class CaseManagementController extends Controller
       }
 
       $i++;
-echo"<pre>";
-print_r( $msg_history[$i]['message_files']);
-echo"</pre>";
-die();
+
     }
 }
    /* if(!empty($msg_history) && count($msg_history)>0 ){

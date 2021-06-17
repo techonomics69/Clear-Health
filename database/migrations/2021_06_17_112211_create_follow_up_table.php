@@ -17,14 +17,14 @@ class CreateFollowUpTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->string('case_id');
-            $table->string('md_case_id');
-            $table->string('answer');
-            $table->string('left_face');
-            $table->string('right_face');
-            $table->string('center_face');
-            $table->string('back_photo');
-            $table->string('chest_photo');
-            $table->string('follow_up_status');
+            $table->string('md_case_id')->nullable();
+            $table->string('answer')->nullable();
+            $table->string('left_face')->nullable();
+            $table->string('right_face')->nullable();
+            $table->string('center_face')->nullable();
+            $table->string('back_photo')->nullable();
+            $table->string('chest_photo')->nullable();
+            $table->string('follow_up_status')->nullable();
             $table->timestamps();
         });
     }

@@ -104,11 +104,11 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
           $case_type = getCaseType($user_id,$case_id,$system_case_id);
 
-          $support_reason = Mdcases::select('support_reason')->where('case_id',$case_id)->first();
+          $get_support_reason = Mdcases::select('support_reason')->where('case_id',$case_id)->first();
 
-          echo "<pre>";
-          print_r($support_reason);
-          echo "<pre>";
+      
+          $support_reason = $get_support_reason['support_reason'];
+        
         
 
           if($gender == "Female" && $recommended_product == 'Accutane' && $case_type = 'new'){
@@ -126,7 +126,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                   $system_status = 'Awaiting Live Consultation';
                 }
 
-                if($md_case_status == 'support' && $case_type = 'new'){
+                if($md_case_status == 'support' && $case_type = 'new' && ($support_reason != '' || $support_reason != NULL)){
 
                   $system_status = 'Awaiting Follow-Up';
                 }

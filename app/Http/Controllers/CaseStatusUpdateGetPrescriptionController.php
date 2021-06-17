@@ -18,6 +18,7 @@ use App\Models\CasePrescriptions;
 use App\Models\PrescriptionCompound;
 use App\Models\PrescriptionMedication;
 use App\Models\Mdpatient;
+use App\Models\CurexaOrder;
 use Session;
 
 
@@ -146,7 +147,12 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                     $curexa_para['medication_sig'] = $prescription_data->directions;
                 
 
-                    $this->curexa_create_order($curexa_para);
+                    $curexa_create_order_data = $this->curexa_create_order($curexa_para);
+
+                    echo "<pre>";
+                    print_r($curexa_create_order_data);
+                    echo "<pre>";
+                    exit();
 
                     //end of curexa  create order api 
                   } 
@@ -192,7 +198,22 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                       //curexa create order api   
 
-                    $this->curexa_create_order($user_id,$case_id,$system_case_id);
+                    $curexa_para = array();
+                    $curexa_para['user_id'] = $user_id;
+                    $curexa_para['case_id'] = $case_id;
+                    $curexa_para['system_case_id'] = $system_case_id;
+                    $curexa_para['rx_id'] =  $prescription_data->dosespot_prescription_id;
+                    $curexa_para['quantity_dispensed'] = 30;
+                    $curexa_para['days_supply'] = $prescription_data->days_supply;
+                    $curexa_para['medication_sig'] = $prescription_data->directions;
+                
+
+                    $curexa_create_order_data = $this->curexa_create_order($curexa_para);
+
+                    echo "<pre>";
+                    print_r($curexa_create_order_data);
+                    echo "<pre>";
+                    exit();
 
                     //end of curexa  create order api
                     }
@@ -225,7 +246,38 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                   //curexa create order api
 
-                  $this->curexa_create_order($user_id,$case_id,$system_case_id);
+                  $curexa_para = array();
+                    $curexa_para['user_id'] = $user_id;
+                    $curexa_para['case_id'] = $case_id;
+                    $curexa_para['system_case_id'] = $system_case_id;
+                    $curexa_para['rx_id'] =  $prescription_data->dosespot_prescription_id;
+                    $curexa_para['quantity_dispensed'] = 30;
+                    $curexa_para['days_supply'] = $prescription_data->days_supply;
+                    $curexa_para['medication_sig'] = $prescription_data->directions;
+                
+
+                    $curexa_create_order_data = $this->curexa_create_order($curexa_para);
+
+                    $curexa_order_data = json_decode($curexa_create_order_data);
+
+                    echo "<pre>";
+                    print_r($curexa_create_order_data);
+                    echo "<pre>";
+                    exit();
+
+                    $order_data = array();
+                    $order_data['order_id'] = $curexa_order_data['order_id'];
+                    $order_data['rx_item_count'] = $curexa_order_data['rx_item_count'];
+                    $order_data['otc_item_count'] = $curexa_order_data['otc_item_count'];
+                    $order_data['status'] = $curexa_order_data['status'];
+                    $order_data['message'] = $curexa_order_data['message'];
+
+
+
+                    $inserted_data = CurexaOrder::create($order_data);
+                    $curexa_order_id = $inserted_data->id;
+
+                    $case_management  =  CaseManagement::where('id', $system_case_id)->where('md_case_id', $case_id)->where('user_id',$user_id)->update(['curexa_order_id' => $curexa_order_id]);
 
                   //end of curexa  create order api
                   }  
@@ -233,7 +285,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                 }
               }
 
-              $case_management  =  CaseManagement::where('id',$case_id)->where('user_id',$user_id)->update(['md_case_status' => $MdCaseStatus->status,'md_status' => $md_status,'system_status'=> $system_status ]);
+              $case_management  =  CaseManagement::where('id',$system_case_id)->where('md_case_id', $case_id)->where('user_id',$user_id)->update(['md_case_status' => $MdCaseStatus->status,'md_status' => $md_status,'system_status'=> $system_status ]);
 
                //code for update md details
 
@@ -257,6 +309,11 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
               if($value['curexa_order_id']!= '' || $value['curexa_order_id']!= NULL){
                   $curexa_order_status = $this->curexa_order_status();
+
+                    echo "<pre>";
+                    print_r($curexa_order_status);
+                    echo "<pre>";
+                    exit();
               }
 
             }

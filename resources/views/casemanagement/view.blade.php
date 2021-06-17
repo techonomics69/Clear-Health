@@ -590,7 +590,7 @@
 										<div class="chating-section">
 											<ul>
 												@foreach ($msg_history as $key => $md_message)
-
+<?php print_r($msg_history); ?>
 													<li class="left">
 
 											<p>
@@ -599,8 +599,8 @@
 													echo $md_message['message'];
 												}else{
 													?>
-													<img src="{{ asset('public/Message_files/'.$md_message['file_name']) }}" type="media_type"width='100'>
-													<a target="_blank" download="" href="{{ asset('public/Message_files/'. $md_message['file_name']) }}"> Download</a>	
+													<img src="{{ asset('public/Message_files/'.$md_message['message_files']) }}" type="media_type"width='100'>
+													<a target="_blank" download="" href="{{ asset('public/Message_files/'. $md_message['message_files']) }}"> Download</a>	
 													<?php
 												}
 												?>

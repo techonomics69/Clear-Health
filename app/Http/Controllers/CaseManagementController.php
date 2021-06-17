@@ -204,7 +204,7 @@ class CaseManagementController extends Controller
 
 // Medical msg
 
-    /*$r = get_token();
+    $r = get_token();
     $token_data = json_decode($r);
     $token = $token_data->access_token;
     $case_id = $user_case_management_data['md_case_id'];
@@ -230,6 +230,7 @@ class CaseManagementController extends Controller
     $data = json_decode($response);
     $msg_history = array();
     $i = 0;
+    if(isset($data)){
     foreach($data as $key=>$value){
       $msg_history[$i]['message'] = $value->text;
       $date = strtotime($value->created_at);  
@@ -253,8 +254,8 @@ class CaseManagementController extends Controller
       }
 
       $i++;
-    }*/
-
+    }
+}
    /* if(!empty($msg_history) && count($msg_history)>0 ){
       return $this->sendResponse($msg_history,'Message retrieved successfully');
     }else{
@@ -267,7 +268,7 @@ class CaseManagementController extends Controller
   echo "</pre>";
   die();*/
 
-  return view('casemanagement.view',compact('user_case_management_data','category','general_que','accutane_que','topical_que','skincare_summary','message_data','message_details'));
+  return view('casemanagement.view',compact('user_case_management_data','category','general_que','accutane_que','topical_que','skincare_summary','message_data','message_details','msg_history'));
 
 }
 

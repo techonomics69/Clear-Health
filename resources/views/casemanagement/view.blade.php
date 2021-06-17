@@ -589,7 +589,15 @@
 									<div class="right-cht">
 										<div class="chating-section">
 											<ul>
-												
+												@foreach ($msg_history as $key => $md_message)
+
+													<li class="left">
+														<p>{{ $md_message['message'] }}</p>
+														<img src="{{ asset('public/Message_files/'.$message['file_name']) }}" type="media_type"width='100'>
+													<a target="_blank" download="" href="{{ asset('public/Message_files/'.$message['file_name']) }}"> Download</a>
+														<h5>{{ $md_message['msg_date'] }}</h5>
+													</li>
+													@endforeach
 											</ul>
 										</div> 
 									</div>

@@ -255,7 +255,7 @@ class CaseManagementController extends Controller
 
       $i++;
 echo"<pre>";
-print_r($msg_history['message_files']);
+print_r( $msg_history[$i]['message_files']);
 echo"</pre>";
 die();
     }

@@ -139,6 +139,10 @@ Route::post('getToken', [CaseManagementController::class, 'get_token']);
     Route::post('answer',[AnswerController::class, 'answer']);
     Route::post('getAnswer',[AnswerController::class,'getAnswer']);
 
+    //Follow Up
+    Route::post('FollowUp',[CaseManagementController::class, 'addFollowUpData']);
+    Route::post('getFollowUpAnswer',[CaseManagementController::class,'getFollowUpAnswer'])
+
     //Change Password
      Route::post('changePassword', [ChangePasswordController::class, 'changePassword']);
     

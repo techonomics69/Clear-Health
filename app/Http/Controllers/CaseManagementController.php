@@ -204,7 +204,7 @@ class CaseManagementController extends Controller
 
 // Medical msg
 
-    /*$r = get_token();
+    $r = get_token();
     $token_data = json_decode($r);
     $token = $token_data->access_token;
     $case_id = $user_case_management_data['md_case_id'];
@@ -253,7 +253,7 @@ class CaseManagementController extends Controller
       }
 
       $i++;
-    }*/
+    }
 
    /* if(!empty($msg_history) && count($msg_history)>0 ){
       return $this->sendResponse($msg_history,'Message retrieved successfully');

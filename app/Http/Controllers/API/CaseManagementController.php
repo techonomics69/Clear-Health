@@ -1137,5 +1137,34 @@ public function createMessage(Request $request){
 
   }
 
+  public function addFollowUpData(Request $request){
+
+    $data = $request->all();
+
+    try{
+        $validator = Validator::make($data, [
+            'user_id' => 'required',
+            'case_id' => 'required',
+            'answer' => 'required',
+        ]);
+        if($validator->fails()){
+            return $this->sendError('Validation Error.', $validator->errors()->all());       
+        }
+
+        $answer = FollowUp::where('user_id', $data['user_id'])->where('case_id', $data['case_id'])->first();
+        if(!empty($answer)):
+           $answer->update($data);
+       else:
+           $quizAns = FollowUp::create($data);
+       endif;
+
+       return $this->sendResponse(array(), 'Follow Up Answer Submitted Successfully');
+   }catch(\Exception $ex){
+      return $this->sendError('Server error',array($ex->getMessage()));
+   }
+
+
+  }
+
 
 }

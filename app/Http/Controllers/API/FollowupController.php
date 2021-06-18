@@ -113,6 +113,15 @@ class FollowupController extends BaseController
 
     $data = $request->all();
 
+    echo "<pre>";
+    print_r($data);
+    echo "<pre>";
+    exit();
+
+    $user_id = $request['user_id'];
+      $case_id = $request['case_id'];
+      $md_case_id = $request['md_case_id'];
+
     //try{
         $validator = Validator::make($data, [
             'user_id' => 'required',

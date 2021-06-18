@@ -280,15 +280,26 @@ class FollowupController extends BaseController
   public function createImage($img)
     {
 
-        //$folderPath = "images/";
+        $folderPath = "images/";
 
-        $destinationPath = public_path('/images/Users');
+        //$destinationPath = public_path('/images/Users');
 
         $image_parts = explode(";base64,", $img);
         $image_type_aux = explode("image/", $image_parts[0]);
         $image_type = $image_type_aux[1];
         $image_base64 = base64_decode($image_parts[1]);
-        $file = $destinationPath . 'testconvertedfile'. '. '.$image_type;
+        $file = $folderPath . 'testconvertedfile'. '. '.$image_type;
+
+        echo "<pre>";
+        print_r($file);
+        echo "<pre>";
+
+
+        echo "<pre>";
+        print_r($image_base64);
+        echo "<pre>";
+        exit();
+        exit();
 
         file_put_contents($file, $image_base64);
 

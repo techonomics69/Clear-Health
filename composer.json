@@ -20,6 +20,7 @@
         "laravelcollective/html": "^6.2",
         "maatwebsite/excel": "^3.1",
         "spatie/laravel-permission": "^4.0",
+        "twilio/sdk": "^6.25",
         "yoeunes/toastr": "^1.2"
     },
     "require-dev": {

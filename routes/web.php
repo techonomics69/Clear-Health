@@ -26,6 +26,7 @@ use App\Http\Controllers\OrderManagementController;
 use App\Http\Controllers\TreatmentGuidesController;
 use App\Http\Controllers\CaseStatusUpdateGetPrescriptionController;
 use App\Http\Controllers\OfferController;
+use App\Http\Controllers\TestsmsController;
 
 
 /*
@@ -271,3 +272,4 @@ Route::group(['middleware' => ['auth']],function(){
 });
 
 
+Route::post("send_message",[TestsmsController::class, 'sendsms'])->name('sendsms');

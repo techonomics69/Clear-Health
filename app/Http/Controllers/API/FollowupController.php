@@ -253,7 +253,7 @@ class FollowupController extends BaseController
 
         }
          
-        $followUpAns = FollowUp::where([['user_id', $user_id],['case_id', $case_id],['follow_up_no',$data['follow_up_no']]])->toSql();//['follow_up_status','<>','completed'],
+        $followUpAns = FollowUp::where([['user_id', $user_id],['case_id', $case_id],['follow_up_no',$data['follow_up_no']],['follow_up_status','<>','completed']])->toSql();,
 
 
           echo "<pre>";
@@ -267,7 +267,7 @@ class FollowupController extends BaseController
           echo "<pre>";
         print_r($data['follow_up_no']);
         echo "<pre>";
-        
+
         echo "<pre>";
         print_r($followUpAns);
         echo "<pre>";

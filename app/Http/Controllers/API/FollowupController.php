@@ -285,6 +285,11 @@ class FollowupController extends BaseController
         //$destinationPath = public_path('/images/Users');
 
         $image_parts = explode(";base64,", $img);
+
+        echo "<pre>";
+        print_r($image_parts);
+        echo "<pre>";
+        exit();
         $image_type_aux = explode("image/", $image_parts[0]);
         $image_type = $image_type_aux[1];
         $image_base64 = base64_decode($image_parts[1]);

@@ -129,6 +129,131 @@ class FollowupController extends BaseController
             return $this->sendError('Validation Error.', $validator->errors()->all());       
         }
 
+        $destinationPath = public_path('/images/Users');
+
+        if(isset($request->file('left_face'))){
+            $left_face = $request->file('left_face');
+          if(!empty($left_face)){
+            $left_face_file =  $left_face->getClientOriginalName();
+            $left_face_file_name =  time().'-'.$left_face_file;
+
+            if (!file_exists(public_path('/images/Users'))) {
+              File::makeDirectory(public_path('/images/Users'),0777,true,true);
+            }
+            
+            $left_face->move($destinationPath, $left_face_file_name);
+
+            chmod($destinationPath."/".$left_face_file_name, 0777);
+
+            $data['left_face'] = $left_face_file_name;
+
+          }
+
+        }
+
+        if(isset($request->file('right_face'))){
+            $right_face = $request->file('right_face');
+          if(!empty($right_face)){
+            $right_face_file =  $right_face->getClientOriginalName();
+            $right_face_file_name =  time().'-'.$right_face_file;
+
+            if (!file_exists(public_path('/images/Users'))) {
+              File::makeDirectory(public_path('/images/Users'),0777,true,true);
+            }
+            
+            $right_face->move($destinationPath, $right_face_file_name);
+
+            chmod($destinationPath."/".$right_face_file_name, 0777);
+
+            $data['right_face'] = $right_face_file_name;
+
+          }
+
+        }
+
+
+        if(isset($request->file('center_face'))){
+            $center_face = $request->file('center_face');
+          if(!empty($center_face)){
+            $center_face_file =  $center_face->getClientOriginalName();
+            $center_face_file_name =  time().'-'.$center_face_file;
+
+            if (!file_exists(public_path('/images/Users'))) {
+              File::makeDirectory(public_path('/images/Users'),0777,true,true);
+            }
+            
+            $center_face->move($destinationPath, $center_face_file_name);
+
+            chmod($destinationPath."/".$center_face_file_name, 0777);
+
+            $data['center_face'] = $center_face_file_name;
+
+          }
+
+        }
+
+        if(isset($request->file('back_photo'))){
+            $back_photo = $request->file('back_photo');
+          if(!empty($back_photo)){
+            $back_photo_file =  $back_photo->getClientOriginalName();
+            $back_photo_file_name =  time().'-'.$back_photo_file;
+
+            if (!file_exists(public_path('/images/Users'))) {
+              File::makeDirectory(public_path('/images/Users'),0777,true,true);
+            }
+            
+            $back_photo->move($destinationPath, $back_photo_file_name);
+
+            chmod($destinationPath."/".$back_photo_file_name, 0777);
+
+            $data['back_photo'] = $back_photo_file_name;
+
+          }
+
+        }
+
+        if(isset($request->file('chest_photo'))){
+            $chest_photo = $request->file('chest_photo');
+          if(!empty($chest_photo)){
+            $chest_photo_file =  $chest_photo->getClientOriginalName();
+            $chest_photo_file_name =  time().'-'.$chest_photo_file;
+
+            if (!file_exists(public_path('/images/Users'))) {
+              File::makeDirectory(public_path('/images/Users'),0777,true,true);
+            }
+            
+            $chest_photo->move($destinationPath, $chest_photo_file_name);
+
+            chmod($destinationPath."/".$chest_photo_file_name, 0777);
+
+            $data['chest_photo'] = $chest_photo_file_name;
+
+          }
+
+        }
+
+        if(isset($request->file('pregnancy_test'))){
+            $pregnancy_test = $request->file('pregnancy_test');
+          if(!empty($pregnancy_test)){
+            $pregnancy_test_file =  $pregnancy_test->getClientOriginalName();
+            $pregnancy_test_file_name =  time().'-'.$pregnancy_test_file;
+
+            if (!file_exists(public_path('/images/Users'))) {
+              File::makeDirectory(public_path('/images/Users'),0777,true,true);
+            }
+            
+            $pregnancy_test->move($destinationPath, $pregnancy_test_file_name);
+
+            chmod($destinationPath."/".$pregnancy_test_file_name, 0777);
+
+            $data['pregnancy_test'] = $pregnancy_test_file_name;
+
+          }
+
+        }
+        
+
+
         $followUpAns = FollowUp::where('user_id', $data['user_id'])->where('case_id', $data['case_id'])->where('follow_up_status','!=','completed')->first();
         if(!empty($followUpAns)):
            $followUpAns = $followUpAns->update($data);

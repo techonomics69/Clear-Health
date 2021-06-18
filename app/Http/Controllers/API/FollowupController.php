@@ -126,7 +126,7 @@ class FollowupController extends BaseController
 
         $destinationPath = public_path('/images/Users');
 
-        if(isset($request->file('left_face'))){
+        if($request->file('left_face')!=''){
             $left_face = $request->file('left_face');
           if(!empty($left_face)){
             $left_face_file =  $left_face->getClientOriginalName();

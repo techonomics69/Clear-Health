@@ -115,6 +115,14 @@ class FollowupController extends BaseController
 
     $data = $request->all();
 
+        echo "<pre>";
+        print_r($request->all());
+        echo "<pre>";
+
+        echo "<pre>";
+        print_r($request->file());
+        echo "<pre>";
+        exit();
    
 
      $user_id = $request['user_id'];

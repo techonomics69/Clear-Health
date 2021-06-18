@@ -18,7 +18,7 @@ class CreateFollowUpTable extends Migration
             $table->integer('user_id');
             $table->string('case_id');
             $table->string('md_case_id')->nullable();
-            $table->string('answer')->nullable();
+            $table->longtext('answer')->nullable();
             $table->string('left_face')->nullable();
             $table->string('right_face')->nullable();
             $table->string('center_face')->nullable();

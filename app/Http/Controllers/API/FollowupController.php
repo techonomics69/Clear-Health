@@ -253,7 +253,7 @@ class FollowupController extends BaseController
 
         }
 
-        $followUpAns = FollowUp::where([['user_id', $user_id],['case_id', $case_id],['follow_up_status','<>','completed'],['follow_up_no',$data['follow_up_no']]])->first();
+        $followUpAns = FollowUp::where([['user_id', $user_id],['case_id', $case_id],['follow_up_no',$data['follow_up_no']]])->first();//['follow_up_status','<>','completed'],
 
         echo "<pre>";
         print_r($followUpAns);

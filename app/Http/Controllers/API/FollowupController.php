@@ -67,7 +67,12 @@ class FollowupController extends BaseController
             return $this->sendError('Validation Error.', $validator->errors()->all());       
         }
        
-       $followUpAns = FollowUp::create($data);
+       $followUpAns = FollowUp::where('user_id', $data['user_id'])->where('case_id', $data['case_id'])->where('follow_up_no', $data['follow_up_no'])->first();
+        if(!empty($followUpAns)):
+           $followUpAns = $followUpAns->update($data);
+       else:
+           $followUpAns = FollowUp::create($data);
+       endif;
       
        return $this->sendResponse($followUpAns, 'Follow Up Answer Submitted Successfully');
 
@@ -81,7 +86,7 @@ class FollowupController extends BaseController
    public function getFollowUpAnswer(Request $request)
     {
         try{
-           $answer = FollowUp::where('user_id', $request['user_id'])->where('case_id', $request['case_id'])->first();
+           $answer = FollowUp::where('user_id', $request['user_id'])->where('case_id', $request['case_id'])->where('follow_up_no', $data['follow_up_no'])->first();
             return $this->sendResponse($answer, 'Follow Up Answer Retrieved Successfully.');
         }catch(\Exception $ex){
             return $this->sendError('Server error', array($ex->getMessage()));
@@ -251,10 +256,8 @@ class FollowupController extends BaseController
           }
 
         }
-        
 
-
-        $followUpAns = FollowUp::where('user_id', $data['user_id'])->where('case_id', $data['case_id'])->where('follow_up_status','!=','completed')->first();
+        $followUpAns = FollowUp::where('user_id', $data['user_id'])->where('case_id', $data['case_id'])->where('follow_up_status','!=','completed')->where('follow_up_no', $data['follow_up_no'])->first();
         if(!empty($followUpAns)):
            $followUpAns = $followUpAns->update($data);
        endif;

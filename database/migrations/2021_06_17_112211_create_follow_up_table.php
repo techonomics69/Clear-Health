@@ -18,15 +18,15 @@ class CreateFollowUpTable extends Migration
             $table->integer('user_id');
             $table->string('case_id');
             $table->string('md_case_id')->nullable();
-            $table->longText('answer')->nullable();
+            $table->string('answer')->nullable();
             $table->string('left_face')->nullable();
             $table->string('right_face')->nullable();
             $table->string('center_face')->nullable();
             $table->string('back_photo')->nullable();
             $table->string('chest_photo')->nullable();
-            $table->string('chest_photo')->nullable();
             $table->string('follow_up_no')->nullable();
             $table->text('pregnancy_test')->nullable();
+            $table->string('follow_up_status')->nullable();
             $table->timestamps();
         });
     }

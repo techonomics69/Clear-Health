@@ -813,9 +813,8 @@ padding: 0.5rem;
    background: #0000ff14;
 }
  .chating-section ul li.right p {
-   background: #00f 14;
-   padding: 11px;
-   margin-bottom: 0px;
+    padding: 0;
+    margin-bottom: 0px;
 }
  .chating-section ul li.right h5 {
    text-align: right;

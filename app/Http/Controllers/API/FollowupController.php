@@ -75,8 +75,10 @@ class FollowupController extends BaseController
 
    public function getFollowUpAnswer(Request $request)
     {
+      $data = $request->all();
         try{
-           $answer = FollowUp::where('user_id', $request['user_id'])->where('case_id', $request['case_id'])->where('follow_up_no', $data['follow_up_no'])->first();
+           $answer = FollowUp::where('user_id', $data['user_id'])->where('case_id', $data['case_id'])->where('follow_up_no', $data['follow_up_no'])->first();
+          
             return $this->sendResponse($answer, 'Follow Up Answer Retrieved Successfully.');
         }catch(\Exception $ex){
             return $this->sendError('Server error', array($ex->getMessage()));

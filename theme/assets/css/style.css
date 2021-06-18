@@ -801,7 +801,7 @@ padding: 0.5rem;
    background: #cc6a6a21;
 }
 .chating-section ul li.left p {
-     padding: 0;
+    padding: 0;
     margin-bottom: 0px;
 }
  .chating-section ul li.left h5 {
@@ -853,8 +853,7 @@ padding: 0.5rem;
 .sending.lastimg{
 margin-left:16px
 }
- 
- .sending.lastimg button{background: transparent;
+.sending.lastimg button{background: transparent;
     border: none;}
 /* media */
 /* 2212 

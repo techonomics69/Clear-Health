@@ -286,13 +286,14 @@ class FollowupController extends BaseController
 
         $image_parts = explode(";base64,", $img);
 
-        echo "<pre>";
-        print_r($image_parts);
-        echo "<pre>";
-        exit();
         $image_type_aux = explode("image/", $image_parts[0]);
         $image_type = $image_type_aux[1];
         $image_base64 = base64_decode($image_parts[1]);
+
+        echo "<pre>";
+        print_r($image_base64);
+        echo "<pre>";
+        exit();
         $file = $folderPath.'testconvertedfile.'.$image_type;
 
         file_put_contents($file, $image_base64);

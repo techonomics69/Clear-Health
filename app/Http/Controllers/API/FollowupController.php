@@ -257,7 +257,7 @@ class FollowupController extends BaseController
           echo "<pre>";
           print_r($followUpAns);
           echo "<pre>";
-          exit();a
+          exit();
 
         if(!empty($followUpAns)):
            $followUpAns = $followUpAns->update($data);

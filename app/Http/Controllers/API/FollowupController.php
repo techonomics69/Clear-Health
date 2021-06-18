@@ -8,18 +8,8 @@ use App\Models\CaseManagement;
 use App\Models\Mdpatient;
 use Validator;
 use Exception;
-use App\Models\QuizAnswer;
-use App\Models\Quiz;
 use App\Models\User;
-use App\Models\Parentdetail;
 use App\Models\Mdcases;
-use App\Models\Mdmanagement;
-use App\Models\CaseFiles;
-use App\Models\MdMessages;
-use App\Models\MdMessageFiles;
-use App\Models\Answers;
-use App\Models\MessageFiles;
-use App\Models\Messages;
 use App\Models\FollowUp;
 use File;
 
@@ -257,7 +247,7 @@ class FollowupController extends BaseController
 
         }
 
-        $followUpAns = FollowUp::where('user_id', $data['user_id'])->where('case_id', $data['case_id'])->where('follow_up_status','!=','completed')->where('follow_up_no', $data['follow_up_no'])->first();
+        $followUpAns = FollowUp::where([['user_id', $user_id],['case_id', $case_id],['follow_up_status','<>','completed'],['follow_up_no',$data['follow_up_no']]])->first();
         if(!empty($followUpAns)):
            $followUpAns = $followUpAns->update($data);
        endif;

@@ -801,8 +801,7 @@ padding: 0.5rem;
    background: #cc6a6a21;
 }
 .chating-section ul li.left p {
-    background: #f44336 0d;
-    padding: 11px;
+     padding: 0;
     margin-bottom: 0px;
 }
  .chating-section ul li.left h5 {

@@ -113,7 +113,7 @@ class FollowupController extends BaseController
 
     $data = $request->all();
 
-    try{
+    //try{
         $validator = Validator::make($data, [
             'user_id' => 'required',
             'case_id' => 'required',
@@ -253,9 +253,9 @@ class FollowupController extends BaseController
        endif;
 
        return $this->sendResponse($followUpAns, 'Follow Up Answer Submitted Successfully');
-   }catch(\Exception $ex){
+   /*}catch(\Exception $ex){
       return $this->sendError('Server error',array($ex->getMessage()));
-   }
+   }*/
 
 
   }

@@ -146,7 +146,7 @@ class FollowupController extends BaseController
 
         }
 
-        if(isset($request->file('right_face'))){
+        if($request->file('right_face')!=''){
             $right_face = $request->file('right_face');
           if(!empty($right_face)){
             $right_face_file =  $right_face->getClientOriginalName();
@@ -167,7 +167,7 @@ class FollowupController extends BaseController
         }
 
 
-        if(isset($request->file('center_face'))){
+        if($request->file('center_face')!=''){
             $center_face = $request->file('center_face');
           if(!empty($center_face)){
             $center_face_file =  $center_face->getClientOriginalName();
@@ -187,7 +187,7 @@ class FollowupController extends BaseController
 
         }
 
-        if(isset($request->file('back_photo'))){
+        if($request->file('back_photo')!=''){
             $back_photo = $request->file('back_photo');
           if(!empty($back_photo)){
             $back_photo_file =  $back_photo->getClientOriginalName();
@@ -207,7 +207,7 @@ class FollowupController extends BaseController
 
         }
 
-        if(isset($request->file('chest_photo'))){
+        if($request->file('chest_photo')!=''){
             $chest_photo = $request->file('chest_photo');
           if(!empty($chest_photo)){
             $chest_photo_file =  $chest_photo->getClientOriginalName();
@@ -227,7 +227,7 @@ class FollowupController extends BaseController
 
         }
 
-        if(isset($request->file('pregnancy_test'))){
+        if($request->file('pregnancy_test')!=''){
             $pregnancy_test = $request->file('pregnancy_test');
           if(!empty($pregnancy_test)){
             $pregnancy_test_file =  $pregnancy_test->getClientOriginalName();

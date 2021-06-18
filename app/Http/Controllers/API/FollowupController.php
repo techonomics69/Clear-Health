@@ -252,12 +252,10 @@ class FollowupController extends BaseController
           }
 
         }
-
          echo "<pre>";
           print_r($data['follow_up_no']);
           echo "<pre>";
           exit();
-
         $followUpAns = FollowUp::where([['user_id', $user_id],['case_id', $case_id],['follow_up_no',$data['follow_up_no']]])->first();//['follow_up_status','<>','completed'],
          
 

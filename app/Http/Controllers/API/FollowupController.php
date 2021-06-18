@@ -120,6 +120,10 @@ class FollowupController extends BaseController
         echo "<pre>";
 
         echo "<pre>";
+        print_r($_FILES);
+        echo "<pre>";
+
+        echo "<pre>";
         print_r($request->file());
         echo "<pre>";
         exit();

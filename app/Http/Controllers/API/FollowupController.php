@@ -119,7 +119,7 @@ class FollowupController extends BaseController
       $case_id = $request['case_id'];
       $md_case_id = $request['md_case_id'];
 
-    //try{
+    try{
         $validator = Validator::make($data, [
             'user_id' => 'required',
             'case_id' => 'required',
@@ -254,14 +254,21 @@ class FollowupController extends BaseController
         }
 
         $followUpAns = FollowUp::where([['user_id', $user_id],['case_id', $case_id],['follow_up_status','<>','completed'],['follow_up_no',$data['follow_up_no']]])->first();
+
+        echo "<pre>";
+        print_r($followUpAns);
+        echo "<pre>";
+        exit();
+
+
         if(!empty($followUpAns)):
            $followUpAns = $followUpAns->update($data);
        endif;
 
-       return $this->sendResponse($followUpAns, 'Follow Up Answer Submitted Successfully');
-   /*}catch(\Exception $ex){
+       return $this->sendResponse($followUpAns, 'Follow Up Data Updated Successfully');
+   }catch(\Exception $ex){
       return $this->sendError('Server error',array($ex->getMessage()));
-   }*/
+   }
 
 
   }

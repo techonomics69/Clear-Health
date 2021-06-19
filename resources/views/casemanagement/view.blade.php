@@ -805,7 +805,7 @@
 					}
 					$("#gotobottomdivmsg").removeAttr('href');
 					$("#gotobottomdivmsg").attr('href','#bottomDivMsg'+response.id);
-					$("#gotobottomdivmsg").click();
+					$("#gotobottomdivmsg")[0].click();
 					//$("#chating-section").scrollTop(($("#chating-section").get(0).scrollHeight) + 1);
 				}
 			});
@@ -819,7 +819,7 @@
 	}
 
 	$(document).on('click','#gotobottomdivmsg',function(){
-		alert($(this).attr("href"));
+		// alert($(this).attr("href"));
 		// $($(this).attr("data-target"));
 		setTimeout(function(){
 			var uri = window.location.toString();

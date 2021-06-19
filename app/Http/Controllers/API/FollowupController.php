@@ -134,7 +134,7 @@ public function updateFollowUpData(Request $request){
 
     if($request['left_face']!=''){
         $left_face = $request['left_face'];
-        $left_face_file_name =  $user_id.time().'jpeg';
+        $left_face_file_name =  $user_id.time().'.jpeg';
         $this->createImage($left_face,$left_face_file_name);
         $data['left_face'] = $left_face_file_name;
     }

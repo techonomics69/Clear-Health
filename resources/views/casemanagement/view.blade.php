@@ -619,7 +619,7 @@
 						</div>
 
 						<div id="nonmedical" class="tab-pane fade in nonmedicalmsg">
-							<a href="#bottomDivMsg" style="display: none;" id="gotobottomdivmsg">scroll down</a>
+							<a href="#bottomDivMsg0" style="display: none;" id="gotobottomdivmsg">scroll down</a>
 							<div class="right-cht">
 								{!! Form::open(array('method'=>'POST', 'enctype'=>"multipart/form-data", 'id'=>"msgForm")) !!}
 								<div class="chating-section" id="chating-section" style="overflow: scroll;">
@@ -629,7 +629,7 @@
 										
 		<li class = <?php if($message['sender'] == 'admin') { ?>"right"<?php }else{ ?>
 		"left" <?php } ?>>
-											<p id="<?php if($key == count($message_data) - 1) echo 'bottomDivMsg' ?>">
+											<p id="<?php if($key == count($message_data) - 1) echo 'bottomDivMsg0' ?>">
 												<?php 
 												if(isset($message['message']) && $message['message']!=''){
 													echo $message['message'];
@@ -802,7 +802,15 @@
 
 	function Gotobottom(){
 		setTimeout(function(){
-			$("#gotobottomdivmsg")[0].click();
+			// $("#gotobottomdivmsg")[0].click();
+			$($('#gotobottomdivmsg').attr("data-target"));
+			setTimeout(function(){
+				var uri = window.location.toString();
+				if (uri.indexOf("#") > 0) {
+					var clean_uri = uri.substring(0, uri.indexOf("#"));
+					window.history.replaceState({}, document.title, clean_uri);
+				}
+			},1000);
 		},1000);
 	}
 

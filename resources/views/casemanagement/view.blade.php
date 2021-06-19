@@ -826,6 +826,7 @@
 	objDiv.scrollTop = objDiv.scrollHeight;
 
 	function Gotobottom(){
+		alert();
 		$("#gotobottomdivmsg").click();
 	}
 	

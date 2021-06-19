@@ -154,43 +154,18 @@ public function updateFollowUpData(Request $request){
         $data['center_face'] = $center_face_file_name;
     }
 
-    /*if($request->file('back_photo')!=''){
-      $back_photo = $request->file('back_photo');
-      if(!empty($back_photo)){
-        $back_photo_file =  $back_photo->getClientOriginalName();
-        $back_photo_file_name =  time().'-'.$back_photo_file;
-
-        if (!file_exists(public_path('/images/Users'))) {
-          File::makeDirectory(public_path('/images/Users'),0777,true,true);
-        }
-
-        $back_photo->move($destinationPath, $back_photo_file_name);
-
-        chmod($destinationPath."/".$back_photo_file_name, 0777);
-
-        $data['back_photo'] = $back_photo_file_name;
-
-      }
-
+    if($request['back_photo']!=''){
+         $back_photo = $request['back_photo'];
+         $back_photo_file_name =  $user_id.'back_photo'.time().'.jpeg';
+         $this->createImage($back_photo,$back_photo_file_name);
+         $data['back_photo'] = $back_photo_file_name;
     }
 
-    if($request->file('chest_photo')!=''){
-      $chest_photo = $request->file('chest_photo');
-      if(!empty($chest_photo)){
-        $chest_photo_file =  $chest_photo->getClientOriginalName();
-        $chest_photo_file_name =  time().'-'.$chest_photo_file;
-
-        if (!file_exists(public_path('/images/Users'))) {
-          File::makeDirectory(public_path('/images/Users'),0777,true,true);
-        }
-
-        $chest_photo->move($destinationPath, $chest_photo_file_name);
-
-        chmod($destinationPath."/".$chest_photo_file_name, 0777);
-
-        $data['chest_photo'] = $chest_photo_file_name;
-
-      }
+    if($request['chest_photo']!=''){
+      $chest_photo = $request['chest_photo'];
+      $chest_photo_file_name =  $user_id.'chest_photo'.time().'.jpeg';
+      $this->createImage($chest_photo,$chest_photo_file_name);
+      $data['chest_photo'] = $chest_photo_file_name;
 
     }
 
@@ -212,7 +187,7 @@ public function updateFollowUpData(Request $request){
 
       }
 
-    }*/
+    }
 
     $followUpAns = FollowUp::where([['user_id', $user_id],['case_id', $case_id],['follow_up_no',$data['follow_up_no']],['follow_up_status','<>','completed']])->first();
 

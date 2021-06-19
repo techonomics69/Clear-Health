@@ -1161,6 +1161,11 @@ public function createMessage(Request $request){
 
   $check_form = CaseManagement::where([['user_id',$user_id], ['id', $case_id],['md_case_id', $md_case_id]])->first();
 
+    echo "<pre>";
+    print_r( $check_form);
+    echo "<pre>";
+    exit(); 
+
   if($check_form['abstinence_form'] == 1 && $check_form['sign_ipledge_consent'] == 1 ){
 
       $user_gender = User::select('gender')->where('id',$user_id)->first();

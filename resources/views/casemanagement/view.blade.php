@@ -619,7 +619,11 @@
 						</div>
 
 						<div id="nonmedical" class="tab-pane fade in nonmedicalmsg">
-							<a href="#bottomDivMsg0" style="display: none;" id="gotobottomdivmsg">scroll down</a>
+							@if(count($message_data)>0)
+							<a href="#bottomDivMsg{{$message_data[count(message_data) - 1].id}}" style="display: none;" id="gotobottomdivmsg">scroll down</a>
+							@else
+							<a style="display: none;" id="gotobottomdivmsg">scroll down</a>
+							@endif
 							<div class="right-cht">
 								{!! Form::open(array('method'=>'POST', 'enctype'=>"multipart/form-data", 'id'=>"msgForm")) !!}
 								<div class="chating-section" id="chating-section" style="overflow: scroll;">
@@ -629,7 +633,7 @@
 										
 		<li class = <?php if($message['sender'] == 'admin') { ?>"right"<?php }else{ ?>
 		"left" <?php } ?>>
-											<p id="<?php if($key == count($message_data) - 1) echo 'bottomDivMsg0' ?>">
+											<p id="<?php if($key == count($message_data) - 1) echo 'bottomDivMsg{{$message['id']}}' ?>">
 												<?php 
 												if(isset($message['message']) && $message['message']!=''){
 													echo $message['message'];

@@ -621,7 +621,7 @@
 						<div id="nonmedical" class="tab-pane fade in nonmedicalmsg">
 							@if(isset($message_data))
 							@if(count($message_data)>0)
-							{{count($message_data)}}
+							{{$message_data[0]['id']}}
 							<a href="#bottomDivMsg" style="display: none;" id="gotobottomdivmsg">scroll down</a>
 							@else
 							<a style="display: none;" id="gotobottomdivmsg">scroll down</a>

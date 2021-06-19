@@ -617,7 +617,6 @@ public function createMessage(Request $request){
         curl_close($curl);
         
         $message_data = json_decode($response);
-
         $input_data1 = array();
 
         $input_data1['md_case_id'] = $case_id;
@@ -627,8 +626,7 @@ public function createMessage(Request $request){
         $input_data1['from'] = $message_data->from;
         $input_data1['channel'] = $message_data->channel;
         $input_data1['prioritized_at'] = $message_data->prioritized_at;
-        $input_data1['prioritized_reason'] = $message_data->prioritized_reason;  
-        $input_data1['read_at'] = null;//$message_data->read_at;
+        $input_data1['prioritized_reason'] = $message_data->prioritized_reason;
         $input_data1['message_created_at'] = $message_data->created_at;
         $input_data1['case_message_id'] = $message_data->case_message_id;
         //$input_data['message_files_ids'] = json_encode($file_ids);
@@ -1145,8 +1143,6 @@ public function createMessage(Request $request){
   $user_id = $request['user_id'];
   $case_id = $request['case_id'];
   $md_case_id = $request['md_case_id'];
-
-  
 
   $update_data = array();
 

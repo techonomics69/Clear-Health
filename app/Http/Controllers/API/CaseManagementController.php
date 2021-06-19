@@ -626,7 +626,8 @@ public function createMessage(Request $request){
         $input_data1['from'] = $message_data->from;
         $input_data1['channel'] = $message_data->channel;
         $input_data1['prioritized_at'] = $message_data->prioritized_at;
-        $input_data1['prioritized_reason'] = $message_data->prioritized_reason;
+        $input_data1['prioritized_reason'] = $message_data->prioritized_reason;  
+        $input_data1['read_at'] = $message_data->read_at;
         $input_data1['message_created_at'] = $message_data->created_at;
         $input_data1['case_message_id'] = $message_data->case_message_id;
         //$input_data['message_files_ids'] = json_encode($file_ids);

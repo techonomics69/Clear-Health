@@ -803,7 +803,7 @@
 					}else{
 						$(".chating-section ul").append("<li class='right' id='bottomDivMsg"+response.id+"'>"+"<p >"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");	
 					}
-					$("#chating-section").scrollTo(300,200)
+					window.scrollTo(300, 500);
 				}
 			});
 		});

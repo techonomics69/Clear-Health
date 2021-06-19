@@ -828,7 +828,7 @@
 		// var objDiv = document.getElementById("chating-section");
 		// objDiv.scrollTop = objDiv.scrollHeight;
 		// setTimeout(function(){
-			$("#gotobottomdivmsg").click(true);
+			$("#gotobottomdivmsg").click();
 		// },1000);
 	}
 	

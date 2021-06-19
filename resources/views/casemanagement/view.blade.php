@@ -636,9 +636,9 @@
 										if(isset($message_data)) {?>
 										@foreach ($message_data as $key => $message)
 										
-		<li class = <?php if($message['sender'] == 'admin') { ?>"right"<?php }else{ ?>
+		<li id="<?php if($key == count($message_data) - 1) echo 'bottomDivMsg'.$message['id'] ?>" class = <?php if($message['sender'] == 'admin') { ?>"right"<?php }else{ ?>
 		"left" <?php } ?>>
-											<p id="<?php if($key == count($message_data) - 1) echo 'bottomDivMsg'.$message['id'] ?>">
+											<p >
 												<?php 
 												if(isset($message['message']) && $message['message']!=''){
 													echo $message['message'];
@@ -799,9 +799,9 @@
 					$('#text').val('');
 					$('#file').val('');
 					if(response.text == null){ 
-						$(".chating-section ul").append("<li class='right'>"+"<p id='bottomDivMsg"+response.id+"'>"+"<img width='100' src={{URL('/')}}/public/Message_files/" +response.file_name+ ">"+ "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/"+response.file_name+">" + " Download" + "</a>"+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");
+						$(".chating-section ul").append("<li class='right' id='bottomDivMsg"+response.id+"'>"+"<p >"+"<img width='100' src={{URL('/')}}/public/Message_files/" +response.file_name+ ">"+ "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/"+response.file_name+">" + " Download" + "</a>"+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");
 					}else{
-						$(".chating-section ul").append("<li class='right'>"+"<p id='bottomDivMsg"+response.id+"'>"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");	
+						$(".chating-section ul").append("<li class='right' id='bottomDivMsg"+response.id+"'>"+"<p >"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");	
 					}
 					$("#gotobottomdivmsg")[0].attr('href','bottomDivMsg'+response.id);
 					$("#gotobottomdivmsg")[0].click();

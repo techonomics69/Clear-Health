@@ -624,7 +624,7 @@
 							@php
 								$lastMsg = (count($message_data) - 1); 
 							@endphp
-							{{$message_data[lastMsg]['id']}}
+							{{$message_data[$lastMsg]['id']}}
 							<a href="#bottomDivMsg" style="display: none;" id="gotobottomdivmsg">scroll down</a>
 							@else
 							<a style="display: none;" id="gotobottomdivmsg">scroll down</a>

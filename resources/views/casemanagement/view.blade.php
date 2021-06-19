@@ -643,7 +643,7 @@
 											<h5>
 												<?php 
 												if(isset($message['date']) && $message['date']!=''){
-													echo $message['date']." here custome";
+													echo $message['date'];
 												}?>
 											</h5>
 										</li>

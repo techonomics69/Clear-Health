@@ -23,6 +23,7 @@ use App\Models\Messages;
 use App\Models\Checkoutaddress;
 use App\Models\Checkout;
 use App\Models\Cart;
+use App\Models\Ipledge;
 
 function get_token(){
   $curl = curl_init();
@@ -805,6 +806,16 @@ if(!empty($Patient_data)){
           $case_type = '';
         }
         return  $case_type;
+    }
+
+    function getLastUnAssignedIPledgeID($gender){
+
+     $ipledge_id = Ipledge::select()->where([['patients_type',0],['gender',$gender]])->whereNull('assigned_date')->->OrderBy('id', 'ASC')->first();
+
+      echo "<pre>";
+      print_r($ipledge_id);
+      echo "<pre>";
+      exit();
     }
 
     ?>

@@ -1145,6 +1145,12 @@ public function createMessage(Request $request){
   $case_id = $request['case_id'];
   $md_case_id = $request['md_case_id'];
 
+  $gender = User::where('id',$user_id)->pluck('gender');
+  echo "<pre>";
+  print_r($gender);
+  echo "<pre>";
+  exit(); 
+
   $update_data = array();
 
   if(isset($request['abstinence_form'])){

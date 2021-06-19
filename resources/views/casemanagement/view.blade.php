@@ -799,9 +799,9 @@
 					$('#text').val('');
 					$('#file').val('');
 					if(response.text == null){ 
-						$(".chating-section ul").append("<li class='right'>"+"<p 'bottomDivMsg"+response.id+"'>"+"<img width='100' src={{URL('/')}}/public/Message_files/" +response.file_name+ ">"+ "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/"+response.file_name+">" + " Download" + "</a>"+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");
+						$(".chating-section ul").append("<li class='right'>"+"<p id='bottomDivMsg"+response.id+"'>"+"<img width='100' src={{URL('/')}}/public/Message_files/" +response.file_name+ ">"+ "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/"+response.file_name+">" + " Download" + "</a>"+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");
 					}else{
-						$(".chating-section ul").append("<li class='right'>"+"<p 'bottomDivMsg"+response.id+"'>"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");	
+						$(".chating-section ul").append("<li class='right'>"+"<p id='bottomDivMsg"+response.id+"'>"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");	
 					}
 					$($(this).attr("data-target","#bottomDivMsg"+response.id));
 					setTimeout(function(){

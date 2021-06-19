@@ -1178,12 +1178,11 @@ public function createMessage(Request $request){
 
       if($user_gender['gender'] == 'male' && $recommended_product =='Accutane'){
 
+        echo "innnn";
+
         $iPledgeId = getLastUnAssignedIPledgeID($gen);
 
-        echo "<pre>";
-        print_r($iPledgeId);
-        echo "<pre>";
-        exit(); 
+         
 
       }
 

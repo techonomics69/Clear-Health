@@ -578,7 +578,7 @@
 			<section class="card">
 				<ul class="nav nav-tabs" id="messages-tab-menu">
 					<li><a class="btn @if($msg_tab != 1) active @endif" data-toggle="tab" href="#medical">Medical Messgaes</a></li>
-					<li><a class="btn nonmedicalmsg" data-toggle="tab" href="#nonmedical">Non-Medical Messgaes</a></li>
+					<li><a class="btn nonmedicalmsg" data-toggle="tab" href="#nonmedical" onclick="Gotobottom();">Non-Medical Messgaes</a></li>
 				</ul>
 				<div class="tab-content">
 					<div id="medical" class="tab-pane fade in @if($msg_tab != 1) active show @endif">
@@ -618,7 +618,8 @@
 							</div>
 						</div>
 
-						<div id="nonmedical" class="tab-pane fade in nonmedicalmsg">	
+						<div id="nonmedical" class="tab-pane fade in nonmedicalmsg">
+							<a href="#bottomDivMsg" style="display: none;" id="gotobottomdivmsg"></a>
 							<div class="right-cht">
 								{!! Form::open(array('method'=>'POST', 'enctype'=>"multipart/form-data", 'id'=>"msgForm")) !!}
 								<div class="chating-section">
@@ -823,4 +824,9 @@
 <script>
 	var objDiv = document.getElementById("last-typing-section");
 	objDiv.scrollTop = objDiv.scrollHeight;
+
+	function Gotobottom(){
+		$("#gotobottomdivmsg").click();
+	}
+	
 </script>

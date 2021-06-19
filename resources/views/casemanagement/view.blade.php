@@ -801,7 +801,7 @@
 		
 		setTimeout(function(){
 			alert();
-			$("#gotobottomdivmsg").click();
+			$("#gotobottomdivmsg")[0].click();
 		},1000);
 		
 		// var objDiv = document.getElementById("chating-section");
@@ -813,7 +813,7 @@
 	}
 
 	$(document).on('click','#gotobottomdivmsg',function(){
-		alert('clicked');
+		$($(this).attr("data-target")).modal("bottomDivMsg");
 	// 	alert($('#chating-section')[0].scrollHeight);
 	// 	setTimeout(function(){
 	// 		alert();

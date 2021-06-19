@@ -825,6 +825,7 @@
 	
 
 	function Gotobottom(){
+		alert($('#chating-section')[0].scrollHeight);
 		// var objDiv = document.getElementById("chating-section");
 		// console.log(objDiv.scrollTop);
 		$('#chating-section').scrollTop($('#chating-section')[0].scrollHeight);
@@ -833,34 +834,5 @@
 			// $("#gotobottomdivmsg").click();
 		// },1000);
 	}
-
-	const messages = document.getElementById('chating-section');
-
-function appendMessage() {
-	const message = document.getElementsByClassName('chating-section')[0];
-  const newMessage = message.cloneNode(true);
-  messages.appendChild(newMessage);
-}
-
-function getMessages() {
-	// Prior to getting your messages.
-  shouldScroll = messages.scrollTop + messages.clientHeight === messages.scrollHeight;
-  /*
-   * Get your messages, we'll just simulate it by appending a new one syncronously.
-   */
-  appendMessage();
-  // After getting your messages.
-  if (!shouldScroll) {
-    scrollToBottom();
-  }
-}
-
-function scrollToBottom() {
-  messages.scrollTop = messages.scrollHeight;
-}
-
-scrollToBottom();
-
-setInterval(getMessages, 100);
 	
 </script>

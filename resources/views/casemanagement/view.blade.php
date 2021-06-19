@@ -803,9 +803,12 @@
 					}else{
 						$(".chating-section ul").append("<li class='right'>"+"<p id='bottomDivMsg"+response.id+"'>"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");	
 					}
-					$("#gotobottomdivmsg").removeAttr('href');
-					$("#gotobottomdivmsg").attr('href','#bottomDivMsg'+response.id);
-					$("#gotobottomdivmsg")[0].click();
+					// $("#gotobottomdivmsg").removeAttr('href');
+					// $("#gotobottomdivmsg").attr('href','#bottomDivMsg'+response.id);
+					// $("#gotobottomdivmsg")[0].click();
+					$('html, body').animate({
+						scrollTop: ($("#chating-section").get(0).scrollHeight) + 1
+					}, 1000);
 					//$("#chating-section").scrollTop(($("#chating-section").get(0).scrollHeight) + 1);
 				}
 			});

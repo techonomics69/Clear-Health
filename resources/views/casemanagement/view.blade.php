@@ -822,12 +822,13 @@
 </style>
 
 <script>
-	var objDiv = document.getElementById("last-typing-section");
-	objDiv.scrollTop = objDiv.scrollHeight;
+	// var objDiv = document.getElementById("last-typing-section");
+	// objDiv.scrollTop = objDiv.scrollHeight;
 
 	function Gotobottom(){
-		alert();
-		$("#gotobottomdivmsg").click();
+		setTimeout(function(){
+			$("#gotobottomdivmsg").click();
+		},1000);
 	}
 	
 </script>

@@ -812,6 +812,12 @@
 
 	function Gotobottom(){
 		setTimeout(function(){
+			var container = $('div'),
+		scrollTo = $("#bottomDivMsg1126");
+
+	container.animate({
+		scrollTop: scrollTo.offset().top - container.offset().top + container.scrollTop()
+	});
 			// $("#gotobottomdivmsg")[0].click();
 		},1000);
 	}
@@ -827,12 +833,7 @@
 		},1000);
 	});
 
-	var container = $('div'),
-		scrollTo = $("#bottomDivMsg1126");
-
-	container.animate({
-		scrollTop: scrollTo.offset().top - container.offset().top + container.scrollTop()
-	});
+	
 
 </script>
 

@@ -799,7 +799,11 @@
 
 	function Gotobottom(){
 		
-		$("#gotobottomdivmsg").click();
+		setTimeout(function(){
+			alert();
+			$("#gotobottomdivmsg").click();
+		},1000);
+		
 		// var objDiv = document.getElementById("chating-section");
 		// console.log(objDiv.scrollTop);
 		// objDiv.scrollTop = objDiv.scrollHeight;

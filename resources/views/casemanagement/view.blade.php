@@ -826,7 +826,7 @@
 
 	function Gotobottom(){
 		var objDiv = document.getElementById("chating-section");
-		console.log(objDiv.scrollHeight);
+		console.log(objDiv.scrollTop);
 		// objDiv.scrollTop = objDiv.scrollHeight;
 		// setTimeout(function(){
 			// $("#gotobottomdivmsg").click();

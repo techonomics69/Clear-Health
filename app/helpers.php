@@ -813,12 +813,20 @@ if(!empty($Patient_data)){
       return $ipledge_id['patient_id'];
     }*/
 
-    function getRecommendedProductToUser($user_id,$case_id){
+    /*function getRecommendedProductToUser($user_id,$case_id){
          $recommended_product = CaseManagement::select('recommended_product')->where('id',$case_id)->where('user_id',$user_id)->first();
          $recommended_product = $recommended_product['recommended_product'];
 
          return $recommended_product;
 
-    }
+    }*/
+
+    /*function getAssignedIpledgeIdToUser($user_id,$case_id){
+         $assigned_ipledge_id = CaseManagement::select('ipledge_id')->where('id',$case_id)->where('user_id',$user_id)->first();
+         $assigned_ipledge_id = $assigned_ipledge_id['ipledge_id'];
+
+         return $assigned_ipledge_id;
+
+    }*/
 
     ?>

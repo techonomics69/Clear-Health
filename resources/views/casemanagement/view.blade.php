@@ -805,6 +805,9 @@
 
 	$(document).on('click','#gotobottomdivmsg',function(){
 		$($(this).attr("data-target")).modal("bottomDivMsg");
+		setTimeout(function(){
+			$(this).removeAttr('data-target');
+		},1000);
 	});
 
 </script>

@@ -1191,11 +1191,11 @@ public function getMdDetailForMessage(Request $request){
 
         return $this->sendResponse($data,'Field Updated Successfully.iPledge Id assigned is-'.$iPledgeId['patient_id']);
         
-      }else{
-        return $this->sendResponse($data,'Field Updated Successfully.');
       }
 
     }
+
+    return $this->sendResponse($data,'Field Updated Successfully.');
 
 
 

@@ -825,8 +825,9 @@
 	
 
 	function Gotobottom(){
-		var objDiv = document.getElementById("chating-section");
-		console.log(objDiv.scrollTop);
+		// var objDiv = document.getElementById("chating-section");
+		// console.log(objDiv.scrollTop);
+		$('#chating-section').scrollTop($('#chating-section')[0].scrollHeight);
 		// objDiv.scrollTop = objDiv.scrollHeight;
 		// setTimeout(function(){
 			// $("#gotobottomdivmsg").click();

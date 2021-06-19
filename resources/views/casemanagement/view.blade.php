@@ -619,17 +619,26 @@
 						</div>
 
 						<div id="nonmedical" class="tab-pane fade in nonmedicalmsg">
-							<a href="#bottomDivMsg0" style="display: none;" id="gotobottomdivmsg">scroll down</a>
+							@if(isset($message_data))
+							@if(count($message_data)>0)
+							@php
+								$lastMsg = (count($message_data) - 1); 
+							@endphp
+							<a href="#bottomDivMsg{{$message_data[$lastMsg]['id']}}" style="display: none;" id="gotobottomdivmsg">scroll down</a>
+							@else
+							<a style="display: none;" id="gotobottomdivmsg">scroll down</a>
+							@endif
+							@endif
 							<div class="right-cht">
 								{!! Form::open(array('method'=>'POST', 'enctype'=>"multipart/form-data", 'id'=>"msgForm")) !!}
-								<div class="chating-section" id="chating-section" style="overflow: scroll;">
+								<div class="chating-section" id="chating-section" style="overflow: auto;">
 									<ul><?php
 										if(isset($message_data)) {?>
 										@foreach ($message_data as $key => $message)
 										
-		<li class = <?php if($message['sender'] == 'admin') { ?>"right"<?php }else{ ?>
+		<li id="<?php if($key == count($message_data) - 1) echo 'bottomDivMsg'.$message['id'] ?>" class = <?php if($message['sender'] == 'admin') { ?>"right"<?php }else{ ?>
 		"left" <?php } ?>>
-											<p id="<?php if($key == count($message_data) - 1) echo 'bottomDivMsg0' ?>">
+											<p >
 												<?php 
 												if(isset($message['message']) && $message['message']!=''){
 													echo $message['message'];
@@ -667,7 +676,7 @@
 			<label for='file'>
 				<img src="{{asset('public/images/paperclip.png')}}" alt="">
 			</label>
-			<input id="file" type="file" name="file">
+			<input id="file" type="file" name="file" onchange="loadFile(event)">
 		</div>
 	</div>
 </div>
@@ -680,6 +689,7 @@
 	<input type="hidden" id ="_token" name="_token" value="{{ csrf_token() }}">
 	<input type="hidden" name="user_id" value="{{$user_case_management_data['user_id']}}" id="user_id">
 	<input type="hidden" name="case_id" value="{{$user_case_management_data['id']}}" id="case_id">
+	<img id="blah" src="#" alt="your image" style="display: none;" />
 </div>
 <div class="sending lastimg">
 	<button type="submit" id="btnsubmit"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
@@ -790,25 +800,25 @@
 					$('#text').val('');
 					$('#file').val('');
 					if(response.text == null){ 
-						$(".chating-section ul").append("<li class='right'>"+"<p>"+"<img width='100' src={{URL('/')}}/public/Message_files/" +response.file_name+ ">"+ "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/"+response.file_name+">" + " Download" + "</a>"+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");
+						$(".chating-section ul").append("<li class='right' id='bottomDivMsg"+response.id+"'>"+"<p >"+"<img width='100' src={{URL('/')}}/public/Message_files/" +response.file_name+ ">"+ "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/"+response.file_name+">" + " Download" + "</a>"+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");
 					}else{
-						$(".chating-section ul").append("<li class='right'>"+"<p>"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");	
+						$(".chating-section ul").append("<li class='right' id='bottomDivMsg"+response.id+"'>"+"<p >"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");	
 					}
-					alert(($("#chating-section").get(0).scrollHeight));
-					$("#chating-section").scrollTop(($("#chating-section").get(0).scrollHeight) + 1);
+					$("#gotobottomdivmsg")[0].click();
 				}
 			});
 		});
 	});
 
 	function Gotobottom(){
-		setTimeout(function(){
+		setTimeout(function(){	
 			$("#gotobottomdivmsg")[0].click();
 		},1000);
 	}
 
 	$(document).on('click','#gotobottomdivmsg',function(){
-		$($(this).attr("data-target"));
+		// alert($(this).attr("href"));
+		// $($(this).attr("data-target"));
 		setTimeout(function(){
 			var uri = window.location.toString();
 			if (uri.indexOf("#") > 0) {
@@ -817,6 +827,16 @@
 			}
 		},1000);
 	});
+
+	var loadFile = function(event) {
+    var reader = new FileReader();
+    reader.onload = function(){
+      var output = document.getElementById('blah');
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+	$("#blah").show();
+  };
 
 </script>
 

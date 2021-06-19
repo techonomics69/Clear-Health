@@ -812,14 +812,15 @@
 		// },1000);
 	}
 
-	// $(document).on('click','#gotobottomdivmsg',function(){
+	$(document).on('click','#gotobottomdivmsg',function(){
+		alert('clicked');
 	// 	alert($('#chating-section')[0].scrollHeight);
 	// 	setTimeout(function(){
 	// 		alert();
 	// 		$('#chating-section').scrollTop($('#chating-section')[0].scrollHeight);
 	// 	},1000);
 		
-	// });
+	});
 
 </script>
 

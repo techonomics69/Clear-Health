@@ -676,7 +676,7 @@
 			<label for='file'>
 				<img src="{{asset('public/images/paperclip.png')}}" alt="">
 			</label>
-			<input id="file" type="file" name="file">
+			<input id="file" type="file" name="file" onchange="loadFile(event)">
 		</div>
 	</div>
 </div>
@@ -689,6 +689,7 @@
 	<input type="hidden" id ="_token" name="_token" value="{{ csrf_token() }}">
 	<input type="hidden" name="user_id" value="{{$user_case_management_data['user_id']}}" id="user_id">
 	<input type="hidden" name="case_id" value="{{$user_case_management_data['id']}}" id="case_id">
+	<img id="blah" src="#" alt="your image" style="display: none;" />
 </div>
 <div class="sending lastimg">
 	<button type="submit" id="btnsubmit"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
@@ -827,7 +828,15 @@
 		},1000);
 	});
 
-	
+	var loadFile = function(event) {
+    var reader = new FileReader();
+    reader.onload = function(){
+      var output = document.getElementById('blah');
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+	$("#blah").show();
+  };
 
 </script>
 

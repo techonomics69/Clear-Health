@@ -1182,7 +1182,7 @@ public function getMdDetailForMessage(Request $request){
 
       if($user['gender'] == 'male' && $recommended_product =='Accutane'){
 
-        $iPledgeId = Ipledge::where([['patients_type','0'],['gender',$gender]])->whereNull('assigned_date')->OrderBy('id', 'ASC')->first();
+        $iPledgeId = Ipledge::where([['patients_type','0'],['gender',$gen]])->whereNull('assigned_date')->OrderBy('id', 'ASC')->first();
         ;
 
         $update_ipledge_id =  CaseManagement::where([['user_id',$user_id], ['id', $case_id],['md_case_id', $md_case_id]])->update([['ipledge_id',$iPledgeId['patient_id']],['ipledge_abstinence_updated_at',Carbon::now()]]);

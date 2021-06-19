@@ -806,7 +806,7 @@
 					// $("#gotobottomdivmsg").removeAttr('href');
 					// $("#gotobottomdivmsg").attr('href','#bottomDivMsg'+response.id);
 					// $("#gotobottomdivmsg")[0].click();
-					$('html, body').animate({
+					$('#chating-section').animate({
 						scrollTop: ($("#chating-section").get(0).scrollHeight) + 1
 					}, 1000);
 					//$("#chating-section").scrollTop(($("#chating-section").get(0).scrollHeight) + 1);

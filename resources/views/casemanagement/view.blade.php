@@ -811,6 +811,7 @@
 	$(document).on('click','#gotobottomdivmsg',function(){
 		alert($('#chating-section')[0].scrollHeight);
 		setTimeout(function(){
+			alert();
 			$('#chating-section').scrollTop($('#chating-section')[0].scrollHeight);
 		},1000);
 		

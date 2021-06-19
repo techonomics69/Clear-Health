@@ -798,28 +798,13 @@
 	});
 
 	function Gotobottom(){
-		
 		setTimeout(function(){
-			alert();
 			$("#gotobottomdivmsg")[0].click();
 		},1000);
-		
-		// var objDiv = document.getElementById("chating-section");
-		// console.log(objDiv.scrollTop);
-		// objDiv.scrollTop = objDiv.scrollHeight;
-		// setTimeout(function(){
-			// $("#gotobottomdivmsg").click();
-		// },1000);
 	}
 
 	$(document).on('click','#gotobottomdivmsg',function(){
 		$($(this).attr("data-target")).modal("bottomDivMsg");
-	// 	alert($('#chating-section')[0].scrollHeight);
-	// 	setTimeout(function(){
-	// 		alert();
-	// 		$('#chating-section').scrollTop($('#chating-section')[0].scrollHeight);
-	// 	},1000);
-		
 	});
 
 </script>

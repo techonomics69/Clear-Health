@@ -804,7 +804,7 @@
 						$(".chating-section ul").append("<li class='right'>"+"<p id='bottomDivMsg"+response.id+"'>"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");	
 					}
 					var container = $('div'),
-						scrollTo = $("bottomDivMsg"+response.id);
+						scrollTo = $("#bottomDivMsg"+response.id);
 
 					container.animate({
 						scrollTop: scrollTo.offset().top - container.offset().top + container.scrollTop()

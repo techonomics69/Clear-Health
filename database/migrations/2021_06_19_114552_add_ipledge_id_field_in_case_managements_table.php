@@ -14,7 +14,7 @@ class AddIpledgeIdFieldInCaseManagementsTable extends Migration
     public function up()
     {
         Schema::table('case_managements', function (Blueprint $table) {
-            $table->string('ipledge_id')->nullable()->after('sign_ipledge_consent');
+            $table->string('ipledge_id')->nullable()->after('ipledge_abstinence_updated_at');
         });
     }
 

@@ -14,7 +14,7 @@ class AddFieldIpledgeAbstinenceUpdatedAtInCaseManagementsTable extends Migration
     public function up()
     {
         Schema::table('case_managements', function (Blueprint $table) {
-            //
+            $table->datetime('ipledge_abstinence_updated_at')->nullable()->after('sign_ipledge_consent');
         });
     }
 

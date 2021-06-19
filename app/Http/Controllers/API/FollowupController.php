@@ -141,7 +141,7 @@ public function updateFollowUpData(Request $request){
 
     if($request['right_face']!=''){
         $right_face = $request['right_face'];
-        $right_face_file_name =  $user_id.time().'jpeg';
+        $right_face_file_name =  $user_id.time().'.jpeg';
         $this->createImage($right_face,$right_face_file_name);
         $data['right_face'] = $right_face_file_name;
     }
@@ -149,7 +149,7 @@ public function updateFollowUpData(Request $request){
 
     if($request['center_face']!=''){
         $center_face = $request['center_face'];
-        $center_face_file_name =  $user_id.time().'jpeg';
+        $center_face_file_name =  $user_id.time().'.jpeg';
         $this->createImage($center_face,$center_face_file_name);
         $data['center_face'] = $center_face_file_name;
     }

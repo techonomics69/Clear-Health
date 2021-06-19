@@ -123,6 +123,8 @@ Route::post('getToken', [CaseManagementController::class, 'get_token']);
      Route::post('getTestReport', [CaseManagementController::class, 'getTestReport']);
     //end of md api
 
+     Route::post('updateFieldInCaseManagement',[CaseManagementController::class,'updateFieldInCaseManagement']);
+
     //system message API
     Route::post('sendMessageNonMedical', [CaseManagementController::class, 'sendMessageNonMedical']);
     Route::post('getMessagesNonMedical', [CaseManagementController::class, 'getMessagesNonMedical']);
@@ -143,7 +145,6 @@ Route::post('getToken', [CaseManagementController::class, 'get_token']);
     //Follow Up
     Route::post('addFollowUpAnswer',[FollowupController::class, 'addFollowUpData']);
     Route::post('getFollowUpAnswer',[FollowupController::class,'getFollowUpAnswer']);
-    Route::post('updateFieldInCaseManagement',[FollowupController::class,'updateFieldInCaseManagement']);
     Route::post('updateFollowUpData',[FollowupController::class,'updateFollowUpData']);
 
     //Change Password

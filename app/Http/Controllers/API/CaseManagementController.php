@@ -1185,13 +1185,9 @@ public function getMdDetailForMessage(Request $request){
         $iPledgeId = Ipledge::where([['patients_type','0'],['gender',$gen]])->whereNull('assigned_date')->OrderBy('id', 'ASC')->first();
         ;
 
-        //where([['user_id',$user_id],['id',$case_id],['md_case_id',$md_case_id]])
+        $update_ipledge_id =  CaseManagement::where([['user_id',$user_id],['id',$case_id],['md_case_id',$md_case_id]])->update(['ipledge_id' => $iPledgeId['patient_id']],['ipledge_abstinence_updated_at' => Carbon::now()]);
 
-         //$data  =  CaseManagement::where('user_id',$user_id)->where('id',$case_id)->update(['recommended_product' => $recommended_product]);
-
-        $update_ipledgeid =  CaseManagement::where('user_id',$user_id)->where('id',$case_id)->where('md_case_id',$md_case_id)->update(['ipledge_id' => $iPledgeId['patient_id']],['ipledge_abstinence_updated_at' => Carbon::now()]);
-
-        $assign_ipledge_id = Ipledge::where('id',$iPledgeId['id'])->update([['user_case_id',$case_id],['assigned_date',Carbon::now()],['patient_name',$u_name]]);
+        $assign_ipledge_id = Ipledge::where('id',$iPledgeId['id'])->update(['user_case_id' => $case_id],['assigned_date' => Carbon::now()],['patient_name' => $u_name]);
 
         return $this->sendResponse($data,'Field Updated Successfully.iPledge Id assigned is-'.$iPledgeId['patient_id']);
         

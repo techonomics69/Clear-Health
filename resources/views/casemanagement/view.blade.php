@@ -624,8 +624,7 @@
 							@php
 								$lastMsg = (count($message_data) - 1); 
 							@endphp
-							{{$message_data[$lastMsg]['id']}}
-							<a href="#bottomDivMsg" style="display: none;" id="gotobottomdivmsg">scroll down</a>
+							<a href="#bottomDivMsg{{$message_data[$lastMsg]['id']}}" style="display: none;" id="gotobottomdivmsg">scroll down</a>
 							@else
 							<a style="display: none;" id="gotobottomdivmsg">scroll down</a>
 							@endif
@@ -639,7 +638,7 @@
 										
 		<li class = <?php if($message['sender'] == 'admin') { ?>"right"<?php }else{ ?>
 		"left" <?php } ?>>
-											<p id="<?php if($key == count($message_data) - 1) echo 'bottomDivMsg' ?>">
+											<p id="<?php if($key == count($message_data) - 1) echo 'bottomDivMsg{{$message_data[$lastMsg]['id']}}' ?>">
 												<?php 
 												if(isset($message['message']) && $message['message']!=''){
 													echo $message['message'];

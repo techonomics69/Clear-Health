@@ -803,7 +803,9 @@
 					}else{
 						$(".chating-section ul").append("<li class='right'>"+"<p id='bottomDivMsg"+response.id+"'>"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");	
 					}
-					$('#chating-section').scrollTop($('#chating-section').attr("scrollHeight"));
+					$('html,body').animate({
+					scrollTop: $("#bottomDivMsg"+response.id+"").offset().top},
+					1000);
 					//$("#chating-section").scrollTop(($("#chating-section").get(0).scrollHeight) + 1);
 				}
 			});

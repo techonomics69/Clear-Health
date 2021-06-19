@@ -124,14 +124,13 @@ $data = base64_decode($data);
 
  $destinationPath = public_path('/images/Users/converted_img.png');
 
-file_put_contents($destinationPath, $data);
-die("dev is working");
+file_put_contents($destinationPath, $data) or print_r(error_get_last());
 
-     /* $r = $this->createImage($base64_string);
+      $r = $this->createImage($base64_string);
       echo "<pre>";
       print_r($r);
       echo "<pre>";
-      exit();*/
+      exit();
 
     $data = $request->all();
 

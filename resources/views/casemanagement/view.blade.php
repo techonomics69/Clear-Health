@@ -619,10 +619,10 @@
 						</div>
 
 						<div id="nonmedical" class="tab-pane fade in nonmedicalmsg">
-							<a href="#bottomDivMsg" style="display: none;" id="gotobottomdivmsg"></a>
+							<a href="#bottomDivMsg" style="" id="gotobottomdivmsg">scroll down</a>
 							<div class="right-cht">
 								{!! Form::open(array('method'=>'POST', 'enctype'=>"multipart/form-data", 'id'=>"msgForm")) !!}
-								<div class="chating-section">
+								<div class="chating-section" style="overflow: scroll;">
 									<ul><?php
 										if(isset($message_data)) {?>
 										@foreach ($message_data as $key => $message)
@@ -822,12 +822,13 @@
 </style>
 
 <script>
-	var objDiv = document.getElementById("last-typing-section");
-	objDiv.scrollTop = objDiv.scrollHeight;
+	// var objDiv = document.getElementById("last-typing-section");
+	// objDiv.scrollTop = objDiv.scrollHeight;
 
 	function Gotobottom(){
-		alert();
-		$("#gotobottomdivmsg").click();
+		setTimeout(function(){
+			$("#gotobottomdivmsg").click();
+		},1000);
 	}
 	
 </script>

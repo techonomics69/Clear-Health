@@ -617,11 +617,7 @@ public function createMessage(Request $request){
         curl_close($curl);
         
         $message_data = json_decode($response);
-
-        echo "<pre>";
-        print_r($message_data);
-        echo "<pre>";
-        exit(); 
+         
         $input_data1 = array();
 
         $input_data1['md_case_id'] = $case_id;

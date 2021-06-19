@@ -622,7 +622,7 @@
 							<a href="#bottomDivMsg" style="" id="gotobottomdivmsg">scroll down</a>
 							<div class="right-cht">
 								{!! Form::open(array('method'=>'POST', 'enctype'=>"multipart/form-data", 'id'=>"msgForm")) !!}
-								<div class="chating-section" style="overflow: scroll;">
+								<div class="chating-section" id="chating-section" style="overflow: scroll;">
 									<ul><?php
 										if(isset($message_data)) {?>
 										@foreach ($message_data as $key => $message)
@@ -822,13 +822,14 @@
 </style>
 
 <script>
-	// var objDiv = document.getElementById("last-typing-section");
-	// objDiv.scrollTop = objDiv.scrollHeight;
+	
 
 	function Gotobottom(){
-		setTimeout(function(){
-			$("#gotobottomdivmsg").click();
-		},1000);
+		// var objDiv = document.getElementById("chating-section");
+		// objDiv.scrollTop = objDiv.scrollHeight;
+		// setTimeout(function(){
+			$("#gotobottomdivmsg").click(true);
+		// },1000);
 	}
 	
 </script>

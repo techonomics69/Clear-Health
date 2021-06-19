@@ -803,7 +803,9 @@
 					}else{
 						$(".chating-section ul").append("<li class='right'>"+"<p id='bottomDivMsg"+response.id+"'>"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");	
 					}
-					
+					$("#gotobottomdivmsg").removeAttr('data-target');
+					$("#gotobottomdivmsg").attr('data-target','#bottomDivMsg'+response.id);
+					$("#gotobottomdivmsg").click();
 					//$("#chating-section").scrollTop(($("#chating-section").get(0).scrollHeight) + 1);
 				}
 			});
@@ -811,14 +813,8 @@
 	});
 
 	function Gotobottom(){
-		setTimeout(function(){
-			var container = $('div'),
-		scrollTo = $("#bottomDivMsg1126");
-
-	container.animate({
-		scrollTop: scrollTo.offset().top - container.offset().top + container.scrollTop()
-	});
-			// $("#gotobottomdivmsg")[0].click();
+		setTimeout(function(){	
+			$("#gotobottomdivmsg")[0].click();
 		},1000);
 	}
 

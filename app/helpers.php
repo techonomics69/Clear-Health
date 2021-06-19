@@ -808,7 +808,7 @@ if(!empty($Patient_data)){
         return  $case_type;
     }
 
-    function getLastUnAssignedIPledgeID($gender){
+    /*function getLastUnAssignedIPledgeID($gender){
 
      $ipledge_id = Ipledge::select()->where([['patients_type',0],['gender',$gender]])->whereNull('assigned_date')->->OrderBy('id', 'ASC')->first();
 
@@ -816,6 +816,6 @@ if(!empty($Patient_data)){
       print_r($ipledge_id);
       echo "<pre>";
       exit();
-    }
+    }*/
 
     ?>

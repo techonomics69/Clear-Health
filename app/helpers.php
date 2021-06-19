@@ -806,12 +806,12 @@ if(!empty($Patient_data)){
         return  $case_type;
     }
 
-    function getLastUnAssignedIPledgeID($gender){
+    /*function getLastUnAssignedIPledgeID($gender){
 
      $ipledge_id = Ipledge::select()->where([['patients_type','0'],['gender',$gender]])->whereNull('assigned_date')->OrderBy('id', 'ASC')->first();
 
       return $ipledge_id['patient_id'];
-    }
+    }*/
 
     function getRecommendedProductToUser($user_id,$case_id){
          $recommended_product = CaseManagement::select('recommended_product')->where('id',$case_id)->where('user_id',$user_id)->first();

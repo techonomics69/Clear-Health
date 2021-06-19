@@ -1155,6 +1155,11 @@ public function createMessage(Request $request){
     $update_data['sign_ipledge_consent'] =  $sign_ipledge_consent = $request['sign_ipledge_consent'];
   }
 
+    echo "<pre>";
+    print_r($update_data);
+    echo "<pre>";
+    exit(); 
+
 
   $data  =  CaseManagement::where([['user_id',$user_id], ['id', $case_id],['md_case_id', $md_case_id]])->update($update_data);
 

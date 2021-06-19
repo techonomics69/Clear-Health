@@ -635,7 +635,7 @@
 										
 		<li class = <?php if($message['sender'] == 'admin') { ?>"right"<?php }else{ ?>
 		"left" <?php } ?>>
-											<p id="<?php if($key == count($message_data) - 1) echo 'bottomDivMsg{{$message['id']}}' ?>">
+											<p id="<?php if($key == count($message_data) - 1) echo 'bottomDivMsg' ?>">
 												<?php 
 												if(isset($message['message']) && $message['message']!=''){
 													echo $message['message'];

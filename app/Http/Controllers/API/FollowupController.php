@@ -211,8 +211,8 @@ public function updateFollowUpData(Request $request){
         $data['pregnancy_test'] = $pregnancy_test_file_name;
 
       }
-*/
-    }
+
+    }*/
 
     $followUpAns = FollowUp::where([['user_id', $user_id],['case_id', $case_id],['follow_up_no',$data['follow_up_no']],['follow_up_status','<>','completed']])->first();
 

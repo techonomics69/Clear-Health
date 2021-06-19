@@ -675,8 +675,11 @@
 		<div class='file'>
 			<label for='file'>
 				<img src="{{asset('public/images/paperclip.png')}}" alt="">
+				<img id="blah" src="#" alt="your image" style="display: none; height: 120px;
+				width: 250px;" />
 			</label>
 			<input id="file" type="file" name="file" onchange="loadFile(event)">
+
 		</div>
 	</div>
 </div>
@@ -689,7 +692,7 @@
 	<input type="hidden" id ="_token" name="_token" value="{{ csrf_token() }}">
 	<input type="hidden" name="user_id" value="{{$user_case_management_data['user_id']}}" id="user_id">
 	<input type="hidden" name="case_id" value="{{$user_case_management_data['id']}}" id="case_id">
-	<img id="blah" src="#" alt="your image" style="display: none;" />
+	
 </div>
 <div class="sending lastimg">
 	<button type="submit" id="btnsubmit"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>

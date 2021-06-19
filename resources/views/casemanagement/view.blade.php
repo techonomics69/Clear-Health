@@ -794,9 +794,8 @@
 					}else{
 						$(".chating-section ul").append("<li class='right'>"+"<p>"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");	
 					}
-					$('html, body').animate({
-						scrollTop: $("#chating-section").offset().Gotobottom
-					}, 1000);
+					var $el = $('#chating-section');  
+					var bottom = $el.position().top + $el.outerHeight(true);
 					//$("#chating-section").scrollTop(($("#chating-section").get(0).scrollHeight) + 1);
 				}
 			});

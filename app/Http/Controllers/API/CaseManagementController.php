@@ -1189,9 +1189,9 @@ public function getMdDetailForMessage(Request $request){
 
         $assign_ipledge_id = Ipledge::where('id',$iPledgeId['id'])->update(['user_case_id' => $case_id],['assigned_date' => Carbon::now()],['patient_name' => $u_name]);
 
-        $data['ipledge_id'] = $iPledgeId['patient_id'];
+        $udata['ipledge_id'] = $iPledgeId['patient_id'];
 
-        return $this->sendResponse($data,'Field Updated Successfully.iPledge Id assigned is-'.$iPledgeId['patient_id']);
+        return $this->sendResponse($udata,'Field Updated Successfully.iPledge Id assigned is-'.$iPledgeId['patient_id']);
         
       }
 

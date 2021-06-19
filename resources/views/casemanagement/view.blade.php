@@ -803,8 +803,8 @@
 					}else{
 						$(".chating-section ul").append("<li class='right'>"+"<p id='bottomDivMsg"+response.id+"'>"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");	
 					}
-					$("#gotobottomdivmsg").removeAttr('data-target');
-					$("#gotobottomdivmsg").attr('data-target','#bottomDivMsg'+response.id);
+					$("#gotobottomdivmsg").removeAttr('href');
+					$("#gotobottomdivmsg").attr('href','#bottomDivMsg'+response.id);
 					$("#gotobottomdivmsg").click();
 					//$("#chating-section").scrollTop(($("#chating-section").get(0).scrollHeight) + 1);
 				}
@@ -819,8 +819,8 @@
 	}
 
 	$(document).on('click','#gotobottomdivmsg',function(){
-		alert($(this).attr("data-target"));
-		$($(this).attr("data-target"));
+		alert($(this).attr("href"));
+		// $($(this).attr("data-target"));
 		setTimeout(function(){
 			var uri = window.location.toString();
 			if (uri.indexOf("#") > 0) {

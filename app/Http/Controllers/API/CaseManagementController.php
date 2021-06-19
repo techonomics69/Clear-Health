@@ -1176,7 +1176,7 @@ public function createMessage(Request $request){
       $recommended_product = $check_form['recommended_product'];
 
 
-      if($user_gender == 'male' && $recommended_product =='Accutane'){
+      if($user_gender['gender'] == 'male' && $recommended_product =='Accutane'){
 
         $iPledgeId = getLastUnAssignedIPledgeID($gen);
 

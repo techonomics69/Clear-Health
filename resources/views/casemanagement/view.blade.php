@@ -623,13 +623,12 @@
 								{!! Form::open(array('method'=>'POST', 'enctype'=>"multipart/form-data", 'id'=>"msgForm")) !!}
 								<div class="chating-section">
 									<ul><?php
-										echo count($message_data);
 										if(isset($message_data)) {?>
 										@foreach ($message_data as $key => $message)
 										
 		<li class = <?php if($message['sender'] == 'admin') { ?>"right"<?php }else{ ?>
 		"left" <?php } ?>>
-											<p>
+											<p id="<?php if($key == count($message_data) - 1) echo 'bottomDivMsg' ?>">
 												<?php 
 												if(isset($message['message']) && $message['message']!=''){
 													echo $message['message'];

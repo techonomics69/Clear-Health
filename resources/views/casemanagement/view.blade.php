@@ -803,12 +803,7 @@
 					}else{
 						$(".chating-section ul").append("<li class='right'>"+"<p id='bottomDivMsg"+response.id+"'>"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");	
 					}
-					var container = $('div'),
-						scrollTo = $("#bottomDivMsg"+response.id);
-
-					container.animate({
-						scrollTop: scrollTo.offset().top - container.offset().top + container.scrollTop()
-					});
+					
 					//$("#chating-section").scrollTop(($("#chating-section").get(0).scrollHeight) + 1);
 				}
 			});
@@ -817,7 +812,7 @@
 
 	function Gotobottom(){
 		setTimeout(function(){
-			$("#gotobottomdivmsg")[0].click();
+			// $("#gotobottomdivmsg")[0].click();
 		},1000);
 	}
 
@@ -830,6 +825,13 @@
 				window.history.replaceState({}, document.title, clean_uri);
 			}
 		},1000);
+	});
+
+	var container = $('div'),
+		scrollTo = $("#bottomDivMsg1126");
+
+	container.animate({
+		scrollTop: scrollTo.offset().top - container.offset().top + container.scrollTop()
 	});
 
 </script>

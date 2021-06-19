@@ -619,7 +619,7 @@
 						</div>
 
 						<div id="nonmedical" class="tab-pane fade in nonmedicalmsg">
-							<button  style="" id="gotobottomdivmsg">scroll down</button>
+							<a href="bottomDivMsg" style="" id="gotobottomdivmsg">scroll down</a>
 							<div class="right-cht">
 								{!! Form::open(array('method'=>'POST', 'enctype'=>"multipart/form-data", 'id'=>"msgForm")) !!}
 								<div class="chating-section" id="chating-section" style="overflow: scroll;">
@@ -799,23 +799,23 @@
 
 	function Gotobottom(){
 		
+		$("#gotobottomdivmsg").click();
 		// var objDiv = document.getElementById("chating-section");
 		// console.log(objDiv.scrollTop);
-		$('#chating-section').scrollTop($('#chating-section')[0].scrollHeight);
 		// objDiv.scrollTop = objDiv.scrollHeight;
 		// setTimeout(function(){
 			// $("#gotobottomdivmsg").click();
 		// },1000);
 	}
 
-	$(document).on('click','#gotobottomdivmsg',function(){
-		alert($('#chating-section')[0].scrollHeight);
-		setTimeout(function(){
-			alert();
-			$('#chating-section').scrollTop($('#chating-section')[0].scrollHeight);
-		},1000);
+	// $(document).on('click','#gotobottomdivmsg',function(){
+	// 	alert($('#chating-section')[0].scrollHeight);
+	// 	setTimeout(function(){
+	// 		alert();
+	// 		$('#chating-section').scrollTop($('#chating-section')[0].scrollHeight);
+	// 	},1000);
 		
-	});
+	// });
 
 </script>
 

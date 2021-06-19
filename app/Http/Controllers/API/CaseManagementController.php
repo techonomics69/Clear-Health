@@ -1161,10 +1161,6 @@ public function createMessage(Request $request){
 
   $check_form = CaseManagement::where([['user_id',$user_id], ['id', $case_id],['md_case_id', $md_case_id]])->first();
 
-    echo "<pre>";
-    print_r( $check_form);
-    echo "<pre>";
-    exit(); 
 
   if($check_form['abstinence_form'] == 1 && $check_form['sign_ipledge_consent'] == 1 ){
 
@@ -1176,7 +1172,8 @@ public function createMessage(Request $request){
           $gen = 'F';
       }
  
-      $recommended_product = getRecommendedProductToUser($user_id,$case_id);
+      //$recommended_product = getRecommendedProductToUser($user_id,$case_id);
+      $recommended_product = $check_form['recommended_product'];
 
 
       if($user_gender == 'male' && $recommended_product =='Accutane'){

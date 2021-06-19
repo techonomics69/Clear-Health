@@ -622,12 +622,13 @@
 							<div class="right-cht">
 								{!! Form::open(array('method'=>'POST', 'enctype'=>"multipart/form-data", 'id'=>"msgForm")) !!}
 								<div class="chating-section">
-									<ul><?php if(isset($message_data)) {?>
+									<ul><?php
+										if(isset($message_data)) {?>
 										@foreach ($message_data as $key => $message)
 										
 		<li class = <?php if($message['sender'] == 'admin') { ?>"right"<?php }else{ ?>
 		"left" <?php } ?>>
-											<p>
+											<p id="<?php if($key == count($message_data) - 1) echo 'bottomDivMsg' ?>">
 												<?php 
 												if(isset($message['message']) && $message['message']!=''){
 													echo $message['message'];
@@ -655,7 +656,7 @@
 								</ul>
 
 							</div>
-							<div class="last-typing-section">
+							<div id="last-typing-section" class="last-typing-section">
 <!-- <div class="camera lastimg">
 <img src="{{asset('public/images/camera.png')}}" alt="">
 </div> -->
@@ -818,3 +819,8 @@
 
 	}
 </style>
+
+<script>
+	var objDiv = document.getElementById("last-typing-section");
+	objDiv.scrollTop = objDiv.scrollHeight;
+</script>

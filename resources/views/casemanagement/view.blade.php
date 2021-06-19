@@ -825,10 +825,10 @@
 	
 
 	function Gotobottom(){
-		var objDiv = document.getElementById("chating-section");
-		objDiv.scrollTop = objDiv.scrollHeight;
+		// var objDiv = document.getElementById("chating-section");
+		// objDiv.scrollTop = objDiv.scrollHeight;
 		// setTimeout(function(){
-			// $("#gotobottomdivmsg").click(true);
+			$("#gotobottomdivmsg").click(true);
 		// },1000);
 	}
 	

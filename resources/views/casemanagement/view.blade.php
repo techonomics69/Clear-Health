@@ -809,6 +809,7 @@
 						$(".chating-section ul").append("<li class='right' id='bottomDivMsg"+response.id+"'>"+"<p >"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");	
 					}
 					$("#gotobottomdivmsg")[0].click();
+					$("#blah").hide();
 				}
 			});
 		});

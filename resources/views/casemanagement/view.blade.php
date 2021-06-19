@@ -820,5 +820,6 @@
 </style>
 
 <script>
-	alert();
+	var objDiv = document.getElementById("nonmedical");
+	objDiv.scrollTop = objDiv.scrollHeight;
 </script>

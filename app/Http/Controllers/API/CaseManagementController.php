@@ -1180,6 +1180,11 @@ public function createMessage(Request $request){
 
         $iPledgeId = getLastUnAssignedIPledgeID($gen);
 
+        echo "<pre>";
+        print_r($iPledgeId);
+        echo "<pre>";
+        exit(); 
+
       }
 
   }

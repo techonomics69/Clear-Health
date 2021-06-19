@@ -803,8 +803,8 @@
 					}else{
 						$(".chating-section ul").append("<li class='right'>"+"<p id='bottomDivMsg"+response.id+"'>"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");	
 					}
+					$("#gotobottomdivmsg")[0].attr('href','bottomDivMsg'+response.id);
 					$("#gotobottomdivmsg")[0].click();
-					//$("#chating-section").scrollTop(($("#chating-section").get(0).scrollHeight) + 1);
 				}
 			});
 		});

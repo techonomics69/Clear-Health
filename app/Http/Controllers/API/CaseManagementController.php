@@ -1166,7 +1166,7 @@ public function createMessage(Request $request){
 
       $user_gender = User::select('gender')->where('id',$user_id)->first();
 
-      if($user_gender == 'male'){
+      if($user_gender['gender'] == 'male'){
           $gen = 'M';
       }else{
           $gen = 'F';

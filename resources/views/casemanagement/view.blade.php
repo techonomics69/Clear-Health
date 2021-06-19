@@ -619,7 +619,7 @@
 						</div>
 
 						<div id="nonmedical" class="tab-pane fade in nonmedicalmsg">
-							<a href="#bottomDivMsg" style="" id="gotobottomdivmsg">scroll down</a>
+							<a href="#bottomDivMsg" style="display: none;" id="gotobottomdivmsg">scroll down</a>
 							<div class="right-cht">
 								{!! Form::open(array('method'=>'POST', 'enctype'=>"multipart/form-data", 'id'=>"msgForm")) !!}
 								<div class="chating-section" id="chating-section" style="overflow: scroll;">

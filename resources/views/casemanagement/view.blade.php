@@ -804,7 +804,7 @@
 	}
 
 	$(document).on('click','#gotobottomdivmsg',function(){
-		$($(this).attr("data-target")).modal("bottomDivMsg");
+		$($(this).attr("data-target"));
 		setTimeout(function(){
 			var uri = window.location.toString();
 			if (uri.indexOf("#") > 0) {

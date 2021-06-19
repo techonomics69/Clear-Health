@@ -46,8 +46,6 @@ data-open="click" data-menu="vertical-menu" data-col="1-column">
                   <div class="card-title text-center">
                     <div class="p-1">
                       <img src="{{ asset('theme/logo.png') }}" alt="ClearHealth logo">
-
-                      
                       <!-- <h4>ClearHealth</h4> -->
                     </div>
                   </div>

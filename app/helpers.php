@@ -411,9 +411,7 @@ if(!empty($Patient_data)){
 
     $patient_id = '"'.$patient_id.'"';
 
-    $recommended_product = CaseManagement::select('recommended_product')->where('id',$case_id)->where('user_id',$user_id)->first();
-
-    $recommended_product = $recommended_product['recommended_product'];
+    $recommended_product = getRecommendedProductToUser($user_id,$case_id);
 
     if($recommended_product == 'Topical_low'){
 
@@ -816,6 +814,14 @@ if(!empty($Patient_data)){
       print_r($ipledge_id);
       echo "<pre>";
       exit();
+    }
+
+    function getRecommendedProductToUser($user_id,$case_id){
+         $recommended_product = CaseManagement::select('recommended_product')->where('id',$case_id)->where('user_id',$user_id)->first();
+         $recommended_product = $recommended_product['recommended_product'];
+
+         return $recommended_product;
+
     }
 
     ?>

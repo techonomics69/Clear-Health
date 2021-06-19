@@ -819,6 +819,7 @@
 	}
 
 	$(document).on('click','#gotobottomdivmsg',function(){
+		alert($(this).attr("data-target"));
 		$($(this).attr("data-target"));
 		setTimeout(function(){
 			var uri = window.location.toString();

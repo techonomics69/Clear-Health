@@ -618,7 +618,8 @@
 							</div>
 						</div>
 
-						<div id="nonmedical" class="tab-pane fade in nonmedicalmsg">	
+						<div id="nonmedical" class="tab-pane fade in nonmedicalmsg">
+												1
 							<div class="right-cht">
 								{!! Form::open(array('method'=>'POST', 'enctype'=>"multipart/form-data", 'id'=>"msgForm")) !!}
 								<div class="chating-section">

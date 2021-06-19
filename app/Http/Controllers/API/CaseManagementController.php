@@ -1145,12 +1145,6 @@ public function createMessage(Request $request){
   $case_id = $request['case_id'];
   $md_case_id = $request['md_case_id'];
 
-  $gender = User::select('gender')->where('id',$user_id)->first();
-  echo "<pre>";
-  print_r($gender);
-  echo "<pre>";
-  exit(); 
-
   $update_data = array();
 
   if(isset($request['abstinence_form'])){
@@ -1164,6 +1158,34 @@ public function createMessage(Request $request){
 
 
   $data  =  CaseManagement::where([['user_id',$user_id], ['id', $case_id],['md_case_id', $md_case_id]])->update($update_data);
+
+  $check_form = CaseManagement::where([['user_id',$user_id], ['id', $case_id],['md_case_id', $md_case_id]])->first();
+
+  if($check_form['abstinence_form'] == 1 && $check_form['sign_ipledge_consent'] == 1 ){
+
+      $user_gender = User::select('gender')->where('id',$user_id)->first();
+
+      if($user_gender == 'male'){
+          $gen = 'M';
+      }else{
+          $gen = 'F';
+      }
+ 
+      $recommended_product = getRecommendedProductToUser($user_id,$case_id);
+
+
+      if($user_gender == 'male' && $recommended_product =='Accutane'){
+
+        $iPledgeId = getLastUnAssignedIPledgeID($gen);
+
+        echo "<pre>";
+        print_r($iPledgeId);
+        echo "<pre>";
+        exit(); 
+
+      }
+
+  }
 
   return $this->sendResponse($data,'Field Updated Successfully.');
 

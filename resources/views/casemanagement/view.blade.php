@@ -655,7 +655,7 @@
 								</ul>
 
 							</div>
-							<div class="last-typing-section">
+							<div id="last-typing-section" class="last-typing-section">
 <!-- <div class="camera lastimg">
 <img src="{{asset('public/images/camera.png')}}" alt="">
 </div> -->
@@ -820,6 +820,6 @@
 </style>
 
 <script>
-	var objDiv = document.getElementById("nonmedical");
+	var objDiv = document.getElementById("last-typing-section");
 	objDiv.scrollTop = objDiv.scrollHeight;
 </script>

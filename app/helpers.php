@@ -808,6 +808,11 @@ if(!empty($Patient_data)){
 
     function getLastUnAssignedIPledgeID($gender){
 
+      echo "<pre>";
+      print_r($gender);
+      echo "<pre>";
+      exit(); 
+
      $ipledge_id = Ipledge::select()->where([['patients_type',0],['gender',$gender]])->whereNull('assigned_date')->OrderBy('id', 'ASC')->toSql();
 
       echo "<pre>";

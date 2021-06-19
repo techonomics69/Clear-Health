@@ -619,7 +619,7 @@
 						</div>
 
 						<div id="nonmedical" class="tab-pane fade in nonmedicalmsg">
-							<button data-toggle="#bottomDivMsg" style="display: none;" id="gotobottomdivmsg">scroll down</button>
+							<button  style="" id="gotobottomdivmsg">scroll down</button>
 							<div class="right-cht">
 								{!! Form::open(array('method'=>'POST', 'enctype'=>"multipart/form-data", 'id'=>"msgForm")) !!}
 								<div class="chating-section" id="chating-section" style="overflow: scroll;">
@@ -825,7 +825,7 @@
 	
 
 	function Gotobottom(){
-		alert($('#chating-section')[0].scrollHeight);
+		
 		// var objDiv = document.getElementById("chating-section");
 		// console.log(objDiv.scrollTop);
 		$('#chating-section').scrollTop($('#chating-section')[0].scrollHeight);
@@ -834,5 +834,13 @@
 			// $("#gotobottomdivmsg").click();
 		// },1000);
 	}
+
+	$(document).on('click','#gotobottomdivmsg',function(){
+		alert($('#chating-section')[0].scrollHeight);
+		setTimeout(function(){
+			$('#chating-section').scrollTop($('#chating-section')[0].scrollHeight);
+		},1000);
+		
+	});
 	
 </script>

@@ -810,10 +810,7 @@ if(!empty($Patient_data)){
 
      $ipledge_id = Ipledge::select()->where([['patients_type','0'],['gender',$gender]])->whereNull('assigned_date')->OrderBy('id', 'ASC')->first();
 
-      echo "<pre>";
-      print_r($ipledge_id);
-      echo "<pre>";
-      exit();
+      return $ipledge_id['patient_id'];
     }
 
     function getRecommendedProductToUser($user_id,$case_id){

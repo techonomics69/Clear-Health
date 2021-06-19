@@ -675,8 +675,7 @@
 		<div class='file'>
 			<label for='file'>
 				<img src="{{asset('public/images/paperclip.png')}}" alt="">
-				<img id="blah" src="#" alt="your image" style="display: none; height: 120px;
-				width: 250px;" />
+				
 			</label>
 			<input id="file" type="file" name="file" onchange="loadFile(event)">
 
@@ -688,6 +687,8 @@
 <img src="{{asset('public/images/paperclip.png')}}" alt="">
 </div> -->
 <div class="search">
+	<img id="blah" src="#" alt="your image" style="display: none; height: 120px;
+				width: 250px;" />
 	<input class="form-control" type="text" name="text" placeholder="Type a message..." id="text">
 	<input type="hidden" id ="_token" name="_token" value="{{ csrf_token() }}">
 	<input type="hidden" name="user_id" value="{{$user_case_management_data['user_id']}}" id="user_id">
@@ -808,6 +809,7 @@
 						$(".chating-section ul").append("<li class='right' id='bottomDivMsg"+response.id+"'>"+"<p >"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");	
 					}
 					$("#gotobottomdivmsg")[0].click();
+					$("#blah").hide();
 				}
 			});
 		});

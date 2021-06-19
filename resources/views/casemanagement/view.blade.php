@@ -796,6 +796,26 @@
 			});
 		});
 	});
+
+	function Gotobottom(){
+		
+		// var objDiv = document.getElementById("chating-section");
+		// console.log(objDiv.scrollTop);
+		$('#chating-section').scrollTop($('#chating-section')[0].scrollHeight);
+		// objDiv.scrollTop = objDiv.scrollHeight;
+		// setTimeout(function(){
+			// $("#gotobottomdivmsg").click();
+		// },1000);
+	}
+
+	$(document).on('click','#gotobottomdivmsg',function(){
+		alert($('#chating-section')[0].scrollHeight);
+		setTimeout(function(){
+			$('#chating-section').scrollTop($('#chating-section')[0].scrollHeight);
+		},1000);
+		
+	});
+
 </script>
 
 @if (count($errors) > 0)
@@ -824,23 +844,6 @@
 <script>
 	
 
-	function Gotobottom(){
-		
-		// var objDiv = document.getElementById("chating-section");
-		// console.log(objDiv.scrollTop);
-		$('#chating-section').scrollTop($('#chating-section')[0].scrollHeight);
-		// objDiv.scrollTop = objDiv.scrollHeight;
-		// setTimeout(function(){
-			// $("#gotobottomdivmsg").click();
-		// },1000);
-	}
-
-	$(document).on('click','#gotobottomdivmsg',function(){
-		alert($('#chating-section')[0].scrollHeight);
-		setTimeout(function(){
-			$('#chating-section').scrollTop($('#chating-section')[0].scrollHeight);
-		},1000);
-		
-	});
+	
 	
 </script>

@@ -643,10 +643,47 @@
 												echo $message['message'];
 												if(isset($message['file_name']) && $message['file_name']!=''){
 													echo "<br>";
-												?>
-												<img src="{{ asset('public/Message_files/'.$message['file_name']) }}" type="media_type"width='100'>
+													$fileExt = explode(".",$message['file_name']);
+													$fileextArr = ['jpg','jpeg','png'];
+													if(count($fileExt)>0){
+														if(in_array($fileExt[0],$fileextArr)){
+													?>
+													<img src="{{ asset('public/Message_files/'.$message['file_name']) }}" type="media_type"width='100'>
 													<a target="_blank" download="" href="{{ asset('public/Message_files/'.$message['file_name']) }}"> Download</a>	
-												<?php	
+													<?php			
+														}else{
+															switch($fileExt[0]){
+																case "doc":
+																	$fileName = public_path("images/msgs/doc.png");
+																	break;
+																case "docx":
+																	$fileName = public_path("images/msgs/doc.png");
+																	break;
+																case "xls":
+																	$fileName = public_path("images/msgs/xls.png");
+																	break;
+																case "xlsx":
+																	$fileName = public_path("images/msgs/xls.png");
+																	break;
+																case "txt":
+																	$fileName = public_path("images/msgs/txt.png");
+																	break;
+																case "pdf":
+																	$fileName = public_path("images/msgs/pdf.png");
+																	break;			
+																default:
+																	$fileName = public_path("images/msgs/file.png");
+																	break;	
+															}
+													?>
+													<img src="{{ $fileName }}" type="media_type"width='100'>
+													<a target="_blank" download="" href="{{ asset('public/Message_files/'.$message['file_name']) }}"> Download</a>	
+													<?php		
+														}
+													}else{
+
+													}
+												
 												}
 												?>
 											</p>

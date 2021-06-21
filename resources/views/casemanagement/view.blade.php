@@ -857,8 +857,24 @@
 					document.getElementById('gotobottomdivmsg').closest('a').removeAttribute('href');
 					document.getElementById('gotobottomdivmsg').closest('a').setAttribute('href','#bottomDivMsg'+response.id);
 					$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg"+response.id+"'>"+"<p >"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");	
-					if(response.file_path != ''){ 
-						$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg"+response.id+"'>"+"<p >"+"<img width='100' src={{URL('/')}}/public/Message_files/" +response.file_name+ ">"+ "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/"+response.file_name+">" + " Download" + "</a>"+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");
+					if(response.file_path != ''){
+						var exts2 = ['jpg','jpeg','png'];
+						var fileNameExt2 = fname.substr(fname.lastIndexOf('.') + 1);
+						var ufile = response.file_name;
+						if ($.inArray(fileNameExt, exts) !== -1){
+							$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg"+response.id+"'>"+"<p >"+"<img width='100' src={{URL('/')}}/public/Message_files/" +response.file_name+ ">"+ "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/"+response.file_name+">" + " Download" + "</a>"+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");
+						}else if(fileNameExt == 'doc' || fileNameExt == 'docx'){
+							$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg"+response.id+"'>"+"<p >"+"<img width='100' src={{URL('/')}}/public/images/msgs/doc.png>"+ "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/"+response.file_name+">" + " Download" + "</a>"+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");
+						}else if(fileNameExt == 'pdf'){
+							$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg"+response.id+"'>"+"<p >"+"<img width='100' src={{URL('/')}}/public/images/msgs/pdf.png>"+ "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/"+response.file_name+">" + " Download" + "</a>"+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");
+						}else if(fileNameExt == 'txt'){
+							$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg"+response.id+"'>"+"<p >"+"<img width='100' src={{URL('/')}}/public/images/msgs/txt.png>"+ "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/"+response.file_name+">" + " Download" + "</a>"+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");
+						}else if(fileNameExt == 'xls' || fileNameExt == 'xlsx'){
+							$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg"+response.id+"'>"+"<p >"+"<img width='100' src={{URL('/')}}/public/images/msgs/xls.png>"+ "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/"+response.file_name+">" + " Download" + "</a>"+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");
+						}else{
+							$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg"+response.id+"'>"+"<p >"+"<img width='100' src={{URL('/')}}/public/images/msgs/file.png>"+ "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/"+response.file_name+">" + " Download" + "</a>"+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");
+						}	 
+						
 					}
 					$("#blah").hide();
 					setTimeout(function(){

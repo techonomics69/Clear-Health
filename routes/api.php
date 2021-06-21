@@ -23,6 +23,7 @@ use App\Http\Controllers\API\TreatmentGuidesController;
 use App\Http\Controllers\API\ChangePasswordController;
 use App\Http\Controllers\API\OfferController;
 use App\Http\Controllers\API\FollowupController;
+use App\Http\Controllers\API\PaymentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -147,6 +148,9 @@ Route::post('getToken', [CaseManagementController::class, 'get_token']);
     Route::post('addFollowUpAnswer',[FollowupController::class, 'addFollowUpData']);
     Route::post('getFollowUpAnswer',[FollowupController::class,'getFollowUpAnswer']);
     Route::post('updateFollowUpData',[FollowupController::class,'updateFollowUpData']);
+
+    //payment
+    Route::post('payments', [PaymentsController::class, 'store']);
 
     //Change Password
      Route::post('changePassword', [ChangePasswordController::class, 'changePassword']);

@@ -817,9 +817,10 @@
 				success: function(response){
 					$('#text').val('');
 					$('#file').val('');
-					$(".nonmedicalmessages").animate({
-						scrollTop: 300
-					});
+					// $(".nonmedicalmessages").animate({
+					// 	scrollTop: 300
+					// });
+					alert($(".nonmedicalmessages").scrollTop());
 					$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg"+response.id+"'>"+"<p >"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");	
 					if(response.file_path != ''){ 
 						$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg"+response.id+"'>"+"<p >"+"<img width='100' src={{URL('/')}}/public/Message_files/" +response.file_name+ ">"+ "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/"+response.file_name+">" + " Download" + "</a>"+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");

@@ -817,7 +817,7 @@
 				success: function(response){
 					$('#text').val('');
 					$('#file').val('');
-					if(response.text == null){ 
+					if(response.file_path != null || response.file_path != ''){ 
 						$(".chating-section ul").append("<li class='right' id='bottomDivMsg"+response.id+"'>"+"<p >"+"<img width='100' src={{URL('/')}}/public/Message_files/" +response.file_name+ ">"+ "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/"+response.file_name+">" + " Download" + "</a>"+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");
 					}else{
 						$(".chating-section ul").append("<li class='right' id='bottomDivMsg"+response.id+"'>"+"<p >"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");	

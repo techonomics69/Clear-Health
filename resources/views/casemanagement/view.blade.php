@@ -682,10 +682,10 @@
 		</div>
 	</div>
 </div>
-<!-- <div class="attachment lastimg">
+<div class="attachment lastimg">
 <input class="form-control" type="file" name="file" id="file">
 <img src="{{asset('public/images/paperclip.png')}}" alt="">
-</div> -->
+</div>
 <div class="search">
 	<img id="blah" src="#" alt="your image" style="display: none; height: 120px;
 				width: 250px;" />

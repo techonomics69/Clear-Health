@@ -31,11 +31,6 @@ class PaymentsController extends BaseController
 
         */
 
-        echo "<pre>";
-        print_r(request('email'));
-        echo "<pre>";
-        exit();
-
         $data = $request->all();
         request()->validate([
             'name' => 'required',
@@ -44,7 +39,7 @@ class PaymentsController extends BaseController
         ]);
 
         /** I have hard coded amount. You may fetch the amount based on customers order or anything */
-        $amount     = 1 * 100;
+        $amount     = request('amount');
         $currency   = 'usd';
 
         if (empty(request()->get('stripeToken'))) {
@@ -97,7 +92,7 @@ class PaymentsController extends BaseController
                         'transaction_complete_details'  => json_encode($paymentDetails)
                     ]);
                     */
-                    Checkout::where('order_id',$request['order_id'])->update(['transaction_id'=>$paymentDetails['balance_transaction'],'payment_status'=>$paymentDetails['status'],'transaction_complete_details'=>json_encode($paymentDetails)]);
+                    Checkout::where('order_id',request('order_id')->update(['transaction_id'=>$paymentDetails['balance_transaction'],'payment_status'=>$paymentDetails['status'],'transaction_complete_details'=>json_encode($paymentDetails)]);
 
                     $data['transaction_id'] = $paymentDetails['balance_transaction'];
                     $data['payment_status'] = $paymentDetails['status'];

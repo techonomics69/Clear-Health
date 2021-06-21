@@ -18,6 +18,7 @@ use App\Models\MessageFiles;
 use Redirect;
 use Session;
 use File;
+use Exception;
 
 
 class CaseManagementController extends Controller
@@ -440,8 +441,8 @@ public function get_token(){
 
 public function sendMessageNonMedical(Request $request){
 
-
-    $user_id = $request['user_id'];
+    try{
+      $user_id = $request['user_id'];
 
     $case_id = (isset($request['md_case_id']) && $request['md_case_id']!='')?$request['md_case_id']:0;
     $system_case_id = $request['case_id'];
@@ -506,6 +507,11 @@ public function sendMessageNonMedical(Request $request){
   echo "</pre>";
   die();*/
    return $message_data;
+    }catch(\Exception $ex){
+      return $ex->getMessage();
+    }
+
+    
   }
 
 

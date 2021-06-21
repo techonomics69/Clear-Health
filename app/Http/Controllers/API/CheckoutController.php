@@ -262,7 +262,7 @@ try{
    ->OrderBy('id', 'DESC')
    ->first();
 
-   $users_ipledge_id = getAssignedIpledgeIdToUser($orderlist['user_id'],$orderlist['case_id']);
+   $users_ipledge_id = getAssignedIpledgeIdToUser($orderlist['user_id'],$orderlist['case_id'],$orderlist['md_case_id']);
 
    $shipping_address = Checkoutaddress::select('*')
    ->where('checkout_address.order_id',$orderlist['order_id'])

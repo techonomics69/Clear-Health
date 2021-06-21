@@ -817,9 +817,9 @@
 				success: function(response){
 					$('#text').val('');
 					$('#file').val('');
-					// $(".nonmedicalmessages").animate({
-					// 	scrollTop: 300
-					// });
+					$('html,body').animate({
+					scrollTop: $(".nonmedicalmessages").offset().top},
+					'slow');
 					alert($(".nonmedicalmessages").scrollTop());
 					$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg"+response.id+"'>"+"<p >"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");	
 					if(response.file_path != ''){ 

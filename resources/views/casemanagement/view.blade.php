@@ -587,7 +587,7 @@
 								<!-- <div class="box-block mtb32" id="tab1"> -->
 									<!-- <h3 class="font-weight-bold"><span class="text-underline">Medical Messgaes</span></h3> -->
 									<div class="right-cht">
-										<div class="chating-section">
+										<div class="chating-section medicalmessages">
 											<ul>
 												
 												@foreach ($msg_history as $key => $md_message)
@@ -631,7 +631,7 @@
 							@endif
 							<div class="right-cht">
 								{!! Form::open(array('method'=>'POST', 'enctype'=>"multipart/form-data", 'id'=>"msgForm")) !!}
-								<div class="chating-section" id="chating-section" style="overflow: auto;">
+								<div class="chating-section nonmedicalmessages" id="chating-section" style="overflow: auto;">
 									<ul><?php
 										if(isset($message_data)) {?>
 										@foreach ($message_data as $key => $message)
@@ -817,9 +817,9 @@
 				success: function(response){
 					$('#text').val('');
 					$('#file').val('');
-					$(".chating-section ul").append("<li class='right' id='bottomDivMsg"+response.id+"'>"+"<p >"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");	
+					$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg"+response.id+"'>"+"<p >"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");	
 					if(response.file_path != ''){ 
-						$(".chating-section ul").append("<li class='right' id='bottomDivMsg"+response.id+"'>"+"<p >"+"<img width='100' src={{URL('/')}}/public/Message_files/" +response.file_name+ ">"+ "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/"+response.file_name+">" + " Download" + "</a>"+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");
+						$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg"+response.id+"'>"+"<p >"+"<img width='100' src={{URL('/')}}/public/Message_files/" +response.file_name+ ">"+ "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/"+response.file_name+">" + " Download" + "</a>"+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");
 					}
 					$("#gotobottomdivmsg")[0].click();
 					$("#blah").hide();

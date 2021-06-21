@@ -852,13 +852,44 @@
 
 	var loadFile = function(event) {
 	var exts = ['jpg','jpeg','png'];
+	
 	var fname = event.target.files[0].name;
-	console.log(fname);		
-    var reader = new FileReader();
-    reader.onload = function(){
-      var output = document.getElementById('blah');
-      output.src = reader.result;
-    };
+	var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+	var reader = new FileReader();
+	if ($.inArray(fileNameExt, exts) == -1){
+		reader.onload = function(){
+      	var output = document.getElementById('blah');
+      	output.src = reader.result;
+    	};
+	}else if(fileNameExt == 'doc'){
+		reader.onload = function(){
+      	var output = document.getElementById('blah');
+      	output.src = "{{ asset('public/images/msgs/doc.png') }}";
+    	};
+	}else if(fileNameExt == 'pdf'){
+		reader.onload = function(){
+      	var output = document.getElementById('blah');
+      	output.src = "{{ asset('public/images/msgs/pdf.png') }}";
+    	};
+	}else if(fileNameExt == 'txt'){
+		reader.onload = function(){
+      	var output = document.getElementById('blah');
+      	output.src = "{{ asset('public/images/msgs/txt.png') }}";
+    	};
+	}else if(fileNameExt == 'xls'){
+		reader.onload = function(){
+      	var output = document.getElementById('blah');
+      	output.src = "{{ asset('public/images/msgs/xls.png') }}";
+    	};
+	}else{
+		reader.onload = function(){
+      	var output = document.getElementById('blah');
+      	output.src = "{{ asset('public/images/msgs/file.png') }}";
+    	};
+	}	
+		
+    
+    
     reader.readAsDataURL(event.target.files[0]);
 	$("#blah").show();
   };

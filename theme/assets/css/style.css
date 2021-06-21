@@ -854,5 +854,9 @@ margin-left:16px
 }
 .sending.lastimg button{background: transparent;
     border: none;}
+
+.select2-container {
+    width: 100% !important;
+}
 /* media */
 /* 2212 

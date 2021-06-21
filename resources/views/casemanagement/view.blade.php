@@ -642,6 +642,7 @@
 												<?php 
 												echo $message['message'];
 												if(isset($message['file_name']) && $message['file_name']!=''){
+													echo "<br>";
 												?>
 												<img src="{{ asset('public/Message_files/'.$message['file_name']) }}" type="media_type"width='100'>
 													<a target="_blank" download="" href="{{ asset('public/Message_files/'.$message['file_name']) }}"> Download</a>	

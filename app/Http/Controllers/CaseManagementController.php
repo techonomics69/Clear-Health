@@ -497,7 +497,7 @@ public function sendMessageNonMedical(Request $request){
     //   $message_data['file_path'] = $file_path;
     //   $message_data['mime_type'] = $file_mimeType;
     // }
-    dd(count($message_data));
+    dd(count($message_file_data));
 
     $message_data['show_non_medical_screen'] = 1 ;
 

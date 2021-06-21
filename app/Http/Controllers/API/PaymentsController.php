@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\API;
+use App\Http\Controllers\API\BaseController as BaseController;
 
 use Exception;
 use App\Payment;
@@ -10,7 +11,7 @@ use Stripe\Customer;
 use Illuminate\Http\Request;
 use App\Models\Checkout;
 
-class PaymentsController extends Controller
+class PaymentsController extends BaseController
 {
     public function create()
     {

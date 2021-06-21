@@ -30,6 +30,16 @@ class PaymentsController extends Controller
 
         */
 
+        echo "<pre>";
+        print_r(request('email'));
+        echo "<pre>";
+    
+
+        echo "<pre>";
+        print_r($request->all());
+        echo "<pre>";
+        exit();
+
         $data = $request->all();
         request()->validate([
             'name' => 'required',

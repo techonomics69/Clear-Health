@@ -26,6 +26,7 @@ use App\Http\Controllers\OrderManagementController;
 use App\Http\Controllers\TreatmentGuidesController;
 use App\Http\Controllers\CaseStatusUpdateGetPrescriptionController;
 use App\Http\Controllers\OfferController;
+use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\TestsmsController;
 
 
@@ -269,7 +270,20 @@ Route::group(['middleware' => ['auth']],function(){
     Route::patch('admin/offers/update/{id}', [OfferController::class, 'update'])->name('offers.update');
     Route::delete('admin/offers/destroy/{id}', [OfferController::class, 'destroy'])->name('offers.destroy');  
     
+    
 });
 
+//Strip Payment APIs
+Route::get('/payments', [PaymentsController::class, 'create']);
+Route::post('/payments', [PaymentsController::class, 'store']);
+Route::get('/thankyou', [PaymentsController::class, 'thankyou']);
 
+Route::get('/subscribe', [PaymentsController::class, 'subscribe']);
+Route::post('/subscribe', [PaymentsController::class, 'subscribe_store']);
+Route::get('/subscribe_thankyou', [PaymentsController::class, 'subscribe_thankyou']);
+
+Route::get('/customer_payment_methods', [PaymentsController::class, 'customer_payment_methods']);
+Route::get('/customer_make_direct_payment', [PaymentsController::class, 'customer_make_direct_payment']);
+
+Route::get('/cancel_subscription', [PaymentsController::class, 'cancel_subscription']);
 Route::post("send_message",[TestsmsController::class, 'sendsms'])->name('sendsms');

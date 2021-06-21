@@ -654,25 +654,25 @@
 														}else{
 															switch($fileExt[0]){
 																case "doc":
-																	$fileName = public_path("images/msgs/doc.png");
+																	$fileName = asset("public/images/msgs/doc.png");
 																	break;
 																case "docx":
-																	$fileName = public_path("images/msgs/doc.png");
+																	$fileName = asset("public/images/msgs/doc.png");
 																	break;
 																case "xls":
-																	$fileName = public_path("images/msgs/xls.png");
+																	$fileName = asset("public/images/msgs/xls.png");
 																	break;
 																case "xlsx":
-																	$fileName = public_path("images/msgs/xls.png");
+																	$fileName = asset("public/images/msgs/xls.png");
 																	break;
 																case "txt":
-																	$fileName = public_path("images/msgs/txt.png");
+																	$fileName = asset("public/images/msgs/txt.png");
 																	break;
 																case "pdf":
-																	$fileName = public_path("images/msgs/pdf.png");
+																	$fileName = asset("public/images/msgs/pdf.png");
 																	break;			
 																default:
-																	$fileName = public_path("images/msgs/file.png");
+																	$fileName = asset("public/images/msgs/file.png");
 																	break;	
 															}
 													?>

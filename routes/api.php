@@ -86,6 +86,7 @@ Route::post('getFees',[FeeController::class, 'getFees']);
 Route::resource('caseManagement', CaseManagementController::class);
 Route::post('createOrder', [CheckoutController::class, 'store']);
 Route::post('addCheckoutAddress', [CheckoutController::class, 'addCheckoutAddress']);
+Route::post('updateCheckoutAddress', [CheckoutController::class, 'updateCheckoutAddress']);
 Route::post('orderList', [CheckoutController::class, 'orderList']);
 Route::post('getOrderDetail', [CheckoutController::class, 'getCheckoutdetail']);
 Route::post('getCheckoutAddress', [CheckoutController::class, 'getCheckoutAddress']);

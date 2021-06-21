@@ -823,6 +823,10 @@ if(!empty($Patient_data)){
 
     function getAssignedIpledgeIdToUser($user_id,$case_id,$md_case_id){
          $assigned_ipledge_id = CaseManagement::select('ipledge_id')->where([['id',$case_id],['user_id',$user_id],['md_case_id',$md_case_id]])->toSql();
+         echo "<pre>";
+         print_r($assigned_ipledge_id);
+         echo "<pre>";
+         exit();
          $assigned_ipledge_id = $assigned_ipledge_id['ipledge_id'];
 
          return $assigned_ipledge_id;

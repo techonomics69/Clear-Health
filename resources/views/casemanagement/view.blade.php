@@ -670,12 +670,12 @@
 <!-- <div class="camera lastimg">
 <img src="{{asset('public/images/camera.png')}}" alt="">
 </div> -->
-<div class="row">
-	<div class="col-12">
+<!-- <div class="row"> -->
+	<!-- <div class="col-12"> -->
 		<img id="blah" src="#" alt="your image" style="display: none; height: 120px;
 				width: 250px;" />
-	</div>
-</div>
+	<!-- </div> -->
+<!-- </div> -->
 
 <div class="attachment lastimg pinclip">
 	<div class="variants">

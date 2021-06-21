@@ -492,12 +492,12 @@ public function sendMessageNonMedical(Request $request){
     $message_file_data['mime_type'] = $file_mimeType;
     $message_file_data['msg_id'] = $message_data['id'];
     $message_file_data = MessageFiles::create($message_file_data);
-    // if(!empty($message_file_data)){
-    //   $message_data['file_name'] = $doc_file_name;
-    //   $message_data['file_path'] = $file_path;
-    //   $message_data['mime_type'] = $file_mimeType;
-    // }
-    dd(count($message_file_data));
+    if(!empty($message_file_data)){
+      $message_data['file_name'] = $doc_file_name;
+      $message_data['file_path'] = $file_path;
+      $message_data['mime_type'] = $file_mimeType;
+    }
+    // dd(count($message_file_data));
 
     $message_data['show_non_medical_screen'] = 1 ;
 

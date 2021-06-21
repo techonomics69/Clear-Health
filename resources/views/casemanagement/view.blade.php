@@ -863,7 +863,7 @@
       	output.src = reader.result;
     	};
 		reader.readAsDataURL(event.target.files[0]);
-	}else if(fileNameExt == 'doc' || leNameExt == 'docx'){
+	}else if(fileNameExt == 'doc' || fileNameExt == 'docx'){
 		reader.onload = function(){
       	var output = document.getElementById('blah');
       	output.src = "{{ asset('public/images/msgs/doc.png') }}";

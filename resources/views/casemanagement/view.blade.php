@@ -855,6 +855,7 @@
 	
 	var fname = event.target.files[0].name;
 	var fileNameExt = fileName.substr(fname.lastIndexOf('.') + 1);
+	console.log(fileNameExt);
 	var reader = new FileReader();
 	if ($.inArray(fileNameExt, exts) == -1){
 		reader.onload = function(){

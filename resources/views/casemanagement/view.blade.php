@@ -676,42 +676,34 @@
 				width: 250px;" />
 	</div>
 </div>
-<div class="row">
-	<div class="col-12">
-		
-		<div class="attachment lastimg pinclip">
-			<div class="variants">
-				<div class='file'>
-					<label for='file'>
-						<img src="{{asset('public/images/paperclip.png')}}" alt="">
-						
-					</label>
-					<input id="file" type="file" name="file" onchange="loadFile(event)">
-		
-				</div>
-			</div>
-		</div>
 
-		<div class="search">
-	
-			<input class="form-control" type="text" name="text" placeholder="Type a message..." id="text">
-			<input type="hidden" id ="_token" name="_token" value="{{ csrf_token() }}">
-			<input type="hidden" name="user_id" value="{{$user_case_management_data['user_id']}}" id="user_id">
-			<input type="hidden" name="case_id" value="{{$user_case_management_data['id']}}" id="case_id">
-			
-		</div>
-		<div class="sending lastimg">
-			<button type="submit" id="btnsubmit"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
-		</div>
+<div class="attachment lastimg pinclip">
+	<div class="variants">
+		<div class='file'>
+			<label for='file'>
+				<img src="{{asset('public/images/paperclip.png')}}" alt="">
+				
+			</label>
+			<input id="file" type="file" name="file" onchange="loadFile(event)">
 
+		</div>
 	</div>
 </div>
-
 <!-- <div class="attachment lastimg">
 <input class="form-control" type="file" name="file" id="file">
 <img src="{{asset('public/images/paperclip.png')}}" alt="">
 </div> -->
-
+<div class="search">
+	
+	<input class="form-control" type="text" name="text" placeholder="Type a message..." id="text">
+	<input type="hidden" id ="_token" name="_token" value="{{ csrf_token() }}">
+	<input type="hidden" name="user_id" value="{{$user_case_management_data['user_id']}}" id="user_id">
+	<input type="hidden" name="case_id" value="{{$user_case_management_data['id']}}" id="case_id">
+	
+</div>
+<div class="sending lastimg">
+	<button type="submit" id="btnsubmit"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
+</div>
 </div>
 {!! Form::close() !!}
 </div>														

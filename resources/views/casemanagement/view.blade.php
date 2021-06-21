@@ -668,9 +668,11 @@
 							</div>
 							<div class="row">
 								<div class="col-lg-12">
+									<div class="p-2 pl-4">
 									<img id="blah" src="#" alt="your image" style="display: none; height: 120px;
 									width: 250px;" />
 								</div>
+							</div>
 							</div>
 							
 							<div id="last-typing-section" class="last-typing-section">

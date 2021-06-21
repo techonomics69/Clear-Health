@@ -857,7 +857,7 @@
 	var fileNameExt = fname.substr(fname.lastIndexOf('.') + 1);
 	console.log(fileNameExt);
 	var reader = new FileReader();
-	if ($.inArray(fileNameExt, exts) == -1){
+	if ($.inArray(fileNameExt, exts) !== -1){
 		reader.onload = function(){
       	var output = document.getElementById('blah');
       	output.src = reader.result;

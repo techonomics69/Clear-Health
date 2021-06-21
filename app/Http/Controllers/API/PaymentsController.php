@@ -18,7 +18,7 @@ class PaymentsController extends BaseController
         //return view('payments.create');
     }
 
-    public function store(Request $request)
+    public function store()
     {
 
 
@@ -33,11 +33,6 @@ class PaymentsController extends BaseController
 
         echo "<pre>";
         print_r(request('email'));
-        echo "<pre>";
-    
-
-        echo "<pre>";
-        print_r($request->all());
         echo "<pre>";
         exit();
 

@@ -859,8 +859,9 @@
 					$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg"+response.id+"'>"+"<p >"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");	
 					if(response.file_path != ''){
 						var exts2 = ['jpg','jpeg','png'];
-						var fileNameExt2 = fname.substr(fname.lastIndexOf('.') + 1);
 						var ufile = response.file_name;
+						var fileNameExt2 = ufile.substr(ufile.lastIndexOf('.') + 1);
+						
 						if ($.inArray(fileNameExt, exts) !== -1){
 							$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg"+response.id+"'>"+"<p >"+"<img width='100' src={{URL('/')}}/public/Message_files/" +response.file_name+ ">"+ "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/"+response.file_name+">" + " Download" + "</a>"+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");
 						}else if(fileNameExt == 'doc' || fileNameExt == 'docx'){

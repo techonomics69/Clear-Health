@@ -21,6 +21,9 @@
         "maatwebsite/excel": "^3.1",
         "spatie/laravel-permission": "^4.0",
         "stripe/stripe-php": "^7.83",
+        "yoeunes/toastr": "^1.2",
+        "taxjar/taxjar-php": "^1.10",
+        "twilio/sdk": "^6.25",
         "yoeunes/toastr": "^1.2"
     },
     "require-dev": {

@@ -159,16 +159,24 @@ public function updateVerifiedByVouch(Request $request){
 
     $data = User::where('id',$user_id)->update(['verified_by_vouch' => $request['verified_by_vouch']]);
 
-        //$user = User::find($id);
-
+    $user = User::find($user_id);
+    
     $orderdata = checkout::where('checkout.order_id',$order_id)->where('checkout.case_id',$case_id)->where('checkout.user_id',$user_id)->first();
 
-        //code gor md create case
+        //code for md create case
     if($orderdata['medication_type'] == 1){
 
-            //call create patient api
-      $patient_id = create_patient($user_id,$case_id,$order_id);
-            //end of code create patient api
+      if($user['md_patient_id']!='' || $user['md_patient_id'] != null){
+
+        $patient_id = $user['md_patient_id'];
+
+      }else{
+          //call create patient api
+        $patient_id = create_patient($user_id,$case_id,$order_id);
+            //end of code create patient api 
+      }
+
+
 
 
       if($patient_id != '' && $data == 1){
@@ -179,7 +187,7 @@ public function updateVerifiedByVouch(Request $request){
 
        $preferred_pharmacy_id = $pharmacy_data['pharmacy_pickup'];
 
-       $response = CreateCase($user_id,$case_id,$preferred_pharmacy_id,$patient_id);
+       $response = CreateCase($user_id,$case_id,$preferred_pharmacy_id,$patient_id,$order_id);
 
        $response = json_decode($response);
 

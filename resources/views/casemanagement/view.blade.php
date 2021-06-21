@@ -578,19 +578,37 @@
 			<section class="card">
 				<ul class="nav nav-tabs" id="messages-tab-menu">
 					<li><a class="btn @if($msg_tab != 1) active @endif" data-toggle="tab" href="#medical">Medical Messgaes</a></li>
-					<li><a class="btn nonmedicalmsg" data-toggle="tab" href="#nonmedical">Non-Medical Messgaes</a></li>
+					<li><a class="btn nonmedicalmsg" data-toggle="tab" href="#nonmedical" onclick="Gotobottom();">Non-Medical Messgaes</a></li>
 				</ul>
 				<div class="tab-content">
-					<div id="medical" class="tab-pane fade in @if($msg_tab != 1) active show @endif">	
+					<div id="medical" class="tab-pane fade in @if($msg_tab != 1) active show @endif">
 						<div class="row" style="padding: 10px;">
 							<div class="col-md-12">
 								<!-- <div class="box-block mtb32" id="tab1"> -->
 									<!-- <h3 class="font-weight-bold"><span class="text-underline">Medical Messgaes</span></h3> -->
 									<div class="right-cht">
-
 										<div class="chating-section">
 											<ul>
 												
+												@foreach ($msg_history as $key => $md_message)
+													<li class="left">
+											<p>
+												<?php 
+												if(isset($md_message['message']) &&  $md_message['message']!=''){
+													echo $md_message['message'];
+												}else{
+													//echo $md_message['url'];
+													?>
+													<!-- <img src="$md_message['url']" type="media_type"width='100'>
+													<a target="_blank" download="" href="$md_message['url']"> Download</a> -->	
+													<?php
+												}
+												?>
+											</p>
+
+														<h5>{{ $md_message['msg_date'] }}</h5>
+													</li>
+													@endforeach
 											</ul>
 										</div> 
 									</div>
@@ -600,84 +618,91 @@
 							</div>
 						</div>
 
-						<div id="nonmedical" class="tab-pane fade in nonmedicalmsg">	
-			<!-- <div class="row" style="padding: 10px;">
-				<div class="col-md-12">
-					<div class="box-block mtb32" id="tab1"> -->
-						
-						<div class="right-cht">
-							{!! Form::open(array('method'=>'POST', 'enctype'=>"multipart/form-data", 'id'=>"msgForm")) !!}
-							<div class="chating-section">
-								<ul><?php if(isset($message_data)) {?>
-									@foreach ($message_data as $key => $message)
-
-									<?php //print_r($message); ?>
-									<li>
-										<p>
-											<?php 
-											if(isset($message['message']) && $message['message']!=''){
-												echo $message['message'];
-											}else{
+						<div id="nonmedical" class="tab-pane fade in nonmedicalmsg">
+							@if(isset($message_data))
+							@if(count($message_data)>0)
+							@php
+								$lastMsg = (count($message_data) - 1); 
+							@endphp
+							<a href="#bottomDivMsg{{$message_data[$lastMsg]['id']}}" style="display: none;" id="gotobottomdivmsg">scroll down</a>
+							@else
+							<a style="display: none;" id="gotobottomdivmsg">scroll down</a>
+							@endif
+							@endif
+							<div class="right-cht">
+								{!! Form::open(array('method'=>'POST', 'enctype'=>"multipart/form-data", 'id'=>"msgForm")) !!}
+								<div class="chating-section" id="chating-section" style="overflow: auto;">
+									<ul><?php
+										if(isset($message_data)) {?>
+										@foreach ($message_data as $key => $message)
+										
+		<li id="<?php if($key == count($message_data) - 1) echo 'bottomDivMsg'.$message['id'] ?>" class = <?php if($message['sender'] == 'admin') { ?>"right"<?php }else{ ?>
+		"left" <?php } ?>>
+											<p >
+												<?php 
+												if(isset($message['message']) && $message['message']!=''){
+													echo $message['message'];
+												}else{
+													?>
+													<img src="{{ asset('public/Message_files/'.$message['file_name']) }}" type="media_type"width='100'>
+													<a target="_blank" download="" href="{{ asset('public/Message_files/'.$message['file_name']) }}"> Download</a>	
+													<?php
+												}
 												?>
-												<img src="{{ asset('public/Message_files/'.$message['file_name']) }}" type="media_type"width='100'>
-												<a target="_blank" download="" href="{{ asset('public/Message_files/'.$message['file_name']) }}"> Download</a>	
+											</p>
 
-												<?php
-											}
-											?>
-										</p>
-										<h5>
-											<?php 
-											if(isset($message['date']) && $message['date']!=''){
-												echo $message['date'];
-											}?>
-										</h5>
-									</li>
+											<h5>
+												<?php 
+												if(isset($message['date']) && $message['date']!=''){
+													echo $message['date'];
+												}?>
+											</h5>
+										</li>
+									
+
 									@endforeach
-								<?php }?>
-							</ul>
-						</div>
-						<div class="last-typing-section">
+									
+									<?php } ?>
+								</ul>
+
+							</div>
+							<div id="last-typing-section" class="last-typing-section">
 <!-- <div class="camera lastimg">
 <img src="{{asset('public/images/camera.png')}}" alt="">
 </div> -->
 <div class="attachment lastimg pinclip">
-
 	<div class="variants">
 		<div class='file'>
 			<label for='file'>
 				<img src="{{asset('public/images/paperclip.png')}}" alt="">
+				
 			</label>
-			<input id="file" type="file" name="file">
+			<input id="file" type="file" name="file" onchange="loadFile(event)">
+
 		</div>
 	</div>
 </div>
-
-
 <!-- <div class="attachment lastimg">
 <input class="form-control" type="file" name="file" id="file">
 <img src="{{asset('public/images/paperclip.png')}}" alt="">
 </div> -->
 <div class="search">
-	<input class="form-control" type="text" name="text" placeholder="Text input here..." id="text">
+	<img id="blah" src="#" alt="your image" style="display: none; height: 120px;
+				width: 250px;" />
+	<input class="form-control" type="text" name="text" placeholder="Type a message..." id="text">
 	<input type="hidden" id ="_token" name="_token" value="{{ csrf_token() }}">
 	<input type="hidden" name="user_id" value="{{$user_case_management_data['user_id']}}" id="user_id">
 	<input type="hidden" name="case_id" value="{{$user_case_management_data['id']}}" id="case_id">
+	
 </div>
 <div class="sending lastimg">
-
 	<button type="submit" id="btnsubmit"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
-	<!-- <img src="{{asset('public/images/telegram.png')}}" alt=""> -->
 </div>
 </div>
 {!! Form::close() !!}
-</div>														<!-- </div>
-
-
-				</div>
-			</div> -->
-		</div>
-	</div>
+</div>														
+</div>
+</div>
 </section>
 </div>
 </div>
@@ -776,15 +801,48 @@
 				processData: false,
 				contentType: false,
 				success: function(response){
+					$('#text').val('');
+					$('#file').val('');
 					if(response.text == null){ 
-						$(".chating-section ul").append("<li>"+"<p>"+"<img width='100' src={{URL('/')}}/public/Message_files/" +response.file_name+ ">"+ "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/"+response.file_name+">" + " Download" + "</a>"+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");
+						$(".chating-section ul").append("<li class='right' id='bottomDivMsg"+response.id+"'>"+"<p >"+"<img width='100' src={{URL('/')}}/public/Message_files/" +response.file_name+ ">"+ "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/"+response.file_name+">" + " Download" + "</a>"+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");
 					}else{
-						$(".chating-section ul").append("<li>"+"<p>"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");	
+						$(".chating-section ul").append("<li class='right' id='bottomDivMsg"+response.id+"'>"+"<p >"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");	
 					}
+					$("#gotobottomdivmsg")[0].click();
+					$("#blah").hide();
 				}
 			});
 		});
 	});
+
+	function Gotobottom(){
+		setTimeout(function(){	
+			$("#gotobottomdivmsg")[0].click();
+		},1000);
+	}
+
+	$(document).on('click','#gotobottomdivmsg',function(){
+		// alert($(this).attr("href"));
+		// $($(this).attr("data-target"));
+		setTimeout(function(){
+			var uri = window.location.toString();
+			if (uri.indexOf("#") > 0) {
+				var clean_uri = uri.substring(0, uri.indexOf("#"));
+				window.history.replaceState({}, document.title, clean_uri);
+			}
+		},1000);
+	});
+
+	var loadFile = function(event) {
+    var reader = new FileReader();
+    reader.onload = function(){
+      var output = document.getElementById('blah');
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+	$("#blah").show();
+  };
+
 </script>
 
 @if (count($errors) > 0)
@@ -809,3 +867,10 @@
 
 	}
 </style>
+
+<script>
+	
+
+	
+	
+</script>

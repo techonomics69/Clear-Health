@@ -13,6 +13,7 @@ use App\Models\CaseManagement;
 use App\Models\Fees;
 use Validator;
 use Exception;
+use log;
 
 class CheckoutController extends BaseController
 {
@@ -399,7 +400,7 @@ public function getTaxes(Request $request){
    $products=array();
 
 
-    $cart_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->where('carts.user_id',$user_id)->where('carts.status','pending')->select('products.name AS product_name','products.image','products.discount_price','products.id as product_id','carts.quantity','carts.order_type','carts.pharmacy_pickup','products.price as product_price','carts.id as cart_id')->get()->toArray();
+    $cart_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->where('carts.user_id',$user_id)->where('carts.status','pending')->where('carts.order_type','Non-Prescribe')->select('products.name AS product_name','products.image','products.discount_price','products.id as product_id','carts.quantity','carts.order_type','carts.pharmacy_pickup','products.price as product_price','carts.id as cart_id')->get()->toArray();
 
 
   $ord_total = 0;
@@ -408,13 +409,13 @@ public function getTaxes(Request $request){
 
   foreach($cart_details as $key=>$value){
 
-      $ord_total = $ord_total + (($value['product_price']*$value['quantity']) - ($value['discount_price']*$value['quantity']));
+      $ord_total = $ord_total + ($value['product_price']*$value['quantity']);
 
       $line_item[$key]['id'] = $value['product_id'] ;
       $line_item[$key]['quantity'] = $value['quantity'];
       $line_item[$key]['product_tax_code'] = '53131619A0001';
       $line_item[$key]['unit_price'] = $value['product_price'];        
-      $line_item[$key]['discount'] =  $value['discount_price'];
+      $line_item[$key]['discount'] =  0;//$value['discount_price'];
 
       $shipping_address = Checkoutaddress::select('*')
       //->whereRaw("find_in_set(".$value['cart_id'].",cart_id)")
@@ -431,7 +432,7 @@ public function getTaxes(Request $request){
       $street =  $shipping_address['addressline1'];
 
       if($shipping_address['addressline2']!=''){
-           $street .=  $shipping_address['addressline1'];
+           $street =  $shipping_address['addressline2'];
       }
 
   $products_item  = $line_item;
@@ -443,6 +444,24 @@ public function getTaxes(Request $request){
  }else{
   $shipping_fee = 0;
  }
+
+
+$para = array();
+
+$para['zip'] = $zip;
+$para['state'] = $state;
+$para['city'] = $city;
+$para['street'] = $street;
+$para['ord_total'] = $ord_total;
+$para['shipping_fee'] = $shipping_fee['amount'];
+$para['products_item'] = $products_item;
+ 	
+
+$filename = "LOG_".strtotime(date('Y-m-d H:i:s')).".txt";
+$file = fopen($_SERVER['DOCUMENT_ROOT'].'/dev.clearhealth/storage/logs/'.$filename, 'w');
+$txt = json_encode($para);
+fwrite($file, $txt);
+fclose($file);
 
 
    $client = \TaxJar\Client::withApiKey('dcbaa17daefa7c485d84ee47793d1708');
@@ -467,7 +486,7 @@ public function getTaxes(Request $request){
           'to_city' => $city,
           'to_street' => $street,
           'amount' => $ord_total,
-          'shipping' => $shipping_fee,
+          'shipping' => $shipping_fee['amount'],
           'line_items' => $products_item
         ]);
 
@@ -475,6 +494,8 @@ public function getTaxes(Request $request){
     print_r($order_taxes);
     echo "<pre>";
     exit(); */
+
+ 
 
       if(isset($order_taxes->amount_to_collect)){
            return $this->sendResponse($order_taxes->amount_to_collect, 'Tax retrieved successfully.');

@@ -22,6 +22,7 @@ use App\Http\Controllers\API\AnswerController;
 use App\Http\Controllers\API\TreatmentGuidesController;
 use App\Http\Controllers\API\ChangePasswordController;
 use App\Http\Controllers\API\OfferController;
+use App\Http\Controllers\API\FollowupController;
 
 /*
 |--------------------------------------------------------------------------
@@ -122,6 +123,8 @@ Route::post('getToken', [CaseManagementController::class, 'get_token']);
      Route::post('getTestReport', [CaseManagementController::class, 'getTestReport']);
     //end of md api
 
+     Route::post('updateFieldInCaseManagement',[CaseManagementController::class,'updateFieldInCaseManagement']);
+
     //system message API
     Route::post('sendMessageNonMedical', [CaseManagementController::class, 'sendMessageNonMedical']);
     Route::post('getMessagesNonMedical', [CaseManagementController::class, 'getMessagesNonMedical']);
@@ -133,10 +136,16 @@ Route::post('getToken', [CaseManagementController::class, 'get_token']);
 
     //Offer & Promotion
      Route::resource('offerPromotion', OfferController::class);
+     Route::post("applyGiftCard", [OfferController::class, 'applyGiftCard']);
 
     //Answer API
     Route::post('answer',[AnswerController::class, 'answer']);
     Route::post('getAnswer',[AnswerController::class,'getAnswer']);
+
+    //Follow Up
+    Route::post('addFollowUpAnswer',[FollowupController::class, 'addFollowUpData']);
+    Route::post('getFollowUpAnswer',[FollowupController::class,'getFollowUpAnswer']);
+    Route::post('updateFollowUpData',[FollowupController::class,'updateFollowUpData']);
 
     //Change Password
      Route::post('changePassword', [ChangePasswordController::class, 'changePassword']);

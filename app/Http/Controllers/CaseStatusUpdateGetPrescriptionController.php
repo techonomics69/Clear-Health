@@ -17,6 +17,9 @@ use App\Models\Mdmanagement;
 use App\Models\CasePrescriptions;
 use App\Models\PrescriptionCompound;
 use App\Models\PrescriptionMedication;
+use App\Models\Mdpatient;
+use App\Models\CurexaOrder;
+use App\Models\Mdcases;
 use Session;
 
 
@@ -41,10 +44,11 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
         $case_id = $value['md_case_id'];
         $system_case_id = $value['id'];
 
+        $gender = 'Not known';//0;
+
         $recommended_product = $value['recommended_product'];
 
         $system_status = 'Telehealth Evaluation Requested';
-
 
 
         if($value['md_case_status']!= 'completed'){
@@ -52,12 +56,12 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
           $userQueAns = getQuestionAnswerFromUserid($user_id,$system_case_id);
 
           if(!empty($userQueAns)){
-            foreach ($userQueAns as $key => $value) {
-             $question = $value->question;
+            foreach ($userQueAns as $k => $val) {
+             $question = $val->question;
              if($question == "What was your gender assigned at birth?"){
-               if(isset($value->answer) && $value->answer!=''){
+               if(isset($val->answer) && $val->answer!=''){
 
-                $gender =  $value->answer;
+                $gender =  $val->answer;
               }
             }
           }
@@ -100,7 +104,12 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
           $case_type = getCaseType($user_id,$case_id,$system_case_id);
 
+          $get_support_reason = Mdcases::select('support_reason')->where('case_id',$case_id)->first();
 
+      
+          $support_reason = $get_support_reason['support_reason'];
+        
+        
 
           if($gender == "Female" && $recommended_product == 'Accutane' && $case_type = 'new'){
 
@@ -117,7 +126,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                   $system_status = 'Awaiting Live Consultation';
                 }
 
-                if($md_case_status == 'support' && $case_type = 'new'){
+                if($md_case_status == 'support' && $case_type = 'new' && ($support_reason != '' || $support_reason != NULL)){
 
                   $system_status = 'Awaiting Follow-Up';
                 }
@@ -130,73 +139,42 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                 if($md_case_status == 'dosespot confirmed' && $case_type = 'follow_up'){
 
                   $system_status = 'Prescription Approved';
+
+                  $response = $this->getPrescription($case_id);
+
+                  if(!empty($response)){
+                    $this->save_prescription_response($response);
+                    $prescription_data = json_decode($response);
+
+                     //curexa create order api
+                    $curexa_para = array();
+                    $curexa_para['user_id'] = $user_id;
+                    $curexa_para['case_id'] = $case_id;
+                    $curexa_para['system_case_id'] = $system_case_id;
+                    $curexa_para['rx_id'] =  $prescription_data->dosespot_prescription_id;
+                    $curexa_para['quantity_dispensed'] = 30;
+                    $curexa_para['days_supply'] = $prescription_data->days_supply;
+                    $curexa_para['medication_sig'] = $prescription_data->directions;
+
+
+                    $curexa_create_order_data = $this->curexa_create_order($curexa_para);
+
+                    $this->store_curexa_order_data($curexa_create_order_data);
+
+                    //end of curexa  create order api 
+                  } 
+
+
                 }
                 
 
                 if($md_case_status == 'dosespot confirmed' && $value['pregnancy_test']!= NULL && $value['blood_work']!= NULL && $value['i_pledge_agreement']!= NULL){
 
-                  $system_status = 'Awaiting Action Items';
+                  $system_status = 'Awaiting Action Items';  
 
-                  $response = $this->getPrescription($case_id);
+                }
 
-                  if(!empty($response)){
-                    $prescription_data = json_decode($response);
-
-                    $input_prescription['dosespot_prescription_id'] = $prescription_data->dosespot_prescription_id;
-                    $input_prescription['dosespot_prescription_sync_status'] = $prescription_data->dosespot_prescription_sync_status;
-                    $input_prescription['dosespot_confirmation_status'] = $prescription_data->dosespot_confirmation_status;
-                    $input_prescription['dosespot_confirmation_status_details'] = $prescription_data->dosespot_confirmation_status_details;
-                    $input_prescription['refills'] = $prescription_data->refills;
-                    $input_prescription['quantity'] = $prescription_data->quantity;
-                    $input_prescription['days_supply'] = $prescription_data->days_supply;
-                    $input_prescription['no_substitutions'] = $prescription_data->no_substitutions;
-                    $input_prescription['pharmacy_notes'] = $prescription_data->pharmacy_notes;
-                    $input_prescription['directions'] = $prescription_data->directions;
-                    $input_prescription['dispense_unit_id'] = $prescription_data->dispense_unit_id;
-                    $input_prescription['preferred_pharmacy_id'] = $prescription_data->preferred_pharmacy_id;
-                    $input_prescription['case_id'] = $case_id;
-                    $input_prescription['user_id'] = $user_id;
-                    $input_prescription['system_case_id'] = $case_id;
-
-                    $CasePrescription_data = CasePrescriptions::create($input_prescription);
-
-                    if(isset($prescription_data->medication) && !empty($prescription_data->medication)){
-                      $input_medication['dosespot_medication_id'] = $prescription_data->medication->dosespot_medication_id;
-                      $input_medication['dispense_unit_id'] = $prescription_data->medication->dispense_unit_id;
-                      $input_medication['dose_form'] = $prescription_data->medication->dose_form;
-                      $input_medication['route'] = $prescription_data->medication->route;
-                      $input_medication['strength'] = $prescription_data->medication->strength;
-                      $input_medication['generic_product_name'] = $prescription_data->medication->generic_product_name;
-                      $input_medication['lexi_gen_product_id'] = $prescription_data->medication->lexi_gen_product_id;
-                      $input_medication['lexi_drug_syn_id'] = $prescription_data->medication->lexi_drug_syn_id;
-                      $input_medication['lexi_synonym_type_id'] = $prescription_data->medication->lexi_synonym_type_id;
-                      $input_medication['lexi_gen_drug_id'] = $prescription_data->medication->lexi_gen_drug_id;
-                      $input_medication['rx_cui'] = $prescription_data->medication->rx_cui;
-                      $input_medication['otc'] = $prescription_data->medication->otc;
-                      $input_medication['ndc'] = $prescription_data->medication->ndc;
-                      $input_medication['schedule'] = $prescription_data->medication->schedule;
-                      $input_medication['display_name'] = $prescription_data->medication->display_name;
-                      $input_medication['monograph_path'] = $prescription_data->medication->monograph_path;
-                      $input_medication['drug_classification'] = $prescription_data->medication->drug_classification;
-                      $input_medication['state_schedules'] = $prescription_data->medication->state_schedules;
-
-                      $CasePrescription_data = PrescriptionMedication::create($input_medication);
-
-                    }
-
-
-
-                    if(!empty($prescription_data->partner_compound)){
-                     $input_compound['partner_compound_id'] = $prescription_data->partner_compound->partner_compound_id;
-                     $input_compound['title'] = $prescription_data->partner_compound->title;
-
-                     $CasePrescription_data = PrescriptionCompound::create($input_compound);
-                   }
-                 }       
-
-               }
-
-             }else if($gender == "Male" && $recommended_product == 'Accutane'){
+              }else if($gender == "Male" && $recommended_product == 'Accutane'){
                 /*
                   Initial Accutane Male Flow:
             
@@ -220,64 +198,34 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                     $system_status = 'Prescription Approved';
 
+                    $response = $this->getPrescription($case_id);
+
+                    if(!empty($response)){
+                      $this->save_prescription_response($response);
+
+                      //curexa create order api   
+
+                      $curexa_para = array();
+                      $curexa_para['user_id'] = $user_id;
+                      $curexa_para['case_id'] = $case_id;
+                      $curexa_para['system_case_id'] = $system_case_id;
+                      $curexa_para['rx_id'] =  $prescription_data->dosespot_prescription_id;
+                      $curexa_para['quantity_dispensed'] = 30;
+                      $curexa_para['days_supply'] = $prescription_data->days_supply;
+                      $curexa_para['medication_sig'] = $prescription_data->directions;
 
 
-                  $response = $this->getPrescription($case_id);
+                      $curexa_create_order_data = $this->curexa_create_order($curexa_para);
 
-                  if(!empty($response)){
-                    $prescription_data = json_decode($response);
+                      $this->store_curexa_order_data($curexa_create_order_data);
 
-                    $input_prescription['dosespot_prescription_id'] = $prescription_data->dosespot_prescription_id;
-                    $input_prescription['dosespot_prescription_sync_status'] = $prescription_data->dosespot_prescription_sync_status;
-                    $input_prescription['dosespot_confirmation_status'] = $prescription_data->dosespot_confirmation_status;
-                    $input_prescription['dosespot_confirmation_status_details'] = $prescription_data->dosespot_confirmation_status_details;
-                    $input_prescription['refills'] = $prescription_data->refills;
-                    $input_prescription['quantity'] = $prescription_data->quantity;
-                    $input_prescription['days_supply'] = $prescription_data->days_supply;
-                    $input_prescription['no_substitutions'] = $prescription_data->no_substitutions;
-                    $input_prescription['pharmacy_notes'] = $prescription_data->pharmacy_notes;
-                    $input_prescription['directions'] = $prescription_data->directions;
-                    $input_prescription['dispense_unit_id'] = $prescription_data->dispense_unit_id;
-                    $input_prescription['preferred_pharmacy_id'] = $prescription_data->preferred_pharmacy_id;
-                    $input_prescription['case_id'] = $case_id;
-                    $input_prescription['user_id'] = $user_id;
-                    $input_prescription['system_case_id'] = $case_id;
-
-                    $CasePrescription_data = CasePrescriptions::create($input_prescription);
-
-                    if(isset($prescription_data->medication) && !empty($prescription_data->medication)){
-                      $input_medication['dosespot_medication_id'] = $prescription_data->medication->dosespot_medication_id;
-                      $input_medication['dispense_unit_id'] = $prescription_data->medication->dispense_unit_id;
-                      $input_medication['dose_form'] = $prescription_data->medication->dose_form;
-                      $input_medication['route'] = $prescription_data->medication->route;
-                      $input_medication['strength'] = $prescription_data->medication->strength;
-                      $input_medication['generic_product_name'] = $prescription_data->medication->generic_product_name;
-                      $input_medication['lexi_gen_product_id'] = $prescription_data->medication->lexi_gen_product_id;
-                      $input_medication['lexi_drug_syn_id'] = $prescription_data->medication->lexi_drug_syn_id;
-                      $input_medication['lexi_synonym_type_id'] = $prescription_data->medication->lexi_synonym_type_id;
-                      $input_medication['lexi_gen_drug_id'] = $prescription_data->medication->lexi_gen_drug_id;
-                      $input_medication['rx_cui'] = $prescription_data->medication->rx_cui;
-                      $input_medication['otc'] = $prescription_data->medication->otc;
-                      $input_medication['ndc'] = $prescription_data->medication->ndc;
-                      $input_medication['schedule'] = $prescription_data->medication->schedule;
-                      $input_medication['display_name'] = $prescription_data->medication->display_name;
-                      $input_medication['monograph_path'] = $prescription_data->medication->monograph_path;
-                      $input_medication['drug_classification'] = $prescription_data->medication->drug_classification;
-                      $input_medication['state_schedules'] = $prescription_data->medication->state_schedules;
-
-                      $CasePrescription_data = PrescriptionMedication::create($input_medication);
-
+                    //end of curexa  create order api
                     }
+
 
                     
 
-                    if(!empty($prescription_data->partner_compound)){
-                     $input_compound['partner_compound_id'] = $prescription_data->partner_compound->partner_compound_id;
-                     $input_compound['title'] = $prescription_data->partner_compound->title;
 
-                     $CasePrescription_data = PrescriptionCompound::create($input_compound);
-                   }
-                 }
                   }
 
 
@@ -293,69 +241,36 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                   $system_status = 'Prescription Approved';
 
-
-
                   
                   $response = $this->getPrescription($case_id);
 
                   if(!empty($response)){
-                    $prescription_data = json_decode($response);
+                    $this->save_prescription_response($response);
 
-                    $input_prescription['dosespot_prescription_id'] = $prescription_data->dosespot_prescription_id;
-                    $input_prescription['dosespot_prescription_sync_status'] = $prescription_data->dosespot_prescription_sync_status;
-                    $input_prescription['dosespot_confirmation_status'] = $prescription_data->dosespot_confirmation_status;
-                    $input_prescription['dosespot_confirmation_status_details'] = $prescription_data->dosespot_confirmation_status_details;
-                    $input_prescription['refills'] = $prescription_data->refills;
-                    $input_prescription['quantity'] = $prescription_data->quantity;
-                    $input_prescription['days_supply'] = $prescription_data->days_supply;
-                    $input_prescription['no_substitutions'] = $prescription_data->no_substitutions;
-                    $input_prescription['pharmacy_notes'] = $prescription_data->pharmacy_notes;
-                    $input_prescription['directions'] = $prescription_data->directions;
-                    $input_prescription['dispense_unit_id'] = $prescription_data->dispense_unit_id;
-                    $input_prescription['preferred_pharmacy_id'] = $prescription_data->preferred_pharmacy_id;
-                    $input_prescription['case_id'] = $case_id;
-                    $input_prescription['user_id'] = $user_id;
-                    $input_prescription['system_case_id'] = $case_id;
 
-                    $CasePrescription_data = CasePrescriptions::create($input_prescription);
+                  //curexa create order api
 
-                    if(isset($prescription_data->medication) && !empty($prescription_data->medication)){
-                      $input_medication['dosespot_medication_id'] = $prescription_data->medication->dosespot_medication_id;
-                      $input_medication['dispense_unit_id'] = $prescription_data->medication->dispense_unit_id;
-                      $input_medication['dose_form'] = $prescription_data->medication->dose_form;
-                      $input_medication['route'] = $prescription_data->medication->route;
-                      $input_medication['strength'] = $prescription_data->medication->strength;
-                      $input_medication['generic_product_name'] = $prescription_data->medication->generic_product_name;
-                      $input_medication['lexi_gen_product_id'] = $prescription_data->medication->lexi_gen_product_id;
-                      $input_medication['lexi_drug_syn_id'] = $prescription_data->medication->lexi_drug_syn_id;
-                      $input_medication['lexi_synonym_type_id'] = $prescription_data->medication->lexi_synonym_type_id;
-                      $input_medication['lexi_gen_drug_id'] = $prescription_data->medication->lexi_gen_drug_id;
-                      $input_medication['rx_cui'] = $prescription_data->medication->rx_cui;
-                      $input_medication['otc'] = $prescription_data->medication->otc;
-                      $input_medication['ndc'] = $prescription_data->medication->ndc;
-                      $input_medication['schedule'] = $prescription_data->medication->schedule;
-                      $input_medication['display_name'] = $prescription_data->medication->display_name;
-                      $input_medication['monograph_path'] = $prescription_data->medication->monograph_path;
-                      $input_medication['drug_classification'] = $prescription_data->medication->drug_classification;
-                      $input_medication['state_schedules'] = $prescription_data->medication->state_schedules;
+                    $curexa_para = array();
+                    $curexa_para['user_id'] = $user_id;
+                    $curexa_para['case_id'] = $case_id;
+                    $curexa_para['system_case_id'] = $system_case_id;
+                    $curexa_para['rx_id'] =  $prescription_data->dosespot_prescription_id;
+                    $curexa_para['quantity_dispensed'] = 30;
+                    $curexa_para['days_supply'] = $prescription_data->days_supply;
+                    $curexa_para['medication_sig'] = $prescription_data->directions;
 
-                      $CasePrescription_data = PrescriptionMedication::create($input_medication);
 
-                    }
+                    $curexa_create_order_data = $this->curexa_create_order($curexa_para);
 
-                    
+                    $this->store_curexa_order_data($curexa_create_order_data);
 
-                    if(!empty($prescription_data->partner_compound)){
-                     $input_compound['partner_compound_id'] = $prescription_data->partner_compound->partner_compound_id;
-                     $input_compound['title'] = $prescription_data->partner_compound->title;
+                  //end of curexa  create order api
+                  }  
 
-                     $CasePrescription_data = PrescriptionCompound::create($input_compound);
-                   }
-                 }
                 }
               }
 
-              $case_management  =  CaseManagement::where('id',$case_id)->where('user_id',$user_id)->update(['md_case_status' => $MdCaseStatus->status,'md_status' => $md_status,'system_status'=> $system_status ]);
+              $case_management  =  CaseManagement::where('id',$system_case_id)->where('md_case_id', $case_id)->where('user_id',$user_id)->update(['md_case_status' => $MdCaseStatus->status,'md_status' => $md_status,'system_status'=> $system_status ]);
 
                //code for update md details
 
@@ -377,11 +292,21 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                 $md_case_data = Mdmanagement::create($inputmd_data);
               }
 
+              if($value['curexa_order_id']!= '' || $value['curexa_order_id']!= NULL){
+                $curexa_order_status = $this->curexa_order_status();
+
+                $curexa_ord_status = json_decode($curexa_order_status);
+
+                $CurexaOrderStatus  =  CurexaOrder::where('id',$value['curexa_order_id'])->update(['order_status' => $curexa_ord_status->status,'status_details' => $curexa_ord_status->status_details,'tracking_number'=> $curexa_ord_status->tracking_number]);
+              }
+
             }
             //md status completed
 
           }
         }
+
+
 
       }
 
@@ -488,12 +413,248 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
     }
 
+    public function save_prescription_response($response){
+      $prescription_data = json_decode($response);
+
+      $input_prescription['dosespot_prescription_id'] = $prescription_data->dosespot_prescription_id;
+      $input_prescription['dosespot_prescription_sync_status'] = $prescription_data->dosespot_prescription_sync_status;
+      $input_prescription['dosespot_confirmation_status'] = $prescription_data->dosespot_confirmation_status;
+      $input_prescription['dosespot_confirmation_status_details'] = $prescription_data->dosespot_confirmation_status_details;
+      $input_prescription['refills'] = $prescription_data->refills;
+      $input_prescription['quantity'] = $prescription_data->quantity;
+      $input_prescription['days_supply'] = $prescription_data->days_supply;
+      $input_prescription['no_substitutions'] = $prescription_data->no_substitutions;
+      $input_prescription['pharmacy_notes'] = $prescription_data->pharmacy_notes;
+      $input_prescription['directions'] = $prescription_data->directions;
+      $input_prescription['dispense_unit_id'] = $prescription_data->dispense_unit_id;
+      $input_prescription['preferred_pharmacy_id'] = $prescription_data->preferred_pharmacy_id;
+      $input_prescription['case_id'] = $case_id;
+      $input_prescription['user_id'] = $user_id;
+      $input_prescription['system_case_id'] = $case_id;
+
+      $CasePrescription_data = CasePrescriptions::create($input_prescription);
+
+      if(isset($prescription_data->medication) && !empty($prescription_data->medication)){
+        $input_medication['dosespot_medication_id'] = $prescription_data->medication->dosespot_medication_id;
+        $input_medication['dispense_unit_id'] = $prescription_data->medication->dispense_unit_id;
+        $input_medication['dose_form'] = $prescription_data->medication->dose_form;
+        $input_medication['route'] = $prescription_data->medication->route;
+        $input_medication['strength'] = $prescription_data->medication->strength;
+        $input_medication['generic_product_name'] = $prescription_data->medication->generic_product_name;
+        $input_medication['lexi_gen_product_id'] = $prescription_data->medication->lexi_gen_product_id;
+        $input_medication['lexi_drug_syn_id'] = $prescription_data->medication->lexi_drug_syn_id;
+        $input_medication['lexi_synonym_type_id'] = $prescription_data->medication->lexi_synonym_type_id;
+        $input_medication['lexi_gen_drug_id'] = $prescription_data->medication->lexi_gen_drug_id;
+        $input_medication['rx_cui'] = $prescription_data->medication->rx_cui;
+        $input_medication['otc'] = $prescription_data->medication->otc;
+        $input_medication['ndc'] = $prescription_data->medication->ndc;
+        $input_medication['schedule'] = $prescription_data->medication->schedule;
+        $input_medication['display_name'] = $prescription_data->medication->display_name;
+        $input_medication['monograph_path'] = $prescription_data->medication->monograph_path;
+        $input_medication['drug_classification'] = $prescription_data->medication->drug_classification;
+        $input_medication['state_schedules'] = $prescription_data->medication->state_schedules;
+
+        $CasePrescription_data = PrescriptionMedication::create($input_medication);
+
+      }
+
+
+
+      if(!empty($prescription_data->partner_compound)){
+       $input_compound['partner_compound_id'] = $prescription_data->partner_compound->partner_compound_id;
+       $input_compound['title'] = $prescription_data->partner_compound->title;
+
+       $CasePrescription_data = PrescriptionCompound::create($input_compound);
+     }
+
+
+   }
+
+
+   public function curexa_create_order($curexa_para){
+
+     $user_id = $curexa_para['user_id'];
+     $case_id = $curexa_para['case_id'];
+     $system_case_id =$curexa_para['system_case_id'] ;
+
+     $md_deatail = Mdmanagement::where([['case_id', $case_id]])->get()->toArray();
+     
+
+     $order_data = Checkout::where([['user_id', $user_id],['case_id', $case_id],['md_case_id', $system_case_id]])->get()->toArray();
+
+     $order_id = $order_data['order_id'];
+
+     $user = User::find($user_id);
+
+
+     $userQueAns = getQuestionAnswerFromUserid($user_id,$case_id);
+     foreach ($userQueAns as $key => $value) {
+
+      $question = $value->question;
+
+      if($question == "Please list medications that you are allergic to."){
+        if(isset($value->answer) && $value->answer!=''){
+
+          $allergies =  $value->answer;
+
+        }
+      }
+
+      if($question == "Please list any other medications that you’re currently taking."){
+        if(isset($value->answer) && $value->answer!=''){
+
+          $current_medications =  $value->answer;
+
+        }
+      }
+
+    }
+
+
+
+    $shipping_address = Checkoutaddress::select('*')
+    ->where('checkout_address.order_id',$order_id)
+    ->where('checkout_address.address_type',1)
+    ->OrderBy('id', 'DESC')
+    ->first();
+
+
+
+    $patient_id = $user['md_patient_id'];
+
+    if($patient_id != '' || $patient_id != NULL ){
+
+     $patient_data =   Mdpatient::where('patient_id', $patient_id)->get()->toArray();
+
+     $gender =  $patient_data['gender'];
+
+     if($gender == 1){
+      $patient_gender = 'Male';
+    }else if($gender == 2){
+      $patient_gender = 'Female';
+    }else{
+      $patient_gender = 'Not known';
+    }
+      /*  0 = Not known;
+          1 = Male;
+          2 = Female;
+          9 = Not applicable.
+      */
+
+          $patient_dob = date('Ymd', strtotime($patient_data['dob']));
+
+
+          $rx_items= array();
+
+          $rx_items['rx_id'] = $curexa_para['rx_id'];
+          $rx_items['quantity_dispensed'] = $curexa_para['quantity_dispensed'];
+          $rx_items['days_supply'] = $curexa_para['days_supply'];
+          $rx_items['prescribing_doctor'] =  $md_deatail['name'];
+          $rx_items['medication_sig'] = $curexa_para['medication_sig'];
+          $rx_items['non_child_resistant_acknowledgment'] = false;
+
+
+
+          $curl = curl_init();
+
+          curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.curexa.com/orders',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS =>'{
+              "order_id": '.$order_id.',
+              "patient_id":'. $patient_id.',
+              "patient_first_name": '.$patient_data['first_name'].',
+              "patient_last_name": '.$patient_data['last_name'].',
+              "patient_dob": '.$patient_dob.',
+              "patient_gender":'.$patient_gender.',
+              "carrier":"FEDEX",
+              "shipping_method":"",
+              "address_to_name":'.$shipping_address['patient_firstname'].' '.$shipping_address['patient_lastname'].',
+              "address_to_street1":'.$shipping_address['addressline1'].',
+              "address_to_street2":'.$shipping_address['addressline2'].',
+              "address_to_city":'.$shipping_address['city'].',
+              "address_to_state":'.$shipping_address['state'].',
+              "address_to_zip":'.$shipping_address['zipcode'].',
+              "address_to_country":"US",
+              "address_to_phone":'.$shipping_address['phone'].',
+              "notes":"Test",
+              "patient_known_allergies":'.(isset($allergies))?$allergies:''.',
+              "patient_other_medications":'.(isset($current_medications))?$current_medications:''.',
+              "rx_items":'.json_encode($rx_items).'
+            }',
+            CURLOPT_HTTPHEADER => array(
+              'Authorization: Basic Y2xlYXJoZWFsdGhfdGVzdF9Ya1Fzdk1sbVFKbXRWSlBIbGJnWE9WSVd3UU5ETXQxNDpvRW5NZTJITnZndGQzaW9wNm96aWdTZHRmZUJkQUNCNw==',
+              'Content-Type: application/json'
+            ),
+          ));
+
+          $response = curl_exec($curl);
+
+          curl_close($curl);
+          return $response;
+
+        }
+
+
+
+
+      }
+
+
+      public function curexa_order_status($order_id){
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => 'https://api.curexa.com/order_status',
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => '',
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 0,
+          CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => 'POST',
+          CURLOPT_POSTFIELDS =>'{
+            "order_id": '.$order_id.'
+          }',
+          CURLOPT_HTTPHEADER => array(
+            'Authorization: Basic Y2xlYXJoZWFsdGhfdGVzdF9Ya1Fzdk1sbVFKbXRWSlBIbGJnWE9WSVd3UU5ETXQxNDpvRW5NZTJITnZndGQzaW9wNm96aWdTZHRmZUJkQUNCNw==',
+            'Content-Type: application/json'
+          ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        return $response;
+      }
+
+      public function store_curexa_order_data($curexa_create_order_data){
+        $curexa_order_data = json_decode($curexa_create_order_data);
+
+        $order_data = array();
+        $order_data['order_id'] = $curexa_order_data['order_id'];
+        $order_data['rx_item_count'] = $curexa_order_data['rx_item_count'];
+        $order_data['otc_item_count'] = $curexa_order_data['otc_item_count'];
+        $order_data['status'] = $curexa_order_data['status'];
+        $order_data['message'] = $curexa_order_data['message'];
+
+        $inserted_data = CurexaOrder::create($order_data);
+        $curexa_order_id = $inserted_data->id;
+
+        $case_management  =  CaseManagement::where('id', $system_case_id)->where('md_case_id', $case_id)->where('user_id',$user_id)->update(['curexa_order_id' => $curexa_order_id]);
+      }
 
 
 
 
 
-    
 
 
-  }
+
+    }

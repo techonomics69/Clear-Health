@@ -51,14 +51,14 @@
 							</div>
 					</div>
 				</div>
-				{{-- <div class="content-header-right col-md-6 col-12 mb-2">
+				 <div class="content-header-right col-md-6 col-12 mb-2">
 						<div class="pull-right">
 						@can('quiz-create')					
 							<a class="btn btn-secondry" href="{{ route('quiz.create') }}"><i class="fa fa-plus" aria-hidden="true"></i> Create New Question</a>
 						@endcan	
 						</div>
 				</div>
- --}}			</div>
+ 			</div>
 		<div class="row">
 			<div class="col-lg-12">
 				<section class="card" >
@@ -101,18 +101,18 @@
 														<i class="fa fa-eye"></i>
 													</a>		
 													@can('quiz-edit')					 
-													<!--<a class="icons edit-icon" href="{{ route('quiz.edit',$data->id) }}">
+													<a class="icons edit-icon" href="{{ route('quiz.edit',$data->id) }}">
 														<i class="fa fa-edit"></i>
-													</a>-->
+													</a>
 													@endcan
-													 <!-- @can('quiz-delete')							
+													 @can('quiz-delete')							
 													{!! Form::open(['method' => 'DELETE','route' => ['quiz.destroy', $data->id],'style'=>'display:inline']) !!}
 														<a class="icons edit-icon quiz_delete" href="#" id="{{$data->id}}" onclick="deleteQuiz({{$data->id}})">
 															<i class="fa fa-trash" aria-hidden="true"></i>
 														</a>
 														<button type="submit" class="btn btn-danger btn_delete{{$data->id}}" style="display:none;">Delete</button>
 													{!! Form::close() !!}
-													@endcan	 -->
+													@endcan	
 					                            </div>						
 												</td>
 											</tr>
@@ -156,7 +156,7 @@
 		});
 	});
 	
-	/*function deleteQuiz(e){
+	function deleteQuiz(e){
        swal({
         title: "Are you sure want to delete?",
         text: "If you delete this Quiz, it's not recoverable ",
@@ -170,7 +170,7 @@
 				 $('.btn_delete'+e)[0].click();    
             } 
         });
-	};*/
+	};
 
 
 $(document).ready(function(){

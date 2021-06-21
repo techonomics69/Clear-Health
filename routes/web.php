@@ -27,6 +27,7 @@ use App\Http\Controllers\TreatmentGuidesController;
 use App\Http\Controllers\CaseStatusUpdateGetPrescriptionController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\PaymentsController;
+use App\Http\Controllers\TestsmsController;
 
 
 /*
@@ -285,3 +286,4 @@ Route::get('/customer_payment_methods', [PaymentsController::class, 'customer_pa
 Route::get('/customer_make_direct_payment', [PaymentsController::class, 'customer_make_direct_payment']);
 
 Route::get('/cancel_subscription', [PaymentsController::class, 'cancel_subscription']);
+Route::post("send_message",[TestsmsController::class, 'sendsms'])->name('sendsms');

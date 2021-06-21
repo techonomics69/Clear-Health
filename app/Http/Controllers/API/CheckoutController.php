@@ -263,11 +263,8 @@ try{
    ->first();
 
    $users_ipledge_id = getAssignedIpledgeIdToUser($orderlist['user_id'],$orderlist['case_id'],$orderlist['md_case_id']);
-
-   echo "<pre>";
-   print_r($users_ipledge_id);
-   echo "<pre>";
-   exit();
+   $orderlist['ipladege_id'] = $users_ipledge_id;
+ 
 
    $shipping_address = Checkoutaddress::select('*')
    ->where('checkout_address.order_id',$orderlist['order_id'])

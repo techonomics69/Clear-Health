@@ -253,7 +253,6 @@ try{
   public function getCheckoutdetail(Request $request)
   {
     //try{
-
    $orderlist = checkout::join('users', 'users.id', '=', 'checkout.user_id')
    ->join('carts','carts.id', '=', 'checkout.cart_id')
    ->join('checkout_address', 'checkout_address.order_id', '=','checkout.order_id')
@@ -265,7 +264,6 @@ try{
    $users_ipledge_id = getAssignedIpledgeIdToUser($orderlist['user_id'],$orderlist['case_id'],$orderlist['md_case_id']);
    $orderlist['ipladege_id'] = $users_ipledge_id;
  
-
    $shipping_address = Checkoutaddress::select('*')
    ->where('checkout_address.order_id',$orderlist['order_id'])
    ->where('checkout_address.address_type',1)

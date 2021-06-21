@@ -152,7 +152,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                     $curexa_para['case_id'] = $case_id;
                     $curexa_para['system_case_id'] = $system_case_id;
                     $curexa_para['rx_id'] =  $prescription_data->dosespot_prescription_id;
-                    $curexa_para['quantity_dispensed'] = 30;
+                    $curexa_para['quantity_dispensed'] = $prescription_data->quantity;
                     $curexa_para['days_supply'] = $prescription_data->days_supply;
                     $curexa_para['medication_sig'] = $prescription_data->directions;
 
@@ -210,7 +210,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                       $curexa_para['case_id'] = $case_id;
                       $curexa_para['system_case_id'] = $system_case_id;
                       $curexa_para['rx_id'] =  $prescription_data->dosespot_prescription_id;
-                      $curexa_para['quantity_dispensed'] = 30;
+                      $curexa_para['quantity_dispensed'] = $prescription_data->quantity;;
                       $curexa_para['days_supply'] = $prescription_data->days_supply;
                       $curexa_para['medication_sig'] = $prescription_data->directions;
 
@@ -255,7 +255,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                     $curexa_para['case_id'] = $case_id;
                     $curexa_para['system_case_id'] = $system_case_id;
                     $curexa_para['rx_id'] =  $prescription_data->dosespot_prescription_id;
-                    $curexa_para['quantity_dispensed'] = 30;
+                    $curexa_para['quantity_dispensed'] = $prescription_data->quantity;;
                     $curexa_para['days_supply'] = $prescription_data->days_supply;
                     $curexa_para['medication_sig'] = $prescription_data->directions;
 

@@ -644,6 +644,7 @@
 												if(isset($message['file_name']) && $message['file_name']!=''){
 													echo "<br>";
 													$fileExt = explode(".",$message['file_name']);
+													echo $fileExt[0];
 													$fileextArr = ['jpg','jpeg','png'];
 													if(count($fileExt)>0){
 														if(in_array($fileExt[0],$fileextArr)){

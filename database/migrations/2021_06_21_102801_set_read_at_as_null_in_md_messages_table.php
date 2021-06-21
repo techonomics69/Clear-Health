@@ -14,7 +14,7 @@ class SetReadAtAsNullInMdMessagesTable extends Migration
     public function up()
     {
         Schema::table('md_messages', function (Blueprint $table) {
-             $table->datetime('read_at')->nullable()->change();
+             $table->string('read_at')->nullable()->change();
         });
     }
 

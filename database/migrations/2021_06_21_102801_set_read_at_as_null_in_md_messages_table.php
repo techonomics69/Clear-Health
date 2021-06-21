@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class SetReadAtAsNullInCheckoutField extends Migration
+class SetReadAtAsNullInMdMessagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class SetReadAtAsNullInCheckoutField extends Migration
      */
     public function up()
     {
-        Schema::table('checkout_field', function (Blueprint $table) {
-            //
+        Schema::table('md_messages', function (Blueprint $table) {
+             $table->datetime('read_at')->nullable()->change();
         });
     }
 
@@ -25,7 +25,7 @@ class SetReadAtAsNullInCheckoutField extends Migration
      */
     public function down()
     {
-        Schema::table('checkout_field', function (Blueprint $table) {
+        Schema::table('md_messages', function (Blueprint $table) {
             //
         });
     }

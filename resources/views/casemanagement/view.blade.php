@@ -640,7 +640,7 @@
 		"left" <?php } ?>>
 											<p >
 												<?php 
-												echo $message['file_name'];
+												echo $message['message'];
 												if(isset($message['file_name']) && $message['file_name']!=''){
 												?>
 												<img src="{{ asset('public/Message_files/'.$message['file_name']) }}" type="media_type"width='100'>

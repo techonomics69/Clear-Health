@@ -631,7 +631,7 @@
 							@endif
 							<div class="right-cht">
 								{!! Form::open(array('method'=>'POST', 'enctype'=>"multipart/form-data", 'id'=>"msgForm")) !!}
-								<div class="chating-section nonmedicalmessages" id="chating-section">
+								<div class="chating-section nonmedicalmessages" id="chating-section" style="overflow: scroll;">
 									<ul><?php
 										if(isset($message_data)) {?>
 										@foreach ($message_data as $key => $message)
@@ -818,8 +818,8 @@
 					$('#text').val('');
 					$('#file').val('');
 					$(".nonmedicalmessages").animate({
-						scrollTop: 440
-					},1000);
+						scrollTop: 300
+					});
 					$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg"+response.id+"'>"+"<p >"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");	
 					if(response.file_path != ''){ 
 						$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg"+response.id+"'>"+"<p >"+"<img width='100' src={{URL('/')}}/public/Message_files/" +response.file_name+ ">"+ "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/"+response.file_name+">" + " Download" + "</a>"+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");

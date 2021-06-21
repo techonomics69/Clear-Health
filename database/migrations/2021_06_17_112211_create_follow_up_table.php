@@ -24,8 +24,6 @@ class CreateFollowUpTable extends Migration
             $table->string('center_face')->nullable();
             $table->string('back_photo')->nullable();
             $table->string('chest_photo')->nullable();
-            $table->string('follow_up_no')->nullable();
-            $table->text('pregnancy_test')->nullable();
             $table->string('follow_up_status')->nullable();
             $table->timestamps();
         });

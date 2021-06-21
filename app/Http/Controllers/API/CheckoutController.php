@@ -196,7 +196,7 @@ public function updateCheckoutAddress(Request $request){
    $checkoutaddress = $checkoutaddress->update($data);
  endif;
 
-  return $this->sendResponse($data, 'Address added Successfully');
+  return $this->sendResponse($data, 'Address updated Successfully');
 }catch(\Exception $ex){
   return $this->sendError('Server error',array($ex->getMessage()));
 }

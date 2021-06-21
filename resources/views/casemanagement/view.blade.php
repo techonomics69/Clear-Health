@@ -817,10 +817,8 @@
 				success: function(response){
 					$('#text').val('');
 					$('#file').val('');
-					$('html,body').animate({
-					scrollTop: $(".nonmedicalmessages").offset().top},
-					'slow');
-					alert($(".nonmedicalmessages").scrollTop());
+					document.getElementById('gotobottomdivmsg').closest('a').removeAttribute('href');
+					document.getElementById('gotobottomdivmsg').closest('a').setAttribute('href','#bottomDivMsg'+response.id);
 					$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg"+response.id+"'>"+"<p >"+response.text+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");	
 					if(response.file_path != ''){ 
 						$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg"+response.id+"'>"+"<p >"+"<img width='100' src={{URL('/')}}/public/Message_files/" +response.file_name+ ">"+ "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/"+response.file_name+">" + " Download" + "</a>"+"</p>"+"<h5>"+response.msg_date+"<h5>"+"</li>");

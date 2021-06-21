@@ -851,6 +851,8 @@
 	});
 
 	var loadFile = function(event) {
+	var exts = ['jpg','jpeg','png'];
+	var fname = event.target.files[0].name;		
     var reader = new FileReader();
     reader.onload = function(){
       var output = document.getElementById('blah');

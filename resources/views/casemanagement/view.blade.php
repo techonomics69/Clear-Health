@@ -863,7 +863,7 @@
       	output.src = reader.result;
     	};
 		reader.readAsDataURL(event.target.files[0]);
-	}else if(fileNameExt == 'doc'){
+	}else if(fileNameExt == 'doc' || leNameExt == 'docx'){
 		reader.onload = function(){
       	var output = document.getElementById('blah');
       	output.src = "{{ asset('public/images/msgs/doc.png') }}";
@@ -881,7 +881,7 @@
       	output.src = "{{ asset('public/images/msgs/txt.png') }}";
     	};
 		reader.readAsDataURL(event.target.files[0]);
-	}else if(fileNameExt == 'xls'){
+	}else if(fileNameExt == 'xls' || fileNameExt == 'xlsx'){
 		reader.onload = function(){
       	var output = document.getElementById('blah');
       	output.src = "{{ asset('public/images/msgs/xls.png') }}";

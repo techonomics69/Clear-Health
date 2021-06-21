@@ -644,16 +644,16 @@
 												if(isset($message['file_name']) && $message['file_name']!=''){
 													echo "<br>";
 													$fileExt = explode(".",$message['file_name']);
-													echo $fileExt[0];
+													
 													$fileextArr = ['jpg','jpeg','png'];
 													if(count($fileExt)>0){
-														if(in_array($fileExt[0],$fileextArr)){
+														if(in_array($fileExt[1],$fileextArr)){
 													?>
 													<img src="{{ asset('public/Message_files/'.$message['file_name']) }}" type="media_type"width='100'>
 													<a target="_blank" download="" href="{{ asset('public/Message_files/'.$message['file_name']) }}"> Download</a>	
 													<?php			
 														}else{
-															switch($fileExt[0]){
+															switch($fileExt[1]){
 																case "doc":
 																	$fileName = asset("public/images/msgs/doc.png");
 																	break;

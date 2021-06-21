@@ -670,6 +670,13 @@
 <!-- <div class="camera lastimg">
 <img src="{{asset('public/images/camera.png')}}" alt="">
 </div> -->
+<div class="row">
+	<div class="col-6">
+		<img id="blah" src="#" alt="your image" style="display: none; height: 120px;
+				width: 250px;" />
+	</div>
+</div>
+
 <div class="attachment lastimg pinclip">
 	<div class="variants">
 		<div class='file'>
@@ -687,8 +694,7 @@
 <img src="{{asset('public/images/paperclip.png')}}" alt="">
 </div> -->
 <div class="search">
-	<img id="blah" src="#" alt="your image" style="display: none; height: 120px;
-				width: 250px;" />
+	
 	<input class="form-control" type="text" name="text" placeholder="Type a message..." id="text">
 	<input type="hidden" id ="_token" name="_token" value="{{ csrf_token() }}">
 	<input type="hidden" name="user_id" value="{{$user_case_management_data['user_id']}}" id="user_id">

@@ -31,7 +31,7 @@ class PaymentsController extends BaseController
 
         */
 
-        $data = $request->all();
+        
         request()->validate([
             'name' => 'required',
             'email' => 'required|email',

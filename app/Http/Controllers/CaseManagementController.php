@@ -455,7 +455,7 @@ public function sendMessageNonMedical(Request $request){
      if(!empty($documents)){
       $file =  $documents->getClientOriginalName();
       $doc_file_name =  time().'-'.$file;
-      $filesize = filesize($file);
+      $filesize = filesize($documents);
       $filesize = round($filesize / 1024 / 1024, 1);
       dd($filesize);
       

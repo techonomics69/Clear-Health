@@ -251,9 +251,11 @@ $(document).ready(function ($) {
 
 function setPromocodevalue(type){
     if(type==1){
-
+        $("#promocode_value").attr('pattern',"^\d+(\.\d{1,2})?$");
     }else if(type==2){
-
+        $("#promocode_value").attr('pattern','[0-9]+(\.[0-9]{1,2})?')
+    }else{
+        $("#promocode_value").removeAttr('pattern');
     }
 }
 

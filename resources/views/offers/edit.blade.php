@@ -66,7 +66,7 @@
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>Promocode Value</label><span class="required">*</span>
-                                        {!! Form::text('promocode_value', $offer->promocode_value, array('placeholder' => '','class' => 'form-control')) !!}
+                                        {!! Form::text('promocode_value', $offer->promocode_value, array('placeholder' => '','class' => 'form-control','id'=>'promocode_value')) !!}
                                     </div>
                                 </div>
 
@@ -250,7 +250,11 @@ $(document).ready(function ($) {
         });
 
 function setPromocodevalue(type){
-    alert(type);
+    if(type==1){
+
+    }else if(type==2){
+
+    }
 }
 
 

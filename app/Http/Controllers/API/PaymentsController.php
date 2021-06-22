@@ -13,6 +13,12 @@ use App\Models\Checkout;
 
 class PaymentsController extends BaseController
 {
+
+    public function index()
+    {
+        //
+    }
+
     public function create()
     {
         //return view('payments.create');
@@ -41,6 +47,15 @@ class PaymentsController extends BaseController
         /** I have hard coded amount. You may fetch the amount based on customers order or anything */
         $amount     = request('amount');
         $currency   = 'usd';
+
+        echo "<pre>";
+        print_r(request('amount'));
+        echo "<pre>";
+
+         echo "<pre>";
+        print_r(request('stripeToken'));
+        echo "<pre>";
+        exit();
 
         if(empty(request('stripeToken'))) {
             /*session()->flash('error', 'Some error while making the payment. Please try again');

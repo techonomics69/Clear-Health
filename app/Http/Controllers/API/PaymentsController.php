@@ -45,7 +45,7 @@ class PaymentsController extends BaseController
         ]);
 
         /** I have hard coded amount. You may fetch the amount based on customers order or anything */
-        $amount     = (int)request('amount');
+        $amount     = (int)request('amount')*100;
         $currency   = 'USD';
 
         if(empty(request('stripeToken'))) {

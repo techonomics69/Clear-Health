@@ -442,7 +442,7 @@ public function get_token(){
 public function sendMessageNonMedical(Request $request){
 
     try{
-      
+
     $user_id = $request['user_id'];
 
     $case_id = (isset($request['md_case_id']) && $request['md_case_id']!='')?$request['md_case_id']:0;
@@ -507,11 +507,11 @@ public function sendMessageNonMedical(Request $request){
   print_r($message_data);
   echo "</pre>";
   die();*/
-      return $message_data;
+      $response = array("status"=>true,"data"=>$message_data,"message"=>"msg send successfully");
     }catch(\Exception $ex){
-      return $ex->getMessage();
+      $response = array("status"=>false,"data"=>"","message"=>$ex->getMessage());
     }
-
+    return $response;
     
   }
 

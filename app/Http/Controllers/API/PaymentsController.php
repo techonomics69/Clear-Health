@@ -38,33 +38,18 @@ class PaymentsController extends BaseController
         */
 
         
-      /*  request()->validate([
+        request()->validate([
             'name' => 'required',
             'email' => 'required|email',
-            'terms_conditions' => 'accepted'
-        ]);*/
+            //'terms_conditions' => 'accepted'
+        ]);
 
         /** I have hard coded amount. You may fetch the amount based on customers order or anything */
         $amount     = request('amount');
         $currency   = 'usd';
 
-        echo "<pre>";
-        print_r(request('amount'));
-        echo "<pre>";
-
-         echo "<pre>";
-        print_r(request('stripeToken'));
-        echo "<pre>";
-        exit();
-
         if(empty(request('stripeToken'))) {
-            /*session()->flash('error', 'Some error while making the payment. Please try again');
-            return back()->withInput();*/
-
-            echo "<pre>";
-            print_r('in');
-            echo "<pre>";
-            exit();
+            return $this->sendResponse(back()->withInput(),'Some error while making the payment. Please try again');
         }
         Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
         try {
@@ -75,7 +60,6 @@ class PaymentsController extends BaseController
             ]);
 
             //Store customer id in DB for future transaction
-
 
         } catch (Exception $e) {
             $apiError = $e->getMessage();
@@ -113,7 +97,8 @@ class PaymentsController extends BaseController
                     ]);
                     */
                     Checkout::where('order_id',request('order_id'))->update(['transaction_id'=>$paymentDetails['balance_transaction'],'payment_status'=>$paymentDetails['status'],'transaction_complete_details'=>json_encode($paymentDetails)]);
-
+                    $data['order_id']= request('order_id');
+                    $data['amount']= request('amount');
                     $data['transaction_id'] = $paymentDetails['balance_transaction'];
                     $data['payment_status'] = $paymentDetails['status'];
                     $data['transaction_complete_details'] = json_encode($paymentDetails);

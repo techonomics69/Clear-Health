@@ -14,9 +14,9 @@ class AddFieldsForPaymentsInCheckoutTable extends Migration
     public function up()
     {
         Schema::table('checkout', function (Blueprint $table) {
-            $table->string('transaction_id')->after('pharmacy_detail');
-            $table->string('payment_status')->after('transaction_id');
-            $table->text('transaction_complete_details')->after('payment_status');
+            $table->string('transaction_id')->after('pharmacy_detail')->nullable();
+            $table->string('payment_status')->after('transaction_id')->nullable();
+            $table->text('transaction_complete_details')->after('payment_status')->nullable();
         });
     }
 

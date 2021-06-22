@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\API;
+
 use App\Http\Controllers\API\BaseController as BaseController;
 
 use Exception;
@@ -21,6 +22,7 @@ class PaymentsController extends BaseController
     public function store()
     {
 
+        die("sdhjfgj");
 
         /*
         order_id

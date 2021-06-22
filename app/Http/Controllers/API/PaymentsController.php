@@ -30,8 +30,6 @@ class PaymentsController extends BaseController
         user_id
 
         */
-
-        $data = $request->all();
         request()->validate([
             'name' => 'required',
             'email' => 'required|email',
@@ -42,9 +40,11 @@ class PaymentsController extends BaseController
         $amount     = request('amount');
         $currency   = 'usd';
 
-        if (empty(request()->get('stripeToken'))) {
-            session()->flash('error', 'Some error while making the payment. Please try again');
-            return back()->withInput();
+        if (empty(request('stripeToken'))) {
+            //session()->flash('error', 'Some error while making the payment. Please try again');
+            //return back()->withInput();
+
+            return $this->sendResponse(back()->withInput(), 'Some error while making the payment. Please try again');
         }
         Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
         try {
@@ -92,7 +92,7 @@ class PaymentsController extends BaseController
                         'transaction_complete_details'  => json_encode($paymentDetails)
                     ]);
                     */
-                    Checkout::where('order_id',request('order_id')->update(['transaction_id'=>$paymentDetails['balance_transaction'],'payment_status'=>$paymentDetails['status'],'transaction_complete_details'=>json_encode($paymentDetails)]);
+                    Checkout::where('order_id',request('order_id'))->update(['transaction_id'=>$paymentDetails['balance_transaction'],'payment_status'=>$paymentDetails['status'],'transaction_complete_details'=>json_encode($paymentDetails)]);
 
                     $data['transaction_id'] = $paymentDetails['balance_transaction'];
                     $data['payment_status'] = $paymentDetails['status'];

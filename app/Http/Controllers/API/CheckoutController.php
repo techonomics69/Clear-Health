@@ -312,7 +312,7 @@ public function updateCheckoutAddress(Request $request){
      if($billing_address !='' || $billing_address != NULL){
       $orderlist['billing_address'] = $billing_address;
      }else{
-      $orderlist['billing_address'] = new \stdClass();
+      $orderlist['billing_address'] = $shipping_address;
      }
      
     // foreach($orderlist as $key=>$val)

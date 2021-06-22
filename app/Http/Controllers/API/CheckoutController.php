@@ -297,7 +297,12 @@ public function updateCheckoutAddress(Request $request){
      ->OrderBy('id', 'DESC')
      ->first();
 
-     $orderlist['shipping_address'] = $shipping_address;
+     if($shipping_address !='' || $shipping_address != NULL){
+      $orderlist['shipping_address'] = $shipping_address;
+     }else{
+      $orderlist['shipping_address'] = new stdClass();
+     }
+
 
      $billing_address = Checkoutaddress::select('*')
      ->where('checkout_address.order_id',$orderlist['order_id'])
@@ -308,7 +313,7 @@ public function updateCheckoutAddress(Request $request){
      if($billing_address !='' || $billing_address != NULL){
       $orderlist['billing_address'] = $billing_address;
      }else{
-      $orderlist['billing_address'] = array();
+      $orderlist['billing_address'] = new stdClass();
      }
      
 

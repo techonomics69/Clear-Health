@@ -860,11 +860,11 @@
 						document.getElementById('gotobottomdivmsg').closest('a').removeAttribute('href');
 						document.getElementById('gotobottomdivmsg').closest('a').setAttribute('href','#bottomDivMsg'+data.id);
 
-						if(data.text !== '' || data.text !== null){
+						if(data.text != '' || data.text != null){
 							$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg"+data.id+"'>"+"<p >"+data.text+"</p>"+"<h5>"+data.msg_date+"<h5>"+"</li>");	
 						}
 						
-						if(data.file_path !== '' || data.file_path !== null){							
+						if(data.file_path != '' || data.file_path != null){							
 							var exts2 = ['jpg','jpeg','png'];
 							var ufile = data.file_name;
 							var fileNameExt2 = ufile.substr(ufile.lastIndexOf('.') + 1);

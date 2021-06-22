@@ -79,13 +79,13 @@
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>From</label><span class="required">*</span>
-                                        {!! Form::text('from_date',date('d-m-Y', strtotime($offer->from_date)), array('placeholder' => '','class' => 'form-control from_date', 'onblur' => 'checkdate()','id'=>'from_date')) !!}
+                                        {!! Form::text('from_date',date('m/d/Y', strtotime($offer->from_date)), array('placeholder' => '','class' => 'form-control from_date', 'onblur' => 'checkdate()','id'=>'from_date')) !!}
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>To</label><span class="required">*</span>
-                                        {!! Form::text('to_date', date('d-m-Y', strtotime($offer->to_date)), array('placeholder' => '','class' => 'form-control to_date', 'onblur' => 'checkdate()','id'=>'to_date')) !!}
+                                        {!! Form::text('to_date', date('m/d/Y', strtotime($offer->to_date)), array('placeholder' => '','class' => 'form-control to_date', 'onblur' => 'checkdate()','id'=>'to_date')) !!}
                                     </div>
                                 </div>
                                 

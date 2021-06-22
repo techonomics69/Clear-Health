@@ -49,7 +49,7 @@ class PaymentsController extends Controller
         ]);
 
         /** I have hard coded amount. You may fetch the amount based on customers order or anything */
-        $amount     = 1 * 100;
+        $amount     = 30;
         $currency   = 'usd';
 
        /* echo "<pre>";

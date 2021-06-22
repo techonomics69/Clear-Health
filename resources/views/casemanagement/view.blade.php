@@ -28,26 +28,7 @@
 			color: #ffffff;
 		}
 
-		.overlay{
-			display: none;
-			position: fixed;
-			width: 100%;
-			height: 100%;
-			top: 0;
-			left: 0;
-			z-index: 999;
-			background: rgba(255,255,255,0.8) url("loader.gif") center no-repeat;
-		}
-
-		/* Turn off scrollbar when body element has the loading class */
-		body.loading{
-			overflow: hidden;   
-		}
-		/* Make spinner image visible when body element has the loading class */
-		body.loading .overlay{
 			display: block;
-		}
-
 	</style>
 	@php
 	$msg_tab = 0;
@@ -819,8 +800,6 @@
 </div>
 </div>
 </div>
-
-<div class="overlay"></div>
 @endsection
 
 @section('scriptsection')
@@ -850,15 +829,6 @@
 
 
 <script>
-	$(document).on({
-		ajaxStart: function(){
-			$("body").addClass("loading"); 
-		},
-		ajaxStop: function(){ 
-			$("body").removeClass("loading"); 
-		}    
-	});
-
 	$(document).ready(function() {
 		$('#btnsubmit').on('click', function(event) {
 			event.preventDefault();

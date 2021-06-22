@@ -123,12 +123,12 @@ class OfferController extends Controller
 	{
 		
 		$this->validate($request, [
-			'promocode' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+			'promocode' => 'required',
 			'from_date' => 'required',
 			'to_date' => 'required',
 			'description' => 'required',
 			'promocode_type' => 'required',
-			'promocode_value' => 'required',	
+			'promocode_value' => 'required|regex:/^\d+(\.\d{1,2})?$/',	
 		]);
 
 		$offer = Offers::find($id);

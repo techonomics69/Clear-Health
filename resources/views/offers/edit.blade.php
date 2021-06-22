@@ -249,6 +249,9 @@ $(document).ready(function ($) {
 
         });
 
+function setPromocodevalue(type){
+    alert(type);
+}
 
 
 </script>

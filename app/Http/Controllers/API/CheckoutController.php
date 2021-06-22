@@ -175,17 +175,11 @@ public function updateCheckoutAddress(Request $request){
 
  try{
   $validator = Validator::make($data, [
-    'user_id' => 'required',
-    'patient_firstname' => 'required',
-    'patient_lastname' => 'required',
+    'id' => 'required',
     'addressline1' => 'required',
-    'addressline2' => '',
+    'addressline2' => 'required',
     'city' => 'required',
-    'state' => 'required',
-    'zipcode' => 'required',
-    'email' => 'required',
-    'phone' => '',
-    'address_type'=> 'required',
+    'zipcode' => 'required'
   ]);
   if($validator->fails()){
     return $this->sendError('Validation Error.', $validator->errors()->all());       

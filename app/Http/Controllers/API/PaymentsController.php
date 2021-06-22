@@ -68,7 +68,7 @@ class PaymentsController extends BaseController
         if (empty($apiError) && $customer) {
             /** Charge a credit or a debit card */
 
-            var_dump($amount)
+            var_dump($amount);
             try {
                 /** Stripe charge class */
                 $charge = Charge::create(array(

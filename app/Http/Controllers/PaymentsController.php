@@ -106,7 +106,7 @@ class PaymentsController extends Controller
                         'transaction_complete_details'  => json_encode($paymentDetails)
                     ]);
                     */
-                    //return redirect('/thankyou/?receipt_url=' . $paymentDetails['receipt_url']);
+                    return redirect('/thankyou/?receipt_url=' . $paymentDetails['receipt_url']);
                 } else {
                     session()->flash('error', 'Transaction failed');
                     return back()->withInput();

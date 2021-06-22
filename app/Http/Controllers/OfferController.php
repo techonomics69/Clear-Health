@@ -60,11 +60,11 @@ class OfferController extends Controller
 	{
 		$this->validate($request, [
 			'promocode' => 'required',
-			'from_date' => 'required',
-			'to_date' => 'required',
-			'description' => 'required',
 			'promocode_type' => 'required',
 			'promocode_value' => 'required|regex:/^\d+(\.\d{1,2})?$/|between:0,99.99',	
+			'description' => 'required',
+			'from_date' => 'required',
+			'to_date' => 'required',
 		],
 		[
 			'promocode.required' => 'Please enter promocode title,',
@@ -75,8 +75,7 @@ class OfferController extends Controller
 			'description.required' => 'Please enter some description,',
 			'from_date.required' => 'Please enter start date of promocode,',
 			'to_date.required' => 'Please enter end date of promocode,',
-		]
-		);
+		]);
 
 		$offer = Offers::create(array(
 			'promocode'=>$request->promocode,
@@ -135,11 +134,11 @@ class OfferController extends Controller
 		
 		$this->validate($request, [
 			'promocode' => 'required',
-			'from_date' => 'required',
-			'to_date' => 'required',
-			'description' => 'required',
 			'promocode_type' => 'required',
 			'promocode_value' => 'required|regex:/^\d+(\.\d{1,2})?$/|between:0,99.99',	
+			'description' => 'required',
+			'from_date' => 'required',
+			'to_date' => 'required',
 		],
 		[
 			'promocode.required' => 'Please enter promocode title,',

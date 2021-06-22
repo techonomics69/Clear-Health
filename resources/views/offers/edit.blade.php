@@ -66,7 +66,7 @@
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>Promocode Value</label><span class="required">*</span>
-                                        {!! Form::text('promocode_value', $offer->promocode_value, array('placeholder' => '','class' => 'form-control')) !!}
+                                        {!! Form::text('promocode_value', $offer->promocode_value, array('placeholder' => '','class' => 'form-control','onchange'=>'setPromocodevalue($this)')) !!}
                                     </div>
                                 </div>
 
@@ -95,7 +95,7 @@
                             <div class="row">
                                 <div class="col-lg-12 submit-buton text-right">
                                     <a  href="{{ route('offers.index') }}"><button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button></a>
-                                    <button type="submit" class="btn btn-secondry" data-dismiss="modal">Submit</button>
+                                    <button type="submit" class="btn btn-secondry"  data-dismiss="modal">Submit</button>
                                 </div>
                             </div>
 
@@ -248,6 +248,8 @@ $(document).ready(function ($) {
             }
 
         });
+
+
 
 </script>
 @endsection

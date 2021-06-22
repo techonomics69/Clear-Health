@@ -38,11 +38,11 @@ class PaymentsController extends BaseController
         */
 
         
-        request()->validate([
+      /*  request()->validate([
             'name' => 'required',
             'email' => 'required|email',
             'terms_conditions' => 'accepted'
-        ]);
+        ]);*/
 
         /** I have hard coded amount. You may fetch the amount based on customers order or anything */
         $amount     = request('amount');

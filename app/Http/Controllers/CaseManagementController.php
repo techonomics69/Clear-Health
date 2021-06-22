@@ -451,10 +451,13 @@ public function sendMessageNonMedical(Request $request){
     $sender = "admin";
     $text = $request['text']; 
     $documents = $request->file('file');
-
+      dd($request->file('file')->size());
      if(!empty($documents)){
       $file =  $documents->getClientOriginalName();
       $doc_file_name =  time().'-'.$file;
+      $filesize = filesize($documents);
+      $filesize = round($filesize / 1024 / 1024, 1);
+      dd($filesize);
       
       if (!file_exists(public_path('/Message_files'))) {
         File::makeDirectory(public_path('/Message_files'),0777,true,true);

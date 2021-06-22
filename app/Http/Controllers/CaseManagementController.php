@@ -451,11 +451,11 @@ public function sendMessageNonMedical(Request $request){
     $sender = "admin";
     $text = $request['text']; 
     $documents = $request->file('file');
-      dd($request->file('file')->getSize());
+      //dd($request->file('file')->getSize());
      if(!empty($documents)){
       $file =  $documents->getClientOriginalName();
       $doc_file_name =  time().'-'.$file;
-      $filesize = filesize($documents);
+      $filesize = filesize($documents->getSize());
       $filesize = round($filesize / 1024 / 1024, 1);
       dd($filesize);
       

@@ -128,7 +128,7 @@ class OfferController extends Controller
 			'to_date' => 'required',
 			'description' => 'required',
 			'promocode_type' => 'required',
-			'promocode_value' => 'required',	
+			'promocode_value' => 'required|regex:/^\d+(\.\d{1,2})?$/|between:0,99.99',	
 		]);
 
 		$offer = Offers::find($id);

@@ -71,6 +71,7 @@
             } else {
                 // Send the token to your server
                 stripeTokenHandler(result.token);
+                alert(result.token);
 
                 console.log(result.token);
             }

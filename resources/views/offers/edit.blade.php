@@ -59,14 +59,14 @@
                                  <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>Promocode Type</label><span class="required">*</span>
-                                        {!! Form::select('promocode_type', ['0'=>'Please Select','1'=>'Percentage','2'=>'Amount'], $offer->promocode_type, array('class' => 'form-control','id' => 'offer_type','onchange'=>'setPromocodevalue(this.value)')) !!}
+                                        {!! Form::select('promocode_type', [''=>'Please Select','1'=>'Percentage','2'=>'Amount'], $offer->promocode_type, array('class' => 'form-control','id' => 'offer_type','onchange'=>'setPromocodevalue(this.value)')) !!}
                                     </div>
                                 </div>
 
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>Promocode Value</label><span class="required">*</span>
-                                        {!! Form::text('promocode_value', $offer->promocode_value, array('placeholder' => '','class' => 'form-control')) !!}
+                                        {!! Form::text('promocode_value', $offer->promocode_value, array('placeholder' => '','class' => 'form-control','id'=>'promocode_value')) !!}
                                     </div>
                                 </div>
 
@@ -79,13 +79,13 @@
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>From</label><span class="required">*</span>
-                                        {!! Form::text('from_date',date('d-m-Y', strtotime($offer->from_date)), array('placeholder' => '','class' => 'form-control from_date', 'onblur' => 'checkdate()','id'=>'from_date')) !!}
+                                        {!! Form::text('from_date',date('m/d/Y', strtotime($offer->from_date)), array('placeholder' => '','class' => 'form-control from_date', 'onblur' => 'checkdate()','id'=>'from_date')) !!}
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>To</label><span class="required">*</span>
-                                        {!! Form::text('to_date', date('d-m-Y', strtotime($offer->to_date)), array('placeholder' => '','class' => 'form-control to_date', 'onblur' => 'checkdate()','id'=>'to_date')) !!}
+                                        {!! Form::text('to_date', date('m/d/Y', strtotime($offer->to_date)), array('placeholder' => '','class' => 'form-control to_date', 'onblur' => 'checkdate()','id'=>'to_date')) !!}
                                     </div>
                                 </div>
                                 
@@ -250,7 +250,13 @@ $(document).ready(function ($) {
         });
 
 function setPromocodevalue(type){
-    alert(type);
+    if(type==1){
+        $("#promocode_value").attr('pattern',"(^100(\.0{1,2})?$)|(^([1-9]([0-9])?|0)(\.[0-9]{1,2})?$)");
+    }else if(type==2){
+        $("#promocode_value").attr('pattern','[0-9]+(\.[0-9]{1,2})?')
+    }else{
+        $("#promocode_value").removeAttr('pattern');
+    }
 }
 
 

@@ -60,11 +60,21 @@ class OfferController extends Controller
 	{
 		$this->validate($request, [
 			'promocode' => 'required',
+			'promocode_type' => 'required',
+			'promocode_value' => 'required|regex:/^\d+(\.\d{1,2})?$/|between:0,99.99',	
+			'description' => 'required',
 			'from_date' => 'required',
 			'to_date' => 'required',
-			'description' => 'required',
-			'promocode_type' => 'required',
-			'promocode_value' => 'required',	
+		],
+		[
+			'promocode.required' => 'Please enter promocode title,',
+			'promocode_type.required' => 'Please enter promocode type,',
+			'promocode_value.required' => 'Please enter promocode value,',
+			'promocode_value.regex' => 'Please enter valid amount for promocode value,',
+			'promocode_value.between' => 'Please enter valid percentage for promocode, it must be between 0 to 99.99, or decimal must be 2 digits only',
+			'description.required' => 'Please enter some description,',
+			'from_date.required' => 'Please enter start date of promocode,',
+			'to_date.required' => 'Please enter end date of promocode,',
 		]);
 
 		$offer = Offers::create(array(
@@ -124,11 +134,21 @@ class OfferController extends Controller
 		
 		$this->validate($request, [
 			'promocode' => 'required',
-			'from_date' => 'required',
-			'to_date' => 'required',
-			'description' => 'required',
 			'promocode_type' => 'required',
 			'promocode_value' => 'required|regex:/^\d+(\.\d{1,2})?$/|between:0,99.99',	
+			'description' => 'required',
+			'from_date' => 'required',
+			'to_date' => 'required',
+		],
+		[
+			'promocode.required' => 'Please enter promocode title,',
+			'promocode_type.required' => 'Please enter promocode type,',
+			'promocode_value.required' => 'Please enter promocode value,',
+			'promocode_value.regex' => 'Please enter valid amount for promocode value,',
+			'promocode_value.between' => 'Please enter valid percentage for promocode, it must be between 0 to 99.99, or decimal must be 2 digits only',
+			'description.required' => 'Please enter some description,',
+			'from_date.required' => 'Please enter start date of promocode,',
+			'to_date.required' => 'Please enter end date of promocode,',
 		]);
 
 		$offer = Offers::find($id);

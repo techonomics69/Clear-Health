@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\API;
-
 use App\Http\Controllers\API\BaseController as BaseController;
 
 use Exception;
@@ -22,7 +21,6 @@ class PaymentsController extends BaseController
     public function store()
     {
 
-        die("sdhjfgj");
 
         /*
         order_id
@@ -32,6 +30,8 @@ class PaymentsController extends BaseController
         user_id
 
         */
+
+        
         request()->validate([
             'name' => 'required',
             'email' => 'required|email',
@@ -42,11 +42,9 @@ class PaymentsController extends BaseController
         $amount     = request('amount');
         $currency   = 'usd';
 
-        if (empty(request('stripeToken'))) {
-            //session()->flash('error', 'Some error while making the payment. Please try again');
-            //return back()->withInput();
-
-            return $this->sendResponse(back()->withInput(), 'Some error while making the payment. Please try again');
+        if (empty(request()->get('stripeToken'))) {
+            session()->flash('error', 'Some error while making the payment. Please try again');
+            return back()->withInput();
         }
         Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
         try {

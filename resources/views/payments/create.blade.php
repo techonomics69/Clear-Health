@@ -87,9 +87,9 @@
         hiddenInput.setAttribute('name', 'stripeToken');
         hiddenInput.setAttribute('value', token.id);
         form.appendChild(hiddenInput);
-
+        return false;
         // Submit the form
-        form.submit();
+        //form.submit();
     }
 
     $('.pay-via-stripe-btn').on('click', function () {

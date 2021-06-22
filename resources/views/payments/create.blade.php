@@ -74,6 +74,7 @@
                 alert(result.token);
 
                 console.log(result.token);
+                return false;
             }
         });
     }

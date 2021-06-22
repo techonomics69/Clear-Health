@@ -30,8 +30,6 @@ class PaymentsController extends BaseController
         user_id
 
         */
-
-        $data = $request->all();
         request()->validate([
             'name' => 'required',
             'email' => 'required|email',

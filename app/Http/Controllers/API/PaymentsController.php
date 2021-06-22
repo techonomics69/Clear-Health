@@ -46,7 +46,7 @@ class PaymentsController extends BaseController
 
         /** I have hard coded amount. You may fetch the amount based on customers order or anything */
         $amount     = (int)request('amount');
-        $currency   = 'usd';
+        $currency   = 'USD';
 
         if(empty(request('stripeToken'))) {
             return $this->sendResponse(back()->withInput(),'Some error while making the payment. Please try again');
@@ -69,6 +69,7 @@ class PaymentsController extends BaseController
             /** Charge a credit or a debit card */
 
             var_dump($amount);
+            var_dump($currency);
             try {
                 /** Stripe charge class */
                 $charge = Charge::create(array(

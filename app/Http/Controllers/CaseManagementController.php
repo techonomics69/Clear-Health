@@ -455,6 +455,9 @@ public function sendMessageNonMedical(Request $request){
      if(!empty($documents)){
       $file =  $documents->getClientOriginalName();
       $doc_file_name =  time().'-'.$file;
+      $filesize = filesize($file);
+      $filesize = round($filesize / 1024 / 1024, 1);
+      dd($filesize)
       
       if (!file_exists(public_path('/Message_files'))) {
         File::makeDirectory(public_path('/Message_files'),0777,true,true);

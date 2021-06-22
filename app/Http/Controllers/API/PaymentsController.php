@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\API\BaseController as BaseController;
 
 use Exception;
-use App\Payment;
+//use App\Payment;
 use Stripe\Charge;
 use Stripe\Stripe;
 use Stripe\Customer;
@@ -42,9 +42,14 @@ class PaymentsController extends BaseController
         $amount     = request('amount');
         $currency   = 'usd';
 
-        if (empty(request()->get('stripeToken'))) {
-            session()->flash('error', 'Some error while making the payment. Please try again');
-            return back()->withInput();
+        if(empty(request('stripeToken'))) {
+            /*session()->flash('error', 'Some error while making the payment. Please try again');
+            return back()->withInput();*/
+
+            echo "<pre>";
+            print_r('in');
+            echo "<pre>";
+            exit();
         }
         Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
         try {

@@ -28,7 +28,6 @@
 			color: #ffffff;
 		}
 
-			display: block;
 	</style>
 	@php
 	$msg_tab = 0;

@@ -860,7 +860,7 @@
 						document.getElementById('gotobottomdivmsg').closest('a').removeAttribute('href');
 						document.getElementById('gotobottomdivmsg').closest('a').setAttribute('href','#bottomDivMsg'+data.id);
 
-						if(data.text != "" || data.text != null){
+						if(!data.text == "" || !data.text == null){
 							//$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg"+data.id+"'>"+"<p >"+data.text+"</p>"+"<h5>"+data.msg_date+"<h5>"+"</li>");	
 						}
 						

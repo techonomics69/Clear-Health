@@ -305,7 +305,12 @@ public function updateCheckoutAddress(Request $request){
      ->OrderBy('id', 'DESC')
      ->first();
 
-     $orderlist['billing_address'] = $billing_address;
+     if($billing_address !='' || $billing_address != NULL){
+      $orderlist['billing_address'] = $billing_address;
+     }else{
+      $orderlist['billing_address'] = array();
+     }
+     
 
 
     // foreach($orderlist as $key=>$val)

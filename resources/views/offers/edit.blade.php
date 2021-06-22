@@ -59,7 +59,7 @@
                                  <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>Promocode Type</label><span class="required">*</span>
-                                        {!! Form::select('promocode_type', ['0'=>'Please Select','1'=>'Percentage','2'=>'Amount'], $offer->promocode_type, ['class' => 'form-control'],['id' => 'offer_type'],['onchange'=>','onchange'=>'setPromocodevalue(this)']) !!}
+                                        {!! Form::select('promocode_type', ['0'=>'Please Select','1'=>'Percentage','2'=>'Amount'], $offer->promocode_type, array('class' => 'form-control','id' => 'offer_type','onchange'=>'setPromocodevalue(this)')) !!}
                                     </div>
                                 </div>
 
@@ -249,6 +249,9 @@ $(document).ready(function ($) {
 
         });
 
+function setPromocodevalue(type){
+    alert(type);
+}
 
 
 </script>

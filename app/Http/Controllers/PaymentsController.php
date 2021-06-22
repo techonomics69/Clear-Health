@@ -52,6 +52,10 @@ class PaymentsController extends Controller
         $amount     = 1 * 100;
         $currency   = 'usd';
 
+        echo "<pre>";
+        print_r(request('stripeToken'));
+        echo "<pre>";
+        exit();
         if (empty(request()->get('stripeToken'))) {
             session()->flash('error', 'Some error while making the payment. Please try again');
             return back()->withInput();
@@ -102,7 +106,7 @@ class PaymentsController extends Controller
                         'transaction_complete_details'  => json_encode($paymentDetails)
                     ]);
                     */
-                    return redirect('/thankyou/?receipt_url=' . $paymentDetails['receipt_url']);
+                    //return redirect('/thankyou/?receipt_url=' . $paymentDetails['receipt_url']);
                 } else {
                     session()->flash('error', 'Transaction failed');
                     return back()->withInput();

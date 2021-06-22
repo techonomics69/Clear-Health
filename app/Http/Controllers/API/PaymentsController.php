@@ -42,9 +42,11 @@ class PaymentsController extends BaseController
         $amount     = request('amount');
         $currency   = 'usd';
 
-        if (empty(request()->get('stripeToken'))) {
-            session()->flash('error', 'Some error while making the payment. Please try again');
-            return back()->withInput();
+        if (empty(request('stripeToken'))) {
+            //session()->flash('error', 'Some error while making the payment. Please try again');
+            //return back()->withInput();
+
+            return $this->sendResponse(back()->withInput(), 'Some error while making the payment. Please try again');
         }
         Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
         try {

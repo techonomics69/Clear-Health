@@ -464,14 +464,13 @@ public function sendMessageNonMedical(Request $request){
       $file =  $documents->getClientOriginalName();
       $doc_file_name =  time().'-'.$file;
       $filesize = $this->convertToReadableSize($documents->getSize());
-      dd($filesize);
       if(count($filesize)>0){
-        if($filesize[1] == "" || $filesize[1] == "KB"){
-        }else if($filesize[1] == "GB" || $filesize[1] == "TB"){
+        if($filesize['sizin'] == "" || $filesize['sizin'] == "KB"){
+        }else if($filesize['sizin'] == "GB" || $filesize['sizin'] == "TB"){
           return array("status"=>false,"data"=>'',"message"=>"File size exceeded maximum size");
           exit();
-        }else if($filesize[1] == "MB"){
-          if($filesize[0] > 5){
+        }else if($filesize['sizin'] == "MB"){
+          if($filesize['size'] > 5){
             return array("status"=>false,"data"=>'',"message"=>"File size exceeded maximum size");
             exit();
           }

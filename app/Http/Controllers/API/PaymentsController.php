@@ -130,9 +130,7 @@ class PaymentsController extends BaseController
     public function subscribe_store()
     {
         request()->validate([
-            'name' => 'required',
             'email' => 'required|email',
-            //'terms_conditions' => 'accepted'
         ]);
        // Plan info 
 

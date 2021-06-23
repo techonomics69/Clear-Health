@@ -90,11 +90,6 @@ class PaymentsController extends Controller
                 $apiError = $e->getMessage();
             }
 
-            echo "<pre>";
-            print_r($customer);
-            echo "<pre>";
-       
-
             if (empty($apiError) && $charge) {
                 // Retrieve charge details 
                 $paymentDetails = $charge->jsonSerialize();

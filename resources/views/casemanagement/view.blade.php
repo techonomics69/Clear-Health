@@ -943,12 +943,16 @@
 		if(filesize.sizeIn == "" || filesize.sizeIn == "KB"){
 		}else if(filesize.sizeIn == "GB" || filesize.sizeIn == "TB"){
 			toastr["error"]("Please upload file less than 5MB");
+			$('#file').val('');
+			$("#blah").hide();
 			return false;
 		}else if(filesize.sizeIn == "MB"){
-			console.log('here 1');
+			
 			if(parseFloat(filesize.size) > 5){
-				console.log('here 2');
+				
 				toastr["error"]("Please upload file less than 5MB");
+				$('#file').val('');
+				$("#blah").hide();
 				return false;
 			}
 		}

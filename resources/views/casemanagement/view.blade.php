@@ -300,12 +300,20 @@
 			<div class="row" style="padding: 10px;">
 				<div class="col-md-12">
 				
-				<h4><strong>Que  <?php echo $findex;?> : <?php  echo $fans->question;?></strong></h4>
+				<h4><strong>Que  <?php echo $findex;?> : <?php echo (isset($fans->question)) ? $fans->question : '';?></strong></h4>
 				<p>Ans: <?php 
+					if(isset($fans->answer)){
+						if (is_array($fans->answer) or ($fans->answer instanceof Traversable)){
+							foreach($fans->answer as $fs){
+								echo $fs."<br>";
+							}
+						}else{
+							echo $fans->answer;
+						}
+					}
+					
 					// if(is_array($fans->answer)){
-					// 	// foreach($fans->answer as $fs){
-					// 	// 	echo $fs."<br>";
-					// 	// }
+					
 					// }else{
 					// 	//echo $fans->answer;
 					// }		

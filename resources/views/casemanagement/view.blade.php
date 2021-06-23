@@ -301,7 +301,15 @@
 				<div class="col-md-12">
 				
 				<h4><strong>Que  <?php echo $findex;?> : <?php  echo $fans->question;?></strong></h4>
-				<p>Ans: <?php //echo (is_array($fans->answer)) ? $fans->answer : ''; ?></p>
+				<p>Ans: <?php 
+					if(is_array($fans->answer)){
+						foreach($fans->answer as $fs){
+							echo $fs."<br>";
+						}
+					}else{
+						echo $fans->answer;
+					}		
+				?></p>
 				</div>
 			</div>	
 			<?php	

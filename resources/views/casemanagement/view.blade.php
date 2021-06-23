@@ -869,6 +869,8 @@
 						contentType: false,
 						success: function(response){
 							if(response.status){
+								$("#submitdiv").show();
+								$("#spinnerdiv").hide();
 								var data = response.data;
 								$('#text').val('');
 								$('#file').val('');

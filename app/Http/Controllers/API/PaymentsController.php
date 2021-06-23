@@ -247,5 +247,27 @@ class PaymentsController extends BaseController
              return $this->sendResponse(back()->withInput(), 'Invalid card details: ' . $apiError);
         }
     }
+
+    public function cancel_subscription() {
+        $sub_id = request('subscr_id');
+        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+
+        $subscription = \Stripe\Subscription::retrieve($sub_id);
+        $cancle = $subscription->cancel();
+
+        echo "<pre>";
+        print_r($cancle);
+        echo "<pre>";
+        exit();
+
+        $subscription_status = Subscription::where('subscr_id',request('subscr_id'))->update(['status'=>'canceled']);
+
+        if($subscription_status){
+                return $this->sendResponse(array(), 'Subscription cancleded successfully.');
+        }else{
+                return $this->sendResponse(array(), 'Something went wrong.');
+        }
+
+    }
    
 }

@@ -101,6 +101,7 @@ class PaymentsController extends BaseController
                     ]);
                     */
                     Checkout::where('order_id',request('order_id'))->update(['transaction_id'=>$paymentDetails['balance_transaction'],'customer'=>$paymentDetails['customer'],'payment_status'=>$paymentDetails['status'],'transaction_complete_details'=>json_encode($paymentDetails)]);
+
                     $data['order_id']= request('order_id');
                     $data['amount']= request('amount');
                     $data['transaction_id'] = $paymentDetails['balance_transaction'];
@@ -271,4 +272,15 @@ class PaymentsController extends BaseController
        }
        
    }
+
+   public function customer_payment_methods() {
+        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+
+        $paymentDetails = \Stripe\PaymentMethod::all([
+        'customer' => request('customer'),
+        'type' => 'card',
+        ]);
+        echo "<pre>";
+        print_r($paymentDetails);
+    }
 }

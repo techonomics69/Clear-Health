@@ -284,7 +284,7 @@
 		</div>
 	<?php }else if($key == 10){
 	?>
-		<div id="home{{$key}}" class="tab-pane fade in">	
+		<div id="home10" class="tab-pane fade in">	
 				
 			<div class="row" style="padding: 10px;">
 				<div class="col-md-12">
@@ -296,7 +296,7 @@
 	<?php		
 	}else if($key == 11){
 	?>
-	<div id="home{{$key}}" class="tab-pane fade in">	
+	<div id="home11" class="tab-pane fade in">	
 				<div class="row" style="padding: 10px;">
 					<div class="col-md-12">
 					

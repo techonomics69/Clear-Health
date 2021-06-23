@@ -192,7 +192,7 @@
 										<div class="tab-content">
 											<?php 
 											$i=0;
-											// print_r($category);
+											print_r($category);
 											?>
 											@foreach($category as $key => $data)
 
@@ -285,6 +285,7 @@
 	<?php }
 	
 	if($key == 10){
+		if($user_case_management_data['gender'] == "female"){
 	?>
 		<div id="home10" class="tab-pane fade in">	
 				
@@ -297,10 +298,12 @@
 			</div>
 		</div>
 		</div>
-	<?php		
+	<?php
+		}		
 	}
 	
 	if($key == 11){
+		if($user_case_management_data['gender'] == "male"){
 	?>
 	<div id="home11" class="tab-pane fade in">	
 				<div class="row" style="padding: 10px;">
@@ -312,7 +315,9 @@
 		</div>
 		</div>
 	<?php	
-	} ?>
+	}
+}
+	?>
 
 	
 	@endforeach

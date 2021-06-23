@@ -192,7 +192,7 @@
 										<div class="tab-content">
 											<?php 
 											$i=0;
-											print_r($category);
+											// print_r($category);
 											?>
 											@foreach($category as $key => $data)
 
@@ -286,36 +286,64 @@
 	
 	if($key == 10){
 		if($user_case_management_data['gender'] == "female"){
+			if(count($followup_que) > 0){
+				
 	?>
 		<div id="home10" class="tab-pane fade in">	
-				
+			<?php foreach($followup_que as $fkey => $fvalue){
+				$fanswers = json_decode($fvalue->answer);
+				if(count($fanswers)>0){
+					$findex = 1;
+					foreach($fanswers as $fk => $fans){
+			?>		
 			<div class="row" style="padding: 10px;">
 				<div class="col-md-12">
 				
-				<h4><strong>Que  [no] : Title</strong></h4>
-				<p>Ans: [ans]</p>
-				{{$user_case_management_data['gender']}}
+				<h4><strong>Que  <?php echo $findex;?> : {{$fans['question']}}</strong></h4>
+				<p>Ans: {{$fans['question']}}</p>
 			</div>
+			<?php	
+					$findex++;
+					}
+				}
+		 } ?>
 		</div>
 		</div>
 	<?php
+				
+			}
 		}		
 	}
 	
 	if($key == 11){
 		if($user_case_management_data['gender'] == "male"){
+			if(count($followup_que) > 0){
+				
 	?>
-	<div id="home11" class="tab-pane fade in">	
-				<div class="row" style="padding: 10px;">
-					<div class="col-md-12">
-					
-					<h4><strong>Que  [no] : Title</strong></h4>
-					<p>Ans: [ans] </p>
-				</div>
+		<div id="home10" class="tab-pane fade in">	
+			<?php foreach($followup_que as $fkey => $fvalue){
+				$fanswers = json_decode($fvalue->answer);
+				if(count($fanswers)>0){
+					$findex = 1;
+					foreach($fanswers as $fk => $fans){
+			?>		
+			<div class="row" style="padding: 10px;">
+				<div class="col-md-12">
+				
+				<h4><strong>Que  <?php echo $findex;?> : {{$fans['question']}}</strong></h4>
+				<p>Ans: {{$fans['question']}}</p>
+			</div>
+			<?php	
+					$findex++;
+					}
+				}
+		 } ?>
 		</div>
 		</div>
-	<?php	
-	}
+	<?php
+				
+			}
+		}
 }
 	?>
 

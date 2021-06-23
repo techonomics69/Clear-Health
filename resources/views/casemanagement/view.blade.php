@@ -291,8 +291,9 @@
 			<div class="row" style="padding: 10px;">
 				<div class="col-md-12">
 				
-				<h4><strong>Que  [no] : Title10 {{$key}}</strong></h4>
-				<p>Ans: [ans]10
+				<h4><strong>Que  [no] : Title</strong></h4>
+				<p>Ans: [ans]</p>
+				{{$user_case_management_data['gender']}}
 			</div>
 		</div>
 		</div>
@@ -305,8 +306,8 @@
 				<div class="row" style="padding: 10px;">
 					<div class="col-md-12">
 					
-					<h4><strong>Que  [no] : Title11 {{$key}}</strong></h4>
-					<p>Ans: [ans]11
+					<h4><strong>Que  [no] : Title</strong></h4>
+					<p>Ans: [ans] </p>
 				</div>
 		</div>
 		</div>

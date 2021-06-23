@@ -321,9 +321,9 @@ class PaymentsController extends BaseController
 
                     return $this->sendResponse($data, 'Payment done successfully.');
         } catch (\Stripe\Exception\CardException $e) {
-               return $this->sendResponse($e->getError()->code, 'Error code is:'.$e->getError()->code);
-            $payment_intent_id = $e->getError()->payment_intent->id;
-            $payment_intent = \Stripe\PaymentIntent::retrieve($payment_intent_id);
+               return $this->sendResponse($e->getError()->payment_intent->id, 'Error code is:'.$e->getError()->code);
+           // $payment_intent_id = $e->getError()->payment_intent->id;
+            //$payment_intent = \Stripe\PaymentIntent::retrieve($payment_intent_id);
         }
 
     }

@@ -464,7 +464,7 @@ public function sendMessageNonMedical(Request $request){
       $file =  $documents->getClientOriginalName();
       $doc_file_name =  time().'-'.$file;
       $filesize = $this->convertToReadableSize($documents->getSize());
-      
+      dd($filesize[1]);
       if(count($filesize)>0){
         if($filesize[1] == "" || $filesize[1] == "KB"){
         }else if($filesize[1] == "GB" || $filesize[1] == "TB"){

@@ -937,6 +937,7 @@
 	var fname = event.target.files[0].name;
 	var fileNameExt = fname.substr(fname.lastIndexOf('.') + 1);
 	var filesize = bytesToSize(event.target.files[0].size);
+	console.log(filesize.length);
 	// if(filesize.length > 0){
 	// 	alert('here');
 		if(filesize.sizeIn == "" || filesize.sizeIn == "KB"){

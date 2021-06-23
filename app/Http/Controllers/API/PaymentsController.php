@@ -300,7 +300,7 @@ class PaymentsController extends BaseController
                 'confirm' => true,
             ]);
 
-            $paymentDetails = $direct_payment->charges;
+            $paymentDetails = $direct_payment->charges->jsonSerialize();;
             echo "<pre>";
             print_r($paymentDetails);
             echo "<pre>";

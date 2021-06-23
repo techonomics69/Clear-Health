@@ -439,6 +439,13 @@ public function get_token(){
   return $response;
 }
 
+function convertToReadableSize($size){
+  $base = log($size) / log(1024);
+  $suffix = array("", "KB", "MB", "GB", "TB");
+  $f_base = floor($base);
+  return round(pow(1024, $base - floor($base)), 1) . $suffix[$f_base];
+}
+
 public function sendMessageNonMedical(Request $request){
 
     try{
@@ -457,7 +464,7 @@ public function sendMessageNonMedical(Request $request){
       $doc_file_name =  time().'-'.$file;
       $filesize = $documents->getSize();
       $filesize = round($filesize / 1024 / 1024, 1);
-      dd($documents->getSize());
+      dd($this->convertToReadableSize($documents->getSize()));
       
       if (!file_exists(public_path('/Message_files'))) {
         File::makeDirectory(public_path('/Message_files'),0777,true,true);

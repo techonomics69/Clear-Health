@@ -843,7 +843,7 @@
 			}
 			
 			if(submitFlag){
-					$("#submitdiv").hide();
+					// $("#submitdiv").hide();
 					$("#spinnerdiv").show();
 
 					var file = $('#file').prop('files')[0];
@@ -869,7 +869,7 @@
 						contentType: false,
 						success: function(response){
 							if(response.status){
-								$("#submitdiv").show();
+								// $("#submitdiv").show();
 								$("#spinnerdiv").hide();
 								var data = response.data;
 								$('#text').val('');

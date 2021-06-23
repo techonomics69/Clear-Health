@@ -246,6 +246,7 @@ class PaymentsController extends BaseController
                 } 
             } else {
                 return $this->sendResponse(back()->withInput(), 'Error in capturing amount: ' . $apiError);
+            }
         } else {
              return $this->sendResponse(back()->withInput(), 'Invalid card details: ' . $apiError);
         }

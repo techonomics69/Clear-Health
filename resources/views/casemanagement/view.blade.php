@@ -890,7 +890,8 @@
 							$("#gotobottomdivmsg")[0].click();
 						},200);
 					}else{
-						toastr.error(response.message);
+						toastr["error"](response.message)
+						// toastr.error();
 					}
 					
 				}

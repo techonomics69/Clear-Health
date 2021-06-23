@@ -937,7 +937,7 @@
 	var fname = event.target.files[0].name;
 	var fileNameExt = fname.substr(fname.lastIndexOf('.') + 1);
 	var filesize = bytesToSize(event.target.files[0].size);
-	console.log(filesize.sizeIn);
+	
 	// if(filesize.length > 0){
 	// 	alert('here');
 		if(filesize.sizeIn == "" || filesize.sizeIn == "KB"){
@@ -945,7 +945,7 @@
 			toastr["error"]("Please upload file less than 5MB");
 			return false;
 		}else if(filesize.sizIn == "MB"){
-			if(parseFloat(filesiz.size) > 5){
+			if(parseFloat(filesize.size) > 5){
 				toastr["error"]("Please upload file less than 5MB");
 				return false;
 			}

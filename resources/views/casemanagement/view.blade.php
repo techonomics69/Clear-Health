@@ -923,7 +923,8 @@
 	
 	var fname = event.target.files[0].name;
 	var fileNameExt = fname.substr(fname.lastIndexOf('.') + 1);
-	console.log(fileNameExt);
+	var filesize = event.target.files[0].size;
+	console.log('file size is'+filesize);
 	var reader = new FileReader();
 	if ($.inArray(fileNameExt, exts) !== -1){
 		reader.onload = function(){

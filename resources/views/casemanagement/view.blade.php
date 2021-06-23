@@ -834,6 +834,8 @@
 <script>
 	$(document).ready(function() {
 		$('#btnsubmit').on('click', function(event) {
+			$("#submitdiv").hide();
+			$("#spinnerdiv").show();
 			event.preventDefault();
 			var submitFlag = false;	
 			if($("#text").val() !== "" || $("#file").val() !==""){
@@ -843,8 +845,7 @@
 			}
 			
 			if(submitFlag){
-					// $("#submitdiv").hide();
-					$("#spinnerdiv").show();
+					
 
 					var file = $('#file').prop('files')[0];
 					var text  = $('#text').val();
@@ -869,7 +870,7 @@
 						contentType: false,
 						success: function(response){
 							if(response.status){
-								// $("#submitdiv").show();
+								$("#submitdiv").show();
 								$("#spinnerdiv").hide();
 								var data = response.data;
 								$('#text').val('');

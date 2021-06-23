@@ -86,6 +86,11 @@ class PaymentsController extends BaseController
             if (empty($apiError) && $charge) {
                 // Retrieve charge details 
                 $paymentDetails = $charge->jsonSerialize();
+
+                echo "<pre>";
+                print_r($paymentDetails);
+                echo "<pre>";
+                exit();
                 if ($paymentDetails['amount_refunded'] == 0 && empty($paymentDetails['failure_code']) && $paymentDetails['paid'] == 1 && $paymentDetails['captured'] == 1) {
                     /** You need to create model and other implementations */
                     /*

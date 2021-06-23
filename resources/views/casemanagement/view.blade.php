@@ -944,7 +944,7 @@
 		}else if(filesize.sizeIn == "GB" || filesize.sizeIn == "TB"){
 			toastr["error"]("Please upload file less than 5MB");
 			return false;
-		}else if(filesize.sizIn == "MB"){
+		}else if(filesize.sizeIn == "MB"){
 			console.log('here 1');
 			if(parseFloat(filesize.size) > 5){
 				console.log('here 2');

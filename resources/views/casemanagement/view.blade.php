@@ -300,7 +300,7 @@
 			<div class="row" style="padding: 10px;">
 				<div class="col-md-12">
 				
-				<h4><strong>Que  <?php echo $findex;?> : <?php (array)$fans ?></strong></h4>
+				<h4><strong>Que  <?php echo $findex;?> : <?php print_r($fans); ?></strong></h4>
 				<p>Ans: </p>
 				</div>
 			</div>	

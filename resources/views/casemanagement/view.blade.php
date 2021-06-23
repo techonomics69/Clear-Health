@@ -291,8 +291,8 @@
 			<div class="row" style="padding: 10px;">
 				<div class="col-md-12">
 				
-				<h4><strong>Que  [no] : Title</strong></h4>
-				<p>Ans: [ans]
+				<h4><strong>Que  [no] : Title10</strong></h4>
+				<p>Ans: [ans]10
 			</div>
 		</div>
 	<?php		
@@ -304,8 +304,8 @@
 				<div class="row" style="padding: 10px;">
 					<div class="col-md-12">
 					
-					<h4><strong>Que  [no] : Title</strong></h4>
-					<p>Ans: [ans]
+					<h4><strong>Que  [no] : Title11</strong></h4>
+					<p>Ans: [ans]11
 				</div>
 		</div>
 	<?php	

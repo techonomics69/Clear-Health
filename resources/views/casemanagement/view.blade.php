@@ -320,7 +320,7 @@
 			if(count($followup_que) > 0){
 				
 	?>
-		<div id="home10" class="tab-pane fade in">	
+		<div id="home11" class="tab-pane fade in">	
 			<?php foreach($followup_que as $fkey => $fvalue){
 				$fanswers = json_decode($fvalue->answer);
 				if(count($fanswers)>0){

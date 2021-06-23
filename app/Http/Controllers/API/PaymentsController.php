@@ -298,10 +298,26 @@ class PaymentsController extends BaseController
                 'off_session' => true,
                 'confirm' => true,
             ]);
+
+            $paymentDetails = $direct_payment->charges;
             echo "<pre>";
-            print_r($direct_payment);
+            print_r($paymentDetails);
             echo "<pre>";
             exit();
+
+            Checkout::where('order_id',request('order_id'))->update(['transaction_id'=>$paymentDetails['balance_transaction'],'customer'=>$paymentDetails['customer'],'payment_method'=>$paymentDetails['payment_method'],'payment_status'=>$paymentDetails['status'],'transaction_complete_details'=>json_encode($paymentDetails)]);
+
+                    $data['order_id']= request('order_id');
+                    $data['amount']= request('amount');
+                    $data['transaction_id'] = $paymentDetails['balance_transaction'];
+                    $data['payment_status'] = $paymentDetails['status'];
+                    $data['customer'] = $paymentDetails['customer']; 
+                    $data['payment_method'] = $paymentDetails['payment_method'];
+                    $data['transaction_complete_details'] = json_encode($paymentDetails);
+
+
+                    //return redirect('/thankyou/?receipt_url=' . $paymentDetails['receipt_url']);
+                    return $this->sendResponse($data, 'Payment done successfully.');
         } catch (\Stripe\Exception\CardException $e) {
                 // Error code will be authentication_required if authentication is needed
             echo 'Error code is:' . $e->getError()->code;

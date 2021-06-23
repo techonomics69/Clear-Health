@@ -151,7 +151,7 @@ class PaymentsController extends BaseController
                 'interval' => 'year' 
             ) 
         ); 
-        $planID = $_POST['subscr_plan']; 
+        $planID = request('subscr_plan'); 
         $planInfo = $plans[$planID]; 
         $planName = $planInfo['name']; 
         $planPrice = $planInfo['price']; 

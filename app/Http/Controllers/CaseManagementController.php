@@ -451,6 +451,7 @@ public function sendMessageNonMedical(Request $request){
 
     try{
 
+     dd(); 
     $user_id = $request['user_id'];
 
     $case_id = (isset($request['md_case_id']) && $request['md_case_id']!='')?$request['md_case_id']:0;

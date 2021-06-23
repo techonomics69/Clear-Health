@@ -151,6 +151,7 @@ Route::post('getToken', [CaseManagementController::class, 'get_token']);
 
     //payment
     Route::post('payments', [PaymentsController::class, 'store']);
+    Route::post('subscribe_store', [PaymentsController::class, 'subscribe_store']);
 
     //Change Password
      Route::post('changePassword', [ChangePasswordController::class, 'changePassword']);

@@ -749,7 +749,7 @@
 </div>
 <div class="sending lastimg">
 	<button type="submit" id="btnsubmit"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
-	<button type="button" id="spinnerdiv" style="display:none">
+	<button type="button" id="spinnerdiv" >
 		<span class="fa fa-spinner fa-spin"></span>
 	</button>
 </div>

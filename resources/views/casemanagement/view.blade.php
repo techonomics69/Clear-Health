@@ -301,7 +301,7 @@
 				<div class="col-md-12">
 				
 				<h4><strong>Que  <?php echo $findex;?> : <?php echo $fans->question; ?></strong></h4>
-				<p>Ans: </p>
+				<p>Ans: <?php echo $fans->answer; ?></p>
 				</div>
 			</div>	
 			<?php	
@@ -332,8 +332,8 @@
 			<div class="row" style="padding: 10px;">
 				<div class="col-md-12">
 				
-				<h4><strong>Que  <?php echo $findex;?> : }</strong></h4>
-				<p>Ans: </p>
+				<h4><strong>Que  <?php echo $findex;?> : <?php echo $fans->question; ?></strong></h4>
+				<p>Ans: <?php echo $fans->answer; ?></p>
 				</div>
 			</div>
 			<?php	

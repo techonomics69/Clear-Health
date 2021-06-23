@@ -831,12 +831,13 @@
 	$(document).ready(function() {
 		$('#btnsubmit').on('click', function(event) {
 			event.preventDefault();
-			var submitFlag = false;
+			var submitFlag = false;	
 			if($("#text").val() !== "" || $("#file").val() !==""){
 				submitFlag = true;
 			}else{
 				submitFlag = false;
 			}
+			
 			console.log(submitFlag);
 			// if(submitFlag){
 			// 		var file = $('#file').prop('files')[0];

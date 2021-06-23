@@ -467,11 +467,11 @@ public function sendMessageNonMedical(Request $request){
       if(count($filesize)>0){
         if($filesize['sizin'] == "" || $filesize['sizin'] == "KB"){
         }else if($filesize['sizin'] == "GB" || $filesize['sizin'] == "TB"){
-          return array("status"=>false,"data"=>'',"message"=>"File  size exceeded maximum size");
+          return array("status"=>false,"data"=>'',"message"=>"Please upload file less than 5MB");
           exit();
         }else if($filesize['sizin'] == "MB"){
           if($filesize['size'] > 5){
-            return array("status"=>false,"data"=>'',"message"=>"File size exceeded maximum size");
+            return array("status"=>false,"data"=>'',"message"=>"Please upload file less than 5MB");
             exit();
           }
         }

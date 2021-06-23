@@ -832,12 +832,12 @@
 		$('#btnsubmit').on('click', function(event) {
 			event.preventDefault();
 			var submitFlag = false;
-			console.log($("#text").val());
-			// if($("#text").val() !== "" || $("#file").val() !==""){
-			// 	submitFlag = true;
-			// }else{
-			// 	submitFlag = true;
-			// }
+			if($("#text").val() !== "" || $("#file").val() !==""){
+				submitFlag = true;
+			}else{
+				submitFlag = false;
+			}
+			console.log(submitFlag);
 			// if(submitFlag){
 			// 		var file = $('#file').prop('files')[0];
 			// 		var text  = $('#text').val();

@@ -291,7 +291,7 @@
 			<div class="row" style="padding: 10px;">
 				<div class="col-md-12">
 				
-				<h4><strong>Que  [no] : Title10</strong></h4>
+				<h4><strong>Que  [no] : Title10 {{$key}}</strong></h4>
 				<p>Ans: [ans]10
 			</div>
 		</div>
@@ -304,7 +304,7 @@
 				<div class="row" style="padding: 10px;">
 					<div class="col-md-12">
 					
-					<h4><strong>Que  [no] : Title11</strong></h4>
+					<h4><strong>Que  [no] : Title11 {{$key}}</strong></h4>
 					<p>Ans: [ans]11
 				</div>
 		</div>

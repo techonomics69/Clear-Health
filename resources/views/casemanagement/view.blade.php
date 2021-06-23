@@ -837,94 +837,94 @@
 			$("#btnsubmit").attr('style','display:none');
 			$("#spinnerdiv").attr('style','display:block');
 			event.preventDefault();
-			var submitFlag = false;	
-			if($("#text").val() !== "" || $("#file").val() !==""){
-				submitFlag = true;
-			}else{
-				submitFlag = false;
-			}
+			// var submitFlag = false;	
+			// if($("#text").val() !== "" || $("#file").val() !==""){
+			// 	submitFlag = true;
+			// }else{
+			// 	submitFlag = false;
+			// }
 			
-			if(submitFlag){
+			// if(submitFlag){
 					
 
-					var file = $('#file').prop('files')[0];
-					var text  = $('#text').val();
-					var user_id = $('#user_id').val();
-					var case_id = $('#case_id').val();
+			// 		var file = $('#file').prop('files')[0];
+			// 		var text  = $('#text').val();
+			// 		var user_id = $('#user_id').val();
+			// 		var case_id = $('#case_id').val();
 
-					var formData = new FormData();
+			// 		var formData = new FormData();
 					
-					formData.append('file', file);
-					formData.append('text', text);
-					formData.append('user_id', user_id);
-					formData.append('case_id', case_id);
-					formData.append('_token', '{{csrf_token()}}');
+			// 		formData.append('file', file);
+			// 		formData.append('text', text);
+			// 		formData.append('user_id', user_id);
+			// 		formData.append('case_id', case_id);
+			// 		formData.append('_token', '{{csrf_token()}}');
 
-					$.ajax({
-						url: "{{URL('admin/casemanagement/sendMessageNonMedical')}}",
-						type: "POST",
-						data: formData,
-						dataType:"json",
-						async:false,
-						processData: false,
-						contentType: false,
-						success: function(response){
-							if(response.status){
-								$("#btnsubmit").attr('style','display:block');
-								$("#spinnerdiv").attr('style','display:none');
-								var data = response.data;
-								$('#text').val('');
-								$('#file').val('');
-								document.getElementById('gotobottomdivmsg').closest('a').removeAttribute('href');
-								document.getElementById('gotobottomdivmsg').closest('a').setAttribute('href','#bottomDivMsg'+data.id);
+			// 		$.ajax({
+			// 			url: "{{URL('admin/casemanagement/sendMessageNonMedical')}}",
+			// 			type: "POST",
+			// 			data: formData,
+			// 			dataType:"json",
+			// 			async:false,
+			// 			processData: false,
+			// 			contentType: false,
+			// 			success: function(response){
+			// 				if(response.status){
+			// 					$("#btnsubmit").attr('style','display:block');
+			// 					$("#spinnerdiv").attr('style','display:none');
+			// 					var data = response.data;
+			// 					$('#text').val('');
+			// 					$('#file').val('');
+			// 					document.getElementById('gotobottomdivmsg').closest('a').removeAttribute('href');
+			// 					document.getElementById('gotobottomdivmsg').closest('a').setAttribute('href','#bottomDivMsg'+data.id);
 
-								if(!data.text == "" || !data.text == null){
-									$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg"+data.id+"'>"+"<p >"+data.text+"</p>"+"<h5>"+data.msg_date+"<h5>"+"</li>");	
-								}
+			// 					if(!data.text == "" || !data.text == null){
+			// 						$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg"+data.id+"'>"+"<p >"+data.text+"</p>"+"<h5>"+data.msg_date+"<h5>"+"</li>");	
+			// 					}
 								
-								if(!data.file_path == "" || !data.file_path == null){							
-									var exts2 = ['jpg','jpeg','png'];
-									var ufile = data.file_name;
-									var fileNameExt2 = ufile.substr(ufile.lastIndexOf('.') + 1);
+			// 					if(!data.file_path == "" || !data.file_path == null){							
+			// 						var exts2 = ['jpg','jpeg','png'];
+			// 						var ufile = data.file_name;
+			// 						var fileNameExt2 = ufile.substr(ufile.lastIndexOf('.') + 1);
 									
-									if ($.inArray(fileNameExt2, exts2) !== -1){
-										$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg"+data.id+"'>"+"<p >"+"<img width='100' src={{URL('/')}}/public/Message_files/" +data.file_name+ ">"+ "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/"+data.file_name+">" + " Download" + "</a>"+"</p>"+"<h5>"+data.msg_date+"<h5>"+"</li>");
-									}else if(fileNameExt2 == 'doc' || fileNameExt2 == 'docx'){
-										$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg"+data.id+"'>"+"<p >"+"<img width='100' src={{URL('/')}}/public/images/msgs/doc.png>"+ "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/"+data.file_name+">" + " Download" + "</a>"+"</p>"+"<h5>"+data.msg_date+"<h5>"+"</li>");
-									}else if(fileNameExt2 == 'pdf'){
-										$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg"+data.id+"'>"+"<p >"+"<img width='100' src={{URL('/')}}/public/images/msgs/pdf.png>"+ "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/"+data.file_name+">" + " Download" + "</a>"+"</p>"+"<h5>"+data.msg_date+"<h5>"+"</li>");
-									}else if(fileNameExt2 == 'txt'){
-										$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg"+data.id+"'>"+"<p >"+"<img width='100' src={{URL('/')}}/public/images/msgs/txt.png>"+ "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/"+data.file_name+">" + " Download" + "</a>"+"</p>"+"<h5>"+data.msg_date+"<h5>"+"</li>");
-									}else if(fileNameExt2 == 'xls' || fileNameExt2 == 'xlsx'){
-										$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg"+data.id+"'>"+"<p >"+"<img width='100' src={{URL('/')}}/public/images/msgs/xls.png>"+ "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/"+data.file_name+">" + " Download" + "</a>"+"</p>"+"<h5>"+data.msg_date+"<h5>"+"</li>");
-									}else{
-										$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg"+data.id+"'>"+"<p >"+"<img width='100' src={{URL('/')}}/public/images/msgs/file.png>"+ "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/"+data.file_name+">" + " Download" + "</a>"+"</p>"+"<h5>"+data.msg_date+"<h5>"+"</li>");
-									}	 
+			// 						if ($.inArray(fileNameExt2, exts2) !== -1){
+			// 							$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg"+data.id+"'>"+"<p >"+"<img width='100' src={{URL('/')}}/public/Message_files/" +data.file_name+ ">"+ "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/"+data.file_name+">" + " Download" + "</a>"+"</p>"+"<h5>"+data.msg_date+"<h5>"+"</li>");
+			// 						}else if(fileNameExt2 == 'doc' || fileNameExt2 == 'docx'){
+			// 							$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg"+data.id+"'>"+"<p >"+"<img width='100' src={{URL('/')}}/public/images/msgs/doc.png>"+ "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/"+data.file_name+">" + " Download" + "</a>"+"</p>"+"<h5>"+data.msg_date+"<h5>"+"</li>");
+			// 						}else if(fileNameExt2 == 'pdf'){
+			// 							$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg"+data.id+"'>"+"<p >"+"<img width='100' src={{URL('/')}}/public/images/msgs/pdf.png>"+ "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/"+data.file_name+">" + " Download" + "</a>"+"</p>"+"<h5>"+data.msg_date+"<h5>"+"</li>");
+			// 						}else if(fileNameExt2 == 'txt'){
+			// 							$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg"+data.id+"'>"+"<p >"+"<img width='100' src={{URL('/')}}/public/images/msgs/txt.png>"+ "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/"+data.file_name+">" + " Download" + "</a>"+"</p>"+"<h5>"+data.msg_date+"<h5>"+"</li>");
+			// 						}else if(fileNameExt2 == 'xls' || fileNameExt2 == 'xlsx'){
+			// 							$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg"+data.id+"'>"+"<p >"+"<img width='100' src={{URL('/')}}/public/images/msgs/xls.png>"+ "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/"+data.file_name+">" + " Download" + "</a>"+"</p>"+"<h5>"+data.msg_date+"<h5>"+"</li>");
+			// 						}else{
+			// 							$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg"+data.id+"'>"+"<p >"+"<img width='100' src={{URL('/')}}/public/images/msgs/file.png>"+ "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/"+data.file_name+">" + " Download" + "</a>"+"</p>"+"<h5>"+data.msg_date+"<h5>"+"</li>");
+			// 						}	 
 									
-								}
+			// 					}
 								
-								$("#blah").hide();
-								setTimeout(function(){
-									$("#gotobottomdivmsg")[0].click();
-								},200);
-							}else{
-								$("#btnsubmit").attr('style','display:block');
-								$("#spinnerdiv").attr('style','display:none');
-								toastr["error"](response.message)
-								// toastr.error();
-							}
+			// 					$("#blah").hide();
+			// 					setTimeout(function(){
+			// 						$("#gotobottomdivmsg")[0].click();
+			// 					},200);
+			// 				}else{
+			// 					$("#btnsubmit").attr('style','display:block');
+			// 					$("#spinnerdiv").attr('style','display:none');
+			// 					toastr["error"](response.message)
+			// 					// toastr.error();
+			// 				}
 							
-						},error : function(){
-							$("#btnsubmit").attr('style','display:block');
-							$("#spinnerdiv").attr('style','display:none');
-						}
+			// 			},error : function(){
+			// 				$("#btnsubmit").attr('style','display:block');
+			// 				$("#spinnerdiv").attr('style','display:none');
+			// 			}
 
-				});
-			}else{
-				$("#btnsubmit").attr('style','display:block');
-				$("#spinnerdiv").attr('style','display:none');
-				toastr["error"]("Please add message or attachment");
-			}
+			// 	});
+			// }else{
+			// 	$("#btnsubmit").attr('style','display:block');
+			// 	$("#spinnerdiv").attr('style','display:none');
+			// 	toastr["error"]("Please add message or attachment");
+			// }
 		});
 	});
 

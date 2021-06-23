@@ -222,6 +222,7 @@ class PaymentsController extends BaseController
                         $input_subscr['case_id'] = request('case_id');
                         $input_subscr['md_case_id'] = request('md_case_id');
                         $input_subscr['subscr_id'] = $subsData['id']; 
+                        $input_subscr['product_id'] = $subsData['product_id']; 
                         $input_subscr['customer'] = $subsData['customer'];
                         $input_subscr['plan_id'] = $subsData['plan']['id'];
                         $input_subscr['plan_amount'] = ($subsData['plan']['amount']/100);
@@ -300,30 +301,30 @@ class PaymentsController extends BaseController
                 'confirm' => true,
             ]);
 
-            $paymentDetails = $direct_payment->charges->jsonSerialize();;
-            echo "<pre>";
-            print_r($paymentDetails);
-            echo "<pre>";
-            exit();
+            $paymentDetails = $direct_payment->charges->jsonSerialize();
 
-            Checkout::where('order_id',request('order_id'))->update(['transaction_id'=>$paymentDetails['balance_transaction'],'customer'=>$paymentDetails['customer'],'payment_method'=>$paymentDetails['payment_method'],'payment_status'=>$paymentDetails['status'],'transaction_complete_details'=>json_encode($paymentDetails)]);
+            $transaction_id = $paymentDetails['data'][0]['balance_transaction'];
+            $customer = $paymentDetails['data'][0]['customer'];
+            $payment_method = $paymentDetails['data'][0]['payment_method'];
+            $payment_status = $paymentDetails['data'][0]['status'];
+            $transaction_complete_details = json_encode($paymentDetails);
+
+            
+            Checkout::where('order_id',request('order_id'))->update(['transaction_id'=>$transaction_id,'customer'=>$customer,'payment_method'=>$payment_method,'payment_status'=>$payment_status,'transaction_complete_details'=>$transaction_complete_details]);
 
                     $data['order_id']= request('order_id');
                     $data['amount']= request('amount');
-                    $data['transaction_id'] = $paymentDetails['balance_transaction'];
-                    $data['payment_status'] = $paymentDetails['status'];
-                    $data['customer'] = $paymentDetails['customer']; 
-                    $data['payment_method'] = $paymentDetails['payment_method'];
-                    $data['transaction_complete_details'] = json_encode($paymentDetails);
+                    $data['transaction_id'] = $transaction_id;
+                    $data['payment_status'] = $payment_status;
+                    $data['customer'] = $customer; 
+                    $data['payment_method'] = $payment_method;
+                    $data['transaction_complete_details'] = $transaction_complete_details;
 
-
-                    //return redirect('/thankyou/?receipt_url=' . $paymentDetails['receipt_url']);
                     return $this->sendResponse($data, 'Payment done successfully.');
         } catch (\Stripe\Exception\CardException $e) {
-                // Error code will be authentication_required if authentication is needed
-            echo 'Error code is:' . $e->getError()->code;
-            $payment_intent_id = $e->getError()->payment_intent->id;
-            $payment_intent = \Stripe\PaymentIntent::retrieve($payment_intent_id);
+               return $this->sendResponse($e->getError()->payment_intent->id, 'Error code is:'.$e->getError()->code);
+           // $payment_intent_id = $e->getError()->payment_intent->id;
+            //$payment_intent = \Stripe\PaymentIntent::retrieve($payment_intent_id);
         }
 
     }

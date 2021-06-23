@@ -255,19 +255,19 @@ class PaymentsController extends BaseController
         $subscription = \Stripe\Subscription::retrieve($sub_id);
         $cancle = $subscription->cancel();
 
-        echo "<pre>";
-        print_r($cancle);
-        echo "<pre>";
-        exit();
+        if($cancle['status'] == 'canceled'){ 
 
-        $subscription_status = Subscription::where('subscr_id',request('subscr_id'))->update(['status'=>'canceled']);
+            $subscription_status = Subscription::where('subscr_id',request('subscr_id'))->update(['status'=>'canceled']);
 
-        if($subscription_status){
+            if($subscription_status){
                 return $this->sendResponse(array(), 'Subscription cancleded successfully.');
-        }else{
+            }else{
                 return $this->sendResponse(array(), 'Something went wrong.');
-        }
+            }
 
-    }
-   
+        }else{
+           return $this->sendResponse(back()->withInput(), 'Subscription creation failed! ');
+       }
+       
+   }
 }

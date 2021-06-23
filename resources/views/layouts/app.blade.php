@@ -972,6 +972,11 @@ data-open="click" data-menu="vertical-menu" data-col="2-columns">
                   @toastr_render
                   @yield('scriptsection')
                   <script type="text/javascript">
+                  $(window).on('load',function(){
+	setTimeout(function(){ // allowing 3 secs to fade out loader
+	$('.page-loader').fadeOut('slow');
+	},3500);
+});
                     $( document ).ready(function() {
                      /* $('.select2').select2({width:'100%'});*/
 

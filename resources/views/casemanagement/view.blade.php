@@ -282,27 +282,33 @@
 			</div>
 			@endforeach
 		</div>
-	<?php }else if($key == 10){
+	<?php }
+	
+	if($key == 10){
 	?>
 		<div id="home10" class="tab-pane fade in">	
 				
 			<div class="row" style="padding: 10px;">
 				<div class="col-md-12">
 				
-				<h4><strong>Que  [no] : Title</strong></h4>
-				<p>Ans: [ans]
+				<h4><strong>Que  [no] : Title10 {{$key}}</strong></h4>
+				<p>Ans: [ans]10
 			</div>
 		</div>
+		</div>
 	<?php		
-	}else if($key == 11){
+	}
+	
+	if($key == 11){
 	?>
 	<div id="home11" class="tab-pane fade in">	
 				<div class="row" style="padding: 10px;">
 					<div class="col-md-12">
 					
-					<h4><strong>Que  [no] : Title</strong></h4>
-					<p>Ans: [ans]
+					<h4><strong>Que  [no] : Title11 {{$key}}</strong></h4>
+					<p>Ans: [ans]11
 				</div>
+		</div>
 		</div>
 	<?php	
 	} ?>

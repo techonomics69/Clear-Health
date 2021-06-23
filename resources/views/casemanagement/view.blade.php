@@ -748,8 +748,8 @@
 	
 </div>
 <div class="sending lastimg">
-	<button type="submit" id="btnsubmit"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
-	<button type="button">
+	<button type="submit" id="btnsubmit" id="submitdiv"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
+	<button type="button" id="spinnerdiv">
 		<span class="fa fa-spinner fa-spin"></span>
 	</button>
 </div>
@@ -843,6 +843,9 @@
 			}
 			
 			if(submitFlag){
+					$("#submitdiv").hide();
+					$("#spinnerdiv").show();
+
 					var file = $('#file').prop('files')[0];
 					var text  = $('#text').val();
 					var user_id = $('#user_id').val();
@@ -902,14 +905,21 @@
 									$("#gotobottomdivmsg")[0].click();
 								},200);
 							}else{
+								$("#submitdiv").show();
+								$("#spinnerdiv").hide();
 								toastr["error"](response.message)
 								// toastr.error();
 							}
 							
+						},error : function(){
+							$("#submitdiv").show();
+							$("#spinnerdiv").hide();
 						}
 
 				});
 			}else{
+				$("#submitdiv").show();
+				$("#spinnerdiv").hide();
 				toastr["error"]("Please add message or attachment");
 			}
 		});

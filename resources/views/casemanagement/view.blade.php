@@ -749,7 +749,7 @@
 </div>
 <div class="sending lastimg">
 	<button type="submit" id="btnsubmit"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
-	<button type="button" id="spinnerdiv" >
+	<button type="button" id="spinnerdiv" style="display:none">
 		<span class="fa fa-spinner fa-spin"></span>
 	</button>
 </div>
@@ -834,8 +834,8 @@
 <script>
 	$(document).ready(function() {
 		$('#btnsubmit').on('click', function(event) {
-			$("#btnsubmit").hide();
-			$("#spinnerdiv").show();
+			$("#btnsubmit").attr('style','display:none');
+			$("#spinnerdiv").attr('style','display:block');
 			event.preventDefault();
 			var submitFlag = false;	
 			if($("#text").val() !== "" || $("#file").val() !==""){
@@ -870,8 +870,8 @@
 						contentType: false,
 						success: function(response){
 							if(response.status){
-								$("#btnsubmit").show();
-								$("#spinnerdiv").hide();
+								$("#btnsubmit").attr('style','display:block');
+								$("#spinnerdiv").attr('style','display:none');
 								var data = response.data;
 								$('#text').val('');
 								$('#file').val('');
@@ -908,21 +908,21 @@
 									$("#gotobottomdivmsg")[0].click();
 								},200);
 							}else{
-								$("#btnsubmit").show();
-								$("#spinnerdiv").hide();
+								$("#btnsubmit").attr('style','display:block');
+								$("#spinnerdiv").attr('style','display:none');
 								toastr["error"](response.message)
 								// toastr.error();
 							}
 							
 						},error : function(){
-							$("#btnsubmit").show();
-							$("#spinnerdiv").hide();
+							$("#btnsubmit").attr('style','display:block');
+							$("#spinnerdiv").attr('style','display:none');
 						}
 
 				});
 			}else{
-				$("#btnsubmit").show();
-				$("#spinnerdiv").hide();
+				$("#btnsubmit").attr('style','display:block');
+				$("#spinnerdiv").attr('style','display:none');
 				toastr["error"]("Please add message or attachment");
 			}
 		});

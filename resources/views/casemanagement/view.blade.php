@@ -945,7 +945,9 @@
 			toastr["error"]("Please upload file less than 5MB");
 			return false;
 		}else if(filesize.sizIn == "MB"){
+			console.log('here 1');
 			if(parseFloat(filesize.size) > 5){
+				console.log('here 2');
 				toastr["error"]("Please upload file less than 5MB");
 				return false;
 			}

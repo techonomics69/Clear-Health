@@ -937,8 +937,8 @@
 	var fname = event.target.files[0].name;
 	var fileNameExt = fname.substr(fname.lastIndexOf('.') + 1);
 	var filesize = bytesToSize(event.target.files[0].size);
-	if(filesize.length > 0){
-		alert('here');
+	// if(filesize.length > 0){
+	// 	alert('here');
 		if(filesize.sizeIn == "" || filesize.sizeIn == "KB"){
 		}else if(filesize.sizeIn == "GB" || filesize.sizeIn == "TB"){
 			toastr["error"]("Please upload file less than 5MB");
@@ -949,7 +949,7 @@
 				return false;
 			}
 		}
-	}
+	// }
 	var reader = new FileReader();
 	if ($.inArray(fileNameExt, exts) !== -1){
 		reader.onload = function(){

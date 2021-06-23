@@ -300,8 +300,8 @@
 			<div class="row" style="padding: 10px;">
 				<div class="col-md-12">
 				
-				<h4><strong>Que  <?php echo $findex;?> : <?php echo $fans->question; ?></strong></h4>
-				<p>Ans: <?php echo $fans->answer; ?></p>
+				<h4><strong>Que  <?php echo $findex;?> : <?php echo (is_array($fans->question)) ? $fans->question : ''; ?></strong></h4>
+				<p>Ans: <?php echo (is_array($fans->answer)) ? $fans->answer : ''; ?></p>
 				</div>
 			</div>	
 			<?php	
@@ -332,8 +332,8 @@
 			<div class="row" style="padding: 10px;">
 				<div class="col-md-12">
 				
-				<h4><strong>Que  <?php echo $findex;?> : <?php echo $fans->question; ?></strong></h4>
-				<p>Ans: <?php echo $fans->answer; ?></p>
+				<h4><strong>Que  <?php echo $findex;?> : <?php echo (is_array($fans->question)) ? $fans->question : ''; ?></strong></h4>
+				<p>Ans: <?php echo (is_array($fans->answer)) ? $fans->answer : ''; ?></p>
 				</div>
 			</div>
 			<?php	

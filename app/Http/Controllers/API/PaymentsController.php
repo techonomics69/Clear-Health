@@ -134,7 +134,6 @@ class PaymentsController extends BaseController
             'email' => 'required|email',
             //'terms_conditions' => 'accepted'
         ]);
-
        // Plan info 
 
        $plans = array( 
@@ -211,8 +210,7 @@ class PaymentsController extends BaseController
                     )); 
                 }catch(Exception $e) { 
                     $apiError = $e->getMessage(); 
-                } 
-
+                }
                 if(empty($apiError) && $subscription){ 
                     // Retrieve charge details 
                     $subsData = $subscription->jsonSerialize();
@@ -251,6 +249,5 @@ class PaymentsController extends BaseController
              return $this->sendResponse(back()->withInput(), 'Invalid card details: ' . $apiError);
         }
     }
-
    
 }

@@ -10,6 +10,7 @@ use Stripe\Stripe;
 use Stripe\Customer;
 use Illuminate\Http\Request;
 use App\Models\Checkout;
+use App\Models\Subscription;
 
 class PaymentsController extends BaseController
 {
@@ -123,6 +124,130 @@ class PaymentsController extends BaseController
             //session()->flash('error', 'Invalid card details: ' . $apiError);
             //return back()->withInput();
             return $this->sendResponse(back()->withInput(), 'Invalid card details:' . $apiError);
+        }
+    }
+
+    public function subscribe_store()
+    {
+        request()->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            //'terms_conditions' => 'accepted'
+        ]);
+
+       // Plan info 
+
+       $plans = array( 
+            '1' => array( 
+                'name' => 'Weekly Subscription', 
+                'price' => 25, 
+                'interval' => 'week' 
+            ), 
+            '2' => array( 
+                'name' => 'Monthly Subscription', 
+                'price' => 85, 
+                'interval' => 'month' 
+            ), 
+            '3' => array( 
+                'name' => 'Yearly Subscription', 
+                'price' => 950, 
+                'interval' => 'year' 
+            ) 
+        ); 
+        $planID = $_POST['subscr_plan']; 
+        $planInfo = $plans[$planID]; 
+        $planName = $planInfo['name']; 
+        $planPrice = $planInfo['price']; 
+        $planInterval = $planInfo['interval']; 
+
+        $currency = "USD";  
+
+        if (empty(request('stripeToken'))) {
+            return $this->sendResponse(back()->withInput(), 'Some error while making the payment. Please try again');
+        }
+        Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+        try {
+            /** Add customer to stripe, Stripe customer */
+            $customer = Customer::create([
+                'email'     => request('email'),
+                'source'    => request('stripeToken')
+            ]);
+        } catch (Exception $e) {
+            $apiError = $e->getMessage();
+        }
+
+        if (empty($apiError) && $customer) {
+
+            //Store customer id in DB for future transaction
+
+            /** Charge a credit or a debit card */
+            // Convert price to cents 
+            $priceCents = round($planPrice*100); 
+        
+            // Create a plan 
+            try { 
+                $plan = \Stripe\Plan::create(array( 
+                    "product" => [ 
+                        "name" => $planName 
+                    ], 
+                    "amount" => $priceCents, 
+                    "currency" => $currency, 
+                    "interval" => $planInterval, 
+                    "interval_count" => 1 
+                )); 
+            }catch(Exception $e) { 
+                $apiError = $e->getMessage(); 
+            }
+
+            if (empty($apiError) && $plan) {
+                try { 
+                    $subscription = \Stripe\Subscription::create(array( 
+                        "customer" => $customer->id, 
+                        "items" => array( 
+                            array( 
+                                "plan" => $plan->id, 
+                            ), 
+                        ), 
+                    )); 
+                }catch(Exception $e) { 
+                    $apiError = $e->getMessage(); 
+                } 
+
+                if(empty($apiError) && $subscription){ 
+                    // Retrieve charge details 
+                    $subsData = $subscription->jsonSerialize();
+                    if($subsData['status'] == 'active'){ 
+                       // Subscription info 
+                        $input_subscr = array();
+
+                        $input_subscr['user_id'] = request('user_id');
+                        $input_subscr['case_id'] = request('case_id');
+                        $input_subscr['md_case_id'] = request('md_case_id');
+                        $input_subscr['subscr_id'] = $subsData['id']; 
+                        $input_subscr['customer'] = $subsData['customer'];
+                        $input_subscr['plan_id'] = $subsData['plan']['id'];
+                        $input_subscr['plan_amount'] = ($subsData['plan']['amount']/100);
+                        $input_subscr['plan_currency'] = $subsData['plan']['currency'];
+                        $input_subscr['plan_interval'] = $subsData['plan']['interval'];
+                        $input_subscr['plan_interval_count'] =$subsData['plan']['interval_count'];
+                        $input_subscr['created'] = date("Y-m-d H:i:s", $subsData['created']);
+                        $input_subscr['current_period_start'] = date("Y-m-d H:i:s", $subsData['current_period_start']); 
+                        $input_subscr['current_period_end'] = date("Y-m-d H:i:s", $subsData['current_period_end']); 
+                        $input_subscr['status'] = $subsData['status'];
+
+                        $add_subscr = Subscription:: create($input_subscr);
+                     
+                        return $this->sendResponse($input_subscr, 'Subscription done successfully');
+                    } else {
+                        return $this->sendResponse(back()->withInput(), 'Subscription activation failed');
+                    }
+                }else{
+                     return $this->sendResponse(back()->withInput(), 'Subscription creation failed! ' . $apiError);
+                } 
+            } else {
+                return $this->sendResponse(back()->withInput(), 'Error in capturing amount: ' . $apiError);
+        } else {
+             return $this->sendResponse(back()->withInput(), 'Invalid card details: ' . $apiError);
         }
     }
 

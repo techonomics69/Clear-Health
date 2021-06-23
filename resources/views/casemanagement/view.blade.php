@@ -927,7 +927,7 @@
 			size : (bytes / (1024 ** i)).toFixed(1),
 			sizeIn :  sizes[i]
 		};
-		return $sizeArr;
+		return sizeArr;
 		// return `${(bytes / (1024 ** i)).toFixed(1)} ${sizes[i]}`
 	}
 

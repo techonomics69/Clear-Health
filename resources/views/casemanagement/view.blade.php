@@ -295,6 +295,7 @@
 				<p>Ans: [ans]10
 			</div>
 		</div>
+		</div>
 	<?php		
 	}
 	
@@ -307,6 +308,7 @@
 					<h4><strong>Que  [no] : Title11 {{$key}}</strong></h4>
 					<p>Ans: [ans]11
 				</div>
+		</div>
 		</div>
 	<?php	
 	} ?>

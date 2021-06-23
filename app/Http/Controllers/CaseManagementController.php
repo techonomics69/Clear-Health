@@ -154,7 +154,7 @@ class CaseManagementController extends Controller
      $accutane_que = [];
    }
 
-   dd($accutane_que);
+   
 
    $topical = Answers::where('case_id',$user_case_management_data['id'])->where('user_id',$user_case_management_data['user_id'])->where('category_id',9)->first();
 

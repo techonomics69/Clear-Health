@@ -87,10 +87,6 @@ class PaymentsController extends BaseController
                 // Retrieve charge details 
                 $paymentDetails = $charge->jsonSerialize();
 
-                echo "<pre>";
-                print_r($paymentDetails);
-                echo "<pre>";
-                exit();
                 if ($paymentDetails['amount_refunded'] == 0 && empty($paymentDetails['failure_code']) && $paymentDetails['paid'] == 1 && $paymentDetails['captured'] == 1) {
                     /** You need to create model and other implementations */
                     /*
@@ -105,13 +101,14 @@ class PaymentsController extends BaseController
                         'transaction_complete_details'  => json_encode($paymentDetails)
                     ]);
                     */
-                    Checkout::where('order_id',request('order_id'))->update(['transaction_id'=>$paymentDetails['balance_transaction'],'customer'=>$paymentDetails['customer'],'payment_status'=>$paymentDetails['status'],'transaction_complete_details'=>json_encode($paymentDetails)]);
+                    Checkout::where('order_id',request('order_id'))->update(['transaction_id'=>$paymentDetails['balance_transaction'],'customer'=>$paymentDetails['customer'],'payment_method'=>$paymentDetails['payment_method'],'payment_status'=>$paymentDetails['status'],'transaction_complete_details'=>json_encode($paymentDetails)]);
 
                     $data['order_id']= request('order_id');
                     $data['amount']= request('amount');
                     $data['transaction_id'] = $paymentDetails['balance_transaction'];
                     $data['payment_status'] = $paymentDetails['status'];
-                    $data['customer'] = $paymentDetails['customer'];
+                    $data['customer'] = $paymentDetails['customer']; 
+                    $data['payment_method'] = $paymentDetails['payment_method'];
                     $data['transaction_complete_details'] = json_encode($paymentDetails);
 
 

@@ -302,13 +302,13 @@
 				
 				<h4><strong>Que  <?php echo $findex;?> : <?php  echo $fans->question;?></strong></h4>
 				<p>Ans: <?php 
-					if(is_array($fans->answer)){
-						// foreach($fans->answer as $fs){
-						// 	echo $fs."<br>";
-						// }
-					}else{
-						//echo $fans->answer;
-					}		
+					// if(is_array($fans->answer)){
+					// 	// foreach($fans->answer as $fs){
+					// 	// 	echo $fs."<br>";
+					// 	// }
+					// }else{
+					// 	//echo $fans->answer;
+					// }		
 				?></p>
 				</div>
 			</div>	

@@ -294,6 +294,7 @@
 				$fanswers = json_decode($fvalue->answer);
 				if(count($fanswers)>0){
 					$findex = 1;
+					print_r($fanswers);
 					foreach($fanswers as $fk => $fans){
 			?>		
 			<div class="row" style="padding: 10px;">
@@ -301,13 +302,14 @@
 				
 				<h4><strong>Que  <?php echo $findex;?> : </strong></h4>
 				<p>Ans: </p>
-			</div>
+				</div>
+			</div>	
 			<?php	
 					$findex++;
 					}
 				}
 		 } ?>
-		</div>
+		
 		</div>
 	<?php
 				
@@ -332,13 +334,14 @@
 				
 				<h4><strong>Que  <?php echo $findex;?> : }</strong></h4>
 				<p>Ans: </p>
+				</div>
 			</div>
 			<?php	
 					$findex++;
 					}
 				}
 		 } ?>
-		</div>
+		
 		</div>
 	<?php
 				

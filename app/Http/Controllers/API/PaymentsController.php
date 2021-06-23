@@ -68,9 +68,6 @@ class PaymentsController extends BaseController
 
         if (empty($apiError) && $customer) {
             /** Charge a credit or a debit card */
-
-            var_dump($amount);
-            var_dump($currency);
             try {
                 /** Stripe charge class */
                 $charge = Charge::create(array(
@@ -138,7 +135,7 @@ class PaymentsController extends BaseController
         ]);
        // Plan info 
 
-       $plans = array( 
+        $plans = array( 
             '1' => array( 
                 'name' => 'Weekly Subscription', 
                 'price' => 25, 
@@ -184,7 +181,7 @@ class PaymentsController extends BaseController
             /** Charge a credit or a debit card */
             // Convert price to cents 
             $priceCents = round($planPrice*100); 
-        
+
             // Create a plan 
             try { 
                 $plan = \Stripe\Plan::create(array( 
@@ -236,21 +233,21 @@ class PaymentsController extends BaseController
                         $input_subscr['status'] = $subsData['status'];
 
                         $add_subscr = Subscription:: create($input_subscr);
-                     
+
                         return $this->sendResponse($input_subscr, 'Subscription done successfully');
                     } else {
                         return $this->sendResponse(back()->withInput(), 'Subscription activation failed');
                     }
                 }else{
-                     return $this->sendResponse(back()->withInput(), 'Subscription creation failed! ' . $apiError);
-                } 
-            } else {
-                return $this->sendResponse(back()->withInput(), 'Error in capturing amount: ' . $apiError);
-            }
-        } else {
-             return $this->sendResponse(back()->withInput(), 'Invalid card details: ' . $apiError);
+                   return $this->sendResponse(back()->withInput(), 'Subscription creation failed! ' . $apiError);
+               } 
+           } else {
+            return $this->sendResponse(back()->withInput(), 'Error in capturing amount: ' . $apiError);
         }
-    }
+    } else {
+       return $this->sendResponse(back()->withInput(), 'Invalid card details: ' . $apiError);
+   }
+}
 
     public function cancel_subscription() {
         $sub_id = request('subscr_id');
@@ -270,18 +267,47 @@ class PaymentsController extends BaseController
             }
 
         }else{
-           return $this->sendResponse(back()->withInput(), 'Subscription creation failed! ');
-       }
-       
-   }
+         return $this->sendResponse(back()->withInput(), 'Subscription creation failed! ');
+     }
 
-   public function customer_payment_methods() {
+    }
+
+    public function customer_payment_methods() {
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
 
         $paymentDetails = \Stripe\PaymentMethod::all([
-        'customer' => request('customer'),
-        'type' => 'card',
+            'customer' => request('customer'),
+            'type' => 'card',
         ]);
         return $this->sendResponse($paymentDetails,'Customer payment method received successfully ');
+    }
+
+    public function customer_make_direct_payment() {
+        $customer_id = request('customer');
+        $payment_method_id = request('payment_method');
+        $amount = request('amount');
+
+        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+
+        try {
+            $direct_payment = \Stripe\PaymentIntent::create([
+                'amount' => $amount,
+                'currency' => 'usd',
+                'customer' => $customer_id,
+                'payment_method' => $payment_method_id,
+                'off_session' => true,
+                'confirm' => true,
+            ]);
+            echo "<pre>";
+            print_r($direct_payment);
+            echo "<pre>";
+            exit();
+        } catch (\Stripe\Exception\CardException $e) {
+                // Error code will be authentication_required if authentication is needed
+            echo 'Error code is:' . $e->getError()->code;
+            $payment_intent_id = $e->getError()->payment_intent->id;
+            $payment_intent = \Stripe\PaymentIntent::retrieve($payment_intent_id);
+        }
+
     }
 }

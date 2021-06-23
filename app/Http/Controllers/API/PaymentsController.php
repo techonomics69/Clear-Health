@@ -100,11 +100,12 @@ class PaymentsController extends BaseController
                         'transaction_complete_details'  => json_encode($paymentDetails)
                     ]);
                     */
-                    Checkout::where('order_id',request('order_id'))->update(['transaction_id'=>$paymentDetails['balance_transaction'],'payment_status'=>$paymentDetails['status'],'transaction_complete_details'=>json_encode($paymentDetails)]);
+                    Checkout::where('order_id',request('order_id'))->update(['transaction_id'=>$paymentDetails['balance_transaction'],'customer'=>$paymentDetails['customer'],'payment_status'=>$paymentDetails['status'],'transaction_complete_details'=>json_encode($paymentDetails)]);
                     $data['order_id']= request('order_id');
                     $data['amount']= request('amount');
                     $data['transaction_id'] = $paymentDetails['balance_transaction'];
                     $data['payment_status'] = $paymentDetails['status'];
+                    $data['customer'] = $paymentDetails['customer'];
                     $data['transaction_complete_details'] = json_encode($paymentDetails);
 
 

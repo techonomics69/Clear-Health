@@ -14,7 +14,7 @@ class AddCustomerFieldInCheckoutTable extends Migration
     public function up()
     {
         Schema::table('checkout', function (Blueprint $table) {
-            //
+            $table->string('customer')->after('transaction_id');
         });
     }
 

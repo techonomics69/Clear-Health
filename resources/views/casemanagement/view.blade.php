@@ -282,7 +282,9 @@
 			</div>
 			@endforeach
 		</div>
-	<?php }else if($key == 10){
+	<?php }
+	
+	if($key == 10){
 	?>
 		<div id="home10" class="tab-pane fade in">	
 				
@@ -294,7 +296,9 @@
 			</div>
 		</div>
 	<?php		
-	}else if($key == 11){
+	}
+	
+	if($key == 11){
 	?>
 	<div id="home11" class="tab-pane fade in">	
 				<div class="row" style="padding: 10px;">

@@ -283,7 +283,7 @@ class PaymentsController extends Controller
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
 
         try {
-            \Stripe\PaymentIntent::create([
+            $direct_payment = \Stripe\PaymentIntent::create([
                 'amount' => 1099,
                 'currency' => 'usd',
                 'customer' => $customer_id,
@@ -291,6 +291,10 @@ class PaymentsController extends Controller
                 'off_session' => true,
                 'confirm' => true,
             ]);
+            echo "<pre>";
+            print_r($direct_payment);
+            echo "<pre>";
+            exit();
         } catch (\Stripe\Exception\CardException $e) {
             // Error code will be authentication_required if authentication is needed
             echo 'Error code is:' . $e->getError()->code;

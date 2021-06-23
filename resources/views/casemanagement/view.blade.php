@@ -307,7 +307,7 @@
 							echo $fs."<br>";
 						}
 					}else{
-						echo $fans->answer;
+						//echo $fans->answer;
 					}		
 				?></p>
 				</div>

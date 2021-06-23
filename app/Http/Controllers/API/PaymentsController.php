@@ -280,7 +280,6 @@ class PaymentsController extends BaseController
         'customer' => request('customer'),
         'type' => 'card',
         ]);
-        echo "<pre>";
-        print_r($paymentDetails);
+        return $this->sendResponse(json_decode($paymentDetails),'Customer payment method received successfully ');
     }
 }

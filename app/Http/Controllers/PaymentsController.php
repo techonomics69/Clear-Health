@@ -291,7 +291,6 @@ class PaymentsController extends Controller
                 'off_session' => true,
                 'confirm' => true,
             ]);
-
             echo "<pre>";
             print_r($direct_payment);
             echo "<pre>";

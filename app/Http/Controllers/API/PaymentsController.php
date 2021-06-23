@@ -143,7 +143,7 @@ class PaymentsController extends BaseController
             ), 
             '2' => array( 
                 'name' => 'Monthly Subscription', 
-                'price' => 85, 
+                'price' => request('plan_price'), 
                 'interval' => 'month' 
             ), 
             '3' => array( 
@@ -152,7 +152,8 @@ class PaymentsController extends BaseController
                 'interval' => 'year' 
             ) 
         ); 
-        $planID = request('subscr_plan'); 
+        //$planID = request('subscr_plan'); 
+        $planID = 2; 
         $planInfo = $plans[$planID]; 
         $planName = $planInfo['name']; 
         $planPrice = $planInfo['price']; 
@@ -191,7 +192,7 @@ class PaymentsController extends BaseController
                     "amount" => $priceCents, 
                     "currency" => $currency, 
                     "interval" => $planInterval, 
-                    "interval_count" => 1 
+                    "interval_count" => 2 
                 )); 
             }catch(Exception $e) { 
                 $apiError = $e->getMessage(); 

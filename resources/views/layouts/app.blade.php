@@ -45,6 +45,7 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('theme/app-assets/css/plugins/forms/checkboxes-radios.css') }}">
   <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.22/datatables.min.css"/> -->
   <link rel="stylesheet" type="text/css"  href="{{ asset('theme/app-assets/css/datatables.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('theme/app-assets/css/loader.css') }}">
   
   @toastr_css
   <!-- END Page Level CSS-->
@@ -927,7 +928,7 @@ data-open="click" data-menu="vertical-menu" data-col="2-columns">
                 <div class="container-fluid p-0">
                   @yield('content')
                 </div>
-
+                <div class="loader">Loading...</div>      
                 <footer class="footer footer-static footer-light navbar-border">
                   <p class="clearfix blue-grey lighten-2 text-sm-center text-center mb-0 px-2">
                     <span class=" d-block d-md-inline-block">Copyright &copy; <?php echo date("Y"); ?> <a class="text-bold-800 grey darken-2" href="{{ route('home.dashboard') }}"

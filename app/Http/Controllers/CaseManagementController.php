@@ -476,8 +476,6 @@ public function sendMessageNonMedical(Request $request){
           }
         }
       }
-
-      
       
       if (!file_exists(public_path('/Message_files'))) {
         File::makeDirectory(public_path('/Message_files'),0777,true,true);

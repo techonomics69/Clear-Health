@@ -58,6 +58,7 @@
   <style type="text/css">
     .swal-icon.swal-icon--custom{ width: 80px }
   </style>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
   <!-- END Custom CSS-->
   @yield('stylesection')
 </head>
@@ -962,6 +963,7 @@ data-open="click" data-menu="vertical-menu" data-col="2-columns">
                   <!-- <script src="{{ asset('theme/js/main.js') }}"></script> -->
                   <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.22/datatables.min.js"></script>
                   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+                  <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
                   @toastr_js
                   @toastr_render
                   @yield('scriptsection')

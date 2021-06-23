@@ -165,6 +165,11 @@ class CaseManagementController extends Controller
     $topical_que=[];
   }
 
+  $followup_que = FollowUp::select('answer')->where("user_id"=>$user_case_management_data['user_id'])
+              ->where("case_id"=>$user_case_management_data['id'])->get();
+
+  
+
   //Get Non-medical msg
     $message_details = Messages::join('message_files', 'messages.id', '=', 'message_files.msg_id')->join('users', 'users.id', '=', 'messages.user_id')->select('messages.*','message_files.*','users.first_name','users.last_name')->where('user_id',$user_case_management_data['user_id'])->OrderBy('messages.id','asc')->get();
 
@@ -276,7 +281,7 @@ die();*/
   echo "</pre>";
   die();*/
 
-  return view('casemanagement.view',compact('user_case_management_data','category','general_que','accutane_que','topical_que','skincare_summary','message_data','message_details','msg_history'));
+  return view('casemanagement.view',compact('user_case_management_data','category','general_que','accutane_que','topical_que','skincare_summary','message_data','message_details','msg_history','followup_que'));
 
 }
 

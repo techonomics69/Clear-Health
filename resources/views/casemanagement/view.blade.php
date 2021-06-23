@@ -748,7 +748,7 @@
 	
 </div>
 <div class="sending lastimg">
-	<button type="submit" id="btnsubmit" id="submitdiv"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
+	<button type="submit" id="btnsubmit"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
 	<button type="button" id="spinnerdiv" style="display:none">
 		<span class="fa fa-spinner fa-spin"></span>
 	</button>
@@ -834,7 +834,7 @@
 <script>
 	$(document).ready(function() {
 		$('#btnsubmit').on('click', function(event) {
-			$("#submitdiv").hide();
+			$("#btnsubmit").hide();
 			$("#spinnerdiv").show();
 			event.preventDefault();
 			var submitFlag = false;	
@@ -870,7 +870,7 @@
 						contentType: false,
 						success: function(response){
 							if(response.status){
-								$("#submitdiv").show();
+								$("#btnsubmit").show();
 								$("#spinnerdiv").hide();
 								var data = response.data;
 								$('#text').val('');
@@ -908,20 +908,20 @@
 									$("#gotobottomdivmsg")[0].click();
 								},200);
 							}else{
-								$("#submitdiv").show();
+								$("#btnsubmit").show();
 								$("#spinnerdiv").hide();
 								toastr["error"](response.message)
 								// toastr.error();
 							}
 							
 						},error : function(){
-							$("#submitdiv").show();
+							$("#btnsubmit").show();
 							$("#spinnerdiv").hide();
 						}
 
 				});
 			}else{
-				$("#submitdiv").show();
+				$("#btnsubmit").show();
 				$("#spinnerdiv").hide();
 				toastr["error"]("Please add message or attachment");
 			}

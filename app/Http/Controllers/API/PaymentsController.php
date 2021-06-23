@@ -11,6 +11,7 @@ use Stripe\Customer;
 use Illuminate\Http\Request;
 use App\Models\Checkout;
 use App\Models\Subscription;
+use Carbon\Carbon;
 
 class PaymentsController extends BaseController
 {
@@ -232,6 +233,7 @@ class PaymentsController extends BaseController
                         $input_subscr['created'] = date("Y-m-d H:i:s", $subsData['created']);
                         $input_subscr['current_period_start'] = date("Y-m-d H:i:s", $subsData['current_period_start']); 
                         $input_subscr['current_period_end'] = date("Y-m-d H:i:s", $subsData['current_period_end']); 
+                        $input_subscr['subscribed_at'] = Carbon::now();
                         $input_subscr['status'] = $subsData['status'];
 
                         $add_subscr = Subscription:: create($input_subscr);

@@ -15,6 +15,7 @@ use App\Models\Cart;
 use App\Models\Product;
 use App\Models\Messages;
 use App\Models\MessageFiles;
+use App\Models\FollowUp;
 use Redirect;
 use Session;
 use File;

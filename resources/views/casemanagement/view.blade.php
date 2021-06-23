@@ -190,7 +190,9 @@
 										</ul>
 
 										<div class="tab-content">
-											<?php $i=0 ?>
+											<?php $i=0
+											print_r($category);
+											?>
 											@foreach($category as $key => $data)
 
 											<?php if($key == 7) { ?>

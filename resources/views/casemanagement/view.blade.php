@@ -890,7 +890,8 @@
 							$("#gotobottomdivmsg")[0].click();
 						},200);
 					}else{
-						toastr.error(response.message);
+						toastr["error"](response.message)
+						// toastr.error();
 					}
 					
 				}
@@ -917,12 +918,21 @@
 		},1000);
 	});
 
+	function bytesToSize(bytes) {
+		const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
+		if (bytes === 0) return 'n/a'
+		const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)), 10)
+		if (i === 0) return `${bytes} ${sizes[i]})`
+		return `${(bytes / (1024 ** i)).toFixed(1)} ${sizes[i]}`
+	}
+
 	var loadFile = function(event) {
 	var exts = ['jpg','jpeg','png'];
 	
 	var fname = event.target.files[0].name;
 	var fileNameExt = fname.substr(fname.lastIndexOf('.') + 1);
-	console.log(fileNameExt);
+	var filesize = event.target.files[0].size;
+	console.log('file size is '+bytesToSize(filesize));
 	var reader = new FileReader();
 	if ($.inArray(fileNameExt, exts) !== -1){
 		reader.onload = function(){

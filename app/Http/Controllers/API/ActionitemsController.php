@@ -30,31 +30,24 @@ class ActionitemsController extends BaseController
 
      public function addIpledgeAgreement(Request $request)      
     {
-        //$data = $request->all();
-
-        $input_data = request()->all();
-    echo "<pre>";
-    print_r($input_data);
-    echo "<pre>";
-    exit();
-    IpledgeAgreement::crate($input_data);
+        $data = $request->all();
    
         try{
             $validator = Validator::make($data, [
                 'user_id' => 'required',
                 'case_id' => 'required',
-                'category_id' => 'required',
+                'md_case_id' => 'required',
             ]);
             if($validator->fails()){
                 return $this->sendError('Validation Error.', $validator->errors()->all());       
             }
-            $answer = Answers::where('user_id', $data['user_id'])->where('case_id', $data['case_id'])->where('category_id', $data['category_id'])->first();
-            if(isset($answer)){
-                $answerUpdate = Answers::where('id',$answer->id)->update($data);
-                return $this->sendResponse(array(), 'Answer Updated Successfully');
+            $agreement = IpledgeAgreement::where('user_id', $data['user_id'])->where('case_id', $data['case_id'])->where('md_case_id', $data['md_case_id'])->first();
+            if(isset($agreement)){
+                $agreementUpdate = IpledgeAgreement::where('id',$agreement->id)->update($data);
+                return $this->sendResponse(array(), 'Form Data Updated Successfully');
             }else{
-                $answerInsert = Answers::create($data);
-                return $this->sendResponse(array(), 'Answer Added Successfully');
+                $agreementInsert = IpledgeAgreement::crate($data);
+                return $this->sendResponse(array(), 'Form Data Added Successfully');
             }
         }catch(\Exception $ex){
             return $this->sendError('Server error',array($ex->getMessage()));

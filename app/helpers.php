@@ -513,7 +513,7 @@ if(!empty($Patient_data)){
   //$no_substitutions = false;
   //$pharmacy_notes =  "";
   $quantity = 30;
-  $preferred_pharmacy_id ="123456";
+  $preferred_pharmacy_id =13012;
 
 
       /*$DispensUnitId = $this->getDispensUnitId();
@@ -813,13 +813,13 @@ if(!empty($Patient_data)){
       return $ipledge_id['patient_id'];
     }*/
 
-    /*function getRecommendedProductToUser($user_id,$case_id){
+    function getRecommendedProductToUser($user_id,$case_id){
          $recommended_product = CaseManagement::select('recommended_product')->where('id',$case_id)->where('user_id',$user_id)->first();
          $recommended_product = $recommended_product['recommended_product'];
 
          return $recommended_product;
 
-    }*/
+    }
 
     function getAssignedIpledgeIdToUser($user_id,$case_id,$md_case_id){
 

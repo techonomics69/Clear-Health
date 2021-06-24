@@ -44,10 +44,10 @@ class ActionitemsController extends BaseController
             $agreement = IpledgeAgreement::where('user_id', $data['user_id'])->where('case_id', $data['case_id'])->where('md_case_id', $data['md_case_id'])->first();
             if(isset($agreement)){
                 $agreementUpdate = IpledgeAgreement::where('id',$agreement->id)->update($data);
-                return $this->sendResponse(array(), 'Form Data Updated Successfully');
+                return $this->sendResponse($data, 'Form Data Updated Successfully');
             }else{
                 $agreementInsert = IpledgeAgreement::create($data);
-                return $this->sendResponse(array(), 'Form Data Added Successfully');
+                return $this->sendResponse($agreementInsert, 'Form Data Added Successfully');
             }
         }catch(\Exception $ex){
             return $this->sendError('Server error',array($ex->getMessage()));

@@ -46,7 +46,7 @@ class ActionitemsController extends BaseController
                 $agreementUpdate = IpledgeAgreement::where('id',$agreement->id)->update($data);
                 return $this->sendResponse(array(), 'Form Data Updated Successfully');
             }else{
-                $agreementInsert = IpledgeAgreement::crate($data);
+                $agreementInsert = IpledgeAgreement::create($data);
                 return $this->sendResponse(array(), 'Form Data Added Successfully');
             }
         }catch(\Exception $ex){

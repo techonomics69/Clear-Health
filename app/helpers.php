@@ -664,7 +664,7 @@ if(!empty($Patient_data)){
       $input_data['md_created_at'] = $case_data->created_at;
     }
    
-    $input_data['support_reason'] = $case_data->support_reason;
+    //$input_data['support_reason'] = $case_data->support_reason;
     $input_data['case_id'] = $case_data->case_id;
     $input_data['status'] = $case_data->status;
     $input_data['user_id'] = $user_id;

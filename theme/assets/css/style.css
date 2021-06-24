@@ -858,5 +858,26 @@ margin-left:16px
 .select2-container {
     width: 100% !important;
 }
+
+.time_messages {
+   display: flex;
+   justify-content: space-between;
+   position: relative;
+}
+ .time_messages h5 {
+   font-size: 11px;
+   max-width: 10%;
+   text-align: right;
+   margin: 0;
+   position: absolute;
+   bottom: 0;
+   right: 0;
+}
+ .time_messages .text_mesg {
+   max-width: 90%;
+   overflow: hidden;
+   text-align: justify;
+}
+ 
 /* media */
 /* 2212 

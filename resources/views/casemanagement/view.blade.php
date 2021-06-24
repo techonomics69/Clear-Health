@@ -693,7 +693,8 @@
 												
 												@foreach ($msg_history as $key => $md_message)
 													<li class="left">
-											<p>
+													<div  class="time_messages">
+											<p class="text_mesg">
 												<?php 
 												if(isset($md_message['message']) &&  $md_message['message']!=''){
 													echo $md_message['message'];
@@ -708,6 +709,7 @@
 											</p>
 
 														<h5>{{ $md_message['msg_date'] }}</h5>
+													</div>
 													</li>
 													@endforeach
 											</ul>

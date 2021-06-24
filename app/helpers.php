@@ -654,10 +654,7 @@ if(!empty($Patient_data)){
 
     $case_data = json_decode($response);
 
-    echo "<pre>";
-    print_r($case_data);
-    echo "<pre>";
-    exit();
+   
 
     $input_data['prioritized_at'] = $case_data->prioritized_at;
     $input_data['prioritized_reason'] = $case_data->prioritized_reason;
@@ -671,13 +668,13 @@ if(!empty($Patient_data)){
    
     //$input_data['support_reason'] = $case_data->support_reason;
     $input_data['case_id'] = $case_data->case_id;
-    //$input_data['status'] = $case_data->status;
+    $input_data['status'] = $case_data->case_status->name ;
     $input_data['user_id'] = $user_id;
     $input_data['system_case_id'] = $case_id;
 
     $md_case_data = Mdcases::create($input_data);
 
-    $case_management  =  CaseManagement::where('id',$case_id)->where('user_id',$user_id)->update(['md_case_status' => $case_data->status,'system_status' => 'Telehealth Evaluation Requested']);
+    $case_management  =  CaseManagement::where('id',$case_id)->where('user_id',$user_id)->update(['md_case_status' => $case_data->case_status->name,'system_status' => 'Telehealth Evaluation Requested']);
 
      $update_order_data  =  Checkout::where('case_id',$case_id)->where('user_id',$user_id)->where('order_id',$order_id)->update(['md_case_id' => $case_data->case_id]);
 

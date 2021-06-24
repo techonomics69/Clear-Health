@@ -654,6 +654,11 @@ if(!empty($Patient_data)){
 
     $case_data = json_decode($response);
 
+    echo "<pre>";
+    print_r($case_data);
+    echo "<pre>";
+    exit();
+
     $input_data['prioritized_at'] = $case_data->prioritized_at;
     $input_data['prioritized_reason'] = $case_data->prioritized_reason;
     $input_data['cancelled_at'] = $case_data->prioritized_reason;
@@ -666,7 +671,7 @@ if(!empty($Patient_data)){
    
     //$input_data['support_reason'] = $case_data->support_reason;
     $input_data['case_id'] = $case_data->case_id;
-    $input_data['status'] = $case_data->status;
+    //$input_data['status'] = $case_data->status;
     $input_data['user_id'] = $user_id;
     $input_data['system_case_id'] = $case_id;
 

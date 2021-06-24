@@ -127,7 +127,6 @@ Route::post('getToken', [CaseManagementController::class, 'get_token']);
     //end of md api
 
      Route::post('updateFieldInCaseManagement',[CaseManagementController::class,'updateFieldInCaseManagement']);
-     Route::post('updateFieldInCaseManagement',[CaseManagementController::class,'updateFieldInCaseManagement']);
 
     //system message API
     Route::post('sendMessageNonMedical', [CaseManagementController::class, 'sendMessageNonMedical']);
@@ -157,6 +156,10 @@ Route::post('getToken', [CaseManagementController::class, 'get_token']);
     Route::post('cancel_subscription', [PaymentsController::class, 'cancel_subscription']);
     Route::post('customer_payment_methods', [PaymentsController::class, 'customer_payment_methods']);
     Route::post('customer_make_direct_payment', [PaymentsController::class, 'customer_make_direct_payment']);
+
+    //Action Items
+
+     Route::post('addIpledgeAgreement',[ActionitemsController::class,'addIpledgeAgreement']);
 
     //Change Password
      Route::post('changePassword', [ChangePasswordController::class, 'changePassword']);

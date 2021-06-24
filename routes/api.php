@@ -24,6 +24,7 @@ use App\Http\Controllers\API\ChangePasswordController;
 use App\Http\Controllers\API\OfferController;
 use App\Http\Controllers\API\FollowupController;
 use App\Http\Controllers\API\PaymentsController;
+use App\Http\Controllers\API\ActionitemsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -125,6 +126,7 @@ Route::post('getToken', [CaseManagementController::class, 'get_token']);
      Route::post('getTestReport', [CaseManagementController::class, 'getTestReport']);
     //end of md api
 
+     Route::post('updateFieldInCaseManagement',[CaseManagementController::class,'updateFieldInCaseManagement']);
      Route::post('updateFieldInCaseManagement',[CaseManagementController::class,'updateFieldInCaseManagement']);
 
     //system message API

@@ -8,7 +8,7 @@ use App\Models\IpledgeAgreement;
 use Validator;
 use Exception;
 
-class Actionitems extends BaseController
+class ActionitemsController extends BaseController
 {
     public function index()
     {

@@ -22,6 +22,7 @@ use App\Models\MessageFiles;
 use App\Models\Messages;
 use App\Models\FollowUp;
 use App\Models\Ipledge;
+use App\Models\IpledgeAgreement;
 use File;
 use Carbon\Carbon;
 
@@ -1199,7 +1200,15 @@ public function getMdDetailForMessage(Request $request){
 
     return $this->sendResponse($data,'Field Updated Successfully.');
 
+  }
 
+  public function  addIpledgeAgreement(){
+    $input_data = request()->all();
+    echo "<pre>";
+    print_r($input_data);
+    echo "<pre>";
+    exit();
+    IpledgeAgreement::crate($input_data);
 
 
   }

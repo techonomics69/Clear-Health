@@ -30,7 +30,14 @@ class Actionitems extends BaseController
 
      public function addIpledgeAgreement(Request $request)      
     {
-        $data = $request->all();
+        //$data = $request->all();
+
+        $input_data = request()->all();
+    echo "<pre>";
+    print_r($input_data);
+    echo "<pre>";
+    exit();
+    IpledgeAgreement::crate($input_data);
    
         try{
             $validator = Validator::make($data, [
@@ -53,7 +60,6 @@ class Actionitems extends BaseController
             return $this->sendError('Server error',array($ex->getMessage()));
         }
     }
-
 
 public function create()
 {

@@ -561,7 +561,7 @@ if(!empty($Patient_data)){
       $medication_compound_data[0]['days_supply'] = $days_supply;
       $medication_compound_data[0]['directions'] = $directions;
       $medication_compound_data[0]['dispense_unit_id'] = $DispensUnitId;
-      $medication_compound_data[0]['preferred_pharmacy_id'] = $preferred_pharmacy_id;
+      $medication_compound_data[0]['pharmacy_id'] = $preferred_pharmacy_id;
      //$medication_compound_data[0]['no_substitutions'] = $no_substitutions;
       //$medication_compound_data[0]['pharmacy_notes'] = $pharmacy_notes;
 
@@ -611,7 +611,7 @@ if(!empty($Patient_data)){
       $medication_compound_data[0]['days_supply'] = $days_supply;
       $medication_compound_data[0]['directions'] = $directions;
       $medication_compound_data[0]['dispense_unit_id'] = $DispensUnitId;
-      $medication_compound_data[0]['preferred_pharmacy_id'] = $preferred_pharmacy_id;
+      $medication_compound_data[0]['pharmacy_id'] = $preferred_pharmacy_id;
      // $medication_compound_data[0]['no_substitutions'] = $no_substitutions;
       //$medication_compound_data[0]['pharmacy_notes'] = $pharmacy_notes;
 

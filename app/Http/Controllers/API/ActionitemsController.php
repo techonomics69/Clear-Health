@@ -53,6 +53,12 @@ class ActionitemsController extends BaseController
         }
     }
 
+    public function showActionItemsForm(Request $request){
+        //code for ipledge agreement(sign_ipledge_consent) and birthcontrol form (abstinence_form)
+
+        //end of code for ipledge agreement(sign_ipledge_consent) and birthcontrol form (abstinence_form)
+    }
+
 public function create()
 {
 

@@ -741,7 +741,8 @@
 										
 		<li id="<?php if($key == count($message_data) - 1) echo 'bottomDivMsg'.$message['id'] ?>" class = <?php if($message['sender'] == 'admin') { ?>"right"<?php }else{ ?>
 		"left" <?php } ?>>
-											<p >
+											<div  class="time_messages">
+											<p class="text_mesg">
 												<?php 
 												echo $message['message'];
 												if(isset($message['file_name']) && $message['file_name']!=''){
@@ -798,6 +799,7 @@
 													echo $message['date'];
 												}?>
 											</h5>
+										</div>
 										</li>
 									
 

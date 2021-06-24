@@ -19,7 +19,7 @@ class ActionitemsController extends BaseController
     public function getIpledgeAgreement(Request $request)
     {
         try{
-            $answer = Answers::where('user_id', $request->user_id)->where('case_id', $request->case_id)->where('md_case_id', $request->md_case_id)->first();
+            $answer = IpledgeAgreement::where('user_id', $request->user_id)->where('case_id', $request->case_id)->where('md_case_id', $request->md_case_id)->first();
                  return $this->sendResponse($answer, 'Form data retrieved successfully.');
         }catch(\Exception $ex){
             return $this->sendError('Server error', array($ex->getMessage()));

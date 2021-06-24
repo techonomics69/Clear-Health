@@ -15,7 +15,7 @@ class AddFieldInMdCasesTable extends Migration
     {
         Schema::table('md_cases', function (Blueprint $table) {
             $table->string('case_status_reason')->after('status');
-            $table->string('case_status_updated_at')->after('case_status_reason')->nullabl();
+            $table->string('case_status_updated_at')->after('case_status_reason')->nullable();
         });
     }
 

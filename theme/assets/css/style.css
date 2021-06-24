@@ -811,6 +811,7 @@ padding: 0.5rem;
  .chating-section ul li.right {
    margin-left: 299px;
    background: #0000ff14;
+   padding: 10px;
 }
  .chating-section ul li.right p {
     padding: 0;
@@ -878,6 +879,6 @@ margin-left:16px
    overflow: hidden;
    text-align: justify;
 }
- 
+
 /* media */
 /* 2212 

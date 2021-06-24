@@ -1202,15 +1202,6 @@ public function getMdDetailForMessage(Request $request){
 
   }
 
-  public function  addIpledgeAgreement(){
-    $input_data = request()->all();
-    echo "<pre>";
-    print_r($input_data);
-    echo "<pre>";
-    exit();
-    IpledgeAgreement::crate($input_data);
-
-
-  }
+ 
 
 }

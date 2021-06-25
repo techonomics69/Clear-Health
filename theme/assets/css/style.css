@@ -887,9 +887,13 @@ margin-left:16px
 .all_screen_section .Outer_box_design {
   max-width: 800px;
   margin: 20px auto;
-  border: 1px solid #aaa;
+  /* border: 1px solid #aaa; */
+  box-shadow: 0px 0px 8px 5px #eaeaea;
   padding: 15px;
 }
+
+
+
 
 .all_screen_section .Outer_box_design .ipledge_id p {
   font-size: 18px;

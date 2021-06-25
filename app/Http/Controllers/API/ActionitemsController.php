@@ -60,7 +60,6 @@ class ActionitemsController extends BaseController
         $md_case_id = $request['md_case_id'];
 
         $user_gender = User::select('gender')->where('id', $user_id)->first();
-
         echo "<pre>";
         print_r('$user_gender');
         echo "<pre>";

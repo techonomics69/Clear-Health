@@ -1281,16 +1281,16 @@
 <script>
 
 function openbloodwork(){
-	alert();
-	//   if($(".bloodworkform").hasClass("bloodworkhide")){
-	// 	  $(".bloodworkform").animate({
-	// 		$(".bloodworkform").addClass('bloodworkshow');
-	// 	  },1000);
-	//   }else{
-	// 	$(".bloodworkform").animate({
-	// 		$(".bloodworkform").addClass('bloodworkhide');
-	// 	  },1000);
-	//   }
+	// alert();
+	  if($(".bloodworkform").hasClass("bloodworkhide")){
+		  
+			$(".bloodworkform").addClass('bloodworkshow');
+		  
+	  }else{
+		
+			$(".bloodworkform").addClass('bloodworkhide');
+		
+	  }
   }
 
 	$(document).ready(function() {

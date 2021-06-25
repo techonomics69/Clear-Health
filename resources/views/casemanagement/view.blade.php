@@ -189,7 +189,7 @@
 											@foreach($category as $key => $data)
 											{{-- <li><a class="btn @if($key == 0) active @elseif($current_tab_id == 'home'.$key) active @endif" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li> --}}
 
-											<li><a class="btn" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li>
+											<li><a class="btn @if($key == 0) active @elseif($current_tab_id == 'home'.$key) active @endif" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li>
 											<?php //$activeTab++ ?> 
 											@endforeach
 										</ul>

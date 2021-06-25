@@ -555,6 +555,11 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
            $gender =  $patient_data['gender'];
 
+           echo "<pre>";
+           print_r($gender);
+           echo "<pre>";
+           exit();
+
            if($gender == 1){
             $patient_gender = 'Male';
           }else if($gender == 2){

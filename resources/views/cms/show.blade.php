@@ -95,6 +95,7 @@
      tinymce.init({
             selector: 'textarea.description',
             height: 500,
+            menubar: false,
      });
  </script>
 @endsection

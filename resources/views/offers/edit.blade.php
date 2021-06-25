@@ -214,7 +214,8 @@ $(document).ready(function ($) {
                     var dt = new Date(selected);
                     dt.setDate(dt.getDate());
                     $("#to_date").datepicker("option", "minDate", dt);
-                }
+                },
+                dateFormat : 'yy-mm-dd'
             });
             $("#to_date").datepicker({
                 //numberOfMonths: 2,
@@ -223,7 +224,8 @@ $(document).ready(function ($) {
                     var dt = new Date(selected);
                     dt.setDate(dt.getDate());
                     $("#from_date").datepicker("option", "maxDate", dt);
-                }
+                },
+                dateFormat : 'yy-mm-dd'
             });
         });
 

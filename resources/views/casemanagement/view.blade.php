@@ -622,7 +622,7 @@
 						<section class="all_screen_section">
 							<div class="Outer_box_design">
 
-								<div class="ipledge_button">
+								<div class="ipledge_button m-0">
 									<a class="btn btn-secondry" href="#"><i class="fa fa-plus" aria-hidden="true"></i> Add New</a>
 								</div>
 

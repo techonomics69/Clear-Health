@@ -121,18 +121,19 @@
             var email = $("#email").val();
             var password = $("#password").val();
             var c_password = $("#confirm_password").val();
-            if(email == '' ){
-                toastr["error"]("Please enter email");
-                passflag = false;
-            }else if(password == ''){
-                toastr["error"]("Please enter password");
-                passflag = false;
-            }else if(c_password == ''){
-                toastr["error"]("Please enter confirm password");
-                passflag = false;
-            }else{
-                passflag = true;
-            }
+            alert(email+' '+password+' '+c_password);
+            // if(email == '' ){
+            //     toastr["error"]("Please enter email");
+            //     passflag = false;
+            // }else if(password == ''){
+            //     toastr["error"]("Please enter password");
+            //     passflag = false;
+            // }else if(c_password == ''){
+            //     toastr["error"]("Please enter confirm password");
+            //     passflag = false;
+            // }else{
+            //     passflag = true;
+            // }
             
             if(passflag){
                 alert('submitted');

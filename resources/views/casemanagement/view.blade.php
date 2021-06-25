@@ -235,7 +235,7 @@
 
 												<?php if($key == 8) { ?>
 													<?php $j = 0; ?>
-													<div id="home8" class="tab-pane fade in">	
+													<div id="home8" class="tab-pane fade in @if($i== 1) active show @endif">	
 														@foreach($accutane_que as $key => $accutane)
 														<div class="row" style="padding: 10px;">
 															<div class="col-md-12">
@@ -261,7 +261,7 @@
 
 		<?php if($key == 9) { ?>
 			<?php $j = 0; ?>
-			<div id="home9" class="tab-pane fade in">	
+			<div id="home9" class="tab-pane fade in @if($i== 2) active show @endif">	
 				@foreach($topical_que as $key => $topical)
 				<div class="row" style="padding: 10px;">
 					<div class="col-md-12">
@@ -289,7 +289,7 @@
 			if(count($followup_que) > 0){
 				
 	?>
-		<div id="home10" class="tab-pane fade in">	
+		<div id="home10" class="tab-pane fade in @if($i== 3) active show @endif">	
 			<?php foreach($followup_que as $fkey => $fvalue){
 				$fanswers = json_decode($fvalue->answer);
 				if(count($fanswers)>0){
@@ -338,7 +338,7 @@
 			if(count($followup_que) > 0){
 				
 	?>
-		<div id="home11" class="tab-pane fade in">	
+		<div id="home11" class="tab-pane fade in @if($i== 4) active show @endif">	
 			<?php foreach($followup_que as $fkey => $fvalue){
 				$fanswers = json_decode($fvalue->answer);
 				if(count($fanswers)>0){

@@ -1138,9 +1138,10 @@
   };
 
   $(".firstquebutton").each(function(v,i){
-	if(i == 0){
-		$(this).addClass('active');
-	}
+	console.log(i);  
+	// if(i == 0){
+	// 	$(this).addClass('active');
+	// }
   });
 
 </script>

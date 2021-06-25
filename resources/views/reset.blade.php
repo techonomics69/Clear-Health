@@ -70,7 +70,7 @@ data-open="click" data-menu="vertical-menu" data-col="1-column">
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right" style="color: #fff">E-Mail Address</label>
                           <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" autocomplete="email" autofocus>
+                                <input id="email" oninput="resetValue('email')" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" autocomplete="email" autofocus>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -78,7 +78,7 @@ data-open="click" data-menu="vertical-menu" data-col="1-column">
                                     </span>
                                 @enderror
 
-                                <span class="invalid-feedback" role="alert">
+                                <span class="invalid-feedback email" role="alert">
                                         <strong>Please enter email address</strong>
                                 </span>
                             </div>
@@ -87,7 +87,7 @@ data-open="click" data-menu="vertical-menu" data-col="1-column">
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right" style="color: #fff">Password</label>
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="new-password">
+                                <input id="password" oninput="resetValue('password')" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="new-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -95,10 +95,10 @@ data-open="click" data-menu="vertical-menu" data-col="1-column">
                                     </span>
                                 @enderror
 
-                                <span class="invalid-feedback" role="alert">
+                                <span class="invalid-feedback password" role="alert">
                                         <strong>Please enter password</strong>
                                 </span>
-                                <span class="invalid-feedback" role="alert">
+                                <span class="invalid-feedback passwordpattern" role="alert">
                                         <strong>Password must contain at least 8 characters [ one uppercase, lowercase, number & special character</strong>
                                 </span>
 
@@ -109,19 +109,19 @@ data-open="click" data-menu="vertical-menu" data-col="1-column">
                       <div class="form-group row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right" style="color: #fff">Confirm Password</label>
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password">
+                                <input id="password-confirm" oninput="resetValue('confirmpass')" type="password" class="form-control" name="password_confirmation" autocomplete="new-password">
                                 @error('password_confirmation')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                                <span class="invalid-feedback" role="alert">
+                                <span class="invalid-feedback cpassword" role="alert">
                                         <strong>Please enter confirm password</strong>
                                 </span>
-                                <span class="invalid-feedback" role="alert">
+                                <span class="invalid-feedback cpasswordpattern" role="alert">
                                         <strong>Confirm password must contain at least 8 characters [ one uppercase, lowercase, number & special character</strong>
                                 </span>
-                                <span class="invalid-feedback" role="alert">
+                                <span class="invalid-feedback cpasswordmatch" role="alert">
                                         <strong>Confirm password not matched with new password</strong>
                                 </span>
                             </div>
@@ -150,30 +150,27 @@ data-open="click" data-menu="vertical-menu" data-col="1-column">
       
             var passflag = false;
             var passregex = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,30}/;
-            var emailregex = /[^\s@]+@[^\s@]+\.[^\s@]+/;
+            // var emailregex = /[^\s@]+@[^\s@]+\.[^\s@]+/;
             var email = $("#email").val();
             var password = $("#password").val();
             var c_password = $("#password-confirm").val();
             if(email == '' || email == null){
-                toastr["error"]("Please enter email address");
-                passflag = false;
-            }else if(!emailregex.test(email)){
-                toastr["error"]("Please enter valid email address");
+                $(".email").show();
                 passflag = false;
             }else if(password == '' || password == null){
-                toastr["error"]("Please enter password");
+                $(".password").show();
                 passflag = false;
             }else if(!passregex.test(password)){
-                toastr["error"]("Password must contain at least 8 characters [ one uppercase, lowercase, number & special character");
+                $(".passwordpattern").show();
                 passflag = false;
             }else if(c_password == '' || c_password == null){
-                toastr["error"]("Please enter confirm password");
+                $(".cpassword").show();
                 passflag = false;
             }else if(!passregex.test(c_password)){
-                toastr["error"]("Password must contain at least 8 characters [ one uppercase, lowercase, number & special character");
+                $(".cpasswordpattern").show();
                 passflag = false;
             }else if(c_password !== password){
-                toastr["error"]("confirm password not matched password");
+                $(".cpasswordmatch").show();
                 passflag = false;    
             }else{
                 passflag = true;
@@ -185,6 +182,19 @@ data-open="click" data-menu="vertical-menu" data-col="1-column">
             }
             
         });
+
+  function resetValue(ele){
+    if(ele == 'email'){
+      $(".email").hide();
+    }else if(ele == 'password'){
+      $(".password").hide();
+      $(".passwordpattern").hide();
+    }else if(ele == 'confirmpass'){
+      $(".cpassword").hide();
+      $(".cpasswordpattern").hide();
+      $(".cpasswordmatch").hide();
+    }
+  }        
 </script>
 </body>
 </html>

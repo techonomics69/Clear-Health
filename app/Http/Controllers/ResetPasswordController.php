@@ -10,7 +10,7 @@ class ResetPasswordController extends Controller {
 
   public function getPassword($token) { 
     $updatePassword = DB::table('password_resets')
-    ->where(['token' => $request->token])
+    ->where(['token' => $token])
     ->first();
 
     if(!$updatePassword){

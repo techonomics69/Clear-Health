@@ -15,7 +15,14 @@ class ResetPasswordController extends Controller {
 
   public function updatePassword(Request $request)
   {
-  dd(url()->current());
+  
+  if(strpos(url()->current(), 'dev.')!== false){
+    echo "found";
+  }else{
+    echo "not found";
+  }
+
+  die();  
   $request->validate([
       'email' => 'required|email|exists:users',
       'password' => 'required|string|min:6|confirmed',

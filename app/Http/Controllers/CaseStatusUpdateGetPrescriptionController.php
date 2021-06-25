@@ -21,6 +21,7 @@ use App\Models\Mdpatient;
 use App\Models\CurexaOrder;
 use App\Models\Mdcases;
 use Session;
+use Carbon\Carbon;
 
 
 class CaseStatusUpdateGetPrescriptionController extends Controller
@@ -478,7 +479,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
               $input_medication['monograph_path'] = $prescription->medication->monograph_path;
               $input_medication['drug_classification'] = $prescription->medication->drug_classification;
               $input_medication['state_schedules'] = json_encode($prescription->medication->state_schedules);
-              
+
               $CasePrescription_data = PrescriptionMedication::create($input_medication);
 
             }
@@ -667,6 +668,9 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
         $order_data['rx_item_count'] = $curexa_order_data['rx_item_count'];
         $order_data['otc_item_count'] = $curexa_order_data['otc_item_count'];
         $order_data['status'] = $curexa_order_data['status'];
+        if($curexa_order_data['status'] == 'out_for_delivery'){
+          $order_data['dispached_date'] = Carbon::now();
+        }
         $order_data['message'] = $curexa_order_data['message'];
 
         $inserted_data = CurexaOrder::create($order_data);

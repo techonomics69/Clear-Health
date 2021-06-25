@@ -57,7 +57,7 @@
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>Email</label><span class="required">*</span>
-                                        {!! Form::text('email', $user->email, array('placeholder' => 'Email','class' => 'form-control')) !!}
+                                        {!! Form::email('email', $user->email, array('placeholder' => 'Email','class' => 'form-control')) !!}
                                     </div>
                                 </div>
                             </div>

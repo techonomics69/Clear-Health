@@ -503,130 +503,127 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
      
 
      $order_data = Checkout::where([['user_id', $user_id],['case_id', $case_id],['md_case_id', $system_case_id]])->get()->toArray();
+     if(!empty($order_data)){
+        $order_id = $order_data['order_id'];
 
-     $order_id = $order_data['order_id'];
-
-     $user = User::find($user_id);
-
-
-     $userQueAns = getQuestionAnswerFromUserid($user_id,$case_id);
-     foreach ($userQueAns as $key => $value) {
-
-      $question = $value->question;
-
-      if($question == "Please list medications that you are allergic to."){
-        if(isset($value->answer) && $value->answer!=''){
-
-          $allergies =  $value->answer;
-
-        }
-      }
-
-      if($question == "Please list any other medications that you’re currently taking."){
-        if(isset($value->answer) && $value->answer!=''){
-
-          $current_medications =  $value->answer;
-
-        }
-      }
-
-    }
+         $user = User::find($user_id);
 
 
+         $userQueAns = getQuestionAnswerFromUserid($user_id,$case_id);
 
-    $shipping_address = Checkoutaddress::select('*')
-    ->where('checkout_address.order_id',$order_id)
-    ->where('checkout_address.address_type',1)
-    ->OrderBy('id', 'DESC')
-    ->first();
+        foreach ($userQueAns as $key => $value) {
 
+          $question = $value->question;
 
+          if($question == "Please list medications that you are allergic to."){
+            if(isset($value->answer) && $value->answer!=''){
 
-    $patient_id = $user['md_patient_id'];
+              $allergies =  $value->answer;
 
-    if($patient_id != '' || $patient_id != NULL ){
+            }
+          }
 
-     $patient_data =   Mdpatient::where('patient_id', $patient_id)->get()->toArray();
+          if($question == "Please list any other medications that you’re currently taking."){
+            if(isset($value->answer) && $value->answer!=''){
 
-     $gender =  $patient_data['gender'];
+              $current_medications =  $value->answer;
 
-     if($gender == 1){
-      $patient_gender = 'Male';
-    }else if($gender == 2){
-      $patient_gender = 'Female';
-    }else{
-      $patient_gender = 'Not known';
-    }
-      /*  0 = Not known;
-          1 = Male;
-          2 = Female;
-          9 = Not applicable.
-      */
-
-          $patient_dob = date('Ymd', strtotime($patient_data['dob']));
-
-
-          $rx_items= array();
-
-          $rx_items['rx_id'] = $curexa_para['rx_id'];
-          $rx_items['quantity_dispensed'] = $curexa_para['quantity_dispensed'];
-          $rx_items['days_supply'] = $curexa_para['days_supply'];
-          $rx_items['prescribing_doctor'] =  $md_deatail['name'];
-          $rx_items['medication_sig'] = $curexa_para['medication_sig'];
-          $rx_items['non_child_resistant_acknowledgment'] = false;
-
-
-
-          $curl = curl_init();
-
-          curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://api.curexa.com/orders',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS =>'{
-              "order_id": '.$order_id.',
-              "patient_id":'. $patient_id.',
-              "patient_first_name": '.$patient_data['first_name'].',
-              "patient_last_name": '.$patient_data['last_name'].',
-              "patient_dob": '.$patient_dob.',
-              "patient_gender":'.$patient_gender.',
-              "carrier":"FEDEX",
-              "shipping_method":"",
-              "address_to_name":'.$shipping_address['patient_firstname'].' '.$shipping_address['patient_lastname'].',
-              "address_to_street1":'.$shipping_address['addressline1'].',
-              "address_to_street2":'.$shipping_address['addressline2'].',
-              "address_to_city":'.$shipping_address['city'].',
-              "address_to_state":'.$shipping_address['state'].',
-              "address_to_zip":'.$shipping_address['zipcode'].',
-              "address_to_country":"US",
-              "address_to_phone":'.$shipping_address['phone'].',
-              "notes":"Test",
-              "patient_known_allergies":'.(isset($allergies))?$allergies:''.',
-              "patient_other_medications":'.(isset($current_medications))?$current_medications:''.',
-              "rx_items":'.json_encode($rx_items).'
-            }',
-            CURLOPT_HTTPHEADER => array(
-              'Authorization: Basic Y2xlYXJoZWFsdGhfdGVzdF9Ya1Fzdk1sbVFKbXRWSlBIbGJnWE9WSVd3UU5ETXQxNDpvRW5NZTJITnZndGQzaW9wNm96aWdTZHRmZUJkQUNCNw==',
-              'Content-Type: application/json'
-            ),
-          ));
-
-          $response = curl_exec($curl);
-
-          curl_close($curl);
-          return $response;
+            }
+          }
 
         }
 
+         $shipping_address = Checkoutaddress::select('*')
+        ->where('checkout_address.order_id',$order_id)
+        ->where('checkout_address.address_type',1)
+        ->OrderBy('id', 'DESC')
+        ->first();
+
+
+        $patient_id = $user['md_patient_id'];
+
+          if($patient_id != '' || $patient_id != NULL ){
+
+           $patient_data =   Mdpatient::where('patient_id', $patient_id)->get()->toArray();
+
+           $gender =  $patient_data['gender'];
+
+           if($gender == 1){
+            $patient_gender = 'Male';
+          }else if($gender == 2){
+            $patient_gender = 'Female';
+          }else{
+            $patient_gender = 'Not known';
+          }
+            /*  0 = Not known;
+                1 = Male;
+                2 = Female;
+                9 = Not applicable.
+            */
+
+                $patient_dob = date('Ymd', strtotime($patient_data['dob']));
+
+
+                $rx_items= array();
+
+                $rx_items['rx_id'] = $curexa_para['rx_id'];
+                $rx_items['quantity_dispensed'] = $curexa_para['quantity_dispensed'];
+                $rx_items['days_supply'] = $curexa_para['days_supply'];
+                $rx_items['prescribing_doctor'] =  $md_deatail['name'];
+                $rx_items['medication_sig'] = $curexa_para['medication_sig'];
+                $rx_items['non_child_resistant_acknowledgment'] = false;
 
 
 
-      }
+                $curl = curl_init();
+
+                curl_setopt_array($curl, array(
+                  CURLOPT_URL => 'https://api.curexa.com/orders',
+                  CURLOPT_RETURNTRANSFER => true,
+                  CURLOPT_ENCODING => '',
+                  CURLOPT_MAXREDIRS => 10,
+                  CURLOPT_TIMEOUT => 0,
+                  CURLOPT_FOLLOWLOCATION => true,
+                  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                  CURLOPT_CUSTOMREQUEST => 'POST',
+                  CURLOPT_POSTFIELDS =>'{
+                    "order_id": '.$order_id.',
+                    "patient_id":'. $patient_id.',
+                    "patient_first_name": '.$patient_data['first_name'].',
+                    "patient_last_name": '.$patient_data['last_name'].',
+                    "patient_dob": '.$patient_dob.',
+                    "patient_gender":'.$patient_gender.',
+                    "carrier":"FEDEX",
+                    "shipping_method":"",
+                    "address_to_name":'.$shipping_address['patient_firstname'].' '.$shipping_address['patient_lastname'].',
+                    "address_to_street1":'.$shipping_address['addressline1'].',
+                    "address_to_street2":'.$shipping_address['addressline2'].',
+                    "address_to_city":'.$shipping_address['city'].',
+                    "address_to_state":'.$shipping_address['state'].',
+                    "address_to_zip":'.$shipping_address['zipcode'].',
+                    "address_to_country":"US",
+                    "address_to_phone":'.$shipping_address['phone'].',
+                    "notes":"Test",
+                    "patient_known_allergies":'.(isset($allergies))?$allergies:''.',
+                    "patient_other_medications":'.(isset($current_medications))?$current_medications:''.',
+                    "rx_items":'.json_encode($rx_items).'
+                  }',
+                  CURLOPT_HTTPHEADER => array(
+                    'Authorization: Basic Y2xlYXJoZWFsdGhfdGVzdF9Ya1Fzdk1sbVFKbXRWSlBIbGJnWE9WSVd3UU5ETXQxNDpvRW5NZTJITnZndGQzaW9wNm96aWdTZHRmZUJkQUNCNw==',
+                    'Content-Type: application/json'
+                  ),
+                ));
+
+                $response = curl_exec($curl);
+
+                curl_close($curl);
+                return $response;
+
+              }
+
+     }
+     
+  }
 
 
       public function curexa_order_status($order_id){

@@ -102,9 +102,9 @@ class PaymentsController extends BaseController
                         'transaction_complete_details'  => json_encode($paymentDetails)
                     ]);
                     */
-                    Checkout::where('order_id',request('order_id'))->update(['transaction_id'=>$paymentDetails['balance_transaction'],'customer'=>$paymentDetails['customer'],'payment_method'=>$paymentDetails['payment_method'],'payment_status'=>$paymentDetails['status'],'transaction_complete_details'=>json_encode($paymentDetails)]);
+                    Checkout::where('id',request('order_id'))->update(['transaction_id'=>$paymentDetails['balance_transaction'],'customer'=>$paymentDetails['customer'],'payment_method'=>$paymentDetails['payment_method'],'payment_status'=>$paymentDetails['status'],'transaction_complete_details'=>json_encode($paymentDetails)]);
 
-                    $data['order_id']= request('order_id');
+                    $data['id']= request('order_id');
                     $data['amount']= request('amount');
                     $data['transaction_id'] = $paymentDetails['balance_transaction'];
                     $data['payment_status'] = $paymentDetails['status'];
@@ -315,9 +315,9 @@ class PaymentsController extends BaseController
             $transaction_complete_details = json_encode($paymentDetails);
 
             
-            Checkout::where('order_id',request('order_id'))->update(['transaction_id'=>$transaction_id,'customer'=>$customer,'payment_method'=>$payment_method,'payment_status'=>$payment_status,'transaction_complete_details'=>$transaction_complete_details]);
+            Checkout::where('id',request('order_id'))->update(['transaction_id'=>$transaction_id,'customer'=>$customer,'payment_method'=>$payment_method,'payment_status'=>$payment_status,'transaction_complete_details'=>$transaction_complete_details]);
 
-                    $data['order_id']= request('order_id');
+                    $data['id']= request('order_id');
                     $data['amount']= request('amount');
                     $data['transaction_id'] = $transaction_id;
                     $data['payment_status'] = $payment_status;

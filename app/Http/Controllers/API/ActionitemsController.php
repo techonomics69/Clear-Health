@@ -82,14 +82,7 @@ class ActionitemsController extends BaseController
 
         $dispached_date = new Carbon($curexadata['dispached_date']);
         $now = Carbon::now();
-        $difference = ($dispached_date->diff($now)->days < 1)
-        ? 'today'
-        : $dispached_date->diffInDays($now);
-
-        echo "<pre>";
-        print_r($difference);
-        echo "<pre>";
-        exit();
+        $difference = $dispached_date->diffInDays($now);
 
         //code for ipledge agreement(sign_ipledge_consent) and birthcontrol form (abstinence_form)
         

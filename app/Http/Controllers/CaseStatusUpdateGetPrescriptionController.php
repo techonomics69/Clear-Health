@@ -447,7 +447,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
             $input_prescription['pharmacy_notes'] = $prescription->pharmacy_notes;
             $input_prescription['directions'] = $prescription->directions;
             $input_prescription['dispense_unit_id'] = $prescription->dispense_unit_id;
-            $input_prescription['preferred_pharmacy_id'] = $prescription->preferred_pharmacy_id;
+            $input_prescription['preferred_pharmacy_id'] = $prescription->pharmacy_id;
             $input_prescription['case_id'] = $case_id;
             $input_prescription['user_id'] = $user_id;
             $input_prescription['system_case_id'] = $case_id;

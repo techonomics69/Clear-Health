@@ -76,7 +76,7 @@ class MdManagementController extends Controller
 
             'status' => $request->input('status'),'case_id' => $request->input('case_id')]);
             
-        toastr()->success('Md Management created successfully');
+        toastr()->success('Md created successfully');
 
         return redirect()->route('mdmanagement.index');
 
@@ -148,7 +148,7 @@ class MdManagementController extends Controller
             $mdmanagement->language_id = $request->input('language_id');
             $mdmanagement->save();       
              
-           toastr()->success('MdManagement updated successfully');
+           toastr()->success('Md\'s details updated successfully');
 
             return redirect()->route('mdmanagement.index');
         }

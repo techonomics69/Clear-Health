@@ -37,7 +37,7 @@ class QuizController extends Controller
             $quizOrder[$key] = Quiz::where('category_id', $key)->OrderBy('id', 'ASC')->get()->pluck('order')->toArray();
         }
         // $request->session()->put('activequiz', $category[0]);
-        dd($category);
+        dd(first($category));
 
         return view('quiz.index', compact('quiz','category','quizOrder'))->with('i', ($request->input('page', 1) -1) * 5);
     }

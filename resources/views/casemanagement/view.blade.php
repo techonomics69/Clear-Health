@@ -283,16 +283,13 @@
 			@endforeach
 		</div>
 	<?php }
-	?>
-	<div id="home10" class="tab-pane fade in">
-		here in 10
-	<?php
+	
 	if($key == 10){
 		if($user_case_management_data['gender'] == "female"){
 			if(count($followup_que) > 0){
 				
 	?>
-			
+		<div id="home10" class="tab-pane fade in">	
 			<?php foreach($followup_que as $fkey => $fvalue){
 				$fanswers = json_decode($fvalue->answer);
 				if(count($fanswers)>0){
@@ -329,24 +326,19 @@
 				}
 		 } ?>
 		
-		
+		</div>
 	<?php
 				
 			}
 		}		
 	}
-	?>
-	</div>
-	<div id="home11" class="tab-pane fade in">	
-		here in 11
-	<?php
 	
 	if($key == 11){
 		if($user_case_management_data['gender'] == "male"){
 			if(count($followup_que) > 0){
 				
 	?>
-		
+		<div id="home11" class="tab-pane fade in">	
 			<?php foreach($followup_que as $fkey => $fvalue){
 				$fanswers = json_decode($fvalue->answer);
 				if(count($fanswers)>0){
@@ -382,14 +374,14 @@
 				}
 		 } ?>
 		
-		
+		</div>
 	<?php
 				
 			}
 		}
 }
 	?>
-</div>
+
 	
 	@endforeach
 	<?php $i++ ?>

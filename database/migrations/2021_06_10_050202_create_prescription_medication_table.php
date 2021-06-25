@@ -13,7 +13,7 @@ class CreatePrescriptionMedicationTable extends Migration
      */
     public function up()
     {
-        Schema::create('prescription_medication', function (Blueprint $table) {
+        Schema::create('prescription_medications', function (Blueprint $table) {
             $table->id();
             $table->integer('case_prescription_id')->nullable();
             $table->string('dosespot_medication_id')->nullable();

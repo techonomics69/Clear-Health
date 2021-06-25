@@ -55,6 +55,17 @@ class ActionitemsController extends BaseController
 
     public function showActionItemsForm(Request $request){
         //code for ipledge agreement(sign_ipledge_consent) and birthcontrol form (abstinence_form)
+        $user_id = $request['user_id'];
+        $case_id = $request['case_id'];
+        $md_case_id = $request['md_case_id'];
+
+        $user_gender = User::select('gender')->where('id', $user_id)->first();
+
+        echo "<pre>";
+        print_r('$user_gender');
+        echo "<pre>";
+        exit();
+
 
         //end of code for ipledge agreement(sign_ipledge_consent) and birthcontrol form (abstinence_form)
     }

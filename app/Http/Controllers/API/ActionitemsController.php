@@ -10,6 +10,7 @@ use App\Models\Mdcases;
 use App\Models\Checkout;
 use App\Models\CurexaOrder;
 use App\Models\Cart;
+use App\Models\Triggers;
 use Validator;
 use Exception;
 use Carbon\Carbon;
@@ -94,7 +95,11 @@ class ActionitemsController extends BaseController
         $preferred_pharmacy_id = $pharmacy_data['pharmacy_pickup'];
 
 
+
         $curexadata = CurexaOrder::where('order_id',$order_data['order_id'])->first();
+
+
+
 
         $dispached_date = new Carbon($curexadata['dispached_date']);
         $now = Carbon::now();
@@ -113,6 +118,23 @@ class ActionitemsController extends BaseController
             }
         }
         //end of curexa
+
+        if($preferred_pharmacy_id !='13012'){
+
+            $triggers = Triggers::where([['user_id', $user_id],['case_id', $case_id],['md_case_id', $md_case_id],['name','pickup_medication_notification']])->first();
+
+            $pickup_medication_notification_date = new Carbon($triggers['updated_at']);
+            $now = Carbon::now();
+            $pickup_medication_difference = $pickup_medication_notification_date->diffInDays($now);
+
+            if($user_gender['gender'] =='female' && $pickup_medication_difference > 90){
+                $show_blood_work_labs_due = true;
+            }
+
+            if($user_gender['gender'] =='male' && $pickup_medication_difference > 60){
+                $show_blood_work_labs_due = true;
+            }
+        }
 
         //end of code for Blood Work Labs Due
 

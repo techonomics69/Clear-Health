@@ -33,6 +33,14 @@
 			color: #ffffff;
 		}
 
+		.bloodworkshow{
+			display: block;
+		}
+
+		.bloodworkhide{
+			display: none;
+		}
+
 	</style>
 	@php
 	$msg_tab = 0;
@@ -641,7 +649,7 @@
 									<a class="btn btn-secondry" href="#"><i class="fa fa-plus" aria-hidden="true"></i> Add New</a>
 								</div>
 
-								<div class="ipledge_outer_design outre_boxes mt24 hide">
+								<div class="ipledge_outer_design outre_boxes mt24 bloodworkhide">
 									<form>
 										<div class="form-group row">
 											<label for="inputEmail3" class="col-sm-2 col-form-label">Date</label>

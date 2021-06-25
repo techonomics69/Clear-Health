@@ -290,6 +290,7 @@
 				
 	?>
 		<div id="home10" class="tab-pane fade in">	
+		her in 10
 			<?php foreach($followup_que as $fkey => $fvalue){
 				$fanswers = json_decode($fvalue->answer);
 				if(count($fanswers)>0){
@@ -339,6 +340,7 @@
 				
 	?>
 		<div id="home11" class="tab-pane fade in">	
+				her in 11
 			<?php foreach($followup_que as $fkey => $fvalue){
 				$fanswers = json_decode($fvalue->answer);
 				if(count($fanswers)>0){

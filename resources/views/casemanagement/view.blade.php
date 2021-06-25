@@ -537,19 +537,19 @@
 						
 							<section class="all_screen_section">
 								<div class="Outer_box_design">
-									
-
-									<div class="ipledge_outer_design mt24">
-
-									<div class="ipledge_ide">
+									<div class="ipledge_id">
 										<p class="mb-0"><span class="left_heading">iPledge ID : </span>XXXXXXXXXXXXX</p>
 									</div>
 
-										<div class="ipledge_heading outre_boxes">
-											<p class="heading_text mb-0">iPledge Credentials</p>
-										</div>
+									<div class="ipledge_outer_design mt24">
+										
 
 										<div class="all_form_section outre_boxes mt24">
+											
+										
+											<p class="heading_text ">iPledge Credentials</p>
+										
+
 											<form>
 												<div class="form-group row">
 													<label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>

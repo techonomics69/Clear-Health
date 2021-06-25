@@ -94,7 +94,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
          if(!empty($MdCaseStatus)){
 
-          $md_case_status = $case_data->case_status->name;
+          $md_case_status = $MdCaseStatus->case_status->name;
 
           if(!empty($MdCaseStatus->case_assignment)){
             $md_status = 'assigned'; 

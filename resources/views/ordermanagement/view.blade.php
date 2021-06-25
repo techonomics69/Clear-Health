@@ -135,19 +135,19 @@
 
 														<div class="col-md-6 form-group">
 															<strong>Shipping Fees : </strong>
-															{{$order_data->shipping_fee}}
+															$ {{$order_data->shipping_fee}}
 														</div>
 														<?php
-																if($order_data['gift_code_discount']!="" || $order_data['gift_code_discount']!=null){
+																// if($order_data['gift_code_discount']!="" || $order_data['gift_code_discount']!=null){
 															?>
 															<div class="col-md-6  form-group">
 																<strong>Discount :</strong>
 																<?php if(isset($order_data['gift_code_discount']) && $order_data['gift_code_discount'] != '')  { ?>
-																	{{$order_data['gift_code_discount']}} $
+																	$ {{$order_data['gift_code_discount']}} 
 																<?php } ?>
 															</div>
 															<?php		
-																}
+																// }
 															?>
 
 														<div class="col-md-6 form-group">

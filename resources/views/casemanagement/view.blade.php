@@ -62,7 +62,7 @@
 	@endphp
 	@else
 	@php
-	$current_tab_id = "";
+	$current_tab_id = 'home'.session()->get('que_current_tab') ;
 	$activeTab = 0 ;
 	$active = 0 ;	
 	@endphp

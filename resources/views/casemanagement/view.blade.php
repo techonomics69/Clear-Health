@@ -484,7 +484,7 @@
 							<?php } ?>
 						</div> 
 						<?php
-						// if($skincare_summary['gift_code_discount']!="" || $skincare_summary['gift_code_discount'] == null){
+						if(isset($skincare_summary['gift_code_discount']) && $skincare_summary['gift_code_discount']!="" || $skincare_summary['gift_code_discount'] == null){
 						?>
 						<div class="col-md-6  form-group">
 							<strong>Discount :</strong>
@@ -493,7 +493,7 @@
 							<?php } ?>
 						</div>
 						<?php		
-						// }
+						}
 						?>
 						<div class="col-md-6  form-group">
 							<strong>Total Amount :</strong>

@@ -138,7 +138,7 @@
 															$ {{$order_data->shipping_fee}}
 														</div>
 														<?php
-																// if($order_data['gift_code_discount']!="" || $order_data['gift_code_discount']!=null){
+																if(isset($order_data['gift_code_discount']) && $order_data['gift_code_discount']!="" || $order_data['gift_code_discount']!=null){
 															?>
 															<div class="col-md-6  form-group">
 																<strong>Discount :</strong>
@@ -147,7 +147,7 @@
 																<?php } ?>
 															</div>
 															<?php		
-																// }
+																}
 															?>
 
 														<div class="col-md-6 form-group">

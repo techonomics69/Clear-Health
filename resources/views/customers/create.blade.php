@@ -121,13 +121,13 @@
             var email = $("#email").val();
             var password = $("#password").val();
             var c_password = $("#confirm_password").val();
-            if(email == '' || email == null){
+            if(email == '' ){
                 toastr["error"]("Please enter email");
                 passflag = false;
-            }else if(password == '' || password == null){
+            }else if(password == ''){
                 toastr["error"]("Please enter password");
                 passflag = false;
-            }else if(c_password == '' || c_password == null){
+            }else if(c_password == ''){
                 toastr["error"]("Please enter confirm password");
                 passflag = false;
             }else{

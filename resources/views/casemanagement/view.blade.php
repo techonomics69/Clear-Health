@@ -176,7 +176,7 @@
 						@endif --}}
 
 						@php
-						$current_tab_id = 'home'.session()->get('que_current_tab') ;
+						$current_tab_id = "" ;
 						$activeTab = 1;
 						Session::forget('que_current_tab');
 						@endphp
@@ -191,7 +191,7 @@
 											@foreach($category as $key => $data)
 											{{-- <li><a class="btn @if($key == 0) active @elseif($current_tab_id == 'home'.$key) active @endif" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li> --}}
 
-											<li><a class="btn @if($current_tab_id == 'home7') active @elseif($current_tab_id == 'home'.$key) active @endif" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li>
+											<li><a onclick="stequeTab();" class="btn @if($current_tab_id == 'home7') active @elseif($current_tab_id == 'home'.$key) active @endif" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li>
 											<?php //$activeTab++ ?> 
 											@endforeach
 										</ul>
@@ -1136,6 +1136,10 @@
 	
 	$("#blah").show();
   };
+
+  function stequeTab(){
+	  alert();
+  }
 
 </script>
 

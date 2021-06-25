@@ -535,7 +535,47 @@
 				<div class="tab-content">
 					<div id="ipledgetab" class="tab-pane fade in @if($msg_tab != 1) active show @endif">
 						<div class="row" style="padding: 10px;">
-							 
+						<section class="all_screen_section">
+        <div class="Outer_box_design">
+            <div class="ipledge_id">
+                <p class="mb-0"><span class="left_heading">iPledge ID : </span>XXXXXXXXXXXXX</p>
+            </div>
+
+            <div class="ipledge_outer_design mt24">
+                <div class="ipledge_heading outre_boxes">
+                    <p class="heading_text mb-0">iPledge Credentials</p>
+                </div>
+
+                <div class="all_form_section outre_boxes mt24">
+                    <form>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                            <div class="col-sm-10">
+                              <input type="email" class="form-control" id="inputEmail3">
+                            </div>
+                        </div>
+
+                          <div class="form-group row">
+                            <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+                            <div class="col-sm-10">
+                              <input type="password" class="form-control" id="inputPassword3">
+                            </div>
+                          </div>
+
+                      </form>
+                      <div class="ipledge_button">
+                        <a class="btn btn-secondry " href=""> Save</a>
+                        <a class="btn btn-primary " href=""> Send SMS</a>
+                      </div>
+                </div>
+            </div>  
+            
+            <div class=" outre_boxes mt24">
+                <p><span class="text_form_ipledge">iPledge Form:</span>&nbsp;&nbsp;<i class="fa fa-eye"></i></p>
+                <p><span class="text_form_ipledge">Birth control Form:</span>&nbsp;&nbsp;<i class="fa fa-eye"></i></p>
+            </div>
+        </div>
+    </section> 
 						</div>
 					</div>	
 

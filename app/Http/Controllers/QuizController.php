@@ -61,6 +61,7 @@ class QuizController extends Controller
                 $request->session()->put('activequiz', session('activequiz'));
             }
         }
+        echo session('activequiz');
     }
 
     /**

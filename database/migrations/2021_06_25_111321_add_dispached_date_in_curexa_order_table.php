@@ -14,7 +14,7 @@ class AddDispachedDateInCurexaOrderTable extends Migration
     public function up()
     {
         Schema::table('curexa_order', function (Blueprint $table) {
-            $table()->datetime('dispached_date')->after('order_status')->nullable();
+            $table->datetime('dispached_date')->after('order_status')->nullable();
         });
     }
 

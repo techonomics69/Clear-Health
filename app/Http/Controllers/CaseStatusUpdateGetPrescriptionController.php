@@ -142,11 +142,14 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                   $system_status = 'Prescription Approved';
 
+                  echo "<pre> in if ";
+                  print_r($case_id);
+                  echo "<pre>";
+              
+
                   $response = $this->getPrescription($case_id);
 
-                 echo "<pre>";
-                 print_r($response);
-                 echo "<pre>";
+              
                 
 
                   if(!empty($response)){
@@ -205,6 +208,11 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                     $system_status = 'Prescription Approved';
 
+                     echo "<pre>else  in if ";
+                  print_r($case_id);
+                  echo "<pre>";
+                  exit();
+
                     $response = $this->getPrescription($case_id);
 
                       echo "<pre>";
@@ -252,12 +260,15 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                   $system_status = 'Prescription Approved';
 
-                  
+                   echo "<pre> in else ";
+                  print_r($case_id);
+                  echo "<pre>";
+             
                   $response = $this->getPrescription($case_id);
                     echo "<pre>";
                  print_r($response);
                  echo "<pre>";
-                 
+
                   if(!empty($response)){
                     $this->save_prescription_response($response);
 

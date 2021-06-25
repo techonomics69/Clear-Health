@@ -545,7 +545,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
         ->where('checkout_address.address_type',1)
         ->OrderBy('id', 'DESC')
         ->first();
-        
+
         $patient_id = $user['md_patient_id'];
 
           if($patient_id != '' || $patient_id != NULL ){
@@ -557,7 +557,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
            echo "<pre>";
            print_r($gender);
            echo "<pre>";
-           exit();
+        
 
            if($gender == 1){
             $patient_gender = 'Male';

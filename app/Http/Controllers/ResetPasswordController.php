@@ -9,13 +9,13 @@ use Illuminate\Support\Facades\Hash;
 class ResetPasswordController extends Controller { 
 
   public function getPassword($token) { 
-
-     return view('reset', ['token' => $token]);
+    return view('reset', ['token' => $token]); 
   }
 
   public function updatePassword(Request $request)
   {
-  dd(url()->current());
+  
+  
   $request->validate([
       'email' => 'required|email|exists:users',
       'password' => 'required|string|min:6|confirmed',
@@ -36,8 +36,11 @@ class ResetPasswordController extends Controller {
     DB::table('password_resets')->where(['email'=> $request->email])->delete();
 
    // return redirect('/login')->with('message', 'Your password has been changed!');
-
-    return redirect()->to('http://103.101.59.95/clearhealth_angular/login');
+   if(strpos(url()->current(), 'dev.')!== false){
+      return redirect()->to('http://103.101.59.95/dev.clearhealth_angular/login');
+    }else{
+      return redirect()->to('http://103.101.59.95/clearhealth_angular/login');
+    }
 
   }
 }

@@ -31,11 +31,14 @@ class QuizController extends Controller
     public function index(Request $request)
     {
         $category = QuizCategory::pluck('name', 'id')->toArray();
+        
         foreach ($category as $key => $value) {
-            if($key == 0) $request->session()->put('activequiz', $value);
             $quiz[$key][] = Quiz::where('category_id', $key)->OrderBy('id', 'ASC')->get();
             $quizOrder[$key] = Quiz::where('category_id', $key)->OrderBy('id', 'ASC')->get()->pluck('order')->toArray();
         }
+        $request->session()->put('activequiz', $category[0]);
+        // dd(session('activequiz'));
+
         return view('quiz.index', compact('quiz','category','quizOrder'))->with('i', ($request->input('page', 1) -1) * 5);
     }
 

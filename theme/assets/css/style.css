@@ -1085,5 +1085,12 @@ margin-left:16px
 .all_screen_section .btn:hover i {
   color: #43bfc1;
 }
+
+
+.all_screen_section table.table thead th,.all_screen_section table.table tbody td {
+  border-width: 1px !important;
+  vertical-align: middle;
+  padding: 10px 14px !important;
+}
 /*# sourceMappingURL=style.css.map */
 /* ************************************* */

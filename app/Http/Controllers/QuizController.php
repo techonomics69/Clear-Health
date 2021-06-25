@@ -44,7 +44,6 @@ class QuizController extends Controller
                 $request->session()->forget('activequiz');
                 $request->session()->put('activequiz', reset($category));    
             }else{
-                $request->session()->forget('activequiz');
                 $request->session()->put('activequiz', session('activequiz'));
             }
         }
@@ -63,7 +62,6 @@ class QuizController extends Controller
                 $request->session()->forget('activequiz');
                 $request->session()->put('activequiz', $request->activequiz);    
             }else{
-                $request->session()->forget('activequiz');
                 $request->session()->put('activequiz', session('activequiz'));
             }
         }

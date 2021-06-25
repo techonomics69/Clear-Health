@@ -109,7 +109,8 @@
     @endsection
     @section('footerSection')   
     <script type="text/javascript">     
-        $(document).on('click', '#userSubmit', function(e) {
+        $(document).on('click', '#userSubmit', function() {
+            alert();
             var passflag = false;
             var passregex = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,30}/;
             var email = $("#email").val();

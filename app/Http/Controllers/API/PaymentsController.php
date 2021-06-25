@@ -56,7 +56,7 @@ class PaymentsController extends BaseController
         if(empty(request('stripeToken'))) {
             return $this->sendResponse(back()->withInput(),'Some error while making the payment. Please try again');
         }
-        Stripe::setApiKey('pk_test_51J68rTSAxcezccSJuY1VVZLuYikkAjDNpxyfRqqf5dDuJPZQrzU0wwe2NkF6lIr5UCdekq8rdmCo7CLAqXV7U9iJ00cj2mKwre');
+        Stripe::setApiKey('sk_test_51J68rTSAxcezccSJzb9PBfekUJNXE3sXfaghtUlZnOF93SrEMzgYlw4avOQ4vlIPlEmwFVFwPEWkhDQXlZxS4JuI00YYy4thSw');
         try {
             /** Add customer to stripe, Stripe customer */
             $customer = Customer::create([

@@ -477,11 +477,8 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
               $input_medication['display_name'] = $prescription->medication->display_name;
               $input_medication['monograph_path'] = $prescription->medication->monograph_path;
               $input_medication['drug_classification'] = $prescription->medication->drug_classification;
-              $input_medication['state_schedules'] = $prescription->medication->state_schedules;
-              echo "<pre>";
-              print_r($input_medication);
-              echo "<pre>";
-             
+              $input_medication['state_schedules'] = json_encode($prescription->medication->state_schedules);
+              
               $CasePrescription_data = PrescriptionMedication::create($input_medication);
 
             }

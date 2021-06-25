@@ -256,9 +256,6 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                   $system_status = 'Prescription Approved';
 
-                   echo "<pre> in else ";
-                  print_r($case_id);
-                  echo "<pre>";
              
                   $response = $this->getPrescription($case_id);
                    
@@ -437,6 +434,11 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
     public function save_prescription_response($response){
       $prescription_data = json_decode($response);
+
+      echo "<pre>";
+      print_r($prescription_data);
+      echo "<pre>";
+      exit();
 
       $input_prescription['dosespot_prescription_id'] = $prescription_data->dosespot_prescription_id;
       $input_prescription['dosespot_prescription_sync_status'] = $prescription_data->dosespot_prescription_sync_status;

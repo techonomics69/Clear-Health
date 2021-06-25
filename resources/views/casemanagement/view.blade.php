@@ -534,73 +534,246 @@
 				</ul>
 				<div class="tab-content">
 					<div id="ipledgetab" class="tab-pane fade in @if($msg_tab != 1) active show @endif">
-						<div class="row" style="padding: 10px;">
-						<section class="all_screen_section">
-        <div class="Outer_box_design">
-            <div class="ipledge_id">
-                <p class="mb-0"><span class="left_heading">iPledge ID : </span>XXXXXXXXXXXXX</p>
-            </div>
+						
+							<section class="all_screen_section">
+								<div class="Outer_box_design">
+									<div class="ipledge_id">
+										<p class="mb-0"><span class="left_heading">iPledge ID : </span>XXXXXXXXXXXXX</p>
+									</div>
 
-            <div class="ipledge_outer_design mt24">
-                <div class="ipledge_heading outre_boxes">
-                    <p class="heading_text mb-0">iPledge Credentials</p>
-                </div>
+									<div class="ipledge_outer_design mt24">
+										<div class="ipledge_heading outre_boxes">
+											<p class="heading_text mb-0">iPledge Credentials</p>
+										</div>
 
-                <div class="all_form_section outre_boxes mt24">
-                    <form>
-                        <div class="form-group row">
-                            <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-                            <div class="col-sm-10">
-                              <input type="email" class="form-control" id="inputEmail3">
-                            </div>
-                        </div>
+										<div class="all_form_section outre_boxes mt24">
+											<form>
+												<div class="form-group row">
+													<label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+													<div class="col-sm-10">
+													<input type="email" class="form-control" id="inputEmail3">
+													</div>
+												</div>
 
-                          <div class="form-group row">
-                            <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-                            <div class="col-sm-10">
-                              <input type="password" class="form-control" id="inputPassword3">
-                            </div>
-                          </div>
+												<div class="form-group row">
+													<label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+													<div class="col-sm-10">
+													<input type="password" class="form-control" id="inputPassword3">
+													</div>
+												</div>
 
-                      </form>
-                      <div class="ipledge_button">
-                        <a class="btn btn-secondry " href=""> Save</a>
-                        <a class="btn btn-primary " href=""> Send SMS</a>
-                      </div>
-                </div>
-            </div>  
-            
-            <div class=" outre_boxes mt24">
-                <p><span class="text_form_ipledge">iPledge Form:</span>&nbsp;&nbsp;<i class="fa fa-eye"></i></p>
-                <p><span class="text_form_ipledge">Birth control Form:</span>&nbsp;&nbsp;<i class="fa fa-eye"></i></p>
-            </div>
-        </div>
-    </section> 
-						</div>
+											</form>
+											<div class="ipledge_button">
+												<a class="btn btn-secondry " href=""> Save</a>
+												<a class="btn btn-primary " href=""> Send SMS</a>
+											</div>
+										</div>
+									</div>  
+									
+									<div class=" outre_boxes mt24">
+										<p><span class="text_form_ipledge">iPledge Form:</span>&nbsp;&nbsp;<i class="fa fa-eye"></i></p>
+										<p><span class="text_form_ipledge">Birth control Form:</span>&nbsp;&nbsp;<i class="fa fa-eye"></i></p>
+									</div>
+								</div>
+							</section> 
+						
 					</div>	
 
 					<div id="pregnencytesttab" class="tab-pane fade in">
-						<div class="row" style="padding: 10px;">
-							
-						</div>
+						<section class="all_screen_section">
+							<div class="Outer_box_design">
+								<div class="ipledge_outer_design mt24">
+									<table class="table table-responsive-md table-striped no-footer">
+										<thead>
+											<tr>
+											<th scope="col">Date</th>
+											<th scope="col">Pregnancy Test</th>
+											<th scope="col">Month</th>
+											<th scope="col">Action</th>
+											</tr>
+										</thead>
+										<tbody class="list_view_outer">
+											<tr>
+											<th scope="row">1</th>
+											<td>Mark</td>
+											<td>Otto</td>
+											<td><i class="fa fa-eye"></i> / <a class="btn btn-secondry " href="">Verify</a></td>
+											</tr>
+											<tr>
+											<th scope="row">2</th>
+											<td>Jacob</td>
+											<td>Thornton</td>
+											<td><i class="fa fa-eye"></i> / <a class="btn btn-secondry " href="">Verify</a></td>
+											</tr>
+											<tr>
+											<th scope="row">3</th>
+											<td>Larry the Bird</td>
+											<td>@twitter</td>
+											<td><i class="fa fa-eye"></i> / <a class="btn btn-secondry " href="">Verify</a></td>
+											</tr>
+										</tbody>
+									</table>
+								</div> 
+							</div>
+						</section>
 					</div>	
 
 					<div id="bloodworktab" class="tab-pane fade in">
-						<div class="row" style="padding: 10px;">
-							
-						</div>
+						<section class="all_screen_section">
+							<div class="Outer_box_design">
+
+								<div class="ipledge_button">
+									<a class="btn btn-secondry" href="#"><i class="fa fa-plus" aria-hidden="true"></i> Add New</a>
+								</div>
+
+								<div class="ipledge_outer_design outre_boxes mt24">
+									<form>
+										<div class="form-group row">
+											<label for="inputEmail3" class="col-sm-2 col-form-label">Date</label>
+											<div class="col-sm-10">
+												<input id="inputEmail3" type="date" value="2011-01-13"/>
+											</div>
+										</div>
+
+										<div class="form-group row mt-4">
+											<label for="file" class="col-sm-2 col-form-label">File</label>
+											<div class="col-sm-10">
+												<input type="file" id="file">
+											</div>
+										</div>
+
+									</form>
+									<div class="ipledge_button">
+										<a class="btn btn-secondry " href=""> Cancel</a>
+										<a class="btn btn-primary " href=""> Submit</a>
+									</div>
+								</div> 
+
+								<div class=" outre_boxes mt24">
+									<table class="table table-responsive-md table-striped no-footer">
+										<thead>
+											<tr>
+											<th scope="col">Date</th>
+											<th scope="col">Pregnancy Test</th>
+											<th scope="col">Action</th>
+											</tr>
+										</thead>
+										<tbody class="list_view_outer">
+											<tr>
+											<th scope="row">1</th>
+											<td>Mark</td>
+											<td><i class="fa fa-eye"></i> </td>
+											</tr>
+											<tr>
+											<th scope="row">2</th>
+											<td>Jacob</td>
+											<td><i class="fa fa-eye"></i></td>
+											</tr>
+											<tr>
+											<th scope="row">3</th>
+											<td>Larry the Bird</td>
+											<td><i class="fa fa-eye"></i></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								
+							</div>
+						</section>
 					</div>	
 
 					<div id="priorauthtab" class="tab-pane fade in">
-						<div class="row" style="padding: 10px;">
-							
-						</div>
+						<section class="all_screen_section">
+							<div class="Outer_box_design">
+
+								<div class="ipledge_button">
+									<a class="btn btn-secondry" href="#"><i class="fa fa-plus" aria-hidden="true"></i> Add New</a>
+								</div>
+
+								<div class="ipledge_outer_design outre_boxes mt24">
+									<form>
+										<div class="form-group row">
+											<label for="inputEmail3" class="col-sm-2 col-form-label">Date:</label>
+											<div class="col-sm-10">
+												<input id="inputEmail3" type="date" value="2011-01-13"/>
+											</div>
+										</div>
+
+										<div class="form-group row mt-4">
+											<label for="file" class="col-sm-2 col-form-label">File:</label>
+											<div class="col-sm-10">
+												<input type="file" id="file">
+											</div>
+										</div>
+									</form>
+									<div class="ipledge_button">
+										<a class="btn btn-secondry " href=""> Cancel</a>
+										<a class="btn btn-primary " href=""> Submit</a>
+									</div>
+								</div> 
+
+								<div class=" outre_boxes mt24">
+									<table class="table table-responsive-md table-striped no-footer">
+										<thead>
+											<tr>
+											<th scope="col">Date</th>
+											<th scope="col">Pregnancy Test</th>
+											<th scope="col">Action</th>
+											</tr>
+										</thead>
+										<tbody class="list_view_outer">
+											<tr>
+											<th scope="row">1</th>
+											<td>Mark</td>
+											<td><i class="fa fa-eye"></i> </td>
+											</tr>
+											<tr>
+											<th scope="row">2</th>
+											<td>Jacob</td>
+											<td><i class="fa fa-eye"></i></td>
+											</tr>
+											<tr>
+											<th scope="row">3</th>
+											<td>Larry the Bird</td>
+											<td><i class="fa fa-eye"></i></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								
+							</div>
+						</section>
 					</div>	
 
 					<div id="triggerstab" class="tab-pane fade in">
-						<div class="row" style="padding: 10px;">
-							
-						</div>
+						<section class="all_screen_section">
+							<div class="Outer_box_design">
+								<div class="ipledge_outer_design outre_boxes mt24">
+									<div class="prior_block">
+									<p class="auth_text">Prior auth:</p>&nbsp;&nbsp;
+										<div class="check-register mangesubscription smalltext checkonly">
+											<label class="custome-checkbox">
+												<input type="checkbox" formControlName="acceptTerms" id="acceptTerms" checked="checked">
+												<span class="checkmark"></span>                                         
+											</label>
+										</div>
+									</div> 
+									<div class="prior_block">
+										<p class="auth_text">iPledge:</p>&nbsp;&nbsp;
+											<div class="check-register mangesubscription smalltext checkonly">
+												<label class="custome-checkbox">
+													<input type="checkbox" formControlName="acceptTerms" id="acceptTerms" checked="checked">
+													<span class="checkmark"></span>                                         
+												</label>
+											</div>
+									</div> 
+
+									<div class="ipledge_button">
+										<a class="btn btn-secondry " href=""> Verify</a>
+									</div>
+								</div>
+							</div>
+						</section>
 					</div>	
 
 

@@ -478,7 +478,7 @@
 							<strong>Shipping Fee :</strong> 0
 						</div>
 						<div class="col-md-6  form-group">
-							<strong>Taxes 1:</strong>
+							<strong>Taxes :</strong>
 							<?php if(isset($skincare_summary['tax']) && $skincare_summary['tax'] != '') {?>
 								{{$skincare_summary['tax']}} $
 							<?php } ?>

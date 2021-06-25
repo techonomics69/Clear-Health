@@ -203,7 +203,7 @@
 
 											<?php if($key == 7) { ?>
 												<?php $j = 0; ?>
-												<div id="home7" class="tab-pane fade in @if($i== 0) active show @endif">	
+												<div id="home7" class="tab-pane fade in active">	
 													@foreach($general_que as $key => $general)
 													<div class="row" style="padding: 10px;">
 														<div class="col-md-12">

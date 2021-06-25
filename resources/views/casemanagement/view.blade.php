@@ -1137,7 +1137,7 @@
 	$("#blah").show();
   };
 
-  $(".firstquebutton").each(function(v,i){
+  $(".firstquebutton").each(function(i){
 	console.log(i);  
 	// if(i == 0){
 	// 	$(this).addClass('active');

@@ -66,7 +66,7 @@
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>Email</label><span class="required">*</span>
-                                        {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
+                                        {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control','id'=>'email')) !!}
                                     </div>
                                 </div>
 
@@ -109,9 +109,30 @@
     @endsection
     @section('footerSection')   
     <script type="text/javascript">     
-        $(document).on('click', '#userSubmit', function() {
-            $(this).html('Loading..').attr('disabled','disabled');
-            $('#storeUser').submit();
+        $(document).on('click', '#userSubmit', function(e) {
+            var passflag = false;
+            var passregex = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,30}/;
+            var email = $("#email").val();
+            var password = $("#password").val();
+            var c_password = $("#confirm_password").val();
+            if(email == '' || email == null){
+                toastr["error"]("Please enter email");
+                passflag = false;
+            }else if(password == '' || password == null){
+                toastr["error"]("Please enter password");
+                passflag = false;
+            }else if(c_password == '' || c_password == null){
+                toastr["error"]("Please enter email");
+                passflag = false;
+            }else{
+                passflag = true;
+            }
+            
+            if(passflag){
+                $(this).html('Loading..').attr('disabled','disabled');
+                $('#storeUser').submit();
+            }
+            
         });
 
 </script>

@@ -13,7 +13,7 @@ class CreatePrescriptionCompoundTable extends Migration
      */
     public function up()
     {
-        Schema::create('prescription_compound', function (Blueprint $table) {
+        Schema::create('prescription_compounds', function (Blueprint $table) {
             $table->id();
             $table->string('partner_compound_id')->nullable();
             $table->string('title')->nullable(); 

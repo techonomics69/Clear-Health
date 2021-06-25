@@ -109,7 +109,13 @@
     @endsection
     @section('footerSection')   
     <script type="text/javascript">     
-        $(document).on('click', '#userSubmit', function() {
+        
+
+</script>
+@endsection
+@section('scriptsection')
+<script type="text/javascript">
+    $(document).on('click', '#userSubmit', function() {
             alert();
             var passflag = false;
             var passregex = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,30}/;
@@ -136,10 +142,6 @@
             
         });
 
-</script>
-@endsection
-@section('scriptsection')
-<script type="text/javascript">
     $('form').submit(function(){
         $(this).find('button[type=submit]').prop('disabled', true);
     });

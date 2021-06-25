@@ -14,7 +14,7 @@ class ResetPasswordController extends Controller {
     ->first();
 
     if(!$updatePassword){
-      return back()->withInput()->with('error', 'Invalid token!');
+      return view('reset', ['token' => $token,'error'=>'Invalid token']);
     }else{
       return view('reset', ['token' => $token]);
     }

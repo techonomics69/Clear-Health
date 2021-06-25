@@ -84,7 +84,7 @@ class ActionitemsController extends BaseController
         $now = Carbon::now();
         $difference = ($dispached_date->diff($now)->days < 1)
         ? 'today'
-        : $created->diffForHumans($now);
+        : $dispached_date->diffForHumans($now);
 
         echo "<pre>";
         print_r($difference);

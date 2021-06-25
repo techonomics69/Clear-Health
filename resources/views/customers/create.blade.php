@@ -149,7 +149,7 @@
             
             if(passflag){
                 $(this).html('Loading..').attr('disabled','disabled');
-                $('#storeUser').submit();
+                $('#storeCustomer').submit();
             }
             
         });

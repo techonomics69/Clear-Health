@@ -71,7 +71,7 @@ class ActionitemsController extends BaseController
         $order_data = Checkout::where([['user_id', $user_id],['case_id', $case_id],['md_case_id', $md_case_id]])->first();
 
         echo "<pre>";
-        print_r(4order_data);
+        print_r($order_data);
         echo "<pre>";
         exit();
 

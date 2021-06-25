@@ -128,7 +128,7 @@
                 toastr["error"]("Please enter password");
                 passflag = false;
             }else if(c_password == '' || c_password == null){
-                toastr["error"]("Please enter email");
+                toastr["error"]("Please enter confirm password");
                 passflag = false;
             }else{
                 passflag = true;

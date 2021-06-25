@@ -199,6 +199,7 @@
 										<div class="tab-content">
 											<?php 
 											$i=0;
+											echo $current_tab_id;
 											// print_r($category);
 											?>
 											@foreach($category as $key => $data)

@@ -198,6 +198,7 @@ Route::group(['middleware' => ['auth']],function(){
     Route::delete('admin/quiz/destroy/{id}', [QuizController::class, 'destroy'])->name('quiz.destroy');
     Route::post('admin/quiz/orderUpdate', [QuizController::class, 'orderUpdate'])->name('orderUpdate.update');
     Route::get('admin/quiz/option', [QuizController::class, 'option'])->name('quiz.option');
+    Route::post('admin/quiz/setactivequiz',[QuizController::class, 'setQuizTab'])->name('quiz.setactive');
     
 // Quiz Category Routes
     Route::get('admin/quizCategory', [QuizCategoryController::class, 'index'])->name('quizCategory.index');

@@ -28,6 +28,11 @@
 			color: #ffffff;
 		}
 
+		#questions-tab-menu li a.active{
+			background-color: #43bfc1;
+			color: #ffffff;
+		}
+
 	</style>
 	@php
 	$msg_tab = 0;
@@ -164,13 +169,15 @@
 						@endphp
 						@else
 						@php
-						$current_tab_id = "";
+						
 						$activeTab = 0 ;
 						$active = 0 ;	
 						@endphp
 						@endif --}}
 
 						@php
+						$current_tab_id = "" ;
+						$activeTab = 1;
 						Session::forget('que_current_tab');
 						@endphp
 						<div id="questions" class="tab-pane fade in">					    
@@ -182,9 +189,9 @@
 										<ul class="nav nav-tabs" id="questions-tab-menu">
 
 											@foreach($category as $key => $data)
-											{{-- <li><a class="btn @if($activeTab == 0) active @elseif($current_tab_id == 'home'.$key) active @endif" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li> --}}
+											{{-- <li><a class="btn @if($key == 0) active @elseif($current_tab_id == 'home'.$key) active @endif" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li> --}}
 
-											<li><a class="btn" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li>
+											<li><a class="btn firstquebutton @if($current_tab_id == 'home7') active @elseif($current_tab_id == 'home'.$key) active @endif" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li>
 											<?php //$activeTab++ ?> 
 											@endforeach
 										</ul>
@@ -192,13 +199,14 @@
 										<div class="tab-content">
 											<?php 
 											$i=0;
+											echo $current_tab_id;
 											// print_r($category);
 											?>
 											@foreach($category as $key => $data)
 
 											<?php if($key == 7) { ?>
 												<?php $j = 0; ?>
-												<div id="home7" class="tab-pane fade in @if($i== 0) active show @endif">	
+												<div id="home7" class="tab-pane fade in active show">	
 													@foreach($general_que as $key => $general)
 													<div class="row" style="padding: 10px;">
 														<div class="col-md-12">
@@ -1128,6 +1136,13 @@
 	
 	$("#blah").show();
   };
+
+  $(".firstquebutton").each(function(i){
+	// console.log(i);  
+	if(i == 0){
+		$(this).addClass('active');
+	}
+  });
 
 </script>
 

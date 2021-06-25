@@ -1279,6 +1279,19 @@
 
 
 <script>
+
+function openbloodwork(){
+	  if($(".bloodworkform").hasClass("bloodworkhide")){
+		  $(".bloodworkform").animate({
+			$(".bloodworkform").addClass('bloodworkshow');
+		  },1000);
+	  }else{
+		$(".bloodworkform").animate({
+			$(".bloodworkform").addClass('bloodworkhide');
+		  },1000);
+	  }
+  }
+
 	$(document).ready(function() {
 		$('#btnsubmit').on('click', function(event) {
 			$("#btnsubmit").attr('style','display:none');
@@ -1478,17 +1491,7 @@
 	}
   });
 
-  function openbloodwork(){
-	  if($(".bloodworkform").hasClass("bloodworkhide")){
-		  $(".bloodworkform").animate({
-			$(".bloodworkform").addClass('bloodworkshow');
-		  },1000);
-	  }else{
-		$(".bloodworkform").animate({
-			$(".bloodworkform").addClass('bloodworkhide');
-		  },1000);
-	  }
-  }
+  
 
 </script>
 

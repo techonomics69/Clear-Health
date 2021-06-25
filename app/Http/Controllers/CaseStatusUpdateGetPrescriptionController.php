@@ -479,6 +479,11 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
               $input_medication['drug_classification'] = $prescription->medication->drug_classification;
               $input_medication['state_schedules'] = $prescription->medication->state_schedules;
 
+              echo "<pre>";
+              print_r($input_medication);
+              echo "<pre>";
+             
+
               $CasePrescription_data = PrescriptionMedication::create($input_medication);
 
             }
@@ -553,11 +558,6 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
            $patient_data =   Mdpatient::where('patient_id', $patient_id)->get()->toArray();
 
            $gender =  $patient_data['gender'];
-
-           echo "<pre>";
-           print_r($patient_data);
-           echo "<pre>";
-        
 
           if($gender == 1){
             $patient_gender = 'Male';

@@ -118,26 +118,38 @@
     $(document).on('click', '#userSubmit', function() {
             var passflag = false;
             var passregex = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,30}/;
+            var emailregex = /[^\s@]+@[^\s@]+\.[^\s@]+/;
             var email = $("#email").val();
             var password = $("#password").val();
             var c_password = $("#confirm_password").val();
             if(email == '' || email == null){
-                toastr["error"]("Please enter email");
+                toastr["error"]("Please enter email address");
+                passflag = false;
+            }else if(!emailregex.test(email)){
+                toastr["error"]("Please enter valid email address");
                 passflag = false;
             }else if(password == '' || password == null){
                 toastr["error"]("Please enter password");
                 passflag = false;
+            }else if(!passregex.test(password)){
+                toastr["error"]("Password must contain at least 8 characters [ one uppercase, lowercase, number & special character");
+                passflag = false;
             }else if(c_password == '' || c_password == null){
                 toastr["error"]("Please enter confirm password");
                 passflag = false;
+            }else if(!passregex.test(c_password)){
+                toastr["error"]("Password must contain at least 8 characters [ one uppercase, lowercase, number & special character");
+                passflag = false;
+            }else if(c_password !== password){
+                toastr["error"]("confirm password not matched password");
+                passflag = false;    
             }else{
                 passflag = true;
             }
             
             if(passflag){
-                alert('submitted');
-                // $(this).html('Loading..').attr('disabled','disabled');
-                // $('#storeUser').submit();
+                $(this).html('Loading..').attr('disabled','disabled');
+                $('#storeUser').submit();
             }
             
         });

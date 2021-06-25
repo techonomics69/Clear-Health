@@ -547,7 +547,7 @@
 										<div class="all_form_section outre_boxes mt24">
 											
 										
-											<p class="heading_text mb-0">iPledge Credentials</p>
+											<p class="heading_text ">iPledge Credentials</p>
 										
 
 											<form>

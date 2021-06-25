@@ -9,8 +9,10 @@ use App\Models\User;
 use App\Models\Mdcases;
 use App\Models\Checkout;
 use App\Models\CurexaOrder;
+use App\Models\Cart;
 use Validator;
 use Exception;
+use Carbon\Carbon;
 
 class ActionitemsController extends BaseController
 {
@@ -75,8 +77,17 @@ class ActionitemsController extends BaseController
         $pharmacy_data  =  Cart::select('pharmacy_pickup')->where('user_id',$user_id)->whereIn('id',$cart_ids)->where('order_type', '!=', 'AddOn')->first();
         $preferred_pharmacy_id = $pharmacy_data['pharmacy_pickup'];
 
+
+        $curexadata = CurexaOrder::where('order_id',$order_data['order_id'])->first();
+
+        $dispached_date = new Carbon($curexadata['dispached_date']);
+        $now = Carbon::now();
+        $difference = ($dispached_date->diff($now)->days < 1)
+        ? 'today'
+        : $created->diffForHumans($now);
+
         echo "<pre>";
-        print_r($order_data);
+        print_r($difference);
         echo "<pre>";
         exit();
 

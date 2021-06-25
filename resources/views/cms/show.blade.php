@@ -99,7 +99,7 @@
             toolbar: false,
             branding: false,
             content_css: '//www.tiny.cloud/css/codepen.min.css',
-            readonly : 1
+            readonly : true
      });
  </script>
 @endsection

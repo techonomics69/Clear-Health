@@ -38,13 +38,13 @@ class QuizController extends Controller
         }
         if(Session::has('activequiz')){
             $request->session()->forget('activequiz');
-            $request->session()->put('activequiz', reset($category));
+            $request->session()->put('activequiz', session('activequiz'));
         }else{
-            if(session('activequiz') == ''){
+            if(Session::get('activequiz') == ''){
                 $request->session()->forget('activequiz');
                 $request->session()->put('activequiz', reset($category));    
             }else{
-                $request->session()->put('activequiz', session('activequiz'));
+                $request->session()->put('activequiz', Session::get('activequiz'));
             }
         }
         
@@ -58,11 +58,11 @@ class QuizController extends Controller
             $request->session()->forget('activequiz');
             $request->session()->put('activequiz', $request->activequiz);
         }else{
-            if(session('activequiz') == ''){
+            if(Session::get('activequiz') == ''){
                 $request->session()->forget('activequiz');
                 $request->session()->put('activequiz', $request->activequiz);    
             }else{
-                $request->session()->put('activequiz', session('activequiz'));
+                $request->session()->put('activequiz', Session::get('activequiz'));
             }
         }
         echo session('activequiz');

@@ -108,7 +108,7 @@ class BlogController extends BaseController
             return $this->sendError('Blog not found.');
         }else{
             $tags = db::table('tags')->select('tag')->whereIn('id',explode(",", $blog['tags']))->get();
-            $alltags = db::table('tags')->get();
+            $alltags = db::table('tags')->where('status','1')->get();
             $tagsnames = "";
             if(count($tags)>0){
                 foreach($tags as $key => $value) {

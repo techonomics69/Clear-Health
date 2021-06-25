@@ -882,3 +882,208 @@ margin-left:16px
 
 /* media */
 /* 2212 
+
+/*************8 action item *************/
+.all_screen_section .Outer_box_design {
+  max-width: 800px;
+  margin: 0 auto;
+  border: 1px solid #aaa;
+  padding: 15px;
+}
+
+.all_screen_section .Outer_box_design .ipledge_id p {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.all_screen_section .Outer_box_design .ipledge_outer_design input[type="date"] {
+  line-height: 38px;
+  width: 60%;
+}
+
+.all_screen_section .Outer_box_design .ipledge_outer_design .ipledge_heading p {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.all_screen_section .Outer_box_design .ipledge_outer_design .all_form_section .form-group {
+  margin-bottom: 1em;
+}
+
+.all_screen_section .btn-secondry {
+  background-color: #43bfc1 !important;
+  color: #fff !important;
+  border: 1px solid #43bfc1 !important;
+  margin-left: 12px;
+}
+
+.all_screen_section .btn-secondry:hover {
+  background-color: #ffffff !important;
+  color: #43bfc1 !important;
+  border: 1px solid #43bfc1 !important;
+  margin-left: 12px;
+}
+
+.all_screen_section .btn-primary {
+  background-color: #ffffff !important;
+  color: #43bfc1 !important;
+  border: 1px solid #43bfc1 !important;
+  margin-left: 12px;
+}
+
+.all_screen_section .btn-primary:hover {
+  background-color: #43bfc1 !important;
+  color: #fff !important;
+  border: 1px solid #43bfc1 !important;
+  margin-left: 12px;
+}
+
+.all_screen_section .btn {
+  display: inline-block;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  border: 1px solid transparent;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  line-height: 1.25;
+  border-radius: 0.25rem;
+  -webkit-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+}
+
+.all_screen_section .ipledge_button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin: 20px 0 0;
+}
+
+.all_screen_section form {
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.all_screen_section .check-register .check-box-text {
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.38px;
+  cursor: pointer;
+}
+
+.all_screen_section .check-register .custome-checkbox {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 19px;
+  font-size: 12px;
+}
+
+.all_screen_section .check-register .custome-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.all_screen_section .check-register .checkmark {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  height: 18px;
+  width: 18px;
+  background-color: #e2d5d5;
+}
+
+.all_screen_section .check-register .custome-checkbox:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+.all_screen_section .check-register .custome-checkbox input:checked ~ .checkmark {
+  background-color: black;
+}
+
+.all_screen_section .check-register .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.all_screen_section .check-register .custome-checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.all_screen_section .check-register .custome-checkbox .checkmark:after {
+  left: 6px;
+  top: 2px;
+  width: 6px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  right: 0;
+}
+
+.all_screen_section .prior_block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 10px;
+}
+
+.all_screen_section .prior_block p {
+  margin-bottom: 0;
+  max-width: 13%;
+}
+
+.all_screen_section .mt24 {
+  margin-top: 14px;
+}
+
+.all_screen_section .outre_boxes {
+  border: 1px solid #aaa;
+  padding: 15px;
+}
+
+.all_screen_section .list_view_outer .btn {
+  line-height: 0.25;
+  padding: 0.5rem 0.5rem;
+  margin-left: 0;
+  font-size: 11px;
+}
+
+.all_screen_section i {
+  color: #43bfc1;
+}
+
+.all_screen_section i.fa-plus {
+  color: white;
+}
+
+.all_screen_section .btn-check:focus + .btn, .all_screen_section .btn:focus {
+  outline: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.all_screen_section .btn:hover i {
+  color: #43bfc1;
+}
+/*# sourceMappingURL=style.css.map */
+/* ************************************* */

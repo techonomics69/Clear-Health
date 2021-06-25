@@ -6,6 +6,7 @@ use App\Http\Controllers\API\BaseController as BaseController;
 use Illuminate\Http\Request;
 use App\Models\IpledgeAgreement;
 use App\Models\User;
+use App\Models\Mdcases;
 use Validator;
 use Exception;
 
@@ -55,17 +56,37 @@ class ActionitemsController extends BaseController
 
 
     public function showActionItemsForm(Request $request){
-        //code for ipledge agreement(sign_ipledge_consent) and birthcontrol form (abstinence_form)
+
         $user_id = $request['user_id'];
         $case_id = $request['case_id'];
         $md_case_id = $request['md_case_id'];
 
+        $show_ipledge_agreement_form = false;
+        $show_blood_work_labs_due = false;
+        $show_ipledge_questions_due = false;
+
         $user_gender = User::select('gender')->where('id', $user_id)->first();
-        echo "<pre>";
-        print_r($user_gender);
-        echo "<pre>";
-        exit();
+
+        //code for ipledge agreement(sign_ipledge_consent) and birthcontrol form (abstinence_form)
+        
+        $md_case_data = Mdcases::select('status','case_status_reason')->where('case_id', $md_case_id)->first();
+        if($user_gender['gender'] =='male' && $md_case_data['status'] == 'completed' ){
+            $show_ipledge_agreement_form = true;
+        }
+
+        if($user_gender['gender'] =='female' && $md_case_data['case_status_reason'] != NULL ){
+            $show_ipledge_agreement_form = true;
+        }
         //end of code for ipledge agreement(sign_ipledge_consent) and birthcontrol form (abstinence_form)
+
+
+
+        $showscreen = array();
+        $showscreen['show_ipledge_agreement_form'] =  $show_ipledge_agreement_form;
+        $showscreen['show_blood_work_labs_due'] =  $show_blood_work_labs_due;
+        $showscreen['show_ipledge_questions_due'] =  $show_ipledge_questions_due;
+
+        return $this->sendResponse($showscreen,'Show Action Item Screen');
     }
 
     public function create()

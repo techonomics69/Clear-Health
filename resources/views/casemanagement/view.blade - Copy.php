@@ -483,18 +483,6 @@
 								{{$skincare_summary['tax']}} $
 							<?php } ?>
 						</div> 
-						<?php
-							if($skincare_summary['gift_code_discount']!="" || $skincare_summary['gift_code_discount']!=null){
-						?>			
-						<div class="col-md-6  form-group">
-							<strong>Discount :</strong>
-							<?php if(isset($skincare_summary['gift_code_discount']) && $skincare_summary['gift_code_discount'] != '') {?>
-								{{$skincare_summary['gift_code_discount']}} $
-							<?php } ?>
-						</div> 
-						<?php
-							}
-						?>
 						<div class="col-md-6  form-group">
 							<strong>Total Amount :</strong>
 							<?php if(isset($skincare_summary['total_amount']) && $skincare_summary['total_amount'] != '')  { ?>
@@ -537,111 +525,6 @@
 	<div class="row" style="padding: 20px;">
 		<div class="col-md-12">
 			<section class="card">
-			<ul class="nav nav-tabs" id="messages-tab-menu">
-					<li><a class="btn @if($msg_tab != 1) active @endif" data-toggle="tab" href="#ipledgetab">Ipledge</a></li>
-					<li><a class="btn nonmedicalmsg" data-toggle="tab" href="#pregnencytesttab">Pregnancy Test</a></li>
-					<li><a class="btn nonmedicalmsg" data-toggle="tab" href="#bloodworktab">Bloodwork</a></li>
-					<li><a class="btn nonmedicalmsg" data-toggle="tab" href="#priorauthtab">Prior Auth</a></li>
-					<li><a class="btn nonmedicalmsg" data-toggle="tab" href="#triggerstab">Triggers</a></li>
-				</ul>
-				<div class="tab-content">
-					<div id="ipledgetab" class="tab-pane fade in @if($msg_tab != 1) active show @endif">
-						<div class="row" style="padding: 10px;">
-						<section class="all_screen_section">
-        <div class="Outer_box_design">
-            <div class="ipledge_id">
-                <p class="mb-0"><span class="left_heading">iPledge ID : </span>XXXXXXXXXXXXX</p>
-            </div>
-
-            <div class="ipledge_outer_design mt24">
-                <div class="ipledge_heading outre_boxes">
-                    <p class="heading_text mb-0">iPledge Credentials</p>
-                </div>
-
-                <div class="all_form_section outre_boxes mt24">
-                    <form>
-                        <div class="form-group row">
-                            <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-                            <div class="col-sm-10">
-                              <input type="email" class="form-control" id="inputEmail3">
-                            </div>
-                        </div>
-
-                          <div class="form-group row">
-                            <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-                            <div class="col-sm-10">
-                              <input type="password" class="form-control" id="inputPassword3">
-                            </div>
-                          </div>
-
-                      </form>
-                      <div class="ipledge_button">
-                        <a class="btn btn-secondry " href=""> Save</a>
-                        <a class="btn btn-primary " href=""> Send SMS</a>
-                      </div>
-                </div>
-            </div>  
-            
-            <div class=" outre_boxes mt24">
-                <p><span class="text_form_ipledge">iPledge Form:</span>&nbsp;&nbsp;<i class="fa fa-eye"></i></p>
-                <p><span class="text_form_ipledge">Birth control Form:</span>&nbsp;&nbsp;<i class="fa fa-eye"></i></p>
-            </div>
-        </div>
-    </section> 
-						</div>
-					</div>	
-
-					<div id="pregnencytesttab" class="tab-pane fade in">
-						<div class="row" style="padding: 10px;">
-							
-						</div>
-					</div>	
-
-					<div id="bloodworktab" class="tab-pane fade in">
-						<div class="row" style="padding: 10px;">
-							
-						</div>
-					</div>	
-
-					<div id="priorauthtab" class="tab-pane fade in">
-						<div class="row" style="padding: 10px;">
-							
-						</div>
-					</div>	
-
-					<div id="triggerstab" class="tab-pane fade in">
-						<div class="row" style="padding: 10px;">
-							
-						</div>
-					</div>	
-
-
-
-				<div>	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

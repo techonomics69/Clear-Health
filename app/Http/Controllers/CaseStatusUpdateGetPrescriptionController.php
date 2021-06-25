@@ -165,7 +165,9 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                       $curexa_create_order_data = $this->curexa_create_order($curexa_para);
 
-                      $this->store_curexa_order_data($curexa_create_order_data);
+                      if(!empty($curexa_create_order_data)){
+                          $this->store_curexa_order_data($curexa_create_order_data);
+                      }
                     }
                    
 
@@ -227,7 +229,9 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                       $curexa_create_order_data = $this->curexa_create_order($curexa_para);
 
-                      $this->store_curexa_order_data($curexa_create_order_data);
+                      if(!empty($curexa_create_order_data)){
+                          $this->store_curexa_order_data($curexa_create_order_data);
+                      }
                     }
 
                     //end of curexa  create order api
@@ -274,7 +278,10 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                       $curexa_create_order_data = $this->curexa_create_order($curexa_para);
 
-                      $this->store_curexa_order_data($curexa_create_order_data);
+                      if(!empty($curexa_create_order_data)){
+                          $this->store_curexa_order_data($curexa_create_order_data);
+                      }
+                      
                     }
 
                   //end of curexa  create order api

@@ -702,7 +702,7 @@
 											</div>
 										</div>
 
-										<div class="form-group row mt-4">
+										<div class="form-group row mt-2">
 											<label for="file" class="col-sm-2 col-form-label">File:</label>
 											<div class="col-sm-10">
 												<input type="file" id="file">

@@ -209,6 +209,9 @@
                 freeTiny.style.display = 'none';
             }
         });  
-    $('.available_date').datepicker({ dateFormat: 'mm/dd/yy' });
+    $('.available_date').datepicker({
+         dateFormat: 'mm/dd/yy',
+         minDate: new Date(), 
+    });
 </script>
 @endsection

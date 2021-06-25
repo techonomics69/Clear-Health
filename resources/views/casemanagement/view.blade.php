@@ -141,7 +141,7 @@
 												</div>
 												<div class="col-md-6 form-group">
 													<strong>Gender : </strong>
-
+													{{$user_case_management_data['gender']}}
 
 												</div>
 												<div class="col-md-6 form-group">
@@ -619,21 +619,161 @@
 					</div>	
 
 					<div id="bloodworktab" class="tab-pane fade in">
-						<div class="row" style="padding: 10px;">
-							
-						</div>
+						<section class="all_screen_section">
+							<div class="Outer_box_design">
+
+								<div class="ipledge_button m-0">
+									<a class="btn btn-secondry" href="#"><i class="fa fa-plus" aria-hidden="true"></i> Add New</a>
+								</div>
+
+								<div class="ipledge_outer_design outre_boxes mt24">
+									<form>
+										<div class="form-group row">
+											<label for="inputEmail3" class="col-sm-2 col-form-label">Date</label>
+											<div class="col-sm-10">
+												<input id="inputEmail3" type="date" value="2011-01-13"/>
+											</div>
+										</div>
+
+										<div class="form-group row mt-4">
+											<label for="file" class="col-sm-2 col-form-label">File</label>
+											<div class="col-sm-10">
+												<input type="file" id="file">
+											</div>
+										</div>
+
+									</form>
+									<div class="ipledge_button">
+										<a class="btn btn-secondry " href=""> Cancel</a>
+										<a class="btn btn-primary " href=""> Submit</a>
+									</div>
+								</div> 
+
+								<div class=" outre_boxes mt24">
+									<table class="table table-responsive-md table-striped no-footer">
+										<thead>
+											<tr>
+											<th scope="col">Date</th>
+											<th scope="col">Pregnancy Test</th>
+											<th scope="col">Action</th>
+											</tr>
+										</thead>
+										<tbody class="list_view_outer">
+											<tr>
+											<th scope="row">1</th>
+											<td>Mark</td>
+											<td><i class="fa fa-eye"></i> </td>
+											</tr>
+											<tr>
+											<th scope="row">2</th>
+											<td>Jacob</td>
+											<td><i class="fa fa-eye"></i></td>
+											</tr>
+											<tr>
+											<th scope="row">3</th>
+											<td>Larry the Bird</td>
+											<td><i class="fa fa-eye"></i></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								
+							</div>
+						</section>
 					</div>	
 
 					<div id="priorauthtab" class="tab-pane fade in">
-						<div class="row" style="padding: 10px;">
-							
-						</div>
+						<section class="all_screen_section">
+							<div class="Outer_box_design">
+
+								<div class="ipledge_button m-0">
+									<a class="btn btn-secondry" href="#"><i class="fa fa-plus" aria-hidden="true"></i> Add New</a>
+								</div>
+
+								<div class="ipledge_outer_design outre_boxes mt24">
+									<form>
+										<div class="form-group row">
+											<label for="inputEmail3" class="col-sm-2 col-form-label">Date:</label>
+											<div class="col-sm-10">
+												<input id="inputEmail3" type="date" value="2011-01-13"/>
+											</div>
+										</div>
+
+										<div class="form-group row mt-4">
+											<label for="file" class="col-sm-2 col-form-label">File:</label>
+											<div class="col-sm-10">
+												<input type="file" id="file">
+											</div>
+										</div>
+									</form>
+									<div class="ipledge_button">
+										<a class="btn btn-secondry " href=""> Cancel</a>
+										<a class="btn btn-primary " href=""> Submit</a>
+									</div>
+								</div> 
+
+								<div class=" outre_boxes mt24">
+									<table class="table table-responsive-md table-striped no-footer">
+										<thead>
+											<tr>
+											<th scope="col">Date</th>
+											<th scope="col">Pregnancy Test</th>
+											<th scope="col">Action</th>
+											</tr>
+										</thead>
+										<tbody class="list_view_outer">
+											<tr>
+											<th scope="row">1</th>
+											<td>Mark</td>
+											<td><i class="fa fa-eye"></i> </td>
+											</tr>
+											<tr>
+											<th scope="row">2</th>
+											<td>Jacob</td>
+											<td><i class="fa fa-eye"></i></td>
+											</tr>
+											<tr>
+											<th scope="row">3</th>
+											<td>Larry the Bird</td>
+											<td><i class="fa fa-eye"></i></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								
+							</div>
+						</section>
 					</div>	
 
 					<div id="triggerstab" class="tab-pane fade in">
-						<div class="row" style="padding: 10px;">
-							
-						</div>
+						<section class="all_screen_section">
+							<div class="Outer_box_design">
+								<div class="ipledge_outer_design outre_boxes mt24">
+									<div class="prior_block">
+									<p class="auth_text">Prior auth:</p>&nbsp;&nbsp;
+										<div class="check-register mangesubscription smalltext checkonly">
+											<label class="custome-checkbox">
+												<input type="checkbox" formControlName="acceptTerms" id="acceptTerms" checked="checked">
+												<span class="checkmark"></span>                                         
+											</label>
+										</div>
+									</div> 
+									<div class="prior_block">
+										<p class="auth_text">iPledge:</p>&nbsp;&nbsp;
+											<div class="check-register mangesubscription smalltext checkonly">
+												<label class="custome-checkbox">
+													<input type="checkbox" formControlName="acceptTerms" id="acceptTerms" checked="checked">
+													<span class="checkmark"></span>                                         
+												</label>
+											</div>
+									</div> 
+
+									<div class="ipledge_button">
+										<a class="btn btn-secondry " href=""> Verify</a>
+									</div>
+								</div>
+							</div>
+						</section>
 					</div>	
 
 

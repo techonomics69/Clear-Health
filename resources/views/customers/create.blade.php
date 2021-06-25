@@ -75,13 +75,13 @@
                                  <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>Password</label><span class="required">*</span>
-                                        {!! Form::text('passwords', null, array('type'=>'password','placeholder' => 'Password','class' => 'form-control', 'maxlength' => "15","id"=>"password")) !!}
+                                        {!! Form::password('passwords', null, array('placeholder' => 'Password','class' => 'form-control', 'maxlength' => "15","id"=>"password")) !!}
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>Confirm Password</label><span class="required">*</span>
-                                        {!! Form::text('confirm-password', null, array('type'=>'password','placeholder' => 'Password','class' => 'form-control', 'maxlength' => "15","id"=>"confirm_password")) !!}
+                                        {!! Form::password('confirm-password', null, array('placeholder' => 'Password','class' => 'form-control', 'maxlength' => "15","id"=>"confirm_password")) !!}
                                     </div>
                                 </div>
                             </div>

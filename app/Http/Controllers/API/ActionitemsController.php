@@ -80,9 +80,9 @@ class ActionitemsController extends BaseController
 
         $curexadata = CurexaOrder::where('order_id',$order_data['order_id'])->first();
 
-        $updated_at = new Carbon($curexadata['updated_at']);
+        $dispached_date = new Carbon($curexadata['dispached_date']);
         $now = Carbon::now();
-        $difference = ($created->diff($now)->days < 1)
+        $difference = ($dispached_date->diff($now)->days < 1)
         ? 'today'
         : $created->diffForHumans($now);
 

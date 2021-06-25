@@ -9,17 +9,7 @@ use Illuminate\Support\Facades\Hash;
 class ResetPasswordController extends Controller { 
 
   public function getPassword($token) { 
-    $updatePassword = DB::table('password_resets')
-    ->where(['token' => $token])
-    ->first();
-
-    if(!$updatePassword){
-      return view('reset', ['token' => $token,'error'=>'Invalid token']);
-    }else{
-      return view('reset', ['token' => $token]);
-    }
-     
-     
+    return view('reset', ['token' => $token]); 
   }
 
   public function updatePassword(Request $request)

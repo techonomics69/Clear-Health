@@ -63,7 +63,7 @@
 			<div class="col-lg-12">
 				<section class="card" >
 					<ul class="nav nav-tabs" id="question-tab-menu">
-					
+					{{session('activequiz')}}
 					@foreach($category as $key => $data)
 					  {{-- <li><a class="btn @if($activeTab == 0) active @elseif($current_tab_id == 'home'.$key) active @endif" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li> --}}
 

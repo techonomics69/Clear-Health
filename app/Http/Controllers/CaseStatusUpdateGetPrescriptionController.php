@@ -94,7 +94,9 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
          if(!empty($MdCaseStatus)){
 
-          $md_case_status = $MdCaseStatus->case_status->name;
+          //$md_case_status = $MdCaseStatus->case_status->name;//enable this aafter testing is done
+
+          $md_case_status = 'dosespot confirmed'; //remove this
 
           if(!empty($MdCaseStatus->case_assignment)){
             $md_status = 'assigned'; 
@@ -106,10 +108,10 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
           $get_support_reason = Mdcases::select('support_reason')->where('case_id',$case_id)->first();
 
-          
+
           $support_reason = $get_support_reason['support_reason'];
-          
-          
+
+
 
           if($gender == "Female" && $recommended_product == 'Accutane' && $case_type = 'new'){
 
@@ -295,7 +297,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
             }
 
-            
+
             if($value['curexa_order_id']!= '' || $value['curexa_order_id']!= NULL){
               $curexa_order_status = $this->curexa_order_status();
 

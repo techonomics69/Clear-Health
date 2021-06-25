@@ -141,7 +141,7 @@
 												</div>
 												<div class="col-md-6 form-group">
 													<strong>Gender : </strong>
-
+													{{$user_case_management_data['gender']}}
 
 												</div>
 												<div class="col-md-6 form-group">

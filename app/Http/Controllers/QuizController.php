@@ -51,6 +51,18 @@ class QuizController extends Controller
         return view('quiz.index', compact('quiz','category','quizOrder'))->with('i', ($request->input('page', 1) -1) * 5);
     }
 
+    public function setQuizTab(Request $request){
+        if(session('activequiz')===''){
+            if(session('activequiz') == ''){
+                $request->session()->put('activequiz', $request->activequiz);    
+            }else{
+                $request->session()->put('activequiz', session('activequiz'));
+            }
+        }else{
+            $request->session()->put('activequiz', $request->activequiz);
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *

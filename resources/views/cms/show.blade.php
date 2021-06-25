@@ -97,6 +97,7 @@
             height: 500,
             menubar: false,
             toolbar: false,
+            branding: false,
      });
  </script>
 @endsection

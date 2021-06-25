@@ -37,15 +37,16 @@ class QuizController extends Controller
             $quizOrder[$key] = Quiz::where('category_id', $key)->OrderBy('id', 'ASC')->get()->pluck('order')->toArray();
         }
         if(Session::has('activequiz')){
-            $request->session()->forget('activequiz');
-            $request->session()->put('activequiz', session('activequiz'));
-        }else{
             if(Session::get('activequiz') == ''){
                 $request->session()->forget('activequiz');
                 $request->session()->put('activequiz', reset($category));    
             }else{
                 $request->session()->put('activequiz', Session::get('activequiz'));
             }
+            
+        }else{
+            $request->session()->forget('activequiz');
+            $request->session()->put('activequiz', reset($category));
         }
         
         // dd(reset($category));

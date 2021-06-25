@@ -15,6 +15,9 @@ class CreateTriggersTable extends Migration
     {
         Schema::create('triggers', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
+            $table->integer('case_id');
+            $table->string('md_case_id');
             $table->string('name');
             $table->timestamps();
         });

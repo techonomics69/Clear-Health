@@ -108,7 +108,7 @@ data-open="click" data-menu="vertical-menu" data-col="1-column">
 
                      <div class="form-group row mb-0">
                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="button" id="userSubmit" class="btn btn-primary">
                                     Reset Password
                                 </button>
                             </div>
@@ -124,7 +124,45 @@ data-open="click" data-menu="vertical-menu" data-col="1-column">
 </div>
 </div>
 <script>
-  alert();
+   $(document).on('click', '#userSubmit', function() {
+      alert();
+            // var passflag = false;
+            // var passregex = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,30}/;
+            // var emailregex = /[^\s@]+@[^\s@]+\.[^\s@]+/;
+            // var email = $("#email").val();
+            // var password = $("#password").val();
+            // var c_password = $("#confirm_password").val();
+            // if(email == '' || email == null){
+            //     toastr["error"]("Please enter email address");
+            //     passflag = false;
+            // }else if(!emailregex.test(email)){
+            //     toastr["error"]("Please enter valid email address");
+            //     passflag = false;
+            // }else if(password == '' || password == null){
+            //     toastr["error"]("Please enter password");
+            //     passflag = false;
+            // }else if(!passregex.test(password)){
+            //     toastr["error"]("Password must contain at least 8 characters [ one uppercase, lowercase, number & special character");
+            //     passflag = false;
+            // }else if(c_password == '' || c_password == null){
+            //     toastr["error"]("Please enter confirm password");
+            //     passflag = false;
+            // }else if(!passregex.test(c_password)){
+            //     toastr["error"]("Password must contain at least 8 characters [ one uppercase, lowercase, number & special character");
+            //     passflag = false;
+            // }else if(c_password !== password){
+            //     toastr["error"]("confirm password not matched password");
+            //     passflag = false;    
+            // }else{
+            //     passflag = true;
+            // }
+            
+            // if(passflag){
+            //     $(this).html('Loading..').attr('disabled','disabled');
+            //     $('#storeCustomer').submit();
+            // }
+            
+        });
 </script>
 </body>
 </html>

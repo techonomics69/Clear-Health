@@ -1283,12 +1283,12 @@
 function openbloodwork(){
 	// alert();
 	  if($(".bloodworkform").hasClass("bloodworkhide")){
-		  
-			$(".bloodworkform").addClass('bloodworkshow');
+		$(".bloodworkform").removeClass('bloodworkhide');  
+		$(".bloodworkform").addClass('bloodworkshow');
 		  
 	  }else{
-		
-			$(".bloodworkform").addClass('bloodworkhide');
+		$(".bloodworkform").removeClass('bloodworkshow');
+		$(".bloodworkform").addClass('bloodworkhide');
 		
 	  }
   }

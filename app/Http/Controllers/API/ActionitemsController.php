@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\API\BaseController as BaseController;
 use Illuminate\Http\Request;
 use App\Models\IpledgeAgreement;
+use App\Models\User;
 use Validator;
 use Exception;
 
@@ -14,7 +15,6 @@ class ActionitemsController extends BaseController
     {
  
     }
-
 
     public function getIpledgeAgreement(Request $request)
     {
@@ -53,6 +53,7 @@ class ActionitemsController extends BaseController
         }
     }
 
+
     public function showActionItemsForm(Request $request){
         //code for ipledge agreement(sign_ipledge_consent) and birthcontrol form (abstinence_form)
         $user_id = $request['user_id'];
@@ -61,44 +62,42 @@ class ActionitemsController extends BaseController
 
         $user_gender = User::select('gender')->where('id', $user_id)->first();
         echo "<pre>";
-        print_r('$user_gender');
+        print_r($user_gender);
         echo "<pre>";
         exit();
-
-
         //end of code for ipledge agreement(sign_ipledge_consent) and birthcontrol form (abstinence_form)
     }
 
-public function create()
-{
+    public function create()
+    {
 
-}
-
-
-public function store(Request $request)
-{
-
-}
+    }
 
 
-public function show($id)
-{
+    public function store(Request $request)
+    {
 
-}
-
-public function edit($id)
-{
-
-}
+    }
 
 
-public function update(Request $request, $id)
-{
+    public function show($id)
+    {
 
-}
+    }
 
-public function destroy($id)
-{
+    public function edit($id)
+    {
 
-}
+    }
+
+
+    public function update(Request $request, $id)
+    {
+
+    }
+
+    public function destroy($id)
+    {
+
+    }
 }

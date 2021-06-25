@@ -62,7 +62,7 @@ class ActionitemsController extends BaseController
 
         $user_gender = User::select('gender')->where('id', $user_id)->first();
         echo "<pre>";
-        print_r('$user_gender');
+        print_r($user_gender);
         echo "<pre>";
         exit();
         //end of code for ipledge agreement(sign_ipledge_consent) and birthcontrol form (abstinence_form)

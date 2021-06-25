@@ -97,6 +97,10 @@ class ActionitemsController extends BaseController
         echo "<pre>";
         print_r( $preferred_pharmacy_id);
         echo "<pre>";
+
+        echo "<pre>";
+        print_r( $curexadata['order_status']);
+        echo "<pre>";
         exit();
 
 

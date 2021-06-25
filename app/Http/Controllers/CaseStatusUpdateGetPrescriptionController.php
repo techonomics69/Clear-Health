@@ -545,8 +545,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
         ->where('checkout_address.address_type',1)
         ->OrderBy('id', 'DESC')
         ->first();
-
-
+        
         $patient_id = $user['md_patient_id'];
 
           if($patient_id != '' || $patient_id != NULL ){

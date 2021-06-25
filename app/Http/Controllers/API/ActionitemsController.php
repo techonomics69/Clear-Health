@@ -98,14 +98,7 @@ class ActionitemsController extends BaseController
 
         $curexadata = CurexaOrder::where('order_id',$order_data['order_id'])->first();
 
-        echo "<pre>";
-        print_r( $preferred_pharmacy_id);
-        echo "<pre>";
 
-        echo "<pre>";
-        print_r( $curexadata['order_status']);
-        echo "<pre>";
-        exit();
 
 
         $dispached_date = new Carbon($curexadata['dispached_date']);
@@ -115,6 +108,24 @@ class ActionitemsController extends BaseController
         //if curexa 
 
         if($preferred_pharmacy_id =='13012' && $curexadata['order_status'] == "out_for_delivery" ){
+
+            echo "<pre>";
+        print_r( $preferred_pharmacy_id);
+        echo "<pre>";
+
+        echo "<pre>";
+        print_r( $curexadata['order_status']);
+        echo "<pre>";
+
+        echo "<pre>";
+        print_r( $user_gender['gender']);
+        echo "<pre>";
+
+
+        echo "<pre>";
+        print_r($difference);
+        echo "<pre>";
+        exit();
 
             if($user_gender['gender'] =='female' && $difference > 90){
                 $show_blood_work_labs_due = true;

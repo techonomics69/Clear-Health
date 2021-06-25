@@ -41,6 +41,14 @@
 			display: none;
 		}
 
+		.priorshow{
+			display: block;
+		}
+
+		.priorhide{
+			display: none;
+		}
+
 	</style>
 	@php
 	$msg_tab = 0;
@@ -677,7 +685,7 @@
 										<thead>
 											<tr>
 											<th scope="col">Date</th>
-											<th scope="col">Pregnancy Test</th>
+											<th scope="col">File</th>
 											<th scope="col">Action</th>
 											</tr>
 										</thead>
@@ -710,10 +718,10 @@
 							<div class="Outer_box_design">
 
 								<div class="ipledge_button m-0">
-									<a class="btn btn-secondry" href="#"><i class="fa fa-plus" aria-hidden="true"></i> Add New</a>
+									<a class="btn btn-secondry" href="javascript:void(0);" onclick="openprior();"><i class="fa fa-plus" aria-hidden="true"></i> Add New</a>
 								</div>
 
-								<div class="ipledge_outer_design outre_boxes mt24">
+								<div class="ipledge_outer_design outre_boxes mt24 priorauth priorshow priorhide">
 									<form>
 										<div class="form-group row">
 											<label for="inputEmail3" class="col-sm-2 col-form-label">Date:</label>
@@ -740,7 +748,7 @@
 										<thead>
 											<tr>
 											<th scope="col">Date</th>
-											<th scope="col">Pregnancy Test</th>
+											<th scope="col">File</th>
 											<th scope="col">Action</th>
 											</tr>
 										</thead>
@@ -1292,6 +1300,18 @@ function openbloodwork(){
 		
 	  }
   }
+
+function openprior(){
+	if($(".priorauth").hasClass("priorhide")){
+		$(".priorauth").removeClass('priorhide');  
+		$(".priorauth").addClass('priorshow');
+		  
+	  }else{
+		$(".priorauth").removeClass('priorshow');
+		$(".priorauth").addClass('priorhide');
+		
+	  }
+}  
 
 	$(document).ready(function() {
 		$('#btnsubmit').on('click', function(event) {

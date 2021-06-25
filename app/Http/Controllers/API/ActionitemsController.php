@@ -71,6 +71,22 @@ class ActionitemsController extends BaseController
 
         $user_gender = User::select('gender')->where('id', $user_id)->first();
 
+
+        //code for ipledge agreement(sign_ipledge_consent) and birthcontrol form (abstinence_form)
+        
+        $md_case_data = Mdcases::select('status','case_status_reason')->where('case_id', $md_case_id)->first();
+        if($user_gender['gender'] =='male' && $md_case_data['status'] == 'completed' ){
+            $show_ipledge_agreement_form = true;
+        }
+
+        if($user_gender['gender'] =='female' && $md_case_data['case_status_reason'] != NULL ){
+            $show_ipledge_agreement_form = true;
+        }
+        //end of code for ipledge agreement(sign_ipledge_consent) and birthcontrol form (abstinence_form)
+
+
+        //code for Blood Work Labs Due
+
         $order_data = Checkout::where([['user_id', $user_id],['case_id', $case_id],['md_case_id', $md_case_id]])->first();
 
         $cart_ids = explode(',', $order_data['cart_id']);
@@ -84,17 +100,21 @@ class ActionitemsController extends BaseController
         $now = Carbon::now();
         $difference = $dispached_date->diffInDays($now);
 
-        //code for ipledge agreement(sign_ipledge_consent) and birthcontrol form (abstinence_form)
-        
-        $md_case_data = Mdcases::select('status','case_status_reason')->where('case_id', $md_case_id)->first();
-        if($user_gender['gender'] =='male' && $md_case_data['status'] == 'completed' ){
-            $show_ipledge_agreement_form = true;
-        }
+        //if curexa 
 
-        if($user_gender['gender'] =='female' && $md_case_data['case_status_reason'] != NULL ){
-            $show_ipledge_agreement_form = true;
+        if($preferred_pharmacy_id =='13012' && $curexadata['order_status'] == "out_for_delivery" ){
+
+            if($user_gender['gender'] =='female' && $difference > 90){
+                $show_blood_work_labs_due = true;
+            }
+
+            if($user_gender['gender'] =='male' && $difference > 60){
+                $show_blood_work_labs_due = true;
+            }
         }
-        //end of code for ipledge agreement(sign_ipledge_consent) and birthcontrol form (abstinence_form)
+        //end of curexa
+
+        //end of code for Blood Work Labs Due
 
 
 

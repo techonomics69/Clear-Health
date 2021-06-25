@@ -28,6 +28,11 @@
 			color: #ffffff;
 		}
 
+		#questions-tab-menu li a.active{
+			background-color: #43bfc1;
+			color: #ffffff;
+		}
+
 	</style>
 	@php
 	$msg_tab = 0;

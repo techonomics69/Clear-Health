@@ -62,7 +62,7 @@
 	@endphp
 	@else
 	@php
-	$current_tab_id = 'home'.session()->get('que_current_tab') ;
+	$current_tab_id = "";
 	$activeTab = 0 ;
 	$active = 0 ;	
 	@endphp
@@ -176,7 +176,7 @@
 						@endif --}}
 
 						@php
-						$current_tab_id = "";
+						$current_tab_id = 'home'.session()->get('que_current_tab') ;
 						$activeTab = 1;
 						Session::forget('que_current_tab');
 						@endphp

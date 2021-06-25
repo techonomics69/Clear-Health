@@ -156,7 +156,7 @@ class MdManagementController extends Controller
     public function destroy($id)
     {
         Mdmanagement::find($id)->delete();
-        toastr()->success('MdManagement deleted successfully');
+        toastr()->success('Md deleted successfully');
 
         return redirect()->route('mdmanagement.index');
     }

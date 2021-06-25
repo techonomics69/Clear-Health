@@ -75,7 +75,7 @@
         <div class="form-group">
             <strong>Description:</strong>
 			<div class="col-lg-12" style="border: 1px solid #43bfc1;">
-			<p>{!! $cms->description !!}</p>
+			{!! $cms->description !!}
 			</div>
         </div>      
     </div>  

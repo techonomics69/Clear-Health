@@ -886,7 +886,7 @@ margin-left:16px
 /*************8 action item *************/
 .all_screen_section .Outer_box_design {
   max-width: 800px;
-  margin: 0 auto;
+  margin: 20px auto;
   border: 1px solid #aaa;
   padding: 15px;
 }
@@ -1084,6 +1084,13 @@ margin-left:16px
 
 .all_screen_section .btn:hover i {
   color: #43bfc1;
+}
+
+
+.all_screen_section table.table thead th,.all_screen_section table.table tbody td {
+  border-width: 1px !important;
+  vertical-align: middle;
+  padding: 10px 14px !important;
 }
 /*# sourceMappingURL=style.css.map */
 /* ************************************* */

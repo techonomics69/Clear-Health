@@ -513,7 +513,7 @@ if(!empty($Patient_data)){
   //$no_substitutions = false;
   //$pharmacy_notes =  "";
   $quantity = 30;
-  $preferred_pharmacy_id =13012;
+  $preferred_pharmacy_id =13012;//pharmacy id of curexa=13012
 
 
       /*$DispensUnitId = $this->getDispensUnitId();

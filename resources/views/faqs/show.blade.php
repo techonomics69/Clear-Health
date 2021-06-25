@@ -35,7 +35,7 @@
 				        </div>
 				        <div class="form-group">
 				            <strong>Answer:</strong>
-				            {!! $faq->answer !!}
+				            <textarea class="description">{!! $faq->answer !!}</textarea>
 				        </div>
 				        <div class="form-group">
 				            <strong>Status:</strong>
@@ -51,4 +51,19 @@
 		</div>
 	</div>
 </div>
+@endsection
+@section('scriptsection')
+ <script src="https://cdn.tiny.cloud/1/j3kw9oh0738f05rpikjcighyie0bey1u6fdit6bjo8ylaonm/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+ <script>
+     tinymce.init({
+            selector: 'textarea.description',
+            height: 500,
+            menubar: false,
+            toolbar: false,
+            branding: false,
+            content_css: '//www.tiny.cloud/css/codepen.min.css',
+            readonly : true,
+            accessibility_warnings : false
+     });
+ </script>
 @endsection

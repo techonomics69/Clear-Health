@@ -217,7 +217,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                     if(!empty($response)){
                       $this->save_prescription_response($response,$user_id,$case_id,$system_case_id);
-
+                       $prescription_data = json_decode($response);
                       //curexa create order api   
 
                       $curexa_para = array();
@@ -262,7 +262,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                   if(!empty($response)){
                     $this->save_prescription_response($response,$user_id,$case_id,$system_case_id);
 
-
+                     $prescription_data = json_decode($response);
                   //curexa create order api
 
                     $curexa_para = array();

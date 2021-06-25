@@ -580,9 +580,42 @@
 					</div>	
 
 					<div id="pregnencytesttab" class="tab-pane fade in">
-						<div class="row" style="padding: 10px;">
-							
-						</div>
+						<section class="all_screen_section">
+							<div class="Outer_box_design">
+								<div class="ipledge_outer_design mt24">
+									<table class="table table-responsive-md table-striped no-footer">
+										<thead>
+											<tr>
+											<th scope="col">Date</th>
+											<th scope="col">Pregnancy Test</th>
+											<th scope="col">Month</th>
+											<th scope="col">Action</th>
+											</tr>
+										</thead>
+										<tbody class="list_view_outer">
+											<tr>
+											<th scope="row">1</th>
+											<td>Mark</td>
+											<td>Otto</td>
+											<td><i class="fa fa-eye"></i> / <a class="btn btn-secondry " href="">Verify</a></td>
+											</tr>
+											<tr>
+											<th scope="row">2</th>
+											<td>Jacob</td>
+											<td>Thornton</td>
+											<td><i class="fa fa-eye"></i> / <a class="btn btn-secondry " href="">Verify</a></td>
+											</tr>
+											<tr>
+											<th scope="row">3</th>
+											<td>Larry the Bird</td>
+											<td>@twitter</td>
+											<td><i class="fa fa-eye"></i> / <a class="btn btn-secondry " href="">Verify</a></td>
+											</tr>
+										</tbody>
+									</table>
+								</div> 
+							</div>
+						</section>
 					</div>	
 
 					<div id="bloodworktab" class="tab-pane fade in">

@@ -211,13 +211,9 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                      echo "<pre>else  in if ";
                   print_r($case_id);
                   echo "<pre>";
-                  exit();
+                 
 
                     $response = $this->getPrescription($case_id);
-
-                      echo "<pre>";
-                 print_r($response);
-                 echo "<pre>";
 
                     if(!empty($response)){
                       $this->save_prescription_response($response);
@@ -265,10 +261,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                   echo "<pre>";
              
                   $response = $this->getPrescription($case_id);
-                    echo "<pre>";
-                 print_r($response);
-                 echo "<pre>";
-
+                   
                   if(!empty($response)){
                     $this->save_prescription_response($response);
 

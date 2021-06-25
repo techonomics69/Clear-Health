@@ -106,10 +106,10 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
           $get_support_reason = Mdcases::select('support_reason')->where('case_id',$case_id)->first();
 
-      
+          
           $support_reason = $get_support_reason['support_reason'];
-        
-        
+          
+          
 
           if($gender == "Female" && $recommended_product == 'Accutane' && $case_type = 'new'){
 
@@ -274,17 +274,18 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                //code for update md details
 
-              $inputmd_data['status'] = 1;
-              $inputmd_data['image'] = "";
-              $inputmd_data['language_id'] = "";
-              $inputmd_data['md_id'] = $MdCaseStatus->case_assignment->clinician->clinician_id;
-              $inputmd_data['name'] = $MdCaseStatus->case_assignment->clinician->full_name;
-              $inputmd_data['reason'] = $MdCaseStatus->case_assignment->reason;;
-              $inputmd_data['case_assignment_id'] = $MdCaseStatus->case_assignment->case_assignment_id;
+              if($MdCaseStatus->case_assignment != null){
+               $inputmd_data['status'] = 1;
+               $inputmd_data['image'] = "";
+               $inputmd_data['language_id'] = "";
+               $inputmd_data['md_id'] = $MdCaseStatus->case_assignment->clinician->clinician_id;
+               $inputmd_data['name'] = $MdCaseStatus->case_assignment->clinician->full_name;
+               $inputmd_data['reason'] = $MdCaseStatus->case_assignment->reason;;
+               $inputmd_data['case_assignment_id'] = $MdCaseStatus->case_assignment->case_assignment_id;
 
-              $mdmanagement_data = Mdmanagement::where('case_id', $case_id)->first();
+               $mdmanagement_data = Mdmanagement::where('case_id', $case_id)->first();
 
-              if(!empty($mdmanagement_data)){
+               if(!empty($mdmanagement_data)){
 
                 $mdmanagement_data->update($inputmd_data);
 
@@ -292,26 +293,29 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                 $md_case_data = Mdmanagement::create($inputmd_data);
               }
 
-              if($value['curexa_order_id']!= '' || $value['curexa_order_id']!= NULL){
-                $curexa_order_status = $this->curexa_order_status();
-
-                $curexa_ord_status = json_decode($curexa_order_status);
-
-                $CurexaOrderStatus  =  CurexaOrder::where('id',$value['curexa_order_id'])->update(['order_status' => $curexa_ord_status->status,'status_details' => $curexa_ord_status->status_details,'tracking_number'=> $curexa_ord_status->tracking_number]);
-              }
-
             }
-            //md status completed
+
+            
+            if($value['curexa_order_id']!= '' || $value['curexa_order_id']!= NULL){
+              $curexa_order_status = $this->curexa_order_status();
+
+              $curexa_ord_status = json_decode($curexa_order_status);
+
+              $CurexaOrderStatus  =  CurexaOrder::where('id',$value['curexa_order_id'])->update(['order_status' => $curexa_ord_status->status,'status_details' => $curexa_ord_status->status_details,'tracking_number'=> $curexa_ord_status->tracking_number]);
+            }
 
           }
+            //md status completed
+
         }
-
-
-
       }
 
-      //end code
+
+
     }
+
+      //end code
+  }
 
     /**
      * Show the form for creating a new resource.

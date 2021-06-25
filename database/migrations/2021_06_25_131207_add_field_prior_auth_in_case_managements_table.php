@@ -14,7 +14,7 @@ class AddFieldPriorAuthInCaseManagementsTable extends Migration
     public function up()
     {
         Schema::table('case_managements', function (Blueprint $table) {
-            $table->enum('prior_auth')->after('ipledge_items')->default('0')->comment='0=pending,1=confirmed';
+            $table->string('prior_auth')->after('ipledge_items')->default('0')->comment='0=pending,1=confirmed';
         });
     }
 

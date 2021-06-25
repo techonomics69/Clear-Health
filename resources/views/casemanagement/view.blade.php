@@ -191,7 +191,7 @@
 											@foreach($category as $key => $data)
 											{{-- <li><a class="btn @if($key == 0) active @elseif($current_tab_id == 'home'.$key) active @endif" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li> --}}
 
-											<li><a onclick="stequeTab();" class="btn @if($current_tab_id == 'home7') active @elseif($current_tab_id == 'home'.$key) active @endif" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li>
+											<li><a class="btn firstquebutton @if($current_tab_id == 'home7') active @elseif($current_tab_id == 'home'.$key) active @endif" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li>
 											<?php //$activeTab++ ?> 
 											@endforeach
 										</ul>
@@ -1137,9 +1137,11 @@
 	$("#blah").show();
   };
 
-  function stequeTab(){
-	  alert();
-  }
+  $(".firstquebutton").each(function(v,i){
+	if(i == 0){
+		$(this).addClass('active');
+	}
+  });
 
 </script>
 

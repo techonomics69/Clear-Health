@@ -123,6 +123,9 @@ data-open="click" data-menu="vertical-menu" data-col="1-column">
 </div>
 </div>
 </div>
+<script>
+  alert();
+</script>
 </body>
 </html>
 

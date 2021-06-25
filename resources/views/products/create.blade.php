@@ -190,7 +190,9 @@
     });
     $(document).ready(function() {
         $(function () {
-            $('.available_date').datepicker();
+            $('.available_date').datepicker({
+                minDate: new Date(),
+            });
         });
     });
 </script>

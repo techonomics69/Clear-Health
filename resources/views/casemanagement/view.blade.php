@@ -169,13 +169,14 @@
 						@endphp
 						@else
 						@php
-						$current_tab_id = "";
+						
 						$activeTab = 0 ;
 						$active = 0 ;	
 						@endphp
 						@endif --}}
 
 						@php
+						$current_tab_id = "";
 						Session::forget('que_current_tab');
 						@endphp
 						<div id="questions" class="tab-pane fade in">					    

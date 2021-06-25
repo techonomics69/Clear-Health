@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\IpledgeAgreement;
 use App\Models\User;
 use App\Models\Mdcases;
+use App\Models\Checkout;
 use Validator;
 use Exception;
 
@@ -66,6 +67,13 @@ class ActionitemsController extends BaseController
         $show_ipledge_questions_due = false;
 
         $user_gender = User::select('gender')->where('id', $user_id)->first();
+
+        $order_data = Checkout::where([['user_id', $user_id],['case_id', $case_id],['md_case_id', $md_case_id]])->first();
+
+        echo "<pre>";
+        print_r(4order_data);
+        echo "<pre>";
+        exit();
 
         //code for ipledge agreement(sign_ipledge_consent) and birthcontrol form (abstinence_form)
         

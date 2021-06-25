@@ -96,6 +96,7 @@
             selector: 'textarea.description',
             height: 500,
             menubar: false,
+            toolbar: false,
      });
  </script>
 @endsection

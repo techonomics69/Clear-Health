@@ -61,6 +61,9 @@ Route::get('/clear-cache', function() {
 
 Route::get('logout', function () {
     Auth::logout();
+    if(Session::has('activequiz')){
+        $request->session()->forget('activequiz');
+    }
     // Artisan::call('cache:clear');
     //return redirect()->intended('login');
     return redirect(\URL::previous());

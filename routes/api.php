@@ -161,6 +161,7 @@ Route::post('getToken', [CaseManagementController::class, 'get_token']);
 
      Route::post('addIpledgeAgreement',[ActionitemsController::class,'addIpledgeAgreement']);
      Route::post('getIpledgeAgreement',[ActionitemsController::class,'getIpledgeAgreement']);
+     Route::post('showActionItemsForm',[ActionitemsController::class,'showActionItemsForm']);
 
     //Change Password
      Route::post('changePassword', [ChangePasswordController::class, 'changePassword']);

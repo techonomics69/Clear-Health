@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('title', 'clearHealth | CMS')
+@section('stylesection')
+<
+@endsection
 @section('content')
 <div class="app-content content">
 
@@ -75,7 +78,7 @@
         <div class="form-group">
             <strong>Description:</strong>
 			<div class="col-lg-12" style="border: 1px solid #43bfc1;">
-			{!! $cms->description !!}
+			<textarea id="description" class="description">{!! $cms->description !!}</textarea>
 			</div>
         </div>      
     </div>  
@@ -87,5 +90,14 @@
 </div>
 @endsection
 @section('scriptsection')
- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+ <script src="https://cdn.tiny.cloud/1/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+ <script>
+     tinymce.init({
+            selector: 'textarea.description',
+            height: 500,
+            menubar: false,
+            toolbar: false,
+            branding: false,
+     });
+ </script>
 @endsection

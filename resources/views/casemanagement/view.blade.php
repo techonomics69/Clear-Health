@@ -537,11 +537,14 @@
 						
 							<section class="all_screen_section">
 								<div class="Outer_box_design">
-									<div class="ipledge_id">
+									
+
+									<div class="ipledge_outer_design mt24">
+
+									<div class="ipledge_ide">
 										<p class="mb-0"><span class="left_heading">iPledge ID : </span>XXXXXXXXXXXXX</p>
 									</div>
 
-									<div class="ipledge_outer_design mt24">
 										<div class="ipledge_heading outre_boxes">
 											<p class="heading_text mb-0">iPledge Credentials</p>
 										</div>
@@ -748,7 +751,7 @@
 					<div id="triggerstab" class="tab-pane fade in">
 						<section class="all_screen_section">
 							<div class="Outer_box_design">
-								<div class="ipledge_outer_design outre_boxes mt24">
+								<div class="ipledge_outer_design outre_boxes ">
 									<div class="prior_block">
 									<p class="auth_text">Prior auth:</p>&nbsp;&nbsp;
 										<div class="check-register mangesubscription smalltext checkonly">

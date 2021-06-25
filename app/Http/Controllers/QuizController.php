@@ -36,14 +36,14 @@ class QuizController extends Controller
             $quiz[$key][] = Quiz::where('category_id', $key)->OrderBy('id', 'ASC')->get();
             $quizOrder[$key] = Quiz::where('category_id', $key)->OrderBy('id', 'ASC')->get()->pluck('order')->toArray();
         }
-        if(session('activequiz')===''){
+        if(session('activequiz')==''){
+            $request->session()->put('activequiz', reset($category));
+        }else{
             if(session('activequiz') == ''){
                 $request->session()->put('activequiz', reset($category));    
             }else{
                 $request->session()->put('activequiz', session('activequiz'));
             }
-        }else{
-            $request->session()->put('activequiz', reset($category));
         }
         
         // dd(reset($category));
@@ -53,13 +53,13 @@ class QuizController extends Controller
 
     public function setQuizTab(Request $request){
         if(session('activequiz')===''){
+            $request->session()->put('activequiz', $request->activequiz);
+        }else{
             if(session('activequiz') == ''){
                 $request->session()->put('activequiz', $request->activequiz);    
             }else{
                 $request->session()->put('activequiz', session('activequiz'));
             }
-        }else{
-            $request->session()->put('activequiz', $request->activequiz);
         }
     }
 

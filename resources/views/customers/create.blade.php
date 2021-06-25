@@ -75,7 +75,7 @@
                                  <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>Password</label><span class="required">*</span>
-                                        {!! Form::text('passwords', null, array('placeholder' => 'Password','class' => 'form-control', 'maxlength' => "15","id"=>"passsword")) !!}
+                                        {!! Form::text('passwords', null, array('placeholder' => 'Password','class' => 'form-control', 'maxlength' => "15","id"=>"password")) !!}
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6">
@@ -121,19 +121,18 @@
             var email = $("#email").val();
             var password = $("#password").val();
             var c_password = $("#confirm_password").val();
-            alert(email+' '+password+' '+c_password);
-            // if(email == '' ){
-            //     toastr["error"]("Please enter email");
-            //     passflag = false;
-            // }else if(password == ''){
-            //     toastr["error"]("Please enter password");
-            //     passflag = false;
-            // }else if(c_password == ''){
-            //     toastr["error"]("Please enter confirm password");
-            //     passflag = false;
-            // }else{
-            //     passflag = true;
-            // }
+            if(email == '' || email == null){
+                toastr["error"]("Please enter email");
+                passflag = false;
+            }else if(password == '' || password == null){
+                toastr["error"]("Please enter password");
+                passflag = false;
+            }else if(c_password == '' || c_password == null){
+                toastr["error"]("Please enter confirm password");
+                passflag = false;
+            }else{
+                passflag = true;
+            }
             
             if(passflag){
                 alert('submitted');

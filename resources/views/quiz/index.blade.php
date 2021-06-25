@@ -67,7 +67,7 @@
 					@foreach($category as $key => $data)
 					  {{-- <li><a class="btn @if($activeTab == 0) active @elseif($current_tab_id == 'home'.$key) active @endif" data-toggle="tab" href="#home{{$key}}">{{$data}}</a></li> --}}
 
-					   <li><a class="btn @if($current_tab_id == 'home'.$key ) active @elseif($activeTab == 0) active @endif" data-toggle="tab" href="#home{{$key}}" onclick="setActiveTab()">{{$data}}</a></li>
+					   <li><a class="btn @if($current_tab_id == 'home'.$key ) active @elseif($activeTab == 0) active @elseif(session('activequiz') == $data) active @endif" data-toggle="tab" href="#home{{$key}}" onclick="setActiveTab('{{$data}}')">{{$data}}</a></li>
 					 <?php $activeTab++ ?> 
 					 @endforeach
 					</ul>
@@ -195,8 +195,10 @@ $(document).ready(function(){
 		});
 	});
 
-	function setActiveTab(){
-		alert();
+	function setActiveTab(tab){
+		$.post('{{ route('quiz.setactive') }}',{_token:"{{ csrf_token() }}",activequiz:tab},function(data){
+
+		});
 	}
 </script>
 @endsection

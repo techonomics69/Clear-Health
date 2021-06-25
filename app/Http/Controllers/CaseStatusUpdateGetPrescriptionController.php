@@ -141,17 +141,11 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                 if($md_case_status == 'dosespot confirmed' && $case_type = 'follow_up'){
 
                   $system_status = 'Prescription Approved';
-
-                  echo "<pre> in if ";
-                  print_r($case_id);
-                  echo "<pre>";
               
 
                   $response = $this->getPrescription($case_id);
 
               
-                
-
                   if(!empty($response)){
                     $this->save_prescription_response($response,$user_id,$case_id,$system_case_id);
                     $prescription_data = json_decode($response);
@@ -161,15 +155,19 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                     $curexa_para['user_id'] = $user_id;
                     $curexa_para['case_id'] = $case_id;
                     $curexa_para['system_case_id'] = $system_case_id;
-                    $curexa_para['rx_id'] =  $prescription_data->dosespot_prescription_id;
-                    $curexa_para['quantity_dispensed'] = $prescription_data->quantity;
-                    $curexa_para['days_supply'] = $prescription_data->days_supply;
-                    $curexa_para['medication_sig'] = $prescription_data->directions;
+
+                    foreach($prescription_data as $key=>$prescription){
+                      $curexa_para['rx_id'] =  $prescription->dosespot_prescription_id;
+                      $curexa_para['quantity_dispensed'] = $prescription->quantity;
+                      $curexa_para['days_supply'] = $prescription->days_supply;
+                      $curexa_para['medication_sig'] = $prescription->directions;
 
 
-                    $curexa_create_order_data = $this->curexa_create_order($curexa_para);
+                      $curexa_create_order_data = $this->curexa_create_order($curexa_para);
 
-                    $this->store_curexa_order_data($curexa_create_order_data);
+                      $this->store_curexa_order_data($curexa_create_order_data);
+                    }
+                   
 
                     //end of curexa  create order api 
                   } 
@@ -208,11 +206,6 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                     $system_status = 'Prescription Approved';
 
-                     echo "<pre>else  in if ";
-                  print_r($case_id);
-                  echo "<pre>";
-                 
-
                     $response = $this->getPrescription($case_id);
 
                     if(!empty($response)){
@@ -224,15 +217,18 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                       $curexa_para['user_id'] = $user_id;
                       $curexa_para['case_id'] = $case_id;
                       $curexa_para['system_case_id'] = $system_case_id;
-                      $curexa_para['rx_id'] =  $prescription_data->dosespot_prescription_id;
-                      $curexa_para['quantity_dispensed'] = $prescription_data->quantity;;
-                      $curexa_para['days_supply'] = $prescription_data->days_supply;
-                      $curexa_para['medication_sig'] = $prescription_data->directions;
+
+                      foreach($prescription_data as $key=>$prescription){
+                      $curexa_para['rx_id'] =  $prescription->dosespot_prescription_id;
+                      $curexa_para['quantity_dispensed'] = $prescription->quantity;
+                      $curexa_para['days_supply'] = $prescription->days_supply;
+                      $curexa_para['medication_sig'] = $prescription->directions;
 
 
                       $curexa_create_order_data = $this->curexa_create_order($curexa_para);
 
                       $this->store_curexa_order_data($curexa_create_order_data);
+                    }
 
                     //end of curexa  create order api
                     }
@@ -269,15 +265,17 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                     $curexa_para['user_id'] = $user_id;
                     $curexa_para['case_id'] = $case_id;
                     $curexa_para['system_case_id'] = $system_case_id;
-                    $curexa_para['rx_id'] =  $prescription_data->dosespot_prescription_id;
-                    $curexa_para['quantity_dispensed'] = $prescription_data->quantity;;
-                    $curexa_para['days_supply'] = $prescription_data->days_supply;
-                    $curexa_para['medication_sig'] = $prescription_data->directions;
+                   foreach($prescription_data as $key=>$prescription){
+                      $curexa_para['rx_id'] =  $prescription->dosespot_prescription_id;
+                      $curexa_para['quantity_dispensed'] = $prescription->quantity;
+                      $curexa_para['days_supply'] = $prescription->days_supply;
+                      $curexa_para['medication_sig'] = $prescription->directions;
 
 
-                    $curexa_create_order_data = $this->curexa_create_order($curexa_para);
+                      $curexa_create_order_data = $this->curexa_create_order($curexa_para);
 
-                    $this->store_curexa_order_data($curexa_create_order_data);
+                      $this->store_curexa_order_data($curexa_create_order_data);
+                    }
 
                   //end of curexa  create order api
                   }  

@@ -28,10 +28,10 @@ class PaymentsController extends BaseController
 
     public function store()
     {
-        /*echo "<pre>";
+        echo "<pre>";
         print_r(env('STRIPE_SECRET_KEY'));
         echo "<pre>";
-        exit();*/
+        exit();
 
         /*
         order_id

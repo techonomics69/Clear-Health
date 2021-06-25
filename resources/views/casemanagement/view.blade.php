@@ -751,7 +751,7 @@
 					<div id="triggerstab" class="tab-pane fade in">
 						<section class="all_screen_section">
 							<div class="Outer_box_design">
-								<div class="ipledge_outer_design outre_boxes ">
+								<div class="ipledge_outer_design ">
 									<div class="prior_block">
 									<p class="auth_text">Prior auth:</p>&nbsp;&nbsp;
 										<div class="check-register mangesubscription smalltext checkonly">

@@ -32,6 +32,7 @@ class QuizController extends Controller
     {
         $category = QuizCategory::pluck('name', 'id')->toArray();
         foreach ($category as $key => $value) {
+            if($key == 0) $request->session()->put('activequiz', $value);
             $quiz[$key][] = Quiz::where('category_id', $key)->OrderBy('id', 'ASC')->get();
             $quizOrder[$key] = Quiz::where('category_id', $key)->OrderBy('id', 'ASC')->get()->pluck('order')->toArray();
         }

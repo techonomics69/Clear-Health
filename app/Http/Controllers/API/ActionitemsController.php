@@ -56,7 +56,7 @@ class ActionitemsController extends BaseController
 
 
     public function showActionItemsForm(Request $request){
-        //code for ipledge agreement(sign_ipledge_consent) and birthcontrol form (abstinence_form)
+
         $user_id = $request['user_id'];
         $case_id = $request['case_id'];
         $md_case_id = $request['md_case_id'];
@@ -67,6 +67,8 @@ class ActionitemsController extends BaseController
 
         $user_gender = User::select('gender')->where('id', $user_id)->first();
 
+        //code for ipledge agreement(sign_ipledge_consent) and birthcontrol form (abstinence_form)
+        
         $md_case_data = Mdcases::select('status','case_status_reason')->where('case_id', $md_case_id)->first();
         if($user_gender['gender'] =='male' && $md_case_data['status'] == 'completed' ){
             $show_ipledge_agreement_form = true;
@@ -76,6 +78,9 @@ class ActionitemsController extends BaseController
             $show_ipledge_agreement_form = true;
         }
         //end of code for ipledge agreement(sign_ipledge_consent) and birthcontrol form (abstinence_form)
+
+
+
         $showscreen = array();
         $showscreen['show_ipledge_agreement_form'] =  $show_ipledge_agreement_form;
         $showscreen['show_blood_work_labs_due'] =  $show_blood_work_labs_due;

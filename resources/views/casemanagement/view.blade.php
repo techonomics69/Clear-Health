@@ -483,6 +483,18 @@
 								{{$skincare_summary['tax']}} $
 							<?php } ?>
 						</div> 
+						<?php
+							if($skincare_summary['gift_code_discount']!="" || $skincare_summary['gift_code_discount']!=null){
+						?>
+						<div class="col-md-6  form-group">
+							<strong>Discount :</strong>
+							<?php if(isset($skincare_summary['gift_code_discount']) && $skincare_summary['gift_code_discount'] != '')  { ?>
+								{{$skincare_summary['gift_code_discount']}} $
+							<?php } ?>
+						</div>
+						<?php		
+							}
+						?>
 						<div class="col-md-6  form-group">
 							<strong>Total Amount :</strong>
 							<?php if(isset($skincare_summary['total_amount']) && $skincare_summary['total_amount'] != '')  { ?>

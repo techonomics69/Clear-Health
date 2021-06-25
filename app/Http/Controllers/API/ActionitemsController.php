@@ -8,6 +8,7 @@ use App\Models\IpledgeAgreement;
 use App\Models\User;
 use App\Models\Mdcases;
 use App\Models\Checkout;
+use App\Models\CurexaOrder;
 use Validator;
 use Exception;
 
@@ -69,6 +70,10 @@ class ActionitemsController extends BaseController
         $user_gender = User::select('gender')->where('id', $user_id)->first();
 
         $order_data = Checkout::where([['user_id', $user_id],['case_id', $case_id],['md_case_id', $md_case_id]])->first();
+
+        $cart_ids = explode(',', $order_data['cart_id']);
+        $pharmacy_data  =  Cart::select('pharmacy_pickup')->where('user_id',$user_id)->whereIn('id',$cart_ids)->where('order_type', '!=', 'AddOn')->first();
+        $preferred_pharmacy_id = $pharmacy_data['pharmacy_pickup'];
 
         echo "<pre>";
         print_r($order_data);

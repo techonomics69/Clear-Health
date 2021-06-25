@@ -152,7 +152,7 @@
 
 														<div class="col-md-6 form-group">
 															<strong>Total Order Amount : </strong>
-															{{$order_data->total_amount}}
+															$ {{$order_data->total_amount}}
 														</div>
 
 													</div>

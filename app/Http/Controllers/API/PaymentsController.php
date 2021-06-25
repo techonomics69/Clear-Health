@@ -28,11 +28,11 @@ class PaymentsController extends BaseController
 
     public function store()
     {
-        /*echo "<pre>";
+       /* echo "<pre>";
         print_r(env('STRIPE_SECRET_KEY'));
         echo "<pre>";
-        exit();*/
-
+        exit();
+*/
         /*
         order_id
         username
@@ -56,7 +56,7 @@ class PaymentsController extends BaseController
         if(empty(request('stripeToken'))) {
             return $this->sendResponse(back()->withInput(),'Some error while making the payment. Please try again');
         }
-        Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+        Stripe::setApiKey('pk_test_51J68rTSAxcezccSJuY1VVZLuYikkAjDNpxyfRqqf5dDuJPZQrzU0wwe2NkF6lIr5UCdekq8rdmCo7CLAqXV7U9iJ00cj2mKwre');
         try {
             /** Add customer to stripe, Stripe customer */
             $customer = Customer::create([

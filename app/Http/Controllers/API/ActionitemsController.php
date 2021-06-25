@@ -16,7 +16,6 @@ class ActionitemsController extends BaseController
  
     }
 
-
     public function getIpledgeAgreement(Request $request)
     {
         try{
@@ -65,8 +64,6 @@ class ActionitemsController extends BaseController
         print_r('$user_gender');
         echo "<pre>";
         exit();
-
-
         //end of code for ipledge agreement(sign_ipledge_consent) and birthcontrol form (abstinence_form)
     }
 

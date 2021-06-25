@@ -57,7 +57,7 @@ data-open="click" data-menu="vertical-menu" data-col="1-column">
                 <h3 class="card-header text-center">Reset Password</h3>
    
                 <div class="card-body">
-                    <form method="POST" action="{{ route('reset.password') }}">
+                    <form method="POST" action="{{ route('reset.password') }}" id="submitForm">
                            @csrf
                             
 
@@ -77,6 +77,10 @@ data-open="click" data-menu="vertical-menu" data-col="1-column">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>Please enter email address</strong>
+                                </span>
                             </div>
                         </div>
     
@@ -90,6 +94,14 @@ data-open="click" data-menu="vertical-menu" data-col="1-column">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>Please enter password</strong>
+                                </span>
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>Password must contain at least 8 characters [ one uppercase, lowercase, number & special character</strong>
+                                </span>
+
                             </div>
 
                         </div>
@@ -103,6 +115,15 @@ data-open="click" data-menu="vertical-menu" data-col="1-column">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>Please enter confirm password</strong>
+                                </span>
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>Confirm password must contain at least 8 characters [ one uppercase, lowercase, number & special character</strong>
+                                </span>
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>Confirm password not matched with new password</strong>
+                                </span>
                             </div>
                         </div>
 
@@ -126,42 +147,42 @@ data-open="click" data-menu="vertical-menu" data-col="1-column">
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script>
    $(document).on('click', '#userSubmit', function() {
-      alert();
-            // var passflag = false;
-            // var passregex = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,30}/;
-            // var emailregex = /[^\s@]+@[^\s@]+\.[^\s@]+/;
-            // var email = $("#email").val();
-            // var password = $("#password").val();
-            // var c_password = $("#confirm_password").val();
-            // if(email == '' || email == null){
-            //     toastr["error"]("Please enter email address");
-            //     passflag = false;
-            // }else if(!emailregex.test(email)){
-            //     toastr["error"]("Please enter valid email address");
-            //     passflag = false;
-            // }else if(password == '' || password == null){
-            //     toastr["error"]("Please enter password");
-            //     passflag = false;
-            // }else if(!passregex.test(password)){
-            //     toastr["error"]("Password must contain at least 8 characters [ one uppercase, lowercase, number & special character");
-            //     passflag = false;
-            // }else if(c_password == '' || c_password == null){
-            //     toastr["error"]("Please enter confirm password");
-            //     passflag = false;
-            // }else if(!passregex.test(c_password)){
-            //     toastr["error"]("Password must contain at least 8 characters [ one uppercase, lowercase, number & special character");
-            //     passflag = false;
-            // }else if(c_password !== password){
-            //     toastr["error"]("confirm password not matched password");
-            //     passflag = false;    
-            // }else{
-            //     passflag = true;
-            // }
+      
+            var passflag = false;
+            var passregex = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,30}/;
+            var emailregex = /[^\s@]+@[^\s@]+\.[^\s@]+/;
+            var email = $("#email").val();
+            var password = $("#password").val();
+            var c_password = $("#password-confirm").val();
+            if(email == '' || email == null){
+                toastr["error"]("Please enter email address");
+                passflag = false;
+            }else if(!emailregex.test(email)){
+                toastr["error"]("Please enter valid email address");
+                passflag = false;
+            }else if(password == '' || password == null){
+                toastr["error"]("Please enter password");
+                passflag = false;
+            }else if(!passregex.test(password)){
+                toastr["error"]("Password must contain at least 8 characters [ one uppercase, lowercase, number & special character");
+                passflag = false;
+            }else if(c_password == '' || c_password == null){
+                toastr["error"]("Please enter confirm password");
+                passflag = false;
+            }else if(!passregex.test(c_password)){
+                toastr["error"]("Password must contain at least 8 characters [ one uppercase, lowercase, number & special character");
+                passflag = false;
+            }else if(c_password !== password){
+                toastr["error"]("confirm password not matched password");
+                passflag = false;    
+            }else{
+                passflag = true;
+            }
             
-            // if(passflag){
-            //     $(this).html('Loading..').attr('disabled','disabled');
-            //     $('#storeCustomer').submit();
-            // }
+            if(passflag){
+                $(this).html('Loading..').attr('disabled','disabled');
+                $('#submitForm').submit();
+            }
             
         });
 </script>

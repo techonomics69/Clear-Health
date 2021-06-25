@@ -284,7 +284,7 @@
 		</div>
 	<?php }
 	
-	if($key == 10){
+	// if($key == 10){
 		if($user_case_management_data['gender'] == "female"){
 			if(count($followup_que) > 0){
 				
@@ -331,9 +331,9 @@
 				
 			}
 		}		
-	}
+	// }
 	
-	if($key == 11){
+	// if($key == 11){
 		if($user_case_management_data['gender'] == "male"){
 			if(count($followup_que) > 0){
 				
@@ -379,7 +379,7 @@
 				
 			}
 		}
-}
+// }
 	?>
 
 	

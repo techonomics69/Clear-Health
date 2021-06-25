@@ -116,7 +116,6 @@
 @section('scriptsection')
 <script type="text/javascript">
     $(document).on('click', '#userSubmit', function() {
-            alert();
             var passflag = false;
             var passregex = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,30}/;
             var email = $("#email").val();
@@ -136,8 +135,9 @@
             }
             
             if(passflag){
-                $(this).html('Loading..').attr('disabled','disabled');
-                $('#storeUser').submit();
+                alert('submitted');
+                // $(this).html('Loading..').attr('disabled','disabled');
+                // $('#storeUser').submit();
             }
             
         });

@@ -60,7 +60,7 @@ class PaymentsController extends BaseController
         }
         Stripe::setApiKey('sk_test_51J08tDJofjMgVsOdzxZs5Aqlf5A9riwPPwlxUTriC8YPiHvTjlCBoaMjgxiqdIVfvOMPcllgR9JY7EZlihr6TJHy00ixztHFtz');
 
-        $user_data = User::select('customer_id')->where('email', request('email'))->first();
+        $user_data = User::select('id','customer_id')->where('email', request('email'))->first();
 
         if($user_data['customer_id'] != NULL){
           $customer_id = $user_data['customer_id']; 
@@ -73,11 +73,14 @@ class PaymentsController extends BaseController
             ]);
 
             //Store customer id in DB for future transaction
+            $customer_id = $customer->id;
+            User::where('id',$user_id)->update(['customer_id' => $customer_id]);
+
 
             } catch (Exception $e) {
                 $apiError = $e->getMessage();
             }
-            $customer_id = $customer->id;
+            
         }
        
         if (empty($apiError) && $customer_id) {

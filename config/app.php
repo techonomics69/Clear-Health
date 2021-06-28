@@ -177,6 +177,7 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
 
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        LaravelShipStation\ShipStationServiceProvider::class,
 
     ],
 

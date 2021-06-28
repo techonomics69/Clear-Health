@@ -486,8 +486,6 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
             }
 
-
-
             if(!empty($prescription->partner_compound)){
              $input_compound['case_prescription_id'] = $CasePrescription_data->id;
              $input_compound['partner_compound_id'] = $prescription->partner_compound->partner_compound_id;

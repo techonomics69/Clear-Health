@@ -18,6 +18,7 @@ use App\Models\UserPics;
 use Mail;
 use File;
 
+
 class UserController extends BaseController
 {
   public function update_user(Request $request, $id){
@@ -32,10 +33,17 @@ class UserController extends BaseController
       }
 
       $input = $request->all();
+
       echo "<pre>";
-      print_r($request->all());
+      print_r($input);
       echo "<pre>";
       exit();
+      
+      if(isset($request['dob'])){
+
+        date('Y-m-d', strtotime($request['dob']));
+
+      }
 
       $user->update($input);
 

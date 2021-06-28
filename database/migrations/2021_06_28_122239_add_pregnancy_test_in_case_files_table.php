@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddPregnancyTestInMdCasesTable extends Migration
+class AddPregnancyTestInCaseFilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class AddPregnancyTestInMdCasesTable extends Migration
      */
     public function up()
     {
-        Schema::table('md_cases', function (Blueprint $table) {
-            $table->string('pregnancy_test')->default('0')->after('case_type')->comment = '0=pending,1=verified';
-            $table->datetime('pregnancy_test_verify_at')->after('pregnancy_test')->nullable();
+        Schema::table('case_files', function (Blueprint $table) {
+              $table->string('test_verify')->default('0')->after('user_id')->comment = '0=pending,1=verified';
+            $table->datetime('test_verify_at')->after('test_verify')->nullable();
         });
     }
 
@@ -26,7 +26,7 @@ class AddPregnancyTestInMdCasesTable extends Migration
      */
     public function down()
     {
-        Schema::table('md_cases', function (Blueprint $table) {
+        Schema::table('case_files', function (Blueprint $table) {
             //
         });
     }

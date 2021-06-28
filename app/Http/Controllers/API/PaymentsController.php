@@ -61,6 +61,7 @@ class PaymentsController extends BaseController
         Stripe::setApiKey('sk_test_51J08tDJofjMgVsOdzxZs5Aqlf5A9riwPPwlxUTriC8YPiHvTjlCBoaMjgxiqdIVfvOMPcllgR9JY7EZlihr6TJHy00ixztHFtz');
 
         $user_data = User::select('id','customer_id')->where('email', request('email'))->first();
+        $user_id = $user_data['id'];
 
         if($user_data['customer_id'] != NULL){
           $customer_id = $user_data['customer_id']; 

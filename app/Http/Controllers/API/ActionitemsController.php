@@ -157,9 +157,10 @@ class ActionitemsController extends BaseController
         }
 
         //end of code for Blood Work Labs Due
-
-        $Pregnancy_Test_Due = CaseFiles::
-
+         if($user_gender['gender'] =='female'){
+            $Pregnancy_Test_Due = CaseFiles::where([['user_id', $user_id],['system_case_id', $case_id],['name','pregnancy_test']])->get()->toArray();
+         }
+        
 
         $showscreen = array();
         $showscreen['show_ipledge_agreement_form'] =  $show_ipledge_agreement_form;

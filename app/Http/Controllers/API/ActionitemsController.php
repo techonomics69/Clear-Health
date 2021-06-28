@@ -109,11 +109,6 @@ class ActionitemsController extends BaseController
 
         $CaseManagementData = CaseManagement::where([['user_id',$user_id],['id',$case_id],['md_case_id', $md_case_id]])->OrderBy('id','desc')->first();
 
-        echo "<pre>";
-        print_r($CaseManagementData);
-        echo "<pre>";
-        exit(); 
-
         //if curexa 
 
         if($preferred_pharmacy_id =='13012' && $curexadata['order_status'] == "out_for_delivery" ){
@@ -128,7 +123,9 @@ class ActionitemsController extends BaseController
 
 
             //code for iPledge Questions Due
-
+            if($CaseManagementData['ipledge_items'] == 'verified'){
+                 $show_ipledge_questions_due = true;
+            }
         
 
            //end of code for iPledge Questions Due
@@ -153,7 +150,9 @@ class ActionitemsController extends BaseController
 
             //code for iPledge Questions Due
 
-        
+            if($CaseManagementData['ipledge_items'] == 'verified' && $CaseManagementData['prior_auth'] == 1){
+                 $show_ipledge_questions_due = true;
+            }
 
             //end of code for iPledge Questions Due
         }

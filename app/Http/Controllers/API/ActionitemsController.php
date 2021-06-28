@@ -166,7 +166,6 @@ class ActionitemsController extends BaseController
                 }else{
                    $Pregnancy_Test_Due[$p_key]['status'] = 'Completed' ; 
                 }
-
             }
          }
         

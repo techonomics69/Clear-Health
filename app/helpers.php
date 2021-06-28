@@ -132,23 +132,23 @@ $user_data = User::where('id', $user_id)->first();
 
 $u_address = "";
 
- if($shipping_address['addressline1']!=''){
+ /*if($shipping_address['addressline1']!=''){
   $u_address = $shipping_address['addressline1'];
-}
+}*/
  if($shipping_address['addressline2']!='' && $u_address!=''){
   $u_address = $u_address.','.$shipping_address['addressline2'];
 }
- if($shipping_address['city']!=''){
+ /*if($shipping_address['city']!=''){
   $u_address .= ','.$shipping_address['city'];
-}
+}*/
 
 if($shipping_address['state']!=''){
   $u_address .= ','.$shipping_address['state'];
 }
 
-if($shipping_address['zipcode']!=''){
+/*if($shipping_address['zipcode']!=''){
   $u_address .= ','.$shipping_address['zipcode'];
-}
+}*/
 
 
 $input_data = array();
@@ -171,10 +171,10 @@ $input_data['current_medications'] = $current_medications;
 $input_data['allergies'] = $allergies;
 
 $input = json_encode($input_data);
-echo "<pre>";
+/*echo "<pre>";
 print_r($input);
 echo "<pre>";
-exit();
+exit();*/
 
 
 $curl = curl_init();

@@ -46,6 +46,8 @@ class UserController extends BaseController
       print_r($input['[dob]']);
       echo "<pre>";
 
+      exit();
+
       }
 
       $user->update($input);

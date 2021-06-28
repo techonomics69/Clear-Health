@@ -442,7 +442,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
       $prescription_data = json_decode($response);
 
       foreach($prescription_data as $key=>$prescription){
-            $input_prescription['dosespot_prescription_id'] = ($prescription->dosespot_prescription_id!='')?$prescription->dosespot_prescription_id : NULL;
+            $input_prescription['dosespot_prescription_id'] = ($prescription->dosespot_prescription_id!='') ? $prescription->dosespot_prescription_id : NULL;
             $input_prescription['dosespot_prescription_sync_status'] = $prescription->dosespot_prescription_sync_status;
             $input_prescription['dosespot_confirmation_status'] = $prescription->dosespot_confirmation_status;
             $input_prescription['dosespot_confirmation_status_details'] =($prescription->dosespot_confirmation_status_details !='')? $prescription->dosespot_confirmation_status_details : NULL;
@@ -450,7 +450,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
             $input_prescription['quantity'] = $prescription->quantity;
             $input_prescription['days_supply'] = $prescription->days_supply;
             $input_prescription['no_substitutions'] = $prescription->no_substitutions;
-            $input_prescription['pharmacy_notes'] = ($prescription->pharmacy_notes != '')?$prescription->pharmacy_notes:NULL;
+            $input_prescription['pharmacy_notes'] = ($prescription->pharmacy_notes != '') ? $prescription->pharmacy_notes : NULL;
             $input_prescription['directions'] = $prescription->directions;
             $input_prescription['dispense_unit_id'] = $prescription->dispense_unit_id;
             $input_prescription['preferred_pharmacy_id'] = $prescription->pharmacy_id;
@@ -458,7 +458,12 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
             $input_prescription['user_id'] = $user_id;
             $input_prescription['system_case_id'] = $system_case_id;
 
-            $CasePrescription_data = CasePrescriptions::create($input_prescription);
+            echo "<pre>";
+            print_r($input_prescription);
+            echo "<pre>";
+            exit();
+
+            //CasePrescription_data = CasePrescriptions::create($input_prescription);
 
             if(isset($prescription->medication) && !empty($prescription->medication)){
               $input_medication['case_prescription_id'] = $CasePrescription_data->id;

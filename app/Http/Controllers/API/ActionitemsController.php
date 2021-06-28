@@ -96,10 +96,7 @@ class ActionitemsController extends BaseController
         $preferred_pharmacy_id = $pharmacy_data['pharmacy_pickup'];
 
 
-
         $curexadata = CurexaOrder::where('order_id',$order_data['order_id'])->first();
-
-
 
 
         $dispached_date = new Carbon($curexadata['dispached_date']);
@@ -158,9 +155,6 @@ class ActionitemsController extends BaseController
         }
 
         //end of code for Blood Work Labs Due
-
-
-
 
 
         $showscreen = array();

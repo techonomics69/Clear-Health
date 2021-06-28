@@ -1171,10 +1171,6 @@ public function getMdDetailForMessage(Request $request){
 
       $u_name = $user['first_name'].' '.$user['last_name'];
 
-      echo "<pre>";
-      print_r($u_name);
-      echo "<pre>";
-      exit();
 
       if($user['gender'] == 'male'){
         $gen = 'M';
@@ -1208,7 +1204,7 @@ public function getMdDetailForMessage(Request $request){
 
         $update_ipledge_id =  CaseManagement::where([['user_id',$user_id],['id',$case_id],['md_case_id',$md_case_id]])->update(['ipledge_id' => $iPledgeId['patient_id']],['ipledge_abstinence_updated_at' => Carbon::now()]);
 
-        $assign_ipledge_id = Ipledge::where('id',$iPledgeId['id'])->update(['user_case_id' => $case_id],['assigned_date' => Carbon::now()],['patient_name' => $u_name]);
+        $assign_ipledge_id = Ipledge::where('id',$iPledgeId['id'])->update(['user_case_id' => $case_id,'assigned_date' => Carbon::now(),'patient_name' => $u_name]);
 
         $udata['ipledge_id'] = $iPledgeId['patient_id'];
 

@@ -166,6 +166,7 @@ class ActionitemsController extends BaseController
         $showscreen['show_ipledge_agreement_form'] =  $show_ipledge_agreement_form;
         $showscreen['show_blood_work_labs_due'] =  $show_blood_work_labs_due;
         $showscreen['show_ipledge_questions_due'] =  $show_ipledge_questions_due;
+        $showscreen['Pregnancy_Test_Due'] =  $Pregnancy_Test_Due;
 
         return $this->sendResponse($showscreen,'Show Action Item Screen');
     }

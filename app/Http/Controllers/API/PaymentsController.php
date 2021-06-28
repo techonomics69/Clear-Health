@@ -10,6 +10,7 @@ use Stripe\Stripe;
 use Stripe\Customer;
 use Illuminate\Http\Request;
 use App\Models\Checkout;
+use App\Models\User;
 use App\Models\Subscription;
 use Carbon\Carbon;
 use App\Models\Product;
@@ -58,7 +59,13 @@ class PaymentsController extends BaseController
             return $this->sendResponse(back()->withInput(),'Some error while making the payment. Please try again');
         }
         Stripe::setApiKey('sk_test_51J08tDJofjMgVsOdzxZs5Aqlf5A9riwPPwlxUTriC8YPiHvTjlCBoaMjgxiqdIVfvOMPcllgR9JY7EZlihr6TJHy00ixztHFtz');
-        try {
+
+        $user_data = User::select('customer_id')->where('email', request('email'))->first();
+
+        if($user_data['customer_id'] != NULL){
+          $customer_id = $user_data['customer_id']; 
+        }else{
+             try {
             /** Add customer to stripe, Stripe customer */
             $customer = Customer::create([
                 'email'     => request('email'),
@@ -67,16 +74,20 @@ class PaymentsController extends BaseController
 
             //Store customer id in DB for future transaction
 
-        } catch (Exception $e) {
-            $apiError = $e->getMessage();
+            } catch (Exception $e) {
+                $apiError = $e->getMessage();
+            }
+            $customer_id = $customer->id;
         }
+
+       
 
         if (empty($apiError) && $customer) {
             /** Charge a credit or a debit card */
             try {
                 /** Stripe charge class */
                 $charge = Charge::create(array(
-                    'customer'      => $customer->id,
+                    'customer'      => $customer_id,
                     'amount'        => $amount,
                     'currency'      => $currency,
                     //'description'   => 'Some testing description'

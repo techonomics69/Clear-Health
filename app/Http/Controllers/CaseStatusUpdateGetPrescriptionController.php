@@ -456,11 +456,17 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
             $input_prescription['preferred_pharmacy_id'] = $prescription->pharmacy_id;
             $input_prescription['case_id'] = $case_id;
             $input_prescription['user_id'] = $user_id;
-            $input_prescription['system_case_id'] = $case_id;
+            $input_prescription['system_case_id'] = $system_case_id;
 
             $CasePrescription_data = CasePrescriptions::create($input_prescription);
 
+              echo "<pre>";
+              print_r($CasePrescription_data);
+              echo "<pre>";
+              exit();
+
             if(isset($prescription->medication) && !empty($prescription->medication)){
+              $input_medication['case_prescription_id'] = $CasePrescription_data->id;
               $input_medication['dosespot_medication_id'] = $prescription->medication->dosespot_medication_id;
               $input_medication['dispense_unit_id'] = $prescription->medication->dispense_unit_id;
               $input_medication['dose_form'] = $prescription->medication->dose_form;
@@ -487,6 +493,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
 
             if(!empty($prescription->partner_compound)){
+             $input_medication['case_prescription_id'] = $CasePrescription_data->id;
              $input_compound['partner_compound_id'] = $prescription->partner_compound->partner_compound_id;
              $input_compound['title'] = $prescription->partner_compound->title;
 

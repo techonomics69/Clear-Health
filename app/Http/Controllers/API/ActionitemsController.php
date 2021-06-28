@@ -107,7 +107,7 @@ class ActionitemsController extends BaseController
         $difference = $dispached_date->diffInDays($now);
 
 
-        $CaseManagementData = CaseManagement::where([['user_id',$user_id],['case_id',$case_id],['md_case_id', $md_case_id]])->OrderBy('id','desc')->first();
+        $CaseManagementData = CaseManagement::where([['user_id',$user_id],['id',$case_id],['md_case_id', $md_case_id]])->OrderBy('id','desc')->first();
 
         echo "<pre>";
         print_r($CaseManagementData);

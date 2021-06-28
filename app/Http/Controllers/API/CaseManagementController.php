@@ -1212,7 +1212,6 @@ public function getMdDetailForMessage(Request $request){
       }
 
     }
-
     return $this->sendResponse($data,'Field Updated Successfully.');
 
   }

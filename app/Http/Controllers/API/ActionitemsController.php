@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\API\BaseController as BaseController;
 use Illuminate\Http\Request;
 use App\Models\IpledgeAgreement;
+use App\Models\CaseManagement;
 use App\Models\User;
 use App\Models\Mdcases;
 use App\Models\Checkout;
@@ -105,6 +106,14 @@ class ActionitemsController extends BaseController
         $now = Carbon::now();
         $difference = $dispached_date->diffInDays($now);
 
+
+        $CaseManagementData = CaseManagement::where([['user_id',$user_id],['case_id',$case_id],['md_case_id', $md_case_id]])->OrderBy('id','desc')->first();
+
+        echo "<pre>";
+        print_r($CaseManagementData);
+        echo "<pre>";
+        exit(); 
+
         //if curexa 
 
         if($preferred_pharmacy_id =='13012' && $curexadata['order_status'] == "out_for_delivery" ){
@@ -116,6 +125,13 @@ class ActionitemsController extends BaseController
             if($user_gender['gender'] =='male' && $difference > 60){
                 $show_blood_work_labs_due = true;
             }
+
+
+            //code for iPledge Questions Due
+
+        
+
+           //end of code for iPledge Questions Due
         }
         //end of curexa
 
@@ -134,9 +150,17 @@ class ActionitemsController extends BaseController
             if($user_gender['gender'] =='male' && $pickup_medication_difference > 60){
                 $show_blood_work_labs_due = true;
             }
+
+            //code for iPledge Questions Due
+
+        
+
+            //end of code for iPledge Questions Due
         }
 
         //end of code for Blood Work Labs Due
+
+
 
 
 

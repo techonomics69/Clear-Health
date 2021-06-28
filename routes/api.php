@@ -156,6 +156,7 @@ Route::post('getToken', [CaseManagementController::class, 'get_token']);
     Route::post('cancel_subscription', [PaymentsController::class, 'cancel_subscription']);
     Route::post('customer_payment_methods', [PaymentsController::class, 'customer_payment_methods']);
     Route::post('customer_make_direct_payment', [PaymentsController::class, 'customer_make_direct_payment']);
+    Route::post('getSubscriptionByUser', [PaymentsController::class, 'getSubscriptionByUser']);
 
     //Action Items
 

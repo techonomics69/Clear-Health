@@ -168,7 +168,7 @@ class PaymentsController extends BaseController
         if (empty(request('stripeToken'))) {
             return $this->sendResponse(back()->withInput(), 'Some error while making the payment. Please try again');
         }
-        Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+        Stripe::setApiKey('sk_test_51J08tDJofjMgVsOdzxZs5Aqlf5A9riwPPwlxUTriC8YPiHvTjlCBoaMjgxiqdIVfvOMPcllgR9JY7EZlihr6TJHy00ixztHFtz');
         try {
             /** Add customer to stripe, Stripe customer */
             $customer = Customer::create([
@@ -258,7 +258,7 @@ class PaymentsController extends BaseController
 
     public function cancel_subscription() {
         $sub_id = request('subscr_id');
-        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+        Stripe::setApiKey('sk_test_51J08tDJofjMgVsOdzxZs5Aqlf5A9riwPPwlxUTriC8YPiHvTjlCBoaMjgxiqdIVfvOMPcllgR9JY7EZlihr6TJHy00ixztHFtz');
 
         $subscription = \Stripe\Subscription::retrieve($sub_id);
         $cancle = $subscription->cancel();
@@ -280,7 +280,7 @@ class PaymentsController extends BaseController
     }
 
     public function customer_payment_methods() {
-        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+        Stripe::setApiKey('sk_test_51J08tDJofjMgVsOdzxZs5Aqlf5A9riwPPwlxUTriC8YPiHvTjlCBoaMjgxiqdIVfvOMPcllgR9JY7EZlihr6TJHy00ixztHFtz');
 
         $paymentDetails = \Stripe\PaymentMethod::all([
             'customer' => request('customer'),
@@ -294,7 +294,7 @@ class PaymentsController extends BaseController
         $payment_method_id = request('payment_method');
         $amount = request('amount');
 
-        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+        Stripe::setApiKey('sk_test_51J08tDJofjMgVsOdzxZs5Aqlf5A9riwPPwlxUTriC8YPiHvTjlCBoaMjgxiqdIVfvOMPcllgR9JY7EZlihr6TJHy00ixztHFtz');
 
         try {
             $direct_payment = \Stripe\PaymentIntent::create([
@@ -332,5 +332,15 @@ class PaymentsController extends BaseController
             //$payment_intent = \Stripe\PaymentIntent::retrieve($payment_intent_id);
         }
 
+    }
+
+    public function getSubscriptionByUser(){
+        $subscription = Subscription::where('user_id',request('user_id'))->orderBy('id', 'desc')->first();
+        if(!empty($subscription)){
+            return $this->sendResponse($subscription, 'subscription retrieve successfully.');
+        }else{
+           return $this->sendResponse([], 'subscription not found.'); 
+        }
+        
     }
 }

@@ -10,3 +10,13 @@ class CasePrescriptions extends Model
     use HasFactory;
     protected $fillable = ['dosespot_prescription_id', 'dosespot_prescription_sync_status', 'dosespot_confirmation_status','dosespot_confirmation_status_details','refills','quantity','days_supply','no_substitutions','pharmacy_notes','directions','dispense_unit_id','preferred_pharmacy_id','partner_medication','prescription_medication_id','prescription_compound_id','user_id','case_id','system_case_id'];
 }
+
+public function user()
+    {
+        return $this->belongsTo('App\Models\PrescriptionCompound', 'case_prescription_id');
+    }
+
+public function user()
+    {
+        return $this->belongsTo('App\Models\PrescriptionMedication', 'case_prescription_id');
+    }

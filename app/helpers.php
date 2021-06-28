@@ -614,7 +614,7 @@ if(!empty($Patient_data)){
       $medication_compound_data[0]['days_supply'] = $days_supply;
       $medication_compound_data[0]['directions'] = $directions;
       $medication_compound_data[0]['dispense_unit_id'] = $DispensUnitId;
-      $medication_compound_data[0]['pharmacy_id'] = $preferred_pharmacy_id;
+      $medication_compound_data[0]['pharmacy_id'] = ($preferred_pharmacy_id == 'cash')?13012:$preferred_pharmacy_id;
      // $medication_compound_data[0]['no_substitutions'] = $no_substitutions;
       //$medication_compound_data[0]['pharmacy_notes'] = $pharmacy_notes;
 
@@ -623,10 +623,7 @@ if(!empty($Patient_data)){
 
     $input_md_data = '{"patient_id": '.$patient_id.',"case_files": [],"case_prescriptions": '.$medication_compound_data.',"case_questions": '.$userquestion.'}';
 
-    echo "<pre>";
-    print_r($input_md_data);
-    echo "<pre>";
-    exit();
+    
 
     $curl = curl_init();
 

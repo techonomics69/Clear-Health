@@ -75,7 +75,6 @@ class ActionitemsController extends BaseController
 
         $user_gender = User::select('gender')->where('id', $user_id)->first();
 
-
         //code for ipledge agreement(sign_ipledge_consent) and birthcontrol form (abstinence_form)
         
         $md_case_data = Mdcases::select('status','case_status_reason')->where('case_id', $md_case_id)->first();
@@ -88,7 +87,6 @@ class ActionitemsController extends BaseController
         }
         //end of code for ipledge agreement(sign_ipledge_consent) and birthcontrol form (abstinence_form)
 
-
         //code for Blood Work Labs Due
 
         $order_data = Checkout::where([['user_id', $user_id],['case_id', $case_id],['md_case_id', $md_case_id]])->first();
@@ -97,9 +95,7 @@ class ActionitemsController extends BaseController
         $pharmacy_data  =  Cart::select('pharmacy_pickup')->where('user_id',$user_id)->whereIn('id',$cart_ids)->where('order_type', '!=', 'AddOn')->first();
         $preferred_pharmacy_id = $pharmacy_data['pharmacy_pickup'];
 
-
         $curexadata = CurexaOrder::where('order_id',$order_data['order_id'])->first();
-
 
         $dispached_date = new Carbon($curexadata['dispached_date']);
         $now = Carbon::now();
@@ -146,13 +142,11 @@ class ActionitemsController extends BaseController
             if($user_gender['gender'] =='male' && $pickup_medication_difference > 60){
                 $show_blood_work_labs_due = true;
             }
-
             //code for iPledge Questions Due
 
             if($CaseManagementData['ipledge_items'] == 'verified' && $CaseManagementData['prior_auth'] == 1){
                  $show_ipledge_questions_due = true;
             }
-
             //end of code for iPledge Questions Due
         }
 
@@ -161,7 +155,7 @@ class ActionitemsController extends BaseController
             $Pregnancy_Test_Due = CaseFiles::select('name','url','url_thumbnail','file_id','mime_type','created_at','test_verify','test_verify_at')->where([['user_id', $user_id],['system_case_id', $case_id],['name','pregnancy_test']])->get()->toArray();
 
             foreach($Pregnancy_Test_Due as $p_key=>$p_value){
-                if($Pregnancy_Test_Due['test_verify'] == 0){
+                if($p_value['test_verify'] == 0){
                    $Pregnancy_Test_Due[$p_key]['status'] = 'Incomplete' ;
                 }else{
                    $Pregnancy_Test_Due[$p_key]['status'] = 'Completed' ; 

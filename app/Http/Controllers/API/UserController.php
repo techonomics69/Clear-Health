@@ -32,6 +32,10 @@ class UserController extends BaseController
       }
 
       $input = $request->all();
+      echo "<pre>";
+      print_r($request->all());
+      echo "<pre>";
+      exit();
 
       $user->update($input);
 

@@ -82,7 +82,7 @@ class PaymentsController extends BaseController
 
        
 
-        if (empty($apiError) && $customer) {
+        if (empty($apiError) && $customer_id) {
             /** Charge a credit or a debit card */
             try {
                 /** Stripe charge class */

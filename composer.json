@@ -24,7 +24,8 @@
         "yoeunes/toastr": "^1.2",
         "taxjar/taxjar-php": "^1.10",
         "twilio/sdk": "^6.25",
-        "yoeunes/toastr": "^1.2"
+        "yoeunes/toastr": "^1.2",
+        "campo/laravel-shipstation": "^5.0",
     },
     "require-dev": {
         "facade/ignition": "^2.5",

@@ -160,7 +160,7 @@ class ActionitemsController extends BaseController
          if($user_gender['gender'] =='female'){
             $Pregnancy_Test_Due = CaseFiles::select('name','url','url_thumbnail','file_id','mime_type','created_at','test_verify','test_verify_at')->where([['user_id', $user_id],['system_case_id', $case_id],['name','pregnancy_test']])->get()->toArray();
 
-            foreach($Pregnancy_Test_Due $p_key=>$p_value){
+            foreach($Pregnancy_Test_Due as $p_key=>$p_value){
                 if($Pregnancy_Test_Due['test_verify'] == 0){
                    $Pregnancy_Test_Due[$p_key]['status'] = 'Incomplete' ;
                 }else{

@@ -61,7 +61,7 @@ class PaymentsController extends Controller
             session()->flash('error', 'Some error while making the payment. Please try again');
             return back()->withInput();
         }
-        Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+        Stripe::setApiKey("sk_test_51J08tDJofjMgVsOdzxZs5Aqlf5A9riwPPwlxUTriC8YPiHvTjlCBoaMjgxiqdIVfvOMPcllgR9JY7EZlihr6TJHy00ixztHFtz");
         try {
             /** Add customer to stripe, Stripe customer */
             $customer = Customer::create([

@@ -79,9 +79,7 @@ class PaymentsController extends BaseController
             }
             $customer_id = $customer->id;
         }
-
        
-
         if (empty($apiError) && $customer_id) {
             /** Charge a credit or a debit card */
             try {

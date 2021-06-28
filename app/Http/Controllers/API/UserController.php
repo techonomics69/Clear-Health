@@ -35,13 +35,16 @@ class UserController extends BaseController
       $input = $request->all();
 
       echo "<pre>";
-      print_r($input);
+      print_r($input['[dob]']);
       echo "<pre>";
-      exit();
+ 
       
       if(isset($request['dob'])){
 
-        date('Y-m-d', strtotime($request['dob']));
+       $input['[dob]'] = date('Y-m-d', strtotime($request['dob']));
+       echo "<pre>";
+      print_r($input['[dob]']);
+      echo "<pre>";
 
       }
 

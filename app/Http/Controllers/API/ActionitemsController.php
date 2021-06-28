@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Mdcases;
 use App\Models\Checkout;
 use App\Models\CurexaOrder;
+use App\Models\CaseFiles;
 use App\Models\Cart;
 use App\Models\Triggers;
 use Validator;
@@ -70,6 +71,7 @@ class ActionitemsController extends BaseController
         $show_ipledge_agreement_form = false;
         $show_blood_work_labs_due = false;
         $show_ipledge_questions_due = false;
+        $Pregnancy_Test_Due = array();
 
         $user_gender = User::select('gender')->where('id', $user_id)->first();
 
@@ -155,6 +157,8 @@ class ActionitemsController extends BaseController
         }
 
         //end of code for Blood Work Labs Due
+
+        $Pregnancy_Test_Due = CaseFiles::
 
 
         $showscreen = array();

@@ -676,7 +676,7 @@ if(!empty($Patient_data)){
 
     $md_case_data = Mdcases::create($input_data);
 
-    $case_management  =  CaseManagement::where('id',$case_id)->where('user_id',$user_id)->update(['md_case_status' => $case_data->case_status->name,'system_status' => 'Telehealth Evaluation Requested']);
+    $case_management  =  CaseManagement::where('id',$case_id)->where('user_id',$user_id)->update(['md_case_status' => $case_data->case_status->name,'system_status' => 'Telehealth Evaluation Requested','md_case_id' => $case_data->case_id]);
 
      $update_order_data  =  Checkout::where('case_id',$case_id)->where('user_id',$user_id)->where('order_id',$order_id)->update(['md_case_id' => $case_data->case_id]);
 

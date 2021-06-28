@@ -1171,6 +1171,11 @@ public function getMdDetailForMessage(Request $request){
 
       $u_name = $user['first_name'].' '.$user['last_name'];
 
+      echo "<pre>";
+      print_r($u_name);
+      echo "<pre>";
+      exit();
+
       if($user['gender'] == 'male'){
         $gen = 'M';
       }else{

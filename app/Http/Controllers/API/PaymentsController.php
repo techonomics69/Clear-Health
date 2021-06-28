@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Models\Checkout;
 use App\Models\Subscription;
 use Carbon\Carbon;
+use App\Models\Product;
 
 class PaymentsController extends BaseController
 {
@@ -337,6 +338,13 @@ class PaymentsController extends BaseController
     public function getSubscriptionByUser(){
         $subscription = Subscription::where('user_id',request('user_id'))->orderBy('id', 'desc')->first();
         if(!empty($subscription)){
+            $product_id = explode(",",$subscription['product_id']);
+            $productArray = [];
+            foreach ($product_id as $key => $value) {
+                $product = Product::find($value);
+                array_push($productArray, $product);                
+            }
+            $subscription['product'] = $productArray;
             return $this->sendResponse($subscription, 'subscription retrieve successfully.');
         }else{
            return $this->sendResponse([], 'subscription not found.'); 

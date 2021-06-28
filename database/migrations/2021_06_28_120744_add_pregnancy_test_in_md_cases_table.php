@@ -15,6 +15,7 @@ class AddPregnancyTestInMdCasesTable extends Migration
     {
         Schema::table('md_cases', function (Blueprint $table) {
             $table->string('pregnancy_test')->default('0')->after('case_type')->comment = '0=pending,1=verified';
+            $table->datetime('pregnancy_test_verify_at')->after('pregnancy_test')->nullable();
         });
     }
 

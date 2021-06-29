@@ -49,7 +49,7 @@ class shipStationHelper {
             }
         }
 
-        $item = $getitems;
+        $item = json_encode($getitems);
 
 	    // $item->lineItemKey = '1';
 	    // $item->sku = '580123456';

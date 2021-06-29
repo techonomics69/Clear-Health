@@ -8,8 +8,8 @@ use DB;
 use Config;
 
 class shipStationHelper {
-    protected $app;
-    protected $shipStation;
+    public $app;
+    public $shipStation;
 
     public  function __construct(){
         $this->$app = App::getFacadeRoot();

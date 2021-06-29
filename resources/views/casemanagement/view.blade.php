@@ -549,7 +549,7 @@
 <!--end 3rd tab-->
 
 <!--start 4th tab-->
-<div id="action_items" class="tab-pane fade in ">
+<div id="action_items" class="tab-pane fade in show">
 	<div class="row" style="padding: 20px;">
 		<div class="col-md-12">
 			<section class="card">

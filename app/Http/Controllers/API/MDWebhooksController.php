@@ -22,7 +22,7 @@ use Carbon\Carbon;
 class MDWebhooksController extends BaseController
 {
    
-    public function index()
+    public function index(Request $request)
     {
         echo "<pre>";
         print_r('hello');

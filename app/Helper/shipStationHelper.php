@@ -48,7 +48,7 @@ class shipStationHelper {
                         // array_push($getitems, $arr1);
                         $item->name = $getproducts[0]->name;
                         $item->quantity = $getproducts[0]->prod_qty;
-                        $item->unitPrice  = $getproducts[0]->csatus;
+                        $item->unitPrice  = $getproducts[0]->prod_price;
                         $item->warehouseLocation = 'Nefaire 141 Post Road East Westport, CT 06880';
                         $item->imageUrl = asset(config('filesystems.products.imageurl').''.$getproducts[0]->image_detail);
                     }

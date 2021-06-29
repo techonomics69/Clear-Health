@@ -125,6 +125,7 @@ class CheckoutController extends BaseController
     }
 
     if($request->medication_type == "2"){
+      sleep(3);
       $addToshipstation = shipStationHelper::createOrder($data);
     }else{
       $addToshipstation = "";

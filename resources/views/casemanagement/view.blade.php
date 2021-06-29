@@ -114,10 +114,10 @@
 			<div class="col-lg-12">
 				<section class="card" >
 					<ul class="nav nav-tabs" id="casemanagement-tab-menu">
-						<li><a class="btn removemsg @if($msg_tab != 1) active @endif " data-toggle="tab" href="#profile">Profile</a></li>
+						<li><a class="btn removemsg @if($msg_tab != 1)  @endif " data-toggle="tab" href="#profile">Profile</a></li>
 						<li><a class="btn" data-toggle="tab" href="#questions">Questions</a></li>
 						<li><a class="btn" data-toggle="tab" href="#skincare_summary">Skincare Summary </a></li>
-						<li><a class="btn" data-toggle="tab" href="#action_items">Action Items </a></li>
+						<li><a class="btn active" data-toggle="tab" href="#action_items">Action Items </a></li>
 						<li><a class="btn nonmedicalmsg" data-toggle="tab" href="#messages">Messages</a></li>
 
 						<li><a class="btn" data-toggle="tab" href="#photos">Photos </a></li>
@@ -1271,7 +1271,7 @@
 			"scrollX": true,
 		});
 		
-		$('#casemanagement-tab-menu a[href="action_items"]').tab('show');
+		
 	});
 
 	$(document).on('click', '#i_pledge_agreement', function() {

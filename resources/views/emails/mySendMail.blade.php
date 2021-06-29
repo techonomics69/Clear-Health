@@ -4,12 +4,8 @@
     <title>helloclearhealth.com</title>
 </head>
 <body>
-	<?php echo "<pre>";
-	print_r($title);
-	echo "<pre>";
-	exit(); ?>
-    <h1>{{ $data['title'] ?? '' }}</h1>
-    <p>{{ $data['body'] ?? ''}}</p>
+    <h1>{{ $title }}</h1>
+    <p>{{ $body }}</p>
    
     <p>Thank you</p>
 </body>

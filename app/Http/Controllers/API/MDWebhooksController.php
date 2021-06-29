@@ -19,7 +19,7 @@ use App\Models\Messages;
 use App\Models\FollowUp;
 use Carbon\Carbon;
 
-class MDWebhooksController extends BaseController
+class MdwebhooksController extends BaseController
 {
    
     public function index(Request $request)

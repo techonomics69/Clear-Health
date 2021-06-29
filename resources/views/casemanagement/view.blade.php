@@ -1262,6 +1262,7 @@
 			$('#action_item').trigger('click')
 		}
 		if (actionUrl == 'pregnancy_test') {
+			$('#action_item').trigger('click')
 			$('#pregnancy_test').trigger('click')
 		}
 	});

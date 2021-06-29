@@ -10,14 +10,14 @@ class MdwebhooksController extends BaseController
 {
     public function index()
     {
-        die("innn");
+        echo "hello";
     }
 
     public function show()
     {
        //
     }
-    
+
     public function store()
     {
        //

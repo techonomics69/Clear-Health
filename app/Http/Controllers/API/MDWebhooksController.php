@@ -17,4 +17,8 @@ class MdwebhooksController extends BaseController
     {
        //
     }
+    public function store()
+    {
+       //
+    }
 }

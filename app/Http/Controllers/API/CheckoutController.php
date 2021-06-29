@@ -124,7 +124,10 @@ class CheckoutController extends BaseController
       $update_checkout_address  =  Checkoutaddress::where('id',$checkcout_address['id'])->update(['order_id' => $order_id]);
     }
 
-    $getHelper = shipStationHelper::createOrder($data);
+    if($request->medication_type == "2"){
+      $addToshipstation = shipStationHelper::createOrder($data);
+    }
+    
     //end of code to insert data in checkout table
 
     return $this->sendResponse($checkoutdata,'Order Created Successfully',$getHelper);

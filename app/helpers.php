@@ -839,9 +839,9 @@ if(!empty($Patient_data)){
 
    function sendMessage($message, $recipients)
     {
-        $account_sid = getenv("TWILIO_SID");
-        $auth_token = getenv("TWILIO_AUTH_TOKEN");
-        $twilio_number = getenv("TWILIO_NUMBER");
+        $account_sid = "ACb0e7a35b6e659da3d101a5df4c382a53";//getenv("TWILIO_SID");
+        $auth_token = "9564b429663887219c3af4807e6e6596";//getenv("TWILIO_AUTH_TOKEN");
+        $twilio_number = "15854548260";//getenv("TWILIO_NUMBER");
         $client = new Client($account_sid, $auth_token);
         $client->messages->create($recipients, ['from' => $twilio_number, 'body' => $message]);
     }

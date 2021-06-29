@@ -39,11 +39,11 @@ class shipStationHelper {
             foreach($getCarts as $key => $value){
                 if(!empty($value) || ($value!=null)){
                     $getproducts = DB::table('carts as c')->leftJoin('products as p','c.product_id','=','p.id')
-                                ->select('p.name','p.image','p.image_detail','c.product_price','c.quantity')
+                                ->select('p.name','p.image','p.image_detail','c.product_price as prod_price','c.quantity as prod_qty')
                                 ->where('c.id',$value)->get();
                     if(count($getproducts)>0){
-                        $arr1 = array('name'=>$getproducts[0]->name,'quantity'=>$getproducts[0]->quantity,
-                                        'unitPrice'=>$getproducts[0]->product_price,'warehouseLocation'=>'Nefaire 141 Post Road East Westport, CT 06880');
+                        $arr1 = array('name'=>$getproducts[0]->name,'quantity'=>$getproducts[0]->prod_qty,
+                                        'unitPrice'=>$getproducts[0]->prod_price,'warehouseLocation'=>'Nefaire 141 Post Road East Westport, CT 06880');
                         array_push($getitems, $arr1);
                     }
                 }

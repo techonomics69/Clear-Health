@@ -85,7 +85,11 @@ class shipStationHelper {
     }
 
     public static function getOrderData($orderId){
-        
+        $app= App::getFacadeRoot();
+    	$app->make('LaravelShipStation\ShipStation');
+    	$shipStation = $app->make('LaravelShipStation\ShipStation');
+    	$getOrder = $shipStation->orders->get([], $endpoint = $orderId);
+    	return $getOrder;
     }
 
 }

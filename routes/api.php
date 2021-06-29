@@ -166,7 +166,7 @@ Route::post('getToken', [CaseManagementController::class, 'get_token']);
      Route::post('showActionItemsForm',[ActionitemsController::class,'showActionItemsForm']);
 
      //webhook
-     Route::post('webhookTriggers',MdwebhooksController::class,'webhookTriggers');
+     Route::post('webhookTriggers',[MdwebhooksController::class,'webhookTriggers']);
     //Change Password
      Route::post('changePassword', [ChangePasswordController::class, 'changePassword']);
     

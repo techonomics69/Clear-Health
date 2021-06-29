@@ -15,6 +15,11 @@ class CreateCaseHistoriesTable extends Migration
     {
         Schema::create('case_histories', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
+            $table->integer('case_id');
+            $table->string('md_case_id')->nullable();            
+            $table->string('case_status')->nullable();
+            $table->string('local_pharmacy')->nullable();
             $table->timestamps();
         });
     }

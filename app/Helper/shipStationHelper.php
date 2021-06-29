@@ -4,6 +4,7 @@ use GuzzleHttp\Guzzle;
 use LaravelShipStation;
 use LaravelShipStation\ShipStation;
 use Illuminate\Support\Facades\App;
+use DB;
 
 class shipStationHelper {
 
@@ -17,15 +18,17 @@ class shipStationHelper {
     public static function createOrder($orderData){
         $InitializeHelper = shipStationHelper::InitializeHelper();
 
-        // $address = new LaravelShipStation\Models\Address();
+        // if($orderData)
+
+        // $Shipaddress = new LaravelShipStation\Models\Address();
 	    
-        // $address->name = $orderData['patient_firstname']." ".$orderData['patient_lastname'];
-	    // $address->street1 = $orderData['addressline1']." ".$orderData['addressline2'];
-	    // $address->city = $orderData['city'];
-	    // $address->state = $orderData['state'];
-	    // $address->postalCode = $orderData['zipcode'];
-	    // $address->country = "US";
-	    // $address->phone = $orderData['phone'];
+        // $Shipaddress->name = $orderData['patient_firstname']." ".$orderData['patient_lastname'];
+	    // $Shipaddress->street1 = $orderData['addressline1']." ".$orderData['addressline2'];
+	    // $Shipaddress->city = $orderData['city'];
+	    // $Shipaddress->state = $orderData['state'];
+	    // $Shipaddress->postalCode = $orderData['zipcode'];
+	    // $Shipaddress->country = "US";
+	    // $Shipaddress->phone = $orderData['phone'];
 
         //$products = $orderData['cart_id'];
 
@@ -50,7 +53,7 @@ class shipStationHelper {
     	// $order->shipTo = $address;
     	// $order->items[] = $item;
 
-        return (isset($address)) ? $address : 'none';
+        return (isset($user_id)) ? $user_id['order_id'] : 'none';
     }
 
     public static function getOrderData($orderId){

@@ -50,7 +50,7 @@ class shipStationHelper {
             }
         }
 
-        array_push($item,$getitems);
+        $item = $getitems;
 
 	    // $item->lineItemKey = '1';
 	    // $item->sku = '580123456';

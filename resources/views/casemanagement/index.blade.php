@@ -80,7 +80,13 @@
                       </td>
                       <td>
                         <a href="http://103.101.59.95/dev.clearhealth/admin/casemanagement/show/1784">
-                          <span class="badge badge-info">iPledge Credentials</span>
+                          <span class="badge badge-info">Generate iPledge Credentials</span>
+                          <span class="badge badge-info">Store & Send iPledge Credentials</span>
+                          <span class="badge badge-info">Verify Pregnancy Test</span>
+                          <span class="badge badge-info">Confirm Prior Auth</span>
+                          <span class="badge badge-info">Check Off iPledge Item</span>
+                          <span class="badge badge-info">Trigger ques + 7 Day window</span>
+                          <span class="badge badge-info">Upload bloodwork</span>
                         </a>
                       </td>
                     </tr>

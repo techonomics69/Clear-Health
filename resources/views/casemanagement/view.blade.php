@@ -1270,6 +1270,7 @@
 			"oSearch": { "bSmart": false, "bRegex": true },
 			"scrollX": true,
 		});
+		$('#casemanagement-tab-menu a[href="action_items"]').tab('show');
 	});
 
 	$(document).on('click', '#i_pledge_agreement', function() {

@@ -692,7 +692,9 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
       public function testsms(){
 
         $data = array();
-        $data['users'] = "7874257069";
+
+        $user = array("7874257069","9724238732");
+        $data['users'] = $user;
         $data['body'] = "Hello clear health test sms";
         sendsms($data);
       }

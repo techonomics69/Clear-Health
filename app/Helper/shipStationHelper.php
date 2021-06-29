@@ -78,9 +78,9 @@ class shipStationHelper {
     	$order->items[] = $item;
         $order->advancedOptions = array('storeId'=>'457183');
 
-        // $newOrder = $shipStation->orders->create($order);
+        $newOrder = $shipStation->orders->create($order);
 
-        return (isset($item)) ? $item : 'none';
+        return (isset($newOrder)) ? $newOrder : 'none';
     }
 
     public static function getOrderData($orderId){

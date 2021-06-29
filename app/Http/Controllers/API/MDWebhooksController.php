@@ -22,7 +22,7 @@ use Carbon\Carbon;
 class MdwebhooksController extends BaseController
 {
    
-    public function index(Request $request)
+    public function index()
     {
         echo "<pre>";
         print_r('hello');
@@ -45,12 +45,12 @@ class MdwebhooksController extends BaseController
 
     }
 
-    public function edit($id)
+    public function edit()
     {
         //
     }
 
-    public function update(Request $request, $id)
+    public function update()
     {
         //
     }

@@ -18,21 +18,39 @@ class shipStationHelper {
     public static function createOrder($orderData){
         $InitializeHelper = shipStationHelper::InitializeHelper();
 
+        $Shipaddress = new LaravelShipStation\Models\Address();
+        $shippingAdd = DB::table('checkout_address')->select('patient_firstname','patient_lastname',
+                        'addressline2','addressline1','city','state','zipcode','phone')
+                        ->where('order_id',$orderData['order_id'])->get();
+        if(count($shippingAdd)>0){
+            $Shipaddress->name = $shippingAdd[0]->patient_firstname." ".$shippingAdd[0]->patient_lastname;
+            $Shipaddress->street1 = $shippingAdd[0]->addressline2." ".$shippingAdd[0]->addressline2;
+            $Shipaddress->city = $shippingAdd[0]->city;
+            $Shipaddress->state = $shippingAdd[0]->state;
+            $Shipaddress->postalCode = $shippingAdd[0]->zipcode;
+            $Shipaddress->country = "US";
+            $Shipaddress->phone = $shippingAdd[0]->phone;
+        }               
         
+        $item = new LaravelShipStation\Models\OrderItem();
+        $getCarts = explode(",",$orderData['cart_id']);
+        $getitems = array();
+        if(count($getCarts)>0){
+            foreach($getCarts as $key => $value){
+                if(!empty($value) || ($value!=null)){
+                    $getproducts = DB::table('carts as c')->leftJoin('products as p','c.product_id','=','p.id')
+                                ->select('p.name','p.image','p.image_detail','c.product_price','c.quantity')
+                                ->where('c.id',$value)->get();
+                    if(count($getproducts)>0){
+                        $arr1 = array('name'=>$getproducts[0]->name,'quantity'=>$getproducts[0]->quantity,
+                                        'unitPrice'=>$getproducts[0]->product_price,'warehouseLocation'=>'Nefaire 141 Post Road East Westport, CT 06880');
+                        array_push($getitems, $arr1);
+                    }
+                }
+            }
+        }
 
-        // $Shipaddress = new LaravelShipStation\Models\Address();
-	    
-        // $Shipaddress->name = $orderData['patient_firstname']." ".$orderData['patient_lastname'];
-	    // $Shipaddress->street1 = $orderData['addressline1']." ".$orderData['addressline2'];
-	    // $Shipaddress->city = $orderData['city'];
-	    // $Shipaddress->state = $orderData['state'];
-	    // $Shipaddress->postalCode = $orderData['zipcode'];
-	    // $Shipaddress->country = "US";
-	    // $Shipaddress->phone = $orderData['phone'];
-
-        //$products = $orderData['cart_id'];
-
-        // $item = new LaravelShipStation\Models\OrderItem();
+        $item = $getitems;
 
 	    // $item->lineItemKey = '1';
 	    // $item->sku = '580123456';
@@ -53,7 +71,7 @@ class shipStationHelper {
     	// $order->shipTo = $address;
     	// $order->items[] = $item;
 
-        return (isset($orderData)) ? $orderData['order_id'] : 'none';
+        return (isset($item)) ? $item : 'none';
     }
 
     public static function getOrderData($orderId){

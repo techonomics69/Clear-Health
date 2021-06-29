@@ -2,9 +2,7 @@
 //use DB;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-//use Validator;
-//use Exception;
-//use File;
+use Twilio\Rest\Client;
 
 use App\Models\CaseManagement;
 use App\Models\Mdpatient;
@@ -171,11 +169,6 @@ $input_data['current_medications'] = $current_medications;
 $input_data['allergies'] = $allergies;
 
 $input = json_encode($input_data);
-/*echo "<pre>";
-print_r($input);
-echo "<pre>";
-exit();*/
-
 
 $curl = curl_init();
 
@@ -228,7 +221,7 @@ if(!empty($Patient_data)){
 
   $update_user =  User::where('id',$user_id)->update(['md_patient_id' => $Patient_data->patient_id]);
 
-            //$info = curl_getinfo($curl);
+      //$info = curl_getinfo($curl);
 
        /*if(curl_exec($curl) == false)
        {
@@ -394,13 +387,8 @@ if(!empty($Patient_data)){
     ));
 
     $response = curl_exec($curl);
-
     curl_close($curl);
-
-
     return $response;
-
-
   }
 
   function CreateCase($user_id,$case_id,$preferred_pharmacy_id,$patient_id,$order_id){
@@ -442,7 +430,6 @@ if(!empty($Patient_data)){
    $removed_space_pro_name = str_replace(" ","%20",$product_name);
 
     //code to get user's question answer
-
 
    $userQueAns = getQuestionAnswerFromUserid($user_id,$case_id);
 
@@ -701,12 +688,7 @@ if(!empty($Patient_data)){
       }
 
     }
-
-
-
       return $response;
-
-
     }
 
     function detach_file_from_case(Request $request){
@@ -754,8 +736,6 @@ if(!empty($Patient_data)){
 
         curl_close($curl);
             // $response;
-
-
         return $this->sendResponse($response,'File Detach Successfully');
 
       }else{
@@ -840,5 +820,30 @@ if(!empty($Patient_data)){
          return $assigned_ipledge_id;
 
     }
+
+    /*functions for send sms twilio*/
+     function sendsms(Request $request){
+        $validatedData = $request->validate([
+            'users' => 'required|array',
+            'body' => 'required',
+        ]);
+        $recipients = $validatedData["users"];
+        // iterate over the array of recipients and send a twilio request for each
+        foreach ($recipients as $recipient) {
+            sendMessage($validatedData["body"], $recipient);
+        }
+        return back()->with(['success' => "Messages on their way!"]);
+    }
+
+   function sendMessage($message, $recipients)
+    {
+        $account_sid = getenv("TWILIO_SID");
+        $auth_token = getenv("TWILIO_AUTH_TOKEN");
+        $twilio_number = getenv("TWILIO_NUMBER");
+        $client = new Client($account_sid, $auth_token);
+        $client->messages->create($recipients, ['from' => $twilio_number, 'body' => $message]);
+    }
+
+    /*end of code for send sms twilio
 
     ?>

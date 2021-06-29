@@ -29,8 +29,6 @@ class shipStationHelper {
 
         $products = $orderData['cart_id'];
 
-        
-
         // $item = new LaravelShipStation\Models\OrderItem();
 
 	    // $item->lineItemKey = '1';

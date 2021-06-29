@@ -88,7 +88,7 @@
                         <a href="http://103.101.59.95/dev.clearhealth/admin/casemanagement/show/1784?active=pregnancy_test">
                           <span class="badge badge-info">Verify Pregnancy Test</span>
                         </a>
-                        <a href="">
+                        <a href="http://103.101.59.95/dev.clearhealth/admin/casemanagement/show/1784?active=priorauthtab">
                           <span class="badge badge-info">Confirm Prior Auth</span>
                         </a>
                         <a href="">

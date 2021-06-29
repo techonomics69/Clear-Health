@@ -547,7 +547,7 @@
 									<li><a class="btn @if($msg_tab != 1) active @endif" data-toggle="tab" href="#ipledgetab">Ipledge</a></li>
 									<li><a id="pregnancy_test" class="btn nonmedicalmsg" data-toggle="tab" href="#pregnencytesttab">Pregnancy Test</a></li>
 									<li><a class="btn nonmedicalmsg" data-toggle="tab" href="#bloodworktab">Bloodwork</a></li>
-									<li><a class="btn nonmedicalmsg" data-toggle="tab" href="#priorauthtab">Prior Auth</a></li>
+									<li><a id="priorauthtab" class="btn nonmedicalmsg" data-toggle="tab" href="#priorauthtab">Prior Auth</a></li>
 									<li><a class="btn nonmedicalmsg" data-toggle="tab" href="#triggerstab">Triggers</a></li>
 								</ul>
 								<div class="tab-content">
@@ -1264,6 +1264,10 @@
 		if (actionUrl == 'pregnancy_test') {
 			$('#action_item').trigger('click')
 			$('#pregnancy_test').trigger('click')
+		}
+		if (actionUrl == 'priorauthtab') {
+			$('#action_item').trigger('click')
+			$('#priorauthtab').trigger('click')
 		}
 	});
 

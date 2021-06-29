@@ -264,6 +264,7 @@ Route::group(['middleware' => ['auth']],function(){
 
     //cron 
     Route::get('admin/CaseStatusUpdateGetPrescriptionController', [CaseStatusUpdateGetPrescriptionController::class, 'index'])->name('CaseStatusUpdateGetPrescriptionController');
+    Route::get('admin/CaseStatusUpdateGetPrescriptionController/testemail', [CaseStatusUpdateGetPrescriptionController::class, 'testemail'])->name('testemail');
     /*offer's CRUD*/
     //Route::resource('admin/offers', [OfferController::class]);
     Route::get('admin/offers', [OfferController::class, 'index'])->name('offers.index');

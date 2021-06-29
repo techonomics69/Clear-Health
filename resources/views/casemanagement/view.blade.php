@@ -548,7 +548,7 @@
 									<li><a id="pregnancy_test" class="btn nonmedicalmsg" data-toggle="tab" href="#pregnencytesttab">Pregnancy Test</a></li>
 									<li><a id="blood_work" class="btn nonmedicalmsg" data-toggle="tab" href="#bloodworktab">Bloodwork</a></li>
 									<li><a id="prior_auth" class="btn nonmedicalmsg" data-toggle="tab" href="#priorauthtab">Prior Auth</a></li>
-									<li><a class="btn nonmedicalmsg" data-toggle="tab" href="#triggerstab">Triggers</a></li>
+									<li><a id="triggers" class="btn nonmedicalmsg" data-toggle="tab" href="#triggerstab">Triggers</a></li>
 								</ul>
 								<div class="tab-content">
 									<div id="ipledgetab" class="tab-pane fade in @if($msg_tab != 1) active show @endif">
@@ -1272,6 +1272,10 @@
 		if (actionUrl == 'blood_work') {
 			$('#action_item').trigger('click')
 			$('#blood_work').trigger('click')
+		}
+		if (actionUrl == 'triggers') {
+			$('#action_item').trigger('click')
+			$('#triggers').trigger('click')
 		}
 	});
 

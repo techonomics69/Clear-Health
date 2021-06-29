@@ -18,12 +18,13 @@ class MySendMail extends Mailable
      */
     public function __construct($data)
     {
-        $this->data = $data;
-
         echo "<pre>";
         print_r($data);
         echo "<pre>";
         exit();
+        $this->data = $data;
+
+        
     }
 
     /**

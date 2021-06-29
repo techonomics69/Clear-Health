@@ -103,6 +103,22 @@ class shipStationHelper {
     	return $rates;
     }
 
+    public static function getCarries(){
+    	$app= App::getFacadeRoot();
+    	$app->make('LaravelShipStation\ShipStation');
+    	$shipStation = $app->make('LaravelShipStation\ShipStation');
+    	$carriers = $shipStation->carriers->get([], $endpoint = '');
+    	return $carriers;
+    }
+
+    public function getwarehouses(){
+    	$app= App::getFacadeRoot();
+    	$app->make('LaravelShipStation\ShipStation');
+    	$shipStation = $app->make('LaravelShipStation\ShipStation');
+    	$getwareHouses = $shipStation->warehouses->get([], $endpoint = '');
+    	return $getwareHouses;
+    }
+
 }
 
 ?>

@@ -62,19 +62,21 @@ class shipStationHelper {
 	    // $item->unitPrice  = '29.99';
 	    // $item->warehouseLocation = 'Warehouse A';
 
-        // $order = new LaravelShipStation\Models\Order();
-	    // $order->orderNumber = $orderData['order_id'];
-	    // $order->orderDate = date("Y-m-d");
-	    // $order->orderStatus = 'awaiting_shipment';
-	    // $order->amountPaid = $orderData['total_amount'];
-	    // $order->taxAmount = $orderData['tax'];
-	    // $order->shippingAmount = $orderData['shipping_fee'];
-	    // $order->internalNotes = '';
-	    // $order->billTo = $address;
-    	// $order->shipTo = $address;
-    	// $order->items[] = $item;
+        $order = new LaravelShipStation\Models\Order();
+	    $order->orderNumber = $orderData['order_id'];
+	    $order->orderDate = date("Y-m-d");
+	    $order->orderStatus = 'awaiting_shipment';
+	    $order->amountPaid = $orderData['total_amount'];
+	    $order->taxAmount = $orderData['tax'];
+	    $order->shippingAmount = $orderData['shipping_fee'];
+	    $order->internalNotes = '';
+	    $order->billTo = $Shipaddress;
+    	$order->shipTo = $Shipaddress;
+    	$order->items[] = $item;
 
-        return (isset($item)) ? $item : 'none';
+        $newOrder = $shipStation->orders->create($order);
+
+        return (isset($newOrder)) ? $newOrder : 'none';
     }
 
     public static function getOrderData($orderId){

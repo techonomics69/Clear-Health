@@ -125,7 +125,7 @@
 					</ul>
 					<div class="tab-content">
 						<!--start 1st tab-->
-						<div id="profile" class="tab-pane fade in  @if($msg_tab != 1) active show @endif">					    
+						<div id="profile" class="tab-pane fade in  @if($msg_tab != 1)  @endif">					    
 							<div class="row" style="padding: 20px;">
 								<div class="col-md-12">
 									<section class="card">
@@ -549,7 +549,7 @@
 <!--end 3rd tab-->
 
 <!--start 4th tab-->
-<div id="action_items" class="tab-pane fade in show">
+<div id="action_items" class="tab-pane fade in active show">
 	<div class="row" style="padding: 20px;">
 		<div class="col-md-12">
 			<section class="card">

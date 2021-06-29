@@ -78,7 +78,11 @@
                           <a class="icons edit-icon" href="{{ route('casemanagement.show',$case_data['id']) }}"><i class="fa fa-eye"></i></a>
                         </div>
                       </td>
-                      <td><span class="badge badge-info">iPledge Credentials</span></td>
+                      <td>
+                        <a href="http://103.101.59.95/dev.clearhealth/admin/casemanagement/show/1784">
+                          <span class="badge badge-info">iPledge Credentials</span>
+                        </a>
+                      </td>
                     </tr>
                     @endforeach
                   </tbody>

@@ -864,7 +864,7 @@ if(!empty($Patient_data)){
             //public_path('attachments/Laravel_8_pdf_Example.pdf'),
         ];
   
-        Mail::send('mail.MyTestMail', $data, function($message)use($data, $files) {
+        Mail::send('emails.mySendMail', $data, function($message)use($data, $files) {
             $message->to($data["email"])
                     ->subject($data["title"]);
  

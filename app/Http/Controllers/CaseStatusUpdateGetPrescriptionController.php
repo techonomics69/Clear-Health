@@ -680,6 +680,15 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
         $case_management  =  CaseManagement::where('id', $system_case_id)->where('md_case_id', $case_id)->where('user_id',$user_id)->update(['curexa_order_id' => $curexa_order_id]);
       }
 
+      public function testemail(){
+         $user_email = sendEmail();
+
+         echo "<pre>";
+         print_r($user_email);
+         echo "<pre>";
+         exit();
+      }
+
 
 
 

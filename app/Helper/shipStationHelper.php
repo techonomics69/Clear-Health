@@ -5,6 +5,7 @@ use LaravelShipStation;
 use LaravelShipStation\ShipStation;
 use Illuminate\Support\Facades\App;
 use DB;
+use Config;
 
 class shipStationHelper {
 
@@ -43,7 +44,9 @@ class shipStationHelper {
                                 ->where('c.id',$value)->get();
                     if(count($getproducts)>0){
                         $arr1 = array('name'=>$getproducts[0]->name,'quantity'=>$getproducts[0]->prod_qty,
-                                        'unitPrice'=>strval($getproducts[0]->prod_price),'warehouseLocation'=>'Nefaire 141 Post Road East Westport, CT 06880');
+                                        'unitPrice'=>strval($getproducts[0]->prod_price),
+                                        'warehouseLocation'=>'Nefaire 141 Post Road East Westport, CT 06880',
+                                    'imageUrl'=>asset(config('filesystems.products.imageurl'.''.$getproducts[0]->image_detail)));
                         array_push($getitems, $arr1);
                     }
                 }

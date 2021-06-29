@@ -28,7 +28,10 @@ class MDWebhooksController extends BaseController
      */
     public function index()
     {
-        //
+        echo "<pre>";
+        print_r('hello');
+        echo "<pre>";
+        exit();
     }
 
     /**

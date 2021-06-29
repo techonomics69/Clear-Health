@@ -38,7 +38,7 @@ class shipStationHelper {
         if(count($getCarts)>0){
             foreach($getCarts as $key => $value){
                 if(!empty($value) || ($value!=null)){
-                    $getproducts = DB::table('carts as c')->leftJoin('products as p','c.product_id','=','p.id')
+                    $getproducts = DB::table('carts as c')->join('products as p','c.product_id','=','p.id')
                                 ->select('p.name','p.image','p.image_detail','c.product_price as prod_price','c.quantity as prod_qty')
                                 ->where('c.id',$value)->get();
                     if(count($getproducts)>0){

@@ -54,8 +54,4 @@ class MdwebhooksController extends BaseController
     {
         //
     }
-
-  
- 
-
 }

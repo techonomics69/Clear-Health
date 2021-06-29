@@ -17,17 +17,17 @@ class shipStationHelper {
     public static function createOrder($orderData){
         $InitializeHelper = shipStationHelper::InitializeHelper();
 
-        $address = new LaravelShipStation\Models\Address();
+        // $address = new LaravelShipStation\Models\Address();
 	    
-        $address->name = $orderData['patient_firstname']." ".$orderData['patient_lastname'];
-	    $address->street1 = $orderData['addressline1']." ".$orderData['addressline2'];
-	    $address->city = $orderData['city'];
-	    $address->state = $orderData['state'];
-	    $address->postalCode = $orderData['zipcode'];
-	    $address->country = "US";
-	    $address->phone = $orderData['phone'];
+        // $address->name = $orderData['patient_firstname']." ".$orderData['patient_lastname'];
+	    // $address->street1 = $orderData['addressline1']." ".$orderData['addressline2'];
+	    // $address->city = $orderData['city'];
+	    // $address->state = $orderData['state'];
+	    // $address->postalCode = $orderData['zipcode'];
+	    // $address->country = "US";
+	    // $address->phone = $orderData['phone'];
 
-        $products = $orderData['cart_id'];
+        //$products = $orderData['cart_id'];
 
         // $item = new LaravelShipStation\Models\OrderItem();
 
@@ -50,7 +50,7 @@ class shipStationHelper {
     	// $order->shipTo = $address;
     	// $order->items[] = $item;
 
-        return (isset($testm)) ? $testm : 'none';
+        return (isset($address)) ? $address : 'none';
     }
 
     public static function getOrderData($orderId){

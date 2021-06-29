@@ -407,7 +407,10 @@ table.dataTable thead th, table.dataTable tbody td{text-align: left;}
   margin-top: -17px;
 }
 .navbar-brand img {
-  filter: invert(0);
+     margin-top: -10px;
+    filter: invert(0);
+    max-width: 200px;
+
 }
 
 .main-menu.menu-light .navigation > li ul li:hover > a{color:#43bfc1 ;}

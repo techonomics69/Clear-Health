@@ -92,6 +92,17 @@ class shipStationHelper {
     	return $getOrder;
     }
 
+    public static function getRates($request){
+    	$app= App::getFacadeRoot();
+    	$app->make('LaravelShipStation\ShipStation');
+    	$shipStation = $app->make('LaravelShipStation\ShipStation');
+    	$shipLocation = array('carrierCode'=>$request['carrierCode'],
+    		'fromPostalCode'=>$request['fromPostalCode'],'toCountry'=>$request['toCountry'],
+    		'toPostalCode'=>$request['toPostalCode'],'weight'=>$request['weighArr']);
+    	$rates = $shipStation->shipments->post($shipLocation, $endpoint = 'getrates');
+    	return $rates;
+    }
+
 }
 
 ?>

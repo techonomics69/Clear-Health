@@ -546,9 +546,9 @@
 								<ul class="nav nav-tabs" id="messages-tab-menu">
 									<li><a class="btn @if($msg_tab != 1) active @endif" data-toggle="tab" href="#ipledgetab">Ipledge</a></li>
 									<li><a id="pregnancy_test" class="btn nonmedicalmsg" data-toggle="tab" href="#pregnencytesttab">Pregnancy Test</a></li>
-									<li><a class="btn nonmedicalmsg" data-toggle="tab" href="#bloodworktab">Bloodwork</a></li>
-									<li><a class="btn nonmedicalmsg" data-toggle="tab" href="#priorauthtab">Prior Auth</a></li>
-									<li><a class="btn nonmedicalmsg" data-toggle="tab" href="#triggerstab">Triggers</a></li>
+									<li><a id="blood_work" class="btn nonmedicalmsg" data-toggle="tab" href="#bloodworktab">Bloodwork</a></li>
+									<li><a id="prior_auth" class="btn nonmedicalmsg" data-toggle="tab" href="#priorauthtab">Prior Auth</a></li>
+									<li><a id="triggers" class="btn nonmedicalmsg" data-toggle="tab" href="#triggerstab">Triggers</a></li>
 								</ul>
 								<div class="tab-content">
 									<div id="ipledgetab" class="tab-pane fade in @if($msg_tab != 1) active show @endif">
@@ -1262,7 +1262,20 @@
 			$('#action_item').trigger('click')
 		}
 		if (actionUrl == 'pregnancy_test') {
+			$('#action_item').trigger('click')
 			$('#pregnancy_test').trigger('click')
+		}
+		if (actionUrl == 'prior_auth') {
+			$('#action_item').trigger('click')
+			$('#prior_auth').trigger('click')
+		}
+		if (actionUrl == 'blood_work') {
+			$('#action_item').trigger('click')
+			$('#blood_work').trigger('click')
+		}
+		if (actionUrl == 'triggers') {
+			$('#action_item').trigger('click')
+			$('#triggers').trigger('click')
 		}
 	});
 

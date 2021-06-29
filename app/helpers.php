@@ -846,5 +846,36 @@ if(!empty($Patient_data)){
         $client->messages->create($recipients, ['from' => $twilio_number, 'body' => $message]);
     }
 
+  function sendEmail(){
+     /*$details = [
+        'title' => 'Mail from helloclearhealth.com',
+        'body' => 'This is for testing email using smtp'
+    ];
+   
+    \Mail::to('itqatester12@gmail.com')->send(new \App\Mail\MyTestMail($details));*/
+
+
+        $data["email"] = "itqatester12@gmail.com";
+        $data["title"] = "helloclearhealth.com";
+        $data["body"] = "This is test mail with attachment";
+ 
+        $files = [
+            public_path('attachments/pregnancy-test.jpg'),
+            //public_path('attachments/Laravel_8_pdf_Example.pdf'),
+        ];
+  
+        Mail::send('mail.MyTestMail', $data, function($message)use($data, $files) {
+            $message->to($data["email"])
+                    ->subject($data["title"]);
+ 
+            foreach ($files as $file){
+                $message->attach($file);
+            }            
+        });
+
+        echo "Mail send successfully !!";
+
+  }
+
 
     ?>

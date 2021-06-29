@@ -74,7 +74,7 @@ class shipStationHelper {
     	$order->shipTo = $Shipaddress;
     	$order->items[] = $item;
 
-        $newOrder = $shipStation->orders->create($order);
+        $newOrder = $InitializeHelper->shipStation->orders->create($order);
 
         return (isset($newOrder)) ? $newOrder : 'none';
     }

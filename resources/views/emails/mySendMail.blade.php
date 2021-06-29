@@ -5,7 +5,7 @@
 </head>
 <body>
 	<?php echo "<pre>";
-	print_r($data);
+	print_r($title);
 	echo "<pre>";
 	exit(); ?>
     <h1>{{ $data['title'] ?? '' }}</h1>

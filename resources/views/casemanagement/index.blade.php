@@ -100,6 +100,7 @@
                         <a href="http://103.101.59.95/dev.clearhealth/admin/casemanagement/show/1784?active=blood_work">
                           <span class="badge badge-info">Upload bloodwork</span>
                         </a>
+                        <span class="badge badge-secondary">Action pending from patient</span>
                       </td>
                     </tr>
                     @endforeach

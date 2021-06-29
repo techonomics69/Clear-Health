@@ -846,25 +846,21 @@ if(!empty($Patient_data)){
         $client->messages->create($recipients, ['from' => $twilio_number, 'body' => $message]);
     }
 
-  function sendEmail(){
-     /*$details = [
-        'title' => 'Mail from helloclearhealth.com',
-        'body' => 'This is for testing email using smtp'
-    ];
-   
-    \Mail::to('itqatester12@gmail.com')->send(new \App\Mail\MyTestMail($details));*/
+  function sendEmail($email_data){
 
-
-        $data["email"] = "itqatester12@gmail.com";
-        $data["title"] = "helloclearhealth.com";
-        $data["body"] = "This is test mail with attachment";
+        $data["email"] = $email_data['email'];
+        $data["title"] = $email_data['title'];
+        $data["body"]  = $email_data['body'];
  
-        $files = [
+       /* $files = [
             public_path('attachments/pregnancy-test.jpg'),
             //public_path('attachments/Laravel_8_pdf_Example.pdf'),
-        ];
+        ];*/
+
+        $files = $email_data['attachments'];
+
   
-        Mail::send('emails.mySendMail',$data, function($message)use($data, $files) {
+        $mail_sent = Mail::send($email_data['template'],$data, function($message)use($data, $files) {
             $message->to($data["email"])
                     ->subject($data["title"]);
  
@@ -873,7 +869,12 @@ if(!empty($Patient_data)){
             }            
         });
 
-        echo "Mail send successfully !!";
+        if($mail_sent){
+          return 1;
+
+        }else{
+          return 0;
+        }
 
   }
 

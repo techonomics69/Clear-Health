@@ -74,7 +74,7 @@ class shipStationHelper {
 	    $order->billTo = $Shipaddress;
     	$order->shipTo = $Shipaddress;
     	$order->items[] = $item;
-        $order->advancedOptions = array('storeId'=>'457183');
+        // $order->advancedOptions = array('storeId'=>'457183');
 
         $newOrder = $shipStation->orders->create($order);
 

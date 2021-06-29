@@ -78,7 +78,7 @@ class shipStationHelper {
 
         // $newOrder = $shipStation->orders->create($order);
 
-        return (isset($order)) ? $order : 'none';
+        return (isset($item)) ? $item : 'none';
     }
 
     public static function getOrderData($orderId){

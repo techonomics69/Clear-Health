@@ -21,7 +21,8 @@ class shipStationHelper {
                         ->where('order_id',$orderData['order_id'])->get();
         if(count($shippingAdd)>0){
             $Shipaddress->name = $shippingAdd[0]->patient_firstname." ".$shippingAdd[0]->patient_lastname;
-            $Shipaddress->street1 = $shippingAdd[0]->addressline2." ".$shippingAdd[0]->addressline2;
+            $Shipaddress->street1 = $shippingAdd[0]->addressline2;
+            $Shipaddress->street2 = $shippingAdd[0]->addressline1;
             $Shipaddress->city = $shippingAdd[0]->city;
             $Shipaddress->state = $shippingAdd[0]->state;
             $Shipaddress->postalCode = $shippingAdd[0]->zipcode;

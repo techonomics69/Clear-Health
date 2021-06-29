@@ -1270,6 +1270,7 @@
 			"oSearch": { "bSmart": false, "bRegex": true },
 			"scrollX": true,
 		});
+		alert();
 		$('#casemanagement-tab-menu a[href="action_items"]').tab('show');
 	});
 

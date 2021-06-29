@@ -27,7 +27,7 @@ class shipStationHelper {
 	    $address->country = "US";
 	    $address->phone = $orderData['phone'];
 
-        $products = $orderData['cart_id'];
+        //$products = $orderData['cart_id'];
 
         // $item = new LaravelShipStation\Models\OrderItem();
 
@@ -50,7 +50,7 @@ class shipStationHelper {
     	// $order->shipTo = $address;
     	// $order->items[] = $item;
 
-        return (isset($testm)) ? $testm : 'none';
+        return (isset($address)) ? $address : 'none';
     }
 
     public static function getOrderData($orderId){

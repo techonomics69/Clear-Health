@@ -39,10 +39,10 @@ class shipStationHelper {
                                 ->select('p.name','p.image','p.image_detail','c.product_price as prod_price','c.quantity as prod_qty')
                                 ->where('c.id',$value)->get();
                     if(count($getproducts)>0){
-                        $arr1 = array('name'=>$getproducts[0]->name,'quantity'=>$getproducts[0]->prod_qty,
-                                        'unitPrice'=>strval($getproducts[0]->prod_price),
-                                        'warehouseLocation'=>'Nefaire 141 Post Road East Westport, CT 06880',
-                                    'imageUrl'=>asset(config('filesystems.products.imageurl').''.$getproducts[0]->image_detail));
+                        // $arr1 = array('name'=>$getproducts[0]->name,'quantity'=>$getproducts[0]->prod_qty,
+                        //                 'unitPrice'=>strval($getproducts[0]->prod_price),
+                        //                 'warehouseLocation'=>'Nefaire 141 Post Road East Westport, CT 06880',
+                        //             'imageUrl'=>asset(config('filesystems.products.imageurl').''.$getproducts[0]->image_detail));
                         // array_push($getitems, $arr1);
                         $item->name = $getproducts[0]->name;
                         $item->quantity = $getproducts[0]->prod_qty;

@@ -8,8 +8,8 @@ use DB;
 use Config;
 
 class shipStationHelper {
-    public $app;
-    public $shipStation;
+    protected $app;
+    protected $shipStation;
 
     public  function __construct(){
         $this->$app = App::getFacadeRoot();
@@ -17,15 +17,15 @@ class shipStationHelper {
         $this->$shipStation = $app->make('LaravelShipStation\ShipStation');
     }
     
-    public static function InitializeHelper(){
-        $app= App::getFacadeRoot();
-    	$app->make('LaravelShipStation\ShipStation');
-    	$shipStation = $app->make('LaravelShipStation\ShipStation');
-        $testm = "hello";
-    }
+    // public static function InitializeHelper(){
+    //     $app= App::getFacadeRoot();
+    // 	$app->make('LaravelShipStation\ShipStation');
+    // 	$shipStation = $app->make('LaravelShipStation\ShipStation');
+    //     $testm = "hello";
+    // }
         
     public static function createOrder($orderData){
-        // $InitializeHelper = shipStationHelper::InitializeHelper();
+        $InitializeHelper = new shipStationHelper();
 
         $Shipaddress = new LaravelShipStation\Models\Address();
         $shippingAdd = DB::table('checkout_address')->select('patient_firstname','patient_lastname',
@@ -82,7 +82,7 @@ class shipStationHelper {
     	$order->shipTo = $Shipaddress;
     	$order->items[] = $item;
 
-        $newOrder = $this->shipStation->orders->create($order);
+        $newOrder = $InitializeHelper->shipStation->orders->create($order);
 
         return (isset($newOrder)) ? $newOrder : 'none';
     }

@@ -53,7 +53,7 @@ class shipStationHelper {
     	// $order->shipTo = $address;
     	// $order->items[] = $item;
 
-        return (isset($user_id)) ? $user_id['order_id'] : 'none';
+        return (isset($orderData)) ? $orderData['order_id'] : 'none';
     }
 
     public static function getOrderData($orderId){

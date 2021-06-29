@@ -78,7 +78,7 @@
                           <a class="icons edit-icon" href="{{ route('casemanagement.show',$case_data['id']) }}"><i class="fa fa-eye"></i></a>
                         </div>
                       </td>
-                      <td></td>
+                      <td><span class="badge badge-info">Info</span></td>
                     </tr>
                     @endforeach
                   </tbody>

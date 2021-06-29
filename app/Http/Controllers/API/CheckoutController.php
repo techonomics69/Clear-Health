@@ -126,11 +126,13 @@ class CheckoutController extends BaseController
 
     if($request->medication_type == "2"){
       $addToshipstation = shipStationHelper::createOrder($data);
+    }else{
+      $addToshipstation = "";
     }
     
     //end of code to insert data in checkout table
 
-    return $this->sendResponse($checkoutdata,'Order Created Successfully',$getHelper);
+    return $this->sendResponse($checkoutdata,'Order Created Successfully',$addToshipstation);
 
 
   }

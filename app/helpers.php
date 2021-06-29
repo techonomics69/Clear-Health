@@ -824,15 +824,15 @@ if(!empty($Patient_data)){
     
     /*end of code for send sms twilio*/
     /*functions for send sms twilio*/
-     function sendsms(Request $request){
-        $validatedData = $request->validate([
+     function sendsms($data){
+       /* $validatedData = $request->validate([
             'users' => 'required|array',
             'body' => 'required',
-        ]);
-        $recipients = $validatedData["users"];
+        ]);*/
+        $recipients = $data["users"];
         // iterate over the array of recipients and send a twilio request for each
         foreach ($recipients as $recipient) {
-            sendMessage($validatedData["body"], $recipient);
+            sendMessage($data["body"], $recipient);
         }
         return back()->with(['success' => "Messages on their way!"]);
     }

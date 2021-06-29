@@ -12,4 +12,7 @@ class shipStationController extends BaseController
         $orderData = shipStationHelper::getOrderData($request['orderId']);
         return $this->sendResponse($orderData,'Order Details');
     }
+
+    
+
 }

@@ -79,13 +79,25 @@
                         </div>
                       </td>
                       <td>
-                        <a href="http://103.101.59.95/dev.clearhealth/admin/casemanagement/show/1784?active=action_items">
+                        <a href="https://www.ipledgeprogram.com/iPledgeUI/home.u" target="_blank">
                           <span class="badge badge-info">Generate iPledge Credentials</span>
+                        </a>
+                        <a href="http://103.101.59.95/dev.clearhealth/admin/casemanagement/show/1784?active=action_items">
                           <span class="badge badge-info">Store & Send iPledge Credentials</span>
+                        </a>
+                        <a href="http://103.101.59.95/dev.clearhealth/admin/casemanagement/show/1784?active=pregnancy_test">
                           <span class="badge badge-info">Verify Pregnancy Test</span>
+                        </a>
+                        <a href="">
                           <span class="badge badge-info">Confirm Prior Auth</span>
+                        </a>
+                        <a href="">
                           <span class="badge badge-info">Check Off iPledge Item</span>
+                        </a>
+                        <a href="">
                           <span class="badge badge-info">Trigger ques + 7 Day window</span>
+                        </a>
+                        <a href="">
                           <span class="badge badge-info">Upload bloodwork</span>
                         </a>
                       </td>

@@ -43,13 +43,18 @@ class shipStationHelper {
                                         'unitPrice'=>strval($getproducts[0]->prod_price),
                                         'warehouseLocation'=>'Nefaire 141 Post Road East Westport, CT 06880',
                                     'imageUrl'=>asset(config('filesystems.products.imageurl').''.$getproducts[0]->image_detail));
-                        array_push($getitems, $arr1);
+                        // array_push($getitems, $arr1);
+                        $item->name = $getproducts[0]->name;
+                        $item->quantity = $getproducts[0]->prod_qty;
+                        $item->unitPrice  = strval($getproducts[0]->prod_price);
+                        $item->warehouseLocation = 'Nefaire 141 Post Road East Westport, CT 06880';
+                        $item->imageUrl = asset(config('filesystems.products.imageurl').''.$getproducts[0]->image_detail);
                     }
                 }
             }
         }
 
-        $item = json_encode($getitems);
+        // $item = json_encode($getitems);
 
 	    // $item->lineItemKey = '1';
 	    // $item->sku = '580123456';

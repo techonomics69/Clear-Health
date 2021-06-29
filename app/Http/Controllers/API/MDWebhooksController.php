@@ -21,12 +21,8 @@ use Carbon\Carbon;
 
 class MDWebhooksController extends BaseController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+   
+    public function index(Request $request)
     {
         echo "<pre>";
         print_r('hello');
@@ -34,11 +30,6 @@ class MDWebhooksController extends BaseController
         exit();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //

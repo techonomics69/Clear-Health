@@ -167,7 +167,7 @@ Route::post('getToken', [CaseManagementController::class, 'get_token']);
 
      //webhook
      
-     Route::post('MDWebhooksController',[MDWebhooksController::class,'index']);
+     Route::post('webhook',[MDWebhooksController::class,'index']);
 
 
     //Change Password

@@ -545,7 +545,7 @@
 							<section class="card">
 								<ul class="nav nav-tabs" id="messages-tab-menu">
 									<li><a class="btn @if($msg_tab != 1) active @endif" data-toggle="tab" href="#ipledgetab">Ipledge</a></li>
-									<li><a class="btn nonmedicalmsg" data-toggle="tab" href="#pregnencytesttab">Pregnancy Test</a></li>
+									<li><a id="pregnancy_test" class="btn nonmedicalmsg" data-toggle="tab" href="#pregnencytesttab">Pregnancy Test</a></li>
 									<li><a class="btn nonmedicalmsg" data-toggle="tab" href="#bloodworktab">Bloodwork</a></li>
 									<li><a class="btn nonmedicalmsg" data-toggle="tab" href="#priorauthtab">Prior Auth</a></li>
 									<li><a class="btn nonmedicalmsg" data-toggle="tab" href="#triggerstab">Triggers</a></li>
@@ -1260,6 +1260,9 @@
 		var actionUrl = window.location.href.split("?active=").pop();
 		if (actionUrl == 'action_items') {
 			$('#action_item').trigger('click')
+		}
+		if (actionUrl == 'pregnancy_test') {
+			$('#pregnancy_test').trigger('click')
 		}
 	});
 

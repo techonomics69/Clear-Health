@@ -1270,7 +1270,7 @@
 			"oSearch": { "bSmart": false, "bRegex": true },
 			"scrollX": true,
 		});
-		$('#action_item').trigger()
+		$('#action_item').click()
 	});
 
 	$(document).on('click', '#i_pledge_agreement', function() {

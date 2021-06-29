@@ -11,6 +11,7 @@ use App\Models\Product;
 use App\Models\Cart;
 use App\Models\CaseManagement;
 use App\Models\Fees;
+use App\Helper\shipStationHelper;
 use Validator;
 use Exception;
 use log;
@@ -122,9 +123,11 @@ class CheckoutController extends BaseController
 
       $update_checkout_address  =  Checkoutaddress::where('id',$checkcout_address['id'])->update(['order_id' => $order_id]);
     }
+
+    $getHelper = shipStationHelper::createOrder(array('orderId'=>'1234'));
     //end of code to insert data in checkout table
 
-    return $this->sendResponse($checkoutdata,'Order Created Successfully');
+    return $this->sendResponse($checkoutdata,'Order Created Successfully',$getHelper);
 
 
   }

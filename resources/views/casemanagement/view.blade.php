@@ -117,7 +117,7 @@
 						<li><a class="btn removemsg @if($msg_tab != 1) active @endif " data-toggle="tab" href="#profile">Profile</a></li>
 						<li><a class="btn" data-toggle="tab" href="#questions">Questions</a></li>
 						<li><a class="btn" data-toggle="tab" href="#skincare_summary">Skincare Summary </a></li>
-						<li id="action_item"><a class="btn" data-toggle="tab" href="#action_items">Action Items </a></li>
+						<li><a id="action_item" class="btn" data-toggle="tab" href="#action_items">Action Items </a></li>
 						<li><a class="btn nonmedicalmsg" data-toggle="tab" href="#messages">Messages</a></li>
 
 						<li><a class="btn" data-toggle="tab" href="#photos">Photos </a></li>

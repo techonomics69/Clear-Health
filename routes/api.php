@@ -25,6 +25,7 @@ use App\Http\Controllers\API\OfferController;
 use App\Http\Controllers\API\FollowupController;
 use App\Http\Controllers\API\PaymentsController;
 use App\Http\Controllers\API\ActionitemsController;
+use App\Http\Controllers\API\MDWebhooksController;
 
 /*
 |--------------------------------------------------------------------------
@@ -163,6 +164,11 @@ Route::post('getToken', [CaseManagementController::class, 'get_token']);
      Route::post('addIpledgeAgreement',[ActionitemsController::class,'addIpledgeAgreement']);
      Route::post('getIpledgeAgreement',[ActionitemsController::class,'getIpledgeAgreement']);
      Route::post('showActionItemsForm',[ActionitemsController::class,'showActionItemsForm']);
+
+     //webhook
+     
+     Route::post('webhookTriggers',[MDWebhooksController::class,'index']);
+
 
     //Change Password
      Route::post('changePassword', [ChangePasswordController::class, 'changePassword']);

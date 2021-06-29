@@ -821,6 +821,8 @@ if(!empty($Patient_data)){
 
     }
 
+    
+    /*end of code for send sms twilio*/
     /*functions for send sms twilio*/
      function sendsms(Request $request){
         $validatedData = $request->validate([
@@ -844,6 +846,5 @@ if(!empty($Patient_data)){
         $client->messages->create($recipients, ['from' => $twilio_number, 'body' => $message]);
     }
 
-    /*end of code for send sms twilio
 
     ?>

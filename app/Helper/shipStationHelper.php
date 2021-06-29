@@ -18,7 +18,7 @@ class shipStationHelper {
     public static function createOrder($orderData){
         $InitializeHelper = shipStationHelper::InitializeHelper();
 
-        // if($orderData)
+        
 
         // $Shipaddress = new LaravelShipStation\Models\Address();
 	    

@@ -36,7 +36,9 @@ class shipStationHelper {
             foreach($getCarts as $key => $value){
                 if(!empty($value) || ($value!=null)){
                     $getproducts = DB::table('carts as c')->join('products as p','c.product_id','=','p.id')
-                                ->select('p.name','p.image','p.image_detail','c.product_price as prod_price','c.quantity as prod_qty')
+                                ->select('p.name','p.image','p.image_detail',
+                                'c.product_price as prod_price','c.quantity as prod_qty',
+                                'c.status as csatus')
                                 ->where('c.id',$value)->get();
                     if(count($getproducts)>0){
                         // $arr1 = array('name'=>$getproducts[0]->name,'quantity'=>$getproducts[0]->prod_qty,
@@ -46,7 +48,7 @@ class shipStationHelper {
                         // array_push($getitems, $arr1);
                         $item->name = $getproducts[0]->name;
                         $item->quantity = $getproducts[0]->prod_qty;
-                        $item->unitPrice  = $getproducts[0]->prod_price;
+                        $item->unitPrice  = $getproducts[0]->csatus;
                         $item->warehouseLocation = 'Nefaire 141 Post Road East Westport, CT 06880';
                         $item->imageUrl = asset(config('filesystems.products.imageurl').''.$getproducts[0]->image_detail);
                     }

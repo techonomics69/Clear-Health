@@ -26,6 +26,7 @@ use App\Http\Controllers\API\FollowupController;
 use App\Http\Controllers\API\PaymentsController;
 use App\Http\Controllers\API\ActionitemsController;
 use App\Http\Controllers\API\MdwebhooksController;
+use App\Http\Controllers\API\shipStationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -171,5 +172,7 @@ Route::post('getToken', [CaseManagementController::class, 'get_token']);
      Route::post('changePassword', [ChangePasswordController::class, 'changePassword']);
     
     Route::group(['middleware' => 'auth:api'], function(){});
+
+Route::get('getshipstationOrderdetail',[shipStationController::class, 'getOrderDetails']);
     
 //});

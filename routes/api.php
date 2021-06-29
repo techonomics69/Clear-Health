@@ -25,7 +25,7 @@ use App\Http\Controllers\API\OfferController;
 use App\Http\Controllers\API\FollowupController;
 use App\Http\Controllers\API\PaymentsController;
 use App\Http\Controllers\API\ActionitemsController;
-use App\Http\Controllers\API\MDWebhooksController;
+use App\Http\Controllers\API\MdwebhooksController;
 
 /*
 |--------------------------------------------------------------------------

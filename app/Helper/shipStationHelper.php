@@ -15,7 +15,7 @@ class shipStationHelper {
     }
         
     public static function createOrder($orderData){
-        $InitializeHelper = $this->InitializeHelper();
+        $InitializeHelper = shipStationHelper::InitializeHelper();
         return (isset($testm)) ? $testm : 'none';
     }
 

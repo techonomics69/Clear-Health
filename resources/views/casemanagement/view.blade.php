@@ -1270,7 +1270,7 @@
 			"oSearch": { "bSmart": false, "bRegex": true },
 			"scrollX": true,
 		});
-		console.log('window.location.pathname', window.location.pathname);
+		console.log('window.location.pathname', window.location.href);
 		$('#action_item').trigger('click')
 	});
 

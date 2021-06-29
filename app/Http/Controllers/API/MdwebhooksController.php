@@ -10,7 +10,7 @@ class MdwebhooksController extends BaseController
 {
     public function index()
     {
-        echo "hello";
+       
     }
 
     public function show()
@@ -21,5 +21,11 @@ class MdwebhooksController extends BaseController
     public function store()
     {
        //
+    }
+
+    public function webhookTriggers(){
+
+    	echo "hello";
+
     }
 }

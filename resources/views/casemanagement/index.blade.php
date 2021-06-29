@@ -94,7 +94,7 @@
                         <a href="http://103.101.59.95/dev.clearhealth/admin/casemanagement/show/1784?active=action_items">
                           <span class="badge badge-info">Check Off iPledge Item</span>
                         </a>
-                        <a href="http://103.101.59.95/dev.clearhealth/admin/casemanagement/show/1784?active=blood_work">
+                        <a href="http://103.101.59.95/dev.clearhealth/admin/casemanagement/show/1784?active=triggers">
                           <span class="badge badge-info">Trigger ques + 7 Day window</span>
                         </a>
                         <a href="http://103.101.59.95/dev.clearhealth/admin/casemanagement/show/1784?active=blood_work">

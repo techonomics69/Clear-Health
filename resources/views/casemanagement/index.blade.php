@@ -41,7 +41,7 @@
           <div class="row" style="padding: 20px;">
             <div class="col-md-12">
               <div class="">
-                <table class="table  table-responsive-md table-striped table-bordered" style="width:100%" id="CaseManagementList">
+                <table class="table  table-responsive-md table-striped table-bordered" id="CaseManagementList">
                   <thead>
                     <tr>
                       <th>SR</th>
@@ -56,7 +56,7 @@
                       <th>VisitType</th>
                       <th>TreatmentPlan</th>
                       <th>Pharmacy</th>
-                      <th width="100px">Action</th>
+                      <th>Action</th>
                       <th>Actions Needed</th>
                     </tr>
                   </thead>

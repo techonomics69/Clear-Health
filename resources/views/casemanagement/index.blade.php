@@ -162,11 +162,13 @@
   jQuery(document).ready(function($) {
     $('#CaseManagementList').DataTable({
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
-  
-      responsive: true,
-        paging: true
+      scrollY:        "300px",
+        scrollX:        true,
+        scrollCollapse: true,
+        paging:         true,
+        fixedColumns:   true
     });
-    new $.fn.dataTable.FixedHeader( table );
+   
     /*$.ajax({
             method:"post",
             url:"{{url('/CaseStatus')}}",

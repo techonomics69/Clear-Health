@@ -88,6 +88,7 @@ class CheckoutController extends BaseController
         $current_year = date("Y");
 
         if(!empty($last_checkout_id['order_id']) && ($year == $current_year)){
+          $last_checkout_id['order_id'] = "00000001";
           dd((int)substr($last_checkout_id['order_id'], 9));
           $id = number_format(substr($last_checkout_id['order_id'], 9)) + 1;
           $order_id = str_pad($id,8,'0',STR_PAD_LEFT);

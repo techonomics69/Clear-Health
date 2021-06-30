@@ -546,9 +546,9 @@
 								<ul class="nav nav-tabs" id="messages-tab-menu">
 									<li><a class="btn @if($msg_tab != 1) active @endif" data-toggle="tab" href="#ipledgetab">Ipledge</a></li>
 									@if($user_case_management_data['follow_up'] !== null)
-									@if($user_case_management_data['gender'] == 'female')
+									<!-- @if($user_case_management_data['gender'] == 'female') -->
 									<li><a id="pregnancy_test" class="btn nonmedicalmsg" data-toggle="tab" href="#pregnencytesttab">Pregnancy Test</a></li>
-									@endif
+									<!-- @endif -->
 									<li><a id="blood_work" class="btn nonmedicalmsg" data-toggle="tab" href="#bloodworktab">Bloodwork</a></li>
 									<li><a id="prior_auth" class="btn nonmedicalmsg" data-toggle="tab" href="#priorauthtab">Prior Auth</a></li>
 									<li><a id="triggers" class="btn nonmedicalmsg" data-toggle="tab" href="#triggerstab">Triggers</a></li>

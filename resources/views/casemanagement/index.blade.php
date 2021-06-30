@@ -110,12 +110,12 @@
                         <a href="{{ route('casemanagement.show',$case_data['id']) }}?active=action_items">
                           <span class="badge badge-info">Store & Send iPledge Credentials</span>
                         </a>
-                        <!-- @if($case_data['gender'] == 'female') -->
+                        
                         @elseif($case_data['case_status'] == 'verify_pregnancy')
                         <a href="{{ route('casemanagement.show',$case_data['id']) }}?active=pregnancy_test">
                           <span class="badge badge-info">Verify Pregnancy Test</span>
                         </a>
-                        <!-- @endif -->
+                        
                         @elseif($case_data['case_status'] == 'prior_auth')
                         <a href="{{ route('casemanagement.show',$case_data['id']) }}?active=prior_auth">
                           <span class="badge badge-info">Confirm Prior Auth</span>

@@ -107,7 +107,7 @@
                         </a>
                         @elseif($case_data['case_status'] == 'store_ipledge')
                         
-                        <a href="{{ route('casemanagement.show'?active=action_items,$case_data['id']) }}">
+                        <a href="{{ route('casemanagement.show',$case_data['id']) }}?active=action_items">
                           <span class="badge badge-info">Store & Send iPledge Credentials</span>
                         </a>
                         @elseif($case_data['case_status'] == 'verify_pregnancy')

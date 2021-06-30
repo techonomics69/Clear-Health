@@ -165,7 +165,8 @@ public function updateFollowUpData(Request $request){
       }
 
     }
-
+    $userGender = User::find($user_id);
+    dd($userGender);
     $followUpAns = FollowUp::where([['user_id', $user_id],['case_id', $case_id],['follow_up_no',$data['follow_up_no']],['follow_up_status','<>','completed']])->first();
 
     if(!empty($followUpAns)):

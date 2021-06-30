@@ -1182,11 +1182,11 @@ public function getMdDetailForMessage(Request $request){
         $gen = 'F';
       }
 
-      //$recommended_product = getRecommendedProductToUser($user_id,$case_id);
-      $recommended_product = $check_form['recommended_product'];
+      //$product_type = getUserProduct($user_id,$case_id);
+      $product_type = $check_form['product_type'];
 
 
-      if($user['gender'] == 'male' && $recommended_product =='Accutane'){
+      if($user['gender'] == 'male' && $product_type =='Accutane'){
 
         $iPledgeId = Ipledge::where([['patients_type','0'],['gender',$gen]])->whereNull('assigned_date')->OrderBy('id', 'ASC')->first();
         ;
@@ -1201,7 +1201,7 @@ public function getMdDetailForMessage(Request $request){
         
       }
 
-      if($user['gender'] == 'female' && $recommended_product =='Accutane'){
+      if($user['gender'] == 'female' && $product_type =='Accutane'){
 
         $iPledgeId = Ipledge::where([['patients_type','1'],['gender',$gen]])->whereNull('assigned_date')->OrderBy('id', 'ASC')->first();
         ;

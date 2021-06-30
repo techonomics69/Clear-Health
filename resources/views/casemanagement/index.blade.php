@@ -40,8 +40,8 @@
               </header> -->
           <div class="row" style="padding: 20px;">
             <div class="col-md-12">
-              <div class="">
-                <table class="table table-striped table-bordered nowrap" style=" width:100%" id="CaseManagementList">
+              <div class="table-responsive">
+                <table class="table table-striped table-bordered" style=" width:100%" id="CaseManagementList">
                   <thead>
                     <tr>
                       <th>SR</th>
@@ -56,7 +56,7 @@
                       <th>VisitType</th>
                       <th>TreatmentPlan</th>
                       <th>Pharmacy</th>
-                      <th width="100px">Action</th>
+                      <th>Action</th>
                       <th>Actions Needed</th>
                     </tr>
                   </thead>
@@ -162,23 +162,29 @@
   jQuery(document).ready(function($) {
     $('#CaseManagementList').DataTable({
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
-
-      scrollY:        "300px",
-        // scrollX:        true,
-        // scrollCollapse: true,
-        paging:         false,
+      // scrollY:        "300px",
+      //   scrollX:        true,
+      //   scrollCollapse: true,
         // fixedColumns:   true
-
+      
     });
+
+    /*$.ajax({
+            method:"post",
+            url:"{{url('/CaseStatus')}}",
+            data: {
+                "_token": "{{ csrf_token() }}",
+            },
+            dataType: "json",
+            beforeSend: function(){
+          //$(".outer-loader").show();
+        },
+            success:function(res){ 
+                
+                 alert(res);  
+            }
+        });*/
   });
-
-
-
-
-
-
-
-  
 </script>
 @endsection
 <!-- <style>

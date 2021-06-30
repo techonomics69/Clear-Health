@@ -581,7 +581,7 @@
 																<label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
 																<div class="col-sm-10">
 																	<input type="password" class="form-control" name="password">
-																	<input type="hidden" name="case_id" value="">
+																	<input type="hidden" name="case_id" value="{{$user_case_management_data->id}}">
 																</div>
 															</div>
 

@@ -165,7 +165,6 @@
       scrollY:        "300px",
         // scrollX:        true,
         // scrollCollapse: true,
-        paging:         true,
         // fixedColumns:   true
     });
    

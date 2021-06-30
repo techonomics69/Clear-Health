@@ -151,6 +151,7 @@ class FollowupController extends BaseController
           endif;
           
         endif;
+        dd($userGender);
         dd($data);
       }
 

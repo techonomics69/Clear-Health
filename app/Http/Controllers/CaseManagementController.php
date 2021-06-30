@@ -12,7 +12,7 @@ use App\Models\Answers;
 use App\Models\Checkoutaddress;
 use App\Models\Checkout;
 use App\Models\Cart;
-use App\Models\Product;
+use App\Models\CaseHistory;
 use App\Models\Messages;
 use App\Models\MessageFiles;
 use App\Models\FollowUp;
@@ -552,6 +552,40 @@ public function sendMessageNonMedical(Request $request){
     }
     return $response;
     
+  }
+
+  public function saveiPledgeCredentials(Request $request)
+  {
+    $input_data['case_status'] = 'store_ipledge';    
+    $caseHistory = CaseHistory::whereId($request['id'])->update($input_data);
+  }
+
+  public function verifyPregnancy(Request $request)
+  {
+    $input_data['case_status'] = 'verify_pregnancy';    
+    $caseHistory = CaseHistory::whereId($request['id'])->update($input_data);
+  }
+
+  public function priorAuth(Request $request)
+  {
+    $input_data['case_status'] = 'prior_auth';    
+    $caseHistory = CaseHistory::whereId($request['id'])->update($input_data);
+  }
+
+  public function checkOffIpledge(Request $request)
+  {
+    $input_data['case_status'] = 'check_off_ipledge';    
+    $caseHistory = CaseHistory::whereId($request['id'])->update($input_data);
+  }
+  public function trigger(Request $request)
+  {
+    $input_data['case_status'] = 'trigger';    
+    $caseHistory = CaseHistory::whereId($request['id'])->update($input_data);
+  }
+  public function bloodWork(Request $request)
+  {
+    $input_data['case_status'] = 'blood_work';    
+    $caseHistory = CaseHistory::whereId($request['id'])->update($input_data);
   }
 
 

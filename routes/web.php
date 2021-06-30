@@ -276,7 +276,15 @@ Route::group(['middleware' => ['auth']],function(){
     Route::get('admin/offers/edit/{id}', [OfferController::class, 'edit'])->name('offers.edit');
     Route::patch('admin/offers/update/{id}', [OfferController::class, 'update'])->name('offers.update');
     Route::delete('admin/offers/destroy/{id}', [OfferController::class, 'destroy'])->name('offers.destroy');  
-    
+
+
+    //update case history status
+    Route::post('saveiPledgeCredentials', [CaseManagementController::class, 'saveiPledgeCredentials']);
+    Route::post('verifyPregnancy', [CaseManagementController::class, 'verifyPregnancy']);
+    Route::post('priorAuth', [CaseManagementController::class, 'priorAuth']);
+    Route::post('checkOffIpledge', [CaseManagementController::class, 'checkOffIpledge']);
+    Route::post('trigger', [CaseManagementController::class, 'trigger']);
+    Route::post('bloodWork', [CaseManagementController::class, 'bloodWork']);    
     
 });
 

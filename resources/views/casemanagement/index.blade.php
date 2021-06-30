@@ -75,7 +75,7 @@
                         @if(empty($case_data['follow_up']))
                         1
                         @else
-                        {{ $case_data['follow_up'] }}
+                        {{ $case_data['follow_up'] + 1 }}
                         @endif
                       </td>
                       <td>{{ $case_data['md_case_id'] }}</td>

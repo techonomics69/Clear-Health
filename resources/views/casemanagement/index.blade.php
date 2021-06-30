@@ -101,31 +101,31 @@
                         </div>
                       </td>
                       <td>
-                        @if($case_status == 'generate_ipledge')
+                        @if($case_data['case_status'] == 'generate_ipledge')
                         <a href="https://www.ipledgeprogram.com/iPledgeUI/home.u" target="_blank">
                           <span class="badge badge-info">Generate iPledge Credentials</span>
                         </a>
-                        @elseif($case_status == 'store_ipledge')
+                        @elseif($case_data['case_status'] == 'store_ipledge')
                         <a href="http://103.101.59.95/dev.clearhealth/admin/casemanagement/show/1784?active=action_items">
                           <span class="badge badge-info">Store & Send iPledge Credentials</span>
                         </a>
-                        @elseif($case_status == 'verify_pregnancy')
+                        @elseif($case_data['case_status'] == 'verify_pregnancy')
                         <a href="http://103.101.59.95/dev.clearhealth/admin/casemanagement/show/1784?active=pregnancy_test">
                           <span class="badge badge-info">Verify Pregnancy Test</span>
                         </a>
-                        @elseif($case_status == 'prior_auth')
+                        @elseif($case_data['case_status'] == 'prior_auth')
                         <a href="http://103.101.59.95/dev.clearhealth/admin/casemanagement/show/1784?active=prior_auth">
                           <span class="badge badge-info">Confirm Prior Auth</span>
                         </a>
-                        @elseif($case_status == 'check_off_ipledge')
+                        @elseif($case_data['case_status'] == 'check_off_ipledge')
                         <a href="http://103.101.59.95/dev.clearhealth/admin/casemanagement/show/1784?active=action_items">
                           <span class="badge badge-info">Check Off iPledge Item</span>
                         </a>
-                        @elseif($case_status == 'trigger')
+                        @elseif($case_data['case_status'] == 'trigger')
                         <a href="http://103.101.59.95/dev.clearhealth/admin/casemanagement/show/1784?active=triggers">
                           <span class="badge badge-info">Trigger ques + 7 Day window</span>
                         </a>
-                        @elseif($case_status == 'blood_work')
+                        @elseif($case_data['case_status'] == 'blood_work')
                         <a href="http://103.101.59.95/dev.clearhealth/admin/casemanagement/show/1784?active=blood_work">
                           <span class="badge badge-info">Upload bloodwork</span>
                         </a>

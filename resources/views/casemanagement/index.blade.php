@@ -163,7 +163,7 @@
     $('#CaseManagementList').DataTable({
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
       responsive: true,
-        paging: false
+        paging: true
       
     });
     new $.fn.dataTable.FixedHeader( table );

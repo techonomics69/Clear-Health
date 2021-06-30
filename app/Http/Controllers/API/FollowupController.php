@@ -59,7 +59,7 @@ class FollowupController extends BaseController
       }
 
       $followUpAns = FollowUp::where('user_id', $data['user_id'])->where('case_id', $data['case_id'])->where('follow_up_no', $data['follow_up_no'])->first();
-      if (!empty($followUpAns)) :        
+      if (!empty($followUpAns)) :
         $followUpAns = $followUpAns->update($data);
       else :
         $followUpAns = FollowUp::create($data);
@@ -149,9 +149,7 @@ class FollowupController extends BaseController
           else :
             $data['follow_up_no'] = $data['follow_up_no'] + 1;
           endif;
-          
         endif;
-              
       }
 
       if ($request->file('pregnancy_test') != '') {
@@ -175,7 +173,6 @@ class FollowupController extends BaseController
               $data['follow_up_no'] = 1;
             else :
               $data['follow_up_no'] = $data['follow_up_no'] + 1;
-              
             endif;
           endif;
         }
@@ -183,6 +180,13 @@ class FollowupController extends BaseController
 
       if (!empty($followUpAns)) :
         $followUpAns = $followUpAns->update($data);
+        if ($data['follow_up_no'] !== $followUpAns['follow_up_no']) :
+          $case = CaseManagement::find($case_id);
+          if ($case) :
+            $case_data['follow_up'] = $data['follow_up_no'];
+            $case->update($case_data);
+          endif;
+        endif;
       endif;
 
       return $this->sendResponse($followUpAns, 'Follow Up Data Updated Successfully');

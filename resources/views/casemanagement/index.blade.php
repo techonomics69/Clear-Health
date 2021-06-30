@@ -164,6 +164,9 @@
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
       responsive: true,
         paging: true
+        scrollY:        "300px",
+        scrollX:        true,
+        scrollCollapse: true,
       
     });
     new $.fn.dataTable.FixedHeader( table );

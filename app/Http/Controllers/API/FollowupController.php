@@ -182,6 +182,9 @@ class FollowupController extends BaseController
         $followUpAns = $followUpAns->update($data);
         if ($data['follow_up_no'] !== $followUpAns['follow_up_no']) :
           $case = CaseManagement::find($case_id);
+          echo '<pre>'; 
+          print_r($case);
+          die;
           if ($case) :
             $case_data['follow_up'] = $data['follow_up_no'];
             $case->update($case_data);

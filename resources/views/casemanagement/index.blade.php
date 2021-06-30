@@ -40,7 +40,7 @@
               </header> -->
           <div class="row" style="padding: 20px;">
             <div class="col-md-12">
-              <div class="">
+              <div class="table-responsive">
                 <!-- <table class="table table-striped table-bordered nowrap" style=" width:100%" id="CaseManagementList"> -->
                 <table id="example" class="table table-striped table-bordered nowrap" style="width:100%">
                   <thead>

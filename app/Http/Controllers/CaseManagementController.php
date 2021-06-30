@@ -564,7 +564,7 @@ die();*/
     $case_data['ipledge_username'] = $request['email'];
     $case_data['ipledge_password'] = $request['password'];
     $case = CaseManagement::whereId($request['case_id'])->update($case_data);
-    dd($case);
+    
     if ($case) {
       $input_data['case_status'] = 'verify_pregnancy';
       $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);     

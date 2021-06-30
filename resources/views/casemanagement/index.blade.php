@@ -164,7 +164,7 @@
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
           //  scrollY:        true,
         scrollX:        true,
-      //   scrollCollapse: true,
+        scrollCollapse: true,
         // fixedColumns:   true
       
     });

@@ -173,6 +173,7 @@ class FollowupController extends BaseController
               $data['follow_up_no'] = 1;
             else :
               $data['follow_up_no'] = $data['follow_up_no'] + 1;
+              dd($data);
             endif;
           endif;
         }

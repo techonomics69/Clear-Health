@@ -41,7 +41,8 @@
           <div class="row" style="padding: 20px;">
             <div class="col-md-12">
               <div class="">
-                <table class="table table-striped table-bordered nowrap" style=" width:100%" id="CaseManagementList">
+                <!-- <table class="table table-striped table-bordered nowrap" style=" width:100%" id="CaseManagementList"> -->
+                <table id="example" class="table table-striped table-bordered nowrap" style="width:100%">
                   <thead>
                     <tr>
                       <th>SR</th>
@@ -167,7 +168,7 @@
   // });
 
   $(document).ready(function() {
-    var table = $('#CaseManagementList').DataTable( {
+    var table = $('#example').DataTable( {
 
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
 

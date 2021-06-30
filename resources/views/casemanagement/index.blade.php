@@ -71,7 +71,13 @@
                       <td>{{ $case_data['first_name'] }}</td>
                       <td>{{ $case_data['last_name'] }}</td>
                       <td>{{ strtoupper($case_data['gender'][0]) }}</td>
-                      <td></td>
+                      <td>
+                        @if(empty($case_data['follow_up']))
+                        0
+                        @else
+                        {{ $case_data['follow_up'] }}
+                        @endif
+                      </td>
                       <td>{{ $case_data['md_case_id'] }}</td>
                       <td><?php if ($case_data['md_status'] == 0) {
                             echo 'pending ';

@@ -164,10 +164,10 @@
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
 
       scrollY:        "300px",
-        scrollX:        true,
-        scrollCollapse: true,
+        // scrollX:        true,
+        // scrollCollapse: true,
         paging:         false,
-       
+        // fixedColumns:   true
 
     });
   });

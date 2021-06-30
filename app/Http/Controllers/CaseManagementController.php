@@ -32,6 +32,7 @@ class CaseManagementController extends Controller
     public function index(Request $request)
     {
       $user_case_management_data = CaseManagement::join('users','case_managements.user_id', '=', 'users.id')->select('case_managements.*','users.email')->OrderBy('id' ,'DESC')->get();
+      dd($user_case_management_data);
       $case_status = '';
       //generate_ipledge, store_ipledge, verify_pregnancy, prior_auth, check_off_ipledge, trigger, blood_work
       return view('casemanagement.index', compact('user_case_management_data','case_status'))->with('i', ($request->input('page', 1) -1) * 5);

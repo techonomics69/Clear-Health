@@ -66,6 +66,7 @@ class shipStationHelper {
         $order->advancedOptions = array('storeId'=>'457183');
 
         $newOrder = $shipStation->orders->create($order);
+        $updateOrder = DB::table('checkout')->where('id',$order['checkoutOrderId'])->update(['shipstation_order_id'=>$newOrder->orderId]);
 
         return (isset($newOrder)) ? $newOrder : 'none';
     }
@@ -132,6 +133,7 @@ class shipStationHelper {
 
         if($accFlag){
             $newOrder = $shipStation->orders->create($order);
+            $updateOrder = DB::table('checkout')->where('id',$order['checkoutOrderId'])->update(['shipstation_order_id'=>$newOrder->orderId]);
         }else{
             $newOrder = '';
         }

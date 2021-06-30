@@ -124,7 +124,7 @@ class CheckoutController extends BaseController
 
       $update_checkout_address  =  Checkoutaddress::where('id',$checkcout_address['id'])->update(['order_id' => $order_id]);
     }
-
+    $data['checkoutOrderId'] = $checkoutdata->id;
     if($request->medication_type == "2"){
       sleep(3);
       $addToshipstation = shipStationHelper::createOrder_nonprescribed($data);

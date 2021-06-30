@@ -44,15 +44,20 @@
                 <table class="table  table-responsive-md table-striped table-bordered" style="width:100%" id="CaseManagementList">
                   <thead>
                     <tr>
-                      <th>SR No</th>
+                      <th>SR</th>
                       <th>Date</th>
-                      <th>MD Case ID</th>
-                      <th>Case ID </th>
-                      <th>MD Status</th>
-                      <th>Order Status</th>
-                      <th>Email</th>
-                      <th width="280px">Action</th>
-                      <th>Action required by Admin</th>
+                      <th>CaseID</th>
+                      <th>FirstName</th>
+                      <th>LastName</th>
+                      <th>Gender</th>
+                      <th>VisitNumber</th>
+                      <th>MDCaseID</th>
+                      <th>MDStatus</th>
+                      <th>VisitType</th>
+                      <th>TreatmentPlan</th>
+                      <th>Pharmacy</th>
+                      <th width="100px">Action</th>
+                      <th>Actions Needed</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -71,6 +76,11 @@
                           } else {
                             echo 'accepted';
                           } ?></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
                       <td></td>
                       <td>{{ $case_data['email'] }} </td>
                       <td>

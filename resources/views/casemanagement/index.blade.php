@@ -69,6 +69,10 @@
                       <td>{{ $case_data['created_at']->format('d/m/Y') }}</td>
                       <td>{{ $case_data['ref_id']}}</td>
                       <td>{{ $case_data['first_name'] }}</td>
+                      <td>{{ $case_data['last_name'] }}</td>
+                      <td>{{ $case_data['gender'] }}</td>
+                      <td></td>
+                      <td></td>
                       <td><?php if ($case_data['md_status'] == 0) {
                             echo 'pending ';
                           } else if ($case_data['md_status'] == 1) {
@@ -76,10 +80,6 @@
                           } else {
                             echo 'accepted';
                           } ?></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
                       <td></td>
                       <td></td>
                       <td>{{ $case_data['email'] }} </td>

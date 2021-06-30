@@ -159,8 +159,8 @@ class CheckoutController extends BaseController
       'user_id' => 'required',
       'patient_firstname' => 'required',
       'patient_lastname' => 'required',
-      'addressline1' => 'required',
-      'addressline2' => '',
+      //'addressline1' => '',
+      //'addressline2' => '',
       'city' => 'required',
       'state' => 'required',
       'zipcode' => 'required',
@@ -189,8 +189,8 @@ public function updateCheckoutAddress(Request $request){
  try{
   $validator = Validator::make($data, [
     'id' => 'required',
-    'addressline1' => 'required',
-    'addressline2' => 'required',
+    //'addressline1' => 'required',
+    //'addressline2' => 'required',
     'city' => 'required',
     'zipcode' => 'required'
   ]);

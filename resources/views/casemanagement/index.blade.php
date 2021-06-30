@@ -111,23 +111,23 @@
                           <span class="badge badge-info">Store & Send iPledge Credentials</span>
                         </a>
                         @elseif($case_data['case_status'] == 'verify_pregnancy')
-                        <a href="http://103.101.59.95/dev.clearhealth/admin/casemanagement/show/1784?active=pregnancy_test">
+                        <a href="{{ route('casemanagement.show',$case_data['id']) }}?active=pregnancy_test">
                           <span class="badge badge-info">Verify Pregnancy Test</span>
                         </a>
                         @elseif($case_data['case_status'] == 'prior_auth')
-                        <a href="http://103.101.59.95/dev.clearhealth/admin/casemanagement/show/1784?active=prior_auth">
+                        <a href="{{ route('casemanagement.show',$case_data['id']) }}?active=prior_auth">
                           <span class="badge badge-info">Confirm Prior Auth</span>
                         </a>
                         @elseif($case_data['case_status'] == 'check_off_ipledge')
-                        <a href="http://103.101.59.95/dev.clearhealth/admin/casemanagement/show/1784?active=action_items">
+                        <a href="{{ route('casemanagement.show',$case_data['id']) }}?active=action_items">
                           <span class="badge badge-info">Check Off iPledge Item</span>
                         </a>
                         @elseif($case_data['case_status'] == 'trigger')
-                        <a href="http://103.101.59.95/dev.clearhealth/admin/casemanagement/show/1784?active=triggers">
+                        <a href="{{ route('casemanagement.show',$case_data['id']) }}?active=triggers">
                           <span class="badge badge-info">Trigger ques + 7 Day window</span>
                         </a>
                         @elseif($case_data['case_status'] == 'blood_work')
-                        <a href="http://103.101.59.95/dev.clearhealth/admin/casemanagement/show/1784?active=blood_work">
+                        <a href="{{ route('casemanagement.show',$case_data['id']) }}?active=blood_work">
                           <span class="badge badge-info">Upload bloodwork</span>
                         </a>                       
                         @elseif($case_data['case_status'] == 'finish')                        

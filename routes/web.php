@@ -302,4 +302,6 @@ Route::get('/customer_payment_methods', [PaymentsController::class, 'customer_pa
 Route::get('/customer_make_direct_payment', [PaymentsController::class, 'customer_make_direct_payment']);
 
 Route::get('/cancel_subscription', [PaymentsController::class, 'cancel_subscription']);
+
+Route::post('/stripe_webhook', [PaymentsController::class, 'stripe_webhook']);
 Route::post("send_message",[TestsmsController::class, 'sendsms'])->name('sendsms');

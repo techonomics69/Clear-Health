@@ -67,9 +67,9 @@ class shipStationHelper {
 
         $newOrder = $shipStation->orders->create($order);
         $getOrder = json_decode(json_encode($newOrder), true);
-        //$updateOrder = DB::table('checkout')->where('id',$order['checkoutOrderId'])->update(['shipstation_order_id'=>$newOrder->orderId]);
+        $updateOrder = DB::table('checkout')->where('id',$order['checkoutOrderId'])->update(['shipstation_order_id'=>$getOrder['orderId']]);
 
-        return (isset($getOrder)) ? $getOrder['orderId'] : 'none';
+        return (isset($newOrder)) ? $newOrder : 'none';
     }
 
     public static function createOrder_prescribed($orderData){
@@ -134,7 +134,8 @@ class shipStationHelper {
 
         if($accFlag){
             $newOrder = $shipStation->orders->create($order);
-            $updateOrder = DB::table('checkout')->where('id',$order['checkoutOrderId'])->update(['shipstation_order_id'=>$newOrder->orderId]);
+            $getOrder = json_decode(json_encode($newOrder), true);
+            $updateOrder = DB::table('checkout')->where('id',$order['checkoutOrderId'])->update(['shipstation_order_id'=>$getOrder['orderId']]);            
         }else{
             $newOrder = '';
         }

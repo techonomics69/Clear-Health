@@ -208,7 +208,7 @@ class CaseManagementController extends BaseController
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => 'GET',
       CURLOPT_HTTPHEADER => array(
-        'Authorization: '.$token,
+        'Authorization: Bearer '.$token,
         'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
       ),
     ));
@@ -236,7 +236,7 @@ class CaseManagementController extends BaseController
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => 'GET',
       CURLOPT_HTTPHEADER => array(
-        'Authorization: '.$token,
+        'Authorization: Bearer '.$token,
         'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
       ),
     ));

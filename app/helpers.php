@@ -402,26 +402,26 @@ if(!empty($Patient_data)){
 
     $patient_id = '"'.$patient_id.'"';
 
-    $recommended_product = getRecommendedProductToUser($user_id,$case_id);
+    $product_type = getUserProduct($user_id,$case_id);
 
-    if($recommended_product == 'Topical_low'){
+    if($product_type == 'Topical_low'){
 
      $product_name = "Topical Low";
 
    }
 
-   if($recommended_product == 'Topical_high'){
+   if($product_type == 'Topical_high'){
 
      $product_name = "Topical High";
 
    }
 
-   if($recommended_product == 'Azelaic_Acid'){
+   if($product_type == 'Azelaic_Acid'){
 
      $product_name = "Azelaic Acid";
 
    }
-   if($recommended_product == 'Accutane'){
+   if($product_type == 'Accutane'){
 
      $product_name = "ISOtretinoin (oral - capsule)";
 
@@ -495,7 +495,7 @@ if(!empty($Patient_data)){
 
 
 
- if($recommended_product !="Accutane"){
+ if($product_type !="Accutane"){
 
   $days_supply = "60";
   $refills = "11";
@@ -802,11 +802,14 @@ if(!empty($Patient_data)){
       return $ipledge_id['patient_id'];
     }*/
 
-    function getRecommendedProductToUser($user_id,$case_id){
-         $recommended_product = CaseManagement::select('recommended_product')->where('id',$case_id)->where('user_id',$user_id)->first();
-         $recommended_product = $recommended_product['recommended_product'];
+    function getUserProduct($user_id,$case_id){
+         /*$recommended_product = CaseManagement::select('recommended_product')->where('id',$case_id)->where('user_id',$user_id)->first();
+         $recommended_product = $recommended_product['recommended_product'];*/
 
-         return $recommended_product;
+         $product_type = CaseManagement::select('product_type')->where('id',$case_id)->where('user_id',$user_id)->first();
+         $product_type = $product_type['product_type'];
+
+         return $product_type;
 
     }
 

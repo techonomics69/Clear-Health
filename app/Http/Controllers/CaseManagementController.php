@@ -555,6 +555,7 @@ die();*/
 
   public function saveiPledgeCredentials(Request $request)
   {
+    dd($request);
     $input_data['case_status'] = 'store_ipledge';
     $caseHistory = CaseHistory::whereId($request['id'])->update($input_data);
   }

@@ -169,7 +169,6 @@
         scrollCollapse: true,
       
     });
-    new $.fn.dataTable.FixedHeader( table );
 
     /*$.ajax({
             method:"post",

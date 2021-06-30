@@ -178,15 +178,18 @@ class FollowupController extends BaseController
         }
       }
 
-      if (!empty($followUpAns)) :
-        $followUpAns = $followUpAns->update($data);
+      if (!empty($followUpAns)) :        
         if ($data['follow_up_no'] !== $followUpAns['follow_up_no']) :
           $case = CaseManagement::find($case_id);
+          echo '<pre>'; 
+          print_r($case);
+          die;
           if ($case) :
             $case_data['follow_up'] = $data['follow_up_no'];
             $case->update($case_data);
           endif;
         endif;
+        $followUpAns = $followUpAns->update($data);
       endif;
 
       return $this->sendResponse($followUpAns, 'Follow Up Data Updated Successfully');

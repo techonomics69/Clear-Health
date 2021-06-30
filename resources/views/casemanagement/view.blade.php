@@ -584,12 +584,11 @@
 																	<input type="hidden" name="case_id" value="{{$user_case_management_data->id}}">
 																</div>
 															</div>
-
+															<div class="ipledge_button">
+																<button class="btn btn-secondry" type="submit"> Save</button>
+																<a class="btn btn-primary " href=""> Send SMS</a>
+															</div>
 														</form>
-														<div class="ipledge_button">
-															<button class="btn btn-secondry" type="submit"> Save</button>
-															<a class="btn btn-primary " href=""> Send SMS</a>
-														</div>
 													</div>
 												</div>
 

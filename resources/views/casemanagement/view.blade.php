@@ -544,7 +544,7 @@
 						<div class="col-md-12">
 							<section class="card">
 								<ul class="nav nav-tabs" id="messages-tab-menu">
-									<li><a class="btn @if($msg_tab != 1) active @endif" data-toggle="tab" href="#ipledgetab">Ipledge {{$user_case_management_data['gender']}}</a></li>
+									<li><a class="btn @if($msg_tab != 1) active @endif" data-toggle="tab" href="#ipledgetab">Ipledge</a></li>
 									@if($user_case_management_data['follow_up'] !== null)
 									@if($user_case_management_data['gender'] === 'female')
 									<li><a id="pregnancy_test" class="btn nonmedicalmsg" data-toggle="tab" href="#pregnencytesttab">Pregnancy Test</a></li>

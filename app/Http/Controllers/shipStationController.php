@@ -12,5 +12,8 @@ class shipStationController extends Controller
         return $getRates;
     }
 
-    
+    public function getOrderDetails($orderId){
+        $orderData =  shipStationHelper::getOrderData($orderId);
+        return $orderData;
+    }
 }

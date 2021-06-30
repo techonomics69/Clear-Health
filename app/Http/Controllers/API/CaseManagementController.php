@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\API\BaseController as BaseController;
 use Illuminate\Http\Request;
 use App\Models\CaseManagement;
+use App\Models\CaseHistory;
 use App\Models\Mdpatient;
 use Validator;
 use Exception;
@@ -97,7 +98,10 @@ class CaseManagementController extends BaseController
         return $this->sendError('Validation Error.', $validator->errors()->all());       
       }
       $quizAns = CaseManagement::create($data);
-
+      $caseHistoryData['user_id'] =  $data['user_id'];
+      $caseHistoryData['case_id'] =  $ref_id;
+      $caseHistoryData['case_status'] =  'initial';
+      $caseHistory = CaseHistory::create($caseHistoryData);
       return $this->sendResponse($data, 'Case Created Successfully');
     }catch(\Exception $ex){
       return $this->sendError('Server error',array($ex->getMessage()));

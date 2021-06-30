@@ -69,7 +69,7 @@ class shipStationHelper {
         $getOrder = json_decode(json_encode($newOrder), true);
         //$updateOrder = DB::table('checkout')->where('id',$order['checkoutOrderId'])->update(['shipstation_order_id'=>$newOrder->orderId]);
 
-        return (isset($getOrder)) ? $getOrder : 'none';
+        return (isset($getOrder)) ? $getOrder['orderId'] : 'none';
     }
 
     public static function createOrder_prescribed($orderData){

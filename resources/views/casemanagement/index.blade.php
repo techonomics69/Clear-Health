@@ -40,7 +40,7 @@
               </header> -->
           <div class="row" style="padding: 20px;">
             <div class="col-md-12">
-              <div class="">
+              <div class="table-responsive">
                 <table class="table table-striped table-bordered" style=" width:100%" id="CaseManagementList">
                   <thead>
                     <tr>
@@ -56,7 +56,7 @@
                       <th>VisitType</th>
                       <th>TreatmentPlan</th>
                       <th>Pharmacy</th>
-                      <th width="100px">Action</th>
+                      <th>Action</th>
                       <th>Actions Needed</th>
                     </tr>
                   </thead>
@@ -162,13 +162,11 @@
   jQuery(document).ready(function($) {
     $('#CaseManagementList').DataTable({
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
-      scrollY:        "300px",
-        scrollX:        true,
-        scrollCollapse: true,
+      // scrollY:        "300px",
+      //   scrollX:        true,
+      //   scrollCollapse: true,
         // fixedColumns:   true
-        columnDefs: [
-            { width: 200, targets: 0 }
-        ],
+      
     });
 
     /*$.ajax({

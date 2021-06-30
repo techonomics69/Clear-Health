@@ -166,6 +166,9 @@
         scrollX:        true,
         scrollCollapse: true,
         // fixedColumns:   true
+        columnDefs: [
+            { width: 200, targets: 0 }
+        ],
     });
 
     /*$.ajax({

@@ -279,7 +279,7 @@ Route::group(['middleware' => ['auth']],function(){
 
 
     //update case history status
-    Route::post('saveiPledgeCredentials', [CaseManagementController::class, 'saveiPledgeCredentials']);
+    Route::post('saveiPledgeCredentials', [CaseManagementController::class, 'saveiPledgeCredentials'])->name('saveipledge');
     Route::post('verifyPregnancy', [CaseManagementController::class, 'verifyPregnancy']);
     Route::post('priorAuth', [CaseManagementController::class, 'priorAuth']);
     Route::post('checkOffIpledge', [CaseManagementController::class, 'checkOffIpledge']);

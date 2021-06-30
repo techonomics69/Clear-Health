@@ -31,10 +31,10 @@ class CaseManagementController extends Controller
    */
   public function index(Request $request)
   {
-    $user_case_management_data = CaseManagement::join('users', 'case_managements.user_id', '=', 'users.id')->select('case_managements.*', 'users.email', 'users.first_name', 'users.last_name', 'users.gender')->OrderBy('id', 'DESC')->get();
-    $case_status = '';
+    $user_case_management_data = CaseManagement::join('users', 'case_managements.user_id', '=', 'users.id')->leftjoin('case_histories', 'case_managements.id', '=', 'case_histories.case_id')->select('case_managements.*', 'users.email', 'users.first_name', 'users.last_name', 'users.gender', 'case_histories.case_status')->OrderBy('id', 'DESC')->get();
+
     //generate_ipledge, store_ipledge, verify_pregnancy, prior_auth, check_off_ipledge, trigger, blood_work
-    return view('casemanagement.index', compact('user_case_management_data', 'case_status'))->with('i', ($request->input('page', 1) - 1) * 5);
+    return view('casemanagement.index', compact('user_case_management_data'))->with('i', ($request->input('page', 1) - 1) * 5);
   }
 
   /**
@@ -553,43 +553,50 @@ die();*/
     return $response;
   }
 
+  public function generateiPledge(Request $request)
+  {
+    $input_data['case_status'] = 'store_ipledge';
+    $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
+    return redirect()->back();
+  }
+
   public function saveiPledgeCredentials(Request $request)
   {
     $case_data['ipledge_username'] = $request['email'];
     $case_data['ipledge_password'] = $request['password'];
     $case = CaseManagement::whereId($request['case_id'])->update($case_data);
     if ($case) {
-      $input_data['case_status'] = 'store_ipledge';
-      $caseHistory = CaseHistory::whereId($request['case_id'])->update($input_data);
+      $input_data['case_status'] = 'verify_pregnancy';
+      $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);     
     }
-    return redirect()->back()->with('success', 'Credentials saved');   
+    return redirect()->back()->with('success', 'Credentials saved');
   }
 
   public function verifyPregnancy(Request $request)
-  {
-    $input_data['case_status'] = 'verify_pregnancy';
-    $caseHistory = CaseHistory::whereId($request['id'])->update($input_data);
-  }
-
-  public function priorAuth(Request $request)
   {
     $input_data['case_status'] = 'prior_auth';
     $caseHistory = CaseHistory::whereId($request['id'])->update($input_data);
   }
 
-  public function checkOffIpledge(Request $request)
+  public function priorAuth(Request $request)
   {
     $input_data['case_status'] = 'check_off_ipledge';
     $caseHistory = CaseHistory::whereId($request['id'])->update($input_data);
   }
-  public function trigger(Request $request)
+
+  public function checkOffIpledge(Request $request)
   {
     $input_data['case_status'] = 'trigger';
     $caseHistory = CaseHistory::whereId($request['id'])->update($input_data);
   }
-  public function bloodWork(Request $request)
+  public function trigger(Request $request)
   {
     $input_data['case_status'] = 'blood_work';
+    $caseHistory = CaseHistory::whereId($request['id'])->update($input_data);
+  }
+  public function bloodWork(Request $request)
+  {
+    $input_data['case_status'] = 'finish';
     $caseHistory = CaseHistory::whereId($request['id'])->update($input_data);
   }
 }

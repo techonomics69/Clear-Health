@@ -15,6 +15,7 @@ use App\Helper\shipStationHelper;
 use Validator;
 use Exception;
 use log;
+use DB;
 
 class CheckoutController extends BaseController
 {
@@ -126,7 +127,10 @@ class CheckoutController extends BaseController
 
     if($request->medication_type == "2"){
       sleep(3);
-      $addToshipstation = shipStationHelper::createOrder($data);
+      $addToshipstation = shipStationHelper::createOrder_nonprescribed($data);
+    }else if($request->medication_type == "1"){
+      sleep(3);  
+      $addToshipstation = shipStationHelper::createOrder_prescribed($data);
     }else{
       $addToshipstation = "";
     }

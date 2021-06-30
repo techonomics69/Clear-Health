@@ -185,10 +185,7 @@ class FollowupController extends BaseController
             $case_data['follow_up'] = $data['follow_up_no'];
 
             $caseSave = $caseManage->update($case_data);
-            echo '<pre>';
-            print_r($case_data);
-            print_r($caseSave);
-            die;
+            
           endif;
         endif;
         $followUpAns = $followUpAns->update($data);

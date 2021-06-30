@@ -285,10 +285,10 @@ die();*/
     }*/
 
 
-  //   echo "<pre>";
-  // print_r($user_case_management_data->id);
-  // echo "</pre>";
-  // die();
+    //   echo "<pre>";
+    // print_r($user_case_management_data->id);
+    // echo "</pre>";
+    // die();
 
 
 
@@ -555,9 +555,13 @@ die();*/
 
   public function saveiPledgeCredentials(Request $request)
   {
-    dd($request);
-    $input_data['case_status'] = 'store_ipledge';
-    $caseHistory = CaseHistory::whereId($request['case_id'])->update($input_data);
+    $case_data['ipledge_username'] = $request['email'];
+    $case_data['ipledge_password'] = $request['password'];
+    $case = CaseManagement::whereId($request['case_id'])->update($case_data);
+    if ($case) {
+      $input_data['case_status'] = 'store_ipledge';
+      $caseHistory = CaseHistory::whereId($request['case_id'])->update($input_data);
+    }
   }
 
   public function verifyPregnancy(Request $request)

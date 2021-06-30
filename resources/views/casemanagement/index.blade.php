@@ -72,7 +72,7 @@
                       <td>{{ $case_data['last_name'] }}</td>
                       <td>{{ strtoupper($case_data['gender'][0]) }}</td>
                       <td></td>
-                      <td></td>
+                      <td>{{ $case_data['md_case_id'] }}</td>
                       <td><?php if ($case_data['md_status'] == 0) {
                             echo 'pending ';
                           } else if ($case_data['md_status'] == 1) {
@@ -147,6 +147,7 @@
   jQuery(document).ready(function($) {
     $('#CaseManagementList').DataTable({
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
+      "scrollX": true
     });
 
     /*$.ajax({

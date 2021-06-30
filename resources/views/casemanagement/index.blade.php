@@ -166,6 +166,7 @@
         // scrollX:        true,
         // scrollCollapse: true,
         // fixedColumns:   true
+        "ordering": false, 
     });
    
     /*$.ajax({

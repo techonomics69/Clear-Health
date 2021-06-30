@@ -33,11 +33,13 @@ class MdwebhooksController extends BaseController
 
 		curl_setopt_array($curl, array(
 			CURLOPT_URL => 'http://103.101.59.95/dev.clearhealth/api/webhookTriggers',
+			//CURLOPT_URL => 'https://helloclearhealth.com/backend/api/webhookTriggers',
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_ENCODING => '',
 			CURLOPT_MAXREDIRS => 10,
 			CURLOPT_TIMEOUT => 0,
 			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_SSL_VERIFYPEER=> false, 
 			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 			CURLOPT_CUSTOMREQUEST => 'POST',
 			CURLOPT_POSTFIELDS =>'{

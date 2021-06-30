@@ -106,14 +106,16 @@
                           <span class="badge badge-info">Generate iPledge Credentials</span>
                         </a>
                         @elseif($case_data['case_status'] == 'store_ipledge')
-                        
+
                         <a href="{{ route('casemanagement.show',$case_data['id']) }}?active=action_items">
                           <span class="badge badge-info">Store & Send iPledge Credentials</span>
                         </a>
+                        <!-- @if($case_data['gender'] == 'female') -->
                         @elseif($case_data['case_status'] == 'verify_pregnancy')
                         <a href="{{ route('casemanagement.show',$case_data['id']) }}?active=pregnancy_test">
                           <span class="badge badge-info">Verify Pregnancy Test</span>
                         </a>
+                        <!-- @endif -->
                         @elseif($case_data['case_status'] == 'prior_auth')
                         <a href="{{ route('casemanagement.show',$case_data['id']) }}?active=prior_auth">
                           <span class="badge badge-info">Confirm Prior Auth</span>
@@ -129,9 +131,9 @@
                         @elseif($case_data['case_status'] == 'blood_work')
                         <a href="{{ route('casemanagement.show',$case_data['id']) }}?active=blood_work">
                           <span class="badge badge-info">Upload bloodwork</span>
-                        </a>                       
-                        @elseif($case_data['case_status'] == 'finish')                        
-                          <span class="badge badge-info">Finish</span>                        
+                        </a>
+                        @elseif($case_data['case_status'] == 'finish')
+                        <span class="badge badge-info">Finish</span>
                         @else
                         <span class="badge badge-secondary">Action pending from patient</span>
                         @endif
@@ -163,10 +165,10 @@
     $('#CaseManagementList').DataTable({
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
       "scrollY": 200,
-        "scrollX": true
-       
+      "scrollX": true
+
     });
-   
+
     /*$.ajax({
             method:"post",
             url:"{{url('/CaseStatus')}}",

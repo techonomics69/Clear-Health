@@ -47,7 +47,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
         $gender = 'Not known';//0;
 
-        $recommended_product = $value['recommended_product'];
+        $product_type = $value['product_type'];
 
         $system_status = 'Telehealth Evaluation Requested';
 
@@ -95,9 +95,9 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
          if(!empty($MdCaseStatus)){
 
-          //$md_case_status = $MdCaseStatus->case_status->name;//enable this aafter testing is done
+            $md_case_status = $MdCaseStatus->case_status->name;//enable this aafter testing is done
 
-          $md_case_status = 'dosespot confirmed'; //remove this
+          //$md_case_status = 'dosespot confirmed'; //remove this
 
           if(!empty($MdCaseStatus->case_assignment)){
             $md_status = 'assigned'; 
@@ -114,7 +114,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
 
 
-          if($gender == "Female" && $recommended_product == 'Accutane' && $case_type = 'new'){
+          if($gender == "Female" && $product_type == 'Accutane' && $case_type = 'new'){
 
                 /*
                 1.   Telehealth Evaluation Requested -> sent to MD Integrations  (case status MD side = pending )
@@ -185,7 +185,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                 }
 
-              }else if($gender == "Male" && $recommended_product == 'Accutane'){
+              }else if($gender == "Male" && $product_type == 'Accutane'){
                 /*
                   Initial Accutane Male Flow:
             

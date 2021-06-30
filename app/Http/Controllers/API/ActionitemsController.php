@@ -129,7 +129,7 @@ class ActionitemsController extends BaseController
 
         if($preferred_pharmacy_id !='13012'){
 
-            $triggers = Triggers::where([['user_id', $user_id],['case_id', $case_id],['md_case_id', $md_case_id],['name','pickup_medication_notification']])->first();
+            $triggers = Triggers::where([['user_id', $user_id],['case_id', $case_id],['md_case_id', $md_case_id],['name','pickup_medication_notification'],['month',3]])->first();
 
             $pickup_medication_notification_date = new Carbon($triggers['updated_at']);
             $now = Carbon::now();

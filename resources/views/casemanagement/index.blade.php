@@ -163,7 +163,7 @@
     $('#CaseManagementList').DataTable({
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
       scrollY:        "300px",
-        scrollX:        true,
+        // scrollX:        true,
         // scrollCollapse: true,
         paging:         true,
         // fixedColumns:   true

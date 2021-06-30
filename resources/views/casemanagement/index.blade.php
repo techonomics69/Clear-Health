@@ -167,7 +167,7 @@
         scrollX:        true,
         scrollCollapse: true,
         paging:         false,
-        fixedColumns:   true
+        // fixedColumns:   true
 
     });
   });

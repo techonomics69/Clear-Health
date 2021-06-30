@@ -562,6 +562,7 @@ die();*/
       $input_data['case_status'] = 'store_ipledge';
       $caseHistory = CaseHistory::whereId($request['case_id'])->update($input_data);
     }
+    return redirect()->back()->with('success', 'Credentials saved');   
   }
 
   public function verifyPregnancy(Request $request)

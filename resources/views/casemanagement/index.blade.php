@@ -56,7 +56,7 @@
                       <th>VisitType</th>
                       <th>TreatmentPlan</th>
                       <th>Pharmacy</th>
-                      <th width="100px">Action</th>
+                      <th >Action</th>
                       <th>Actions Needed</th>
                     </tr>
                   </thead>

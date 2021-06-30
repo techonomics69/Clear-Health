@@ -162,7 +162,7 @@
   jQuery(document).ready(function($) {
     $('#CaseManagementList').DataTable({
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
-      responsive: true,
+   
         paging: true
         scrollY:        "300px",
         scrollX:        true,

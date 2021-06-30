@@ -165,7 +165,7 @@
 
       scrollY:        "300px",
         scrollX:        true,
-        // scrollCollapse: true,
+        scrollCollapse: true,
         paging:         false,
         // fixedColumns:   true
 

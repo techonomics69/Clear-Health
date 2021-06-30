@@ -560,7 +560,7 @@ die();*/
     $case = CaseManagement::whereId($request['case_id'])->update($case_data);
     if ($case) {
       $input_data['case_status'] = 'store_ipledge';
-      $caseHistory = CaseHistory::whereId($request['case_id'])->update($input_data);
+      $caseHistory = CaseHistory::where('case_id',$request['case_id'])->update($input_data);
       return redirect()->back()->with('success', 'Credentials saved');  
     }
      

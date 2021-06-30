@@ -979,9 +979,11 @@ data-open="click" data-menu="vertical-menu" data-col="2-columns">
                   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
                   <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
                   
-                  <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js">
-                  <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js">
-                  <script src="https://cdn.datatables.net/fixedcolumns/3.3.3/js/dataTables.fixedColumns.min.js">
+                  <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
+                  <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
+
+                  <script src="https://cdn.datatables.net/fixedcolumns/3.3.3/js/dataTables.fixedColumns.min.js"></script>
 
                   @toastr_js
                   @toastr_render

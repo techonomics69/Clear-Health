@@ -41,7 +41,7 @@
           <div class="row" style="padding: 20px;">
             <div class="col-md-12">
               <div class="">
-                <table class="table table-responsive table-striped table-bordered" style="height:100%; width:100%" id="CaseManagementList">
+                <table class="table table-responsive table-striped table-bordered" style="height:400pxss; width:100%" id="CaseManagementList">
                   <thead>
                     <tr>
                       <th>SR</th>

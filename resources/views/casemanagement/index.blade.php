@@ -162,8 +162,8 @@
   jQuery(document).ready(function($) {
     $('#CaseManagementList').DataTable({
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
-          //  scrollY:        true,
-        // scrollX:        true,
+        scrollY:        true,
+        scrollX:        true,
         // scrollCollapse: true,
         // fixedColumns:   true
       

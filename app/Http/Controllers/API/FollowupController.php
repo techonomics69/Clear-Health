@@ -151,10 +151,7 @@ class FollowupController extends BaseController
           endif;
           
         endif;
-        echo '<pre>';
-        print_r($userGender);
-        print_r($data);
-        die('d');        
+              
       }
 
       if ($request->file('pregnancy_test') != '') {
@@ -178,7 +175,7 @@ class FollowupController extends BaseController
               $data['follow_up_no'] = 1;
             else :
               $data['follow_up_no'] = $data['follow_up_no'] + 1;
-              dd($data);
+              
             endif;
           endif;
         }

@@ -73,7 +73,7 @@
                       <td>{{ strtoupper($case_data['gender'][0]) }}</td>
                       <td>
                         @if(empty($case_data['follow_up']))
-                        0
+                        1
                         @else
                         {{ $case_data['follow_up'] }}
                         @endif
@@ -86,7 +86,13 @@
                           } else {
                             echo 'accepted';
                           } ?></td>
-                      <td></td>
+                      <td>
+                        @if(empty($case_data['follow_up']))
+                        Initial
+                        @else
+                        FollowUp
+                        @endif
+                      </td>
                       <td></td>
                       <td>{{ $case_data['email'] }} </td>
                       <td>

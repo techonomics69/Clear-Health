@@ -67,7 +67,7 @@ class shipStationHelper {
 
         $newOrder = $shipStation->orders->create($order);
         $getOrder = json_decode(json_encode($newOrder), true);
-        $updateOrder = DB::table('checkout')->where('id',$order['checkoutOrderId'])->update(['shipstation_order_id'=>$getOrder['orderId']]);
+        $updateOrder = DB::table('checkout')->where('id',$orderData['checkoutOrderId'])->update(['shipstation_order_id'=>$getOrder['orderId']]);
 
         return (isset($newOrder)) ? $newOrder : 'none';
     }
@@ -135,7 +135,7 @@ class shipStationHelper {
         if($accFlag){
             $newOrder = $shipStation->orders->create($order);
             $getOrder = json_decode(json_encode($newOrder), true);
-            $updateOrder = DB::table('checkout')->where('id',$order['checkoutOrderId'])->update(['shipstation_order_id'=>$getOrder['orderId']]);            
+            $updateOrder = DB::table('checkout')->where('id',$orderData['checkoutOrderId'])->update(['shipstation_order_id'=>$getOrder['orderId']]);            
         }else{
             $newOrder = '';
         }

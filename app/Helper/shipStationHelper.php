@@ -66,7 +66,7 @@ class shipStationHelper {
         $order->advancedOptions = array('storeId'=>'457183');
 
         $newOrder = $shipStation->orders->create($order);
-        $getOrder = $newOrder[0];
+        $getOrder = $newOrder.orderId;
         //$updateOrder = DB::table('checkout')->where('id',$order['checkoutOrderId'])->update(['shipstation_order_id'=>$newOrder->orderId]);
 
         return (isset($getOrder)) ? $getOrder : 'none';

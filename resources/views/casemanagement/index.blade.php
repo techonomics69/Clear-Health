@@ -70,7 +70,7 @@
                       <td>{{ $case_data['ref_id']}}</td>
                       <td>{{ $case_data['first_name'] }}</td>
                       <td>{{ $case_data['last_name'] }}</td>
-                      <td>{{ $case_data['gender'][0] }}</td>
+                      <td>{{ strtoupper($case_data['gender'][0]) }}</td>
                       <td></td>
                       <td></td>
                       <td><?php if ($case_data['md_status'] == 0) {

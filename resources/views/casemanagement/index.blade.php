@@ -106,7 +106,8 @@
                           <span class="badge badge-info">Generate iPledge Credentials</span>
                         </a>
                         @elseif($case_data['case_status'] == 'store_ipledge')
-                        <a href="http://103.101.59.95/dev.clearhealth/admin/casemanagement/show/1784?active=action_items">
+                        
+                        <a href="{{ route('casemanagement.show'+?active=action_items,$case_data['id']) }}">
                           <span class="badge badge-info">Store & Send iPledge Credentials</span>
                         </a>
                         @elseif($case_data['case_status'] == 'verify_pregnancy')

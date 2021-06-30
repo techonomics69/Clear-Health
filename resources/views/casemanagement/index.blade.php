@@ -165,7 +165,7 @@
   
       
     });
-
+    new $.fn.dataTable.FixedHeader( table );
     /*$.ajax({
             method:"post",
             url:"{{url('/CaseStatus')}}",

@@ -72,11 +72,7 @@
                       <td>{{ $case_data['last_name'] }}</td>
                       <td>{{ strtoupper($case_data['gender'][0]) }}</td>
                       <td>
-                        @if(empty($case_data['follow_up']))
-                        1
-                        @else
-                        {{ $case_data['follow_up'] + 1 }}
-                        @endif
+                     {{ $case_data['follow_up'] }}
                       </td>
                       <td>{{ $case_data['md_case_id'] }}</td>
                       <td><?php if ($case_data['md_status'] == 0) {

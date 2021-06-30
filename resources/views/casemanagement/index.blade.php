@@ -94,7 +94,7 @@
                         @endif
                       </td>
                       <td></td>
-                      <td>{{ $case_data['email'] }} </td>
+                      <td></td>
                       <td>
                         <div class="d-flex">
                           <a class="icons edit-icon" href="{{ route('casemanagement.show',$case_data['id']) }}"><i class="fa fa-eye"></i></a>

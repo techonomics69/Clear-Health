@@ -41,7 +41,7 @@
           <div class="row" style="padding: 20px;">
             <div class="col-md-12">
               <div class="">
-                <table class="table  table-responsive-md table-striped table-bordered" style="width:100%" id="CaseManagementList">
+                <table class="table table-responsive table-striped table-bordered" style="height:400px; width:100%" id="CaseManagementList">
                   <thead>
                     <tr>
                       <th>SR</th>
@@ -159,6 +159,7 @@
   jQuery(document).ready(function($) {
     $('#CaseManagementList').DataTable({
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
+      
     });
 
     /*$.ajax({

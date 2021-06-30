@@ -41,7 +41,7 @@
           <div class="row" style="padding: 20px;">
             <div class="col-md-12">
               <div class="">
-                <table class="table table-striped table-bordered nowrap" style=" width:100%" id="CaseManagementList">
+                <table class="table display  table-responsive table-striped table-bordered nowrap" style=" width:100%" id="CaseManagementList">
                   <thead>
                     <tr>
                       <th>SR</th>
@@ -162,12 +162,13 @@
   jQuery(document).ready(function($) {
     $('#CaseManagementList').DataTable({
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
-      responsive: true,
-        paging: true
-      
+      scrollY:        "300px",
+        scrollX:        true,
+        // scrollCollapse: true,
+        paging:         true,
+        // fixedColumns:   true
     });
-    new $.fn.dataTable.FixedHeader( table );
-
+   
     /*$.ajax({
             method:"post",
             url:"{{url('/CaseStatus')}}",

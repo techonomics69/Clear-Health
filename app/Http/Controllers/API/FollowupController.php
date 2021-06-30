@@ -183,8 +183,10 @@ class FollowupController extends BaseController
           $caseManage = CaseManagement::find($case_id);         
           if ($caseManage) :
             $case_data['follow_up'] = $data['follow_up_no'];
+
             $caseSave = $caseManage->update($case_data);
             echo '<pre>';
+            print_r($case_data);
             print_r($caseSave);
             die;
           endif;

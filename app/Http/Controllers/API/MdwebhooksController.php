@@ -23,9 +23,12 @@ class MdwebhooksController extends BaseController
        //
     }
 
-    public function webhookTriggers(){
+    public function webhookTriggers(Request $request){
 
-    	echo "hello";
+    	echo "<pre>";
+    	print_r($request->all());
+    	echo "<pre>";
+    	exit();
 
     }
 }

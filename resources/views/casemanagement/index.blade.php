@@ -164,9 +164,9 @@
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
       scrollY:        "300px",
         scrollX:        true,
-        scrollCollapse: true,
+        // scrollCollapse: true,
         paging:         true,
-        fixedColumns:   true
+        // fixedColumns:   true
     });
    
     /*$.ajax({

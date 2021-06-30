@@ -384,7 +384,7 @@ body.menu-collapsed .main-menu-content .menu-title{background:#43bfc1 !important
   background-color: #3EC0F9;color: #fff
 }*/
 .dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody::-webkit-scrollbar {
-  width: 2px;height: 7px;
+  width: 5px;height: 7px;
 }
 .dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody::-webkit-scrollbar-track {
   background: #f1f1f1; border-radius: 5px

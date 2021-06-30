@@ -162,8 +162,6 @@
   jQuery(document).ready(function($) {
     $('#CaseManagementList').DataTable({
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
-   
-       
 
     });
 

@@ -286,7 +286,7 @@ die();*/
 
 
     echo "<pre>";
-  print_r($user_case_management_data);
+  print_r($user_case_management_data->id);
   echo "</pre>";
   die();
 

@@ -99,7 +99,7 @@ class CaseManagementController extends BaseController
       }
       $quizAns = CaseManagement::create($data);
       $caseHistoryData['user_id'] =  $data['user_id'];
-      $caseHistoryData['case_id'] =  $ref_id;
+      $caseHistoryData['case_id'] =  $quizAns->id;
       $caseHistoryData['case_status'] =  'initial';
       $caseHistory = CaseHistory::create($caseHistoryData);
       return $this->sendResponse($data, 'Case Created Successfully');

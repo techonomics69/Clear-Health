@@ -567,9 +567,9 @@ die();*/
     $case = CaseManagement::whereId($request['case_id'])->update($case_data);
     if ($case) {
       $input_data['case_status'] = 'verify_pregnancy';
-      $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
-      return redirect()->back()->with('success', 'Credentials saved');
+      $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);     
     }
+    return redirect()->back()->with('success', 'Credentials saved');
   }
 
   public function verifyPregnancy(Request $request)

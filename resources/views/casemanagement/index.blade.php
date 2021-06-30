@@ -162,13 +162,11 @@
   jQuery(document).ready(function($) {
     $('#CaseManagementList').DataTable({
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
-      scrollY:        "300px",
-        scrollX:        true,
-        scrollCollapse: true,
+      // scrollY:        "300px",
+      //   scrollX:        true,
+      //   scrollCollapse: true,
         // fixedColumns:   true
-        columnDefs: [
-            { width: 200, targets: 0 }
-        ],
+      
     });
 
     /*$.ajax({

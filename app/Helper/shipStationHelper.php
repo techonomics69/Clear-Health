@@ -30,12 +30,12 @@ class shipStationHelper {
             $Shipaddress->phone = $shippingAdd[0]->phone;
         }               
         
-        
+        $item = new LaravelShipStation\Models\OrderItem();
         $getCarts = explode(",",$orderData['cart_id']);
         $getitems = array();
         if(count($getCarts)>0){
             foreach($getCarts as $key => $value){
-                $item = new LaravelShipStation\Models\OrderItem();    
+                    
                 if(!empty($value) || ($value!=null)){
                     $getproducts = DB::table('carts as c')->join('products as p','c.product_id','=','p.id')
                                 ->select('p.name','p.image','p.image_detail',
@@ -43,11 +43,16 @@ class shipStationHelper {
                                 'c.status as csatus')
                                 ->where('c.id',$value)->get();
                     if(count($getproducts)>0){
-                        $item->name = $getproducts[0]->name;
-                        $item->quantity = $getproducts[0]->prod_qty;
-                        $item->unitPrice  = ($getproducts[0]->prod_price!='') ? $getproducts[0]->prod_price : '0';
-                        $item->warehouseLocation = 'Nefaire 141 Post Road East Westport, CT 06880';
-                        $item->imageUrl = asset(config('filesystems.products.imageurl').''.$getproducts[0]->image_detail);
+                        $arr1 = array('name'=>$getproducts[0]->name,'quantity'=>$getproducts[0]->prod_qty,
+                                'unitPrice'=>($getproducts[0]->prod_price!='') ? $getproducts[0]->prod_price : '0',
+                                'warehouseLocation'=>'Nefaire 141 Post Road East Westport, CT 06880',
+                                'imageUrl'=>asset(config('filesystems.products.imageurl').''.$getproducts[0]->image_detail));
+                        array_push($getitems, $arr1);
+                        // $item->name = $getproducts[0]->name;
+                        // $item->quantity = $getproducts[0]->prod_qty;
+                        // $item->unitPrice  = ($getproducts[0]->prod_price!='') ? $getproducts[0]->prod_price : '0';
+                        // $item->warehouseLocation = 'Nefaire 141 Post Road East Westport, CT 06880';
+                        // $item->imageUrl = asset(config('filesystems.products.imageurl').''.$getproducts[0]->image_detail);
                     }
                 }
             }
@@ -70,7 +75,7 @@ class shipStationHelper {
         // $getOrder = json_decode(json_encode($newOrder), true);
         // $updateOrder = DB::table('checkout')->where('id',$orderData['checkoutOrderId'])->update(['shipstation_order_id'=>$getOrder['orderId']]);
 
-        return (isset($item)) ? $item : 'none';
+        return (isset($getitems)) ? $getitems : 'none';
     }
 
     public static function createOrder_prescribed($orderData){

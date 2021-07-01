@@ -213,12 +213,20 @@ class shipStationHelper {
     	return $carriers;
     }
 
-    public function getwarehouses(){
+    public static function getwarehouses(){
     	$app= App::getFacadeRoot();
     	$app->make('LaravelShipStation\ShipStation');
     	$shipStation = $app->make('LaravelShipStation\ShipStation');
     	$getwareHouses = $shipStation->warehouses->get([], $endpoint = '');
     	return $getwareHouses;
+    }
+
+    public static function getShipments($orderId){
+        $app= App::getFacadeRoot();
+    	$app->make('LaravelShipStation\ShipStation');
+    	$shipStation = $app->make('LaravelShipStation\ShipStation');
+        $shipment = $shipStation->shipments->get(['orderId'=>$orderId], $endpoint = '');
+        return $shipment;
     }
 
 }

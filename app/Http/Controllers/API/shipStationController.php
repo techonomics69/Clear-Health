@@ -13,6 +13,9 @@ class shipStationController extends BaseController
         return $this->sendResponse($orderData,'Order Details');
     }
 
-    
+    public function getshipments($orderId){
+        $orderData = shipStationHelper::getShipments($orderId);
+        return $this->sendResponse($orderData,'Order Details');
+    }
 
 }

@@ -852,22 +852,28 @@ if(!empty($Patient_data)){
         $data["email"] = $email_data['email'];
         $data["title"] = $email_data['title'];
         $data["body"]  = $email_data['body'];
+        $files = array();
  
        /* $files = [
             public_path('attachments/pregnancy-test.jpg'),
             //public_path('attachments/Laravel_8_pdf_Example.pdf'),
         ];*/
 
-        $files = $email_data['attachments'];
+        if(isset($email_data['attachments'])){
+          $files = $email_data['attachments'];
+        }else{
+           $files = array();
+        }
 
-  
         $mail_sent = Mail::send($email_data['template'],$data, function($message)use($data, $files) {
             $message->to($data["email"])
                     ->subject($data["title"]);
- 
-            foreach ($files as $file){
+            if(!empty($files)){
+                foreach ($files as $file){
                 $message->attach($file);
-            }            
+            } 
+            }
+                       
         });
 
         if($mail_sent){

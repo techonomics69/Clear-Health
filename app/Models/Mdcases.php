@@ -13,7 +13,7 @@ class Mdcases extends Model
 
     public function caseManagement()
 	{
-	    //return $this->hasMany('App\Models\CaseManagement','system_case_id','md_case_id');
-	    return $this->belongsTo('App\Models\CaseManagement','md_case_id','case_id');
+	    return $this->hasMany('App\Models\CaseManagement','md_case_id','case_id');
+	    //return $this->belongsTo('App\Models\CaseManagement','md_case_id','case_id');
 	}
 }

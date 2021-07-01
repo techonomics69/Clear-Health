@@ -180,7 +180,36 @@
 									<strong>Shipstation OrderId : </strong>
 									<?php echo $shipStationOrder['orderId'] ?>
 								</div>
+								<div class="col-md-6  form-group">
+									<strong>Order Number : </strong>
+									<?php echo $shipStationOrder['orderNumber'] ?>
+								</div>
+								<div class="col-md-6  form-group">
+									<strong>Order Date : </strong>
+									<?php echo date("d-m-Y",strtotime($shipStationOrder['orderDate'])); ?>
+								</div>
+								<div class="col-md-6  form-group">
+									<strong>Order Status : </strong>
+									<?php echo $shipStationOrder['orderStatus']; ?>
+								</div>
 								<?php
+									if($shipStationOrder['shipByDate']!=''){
+								?>
+								<div class="col-md-6  form-group">
+									<strong>Estimated ship date : </strong>
+									<?php echo date("d-m-Y",strtotime($shipStationOrder['shipByDate'])); ?>
+								</div>	
+								<?php			
+									}
+									if($shipStationOrder['orderStatus'] == 'shipped'){
+										$tracking = json_decode(json_encode($order_data->shipments), true);
+								?>
+								<div class="col-md-6  form-group">
+									<strong> Tracking No: </strong>
+									<?php echo $tracking['trackingNumber']; ?>
+								</div>
+								<?php
+										}
 									}
 								?>
 								

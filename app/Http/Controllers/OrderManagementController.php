@@ -83,8 +83,10 @@ class OrderManagementController extends Controller
        $shipStation = $app->make('LaravelShipStation\ShipStation');
        if($order_non_prescribed[0]->shipstation_order_id !='' || $order_non_prescribed[0]->shipstation_order_id !=null){
         $getOrder = $shipStation->orders->get([], $endpoint = $order_non_prescribed[0]->shipstation_order_id);
+        $trackOrder = $shipStation->shipments->get(['orderId'=>$order_non_prescribed[0]->shipstation_order_id], $endpoint = '');
        }else{
         $getOrder = array();
+        $trackOrder = array();
        }
        
 
@@ -99,6 +101,7 @@ class OrderManagementController extends Controller
             
            
             $order_non_prescribed[$key]->shipstation = $getOrder;
+            $order_non_prescribed[$key]->shipments = $trackOrder;
             $order_non_prescribed[$key]->product_name = implode(', ' ,$product_name);    
         }
 

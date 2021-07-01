@@ -49,10 +49,9 @@ class MdwebhooksController extends BaseController
 
     	 $data = Mdcases::join('users','users.id','=','md_cases.user_id')->where('case_id',$request['case_id'])->select('users.*')->first();
 
-    	 echo "<pre>";
-    	 print_r($data);
-    	 echo "<pre>";
-    	 exit();
+    	 $user_email =  $data['email'];
+
+    	 $user_phone = $data['mobile'];
 
 
     	$postdata = json_encode($postfields);
@@ -100,19 +99,19 @@ class MdwebhooksController extends BaseController
 
 			$email_data = array();
 
-			$email_data['email'];
+			$email_data['email'] = $user_email;
             $email_data['title'] = 'helloclearhealth.com';
             $email_data['body'] = "You have a new message from clinician";
             $email_data['template'] = 'emails.mySendMail';
 
-			$user_email = sendEmail($email_data);
+			$email_sent = sendEmail($email_data);
 
 			$data = array();
 
-			$user = array("+917874257069");
+			$user = array($user_phone);
 			$data['users'] = $user;
-			$data['body'] = "Hello clear health test sms";
-			sendsms($data);
+			$data['body'] = "You have a new message from clinician";
+			$sms_sent = sendsms($data);
 		}
 		//end of new message 
 

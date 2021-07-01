@@ -108,7 +108,9 @@ class FollowupController extends BaseController
       $destinationPath = public_path('/images/Users');
       $userGender = User::find($user_id)->gender;
       $followUpAns = FollowUp::where([['user_id', $user_id], ['case_id', $case_id], ['follow_up_no', $data['follow_up_no']], ['follow_up_status', '<>', 'completed']])->first();
-      dd($followUpAns);
+      echo '<pre>';
+      print_r($followUpAns);
+      die;
       if ($request['left_face'] != '') {
         $left_face = $request['left_face'];
         $left_face_file_name =  $user_id . '_left_face_' . time() . '.jpeg';

@@ -206,7 +206,7 @@
 								?>
 								<div class="col-md-6  form-group">
 									<strong> Tracking No: </strong>
-									<?php echo $tracking['shipments'][0]['trackingNumber']; ?>
+									<a href="https://tools.usps.com/go/TrackConfirmAction.action?tLabels=<?php echo $tracking['shipments'][0]['trackingNumber']; ?>" target="_blank"><?php echo $tracking['shipments'][0]['trackingNumber']; ?></a>
 								</div>
 								<?php
 										}

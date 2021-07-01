@@ -171,6 +171,10 @@
 												<div class="card-body">
 													<div class="box-block mtb32">
 														<h3 class="font-weight-bold"><span class="text-underline">Shipments Shipping Details</span></h3>
+														<div class="col-md-6  form-group">
+															<strong>Product Name : </strong>
+															{{$order_data->product_name}}
+														</div>
 													</div>
 												</div>
 											</section>

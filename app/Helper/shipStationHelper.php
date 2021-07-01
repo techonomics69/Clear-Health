@@ -95,11 +95,11 @@ class shipStationHelper {
         
         
         $getCarts = explode(",",$orderData['cart_id']);
-        
+        $getitems = array();
+        $item = new LaravelShipStation\Models\OrderItem();
         if(count($getCarts)>0){
             foreach($getCarts as $key => $value){
-                $item = new LaravelShipStation\Models\OrderItem();
-                $getitems = array();
+                
                 if(!empty($value) || ($value!=null)){
                     $getproducts = DB::table('carts as c')->join('products as p','c.product_id','=','p.id')
                                 ->select('p.name','p.image','p.image_detail',
@@ -110,6 +110,7 @@ class shipStationHelper {
                         if($getproducts[0]->cart_prod == "33"){
                             $accFlag = true;
                         }else{
+
                             $item->name = $getproducts[0]->name;
                             $item->quantity = $getproducts[0]->prod_qty;
                             $item->unitPrice  = ($getproducts[0]->prod_price!='') ? $getproducts[0]->prod_price : '0';
@@ -120,6 +121,9 @@ class shipStationHelper {
                 }
             }
         }
+
+        // 
+        
 
         $order = new LaravelShipStation\Models\Order();
 	    $order->orderNumber = $orderData['order_id'];
@@ -134,16 +138,16 @@ class shipStationHelper {
     	$order->items[] = $item;
         $order->advancedOptions = array('storeId'=>'457183');
 
-        if($accFlag){
-            $newOrder = $shipStation->orders->create($order);
-            $getOrder = json_decode(json_encode($newOrder), true);
-            $updateOrder = DB::table('checkout')->where('id',$orderData['checkoutOrderId'])->update(['shipstation_order_id'=>$getOrder['orderId']]);            
-        }else{
-            $newOrder = '';
-        }
+        // if($accFlag){
+        //     $newOrder = $shipStation->orders->create($order);
+        //     $getOrder = json_decode(json_encode($newOrder), true);
+        //     $updateOrder = DB::table('checkout')->where('id',$orderData['checkoutOrderId'])->update(['shipstation_order_id'=>$getOrder['orderId']]);            
+        // }else{
+        //     $newOrder = '';
+        // }
         
 
-        return (isset($newOrder)) ? $newOrder : 'none';
+        return (isset($item)) ? $item : 'none';
     }
 
     public static function getOrderData($orderId){

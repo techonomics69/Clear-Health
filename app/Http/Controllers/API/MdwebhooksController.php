@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use Validator;
 
+use App\Models\CaseManagement;
+use App\Models\Mdcases;
+
 class MdwebhooksController extends BaseController
 {
 	public function index()
@@ -44,15 +47,12 @@ class MdwebhooksController extends BaseController
     	}
 
 
-    	echo "<pre>";
-    	print_r(json_encode($postfields));
-    	echo "<pre>";
-    	exit();
+    	$postdata = json_encode($postfields);
 
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => 'https://your.api.endpoint/',
+		  CURLOPT_URL => 'https://helloclearhealth.com/backend/api/webhookTriggers',
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => '',
 		  CURLOPT_MAXREDIRS => 10,
@@ -60,14 +60,10 @@ class MdwebhooksController extends BaseController
 		  CURLOPT_FOLLOWLOCATION => true,
 		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		  CURLOPT_CUSTOMREQUEST => 'POST',
-		  CURLOPT_POSTFIELDS =>'{
-			"event_type": "new_case_message",
-			"case_id": "26f3d453-09ff-41cb-9fc6-724d1b77277c",
-			"case_message_id": "26f3d453-09ff-41cb-9fc6-724d1b77277c"
-		}',
+		  CURLOPT_POSTFIELDS =>$postdata,
 		  CURLOPT_HTTPHEADER => array(
-		    'Signature: <Your Secret Key>',
-		    'Authorization: Barer '.$token,
+		    'Signature: xBsQsgLFhYIFNlKwhJW3wClOmNuJ4WQDX0n8475C',
+		    'Authorization: Bearer '.$token,
 		    'Content-Type: application/json'
 		  ),
 		));
@@ -75,7 +71,21 @@ class MdwebhooksController extends BaseController
 		$response = curl_exec($curl);
 
 		curl_close($curl);
-		echo $response;
+	
+
+		$filename = "LOG_" . strtotime(date('Y-m-d H:i:s')) . ".txt";
+		$file = fopen($_SERVER['DOCUMENT_ROOT'] . '/dev.backend/storage/logs/' . $filename, 'w');
+		$txt = $response;
+		fwrite($file, $txt);
+		fclose($file);
+
+		if(!empty($response)){
+
+		$event = json_decode($response);
+
+		$case_management  =  CaseManagement::where('md_case_id',$event->case_id)->update(['md_case_status' =>$event->event_type);
+
+		}
 
 
 	}

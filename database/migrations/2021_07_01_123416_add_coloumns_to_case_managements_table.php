@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColoumnsToCheckoutTable extends Migration
+class AddColoumnsToCaseManagementsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddColoumnsToCheckoutTable extends Migration
      */
     public function up()
     {
-        Schema::table('checkout', function (Blueprint $table) {
-            $table->string('bloodwork_date')->after('bloodwork')->nullable();
+        Schema::table('case_managements', function (Blueprint $table) {
+            $table->string('bloodwork_date')->after('blood_work')->nullable();
             $table->string('prior_auth_date')->after('prior_auth')->nullable();
             $table->string('verify_prior_auth')->after('prior_auth_date')->nullable();
         });
@@ -27,7 +27,7 @@ class AddColoumnsToCheckoutTable extends Migration
      */
     public function down()
     {
-        Schema::table('checkout', function (Blueprint $table) {
+        Schema::table('case_managements', function (Blueprint $table) {
             //
         });
     }

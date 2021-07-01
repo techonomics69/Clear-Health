@@ -81,8 +81,12 @@ class OrderManagementController extends Controller
        $app= App::getFacadeRoot();
        $app->make('LaravelShipStation\ShipStation');
        $shipStation = $app->make('LaravelShipStation\ShipStation');
+       if($order_non_prescribed[0]->shipstation_order_id !='' || $order_non_prescribed[0]->shipstation_order_id !=null){
+        $getOrder = $shipStation->orders->get([], $endpoint = $order_non_prescribed[0]->shipstation_order_id);
+       }else{
+        $getOrder = array();
+       }
        
-       $getOrder = $shipStation->orders->get([], $endpoint = $order_non_prescribed[0]->shipstation_order_id);
 
        foreach($order_non_prescribed as $key=>$val)
        {

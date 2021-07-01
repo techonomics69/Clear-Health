@@ -164,23 +164,33 @@
 								<!-- End 2nd tab-->
 
 								<!--start 3nd tab-->
-								<div id="shipments_shipping_details" class="tab-pane fade in">
-									<div class="row" style="padding: 20px;">
-										<div class="col-md-12">
-											<section class="card">
-												<div class="card-body">
-													<div class="box-block mtb32">
-														<h3 class="font-weight-bold"><span class="text-underline">Shipments Shipping Details</span></h3>
-														<div class="col-md-6  form-group">
-															<strong>Product Name : </strong>
-															<?php print_r($order_data->shipstation); ?>
-														</div>
-													</div>
-												</div>
-											</section>
-										</div>
-									</div>
-								</div> 
+		<div id="shipments_shipping_details" class="tab-pane fade in">
+			<div class="row" style="padding: 20px;">
+				<div class="col-md-12">
+					<section class="card">
+						<div class="card-body">
+							<div class="box-block mtb32">
+								<h3 class="font-weight-bold"><span class="text-underline">Shipments Shipping Details</span></h3>
+								
+								<?php
+									//if(is_array($order_data->shipstation)){
+										$shipStationOrder = json_decode(json_encode($order_data->shipstation), true);
+								?>
+								<div class="col-md-6  form-group">
+									<strong>Product Name : </strong>
+									<?php print_r($shipStationOrder); ?>
+								</div>
+								<?php
+									//}
+								?>
+								
+
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+		</div> 
 								<!-- End 2nd tab-->
 							</div>
 						</section>

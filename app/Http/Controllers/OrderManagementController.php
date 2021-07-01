@@ -85,12 +85,12 @@ class OrderManagementController extends Controller
             foreach($product_details as $product_key=>$product_value){
                 $product_name[] = $product_value['product_name'];   
             }   
-            // if($val['shipstation_order_id']!='' || $val['shipstation_order_id']!=null){
-            //     $shipOrder = shipStationHelper::getOrderData($val['shipstation_order_id']);
-            // }else{
-            //     $shipOrder = '';
-            // }
-            $order_non_prescribed[$key]->shipstation = $val['shipstation_order_id'];  
+            if($val['shipstation_order_id']!='' || $val['shipstation_order_id']!=null){
+                $shipOrder = shipStationHelper::getOrderData($val['shipstation_order_id']);
+            }else{
+                $shipOrder = '';
+            }
+            $order_non_prescribed[$key]->shipstation = $shipOrder;  
             $order_non_prescribed[$key]->product_name = implode(', ' ,$product_name);    
         }
 

@@ -185,7 +185,7 @@ class FollowupController extends BaseController
             $case_data['follow_up'] = $data['follow_up_no'];
             $caseSave = $caseManage->update($case_data);
             $user = User::find($caseManage->user_id);
-            dd($user);
+            
             if ($user->gender == 'female') :
               $input_data['case_status'] = 'verify_pregnancy';
             else :
@@ -196,7 +196,7 @@ class FollowupController extends BaseController
         endif;
         $followUpAns = $followUpAns->update($data);
       endif;
-
+      dd($user);
       return $this->sendResponse($followUpAns, 'Follow Up Data Updated Successfully');
     } catch (\Exception $ex) {
       return $this->sendError('Server error', array($ex->getMessage()));

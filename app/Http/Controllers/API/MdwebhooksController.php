@@ -8,6 +8,7 @@ use Validator;
 
 use App\Models\CaseManagement;
 use App\Models\Mdcases;
+use App\Models\User;
 
 class MdwebhooksController extends BaseController
 {
@@ -45,6 +46,13 @@ class MdwebhooksController extends BaseController
     	if($request['case_message_id']!=''){
     		$postfields['case_message_id'] = $request['case_message_id'];
     	}
+
+    	 $data = Mdcases::join('users','users.id','=','md_cases.user_id')->where('case_id',$request['case_id'])->select('users.*')->first();
+
+    	 echo "<pre>";
+    	 print_r($data);
+    	 echo "<pre>";
+    	 exit();
 
 
     	$postdata = json_encode($postfields);
@@ -86,6 +94,27 @@ class MdwebhooksController extends BaseController
 		$case_management  =  CaseManagement::where('md_case_id',$event->case_id)->update(['md_case_status' =>$event->event_type);
 
 		$md_cases  =  Mdcases::where('case_id',$event->case_id)->update(['status' =>$event->event_type]);
+
+		//new message trigger
+		if($event->event_type == 'new_case_message'){
+
+			$email_data = array();
+
+			$email_data['email'];
+            $email_data['title'] = 'helloclearhealth.com';
+            $email_data['body'] = "You have a new message from clinician";
+            $email_data['template'] = 'emails.mySendMail';
+
+			$user_email = sendEmail($email_data);
+
+			$data = array();
+
+			$user = array("+917874257069");
+			$data['users'] = $user;
+			$data['body'] = "Hello clear health test sms";
+			sendsms($data);
+		}
+		//end of new message 
 
 		}
 

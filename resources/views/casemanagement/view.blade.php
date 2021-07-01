@@ -1270,7 +1270,7 @@
 										<?php
 											if($skincare_summary['shipstation_order_id'] !=''){
 												if($skincare_summary['shipstation']!=''){
-													$shipStationOrder = json_decode(json_encode($skincare_summary['shipstation']), true);
+													$shipStationOrder = json_decode(json_encode($skincare_summary['getOrder']), true);
 											?>
 											<div class="col-md-6  form-group">
 												<strong>Shipstation OrderId : </strong>
@@ -1298,7 +1298,7 @@
 											<?php			
 												}
 												if($shipStationOrder['orderStatus'] == 'shipped'){
-													$tracking = json_decode(json_encode($skincare_summary['shipments']), true);
+													$tracking = json_decode(json_encode($skincare_summary['trackOrder']), true);
 											?>
 											<div class="col-md-6  form-group">
 												<strong> Tracking No: </strong>

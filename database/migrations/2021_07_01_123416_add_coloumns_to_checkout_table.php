@@ -14,7 +14,9 @@ class AddColoumnsToCheckoutTable extends Migration
     public function up()
     {
         Schema::table('checkout', function (Blueprint $table) {
-            //
+            $table->string('bloodwork_date')->after('bloodwork')->nullable();
+            $table->string('prior_auth_date')->after('prior_auth')->nullable();
+            $table->string('verify_prior_auth')->after('prior_auth_date')->nullable();
         });
     }
 

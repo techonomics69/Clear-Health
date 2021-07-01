@@ -90,7 +90,7 @@ class OrderManagementController extends Controller
             // }else{
             //     $shipOrder = '';
             // }
-            $order_non_prescribed[$key]['shipstation'] = $val['shipstation_order_id'];  
+            $order_non_prescribed[$key]->shipstation = $val['shipstation_order_id'];  
             $order_non_prescribed[$key]->product_name = implode(', ' ,$product_name);    
         }
 

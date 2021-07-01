@@ -12,6 +12,6 @@ class CaseManagement extends Model
     protected $fillable = ['ref_id', 'user_id', 'question_id', 'md_case_id', 'md_status', 'case_status', 'follow_up'];
 
     public function Mdcases() {
-	    return $this->hasMany('App\Models\Mdcases','md_case_id','case_id');
+	    return $this->hasMany('App\Models\Mdcases','md_case_id','id');
 	}
 }

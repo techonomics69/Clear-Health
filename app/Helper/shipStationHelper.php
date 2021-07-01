@@ -58,7 +58,9 @@ class shipStationHelper {
             }
         }
 
-        $item = $getitems;
+
+
+        $item = json_encode($getitems);
 
         $order = new LaravelShipStation\Models\Order();
 	    $order->orderNumber = $orderData['order_id'];
@@ -70,7 +72,7 @@ class shipStationHelper {
 	    $order->internalNotes = '';
 	    $order->billTo = $Shipaddress;
     	$order->shipTo = $Shipaddress;
-    	$order->items[] = json_encode($item);
+    	$order->items[] = $item;
         $order->advancedOptions = array('storeId'=>'457183');
 
         $newOrder = $shipStation->orders->create($order);

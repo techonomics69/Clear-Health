@@ -173,6 +173,7 @@
 								<h3 class="font-weight-bold"><span class="text-underline">Shipments Shipping Details</span></h3>
 								
 								<?php
+								if($order_data->shipstation_order_id !=''){
 									if($order_data->shipstation!=''){
 										$shipStationOrder = json_decode(json_encode($order_data->shipstation), true);
 								?>
@@ -211,6 +212,7 @@
 								<?php
 										}
 									}
+								}
 								?>
 								
 

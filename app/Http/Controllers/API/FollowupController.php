@@ -183,14 +183,21 @@ class FollowupController extends BaseController
           $caseManage = CaseManagement::find($case_id);         
           if ($caseManage) :
             $case_data['follow_up'] = $data['follow_up_no'];
-
             $caseSave = $caseManage->update($case_data);
+            $user = User::find($caseManage->user_id);
             
+            if ($user->gender == 'female') :
+              $input_data['case_status'] = 'verify_pregnancy';
+            else :
+              $input_data['case_status'] = 'prior_auth';
+            endif;
+            $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
           endif;
         endif;
         $followUpAns = $followUpAns->update($data);
+        dd($user);
       endif;
-
+      
       return $this->sendResponse($followUpAns, 'Follow Up Data Updated Successfully');
     } catch (\Exception $ex) {
       return $this->sendError('Server error', array($ex->getMessage()));

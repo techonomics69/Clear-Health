@@ -86,22 +86,8 @@ class OrderManagementController extends Controller
                 $product_name[] = $product_value['product_name'];   
             }   
             
-
-            $endpoint = "http://103.101.59.95/dev.clearhealth/api/getshipstationOrderdetail";
-            $client = new \GuzzleHttp\Client();
-            $id = 5;
-            $value = "ABC";
-
-            $response = $client->request('GET', $endpoint, ['query' => [
-                'orderId' => $val['shipstation_order_id'], 
-            ]]);
-
-            // url will be: http://my.domain.com/test.php?key1=5&key2=ABC;
-
-            $statusCode = $response->getStatusCode();
-            $content = $response->getBody();
             
-            $order_non_prescribed[$key]->shipstation = $content;
+            $order_non_prescribed[$key]->shipstation = '';
             $order_non_prescribed[$key]->product_name = implode(', ' ,$product_name);    
         }
 

@@ -175,6 +175,6 @@ Route::post('getToken', [CaseManagementController::class, 'get_token']);
     Route::group(['middleware' => 'auth:api'], function(){});
 
 Route::get('getshipstationOrderdetail',[shipStationController::class, 'getOrderDetails']);
-Route::get('getordershipments',[shipStationController::class, 'getshipments']);
+Route::get('getordershipments/{orderId}',[shipStationController::class, 'getshipments']);
     
 //});

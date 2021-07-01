@@ -120,6 +120,7 @@
 
 				<li><a class="btn" data-toggle="tab" href="#photos">Photos </a></li>
 				<li><a class="btn" data-toggle="tab" href="#payments">Payments </a></li>
+				<li><a class="btn" data-toggle="tab" href="#shipments">Shipments </a></li>
 			</ul>
 			<div class="tab-content">
 				<!--start 1st tab-->
@@ -1238,6 +1239,20 @@
 						</div>
 					</div>
 				</div>
+				<div id="shipments" class="tab-pane fade in ">
+					<div class="row" style="padding: 20px;">
+						<div class="col-md-12">
+							<section class="card">
+								<div class="card-body">
+									<div class="box-block mtb32">
+										<h3 class="font-weight-bold"><span class="text-underline">Shipments</span></h3>
+									</div>
+								</div>
+							</section>
+						</div>
+					</div>
+				</div>
+				shipments
 				<!--end 7th tab-->
 			</div>
 	</div>

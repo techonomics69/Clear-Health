@@ -195,8 +195,9 @@ class FollowupController extends BaseController
           endif;
         endif;
         $followUpAns = $followUpAns->update($data);
+        dd($user);
       endif;
-      dd($user);
+      
       return $this->sendResponse($followUpAns, 'Follow Up Data Updated Successfully');
     } catch (\Exception $ex) {
       return $this->sendError('Server error', array($ex->getMessage()));

@@ -70,7 +70,7 @@ class shipStationHelper {
 	    $order->internalNotes = '';
 	    $order->billTo = $Shipaddress;
     	$order->shipTo = $Shipaddress;
-    	$order->items[] = json_decode($item);
+    	$order->items[] = json_encode($item);
         $order->advancedOptions = array('storeId'=>'457183');
 
         $newOrder = $shipStation->orders->create($order);

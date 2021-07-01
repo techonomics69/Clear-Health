@@ -167,7 +167,7 @@ class shipStationHelper {
 	    $order->internalNotes = '';
 	    $order->billTo = $Shipaddress;
     	$order->shipTo = $Shipaddress;
-    	$order->items[] = $item;
+    	$order->items = $item;
         $order->advancedOptions = array('storeId'=>'457183');
 
         if($accFlag){

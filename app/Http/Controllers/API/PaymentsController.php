@@ -353,7 +353,7 @@ class PaymentsController extends BaseController
     }
 
     public function getSubscriptionByUser(){
-        $subscription = Subscription::where('user_id',request('user_id'))->orderBy('id', 'desc')->first();
+        $subscription = Subscription::where('user_id',request('user_id'))->where('status', 'active')->orderBy('id', 'desc')->first();
         if(!empty($subscription)){
             $product_id = explode(",",$subscription['product_id']);
             $productArray = [];

@@ -585,4 +585,5 @@ class CheckoutController extends BaseController
       return $this->sendResponse(array(), 'No Data Found.');
     }
   }
+  
 }

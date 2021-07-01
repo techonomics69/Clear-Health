@@ -177,8 +177,8 @@
 										$shipStationOrder = json_decode(json_encode($order_data->shipstation), true);
 								?>
 								<div class="col-md-6  form-group">
-									<strong>Product Name : </strong>
-									<?php print_r($shipStationOrder); ?>
+									<strong>Shipstation OrderId : </strong>
+									<?php echo $shipStationOrder['orderId'] ?>
 								</div>
 								<?php
 									}

@@ -564,12 +564,13 @@ die();*/
     $case_data['ipledge_username'] = $request['email'];
     $case_data['ipledge_password'] = $request['password'];
     $case = CaseManagement::whereId($request['case_id'])->update($case_data);
-    
+
     if ($case) {
       $input_data['case_status'] = 'verify_pregnancy';
-      $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);     
+      $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
     }
-    return redirect()->back()->with('success', 'Credentials saved');
+    toastr()->success('Credentials saved');
+    return redirect()->back();
   }
 
   public function verifyPregnancy(Request $request)

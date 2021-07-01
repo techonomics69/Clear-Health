@@ -130,6 +130,7 @@ class shipStationHelper {
                         if($getproducts[0]->cart_prod == "33"){
                             $accFlag = true;
                         }else{
+                            
                             $item->name = $getproducts[0]->name;
                             $item->quantity = $getproducts[0]->prod_qty;
                             $item->unitPrice  = ($getproducts[0]->prod_price!='') ? $getproducts[0]->prod_price : '0';
@@ -140,6 +141,8 @@ class shipStationHelper {
                 }
             }
         }
+
+
 
         $order = new LaravelShipStation\Models\Order();
 	    $order->orderNumber = $orderData['order_id'];
@@ -155,9 +158,13 @@ class shipStationHelper {
         $order->advancedOptions = array('storeId'=>'457183');
 
         if($accFlag){
-            $newOrder = $shipStation->orders->create($order);
-            $getOrder = json_decode(json_encode($newOrder), true);
-            $updateOrder = DB::table('checkout')->where('id',$orderData['checkoutOrderId'])->update(['shipstation_order_id'=>$getOrder['orderId']]);            
+            if(count($item)>0){
+                $newOrder = $shipStation->orders->create($order);
+                $getOrder = json_decode(json_encode($newOrder), true);
+                $updateOrder = DB::table('checkout')->where('id',$orderData['checkoutOrderId'])->update(['shipstation_order_id'=>$getOrder['orderId']]);            
+            }else{
+                $newOrder = ''; 
+            }            
         }else{
             $newOrder = '';
         }

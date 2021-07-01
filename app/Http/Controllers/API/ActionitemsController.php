@@ -77,7 +77,14 @@ class ActionitemsController extends BaseController
 
         //code for ipledge agreement(sign_ipledge_consent) and birthcontrol form (abstinence_form)
         
-        $md_case_data = Mdcases::select('status','case_status_reason')->where('case_id', $md_case_id)->first();
+        //$md_case_data = Mdcases::select('status','case_status_reason')->where('case_id', $md_case_id)->first();
+
+        $md_case_data = Mdcases::where('case_id', $md_case_id)->first();
+
+        echo "<pre>";
+        print_r($md_case_data);
+        echo "<pre>";
+        exit();
 
 
         if($user_gender['gender'] =='male' && $md_case_data['status'] == 'completed' ){

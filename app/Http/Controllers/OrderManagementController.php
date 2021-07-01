@@ -84,7 +84,31 @@ class OrderManagementController extends Controller
             $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name')->get()->toArray();
             foreach($product_details as $product_key=>$product_value){
                 $product_name[] = $product_value['product_name'];   
-            }     
+            }   
+            
+
+            $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+            CURLOPT_URL => "http://103.101.59.95/dev.clearhealth/api/getshipstationOrderdetail?orderId=".$val['shipstation_order_id'],
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => array(
+                "Host: http://103.101.59.95/dev.clearhealth/api/",
+            ),
+            ));
+
+            $response = curl_exec($curl);
+
+            curl_close($curl);
+            // echo $response;
+            
+            $order_non_prescribed[$key]->shipstation = $response;
             $order_non_prescribed[$key]->product_name = implode(', ' ,$product_name);    
         }
 

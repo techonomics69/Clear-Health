@@ -1244,9 +1244,8 @@
 						<div class="col-md-12">
 							<section class="card">
 								<div class="card-body">
-									<div class="box-block mtb32">
-										
-									<div class="box-block mtb32">
+									
+								<div class="box-block mtb32">
 										<h3 class="font-weight-bold"><span class="text-underline">Skincare Summary</span></h3>
 										<div class="col-md-6  form-group">
 											<strong>Order ID :</strong>
@@ -1332,7 +1331,6 @@
 										</div>
 									</div>
 
-									</div>
 								</div>
 							</section>
 						</div>

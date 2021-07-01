@@ -59,13 +59,13 @@ class shipStationHelper {
         }
         // $item = new LaravelShipStation\Models\OrderItem();
         $item = [];
-        foreach($getitems as $itm){
+        foreach($getitems as $key => $itm){
             $i = new LaravelShipStation\Models\OrderItem();
-            $i->name = $itm->name;
-            $i->quantity = $itm->quantity;
-            $i->unitPrice  = $itm->unitPrice;
+            $i->name = $itm['name'];
+            $i->quantity = $itm['quantity'];
+            $i->unitPrice  = $itm['unitPrice'];
             $i->warehouseLocation = 'Nefaire 141 Post Road East Westport, CT 06880';
-            $i->imageUrl = asset(config('filesystems.products.imageurl').''.$itm->imageUrl);
+            $i->imageUrl = asset(config('filesystems.products.imageurl').''.$itm['imageUrl']);
             $item[] = $i;
         }
 

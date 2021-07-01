@@ -173,7 +173,7 @@
 								<h3 class="font-weight-bold"><span class="text-underline">Shipments Shipping Details</span></h3>
 								
 								<?php
-									if(is_array($order_data->shipstation)){
+									//if(is_array($order_data->shipstation)){
 										$shipStationOrder = json_decode(json_encode($order_data->shipstation), true);
 								?>
 								<div class="col-md-6  form-group">
@@ -181,7 +181,7 @@
 									<?php print_r($shipStationOrder); ?>
 								</div>
 								<?php
-									}
+									//}
 								?>
 								
 

@@ -85,6 +85,8 @@ class MdwebhooksController extends BaseController
 
 		$case_management  =  CaseManagement::where('md_case_id',$event->case_id)->update(['md_case_status' =>$event->event_type);
 
+		$md_cases  =  Mdcases::where('case_id',$event->case_id)->update(['status' =>$event->event_type]);
+
 		}
 
 

@@ -37,11 +37,6 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
       $data = Mdcases::join('case_managements','case_managements.md_case_id', '=','md_cases.case_id' )->select('case_managements.*')->get()->toArray();
 
-      echo "<pre>";
-      print_r( $data);
-      echo "<pre>";
-      exit();
-
 
       $r = get_token();
       $token_data = json_decode($r);
@@ -300,6 +295,9 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
               }
 
               $case_management  =  CaseManagement::where('id',$system_case_id)->where('md_case_id', $case_id)->where('user_id',$user_id)->update(['md_case_status' => $MdCaseStatus->case_status->name,'md_status' => $md_status,'system_status'=> $system_status ]);
+
+
+               $md_cases  =  Mdcases::where('case_id',$case_id)->update(['status' =>$MdCaseStatus->case_status->name,'system_status'=> $system_status]);
 
                //code for update md details
 

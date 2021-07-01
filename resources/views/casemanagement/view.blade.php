@@ -1268,6 +1268,7 @@
 									<div class="box-block mtb32">
 										<h3 class="font-weight-bold"><span class="text-underline">Shipments</span></h3>
 										<?php
+											echo $skincare_summary['shipstation_order_id'];
 											if($skincare_summary['shipstation_order_id'] !=''){
 												if($skincare_summary['shipstation']!=''){
 													$shipStationOrder = json_decode(json_encode($skincare_summary['getOrder']), true);

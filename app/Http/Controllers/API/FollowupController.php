@@ -9,7 +9,7 @@ use App\Models\Mdpatient;
 use Validator;
 use Exception;
 use App\Models\User;
-use App\Models\Mdcases;
+use App\Models\CaseHistory;
 use App\Models\FollowUp;
 use File;
 

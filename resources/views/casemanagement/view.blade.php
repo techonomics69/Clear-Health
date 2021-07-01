@@ -1245,14 +1245,99 @@
 							<section class="card">
 								<div class="card-body">
 									<div class="box-block mtb32">
+										
+									<div class="box-block mtb32">
+										<h3 class="font-weight-bold"><span class="text-underline">Skincare Summary</span></h3>
+										<div class="col-md-6  form-group">
+											<strong>Order ID :</strong>
+
+
+											<?php if (isset($skincare_summary['order_id']) && $skincare_summary['order_id'] != '') { ?>
+												{{$skincare_summary['order_id']}}
+											<?php } ?>
+										</div>
+
+										<div class="col-md-6  form-group">
+											<strong>Add-ons [Product Name] :</strong>
+
+											{{$skincare_summary['addon_product']}}
+
+										</div>
+
+										<div class="col-md-6  form-group">
+											<strong>Product Name :</strong>
+											{{$skincare_summary['product_name']}}
+
+										</div>
+
+									</div>
+									<div class="box-block mtb32">
 										<h3 class="font-weight-bold"><span class="text-underline">Shipments</span></h3>
+										<div class="col-md-6  form-group">
+											<strong>Address :</strong>
+											<?php if (isset($skincare_summary['addressline1']) && $skincare_summary['addressline1'] != '') { ?>
+												{{$skincare_summary['addressline1']}}
+											<?php } ?>
+											<?php if (isset($skincare_summary['addressline2']) && $skincare_summary['addressline2'] != '') { ?>
+												{{$skincare_summary['addressline2']}}
+											<?php } ?>
+											<?php if (isset($skincare_summary['city']) && $skincare_summary['city'] != '') { ?>
+												{{$skincare_summary['city']}}
+											<?php } ?>
+											<?php if (isset($skincare_summary['state']) && $skincare_summary['state'] != '') { ?>
+												{{$skincare_summary['state']}},
+											<?php } ?>
+											<?php if (isset($skincare_summary['zipcode']) && $skincare_summary['zipcode'] != '') { ?>
+												{{$skincare_summary['zipcode']}}
+											<?php } ?>
+										</div>
+										<div class="col-md-6  form-group">
+											<strong>TeleHealth Medicine Fee :</strong>
+											<?php if (isset($skincare_summary['telemedicine_fee']) && $skincare_summary['telemedicine_fee'] != '') { ?>
+												$ {{$skincare_summary['telemedicine_fee']}}
+											<?php } ?>
+										</div>
+										<div class="col-md-6  form-group">
+											<strong>Addons Fee :</strong>
+											<?php if (isset($skincare_summary['price']) && $skincare_summary['price'] != '') { ?>
+												$ {{$skincare_summary['price']}}
+											<?php } ?>
+										</div>
+										<div class="col-md-6  form-group">
+											<strong>Shipping Fee :</strong> 0
+										</div>
+										<div class="col-md-6  form-group">
+											<strong>Taxes :</strong>
+											<?php if (isset($skincare_summary['tax']) && $skincare_summary['tax'] != '') { ?>
+												$ {{$skincare_summary['tax']}}
+											<?php } ?>
+										</div>
+										<?php
+										if (isset($skincare_summary['gift_code_discount'])) {
+										?>
+											<div class="col-md-6  form-group">
+												<strong>Discount :</strong>
+												<?php if (isset($skincare_summary['gift_code_discount']) && $skincare_summary['gift_code_discount'] != '') { ?>
+													$ {{$skincare_summary['gift_code_discount']}}
+												<?php } ?>
+											</div>
+										<?php
+										}
+										?>
+										<div class="col-md-6  form-group">
+											<strong>Total Amount :</strong>
+											<?php if (isset($skincare_summary['total_amount']) && $skincare_summary['total_amount'] != '') { ?>
+												$ {{$skincare_summary['total_amount']}}
+											<?php } ?>
+										</div>
+									</div>
+
 									</div>
 								</div>
 							</section>
 						</div>
 					</div>
 				</div>
-				shipments
 				<!--end 7th tab-->
 			</div>
 	</div>

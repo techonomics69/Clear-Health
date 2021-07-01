@@ -106,12 +106,12 @@ class MdwebhooksController extends BaseController
 
 			$email_sent = sendEmail($email_data);
 
-			$data = array();
+			/*$smsdata = array();
 
 			$user = array($user_phone);
-			$data['users'] = $user;
-			$data['body'] = "You have a new message from clinician";
-			$sms_sent = sendsms($data);
+			$smsdata['users'] = $user;
+			$smsdata['body'] = "You have a new message from clinician";
+			$sms_sent = sendsms($smsdata);*/
 		}
 		//end of new message 
 

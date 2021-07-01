@@ -10,7 +10,7 @@ use App\Models\QuizAnswer;
 use App\Models\Quiz;
 use App\Models\Answers;
 use App\Models\Checkoutaddress;
-use App\Models\Checkout;
+use App\Models\User;
 use App\Models\Cart;
 use App\Models\CaseHistory;
 use App\Models\Messages;

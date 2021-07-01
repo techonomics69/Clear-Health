@@ -206,7 +206,7 @@
 								?>
 								<div class="col-md-6  form-group">
 									<strong> Tracking No: </strong>
-									<?php echo $tracking['trackingNumber']; ?>
+									<?php print_r($tracking); ?>
 								</div>
 								<?php
 										}

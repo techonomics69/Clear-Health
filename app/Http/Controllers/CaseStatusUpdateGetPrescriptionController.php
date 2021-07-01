@@ -33,7 +33,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
      */
     public function index(Request $request)
     {
-      $data = CaseManagement::join('md_cases', 'md_cases.system_case_id', '=', 'case_managements.id')->select('case_managements.*')->all();
+      $data = CaseManagement::join('md_cases', 'md_cases.system_case_id', '=', 'case_managements.id')->select('case_managements.*')->get()->toArray();
 
         echo "<pre>";
         print_r($data);

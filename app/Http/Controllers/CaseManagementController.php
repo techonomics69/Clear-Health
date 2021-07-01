@@ -568,6 +568,7 @@ die();*/
     if ($case) {
       $input_data['case_status'] = 'verify_pregnancy';
       $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
+      dd($caseHistory);
     }
     toastr()->success('Credentials saved');
     return redirect()->back();

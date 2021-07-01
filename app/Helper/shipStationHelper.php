@@ -30,11 +30,12 @@ class shipStationHelper {
             $Shipaddress->phone = $shippingAdd[0]->phone;
         }               
         
-        $item = new LaravelShipStation\Models\OrderItem();
+        
         $getCarts = explode(",",$orderData['cart_id']);
         $getitems = array();
         if(count($getCarts)>0){
             foreach($getCarts as $key => $value){
+                $item = new LaravelShipStation\Models\OrderItem();    
                 if(!empty($value) || ($value!=null)){
                     $getproducts = DB::table('carts as c')->join('products as p','c.product_id','=','p.id')
                                 ->select('p.name','p.image','p.image_detail',

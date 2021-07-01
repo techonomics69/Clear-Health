@@ -82,7 +82,7 @@ class OrderManagementController extends Controller
        $app->make('LaravelShipStation\ShipStation');
        $shipStation = $app->make('LaravelShipStation\ShipStation');
        
-
+       $getOrder = $shipStation->orders->get([], $endpoint = $order_non_prescribed[0]->shipstation_order_id);
 
        foreach($order_non_prescribed as $key=>$val)
        {
@@ -93,7 +93,7 @@ class OrderManagementController extends Controller
                 $product_name[] = $product_value['product_name'];   
             }   
             
-            $getOrder = $shipStation->orders->get([], $endpoint = $val['shipstation_order_id']);
+           
             $order_non_prescribed[$key]->shipstation = $getOrder;
             $order_non_prescribed[$key]->product_name = implode(', ' ,$product_name);    
         }

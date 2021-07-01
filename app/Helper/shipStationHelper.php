@@ -30,7 +30,7 @@ class shipStationHelper {
             $Shipaddress->phone = $shippingAdd[0]->phone;
         }               
         
-        $item = new LaravelShipStation\Models\OrderItem();
+        
         $getCarts = explode(",",$orderData['cart_id']);
         $getitems = array();
         if(count($getCarts)>0){
@@ -57,10 +57,22 @@ class shipStationHelper {
                 }
             }
         }
+        // $item = new LaravelShipStation\Models\OrderItem();
+        $item = [];
+        foreach($getitems as $itm){
+            $i = new LaravelShipStation\Models\OrderItem();
+            $i->name = $itm->name;
+            $i->quantity = $itm->quantity;
+            $i->unitPrice  = $itm->unitPrice;
+            $i->warehouseLocation = 'Nefaire 141 Post Road East Westport, CT 06880';
+            $i->imageUrl = asset(config('filesystems.products.imageurl').''.$itm->imageUrl);
+            $item[] = $i;
+        }
+
+        
 
 
-
-        $item = json_encode($getitems);
+        
 
         $order = new LaravelShipStation\Models\Order();
 	    $order->orderNumber = $orderData['order_id'];
@@ -72,7 +84,7 @@ class shipStationHelper {
 	    $order->internalNotes = '';
 	    $order->billTo = $Shipaddress;
     	$order->shipTo = $Shipaddress;
-    	$order->items[] = $item;
+    	$order->items = $item;
         $order->advancedOptions = array('storeId'=>'457183');
 
         $newOrder = $shipStation->orders->create($order);

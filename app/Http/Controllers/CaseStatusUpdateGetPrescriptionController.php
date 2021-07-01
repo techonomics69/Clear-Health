@@ -35,7 +35,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
     {
       //$data = CaseManagement::join('md_cases', 'md_cases.system_case_id', '=', 'case_managements.id')->select('case_managements.*')->get()->toArray();
 
-      $data = Mdcases::join('case_managements', 'md_cases.system_case_id', '=', 'case_managements.id')->select('case_managements.*')->get()->toArray();
+      $data = Mdcases::join('case_managements', 'md_cases.case_id', '=', 'case_managements.md_case_id')->select('case_managements.*')->get()->toArray();
 
 
 

@@ -79,7 +79,7 @@ class ActionitemsController extends BaseController
         
         //$md_case_data = Mdcases::select('status','case_status_reason')->where('case_id', $md_case_id)->first();
 
-        $md_case_data = Mdcases::where('case_id', $md_case_id)->first();
+        $md_case_data = Mdcases::with('caseManagement')->where('case_id', $md_case_id)->first();
 
         echo "<pre>";
         print_r($md_case_data);

@@ -73,9 +73,9 @@ class shipStationHelper {
     	$order->items[] = $item;
         $order->advancedOptions = array('storeId'=>'457183');
 
-        // $newOrder = $shipStation->orders->create($order);
-        // $getOrder = json_decode(json_encode($newOrder), true);
-        // $updateOrder = DB::table('checkout')->where('id',$orderData['checkoutOrderId'])->update(['shipstation_order_id'=>$getOrder['orderId']]);
+        $newOrder = $shipStation->orders->create($order);
+        $getOrder = json_decode(json_encode($newOrder), true);
+        $updateOrder = DB::table('checkout')->where('id',$orderData['checkoutOrderId'])->update(['shipstation_order_id'=>$getOrder['orderId']]);
 
         return (isset($item)) ? $item : 'none';
     }

@@ -13,6 +13,6 @@ class Mdcases extends Model
 
     public function caseManagement()
 	{
-	    return $this->hasOne('App\Models\CaseManagement','system_case_id');
+	    return $this->hasOne('App\Models\CaseManagement','id');
 	}
 }

@@ -565,10 +565,14 @@ die();*/
     $case_data['ipledge_password'] = $request['password'];
     $case = CaseManagement::find($request['case_id']);
     $user = User::find($case->user_id);
-    dd($user->gender);
+
     $case->update($case_data);
     if ($case) {
-      $input_data['case_status'] = 'verify_pregnancy';
+      if ($user->gender == 'female') :
+        $input_data['case_status'] = 'verify_pregnancy';
+      else :
+        $input_data['case_status'] = 'prior_auth';
+      endif;
       $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
     }
     toastr()->success('Credentials saved');

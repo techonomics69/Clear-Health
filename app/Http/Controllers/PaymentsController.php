@@ -304,6 +304,41 @@ class PaymentsController extends Controller
 
     }
 
+    public function card()
+    {
+        return view('payments.card');
+    }
+
+    public function card_update() {
+        
+        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+
+        if (empty(request()->get('paymentMethodId'))) {
+            session()->flash('error', 'Some error while saving the card. Please try again');
+            return back()->withInput();
+        }
+
+        $payment_method_id = request('paymentMethodId');
+        $customer_id = "cus_JjcflGnrVfeUmz"; //Take From Database
+        try {
+            $payment_method = \Stripe\PaymentMethod::retrieve($payment_method_id);
+            $payment_method->attach(['customer' => $customer_id]);
+
+            \Stripe\Customer::update(
+                $customer_id,
+                ['invoice_settings' => ['default_payment_method' => $payment_method_id]]
+              );
+
+              session()->flash('error',"Card Updated Successfully");
+              return back()->withInput();
+
+        } catch (\Stripe\Exception\CardException $e) {
+            session()->flash('error', $e->getError()->message);
+            return back()->withInput();
+        }
+
+    }
+
     public function stripe_webhook()
     {
 

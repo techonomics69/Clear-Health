@@ -87,28 +87,21 @@ class OrderManagementController extends Controller
             }   
             
 
-            $curl = curl_init();
+            $endpoint = "http://103.101.59.95/dev.clearhealth/api/getshipstationOrderdetail";
+            $client = new \GuzzleHttp\Client();
+            $id = 5;
+            $value = "ABC";
 
-            curl_setopt_array($curl, array(
-            CURLOPT_URL => "http://103.101.59.95/dev.clearhealth/api/getshipstationOrderdetail?orderId=".$val['shipstation_order_id'],
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "GET",
-            CURLOPT_HTTPHEADER => array(
-                "Host: http://103.101.59.95/dev.clearhealth/api/",
-            ),
-            ));
+            $response = $client->request('GET', $endpoint, ['query' => [
+                'orderId' => $val['shipstation_order_id'], 
+            ]]);
 
-            $response = curl_exec($curl);
+            // url will be: http://my.domain.com/test.php?key1=5&key2=ABC;
 
-            curl_close($curl);
-            // echo $response;
+            $statusCode = $response->getStatusCode();
+            $content = $response->getBody();
             
-            $order_non_prescribed[$key]->shipstation = $response;
+            $order_non_prescribed[$key]->shipstation = $content;
             $order_non_prescribed[$key]->product_name = implode(', ' ,$product_name);    
         }
 

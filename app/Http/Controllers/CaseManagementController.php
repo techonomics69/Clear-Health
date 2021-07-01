@@ -564,17 +564,6 @@ die();*/
     $case_data['ipledge_username'] = $request['email'];
     $case_data['ipledge_password'] = $request['password'];
     $case = CaseManagement::find($request['case_id']);
-    $user = User::find($case->user_id);
-
-    $case->update($case_data);
-    if ($case) {
-      if ($user->gender == 'female') :
-        $input_data['case_status'] = 'verify_pregnancy';
-      else :
-        $input_data['case_status'] = 'prior_auth';
-      endif;
-      $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
-    }
     toastr()->success('Credentials saved');
     return redirect()->back();
   }

@@ -565,7 +565,7 @@ die();*/
     $case_data['ipledge_password'] = $request['password'];
     $case = CaseManagement::find($request['case_id']);
     $user = User::find($case->user_id);
-    dd($user);
+    dd($user->gender);
     $case->update($case_data);
     if ($case) {
       $input_data['case_status'] = 'verify_pregnancy';

@@ -178,10 +178,13 @@ class FollowupController extends BaseController
         }
       }
 
-      if (!empty($followUpAns)) :        
+      if (!empty($followUpAns)) :
+        echo $data['follow_up_no'];        
+        echo $followUpAns['follow_up_no'];        
+        dd($caseManage);   
         if ($data['follow_up_no'] !== $followUpAns['follow_up_no']) :
           $caseManage = CaseManagement::find($case_id);    
-          dd($caseManage);     
+            
           if ($caseManage) :
             $case_data['follow_up'] = $data['follow_up_no'];
             $caseSave = $caseManage->update($case_data);            

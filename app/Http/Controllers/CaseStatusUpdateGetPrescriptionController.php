@@ -33,12 +33,15 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
      */
     public function index(Request $request)
     {
-      $data = CaseManagement::join('md_cases', 'md_cases.system_case_id', '=', 'case_managements.id')->select('case_managements.*')->get()->toArray();
+      //$data = CaseManagement::join('md_cases', 'md_cases.system_case_id', '=', 'case_managements.id')->select('case_managements.*')->get()->toArray();
 
-        echo "<pre>";
-        print_r($data);
-        echo "<pre>";
-        exit();
+      $data = Mdcases::join('case_managements','case_managements.md_case_id', '=','md_cases.case_id' )->select('case_managements.*')->get()->toArray();
+
+      echo "<pre>";
+      print_r( $data);
+      echo "<pre>";
+      exit();
+
 
       $r = get_token();
       $token_data = json_decode($r);

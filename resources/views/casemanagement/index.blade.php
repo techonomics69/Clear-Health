@@ -108,29 +108,33 @@
                         @elseif($case_data['case_status'] == 'store_ipledge')
 
                         <a href="{{ route('casemanagement.show',$case_data['id']) }}?active=action_items">
-                          <span class="badge badge-info">Store & Send iPledge Credentials</span>
+                          <span class="badge badge-info">Register Ipledge</span>
                         </a>
                         
                         @elseif($case_data['case_status'] == 'verify_pregnancy')
                         <a href="{{ route('casemanagement.show',$case_data['id']) }}?active=pregnancy_test">
-                          <span class="badge badge-info">Verify Pregnancy Test</span>
+                          <span class="badge badge-info">Review Pregnancy Test & send case to MD</span>
                         </a>
                         
                         @elseif($case_data['case_status'] == 'prior_auth')
                         <a href="{{ route('casemanagement.show',$case_data['id']) }}?active=prior_auth">
-                          <span class="badge badge-info">Confirm Prior Auth</span>
+                          <span class="badge badge-info">Complete Prior Authorization</span>
                         </a>
                         @elseif($case_data['case_status'] == 'check_off_ipledge')
-                        <a href="{{ route('casemanagement.show',$case_data['id']) }}?active=action_items">
-                          <span class="badge badge-info">Check Off iPledge Item</span>
+                        <a href="https://www.ipledgeprogram.com/iPledgeUI/home.u" target="_blank">
+                          <span class="badge badge-info">Check Off Admin iPledge.com Items</span>
                         </a>
                         @elseif($case_data['case_status'] == 'trigger')
                         <a href="{{ route('casemanagement.show',$case_data['id']) }}?active=triggers">
-                          <span class="badge badge-info">Trigger ques + 7 Day window</span>
+                          <span class="badge badge-info">Send Prescription Pickup Notification</span>
                         </a>
                         @elseif($case_data['case_status'] == 'blood_work')
                         <a href="{{ route('casemanagement.show',$case_data['id']) }}?active=blood_work">
-                          <span class="badge badge-info">Upload bloodwork</span>
+                          <span class="badge badge-info">Upload Bloodwork Results</span>
+                        </a>
+                        @elseif($case_data['case_status'] == 'low_income_program')
+                        <a href="{{ route('casemanagement.show',$case_data['id']) }}?active=blood_work">
+                          <span class="badge badge-info">Enroll Absorica Patient Assistance Program</span>
                         </a>
                         @elseif($case_data['case_status'] == 'finish')
                         <span class="badge badge-info">Finish</span>

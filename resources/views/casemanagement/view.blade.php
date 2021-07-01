@@ -1263,72 +1263,52 @@
 
 										</div>
 
-										<div class="col-md-6  form-group">
-											<strong>Product Name :</strong>
-											{{$skincare_summary['product_name']}}
-
-										</div>
 
 									</div>
 									<div class="box-block mtb32">
 										<h3 class="font-weight-bold"><span class="text-underline">Shipments</span></h3>
-										<div class="col-md-6  form-group">
-											<strong>Address :</strong>
-											<?php if (isset($skincare_summary['addressline1']) && $skincare_summary['addressline1'] != '') { ?>
-												{{$skincare_summary['addressline1']}}
-											<?php } ?>
-											<?php if (isset($skincare_summary['addressline2']) && $skincare_summary['addressline2'] != '') { ?>
-												{{$skincare_summary['addressline2']}}
-											<?php } ?>
-											<?php if (isset($skincare_summary['city']) && $skincare_summary['city'] != '') { ?>
-												{{$skincare_summary['city']}}
-											<?php } ?>
-											<?php if (isset($skincare_summary['state']) && $skincare_summary['state'] != '') { ?>
-												{{$skincare_summary['state']}},
-											<?php } ?>
-											<?php if (isset($skincare_summary['zipcode']) && $skincare_summary['zipcode'] != '') { ?>
-												{{$skincare_summary['zipcode']}}
-											<?php } ?>
-										</div>
-										<div class="col-md-6  form-group">
-											<strong>TeleHealth Medicine Fee :</strong>
-											<?php if (isset($skincare_summary['telemedicine_fee']) && $skincare_summary['telemedicine_fee'] != '') { ?>
-												$ {{$skincare_summary['telemedicine_fee']}}
-											<?php } ?>
-										</div>
-										<div class="col-md-6  form-group">
-											<strong>Addons Fee :</strong>
-											<?php if (isset($skincare_summary['price']) && $skincare_summary['price'] != '') { ?>
-												$ {{$skincare_summary['price']}}
-											<?php } ?>
-										</div>
-										<div class="col-md-6  form-group">
-											<strong>Shipping Fee :</strong> 0
-										</div>
-										<div class="col-md-6  form-group">
-											<strong>Taxes :</strong>
-											<?php if (isset($skincare_summary['tax']) && $skincare_summary['tax'] != '') { ?>
-												$ {{$skincare_summary['tax']}}
-											<?php } ?>
-										</div>
 										<?php
-										if (isset($skincare_summary['gift_code_discount'])) {
-										?>
+											if($skincare_summary['shipstation_order_id'] !=''){
+												if($skincare_summary['shipstation']!=''){
+													$shipStationOrder = json_decode(json_encode($skincare_summary['shipstation']), true);
+											?>
 											<div class="col-md-6  form-group">
-												<strong>Discount :</strong>
-												<?php if (isset($skincare_summary['gift_code_discount']) && $skincare_summary['gift_code_discount'] != '') { ?>
-													$ {{$skincare_summary['gift_code_discount']}}
-												<?php } ?>
+												<strong>Shipstation OrderId : </strong>
+												<?php echo $shipStationOrder['orderId'] ?>
 											</div>
-										<?php
-										}
-										?>
-										<div class="col-md-6  form-group">
-											<strong>Total Amount :</strong>
-											<?php if (isset($skincare_summary['total_amount']) && $skincare_summary['total_amount'] != '') { ?>
-												$ {{$skincare_summary['total_amount']}}
-											<?php } ?>
-										</div>
+											<div class="col-md-6  form-group">
+												<strong>Order Number : </strong>
+												<?php echo $shipStationOrder['orderNumber'] ?>
+											</div>
+											<div class="col-md-6  form-group">
+												<strong>Order Date : </strong>
+												<?php echo date("d-m-Y",strtotime($shipStationOrder['orderDate'])); ?>
+											</div>
+											<div class="col-md-6  form-group">
+												<strong>Order Status : </strong>
+												<?php echo $shipStationOrder['orderStatus']; ?>
+											</div>
+											<?php
+												if($shipStationOrder['shipByDate']!=''){
+											?>
+											<div class="col-md-6  form-group">
+												<strong>Estimated ship date : </strong>
+												<?php echo date("d-m-Y",strtotime($shipStationOrder['shipByDate'])); ?>
+											</div>	
+											<?php			
+												}
+												if($shipStationOrder['orderStatus'] == 'shipped'){
+													$tracking = json_decode(json_encode($skincare_summary['shipments']), true);
+											?>
+											<div class="col-md-6  form-group">
+												<strong> Tracking No: </strong>
+												<a href="https://tools.usps.com/go/TrackConfirmAction.action?tLabels=<?php echo $tracking['shipments'][0]['trackingNumber']; ?>" target="_blank"><?php echo $tracking['shipments'][0]['trackingNumber']; ?></a>
+											</div>
+											<?php
+													}
+												}
+											}
+									?>
 									</div>
 
 								</div>

@@ -20,6 +20,11 @@ use Redirect;
 use Session;
 use File;
 use Exception;
+use App\Helper\shipStationHelper;
+use GuzzleHttp\Guzzle;
+use LaravelShipStation;
+use LaravelShipStation\ShipStation;
+use Illuminate\Support\Facades\App;
 
 
 class CaseManagementController extends Controller
@@ -87,16 +92,33 @@ class CaseManagementController extends Controller
         'checkout_address.state',
         'checkout_address.zipcode',
         'products.price',
-        'checkout.gift_code_discount'
+        'checkout.gift_code_discount',
+        'checkout.shipstation_order_id'
       )
       ->where('case_managements.id', $id)->first();
 
     $cart_ids = explode(',', $skincare_summary['cart_id']);
 
+    $app= App::getFacadeRoot();
+    $app->make('LaravelShipStation\ShipStation');
+    $shipStation = $app->make('LaravelShipStation\ShipStation');
+    if($skincare_summary['shipstation_order_id'] !='' || $skincare_summary['shipstation_order_id'] !=null){
+      $getOrder = $shipStation->orders->get([], $endpoint = $skincare_summary['shipstation_order_id']);
+      $trackOrder = $shipStation->shipments->get(['orderId'=>$skincare_summary['shipstation_order_id']], $endpoint = '');
+    }else{
+      $getOrder = array();
+      $trackOrder = array();
+    }
+
+    $skincare_summary['getOrder'] = $getOrder;
+    $skincare_summary['trackOrder'] = $trackOrder;
+
     $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name', 'products.used_for_plan', 'carts.quantity', 'carts.order_type', 'carts.pharmacy_pickup', 'carts.product_price as price')->get()->toArray();
     //$products=array();
     $product_name = array();
     $addon_product = array();
+
+
 
     foreach ($product_details as $product_key => $product_value) {
       //$products[$product_key]['order_type'] = $product_value['order_type'];

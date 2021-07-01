@@ -58,6 +58,8 @@ class shipStationHelper {
             }
         }
 
+        $item = $getitems;
+
         $order = new LaravelShipStation\Models\Order();
 	    $order->orderNumber = $orderData['order_id'];
 	    $order->orderDate = date("Y-m-d");
@@ -75,7 +77,7 @@ class shipStationHelper {
         // $getOrder = json_decode(json_encode($newOrder), true);
         // $updateOrder = DB::table('checkout')->where('id',$orderData['checkoutOrderId'])->update(['shipstation_order_id'=>$getOrder['orderId']]);
 
-        return (isset($getitems)) ? $getitems : 'none';
+        return (isset($item)) ? $item : 'none';
     }
 
     public static function createOrder_prescribed($orderData){

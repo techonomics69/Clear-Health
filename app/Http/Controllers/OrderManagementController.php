@@ -12,6 +12,10 @@ use App\Models\QuizCategory;
 use App\Models\QuizAnswer;
 use App\Models\Quiz;
 use App\Helper\shipStationHelper;
+use GuzzleHttp\Guzzle;
+use LaravelShipStation;
+use LaravelShipStation\ShipStation;
+use Illuminate\Support\Facades\App;
 
 
 //use Illuminate\Support\Facades\File;
@@ -74,7 +78,10 @@ class OrderManagementController extends Controller
        ->where('checkout.id',$id)
        ->get();
 
-
+       $app= App::getFacadeRoot();
+       $app->make('LaravelShipStation\ShipStation');
+       $shipStation = $app->make('LaravelShipStation\ShipStation');
+       
 
 
        foreach($order_non_prescribed as $key=>$val)
@@ -86,22 +93,8 @@ class OrderManagementController extends Controller
                 $product_name[] = $product_value['product_name'];   
             }   
             
-
-            $endpoint = "http://103.101.59.95/dev.clearhealth/api/getshipstationOrderdetail";
-            $client = new \GuzzleHttp\Client();
-            $id = 5;
-            $value = "ABC";
-
-            $response = $client->request('GET', $endpoint, ['query' => [
-                'orderId' => $val['shipstation_order_id'], 
-            ]]);
-
-            // url will be: http://my.domain.com/test.php?key1=5&key2=ABC;
-
-            $statusCode = $response->getStatusCode();
-            $content = $response->getBody();
-            
-            $order_non_prescribed[$key]->shipstation = $content;
+            $getOrder = $shipStation->orders->get([], $endpoint = $val['shipstation_order_id']);
+            $order_non_prescribed[$key]->shipstation = $getOrder;
             $order_non_prescribed[$key]->product_name = implode(', ' ,$product_name);    
         }
 

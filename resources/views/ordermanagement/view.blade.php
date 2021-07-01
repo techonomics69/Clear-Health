@@ -173,7 +173,7 @@
 														<h3 class="font-weight-bold"><span class="text-underline">Shipments Shipping Details</span></h3>
 														<div class="col-md-6  form-group">
 															<strong>Product Name : </strong>
-															<?php  ?>
+															<?php print_r($order_data->shipstation); ?>
 														</div>
 													</div>
 												</div>

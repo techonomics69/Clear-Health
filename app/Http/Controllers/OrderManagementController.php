@@ -108,7 +108,7 @@ class OrderManagementController extends Controller
             curl_close($curl);
             // echo $response;
             
-            
+            $order_non_prescribed[$key]->shipstation = $response;
             $order_non_prescribed[$key]->product_name = implode(', ' ,$product_name);    
         }
 

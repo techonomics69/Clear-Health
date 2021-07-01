@@ -107,12 +107,7 @@ class FollowupController extends BaseController
 
       $destinationPath = public_path('/images/Users');
       $userGender = User::find($user_id)->gender;
-      echo '<pre>';
-      print_r($data);
-      $followUpAns = FollowUp::where([['user_id', $user_id], ['case_id', $case_id], ['follow_up_no', $data['follow_up_no']], ['follow_up_status','pending']])->first();
-      echo '<pre>';
-      print_r($followUpAns);
-      die;
+      $followUpAns = FollowUp::where([['user_id', $user_id], ['case_id', $case_id], ['follow_up_no', $data['follow_up_no']], ['follow_up_status', '<>', 'completed']])->first();
       if ($request['left_face'] != '') {
         $left_face = $request['left_face'];
         $left_face_file_name =  $user_id . '_left_face_' . time() . '.jpeg';
@@ -183,13 +178,9 @@ class FollowupController extends BaseController
         }
       }
 
-      if (!empty($followUpAns)) :
-        echo $data['follow_up_no'];        
-        echo $followUpAns['follow_up_no'];        
-        dd($caseManage);   
+      if (!empty($followUpAns)) :          
         if ($data['follow_up_no'] !== $followUpAns['follow_up_no']) :
-          $caseManage = CaseManagement::find($case_id);    
-            
+          $caseManage = CaseManagement::find($case_id);            
           if ($caseManage) :
             $case_data['follow_up'] = $data['follow_up_no'];
             $caseSave = $caseManage->update($case_data);            

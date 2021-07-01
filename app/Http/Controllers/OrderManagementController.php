@@ -84,13 +84,7 @@ class OrderManagementController extends Controller
             $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name')->get()->toArray();
             foreach($product_details as $product_key=>$product_value){
                 $product_name[] = $product_value['product_name'];   
-            }   
-            // if($val['shipstation_order_id']!='' || $val['shipstation_order_id']!=null){
-            //     $shipOrder = shipStationHelper::getOrderData($val['shipstation_order_id']);
-            // }else{
-            //     $shipOrder = '';
-            // }
-            $order_non_prescribed[$key]['shipstation'] = $val['shipstation_order_id'];  
+            }     
             $order_non_prescribed[$key]->product_name = implode(', ' ,$product_name);    
         }
 

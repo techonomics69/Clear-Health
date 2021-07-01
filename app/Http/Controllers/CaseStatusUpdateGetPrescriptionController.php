@@ -43,7 +43,6 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
       exit();
 
 
-
       $r = get_token();
       $token_data = json_decode($r);
       $token = $token_data->access_token;

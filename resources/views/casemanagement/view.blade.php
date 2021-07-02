@@ -651,7 +651,7 @@
 												</div>
 												@endif
 												<div class="ipledge_outer_design outre_boxes mt24 bloodworkform bloodworkhide">
-													<form action="{{ route('bloodWork') }}" method="post">
+													<form action="{{ route('bloodWork') }}" method="post" enctype="multipart/form-data">
 														<div class="form-group row">
 															<label for="inputEmail3" class="col-sm-2 col-form-label">Date</label>
 															<div class="col-sm-10">

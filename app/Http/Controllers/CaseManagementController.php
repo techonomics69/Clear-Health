@@ -625,6 +625,37 @@ die();*/
   }
   public function bloodWork(Request $request)
   {
+    dd($request);
+    $documents = $request->file('blood_work');
+
+    $this->validate($request, [
+      'blood_work' => 'required|mimes:jpg,jpeg,png,pdf',
+    ], [
+      'blood_work.required' => 'Blood Work Test file field is required.',
+      'blood_work.mimes' => 'Blood Work  File must be a file of type:jpg,jpeg,png,pdf',
+
+    ]);
+
+
+    if (!empty($documents)) {
+      $file =  $documents->getClientOriginalName();
+      $doc_file_name =  time() . '-' . $file;
+      //$doc_file_name = time() . '-' . $doc->getClientOriginalExtension();
+
+      if (!file_exists(public_path('/ipledgeimports/blood_work'))) {
+        File::makeDirectory(public_path('/ipledgeimports/blood_work'), 0777, true, true);
+      }
+
+      $destinationPath = public_path('/ipledgeimports/blood_work');
+      $documents->move($destinationPath, $doc_file_name);
+
+      $input['blood_work'] = $doc_file_name;
+
+      CaseManagement::whereId($request['case_id'])->update($input);
+      toastr()->success('Blood Work Report Uploaded Successfully');
+
+      return redirect()->back();
+    }
     $input_data['case_status'] = 'finish';
     $caseHistory = CaseHistory::whereId($request['id'])->update($input_data);
   }

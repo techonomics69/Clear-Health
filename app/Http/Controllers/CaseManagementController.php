@@ -96,20 +96,27 @@ class CaseManagementController extends Controller
         'checkout.shipstation_order_id'
       )
       ->where('case_managements.id', $id)->first();
-    dd($skincare_summary);
+    
 
     $cart_ids = explode(',', $skincare_summary['cart_id']);
 
-    $app = App::getFacadeRoot();
-    $app->make('LaravelShipStation\ShipStation');
-    $shipStation = $app->make('LaravelShipStation\ShipStation');
-    if ($skincare_summary['shipstation_order_id'] != '' || $skincare_summary['shipstation_order_id'] != null) {
-      $getOrder = $shipStation->orders->get([], $endpoint = $skincare_summary['shipstation_order_id']);
-      $trackOrder = $shipStation->shipments->get(['orderId' => $skincare_summary['shipstation_order_id']], $endpoint = '');
-    } else {
+    if(isset($skincare_summary['shipstation_order_id'])){
+      $app = App::getFacadeRoot();
+      $app->make('LaravelShipStation\ShipStation');
+      $shipStation = $app->make('LaravelShipStation\ShipStation');
+
+      if ($skincare_summary['shipstation_order_id'] != '' || $skincare_summary['shipstation_order_id'] != null) {
+        $getOrder = $shipStation->orders->get([], $endpoint = $skincare_summary['shipstation_order_id']);
+        $trackOrder = $shipStation->shipments->get(['orderId' => $skincare_summary['shipstation_order_id']], $endpoint = '');
+      } else {
+        $getOrder = array();
+        $trackOrder = array();
+      }
+    }else{
       $getOrder = array();
       $trackOrder = array();
     }
+    
 
     $skincare_summary['getOrder'] = $getOrder;
     $skincare_summary['trackOrder'] = $trackOrder;

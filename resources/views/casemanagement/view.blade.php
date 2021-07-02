@@ -766,7 +766,7 @@
 														<p class="auth_text">Prior auth:</p>&nbsp;&nbsp;
 														<div class="check-register mangesubscription smalltext checkonly">
 															<label class="custome-checkbox">
-																<input type="checkbox" formControlName="acceptTerms" id="acceptTerms" checked="checked">
+																<input type="checkbox" checked="checked" name="prior_auth">
 																<span class="checkmark"></span>
 															</label>
 														</div>
@@ -776,14 +776,14 @@
 														<p class="auth_text">iPledge:</p>&nbsp;&nbsp;
 														<div class="check-register mangesubscription smalltext checkonly">
 															<label class="custome-checkbox">
-																<input type="checkbox" formControlName="acceptTerms" id="acceptTerms" checked="checked">
+																<input type="checkbox" checked="checked" name="ipledge">
 																<span class="checkmark"></span>
 															</label>
 														</div>
 													</div>
 
 													<div class="ipledge_button">
-														<a class="btn btn-secondry " href=""> Verify</a>
+														<button class="btn btn-secondry" type="submit"> Verify</button>
 													</div>
 													{!! Form::close() !!}
 												</div>

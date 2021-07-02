@@ -622,9 +622,9 @@
 														<tbody class="list_view_outer">
 															@foreach($followup_que as $key => $p_test)
 															<tr>
-															{{dd($p_test)}}
+															
 																<th scope="row">{{$key+1}}</th>
-																<td><a href="{{ url('/public/img/') }}{{$p_test['pregnancy_test']}}"></a></td>
+																<td><a href="{{ url('/public/img/') }}{{$p_test['pregnancy_test']}}">File</a></td>
 																<td>Otto</td>
 																<td><i class="fa fa-eye"></i> / <a class="btn btn-secondry " href="">Verify</a></td>
 															</tr>

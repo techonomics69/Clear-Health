@@ -625,6 +625,7 @@ die();*/
   }
   public function bloodWork(Request $request)
   {
+    die('dp');
     dd($request);
     $documents = $request->file('blood_work');
 

@@ -620,24 +620,14 @@
 															</tr>
 														</thead>
 														<tbody class="list_view_outer">
+															@foreach($followup_que as $p_test)
 															<tr>
 																<th scope="row">1</th>
 																<td>Mark</td>
 																<td>Otto</td>
 																<td><i class="fa fa-eye"></i> / <a class="btn btn-secondry " href="">Verify</a></td>
 															</tr>
-															<tr>
-																<th scope="row">2</th>
-																<td>Jacob</td>
-																<td>Thornton</td>
-																<td><i class="fa fa-eye"></i> / <a class="btn btn-secondry " href="">Verify</a></td>
-															</tr>
-															<tr>
-																<th scope="row">3</th>
-																<td>Larry the Bird</td>
-																<td>@twitter</td>
-																<td><i class="fa fa-eye"></i> / <a class="btn btn-secondry " href="">Verify</a></td>
-															</tr>
+															@endforeach
 														</tbody>
 													</table>
 												</div>
@@ -1244,8 +1234,8 @@
 						<div class="col-md-12">
 							<section class="card">
 								<div class="card-body">
-									
-								<div class="box-block mtb32">
+
+									<div class="box-block mtb32">
 										<h3 class="font-weight-bold"><span class="text-underline">Skincare Summary</span></h3>
 										<div class="col-md-6  form-group">
 											<strong>Order ID :</strong>
@@ -1268,49 +1258,49 @@
 									<div class="box-block mtb32">
 										<h3 class="font-weight-bold"><span class="text-underline">Shipments</span></h3>
 										<?php
-											
-											if($skincare_summary['shipstation_order_id'] !=''){
 
-												if($skincare_summary['getOrder']!=''){
-													$shipStationOrder = json_decode(json_encode($skincare_summary['getOrder']), true);
-											?>
-											<div class="col-md-6  form-group">
-												<strong>Shipstation OrderId : </strong>
-												<?php echo $shipStationOrder['orderId'] ?>
-											</div>
-											<div class="col-md-6  form-group">
-												<strong>Order Number : </strong>
-												<?php echo $shipStationOrder['orderNumber'] ?>
-											</div>
-											<div class="col-md-6  form-group">
-												<strong>Order Date : </strong>
-												<?php echo date("d-m-Y",strtotime($shipStationOrder['orderDate'])); ?>
-											</div>
-											<div class="col-md-6  form-group">
-												<strong>Order Status : </strong>
-												<?php echo $shipStationOrder['orderStatus']; ?>
-											</div>
-											<?php
-												if($shipStationOrder['shipByDate']!=''){
-											?>
-											<div class="col-md-6  form-group">
-												<strong>Estimated ship date : </strong>
-												<?php echo date("d-m-Y",strtotime($shipStationOrder['shipByDate'])); ?>
-											</div>	
-											<?php			
+										if ($skincare_summary['shipstation_order_id'] != '') {
+
+											if ($skincare_summary['getOrder'] != '') {
+												$shipStationOrder = json_decode(json_encode($skincare_summary['getOrder']), true);
+										?>
+												<div class="col-md-6  form-group">
+													<strong>Shipstation OrderId : </strong>
+													<?php echo $shipStationOrder['orderId'] ?>
+												</div>
+												<div class="col-md-6  form-group">
+													<strong>Order Number : </strong>
+													<?php echo $shipStationOrder['orderNumber'] ?>
+												</div>
+												<div class="col-md-6  form-group">
+													<strong>Order Date : </strong>
+													<?php echo date("d-m-Y", strtotime($shipStationOrder['orderDate'])); ?>
+												</div>
+												<div class="col-md-6  form-group">
+													<strong>Order Status : </strong>
+													<?php echo $shipStationOrder['orderStatus']; ?>
+												</div>
+												<?php
+												if ($shipStationOrder['shipByDate'] != '') {
+												?>
+													<div class="col-md-6  form-group">
+														<strong>Estimated ship date : </strong>
+														<?php echo date("d-m-Y", strtotime($shipStationOrder['shipByDate'])); ?>
+													</div>
+												<?php
 												}
-												if($shipStationOrder['orderStatus'] == 'shipped'){
+												if ($shipStationOrder['orderStatus'] == 'shipped') {
 													$tracking = json_decode(json_encode($skincare_summary['trackOrder']), true);
-											?>
-											<div class="col-md-6  form-group">
-												<strong> Tracking No: </strong>
-												<a href="https://tools.usps.com/go/TrackConfirmAction.action?tLabels=<?php echo $tracking['shipments'][0]['trackingNumber']; ?>" target="_blank"><?php echo $tracking['shipments'][0]['trackingNumber']; ?></a>
-											</div>
-											<?php
-													}
+												?>
+													<div class="col-md-6  form-group">
+														<strong> Tracking No: </strong>
+														<a href="https://tools.usps.com/go/TrackConfirmAction.action?tLabels=<?php echo $tracking['shipments'][0]['trackingNumber']; ?>" target="_blank"><?php echo $tracking['shipments'][0]['trackingNumber']; ?></a>
+													</div>
+										<?php
 												}
 											}
-									?>
+										}
+										?>
 									</div>
 
 								</div>

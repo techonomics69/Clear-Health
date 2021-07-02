@@ -659,9 +659,10 @@ die();*/
       $input['ipledge_items'] = $request->ipledge;
       toastr()->success('Ipledge Items Verified Successfully');
     endif;
-    if ($request->prior_auth && $request->ipledge) :      
+    if ($request->prior_auth && $request->ipledge) :  
+      toastr()->maxItems(1);   
       toastr()->success('Prior Auth & Ipledge Items Verified Successfully');
-      toastr()->maxItems(1);
+      
     endif;
     CaseManagement::whereId($request['case_id'])->update($input);
     return redirect()->back();

@@ -123,7 +123,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
           }
 
 
-          $prescriptiondata = CasePrescriptions::where([['user_id',$user_id],['case_id',$case_id],['system_case_id',$system_case_id]])->toSql();
+          $prescriptiondata = CasePrescriptions::with('prescriptionmedication')->with('prescriptioncompound')->where([['user_id',$user_id],['case_id',$case_id],['system_case_id',$system_case_id]])->get()->toArray();
 
           echo "<pre>";
           print_r($prescriptiondata);

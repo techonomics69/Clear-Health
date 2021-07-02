@@ -622,12 +622,17 @@
 														<tbody class="list_view_outer">
 															@foreach($followup_que as $key => $p_test)
 															<tr>
-															
+
 																<th scope="row">{{$key+1}}</th>
 																<td><a href="{{ url('/public/images/Users/') }}/{{$p_test['pregnancy_test']}}" target="_blank">File</a></td>
 																<td>{{$p_test['follow_up_no']}}</td>
-																<td><a href="{{ url('/public/images/Users/') }}/{{$p_test['pregnancy_test']}}" target="_blank"><i class="fa fa-eye"></i></a> / 
-																<a class="btn btn-secondry " href="{{route('verifyPregnancy')}}?id={{$p_test['id']}}" onclick="return confirm('Are you sure ?')">Verify</a></td>
+																<td><a href="{{ url('/public/images/Users/') }}/{{$p_test['pregnancy_test']}}" target="_blank"><i class="fa fa-eye"></i></a> /
+																	@if($p_test['pregnancy_test_verify'] == 'true')
+																	<a class="btn btn-secondry ">Verified</a>
+																	@else
+																	<a class="btn btn-secondry " href="{{route('verifyPregnancy')}}?id={{$p_test['id']}}" onclick="return confirm('Are you sure ?')">Verify</a>
+																</td>
+																@endif
 															</tr>
 															@endforeach
 														</tbody>

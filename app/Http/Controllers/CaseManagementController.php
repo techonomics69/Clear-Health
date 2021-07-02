@@ -626,7 +626,7 @@ die();*/
   public function bloodWork(Request $request)
   {
     
-    dd($request);
+    
     $documents = $request->file('blood_work');
 
     $this->validate($request, [
@@ -651,6 +651,7 @@ die();*/
       $documents->move($destinationPath, $doc_file_name);
 
       $input['blood_work'] = $doc_file_name;
+      $input['bloodwork_date'] = $request['date'];
 
       CaseManagement::whereId($request['case_id'])->update($input);
       toastr()->success('Blood Work Report Uploaded Successfully');

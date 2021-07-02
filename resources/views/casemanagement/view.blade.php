@@ -666,7 +666,7 @@
 															<input type="file" id="file" name="file">
 														</div>
 													</div>
-													<input type="hidden" name="case_id">
+													<input type="hidden" name="case_id" value="{{$user_case_management_data->id}}">
 
 													<div class="ipledge_button">
 														<a class="btn btn-secondry " href=""> Cancel</a>

@@ -622,7 +622,8 @@
 														<tbody class="list_view_outer">
 															@foreach($followup_que as $key => $p_test)
 															<tr>
-																<th scope="row">{{$key}}</th>
+															{{dd($p_test)}}
+																<th scope="row">{{$key+1}}</th>
 																<td>Mark</td>
 																<td>Otto</td>
 																<td><i class="fa fa-eye"></i> / <a class="btn btn-secondry " href="">Verify</a></td>

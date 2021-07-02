@@ -25,6 +25,7 @@ use GuzzleHttp\Guzzle;
 use LaravelShipStation;
 use LaravelShipStation\ShipStation;
 use Illuminate\Support\Facades\App;
+use DB;
 
 
 class CaseManagementController extends Controller
@@ -157,7 +158,10 @@ class CaseManagementController extends Controller
           $response = curl_exec($curl);
           curl_close($curl);
           $response1 = json_decode($response);
-          $skincare_summary['pharmacy_pickup'] =  $response1->name;
+          if($response1>0){
+            $skincare_summary['pharmacy_pickup'] =  $response1->name;  
+          }
+          // $skincare_summary['pharmacy_pickup'] =  $response1->name;
         } else {
           $skincare_summary['pharmacy_pickup'] = 'Clear Health Pharmacy Network';
         }
@@ -318,10 +322,20 @@ die();*/
     // print_r($user_case_management_data->id);
     // echo "</pre>";
     // die();
-
-
-
-    return view('casemanagement.view', compact('user_case_management_data', 'category', 'general_que', 'accutane_que', 'topical_que', 'skincare_summary', 'message_data', 'message_details', 'msg_history', 'followup_que'));
+   
+  if(isset($skincare_summary['order_id'])){
+    if($skincare_summary['order_id']!='' || $skincare_summary['order_id']!=null){
+      $prescribe_shipments =  DB::table('checkout as ch')->join('curexa_order as cu','cu.order_id','=','ch.order_id')
+                        ->select('cu.order_status','dispached_date')
+                        ->where('cu.order_id',$skincare_summary['order_id'])
+                        ->get();
+    }else{
+      $prescribe_shipments =  array();
+    }
+  }else{
+    $prescribe_shipments =  array();
+  }  
+  return view('casemanagement.view', compact('user_case_management_data', 'category', 'general_que', 'accutane_que', 'topical_que', 'skincare_summary', 'message_data', 'message_details', 'msg_history', 'followup_que','prescribe_shipments'));
   }
 
   /**

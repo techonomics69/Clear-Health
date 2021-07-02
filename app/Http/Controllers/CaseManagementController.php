@@ -96,17 +96,17 @@ class CaseManagementController extends Controller
         'checkout.shipstation_order_id'
       )
       ->where('case_managements.id', $id)->first();
-      // dd($skincare_summary);
+    // dd($skincare_summary);
 
     $cart_ids = explode(',', $skincare_summary['cart_id']);
 
-    $app= App::getFacadeRoot();
+    $app = App::getFacadeRoot();
     $app->make('LaravelShipStation\ShipStation');
     $shipStation = $app->make('LaravelShipStation\ShipStation');
-    if($skincare_summary['shipstation_order_id'] !='' || $skincare_summary['shipstation_order_id'] !=null){
+    if ($skincare_summary['shipstation_order_id'] != '' || $skincare_summary['shipstation_order_id'] != null) {
       $getOrder = $shipStation->orders->get([], $endpoint = $skincare_summary['shipstation_order_id']);
-      $trackOrder = $shipStation->shipments->get(['orderId'=>$skincare_summary['shipstation_order_id']], $endpoint = '');
-    }else{
+      $trackOrder = $shipStation->shipments->get(['orderId' => $skincare_summary['shipstation_order_id']], $endpoint = '');
+    } else {
       $getOrder = array();
       $trackOrder = array();
     }
@@ -198,7 +198,7 @@ class CaseManagementController extends Controller
       $topical_que = [];
     }
 
-    $followup_que = FollowUp::select('answer')->where("user_id", $user_case_management_data['user_id'])
+    $followup_que = FollowUp::where("user_id", $user_case_management_data['user_id'])
       ->where("case_id", $user_case_management_data['id'])->get();
 
 
@@ -591,6 +591,7 @@ die();*/
     return redirect()->back();
   }
 
+ 
   public function verifyPregnancy(Request $request)
   {
     $input_data['case_status'] = 'prior_auth';

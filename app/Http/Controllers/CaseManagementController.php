@@ -594,6 +594,7 @@ die();*/
     $case_data['ipledge_username'] = $request['email'];
     $case_data['ipledge_password'] = $request['password'];
     $case = CaseManagement::find($request['case_id']);
+    dd($case);
     toastr()->success('Credentials saved');
     return redirect()->back();
   }

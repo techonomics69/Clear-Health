@@ -1262,10 +1262,34 @@
 
 												<div class="col-md-12  form-group">
 													<strong>Order Status:</strong>
+													<?php
+														if(count($prescribe_shipments)>0){
+															if($prescribe_shipments[0]->order_status == 'new'){
+																echo "New";
+															}else if($prescribe_shipments[0]->order_status == 'in_progress'){
+																echo "In progress";
+															}else if($prescribe_shipments[0]->order_status == 'out_for_delivery'){
+																echo "Out for delivery";
+															}else if($prescribe_shipments[0]->order_status == 'completed'){
+																echo "Completed";
+															}else if($prescribe_shipments[0]->order_status == 'cancelled'){
+																echo "Cancelled";
+															}
+														}else{
+															echo "-";
+														}
+													?>
 												</div>
 
 												<div class="col-md-12  form-group">
 													<strong>Shipped date:</strong>
+													<?php
+													if(count($prescribe_shipments)>0){
+														echo date("d-m-Y",strtotime($prescribe_shipments[0]->dispached_date));
+													}else{
+														echo "-";
+													}
+													?>
 												</div>
 		
 		

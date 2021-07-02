@@ -25,6 +25,7 @@ use GuzzleHttp\Guzzle;
 use LaravelShipStation;
 use LaravelShipStation\ShipStation;
 use Illuminate\Support\Facades\App;
+use DB;
 
 
 class CaseManagementController extends Controller

@@ -1285,7 +1285,7 @@
 													<strong>Shipped date:</strong>
 													<?php
 													if(count($prescribe_shipments)>0){
-														echo date("d-m-Y",$prescribe_shipments[0]->dispatched_date);
+														echo date("d-m-Y",$prescribe_shipments[0]->dispached_date);
 													}else{
 														echo "-";
 													}

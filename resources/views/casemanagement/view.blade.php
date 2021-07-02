@@ -1252,12 +1252,20 @@
 														{{$skincare_summary['order_id']}}
 													<?php } ?>
 												</div>
-		
+
 												<div class="col-md-6  form-group">
-													<strong>Add-ons [Product Name] :</strong>
+													<strong>Product Name:</strong>
 		
-													{{$skincare_summary['addon_product']}}
+													{{$skincare_summary['product_name']}}
 		
+												</div>
+
+												<div class="col-md-6  form-group">
+													<strong>Order Status:</strong>
+												</div>
+
+												<div class="col-md-6  form-group">
+													<strong>Shipped date:</strong>
 												</div>
 		
 		

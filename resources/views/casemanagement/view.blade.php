@@ -741,6 +741,7 @@
 																<th scope="col">Action</th>
 															</tr>
 														</thead>
+														@if($user_case_management_data['prior_auth_date'])
 														<tbody class="list_view_outer">
 															<tr>
 																<th scope="row">{{$user_case_management_data['prior_auth_date']}}</th>
@@ -748,6 +749,7 @@
 																<td><a href="{{ url('/public/ipledgeimports/prior_auth/')}}/{{$user_case_management_data['prior_auth']}}" target="_blank"><i class="fa fa-eye"></i> </td>
 															</tr>
 														</tbody>
+														@endif
 													</table>
 												</div>
 

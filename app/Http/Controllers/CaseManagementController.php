@@ -651,20 +651,26 @@ die();*/
   }
   public function trigger(Request $request)
   {
-    if($request->prior_auth):
-      $input['ipledge_items']= $request->prior_auth;
+    if ($request->prior_auth) :
+      $input['verify_prior_auth'] = $request->prior_auth;
+      toastr()->success('Prior Auth Verified Successfully');
     endif;
-    if($request->ipledge):
-      $input['verify_prior_auth']= $request->ipledge;
-    endif;    
+    if ($request->ipledge) :
+      $input['ipledge_items'] = $request->ipledge;
+      toastr()->success('Ipledge Items Verified Successfully');
+    endif;
+    if ($request->prior_auth && $request->ipledge) :
+      toastr()->success('Prior Auth & Ipledge Items Verified Successfully');
+    endif;
     CaseManagement::whereId($request['case_id'])->update($input);
+    return redirect()->back();
     // $input_data['case_status'] = 'blood_work';
     // $caseHistory = CaseHistory::whereId($request['id'])->update($input_data);
   }
   public function bloodWork(Request $request)
   {
-    
-    
+
+
     $documents = $request->file('file');
 
     $this->validate($request, [

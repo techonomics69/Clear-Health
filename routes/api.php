@@ -76,6 +76,9 @@ Route::post('sendmail', [UserController::class, 'sendmail']);
 Route::post('addParentdetails', [UserController::class, 'addParentdetails']);
 Route::post('getParentdetails', [UserController::class, 'getParentdetails']);
 
+
+
+
     //Cart
 Route::resource('cart', CartController::class);
 Route::get('cart/item/{id}',[CartController::class, 'getCartByUser']);

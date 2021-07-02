@@ -609,8 +609,39 @@ die();*/
 
   public function priorAuth(Request $request)
   {
-    $input_data['case_status'] = 'check_off_ipledge';
-    $caseHistory = CaseHistory::whereId($request['id'])->update($input_data);
+    $documents = $request->file('file');
+
+    $this->validate($request, [
+      'file' => 'required|mimes:jpg,jpeg,png,pdf',
+    ], [
+      'file.required' => 'Prior Auth Test file field is required.',
+      'file.mimes' => 'Prior Auth  File must be a file of type:jpg,jpeg,png,pdf',
+
+    ]);
+
+
+    if (!empty($documents)) {
+      $file =  $documents->getClientOriginalName();
+      $doc_file_name =  time() . '-' . $file;
+      //$doc_file_name = time() . '-' . $doc->getClientOriginalExtension();
+
+      if (!file_exists(public_path('/ipledgeimports/prior_auth'))) {
+        File::makeDirectory(public_path('/ipledgeimports/prior_auth'), 0777, true, true);
+      }
+
+      $destinationPath = public_path('/ipledgeimports/prior_auth');
+      $documents->move($destinationPath, $doc_file_name);
+
+      $input['prior_auth'] = $doc_file_name;
+      $input['prior_auth_date'] = $request['date'];
+
+      CaseManagement::whereId($request['case_id'])->update($input);
+      toastr()->success('Prior Auth Uploaded Successfully');
+
+      return redirect()->back();
+    }
+    // $input_data['case_status'] = 'check_off_ipledge';
+    // $caseHistory = CaseHistory::whereId($request['id'])->update($input_data);
   }
 
   public function checkOffIpledge(Request $request)

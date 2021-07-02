@@ -708,7 +708,7 @@
 												</div>
 												@endif
 												<div class="ipledge_outer_design outre_boxes mt24 priorauth priorshow priorhide">
-													{!! Form::open(array('route' => 'bloodWork','method'=>'POST','enctype'=>"multipart/form-data",'id'=>'p_test_form')) !!}
+													{!! Form::open(array('route' => 'priorAuth','method'=>'POST','enctype'=>"multipart/form-data",'id'=>'p_test_form')) !!}
 
 													<div class="form-group row">
 														<label for="inputEmail3" class="col-sm-2 col-form-label">Date</label>

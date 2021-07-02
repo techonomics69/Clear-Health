@@ -624,7 +624,7 @@
 															<tr>
 															
 																<th scope="row">{{$key+1}}</th>
-																<td><a href="{{ url('/public/img/') }}{{$p_test['pregnancy_test']}}">File</a></td>
+																<td><a href="{{ url('/public/images/Users/') }}{{$p_test['pregnancy_test']}}">File</a></td>
 																<td>Otto</td>
 																<td><i class="fa fa-eye"></i> / <a class="btn btn-secondry " href="">Verify</a></td>
 															</tr>

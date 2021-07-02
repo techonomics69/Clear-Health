@@ -1311,22 +1311,24 @@
 															?>
 														</div>
 														<?php
-														if ($shipStationOrder['shipByDate'] != '') {
+														if ($shipStationOrder['orderStatus'] == 'shipped') {
 														?>
 															<div class="col-md-12  form-group">
 																<strong>Estimated ship date : </strong>
-																<?php echo date("d-m-Y", strtotime($shipStationOrder['shipByDate'])); ?>
+																<?php echo date("d-m-Y", strtotime($shipStationOrder['shipDate'])); ?>
 															</div>
 														<?php
-														}
-														if ($shipStationOrder['orderStatus'] == 'shipped') {
+														
+														
 															$tracking = json_decode(json_encode($skincare_summary['trackOrder']), true);
+															if(isset($tracking['shipments'][0])){
 														?>
 															<div class="col-md-12  form-group">
 																<strong> Tracking No: </strong>
 																<a href="https://tools.usps.com/go/TrackConfirmAction.action?tLabels=<?php echo $tracking['shipments'][0]['trackingNumber']; ?>" target="_blank"><?php echo $tracking['shipments'][0]['trackingNumber']; ?></a>
 															</div>
 												<?php
+															}
 														}
 													}
 												}

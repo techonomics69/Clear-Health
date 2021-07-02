@@ -285,7 +285,7 @@ Route::group(['middleware' => ['auth']],function(){
     Route::post('priorAuth', [CaseManagementController::class, 'priorAuth']);
     Route::post('checkOffIpledge', [CaseManagementController::class, 'checkOffIpledge']);
     Route::post('trigger', [CaseManagementController::class, 'trigger']);
-    Route::post('bloodWork', [CaseManagementController::class, 'bloodWork'])->name('bloodWork');    
+    Route::post('admin/bloodWork', [CaseManagementController::class, 'bloodWork'])->name('bloodWork');    
     
 });
 

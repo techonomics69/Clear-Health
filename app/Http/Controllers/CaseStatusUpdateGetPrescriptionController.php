@@ -110,29 +110,40 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
           $case_type = getCaseType($user_id,$case_id,$system_case_id);
 
-          $get_support_reason = Mdcases::select('support_reason')->where('case_id',$case_id)->first();
+          $get_support_reason = Mdcases::select('case_status_reason')->where('case_id',$case_id)->first();
 
 
-          $support_reason = $get_support_reason['support_reason'];
+          $support_reason = $get_support_reason['case_status_reason'];
 
 
+          if($MdCaseStatus->case_status->reason != null ){
 
-          if($gender == "Female" && $product_type == 'Accutane' && $case_type = 'new'){
+            $support_reason = $MdCaseStatus->case_status->reason;
+
+          }
+
+
+          $prescriptiondata = CasePrescriptions::with('prescriptionmedication')->with('prescriptioncompound')->where([['user_id',$user_id],['case_id',$case_id],['system_case_id',$system_case_id]])
+
+          //if($gender == "Female" && $product_type == 'Accutane' && $case_type = 'new'){
+          if($gender == "Female" && $product_type == 'Accutane'){                                                         
 
                 /*
-                1.   Telehealth Evaluation Requested -> sent to MD Integrations  (case status MD side = pending )
-                2.   Awaiting Live Consultation -> MD assigned, call not initiated ( MD guys will call ping our API using webhook and we will get notified that MD has been assigned)
-                3.   Awaiting Follow-Up -> (case status received as support from MD)
+                1.   Telehealth Evaluation Requested -> sent to MD Integrations  (case status MD side = created )
+                2.   Awaiting Live Consultation -> MD assigned, call not initiated (case status MD side = assigned and case_status_reason != null ) ( MD guys will call ping our API using webhook and we will get notified that MD has been assigned)
+                3.   Awaiting Follow-Up -> (case status MD side = completed and case_status_reason != null )(case status received as support from MD)
                 4.   Awaiting Prescription Approval(Follow up ->send case to md )
                 5.   Prescription Approved -> (prescription confirmed by dosespot/script is written i.e. case status received from MD = Dosespot confirmed)
                 6.   Awaiting Action Items
                 */
-                if(($md_status != null || $value['md_status']!= null) && $md_case_status == 'pending' && $case_type = 'new'){
+                //if(($md_status != null || $value['md_status']!= null) && $md_case_status == 'pending' && $case_type = 'new'){
+                if(($md_status != null || $value['md_status']!= null) && $md_case_status == 'assigned' ){
 
                   $system_status = 'Awaiting Live Consultation';
                 }
 
-                if($md_case_status == 'support' && $case_type = 'new' && ($support_reason != '' || $support_reason != NULL)){
+                //if($md_case_status == 'support' && $case_type = 'new' && ($support_reason != '' || $support_reason != NULL)){
+                if($md_case_status == 'completed' && ($support_reason != '' || $support_reason != NULL)){
 
                   $system_status = 'Awaiting Follow-Up';
                 }

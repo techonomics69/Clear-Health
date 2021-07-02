@@ -37,7 +37,11 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
     {
       //$data = CaseManagement::join('md_cases', 'md_cases.system_case_id', '=', 'case_managements.id')->select('case_managements.*')->get()->toArray();
 
-      $data = Mdcases::join('case_managements','case_managements.md_case_id', '=','md_cases.case_id' )->join('follow_up','follow_up.md_case_id', '=','md_cases.case_id' )->select('case_managements.*','follow_up.follow_up_no')->get()->toArray();
+      $data = Mdcases::join('case_managements','case_managements.md_case_id', '=','md_cases.case_id' )->join('follow_up','follow_up.md_case_id', '=','md_cases.case_id' )->join('users','users.id','=','md_cases.user_id')->select('case_managements.*','follow_up.follow_up_no','users.*')->get()->toArray();
+
+       $user_email =  $data['email'];
+
+       $user_phone = $data['mobile'];
 
 
       $r = get_token();
@@ -127,6 +131,18 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
           }
 
+          if( $support_reason != NULL && $value['follow_up_no'] == 0){
+
+            $email_data = array();
+
+            $email_data['email'] = $user_email;
+            $email_data['title'] = 'helloclearhealth.com';
+            $email_data['body'] = "Welcome Email when prescription is approved detailing Accutane instructions + prompt them to sign forms";
+            $email_data['template'] = 'emails.mySendMail';
+
+            $email_sent = sendEmail($email_data);
+          }
+
 
           $prescriptiondata = CasePrescriptions::where([['user_id',$user_id],['case_id',$case_id],['system_case_id',$system_case_id]])->first();
 
@@ -149,7 +165,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                 }
 
                 //if($md_case_status == 'support' && $case_type = 'new' && ($support_reason != '' || $support_reason != NULL)){
-                if($md_case_status == 'support' && ($support_reason != '' || $support_reason != NULL) && empty($prescriptiondata)){
+                if($md_case_status == 'completed' && ($support_reason != '' || $support_reason != NULL) && empty($prescriptiondata)){
 
                   $system_status = 'Awaiting Follow-Up';
                 }

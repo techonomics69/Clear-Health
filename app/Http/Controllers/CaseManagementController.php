@@ -653,16 +653,16 @@ die();*/
   {
     if ($request->prior_auth) :
       $input['verify_prior_auth'] = $request->prior_auth;
-      toastr()->success('Prior Auth Verified Successfully');
     endif;
     if ($request->ipledge) :
       $input['ipledge_items'] = $request->ipledge;
-      toastr()->success('Ipledge Items Verified Successfully');
     endif;
-    if ($request->prior_auth && $request->ipledge) :  
-      toastr()->maxItems(1);   
+    if ($request->prior_auth && $request->ipledge) :
       toastr()->success('Prior Auth & Ipledge Items Verified Successfully');
-      
+    elseif ($request->prior_auth) :
+      toastr()->success('Prior Auth Verified Successfully');
+    elseif ($request->ipledge) :
+      toastr()->success('Ipledge Items Verified Successfully');
     endif;
     CaseManagement::whereId($request['case_id'])->update($input);
     return redirect()->back();

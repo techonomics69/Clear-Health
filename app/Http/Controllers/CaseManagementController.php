@@ -25,7 +25,6 @@ use GuzzleHttp\Guzzle;
 use LaravelShipStation;
 use LaravelShipStation\ShipStation;
 use Illuminate\Support\Facades\App;
-use DB;
 
 
 class CaseManagementController extends Controller
@@ -97,11 +96,11 @@ class CaseManagementController extends Controller
         'checkout.shipstation_order_id'
       )
       ->where('case_managements.id', $id)->first();
-    
+
 
     $cart_ids = explode(',', $skincare_summary['cart_id']);
 
-    if(isset($skincare_summary['shipstation_order_id'])){
+    if (isset($skincare_summary['shipstation_order_id'])) {
       $app = App::getFacadeRoot();
       $app->make('LaravelShipStation\ShipStation');
       $shipStation = $app->make('LaravelShipStation\ShipStation');
@@ -113,11 +112,11 @@ class CaseManagementController extends Controller
         $getOrder = array();
         $trackOrder = array();
       }
-    }else{
+    } else {
       $getOrder = array();
       $trackOrder = array();
     }
-    
+
 
     $skincare_summary['getOrder'] = $getOrder;
     $skincare_summary['trackOrder'] = $trackOrder;
@@ -158,10 +157,7 @@ class CaseManagementController extends Controller
           $response = curl_exec($curl);
           curl_close($curl);
           $response1 = json_decode($response);
-          if($response1>0){
-            $skincare_summary['pharmacy_pickup'] =  $response1->name;  
-          }
-          // $skincare_summary['pharmacy_pickup'] =  $response1->name;
+          $skincare_summary['pharmacy_pickup'] =  $response1->name;
         } else {
           $skincare_summary['pharmacy_pickup'] = 'Clear Health Pharmacy Network';
         }
@@ -322,20 +318,10 @@ die();*/
     // print_r($user_case_management_data->id);
     // echo "</pre>";
     // die();
-   
-  if(isset($skincare_summary['order_id'])){
-    if($skincare_summary['order_id']!='' || $skincare_summary['order_id']!=null){
-      $prescribe_shipments =  DB::table('checkout as ch')->join('curexa_order as cu','cu.order_id','=','ch.order_id')
-                        ->select('cu.order_status','dispached_date')
-                        ->where('cu.order_id',$skincare_summary['order_id'])
-                        ->get();
-    }else{
-      $prescribe_shipments =  array();
-    }
-  }else{
-    $prescribe_shipments =  array();
-  }  
-  return view('casemanagement.view', compact('user_case_management_data', 'category', 'general_que', 'accutane_que', 'topical_que', 'skincare_summary', 'message_data', 'message_details', 'msg_history', 'followup_que','prescribe_shipments'));
+
+
+
+    return view('casemanagement.view', compact('user_case_management_data', 'category', 'general_que', 'accutane_que', 'topical_que', 'skincare_summary', 'message_data', 'message_details', 'msg_history', 'followup_que'));
   }
 
   /**
@@ -608,8 +594,12 @@ die();*/
     $case_data['ipledge_username'] = $request['email'];
     $case_data['ipledge_password'] = $request['password'];
     $case = CaseManagement::find($request['case_id']);
-    dd($case);
-    toastr()->success('Credentials saved');
+    if ($case) :
+      $case->update($case_data);
+      toastr()->success('Credentials saved');
+    else :
+      toastr()->error('Credentials not saved');
+    endif;
     return redirect()->back();
   }
 

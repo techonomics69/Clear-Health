@@ -14,7 +14,7 @@ class AddColoumnToFollowUpTable extends Migration
     public function up()
     {
         Schema::table('follow_up', function (Blueprint $table) {
-            $table->string('pregnancy_test_verify')->after('pregnancy_test')->default('false');
+            $table->string('pregnancy_test_verify')->default('false')->after('pregnancy_test');
         });
     }
 

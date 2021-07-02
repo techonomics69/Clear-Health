@@ -776,7 +776,7 @@
 														<p class="auth_text">iPledge:</p>&nbsp;&nbsp;
 														<div class="check-register mangesubscription smalltext checkonly">
 															<label class="custome-checkbox">
-																<input type="checkbox" checked="checked" name="ipledge">
+																<input type="checkbox" @if($user_case_management_data->ipledge_items): checked="checked" @endif  name="ipledge">
 																<span class="checkmark"></span>
 															</label>
 														</div>

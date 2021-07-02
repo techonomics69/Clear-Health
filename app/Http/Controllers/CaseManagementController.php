@@ -158,7 +158,10 @@ class CaseManagementController extends Controller
           $response = curl_exec($curl);
           curl_close($curl);
           $response1 = json_decode($response);
-          $skincare_summary['pharmacy_pickup'] =  $response1->name;
+          if($response1>0){
+            $skincare_summary['pharmacy_pickup'] =  $response1->name;  
+          }
+          // $skincare_summary['pharmacy_pickup'] =  $response1->name;
         } else {
           $skincare_summary['pharmacy_pickup'] = 'Clear Health Pharmacy Network';
         }

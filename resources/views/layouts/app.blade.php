@@ -658,7 +658,7 @@ data-open="click" data-menu="vertical-menu" data-col="2-columns">
                           </g>
                     </svg>
                     <span class="menu-title siebartext" data-i18n="">Md Management</span> 
-                    
+  
                   </a>
                   <ul class="menu-content">
                     <li class="sub-menu mdmanagement-list ">

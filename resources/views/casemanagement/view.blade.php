@@ -708,25 +708,28 @@
 												</div>
 												@endif
 												<div class="ipledge_outer_design outre_boxes mt24 priorauth priorshow priorhide">
-													<form>
-														<div class="form-group row">
-															<label for="inputEmail3" class="col-sm-2 col-form-label">Date:</label>
-															<div class="col-sm-10">
-																<input id="inputEmail3" type="date" value="2011-01-13" />
-															</div>
-														</div>
+													{!! Form::open(array('route' => 'bloodWork','method'=>'POST','enctype'=>"multipart/form-data",'id'=>'p_test_form')) !!}
 
-														<div class="form-group row mt-2">
-															<label for="file" class="col-sm-2 col-form-label">File:</label>
-															<div class="col-sm-10">
-																<input type="file" id="file">
-															</div>
+													<div class="form-group row">
+														<label for="inputEmail3" class="col-sm-2 col-form-label">Date</label>
+														<div class="col-sm-10">
+															<input id="inputEmail3" type="date" name="date" />
 														</div>
-													</form>
+													</div>
+
+													<div class="form-group row mt-4">
+														<label for="file" class="col-sm-2 col-form-label">File</label>
+														<div class="col-sm-10">
+															<input type="file" id="file" name="file">
+														</div>
+													</div>
+													<input type="hidden" name="case_id" value="{{$user_case_management_data->id}}">
+
 													<div class="ipledge_button">
 														<a class="btn btn-secondry " href=""> Cancel</a>
-														<a class="btn btn-primary " href=""> Submit</a>
+														<button class="btn btn-primary " type="submit"> Submit</button>
 													</div>
+													{!! Form::close() !!}
 												</div>
 
 												<div class=" outre_boxes mt24">
@@ -740,19 +743,9 @@
 														</thead>
 														<tbody class="list_view_outer">
 															<tr>
-																<th scope="row">1</th>
-																<td>Mark</td>
-																<td><i class="fa fa-eye"></i> </td>
-															</tr>
-															<tr>
-																<th scope="row">2</th>
-																<td>Jacob</td>
-																<td><i class="fa fa-eye"></i></td>
-															</tr>
-															<tr>
-																<th scope="row">3</th>
-																<td>Larry the Bird</td>
-																<td><i class="fa fa-eye"></i></td>
+																<th scope="row">{{$user_case_management_data['prior_auth_date']}}</th>
+																<td><a href="{{ url('/public/ipledgeimports/prior_auth/')}}/{{$user_case_management_data['prior_auth']}}" target="_blank">File</a></td>
+																<td><a href="{{ url('/public/ipledgeimports/prior_auth/')}}/{{$user_case_management_data['prior_auth']}}" target="_blank"><i class="fa fa-eye"></i> </td>
 															</tr>
 														</tbody>
 													</table>

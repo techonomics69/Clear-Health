@@ -651,7 +651,6 @@ die();*/
   }
   public function trigger(Request $request)
   {
-    dd($request->all());
     if($request->prior_auth):
       $input['ipledge_items']= $request->prior_auth;
     endif;

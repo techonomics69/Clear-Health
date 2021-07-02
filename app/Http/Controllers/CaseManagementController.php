@@ -325,7 +325,7 @@ die();*/
    
   if(isset($skincare_summary['order_id'])){
     if($skincare_summary['order_id']!='' || $skincare_summary['order_id']!=null){
-      $prescribe_shipments =  DB::table('checkout as ch')->join('curexa_order cu','cu.order_id','=','ch.order_id')
+      $prescribe_shipments =  DB::table('checkout as ch')->join('curexa_order as cu','cu.order_id','=','ch.order_id')
                         ->select('cu.order_status','dispatched_date')
                         ->where('cu.order_id',$skincare_summary['order_id'])
                         ->get();

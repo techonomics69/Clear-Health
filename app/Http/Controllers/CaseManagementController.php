@@ -652,8 +652,15 @@ die();*/
   public function trigger(Request $request)
   {
     dd($request->all());
-    $input_data['case_status'] = 'blood_work';
-    $caseHistory = CaseHistory::whereId($request['id'])->update($input_data);
+    if($request->prior_auth):
+      $input['ipledge_items']= $request->prior_auth;
+    endif;
+    if($request->ipledge):
+      $input['verify_prior_auth']= $request->ipledge;
+    endif;    
+    CaseManagement::whereId($request['case_id'])->update($input);
+    // $input_data['case_status'] = 'blood_work';
+    // $caseHistory = CaseHistory::whereId($request['id'])->update($input_data);
   }
   public function bloodWork(Request $request)
   {

@@ -781,7 +781,7 @@
 															</label>
 														</div>
 													</div>
-
+													<input type="hidden" name="case_id" value="{{$user_case_management_data->id}}">
 													<div class="ipledge_button">
 														<button class="btn btn-secondry" type="submit"> Verify</button>
 													</div>

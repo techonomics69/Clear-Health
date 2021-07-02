@@ -645,32 +645,33 @@
 									<div id="bloodworktab" class="tab-pane fade in">
 										<section class="all_screen_section">
 											<div class="Outer_box_design">
-
+												@if(empty($user_case_management_data['blood_work']))
 												<div class="ipledge_button m-0">
 													<a class="btn btn-secondry" href="javascript:void(0)" onclick="openbloodwork();"><i class="fa fa-plus" aria-hidden="true"></i> Add New</a>
 												</div>
-
+												@endif
 												<div class="ipledge_outer_design outre_boxes mt24 bloodworkform bloodworkhide">
-													<form>
+													<form action="{{ route('bloodWork') }}" method="post">
 														<div class="form-group row">
 															<label for="inputEmail3" class="col-sm-2 col-form-label">Date</label>
 															<div class="col-sm-10">
-																<input id="inputEmail3" type="date" value="2011-01-13" />
+																<input id="inputEmail3" type="date" name="date" />
 															</div>
 														</div>
 
 														<div class="form-group row mt-4">
 															<label for="file" class="col-sm-2 col-form-label">File</label>
 															<div class="col-sm-10">
-																<input type="file" id="file">
+																<input type="file" id="file" name="file">
 															</div>
 														</div>
+														<input type="hidden" name="case_id">
 
+														<div class="ipledge_button">
+															<a class="btn btn-secondry " href=""> Cancel</a>
+															<button class="btn btn-primary " type="submit"> Submit</button >
+														</div>
 													</form>
-													<div class="ipledge_button">
-														<a class="btn btn-secondry " href=""> Cancel</a>
-														<a class="btn btn-primary " href=""> Submit</a>
-													</div>
 												</div>
 
 												<div class=" outre_boxes mt24">

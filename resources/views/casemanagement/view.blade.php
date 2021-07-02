@@ -620,9 +620,9 @@
 															</tr>
 														</thead>
 														<tbody class="list_view_outer">
-															@foreach($followup_que as $p_test)
+															@foreach($followup_que as $key => $p_test)
 															<tr>
-																<th scope="row">1</th>
+																<th scope="row">{{$key}}</th>
 																<td>Mark</td>
 																<td>Otto</td>
 																<td><i class="fa fa-eye"></i> / <a class="btn btn-secondry " href="">Verify</a></td>

@@ -624,7 +624,7 @@
 															<tr>
 															{{dd($p_test)}}
 																<th scope="row">{{$key+1}}</th>
-																<td>Mark</td>
+																<td><a href="{{ url('/public/img/') }}{{$p_test['pregnancy_test']}}"></a></td>
 																<td>Otto</td>
 																<td><i class="fa fa-eye"></i> / <a class="btn btn-secondry " href="">Verify</a></td>
 															</tr>

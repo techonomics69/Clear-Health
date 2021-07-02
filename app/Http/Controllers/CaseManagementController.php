@@ -594,6 +594,7 @@ die();*/
  
   public function verifyPregnancy(Request $request)
   {
+    dd($request);
     $input_data['case_status'] = 'prior_auth';
     $caseHistory = CaseHistory::whereId($request['id'])->update($input_data);
   }

@@ -627,7 +627,7 @@
 																<td><a href="{{ url('/public/images/Users/') }}/{{$p_test['pregnancy_test']}}" target="_blank">File</a></td>
 																<td>{{$p_test['follow_up_no']}}</td>
 																<td><a href="{{ url('/public/images/Users/') }}/{{$p_test['pregnancy_test']}}" target="_blank"><i class="fa fa-eye"></i></a> / 
-																<a class="btn btn-secondry " href="/" onclick="return confirm('Are you sure you want to search Google?')">Verify</a></td>
+																<a class="btn btn-secondry " href="{{route('verifyPregnancy')}}?id={{$p_test['id']}}" onclick="return confirm('Are you sure ?')">Verify</a></td>
 															</tr>
 															@endforeach
 														</tbody>

@@ -554,6 +554,7 @@
 									<li><a id="prior_auth" class="btn nonmedicalmsg" data-toggle="tab" href="#priorauthtab">Prior Auth</a></li>
 									<li><a id="triggers" class="btn nonmedicalmsg" data-toggle="tab" href="#triggerstab">Triggers</a></li>
 									@endif
+									<li>Follow up:<select><option>1</option></select></li>
 								</ul>
 								<div class="tab-content">
 									<div id="ipledgetab" class="tab-pane fade in @if($msg_tab != 1) active show @endif">

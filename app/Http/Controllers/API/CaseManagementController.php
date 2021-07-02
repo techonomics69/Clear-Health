@@ -1161,12 +1161,29 @@ public function getMdDetailForMessage(Request $request){
 
     if(isset($request['sign_ipledge_consent'])){
       $update_data['sign_ipledge_consent'] =  $sign_ipledge_consent = $request['sign_ipledge_consent'];
+
+
     }
 
 
     $data  =  CaseManagement::where([['user_id',$user_id], ['id', $case_id],['md_case_id', $md_case_id]])->update($update_data);
 
     $check_form = CaseManagement::where([['user_id',$user_id], ['id', $case_id],['md_case_id', $md_case_id]])->first();
+
+
+    if($request['sign_ipledge_consent'] == 1){
+
+        $user_data = User::where('id', $user_id)->first();
+        $user_phone = $user_data['mobile'];
+
+        $smsdata = array();
+
+        $user = array($user_phone);
+        $smsdata['users'] = $user;
+        $smsdata['body'] = "Your iPledge ID:".$check_form['ipledge_id']." iPledge Username:".$check_form['iledge_username']."iPledge Password:".$check_form['ipledge_password'];
+        $sms_sent = sendsms($smsdata)
+
+      }
 
 
     if($check_form['abstinence_form'] == 1 && $check_form['sign_ipledge_consent'] == 1 ){

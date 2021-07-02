@@ -620,6 +620,7 @@ die();*/
   }
   public function trigger(Request $request)
   {
+    dd($request->all());
     $input_data['case_status'] = 'blood_work';
     $caseHistory = CaseHistory::whereId($request['id'])->update($input_data);
   }

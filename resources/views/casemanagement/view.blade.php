@@ -761,6 +761,7 @@
 										<section class="all_screen_section">
 											<div class="Outer_box_design">
 												<div class="ipledge_outer_design ">
+													{!! Form::open(array('route' => 'trigger','method'=>'POST')) !!}
 													<div class="prior_block">
 														<p class="auth_text">Prior auth:</p>&nbsp;&nbsp;
 														<div class="check-register mangesubscription smalltext checkonly">
@@ -784,6 +785,7 @@
 													<div class="ipledge_button">
 														<a class="btn btn-secondry " href=""> Verify</a>
 													</div>
+													{!! Form::close() !!}
 												</div>
 											</div>
 										</section>

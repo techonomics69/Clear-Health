@@ -210,7 +210,6 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                   }
                 }
 
-
                 if($value['follow_up_no'] != 0){
 
                   if($md_case_status == 'completed' && $value['prior_auth_date'] != NULL){

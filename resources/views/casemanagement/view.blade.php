@@ -687,8 +687,8 @@
 														<tbody class="list_view_outer">
 															<tr>
 																<th scope="row">{{$user_case_management_data['bloodwork_date']}}</th>
-																<td><a href="{{ url('/public/ipledgeimports/blood_work/')}}/{{$user_case_management_data['blood_work']}}">File</a></td>
-																<td><i class="fa fa-eye"></i> </td>
+																<td><a href="{{ url('/public/ipledgeimports/blood_work/')}}/{{$user_case_management_data['blood_work']}}" target="_blank">File</a></td>
+																<td><a href="{{ url('/public/ipledgeimports/blood_work/')}}/{{$user_case_management_data['blood_work']}}" target="_blank"><i class="fa fa-eye"></i> </td>
 															</tr>
 															
 														</tbody>

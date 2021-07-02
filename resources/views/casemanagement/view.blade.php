@@ -651,27 +651,28 @@
 												</div>
 												@endif
 												<div class="ipledge_outer_design outre_boxes mt24 bloodworkform bloodworkhide">
-													<form action="{{ route('bloodWork') }}" method="post" enctype="multipart/form-data">
-														<div class="form-group row">
-															<label for="inputEmail3" class="col-sm-2 col-form-label">Date</label>
-															<div class="col-sm-10">
-																<input id="inputEmail3" type="date" name="date" />
-															</div>
-														</div>
+													{!! Form::open(array('route' => 'bloodWork','method'=>'POST','enctype'=>"multipart/form-data",'id'=>'p_test_form')) !!}
 
-														<div class="form-group row mt-4">
-															<label for="file" class="col-sm-2 col-form-label">File</label>
-															<div class="col-sm-10">
-																<input type="file" id="file" name="file">
-															</div>
+													<div class="form-group row">
+														<label for="inputEmail3" class="col-sm-2 col-form-label">Date</label>
+														<div class="col-sm-10">
+															<input id="inputEmail3" type="date" name="date" />
 														</div>
-														<input type="hidden" name="case_id">
+													</div>
 
-														<div class="ipledge_button">
-															<a class="btn btn-secondry " href=""> Cancel</a>
-															<button class="btn btn-primary " type="submit"> Submit</button >
+													<div class="form-group row mt-4">
+														<label for="file" class="col-sm-2 col-form-label">File</label>
+														<div class="col-sm-10">
+															<input type="file" id="file" name="file">
 														</div>
-													</form>
+													</div>
+													<input type="hidden" name="case_id">
+
+													<div class="ipledge_button">
+														<a class="btn btn-secondry " href=""> Cancel</a>
+														<button class="btn btn-primary " type="submit"> Submit</button>
+													</div>
+													{!! Form::close() !!}
 												</div>
 
 												<div class=" outre_boxes mt24">

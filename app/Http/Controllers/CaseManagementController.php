@@ -627,13 +627,13 @@ die();*/
   {
     
     
-    $documents = $request->file('blood_work');
+    $documents = $request->file('file');
 
     $this->validate($request, [
-      'blood_work' => 'required|mimes:jpg,jpeg,png,pdf',
+      'file' => 'required|mimes:jpg,jpeg,png,pdf',
     ], [
-      'blood_work.required' => 'Blood Work Test file field is required.',
-      'blood_work.mimes' => 'Blood Work  File must be a file of type:jpg,jpeg,png,pdf',
+      'file.required' => 'Blood Work Test file field is required.',
+      'file.mimes' => 'Blood Work  File must be a file of type:jpg,jpeg,png,pdf',
 
     ]);
 
@@ -658,7 +658,7 @@ die();*/
 
       return redirect()->back();
     }
-    $input_data['case_status'] = 'finish';
-    $caseHistory = CaseHistory::whereId($request['id'])->update($input_data);
+    // $input_data['case_status'] = 'finish';
+    // $caseHistory = CaseHistory::whereId($request['id'])->update($input_data);
   }
 }

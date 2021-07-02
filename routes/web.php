@@ -282,7 +282,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('generateiPledge', [CaseManagementController::class, 'generateiPledge'])->name('generateiPledge');
     Route::post('saveiPledgeCredentials', [CaseManagementController::class, 'saveiPledgeCredentials'])->name('saveipledge');
     Route::get('verifyPregnancy', [CaseManagementController::class, 'verifyPregnancy'])->name('verifyPregnancy');
-    Route::post('priorAuth', [CaseManagementController::class, 'priorAuth']);
+    Route::post('priorAuth', [CaseManagementController::class, 'priorAuth'])->name('priorAuth');
     Route::post('checkOffIpledge', [CaseManagementController::class, 'checkOffIpledge']);
     Route::post('trigger', [CaseManagementController::class, 'trigger'])->name('trigger');
     Route::post('admin/bloodWork', [CaseManagementController::class, 'bloodWork'])->name('bloodWork');

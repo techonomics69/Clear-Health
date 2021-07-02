@@ -123,7 +123,12 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
           }
 
 
-          $prescriptiondata = CasePrescriptions::with('prescriptionmedication')->with('prescriptioncompound')->where([['user_id',$user_id],['case_id',$case_id],['system_case_id',$system_case_id]])
+          $prescriptiondata = CasePrescriptions::with('prescriptionmedication')->with('prescriptioncompound')->where([['user_id',$user_id],['case_id',$case_id],['system_case_id',$system_case_id]]);
+
+          echo "<pre>";
+          print_r($prescriptiondata);
+          echo "<pre>";
+          exit();
 
           //if($gender == "Female" && $product_type == 'Accutane' && $case_type = 'new'){
           if($gender == "Female" && $product_type == 'Accutane'){                                                         

@@ -591,12 +591,21 @@ die();*/
     return redirect()->back();
   }
 
- 
+
   public function verifyPregnancy(Request $request)
   {
     dd($request->id);
-    $input_data['case_status'] = 'prior_auth';
-    $caseHistory = CaseHistory::whereId($request['id'])->update($input_data);
+    $follow_up = FollowUp::find($request->id);
+    $data['pregnancy_test_verify'] = 'true';
+    $update = $follow_up->update($data);
+    if ($update) :
+      toastr()->success('Verified Successfully');
+    else :
+      toastr()->error('Verification Failed');
+    endif;
+    return redirect()->back();
+    // $input_data['case_status'] = 'prior_auth';
+    // $caseHistory = CaseHistory::whereId($request['id'])->update($input_data);
   }
 
   public function priorAuth(Request $request)

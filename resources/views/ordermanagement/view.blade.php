@@ -191,25 +191,33 @@
 								</div>
 								<div class="col-md-6  form-group">
 									<strong>Order Status : </strong>
-									<?php echo $shipStationOrder['orderStatus']; ?>
+									<?php if($shipStationOrder['orderStatus']=='awaiting_payment'){
+										echo "Order Processing";
+									}else if($shipStationOrder['orderStatus']=='awaiting_shipment'){
+										echo "Awaiting shipment";
+									}else if($shipStationOrder['orderStatus']=='shipped'){
+										echo "Shipped";
+									}else{
+										
+									} ?>
 								</div>
 								<?php
-									if($shipStationOrder['shipByDate']!=''){
+									if($shipStationOrder['orderStatus'] == 'shipped'){
 								?>
 								<div class="col-md-6  form-group">
-									<strong>Estimated ship date : </strong>
-									<?php echo date("d-m-Y",strtotime($shipStationOrder['shipByDate'])); ?>
+									<strong>Ship date : </strong>
+									<?php echo date("d-m-Y",strtotime($shipStationOrder['shipDate'])); ?>
 								</div>	
 								<?php			
-									}
-									if($shipStationOrder['orderStatus'] == 'shipped'){
-										$tracking = json_decode(json_encode($order_data->shipments), true);
+									$tracking = json_decode(json_encode($order_data->shipments), true);
+									if(isset($tracking['shipments'][0])){
 								?>
 								<div class="col-md-6  form-group">
 									<strong> Tracking No: </strong>
 									<a href="https://tools.usps.com/go/TrackConfirmAction.action?tLabels=<?php echo $tracking['shipments'][0]['trackingNumber']; ?>" target="_blank"><?php echo $tracking['shipments'][0]['trackingNumber']; ?></a>
 								</div>
 								<?php
+											}
 										}
 									}
 								}

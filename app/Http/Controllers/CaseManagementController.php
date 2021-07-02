@@ -594,7 +594,6 @@ die();*/
 
   public function verifyPregnancy(Request $request)
   {
-    dd($request->id);
     $follow_up = FollowUp::find($request->id);
     $data['pregnancy_test_verify'] = 'true';
     $update = $follow_up->update($data);

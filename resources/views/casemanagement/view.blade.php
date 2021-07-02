@@ -674,7 +674,7 @@
 													</div>
 													{!! Form::close() !!}
 												</div>
-
+												@if($user_case_management_data['blood_work'])
 												<div class=" outre_boxes mt24">
 													<table class="table table-responsive-md table-striped no-footer">
 														<thead>
@@ -694,7 +694,7 @@
 														</tbody>
 													</table>
 												</div>
-
+												@endif
 											</div>
 										</section>
 									</div>

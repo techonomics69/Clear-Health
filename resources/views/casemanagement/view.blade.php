@@ -1244,7 +1244,7 @@
 										<div class="col-md-6">
 
 											<div class="box-block mtb32">
-												<h3 class="font-weight-bold"><span class="text-underline">Skincare Summary</span></h3>
+												<h3 class="font-weight-bold"><span class="text-underline">Prescribed products shippments</span></h3>
 												<div class="col-md-6  form-group">
 													<strong>Order ID :</strong>
 		
@@ -1268,7 +1268,7 @@
 										<div class="col-md-6">
 
 											<div class="box-block mtb32">
-												<h3 class="font-weight-bold"><span class="text-underline">Shipments</span></h3>
+												<h3 class="font-weight-bold"><span class="text-underline">Add-ons product shipments</span></h3>
 												<?php
 												if(isset($skincare_summary['shipstation_order_id'])){
 												if ($skincare_summary['shipstation_order_id'] != '') {

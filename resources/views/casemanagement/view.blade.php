@@ -624,9 +624,9 @@
 															<tr>
 															
 																<th scope="row">{{$key+1}}</th>
-																<td><a href="{{ url('/public/images/Users/') }}/{{$p_test['pregnancy_test']}}">File</a></td>
-																<td>Otto</td>
-																<td><i class="fa fa-eye"></i> / <a class="btn btn-secondry " href="">Verify</a></td>
+																<td><a href="{{ url('/public/images/Users/') }}/{{$p_test['pregnancy_test']}}" target="_blank">File</a></td>
+																<td>{{$p_test['follow_up_no']}}</td>
+																<td><a href="{{ url('/public/images/Users/') }}/{{$p_test['pregnancy_test']}}" target="_blank"><i class="fa fa-eye"></i></a> / <a class="btn btn-secondry " href="">Verify</a></td>
 															</tr>
 															@endforeach
 														</tbody>

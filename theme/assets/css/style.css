@@ -1123,3 +1123,28 @@ margin-left:16px
 }
 /*# sourceMappingURL=style.css.map */
 /* ************************************* */
+
+
+
+#CaseManagementList thead{
+  position: relative;
+}
+
+#CaseManagementList thead tr{
+  position: fixed;
+  z-index: 9999;
+}
+#CaseManagementList thead tr th:nth-child(4){
+padding: 10px 15px;
+}
+
+
+#CaseManagementList tbody{
+  position: relative;
+  top: 45px;
+  z-index: 0;
+}
+
+
+
+

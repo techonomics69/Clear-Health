@@ -1263,7 +1263,7 @@
 									<div class="box-block mtb32">
 										<h3 class="font-weight-bold"><span class="text-underline">Shipments</span></h3>
 										<?php
-
+										if(isset($skincare_summary['shipstation_order_id'])){
 										if ($skincare_summary['shipstation_order_id'] != '') {
 
 											if ($skincare_summary['getOrder'] != '') {
@@ -1305,6 +1305,7 @@
 												}
 											}
 										}
+									}
 										?>
 									</div>
 

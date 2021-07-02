@@ -194,15 +194,15 @@
 									<?php echo $shipStationOrder['orderStatus']; ?>
 								</div>
 								<?php
-									if($shipStationOrder['shipByDate']!=''){
+									if($shipStationOrder['orderStatus'] == 'shipped'){
 								?>
 								<div class="col-md-6  form-group">
 									<strong>Estimated ship date : </strong>
 									<?php echo date("d-m-Y",strtotime($shipStationOrder['shipByDate'])); ?>
 								</div>	
 								<?php			
-									}
-									if($shipStationOrder['orderStatus'] == 'shipped'){
+									
+									
 										$tracking = json_decode(json_encode($order_data->shipments), true);
 								?>
 								<div class="col-md-6  form-group">

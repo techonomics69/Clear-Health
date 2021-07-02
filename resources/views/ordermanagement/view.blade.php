@@ -191,7 +191,15 @@
 								</div>
 								<div class="col-md-6  form-group">
 									<strong>Order Status : </strong>
-									<?php echo $shipStationOrder['orderStatus']; ?>
+									<?php if($shipStationOrder['orderStatus']=='awaiting_payment'){
+										echo "Order Processing";
+									}else if($shipStationOrder['orderStatus']=='awaiting_shipment'){
+										echo "Awaiting shipment";
+									}else if($shipStationOrder['orderStatus']=='shipped'){
+										echo "Shipped";
+									}else{
+										
+									} ?>
 								</div>
 								<?php
 									if($shipStationOrder['orderStatus'] == 'shipped'){

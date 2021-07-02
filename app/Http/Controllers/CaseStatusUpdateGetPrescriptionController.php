@@ -20,6 +20,8 @@ use App\Models\PrescriptionMedication;
 use App\Models\Mdpatient;
 use App\Models\CurexaOrder;
 use App\Models\Mdcases;
+use App\Models\CaseHistory;
+
 use Session;
 use Carbon\Carbon;
 
@@ -35,7 +37,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
     {
       //$data = CaseManagement::join('md_cases', 'md_cases.system_case_id', '=', 'case_managements.id')->select('case_managements.*')->get()->toArray();
 
-      $data = Mdcases::join('case_managements','case_managements.md_case_id', '=','md_cases.case_id' )->select('case_managements.*')->get()->toArray();
+      $data = Mdcases::join('case_managements','case_managements.md_case_id', '=','md_cases.case_id' )->join('follow_up','follow_up.md_case_id', '=','md_cases.case_id' )->select('case_managements.*','follow_up.follow_up_no')->get()->toArray();
 
 
       $r = get_token();
@@ -120,15 +122,14 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
             $support_reason = $MdCaseStatus->case_status->reason;
 
+            $input_data['case_status'] = 'generate_ipledge';
+            $caseHistory = CaseHistory::where('case_id', $system_case_id)->update($input_data);
+
           }
 
 
-          $prescriptiondata = CasePrescriptions::with('prescriptionmedication')->with('prescriptioncompound')->where([['user_id',$user_id],['case_id',$case_id],['system_case_id',$system_case_id]])->first();
+          $prescriptiondata = CasePrescriptions::where([['user_id',$user_id],['case_id',$case_id],['system_case_id',$system_case_id]])->first();
 
-          echo "<pre>";
-          print_r($prescriptiondata);
-          echo "<pre>";
-         
 
           //if($gender == "Female" && $product_type == 'Accutane' && $case_type = 'new'){
           if($gender == "Female" && $product_type == 'Accutane'){                                                         
@@ -136,9 +137,9 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                 /*
                 1.   Telehealth Evaluation Requested -> sent to MD Integrations  (case status MD side = created )
                 2.   Awaiting Live Consultation -> MD assigned, call not initiated (case status MD side = assigned and case_status_reason != null ) ( MD guys will call ping our API using webhook and we will get notified that MD has been assigned)
-                3.   Awaiting Follow-Up -> (case status MD side = completed and case_status_reason != null )(case status received as support from MD)
-                4.   Awaiting Prescription Approval(Follow up ->send case to md )
-                5.   Prescription Approved -> (prescription confirmed by dosespot/script is written i.e. case status received from MD = Dosespot confirmed)
+                3.   Awaiting Follow-Up -> (case status MD side = support and case_status_reason != null  and prescription is not stored yet in our db )(case status received as support from MD)
+                4.   Awaiting Prescription Approval(case status MD side = processing and dosespot_confirmation_status=pending)(Follow up ->send case to md )
+                5.   Prescription Approved -> (case status MD side = processing and dosespot_confirmation_status=pharmacy_verified)(prescription confirmed by dosespot/script is written i.e. case status received from MD = Dosespot confirmed)
                 6.   Awaiting Action Items
                 */
                 //if(($md_status != null || $value['md_status']!= null) && $md_case_status == 'pending' && $case_type = 'new'){
@@ -148,17 +149,19 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                 }
 
                 //if($md_case_status == 'support' && $case_type = 'new' && ($support_reason != '' || $support_reason != NULL)){
-                if($md_case_status == 'completed' && ($support_reason != '' || $support_reason != NULL)){
+                if($md_case_status == 'support' && ($support_reason != '' || $support_reason != NULL) && empty($prescriptiondata)){
 
                   $system_status = 'Awaiting Follow-Up';
                 }
 
-                if($md_case_status =='support' && $case_type = 'follow_up'){
+               // if($md_case_status =='support' && $case_type = 'follow_up'){ 
+                if($md_case_status =='processing' && $prescriptiondata['dosespot_confirmation_status']  == 'pending'){
 
                   $system_status = ' Awaiting Prescription Approval';
                 }
 
-                if($md_case_status == 'dosespot confirmed' && $case_type = 'follow_up'){
+                //if($md_case_status == 'dosespot confirmed' && $case_type = 'follow_up'){
+                if($md_case_status == 'processing' && $prescriptiondata['dosespot_confirmation_status']  == 'pharmacy_verified'){
 
                   $system_status = 'Prescription Approved';
               
@@ -198,11 +201,31 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                 }
                 
 
-                if($md_case_status == 'dosespot confirmed' && $value['pregnancy_test']!= NULL && $value['blood_work']!= NULL && $value['i_pledge_agreement']!= NULL){
+                if($value['follow_up_no'] == 0){
+
+                  if($md_case_status == 'completed' && $value['abstinence_form']!= 0 && $value['sign_ipledge_consent']!= 0){
 
                   $system_status = 'Awaiting Action Items';  
 
+                  }
                 }
+
+                if($value['follow_up_no'] != 0){
+
+                  if($md_case_status == 'completed' && $value['prior_auth_date'] != NULL){
+
+                    $prior_auth_date = new Carbon($value['prior_auth_date']);
+                    $now = Carbon::now();
+                    $checkdate = $prior_auth_date->addDays(7);
+
+                    if($now->lte($checkdate)){
+                        $system_status = 'Awaiting Action Items'; 
+                    } 
+
+                  }
+                }
+
+                
 
               }else if($gender == "Male" && $product_type == 'Accutane'){
                 /*
@@ -214,17 +237,20 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                   4. Prescription Approved
                 */
 
-                  if(($md_status != null || $value['md_status']!= null) && $md_case_status == 'pending' && $case_type = 'new'){
+                  //if(($md_status != null || $value['md_status']!= null) && $md_case_status == 'pending' && $case_type = 'new'){
+                  if(($md_status != null || $value['md_status']!= null) && $md_case_status == 'assigned'){
 
                     $system_status = 'MD Assigned';
                   }
 
-                  if($md_case_status =='support' && $case_type = 'new'){
+                  //if($md_case_status =='support' && $case_type = 'new'){
+                  if($md_case_status =='processing' && $prescriptiondata['dosespot_confirmation_status']  == 'pending'){
 
                     $system_status = ' Awaiting Prescription Approval';
                   }
 
-                  if($md_case_status == 'dosespot confirmed' && $case_type = 'new'){
+                  //if($md_case_status == 'dosespot confirmed' && $case_type = 'new'){
+                  if($md_case_status == 'processing' && $prescriptiondata['dosespot_confirmation_status']  == 'pharmacy_verified'){
 
                     $system_status = 'Prescription Approved';
 
@@ -258,9 +284,6 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                     }
 
 
-                    
-
-
                   }
 
 
@@ -272,7 +295,8 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                 2. Prescription Approved/Denied
                 */
 
-                if($md_case_status == 'dosespot confirmed' && $case_type = 'new'){
+                //if($md_case_status == 'dosespot confirmed' && $case_type = 'new'){
+                 if($md_case_status == 'processing' && $prescriptiondata['dosespot_confirmation_status']  == 'pharmacy_verified'){
 
                   $system_status = 'Prescription Approved';
 

@@ -660,6 +660,7 @@ die();*/
       toastr()->success('Ipledge Items Verified Successfully');
     endif;
     if ($request->prior_auth && $request->ipledge) :
+      toastr.clear();
       toastr()->success('Prior Auth & Ipledge Items Verified Successfully');
     endif;
     CaseManagement::whereId($request['case_id'])->update($input);

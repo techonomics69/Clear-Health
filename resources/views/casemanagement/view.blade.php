@@ -1197,7 +1197,7 @@
 								</div>
 							</section>
 						</div>
-						@endif;
+						@endif
 						@if($user_pic->right_pic)
 						<div class="col-md-3">
 							<section class="card">

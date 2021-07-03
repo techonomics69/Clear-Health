@@ -47,10 +47,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
          $follow_up_data = Mdcases::join('follow_up','follow_up.md_case_id', '=','md_cases.case_id' )->select('follow_up.follow_up_no')->where('md_cases.case_id',$value['md_case_id'])->first();
 
-        echo "<pre>";
-        print_r($follow_up_data);
-        echo "<pre>";
-        exit();
+       
 
         $user_id = $value['user_id'];
         $case_id = $value['md_case_id'];
@@ -146,6 +143,8 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
           if($gender == "female" && $product_type == 'Accutane'){ 
 
               //send welcome email 
+
+            $follow_up_data['follow_up_no'] = 0;
 
                 if( $support_reason != NULL && $follow_up_data['follow_up_no'] == 0){
 

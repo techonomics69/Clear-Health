@@ -849,6 +849,11 @@ if(!empty($Patient_data)){
 
   function sendEmail($email_data){
 
+    echo "<pre>";
+    print_r($email_data);
+    echo "<pre>";
+    exit();
+
         $data["email"] = $email_data['email'];
         $data["title"] = $email_data['title'];
         $data["body"]  = $email_data['body'];
@@ -869,9 +874,9 @@ if(!empty($Patient_data)){
             $message->to($data["email"])
                     ->subject($data["title"]);
             if(!empty($files)){
-                foreach ($files as $file){
+              foreach ($files as $file){
                 $message->attach($file);
-            } 
+              } 
             }
                        
         });

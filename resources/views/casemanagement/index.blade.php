@@ -41,7 +41,7 @@
           <div class="row" style="padding: 20px;">
             <div class="col-md-12">
               <div class="">
-                <table class="table table-responsive table-striped table-bordered nowrap" style=" width:100%" id="CaseManagementList">
+                <table class="table stripe row-border order-column table-responsive table-striped table-bordered nowrap" style=" width:100%" id="CaseManagementList">
                   <thead>
                     <tr>
                       <th>SR</th>
@@ -174,32 +174,33 @@
 			// "paging": true,
 			// "autoWidth": true,
 			// "fixedHeader": true,
-		  "aoColumnDefs": [
+		  // "aoColumnDefs": [
      
-            {"sWidth": "300px", "aTargets": [0]},
-            {"sWidth": "500px", "aTargets": [1]},
-            {"sWidth": "500px", "aTargets": [2]},
-            {"sWidth": "500px", "aTargets": [3]},
-            {"sWidth": "500px", "aTargets": [4]},
-            {"sWidth": "500px", "aTargets": [5]},
-            {"sWidth": "500px", "aTargets": [6]},
-            {"sWidth": "500px", "aTargets": [7]},
-            {"sWidth": "500px", "aTargets": [8]},
-            {"sWidth": "500px", "aTargets": [9]},
-            {"sWidth": "500px", "aTargets": [10]},
-            {"sWidth": "500px", "aTargets": [11]},
-            {"sWidth": "500px", "aTargets": [12]},
-            {"sWidth": "500px", "aTargets": [13]},
+      //       {"sWidth": "300px", "aTargets": [0]},
+      //       {"sWidth": "500px", "aTargets": [1]},
+      //       {"sWidth": "500px", "aTargets": [2]},
+      //       {"sWidth": "500px", "aTargets": [3]},
+      //       {"sWidth": "500px", "aTargets": [4]},
+      //       {"sWidth": "500px", "aTargets": [5]},
+      //       {"sWidth": "500px", "aTargets": [6]},
+      //       {"sWidth": "500px", "aTargets": [7]},
+      //       {"sWidth": "500px", "aTargets": [8]},
+      //       {"sWidth": "500px", "aTargets": [9]},
+      //       {"sWidth": "500px", "aTargets": [10]},
+      //       {"sWidth": "500px", "aTargets": [11]},
+      //       {"sWidth": "500px", "aTargets": [12]},
+      //       {"sWidth": "500px", "aTargets": [13]},
            
-        ],
+      //   ],
          "bLengthChange": false,
         "bAutoWidth": true,
         "fixedHeader": {
         header: true,
+        scrollY:        "300px",
+        scrollX:        true,
     },
-       scrollY:        "300px",
-      //   scrollX:        false,
-
+ 
+        // scrollCollapse: true,
  
 
      });
@@ -225,8 +226,10 @@
 
 </script>
 @endsection
-<!-- <style>
-  .table-bordered{
-    border: 0;
-  }
-</style> -->
+<style>
+  th, td { white-space: nowrap; }
+    div.dataTables_wrapper {
+        width: 800px;
+        margin: 0 auto;
+    }
+</style>

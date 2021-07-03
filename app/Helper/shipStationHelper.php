@@ -66,7 +66,8 @@ class shipStationHelper {
             $i->unitPrice  = $itm['unitPrice'];
             $i->warehouseLocation = 'Nefaire 141 Post Road East Westport, CT 06880';
             $i->imageUrl = $itm['imageUrl'];
-            $i->productId = $itm['productId'];
+            // $i->productId = $itm['productId'];
+            $i->productId = 21;
             $item[] = $i;
         }
 

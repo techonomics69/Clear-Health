@@ -611,7 +611,6 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
             exit();*/
 
             $CasePrescription_data = CasePrescriptions::create($input_prescription);
-          
             
             if(isset($prescription->medication) && !empty($prescription->medication)){
               $input_medication['case_prescription_id'] = $CasePrescription_data->id;
@@ -647,9 +646,6 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
            }
 
       }
-
-      
-
 
    }
 

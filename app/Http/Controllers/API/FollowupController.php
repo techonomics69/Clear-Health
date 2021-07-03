@@ -187,6 +187,9 @@ class FollowupController extends BaseController
             $data['follow_up_status'] = 'completed';
             $caseManage = CaseManagement::find($case_id);
             if ($caseManage) :
+              // echo '<pre>';
+              // print_r($followUpAns);
+              // die;
               $case_data['follow_up'] = $followUpAns['follow_up_no'];
               $caseSave = $caseManage->update($case_data);
               $input_data['case_status'] = 'verify_pregnancy';

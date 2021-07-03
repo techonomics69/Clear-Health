@@ -53,7 +53,7 @@
                         <div class="row" style="padding: 20px;">
                             <div class="col-md-12">
                                 <div class="">
-                        <table class="table table-striped table-bordered  table-responsive-md " style="width:100%" id="roleList">
+                        <table class="table table-striped table-bordered  table-responsive" style="width:100%" id="roleList">
                             <thead>
                             <tr>
                                 <th width="60px">No</th>
@@ -103,7 +103,12 @@
     jQuery( document ).ready(function( $ ) {
         $('#roleList').DataTable({
             "dom": '<"top"if>rt<"bottom"lp><"clear">',
-            
+            "aoColumnDefs": [
+            {"sWidth": "250px", "aTargets": [-1]},
+            {"sWidth": "300px", "aTargets": [0]},
+            {"sWidth": "500px", "aTargets": [1]},
+           
+        ],
         });
     });
     

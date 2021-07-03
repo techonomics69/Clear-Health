@@ -57,11 +57,15 @@ class FollowupController extends BaseController
       if ($validator->fails()) {
         return $this->sendError('Validation Error.', $validator->errors()->all());
       }
-      echo '<pre>';     
-      print_r($data);
-      die;
-      $followUpAns = FollowUp::where('user_id', $data['user_id'])->where('case_id', $data['case_id'])->get();
-     
+
+      $followUpAns = FollowUp::where('user_id', $data['user_id'])
+                    ->where('case_id', $data['case_id'])
+                    ->where('follow_up_no', $data['follow_up_no'])
+                    ->where('follow_up_status', '<>', 'completed')
+                    ->get();
+                    echo '<pre>';
+                    print_r($followUpAns);
+                    die;
       if (!empty($followUpAns)) :
         $followUpAns = $followUpAns->update($data);
       else :
@@ -111,6 +115,7 @@ class FollowupController extends BaseController
       $destinationPath = public_path('/images/Users');
       $userGender = User::find($user_id)->gender;
       $followUpAns = FollowUp::where([['user_id', $user_id], ['case_id', $case_id], ['follow_up_no', $data['follow_up_no']], ['follow_up_status', '<>', 'completed']])->first();
+      dd($followUpAns)
       if ($request['left_face'] != '') {
         $left_face = $request['left_face'];
         $left_face_file_name =  $user_id . '_left_face_' . time() . '.jpeg';
@@ -180,18 +185,17 @@ class FollowupController extends BaseController
           endif;
         }
       }
-echo '<pre>';
-print_r($followUpAns);
-die;
+
       if (!empty($followUpAns)) :
-        echo "data"-$data['follow_up_no'];
-        echo "folo"-$followUpAns['follow_up_no'];
-        die;
-        if (($data['follow_up_no'] !== $followUpAns['follow_up_no']) || ($followUpAns['follow_up_no'] == null)) :
-          $caseManage = CaseManagement::find($case_id);
+        echo $data['follow_up_no'];        
+        echo $followUpAns['follow_up_no'];        
+        dd($caseManage);   
+        if ($data['follow_up_no'] !== $followUpAns['follow_up_no']) :
+          $caseManage = CaseManagement::find($case_id);    
+            
           if ($caseManage) :
             $case_data['follow_up'] = $data['follow_up_no'];
-            $caseSave = $caseManage->update($case_data);
+            $caseSave = $caseManage->update($case_data);            
             if ($userGender == 'female') :
               $input_data['case_status'] = 'verify_pregnancy';
             else :
@@ -199,11 +203,10 @@ die;
             endif;
             $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
           endif;
-          dd($data);
         endif;
-        $followUpAns = $followUpAns->update($data);
+        $followUpAns = $followUpAns->update($data);        
       endif;
-
+      
       return $this->sendResponse($followUpAns, 'Follow Up Data Updated Successfully');
     } catch (\Exception $ex) {
       return $this->sendError('Server error', array($ex->getMessage()));

@@ -1211,7 +1211,7 @@
 								</div>
 							</section>
 						</div>
-						@endif
+						@endif;
 						@if($user_pic->straight_pic)
 						<div class="col-md-3">
 							<section class="card">
@@ -1225,7 +1225,7 @@
 								</div>
 							</section>
 						</div>
-						@endif
+						@endif;
 						@if($user_pic->back_photo)
 						<div class="col-md-3">
 							<section class="card">
@@ -1239,7 +1239,7 @@
 								</div>
 							</section>
 						</div>
-						@endif
+						@endif;
 						@if($user_pic->other_pic)
 						<div class="col-md-3">
 							<section class="card">
@@ -1253,7 +1253,7 @@
 								</div>
 							</section>
 						</div>
-						@endif											
+						@endif;									
 						@foreach($followup_que as $key => $data)
 						<div class="col-md-12">
 							<h2>Follow Up: {{$key+1}}</h2>

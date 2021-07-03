@@ -111,7 +111,7 @@
 	jQuery( document ).ready(function( $ ) {
     	$('#categoriesList').DataTable({
 			"dom": '<"top"if>rt<"bottom"lp><"clear">',
-			"oSearch": { "bSmart": false, "bRegex": true }
+			"oSearch": { "bSmart": false, "bRegex": true },
 			"paging": true,
   "bLengthChange": false,
         "bAutoWidth": true,

@@ -165,20 +165,20 @@
 @section('scriptsection')
 <script>
   $.noConflict();
-  // jQuery(document).ready(function($) {
-    // $('#CaseManagementList').DataTable({
-      // "dom": '<"top"if>rt<"bottom"lp><"clear">',
-      // "dom": '<"dt-buttons"Bfli>rtp',
+  jQuery(document).ready(function($) {
+    $('#CaseManagementList').DataTable({
+      "dom": '<"top"if>rt<"bottom"lp><"clear">',
+
 			// "paging": true,
 			// "autoWidth": true,
 			// "fixedHeader": true,
 		
-      //  "scrollY": 400,
+        // "scrollY": 400,
       // "scrollX": true,
 
  
 
-    // });
+     });
 
     /*$.ajax({
             method:"post",
@@ -195,18 +195,9 @@
                  alert(res);  
             }
         });*/
-  // });
+   });
 
-  $(document).ready(function() {
-    $('#CaseManagementList').DataTable(
-        {
 
-            "paging": false,
-            "fixedHeader": true,
-            "bDestroy": true,
-        }
-    );
-});
 
 </script>
 @endsection

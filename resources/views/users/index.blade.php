@@ -41,7 +41,7 @@
               <div class="row"  style="padding: 20px;">
                 <div class="col-md-12">
                 <div class="">
-                  <table class="table  table-responsive-md table-striped table-bordered" style="width:100%" id="userList">
+                  <table class="table  table-responsive table-striped table-bordered" style="width:100%" id="userList">
                     <thead>
                     <tr>
                       <th>No</th>             
@@ -108,6 +108,8 @@
   jQuery( document ).ready(function( $ ) {
       $('#userList').DataTable({
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
+      scrollY: 300,
+    scrollX: true
     });
 
     

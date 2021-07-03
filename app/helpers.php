@@ -849,12 +849,9 @@ if(!empty($Patient_data)){
 
   function sendEmail($email_data){
 
-    echo "<pre>";
-    print_r($email_data);
-    echo "<pre>";
-    exit();
+   
 
-        $data["email"] = $email_data['email'];
+        /*$data["email"] = $email_data['email'];
         $data["title"] = $email_data['title'];
         $data["body"]  = $email_data['body'];
         $files = array();
@@ -864,7 +861,7 @@ if(!empty($Patient_data)){
             //public_path('attachments/Laravel_8_pdf_Example.pdf'),
         ];*/
 
-        if(isset($email_data['attachments'])){
+        /*if(isset($email_data['attachments'])){
           $files = $email_data['attachments'];
         }else{
            $files = array();
@@ -879,6 +876,31 @@ if(!empty($Patient_data)){
               } 
             }
                        
+        });
+
+        if($mail_sent){
+          return 1;
+
+        }else{
+          return 0;
+        }*/
+
+        $data["email"] = "itqatester12@gmail.com";
+        $data["title"] = "helloclearhealth.com";
+        $data["body"] = "This is test mail with attachment";
+ 
+        $files = [
+            public_path('attachments/pregnancy-test.jpg'),
+            //public_path('attachments/Laravel_8_pdf_Example.pdf'),
+        ];
+  
+        $mail_sent = Mail::send('emails.mySendMail',$data, function($message)use($data, $files) {
+            $message->to($data["email"])
+                    ->subject($data["title"]);
+ 
+            foreach ($files as $file){
+                $message->attach($file);
+            }            
         });
 
         if($mail_sent){

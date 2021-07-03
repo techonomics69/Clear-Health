@@ -112,8 +112,8 @@
     	$('#categoriesList').DataTable({
 			"dom": '<"top"if>rt<"bottom"lp><"clear">',
 			"oSearch": { "bSmart": false, "bRegex": true }
-
-			"bLengthChange": false,
+			"paging": true,
+  "bLengthChange": false,
         "bAutoWidth": true,
         "bInfo": false,
         language: {search: "", searchPlaceholder: "Search"},

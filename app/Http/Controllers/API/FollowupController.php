@@ -66,7 +66,7 @@ class FollowupController extends BaseController
         ->where('case_id', $data['case_id'])
         // ->where('follow_up_no', $data['follow_up_no'])
         ->where('follow_up_status', '<>', 'completed')
-        ->get();
+        ->first();
       if (!empty($followUpAns)) :
         $followUpAns = $followUpAns->update($data);
       else :

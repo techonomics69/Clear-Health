@@ -27,6 +27,7 @@ use App\Http\Controllers\API\PaymentsController;
 use App\Http\Controllers\API\ActionitemsController;
 use App\Http\Controllers\API\MdwebhooksController;
 use App\Http\Controllers\API\shipStationController;
+use App\Http\Controllers\API\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -179,5 +180,7 @@ Route::post('getToken', [CaseManagementController::class, 'get_token']);
 
 Route::get('getshipstationOrderdetail',[shipStationController::class, 'getOrderDetails']);
 Route::get('getordershipments/{orderId}',[shipStationController::class, 'getshipments']);
+    
+    Route::get('showNotifications',[NotificationController::class, 'getHomeNotifications']);
     
 //});

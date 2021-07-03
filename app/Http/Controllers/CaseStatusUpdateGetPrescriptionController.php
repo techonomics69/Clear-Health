@@ -579,7 +579,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
       //foreach($prescription_data as $key=>$prescription){
 
-          if($prescription_data[0]->dosespot_prescription_id != null){
+          if(isset($prescription_data[0]->dosespot_prescription_id)){
             $dosespot_prescription_id = $prescription_data[0]->dosespot_prescription_id;
           }else{
             $dosespot_prescription_id = '';

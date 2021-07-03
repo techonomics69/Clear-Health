@@ -55,11 +55,11 @@
 					<table class="table table-responsive-md table-striped table-bordered " style="width:100%" id="categoriesList">
 						<thead>
 						<tr>
-							<th width="60px">No</th>
+							<th>No</th>
 							<th>Name</th>
 							<th>Photo</th>
 							<th>Order</th>
-							<th width="200px">Action</th>
+							<th>Action</th>
 						</tr>
 						</thead>
 						<tbody>
@@ -112,6 +112,8 @@
     	$('#categoriesList').DataTable({
 			"dom": '<"top"if>rt<"bottom"lp><"clear">',
 			"oSearch": { "bSmart": false, "bRegex": true }
+
+
 		});
 	});
 	

@@ -136,6 +136,8 @@
     jQuery( document ).ready(function( $ ) {
         $('#productsList').DataTable({
             "dom": '<"top"if>rt<"bottom"lp><"clear">',
+  
+               paging: true,
         });
     });
     

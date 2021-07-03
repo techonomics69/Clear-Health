@@ -558,65 +558,95 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
     public function save_prescription_response($response,$user_id,$case_id,$system_case_id){
       $prescription_data = json_decode($response);
 
-      echo "<pre>";
-      print_r($prescription_data[0]);
-      echo "<pre>";
-    
+      
+      // echo "<pre>";
+      // print_r($response);
+      // echo "<pre>";
 
-      //foreach($prescription_data as $key=>$prescription){
-            $input_prescription['dosespot_prescription_id'] = ($prescription_data[0]->dosespot_prescription_id!='') ? $prescription_data[0]->dosespot_prescription_id : NULL;
-            $input_prescription['dosespot_prescription_sync_status'] = $prescription_data[0]->dosespot_prescription_sync_status;
-            $input_prescription['dosespot_confirmation_status'] = $prescription_data[0]->dosespot_confirmation_status;
-            $input_prescription['dosespot_confirmation_status_details'] =($prescription_data[0]->dosespot_confirmation_status_details !='')? $prescription_data[0]->dosespot_confirmation_status_details : NULL;
-            $input_prescription['refills'] = $prescription_data[0]->refills;
-            $input_prescription['quantity'] = $prescription_data[0]->quantity;
-            $input_prescription['days_supply'] = $prescription_data[0]->days_supply;
-            $input_prescription['no_substitutions'] = $prescription_data[0]->no_substitutions;
-            $input_prescription['pharmacy_notes'] = ($prescription_data[0]->pharmacy_notes != '') ? $prescription_data[0]->pharmacy_notes : NULL;
-            $input_prescription['directions'] = $prescription_data[0]->directions;
-            $input_prescription['dispense_unit_id'] = $prescription_data[0]->dispense_unit_id;
-            $input_prescription['preferred_pharmacy_id'] = $prescription_data[0]->pharmacy_id;
+      // echo "<pre>";
+      // print_r($prescription_data[0]->dosespot_prescription_sync_status);
+      // echo "<pre>";
+      
+      // exit();
+
+      foreach($prescription_data as $key=>$prescription){
+
+
+
+         // $prescription = json_decode(json_encode($prescription), true);
+
+         // echo "<pre> data is ";
+         // print_r($prescription->dosespot_prescription_sync_status);
+         // echo "<pre>";
+         // exit();
+
+          // echo "<pre>";
+          // print_r($prescription);
+          // echo "<pre>";
+          // exit();
+         
+            $input_prescription['dosespot_prescription_id'] = (isset($prescription->dosespot_prescription_id)) ? $prescription->dosespot_prescription_id : NULL;
+
+
+            $input_prescription['dosespot_prescription_sync_status'] = $prescription->dosespot_prescription_sync_status;
+            $input_prescription['dosespot_confirmation_status'] = $prescription->dosespot_confirmation_status;
+
+
+            $input_prescription['dosespot_confirmation_status_details'] = ($prescription->dosespot_confirmation_status_details !='') ? $prescription->dosespot_confirmation_status_details : NULL;
+            $input_prescription['refills'] = $prescription->refills;
+            $input_prescription['quantity'] = $prescription->quantity;
+            $input_prescription['days_supply'] = $prescription->days_supply;
+            $input_prescription['no_substitutions'] = $prescription->no_substitutions;
+            $input_prescription['pharmacy_notes'] = ($prescription->pharmacy_notes != '') ? $prescription->pharmacy_notes : NULL;
+            $input_prescription['directions'] = $prescription->directions;
+            $input_prescription['dispense_unit_id'] = $prescription->dispense_unit_id;
+            $input_prescription['preferred_pharmacy_id'] = $prescription->pharmacy_id;
             $input_prescription['case_id'] = '"'.$case_id.'"';
             $input_prescription['user_id'] = $user_id;
             $input_prescription['system_case_id'] = $system_case_id;
 
+            echo "<pre>";
+            print_r($input_prescription);
+            echo "<pre>"; 
+            exit();
+
             $CasePrescription_data = CasePrescriptions::create($input_prescription);
           
             
-            if(isset($prescription_data[0]->medication) && !empty($prescription_data[0]->medication)){
+            if(isset($prescription->medication) && !empty($prescription->medication)){
               $input_medication['case_prescription_id'] = $CasePrescription_data->id;
-              $input_medication['dosespot_medication_id'] = $prescription_data[0]->medication->dosespot_medication_id;
-              $input_medication['dispense_unit_id'] = $prescription_data[0]->medication->dispense_unit_id;
-              $input_medication['dose_form'] = $prescription_data[0]->medication->dose_form;
-              $input_medication['route'] = $prescription_data[0]->medication->route;
-              $input_medication['strength'] = $prescription_data[0]->medication->strength;
-              $input_medication['generic_product_name'] = $prescription_data[0]->medication->generic_product_name;
-              $input_medication['lexi_gen_product_id'] = $prescription_data[0]->medication->lexi_gen_product_id;
-              $input_medication['lexi_drug_syn_id'] = $prescription_data[0]->medication->lexi_drug_syn_id;
-              $input_medication['lexi_synonym_type_id'] = $prescription_data[0]->medication->lexi_synonym_type_id;
-              $input_medication['lexi_gen_drug_id'] = $prescription_data[0]->medication->lexi_gen_drug_id;
-              $input_medication['rx_cui'] = $prescription_data[0]->medication->rx_cui;
-              $input_medication['otc'] = $prescription_data[0]->medication->otc;
-              $input_medication['ndc'] = $prescription_data[0]->medication->ndc;
-              $input_medication['schedule'] = $prescription_data[0]->medication->schedule;
-              $input_medication['display_name'] = $prescription_data[0]->medication->display_name;
-              $input_medication['monograph_path'] = $prescription_data[0]->medication->monograph_path;
-              $input_medication['drug_classification'] = $prescription_data[0]->medication->drug_classification;
-              $input_medication['state_schedules'] = json_encode($prescription_data[0]->medication->state_schedules);
+              $input_medication['dosespot_medication_id'] = $prescription->medication->dosespot_medication_id;
+              $input_medication['dispense_unit_id'] = $prescription->medication->dispense_unit_id;
+              $input_medication['dose_form'] = $prescription->medication->dose_form;
+              $input_medication['route'] = $prescription->medication->route;
+              $input_medication['strength'] = $prescription->medication->strength;
+              $input_medication['generic_product_name'] = $prescription->medication->generic_product_name;
+              $input_medication['lexi_gen_product_id'] = $prescription->medication->lexi_gen_product_id;
+              $input_medication['lexi_drug_syn_id'] = $prescription->medication->lexi_drug_syn_id;
+              $input_medication['lexi_synonym_type_id'] = $prescription->medication->lexi_synonym_type_id;
+              $input_medication['lexi_gen_drug_id'] = $prescription->medication->lexi_gen_drug_id;
+              $input_medication['rx_cui'] = $prescription->medication->rx_cui;
+              $input_medication['otc'] = $prescription->medication->otc;
+              $input_medication['ndc'] = $prescription->medication->ndc;
+              $input_medication['schedule'] = $prescription->medication->schedule;
+              $input_medication['display_name'] = $prescription->medication->display_name;
+              $input_medication['monograph_path'] = $prescription->medication->monograph_path;
+              $input_medication['drug_classification'] = $prescription->medication->drug_classification;
+              $input_medication['state_schedules'] = json_encode($prescription->medication->state_schedules);
 
               $CasePrescription_data = PrescriptionMedication::create($input_medication);
 
             }
 
-            if(!empty($prescription_data[0]->partner_compound)){
+            if(!empty($prescription->partner_compound)){
              $input_compound['case_prescription_id'] = $CasePrescription_data->id;
-             $input_compound['partner_compound_id'] = $prescription_data[0]->partner_compound->partner_compound_id;
-             $input_compound['title'] = $prescription_data[0]->partner_compound->title;
+             $input_compound['partner_compound_id'] = $prescription->partner_compound->partner_compound_id;
+             $input_compound['title'] = $prescription->partner_compound->title;
 
              $CasePrescription_data = PrescriptionCompound::create($input_compound);
            }
 
-     // }
+      }
 
       
 

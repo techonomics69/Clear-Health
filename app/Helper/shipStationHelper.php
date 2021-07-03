@@ -92,6 +92,9 @@ class shipStationHelper {
         $getOrder = json_decode(json_encode($newOrder), true);
         $updateOrder = DB::table('checkout')->where('id',$orderData['checkoutOrderId'])->update(['shipstation_order_id'=>$getOrder['orderId']]);
 
+        $addNot = new Notifications();
+        
+
         return (isset($newOrder)) ? $newOrder : 'none';
     }
 

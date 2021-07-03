@@ -37,25 +37,20 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
     {
       //$data = CaseManagement::join('md_cases', 'md_cases.system_case_id', '=', 'case_managements.id')->select('case_managements.*')->get()->toArray();
 
-      $data = Mdcases::join('case_managements','case_managements.md_case_id', '=','md_cases.case_id' )->join('follow_up','follow_up.md_case_id', '=','md_cases.case_id' )->join('users','users.id','=','md_cases.user_id')->select('case_managements.*','follow_up.follow_up_no','users.*')->get()->toArray();
+      $data = Mdcases::join('case_managements','case_managements.md_case_id', '=','md_cases.case_id' )->join('users','users.id','=','md_cases.user_id')->select('case_managements.*','users.*')->get()->toArray();
+      
+      $user_email =  $data['email'];
 
-echo "<pre>";
-print_r($data);
-echo "<pre>";
-
-      if(!empty($data)){
-        $user_email =  $data['email'];
-
-       $user_phone = $data['mobile'];
-      }
-       
-
+      $user_phone = $data['mobile'];
+    
 
       $r = get_token();
       $token_data = json_decode($r);
       $token = $token_data->access_token;
 
       foreach($data as $key=>$value){
+
+         $follow_up_data = Mdcases::join('case_managements','case_managements.md_case_id', '=','md_cases.case_id' )->join('follow_up','follow_up.md_case_id', '=','md_cases.case_id' )->select('follow_up.follow_up_no')->where('case_managements.md_case_id',$value['md_case_id'])->get()->toArray();
 
         $user_id = $value['user_id'];
         $case_id = $value['md_case_id'];
@@ -148,7 +143,7 @@ echo "<pre>";
 
               //send welcome email 
 
-                if( $support_reason != NULL && $value['follow_up_no'] == 0){
+                if( $support_reason != NULL && $follow_up_data['follow_up_no'] == 0){
 
                   $email_data = array();
 
@@ -240,7 +235,7 @@ echo "<pre>";
                 }
                 
 
-                if($value['follow_up_no'] == 0){
+                if($follow_up_data['follow_up_no'] == 0){
 
                   if($md_case_status == 'completed' && $value['abstinence_form']!= 0 && $value['sign_ipledge_consent']!= 0){
 
@@ -249,7 +244,7 @@ echo "<pre>";
                   }
                 }
 
-                if($value['follow_up_no'] != 0){
+                if($follow_up_data['follow_up_no'] != 0){
 
                   if($md_case_status == 'completed' && $value['prior_auth_date'] != NULL){
 
@@ -280,7 +275,7 @@ echo "<pre>";
 
                 //send welcome email 
 
-                if( $support_reason != NULL && $value['follow_up_no'] == 0){
+                if( $support_reason != NULL && $follow_up_data['follow_up_no'] == 0){
 
                   $email_data = array();
 

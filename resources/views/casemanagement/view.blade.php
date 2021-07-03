@@ -1184,7 +1184,7 @@
 					<div class="col-md-12">
 							<h2>User Photos</h2>
 						</div>
-						@if($user_pic->left_pic)
+						@if(isset($user_pic->left_pic))
 						<div class="col-md-3">
 							<section class="card">
 								<div class="card-body">

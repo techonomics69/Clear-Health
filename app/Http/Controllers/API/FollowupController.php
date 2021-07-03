@@ -176,18 +176,18 @@ class FollowupController extends BaseController
             endif;
           endif;
         }
-        echo '<pre>';
-        print_r($data['follow_up_no']);
-        print_r($followUpAns['follow_up_no']);
-        die;
       }
 
-      if (!empty($followUpAns)) :          
+      if (!empty($followUpAns)) :
         if ($data['follow_up_no'] !== $followUpAns['follow_up_no']) :
-          $caseManage = CaseManagement::find($case_id);            
+          echo '<pre>';
+          print_r($data['follow_up_no']);
+          print_r($followUpAns['follow_up_no']);
+          die;
+          $caseManage = CaseManagement::find($case_id);
           if ($caseManage) :
             $case_data['follow_up'] = $data['follow_up_no'];
-            $caseSave = $caseManage->update($case_data);            
+            $caseSave = $caseManage->update($case_data);
             if ($userGender == 'female') :
               $input_data['case_status'] = 'verify_pregnancy';
             else :
@@ -197,9 +197,9 @@ class FollowupController extends BaseController
           endif;
           dd($data);
         endif;
-        $followUpAns = $followUpAns->update($data);        
+        $followUpAns = $followUpAns->update($data);
       endif;
-      
+
       return $this->sendResponse($followUpAns, 'Follow Up Data Updated Successfully');
     } catch (\Exception $ex) {
       return $this->sendError('Server error', array($ex->getMessage()));

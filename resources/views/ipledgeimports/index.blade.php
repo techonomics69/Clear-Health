@@ -261,7 +261,7 @@
 	 $('.ipledgeList').DataTable({
 			"dom": '<"top"if>rt<"bottom"lp><"clear">',
 			"oSearch": { "bSmart": false, "bRegex": true },
-			// orderCellsTop: true,
+			orderCellsTop: true,
         	fixedHeader: true
 		});
 	});

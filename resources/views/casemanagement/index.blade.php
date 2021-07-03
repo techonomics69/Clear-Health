@@ -41,7 +41,7 @@
           <div class="row" style="padding: 20px;">
             <div class="col-md-12">
               <div class="">
-                <table class="table table-responsive table-striped table-bordered nowrap" style=" width:100%" id="CaseManagementList">
+                <table class="table table-striped table-bordered nowrap" style=" width:100%" id="CaseManagementList">
                   <thead>
                     <tr>
                       <th>SR</th>
@@ -165,20 +165,20 @@
 @section('scriptsection')
 <script>
   $.noConflict();
-  // jQuery(document).ready(function($) {
-    // $('#CaseManagementList').DataTable({
-      // "dom": '<"top"if>rt<"bottom"lp><"clear">',
-      // "dom": '<"dt-buttons"Bfli>rtp',
-			// "paging": true,
-			// "autoWidth": true,
-			// "fixedHeader": true,
+  jQuery(document).ready(function($) {
+    $('#CaseManagementList').DataTable({
+      "dom": '<"top"if>rt<"bottom"lp><"clear">',
+
+			"paging": true,
+			"autoWidth": true,
+			"fixedHeader": true,
 		
-      //  "scrollY": 400,
+        "scrollY": 400,
       // "scrollX": true,
 
  
 
-    // });
+     });
 
     /*$.ajax({
             method:"post",
@@ -195,18 +195,9 @@
                  alert(res);  
             }
         });*/
-  // });
+   });
 
-  jQuery(document).ready(function($) {
-    $('#CaseManagementList').DataTable(
-        {
 
-            "paging": false,
-            "fixedHeader": true,
-            "bDestroy": true,
-        }
-    );
-});
 
 </script>
 @endsection

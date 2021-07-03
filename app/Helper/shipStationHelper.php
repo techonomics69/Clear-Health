@@ -100,6 +100,7 @@ class shipStationHelper {
         $addNot->noti_message = "Your order #".$orderData['order_id']." has been places!";
         $addNot->save(); 
 
+        
         return (isset($newOrder)) ? $newOrder : 'none';
     }
 

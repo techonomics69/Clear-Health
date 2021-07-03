@@ -99,7 +99,10 @@
 	jQuery( document ).ready(function( $ ) {
     	$('#testimonialList').DataTable({
 			"dom": '<"top"if>rt<"bottom"lp><"clear">',
-
+			"bLengthChange": false,
+        "bAutoWidth": true,
+        "bInfo": false,
+        language: {search: "", searchPlaceholder: "Search"},
 			
 		});
 	});

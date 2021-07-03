@@ -15,12 +15,12 @@ class NotificationController extends BaseController
             $userId = Auth::user()->id;
             $data = Notifications::where('user_id',$userId)->paginate(3);
             if(count($data)>0){
-                $this->sendResponse($data, 'Records found');
+                return $this->sendResponse($data, 'Records found');
             }else{
-                $this->sendError('No records found');    
+               return $this->sendError('No records found');    
             }
         }catch(\Exception $ex){
-            $this->sendError($ex->getMessages());
+           return $this->sendError($ex->getMessage());
         }
     }
 }

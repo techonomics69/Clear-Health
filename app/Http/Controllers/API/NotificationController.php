@@ -12,7 +12,7 @@ class NotificationController extends BaseController
 {
     public function getHomeNotifications(Request $request){
         try{
-            $userId = Auth::user()->id;
+            $userId = $request->user_id;
             $data = Notifications::where('user_id',$userId)->paginate(3);
             if(count($data)>0){
                 return $this->sendResponse($data, 'Records found');

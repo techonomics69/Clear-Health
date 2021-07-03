@@ -38,12 +38,12 @@ class shipStationHelper {
                     
                 if(!empty($value) || ($value!=null)){
                     $getproducts = DB::table('carts as c')->join('products as p','c.product_id','=','p.id')
-                                ->select('p.name','p.image','p.image_detail',
+                                ->select('p.id as productId','p.name','p.image','p.image_detail',
                                 'c.product_price as prod_price','c.quantity as prod_qty',
                                 'c.status as csatus')
                                 ->where('c.id',$value)->get();
                     if(count($getproducts)>0){
-                        $arr1 = array('name'=>$getproducts[0]->name,'quantity'=>$getproducts[0]->prod_qty,
+                        $arr1 = array('productId'=>$getproducts[0]->productId,'name'=>$getproducts[0]->name,'quantity'=>$getproducts[0]->prod_qty,
                                 'unitPrice'=>($getproducts[0]->prod_price!='') ? $getproducts[0]->prod_price : '0',
                                 'warehouseLocation'=>'Nefaire 141 Post Road East Westport, CT 06880',
                                 'imageUrl'=>asset(config('filesystems.products.imageurl').''.$getproducts[0]->image_detail));
@@ -66,6 +66,7 @@ class shipStationHelper {
             $i->unitPrice  = $itm['unitPrice'];
             $i->warehouseLocation = 'Nefaire 141 Post Road East Westport, CT 06880';
             $i->imageUrl = $itm['imageUrl'];
+            $i->productId = $itm['productId'];
             $item[] = $i;
         }
 
@@ -122,7 +123,7 @@ class shipStationHelper {
             foreach($getCarts as $key => $value){
                 if(!empty($value) || ($value!=null)){
                     $getproducts = DB::table('carts as c')->join('products as p','c.product_id','=','p.id')
-                                ->select('p.name','p.image','p.image_detail',
+                                ->select('p.id as productId','p.name','p.image','p.image_detail',
                                 'c.product_price as prod_price','c.quantity as prod_qty',
                                 'c.status as csatus','c.product_id as cart_prod')
                                 ->where('c.id',$value)->get();
@@ -130,7 +131,7 @@ class shipStationHelper {
                         if($getproducts[0]->cart_prod == "33"){
                             $accFlag = true;
                         }else{
-                            $arr1 = array('name'=>$getproducts[0]->name,'quantity'=>$getproducts[0]->prod_qty,
+                            $arr1 = array('productId'=>$getproducts[0]->productId,'name'=>$getproducts[0]->name,'quantity'=>$getproducts[0]->prod_qty,
                             'unitPrice'=>($getproducts[0]->prod_price!='') ? $getproducts[0]->prod_price : '0',
                             'warehouseLocation'=>'Nefaire 141 Post Road East Westport, CT 06880',
                             'imageUrl'=>asset(config('filesystems.products.imageurl').''.$getproducts[0]->image_detail));
@@ -147,6 +148,7 @@ class shipStationHelper {
         }
 
         $item = [];
+        $ProductTotal = 0;
         foreach($getitems as $key => $itm){
             $i = new LaravelShipStation\Models\OrderItem();
             $i->name = $itm['name'];
@@ -154,14 +156,17 @@ class shipStationHelper {
             $i->unitPrice  = $itm['unitPrice'];
             $i->warehouseLocation = 'Nefaire 141 Post Road East Westport, CT 06880';
             $i->imageUrl = $itm['imageUrl'];
+            $i->productId = (int)$itm['productId'];
             $item[] = $i;
+            $ProductTotal += (int)$itm['unitPrice'];
         }
+
 
         $order = new LaravelShipStation\Models\Order();
 	    $order->orderNumber = $orderData['order_id'];
 	    $order->orderDate = date("Y-m-d");
 	    $order->orderStatus = 'awaiting_shipment';
-	    $order->amountPaid = $orderData['total_amount'];
+	    $order->amountPaid = $ProductTotal;
 	    $order->taxAmount = $orderData['tax'];
 	    $order->shippingAmount = $orderData['shipping_fee'];
 	    $order->internalNotes = '';

@@ -443,6 +443,42 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                 }
 
+                //bloodwork notification
+
+                    $bloodwork_email_data = array();
+
+                    $bloodwork_email_data['email'] = $user_email;
+                    $bloodwork_email_data['title'] = 'helloclearhealth.com';
+                    $bloodwork_email_data['body'] = "Please complete your blood work ";
+                    $bloodwork_email_data['template'] = 'emails.mySendMail';
+
+                    $smsdata = array();
+
+                    //$user = array($user_phone);
+                    $user = array('+917874257069');
+                    $bloodworksmsdata['users'] = $user;
+                    $bloodworksmsdata['body'] = "Please complete your blood work";
+
+                if($preferred_pharmacy_id =='13012' && $curexadata['order_status'] == "out_for_delivery" && $difference = 50 ){
+                   
+                   //send welcome email 
+                    $email_sent = sendEmail($bloodwork_email_data); 
+
+                  //welcome sms
+                    $sms_sent = sendsms($smsdata);
+                    
+                }
+
+              if($preferred_pharmacy_id !='13012' && $pickup_medication_difference = 50){
+                //send welcome email 
+                    $email_sent = sendEmail($bloodwork_email_data); 
+
+                  //welcome sms
+                    $sms_sent = sendsms($smsdata);
+              }
+
+                //end of bloodwork notification
+
 
               }else{
                 /*

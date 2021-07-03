@@ -1181,8 +1181,11 @@
 				<!--start 6th tab-->
 				<div id="photos" class="tab-pane fade in ">
 					<div class="row" style="padding: 20px;">
-						<div class="col-md-12">
+						
 							@foreach($followup_que as $key => $data)
+							<div class="col-md-12">
+							<h2>Follow Up: {{$key+1}}</h2>
+							</div>
 							<div class="col-md-3">
 								<section class="card">
 									<div class="card-body">
@@ -1234,7 +1237,7 @@
 								</section>
 							</div>
 							@endforeach
-						</div>
+						
 
 					</div>
 				</div>

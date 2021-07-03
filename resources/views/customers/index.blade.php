@@ -109,10 +109,7 @@
   jQuery( document ).ready(function( $ ) {
       $('#customerList').DataTable({
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
-      {"sWidth": "300px", "aTargets": [0]},
-            {"sWidth": "500px", "aTargets": [1]},
-            {"sWidth": "500px", "aTargets": [2]},
-            {"sWidth": "500px", "aTargets": [3]},
+
     });
 
     

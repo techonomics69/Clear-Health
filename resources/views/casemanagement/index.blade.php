@@ -198,7 +198,7 @@
         header: true,
     },
        scrollY:        "300px",
-        scrollX:        false,
+      //   scrollX:        false,
 
  
 

@@ -794,9 +794,10 @@
 													@else
 													<div class="ipledge_button">
 														<button class="btn btn-secondry" type="submit"> Verify</button>
+														<button class="btn btn-secondry" type="submit"> Send Notification</button>
 													</div>
 													<div class="ipledge_button">
-														<button class="btn btn-secondry" type="submit"> Send Notification</button>
+														
 													</div>
 													@endif
 													{!! Form::close() !!}

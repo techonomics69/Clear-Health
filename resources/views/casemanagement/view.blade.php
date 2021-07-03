@@ -557,7 +557,9 @@
 									<li><a id="prior_auth" class="btn nonmedicalmsg" data-toggle="tab" href="#priorauthtab">Prior Auth</a></li>
 									<li><a id="triggers" class="btn nonmedicalmsg" data-toggle="tab" href="#triggerstab">Triggers</a></li>
 									@endif
-									<li>Follow up:<select><option>1</option></select></li>
+									<li>Follow up:<select>
+											<option>1</option>
+										</select></li>
 								</ul>
 								<div class="tab-content">
 									<div id="ipledgetab" class="tab-pane fade in @if($msg_tab != 1) active show @endif">
@@ -780,7 +782,7 @@
 														<p class="auth_text">iPledge:</p>&nbsp;&nbsp;
 														<div class="check-register mangesubscription smalltext checkonly">
 															<label class="custome-checkbox">
-																<input type="checkbox" @if($user_case_management_data->ipledge_items): checked="checked" @endif  name="ipledge">
+																<input type="checkbox" @if($user_case_management_data->ipledge_items): checked="checked" @endif name="ipledge">
 																<span class="checkmark"></span>
 															</label>
 														</div>
@@ -794,8 +796,8 @@
 													</div>
 													@else
 													<div class="ipledge_button">
-														<button class="btn btn-secondry" type="submit"> Verify</button>														
-													</div>													
+														<button class="btn btn-secondry" type="submit"> Verify</button>
+													</div>
 													@endif
 													{!! Form::close() !!}
 												</div>
@@ -1233,6 +1235,32 @@
 									<div class="box-block mtb32">
 										<h3 class="font-weight-bold"><span class="text-underline">Payments</span></h3>
 									</div>
+									<table class="table table-responsive-md table-striped no-footer">
+										<thead>
+											<tr>
+												<th scope="col">No</th>
+												<th scope="col">Date/Time</th>
+												<th scope="col">Order id</th>
+												<th scope="col">Transaction id</th>
+												<th scope="col">Amount</th>
+												<th scope="col">Status</th>
+												<!-- <th scope="col">Action</th> -->
+											</tr>
+										</thead>
+										<tbody class="list_view_outer">
+											@foreach($checkout as $key => $data)
+											<tr>
+												<td>{{$key + 1}}</td>
+												<td>{{$data->updated_at}}</td>
+												<td>{{$data->order_id}}</td>
+												<td>{{$data->transaction_id}}</td>
+												<td>{{$data->total_amount}}</td>
+												<td>{{$data->payment_status}}</td>
+												<!-- <td><i class="fa fa-eye"></i></td> -->
+											</tr>
+											@endforeach
+										</tbody>
+									</table>
 								</div>
 							</section>
 						</div>
@@ -1243,13 +1271,13 @@
 						<div class="col-md-12">
 							<section class="card">
 								<div class="card-body">
-								
-								<div class="row">
+
+									<div class="row">
 										<div class="col-md-6">
 
 											<div class="box-block mtb32">
 												<h3 class="font-weight-bold"><span class="text-underline">Prescribed products shippments</span></h3>
-												
+
 												<div class="col-md-12  form-group">
 													<strong>Order ID :</strong>
 													<?php if (isset($skincare_summary['order_id']) && $skincare_summary['order_id'] != '') { ?>
@@ -1259,44 +1287,44 @@
 
 												<div class="col-md-12  form-group">
 													<strong>Product Name:</strong>
-		
+
 													{{$skincare_summary['product_name']}}
-		
+
 												</div>
 
 												<div class="col-md-12  form-group">
 													<strong>Order Status:</strong>
 													<?php
-														if(count($prescribe_shipments)>0){
-															if($prescribe_shipments[0]->order_status == 'new'){
-																echo "New";
-															}else if($prescribe_shipments[0]->order_status == 'in_progress'){
-																echo "In progress";
-															}else if($prescribe_shipments[0]->order_status == 'out_for_delivery'){
-																echo "Out for delivery";
-															}else if($prescribe_shipments[0]->order_status == 'completed'){
-																echo "Completed";
-															}else if($prescribe_shipments[0]->order_status == 'cancelled'){
-																echo "Cancelled";
-															}
-														}else{
-															echo "-";
+													if (count($prescribe_shipments) > 0) {
+														if ($prescribe_shipments[0]->order_status == 'new') {
+															echo "New";
+														} else if ($prescribe_shipments[0]->order_status == 'in_progress') {
+															echo "In progress";
+														} else if ($prescribe_shipments[0]->order_status == 'out_for_delivery') {
+															echo "Out for delivery";
+														} else if ($prescribe_shipments[0]->order_status == 'completed') {
+															echo "Completed";
+														} else if ($prescribe_shipments[0]->order_status == 'cancelled') {
+															echo "Cancelled";
 														}
+													} else {
+														echo "-";
+													}
 													?>
 												</div>
 
 												<div class="col-md-12  form-group">
 													<strong>Shipped date:</strong>
 													<?php
-													if(count($prescribe_shipments)>0){
-														echo date("d-m-Y",strtotime($prescribe_shipments[0]->dispached_date));
-													}else{
+													if (count($prescribe_shipments) > 0) {
+														echo date("d-m-Y", strtotime($prescribe_shipments[0]->dispached_date));
+													} else {
 														echo "-";
 													}
 													?>
 												</div>
-		
-		
+
+
 											</div>
 
 										</div>
@@ -1305,70 +1333,69 @@
 											<div class="box-block mtb32">
 												<h3 class="font-weight-bold"><span class="text-underline">Add-ons product shipments</span></h3>
 												<?php
-												if(isset($skincare_summary['shipstation_order_id'])){
-												if ($skincare_summary['shipstation_order_id'] != '') {
-		
-													if ($skincare_summary['getOrder'] != '') {
-														$shipStationOrder = json_decode(json_encode($skincare_summary['getOrder']), true);
+												if (isset($skincare_summary['shipstation_order_id'])) {
+													if ($skincare_summary['shipstation_order_id'] != '') {
+
+														if ($skincare_summary['getOrder'] != '') {
+															$shipStationOrder = json_decode(json_encode($skincare_summary['getOrder']), true);
 												?>
-														<div class="col-md-12  form-group">
-															<strong>Shipstation OrderId : </strong>
-															<?php echo $shipStationOrder['orderId'] ?>
-														</div>
-														<div class="col-md-12  form-group">
-															<strong>Order Number : </strong>
-															<?php echo $shipStationOrder['orderNumber'] ?>
-														</div>
-														<div class="col-md-12  form-group">
-															<strong>Order Date : </strong>
-															<?php echo date("d-m-Y", strtotime($shipStationOrder['orderDate'])); ?>
-														</div>
-														<div class="col-md-12  form-group">
-															<strong>Order Status : </strong>
+															<div class="col-md-12  form-group">
+																<strong>Shipstation OrderId : </strong>
+																<?php echo $shipStationOrder['orderId'] ?>
+															</div>
+															<div class="col-md-12  form-group">
+																<strong>Order Number : </strong>
+																<?php echo $shipStationOrder['orderNumber'] ?>
+															</div>
+															<div class="col-md-12  form-group">
+																<strong>Order Date : </strong>
+																<?php echo date("d-m-Y", strtotime($shipStationOrder['orderDate'])); ?>
+															</div>
+															<div class="col-md-12  form-group">
+																<strong>Order Status : </strong>
+																<?php
+																if ($shipStationOrder['orderStatus'] == 'awaiting_payment') {
+																	echo "Order Processing";
+																} else if ($shipStationOrder['orderStatus'] == 'awaiting_shipment') {
+																	echo "Awaiting shipment";
+																} else if ($shipStationOrder['orderStatus'] == 'shipped') {
+																	echo "Shipped";
+																} else {
+																}
+																//  echo $shipStationOrder['orderStatus'];
+																?>
+															</div>
 															<?php
-															if($shipStationOrder['orderStatus']=='awaiting_payment'){
-																echo "Order Processing";
-															}else if($shipStationOrder['orderStatus']=='awaiting_shipment'){
-																echo "Awaiting shipment";
-															}else if($shipStationOrder['orderStatus']=='shipped'){
-																echo "Shipped";
-															}else{
-																
-															}
-															//  echo $shipStationOrder['orderStatus'];
+															if ($shipStationOrder['orderStatus'] == 'shipped') {
 															?>
-														</div>
-														<?php
-														if ($shipStationOrder['orderStatus'] == 'shipped') {
-														?>
-															<div class="col-md-12  form-group">
-																<strong>Estimated ship date : </strong>
-																<?php echo date("d-m-Y", strtotime($shipStationOrder['shipDate'])); ?>
-															</div>
-														<?php
-														
-														
-															$tracking = json_decode(json_encode($skincare_summary['trackOrder']), true);
-															if(isset($tracking['shipments'][0])){
-														?>
-															<div class="col-md-12  form-group">
-																<strong> Tracking No: </strong>
-																<a href="https://tools.usps.com/go/TrackConfirmAction.action?tLabels=<?php echo $tracking['shipments'][0]['trackingNumber']; ?>" target="_blank"><?php echo $tracking['shipments'][0]['trackingNumber']; ?></a>
-															</div>
+																<div class="col-md-12  form-group">
+																	<strong>Estimated ship date : </strong>
+																	<?php echo date("d-m-Y", strtotime($shipStationOrder['shipDate'])); ?>
+																</div>
+																<?php
+
+
+																$tracking = json_decode(json_encode($skincare_summary['trackOrder']), true);
+																if (isset($tracking['shipments'][0])) {
+																?>
+																	<div class="col-md-12  form-group">
+																		<strong> Tracking No: </strong>
+																		<a href="https://tools.usps.com/go/TrackConfirmAction.action?tLabels=<?php echo $tracking['shipments'][0]['trackingNumber']; ?>" target="_blank"><?php echo $tracking['shipments'][0]['trackingNumber']; ?></a>
+																	</div>
 												<?php
+																}
 															}
 														}
 													}
 												}
-											}
 												?>
 											</div>
 
 										</div>
-								</div>									
-																		
-									
-									
+									</div>
+
+
+
 
 								</div>
 							</section>

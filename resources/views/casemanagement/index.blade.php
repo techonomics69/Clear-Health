@@ -196,9 +196,10 @@
         "bAutoWidth": true,
         "fixedHeader": {
         header: true,
-    },
-    scrollY:        "300px",
+        scrollY:        "300px",
         scrollX:        true,
+    },
+ 
         // scrollCollapse: true,
  
 

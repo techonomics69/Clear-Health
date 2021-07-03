@@ -790,14 +790,12 @@
 													@if($user_case_management_data->verify_prior_auth && $user_case_management_data->ipledge_items):
 													<div class="ipledge_button">
 														<button class="btn btn-secondry" type="button"> Verified</button>
+														<button class="btn btn-secondry" type="button"> Send Notification</button>
 													</div>
 													@else
 													<div class="ipledge_button">
-														<button class="btn btn-secondry" type="submit"> Verify</button>
-													</div>
-													<div class="ipledge_button">
-														<button class="btn btn-secondry" type="submit"> Send Notification</button>
-													</div>
+														<button class="btn btn-secondry" type="submit"> Verify</button>														
+													</div>													
 													@endif
 													{!! Form::close() !!}
 												</div>

@@ -1191,8 +1191,13 @@
 										<div class="row">
 											@foreach($followup_que as $key => $data)
 											<div class="col-md-3">
-											{{dd($data);}}
-											<!-- <img src="{{$data}}"> -->
+											<img src="/public/images/Users/{{$data->left_face}}" class="img">
+											{{dd($data->left_face);}}
+											<!-- {{dd($data->right_face);}}
+											{{dd($data->center_face);}}
+											{{dd($data->back_photo);}}
+											{{dd($data->chest_photo);}}
+											{{dd($data->left_face);}} -->
 											</div>
 											@endforeach
 										</div>

@@ -54,7 +54,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
         $user_phone = $value['mobile'];
 
         $gender = 'female';//0;
-        $product_type = "Accutane"
+        $product_type = "Accutane";
 
         $product_type = $value['product_type'];
 

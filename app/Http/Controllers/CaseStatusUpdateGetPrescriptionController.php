@@ -252,7 +252,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                   if($md_case_status == 'completed' && $value['prior_auth_date'] != NULL){
 
-                    //$prior_auth_date = new Carbon($value['prior_auth_date']);
+                    $prior_auth_date = new Carbon($value['prior_auth_date']);
 
                     //$auth_date = Carbon::createFromFormat('Y-m-d H:i:s', $value['prior_auth_date']);
                     $now = Carbon::now();

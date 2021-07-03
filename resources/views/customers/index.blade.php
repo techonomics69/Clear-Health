@@ -41,7 +41,7 @@
               <div class="row"  style="padding: 20px;">
                 <div class="col-md-12">
                 <div class="">
-                  <table class="table  table-responsive-md table-striped table-bordered" style="width:100%" id="customerList">
+                  <table class="table  table-responsive table-striped table-bordered" style="width:100%" id="customerList">
                     <thead>
                     <tr>
                       <th>No</th>             

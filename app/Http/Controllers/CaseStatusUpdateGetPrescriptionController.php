@@ -556,7 +556,9 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
     }
 
     public function save_prescription_response($response,$user_id,$case_id,$system_case_id){
+
       $prescription_data = json_decode($response);
+      $input_prescription = array();
 
       // echo "<pre>";
       // print_r($prescription_data[0]->dosespot_prescription_sync_status);
@@ -571,10 +573,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
       //foreach($prescription_data as $key=>$prescription){
 
-      echo "<pre> 12";
-      print_r($prescription_data[0]->dosespot_prescription_id);
-      echo "<pre>";
-      exit();
+   
 
             $input_prescription['dosespot_prescription_id'] = $prescription_data[0]->dosespot_prescription_id ;
             $input_prescription['dosespot_prescription_sync_status'] = $prescription_data[0]->dosespot_prescription_sync_status;

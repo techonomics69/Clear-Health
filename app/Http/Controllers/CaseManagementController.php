@@ -158,13 +158,11 @@ class CaseManagementController extends Controller
           $response = curl_exec($curl);
           curl_close($curl);
           $response1 = json_decode($response);
-          if(isset($response1)){
-            if(count($response1)>0){
+          if (isset($response1)) {
+            if (count($response1) > 0) {
               $skincare_summary['pharmacy_pickup'] =  $response1->name;
             }
           }
-          
-          
         } else {
           $skincare_summary['pharmacy_pickup'] = 'Clear Health Pharmacy Network';
         }
@@ -325,23 +323,21 @@ die();*/
     // print_r($user_case_management_data->id);
     // echo "</pre>";
     // die();
-   
-  if(isset($skincare_summary['order_id'])){
-    if($skincare_summary['order_id']!='' || $skincare_summary['order_id']!=null){
-      $prescribe_shipments =  DB::table('checkout as ch')->join('curexa_order as cu','cu.order_id','=','ch.order_id')
-                        ->select('cu.order_status','dispached_date')
-                        ->where('cu.order_id',$skincare_summary['order_id'])
-                        ->get();
-    }else{
+
+    if (isset($skincare_summary['order_id'])) {
+      if ($skincare_summary['order_id'] != '' || $skincare_summary['order_id'] != null) {
+        $prescribe_shipments =  DB::table('checkout as ch')->join('curexa_order as cu', 'cu.order_id', '=', 'ch.order_id')
+          ->select('cu.order_status', 'dispached_date')
+          ->where('cu.order_id', $skincare_summary['order_id'])
+          ->get();
+      } else {
+        $prescribe_shipments =  array();
+      }
+    } else {
       $prescribe_shipments =  array();
     }
-  }else{
-    $prescribe_shipments =  array();
-  }  
-  
-  return view('casemanagement.view', compact('user_case_management_data', 'category', 'general_que', 'accutane_que', 'topical_que', 'skincare_summary', 'message_data', 'message_details', 'msg_history', 'followup_que','prescribe_shipments'));
 
-    
+    return view('casemanagement.view', compact('user_case_management_data', 'category', 'general_que', 'accutane_que', 'topical_que', 'skincare_summary', 'message_data', 'message_details', 'msg_history', 'followup_que', 'prescribe_shipments'));
   }
 
   /**
@@ -668,12 +664,12 @@ die();*/
       $input['prior_auth_date'] = $request['date'];
 
       CaseManagement::whereId($request['case_id'])->update($input);
+      $input_data['case_status'] = 'check_off_ipledge';
+      $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
       toastr()->success('Prior Auth Uploaded Successfully');
 
       return redirect()->back();
     }
-    // $input_data['case_status'] = 'check_off_ipledge';
-    // $caseHistory = CaseHistory::whereId($request['id'])->update($input_data);
   }
 
   public function checkOffIpledge(Request $request)
@@ -697,6 +693,8 @@ die();*/
       toastr()->success('Ipledge Items Verified Successfully');
     endif;
     CaseManagement::whereId($request['case_id'])->update($input);
+    $input_data['case_status'] = 'trigger';
+    $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
     return redirect()->back();
     // $input_data['case_status'] = 'blood_work';
     // $caseHistory = CaseHistory::whereId($request['id'])->update($input_data);

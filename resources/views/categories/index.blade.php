@@ -55,11 +55,11 @@
 					<table class="table table-responsive table-striped table-bordered " style="width:100%" id="categoriesList">
 						<thead>
 						<tr>
-							<th width="60px">No</th>
+							<th>No</th>
 							<th>Name</th>
 							<th>Photo</th>
 							<th>Order</th>
-							<th width="200px">Action</th>
+							<th>Action</th>
 						</tr>
 						</thead>
 						<tbody>

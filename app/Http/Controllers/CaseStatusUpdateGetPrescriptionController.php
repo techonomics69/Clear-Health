@@ -144,7 +144,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
               //send welcome email 
 
-            $follow_up_data['follow_up_no'] = 0;
+            $follow_up_data['follow_up_no'] = 2;
 
                 if( $support_reason != NULL && $follow_up_data['follow_up_no'] == 0){
 

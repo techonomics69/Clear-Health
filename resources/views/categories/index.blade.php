@@ -112,9 +112,7 @@
     	$('#categoriesList').DataTable({
 			"dom": '<"top"if>rt<"bottom"lp><"clear">',
 			"oSearch": { "bSmart": false, "bRegex": true }
-			"aoColumnDefs": [
-   
-                        ],
+
 
 		});
 	});

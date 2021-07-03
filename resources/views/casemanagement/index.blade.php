@@ -41,7 +41,7 @@
           <div class="row" style="padding: 20px;">
             <div class="col-md-12">
               <div class="">
-                <table class="table table-responsive table-striped table-bordered nowrap" style=" width:100%" id="CaseManagementList">
+                <table class="table stripe row-border order-column table-responsive table-striped table-bordered nowrap" style=" width:100%" id="CaseManagementList">
                   <thead>
                     <tr>
                       <th>SR</th>
@@ -197,9 +197,9 @@
         "fixedHeader": {
         header: true,
     },
-      //  scrollY:        "300px",
-        scrollX:        false,
-
+    scrollY:        "300px",
+        scrollX:        true,
+        scrollCollapse: true,
  
 
      });
@@ -225,8 +225,10 @@
 
 </script>
 @endsection
-<!-- <style>
-  .table-bordered{
-    border: 0;
-  }
-</style> -->
+<style>
+  th, td { white-space: nowrap; }
+    div.dataTables_wrapper {
+        width: 800px;
+        margin: 0 auto;
+    }
+</style>

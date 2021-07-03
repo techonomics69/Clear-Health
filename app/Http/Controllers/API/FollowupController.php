@@ -192,6 +192,7 @@ class FollowupController extends BaseController
             $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
           endif;
         endif;
+        dd($data);
         $followUpAns = $followUpAns->update($data);        
       endif;
       

@@ -562,8 +562,9 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
       foreach($prescription_data as $key=>$prescription){
 
+         $prescription = json_decode(json_encode($prescription), true);
+
           echo "<pre>";
-          print_r($key);
           print_r($prescription);
           echo "<pre>";
           exit();

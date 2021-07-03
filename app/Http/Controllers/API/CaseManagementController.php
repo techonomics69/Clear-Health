@@ -1190,7 +1190,7 @@ public function getMdDetailForMessage(Request $request){
       $product_type = $check_form['product_type'];
 
 
-      if($user['gender'] == 'male' && $product_type =='Accutane' && $check_form['abstinence_form'] == 1){
+      if($user['gender'] == 'male' && $product_type =='Accutane' && $check_form['sign_ipledge_consent'] == 1){
 
         $iPledgeId = Ipledge::where([['patients_type','0'],['gender',$gen]])->whereNull('assigned_date')->OrderBy('id', 'ASC')->first();
         ;

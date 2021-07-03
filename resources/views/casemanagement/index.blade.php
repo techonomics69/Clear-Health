@@ -194,9 +194,10 @@
         ],
          "bLengthChange": false,
         "bAutoWidth": true,
+        "Info": false,
     //     "fixedHeader": {
     //     header: true,
-    //     scrollY:        "300px",
+       "scrollY": 300px,
     //     scrollX:        true,
     // },
  

@@ -22,6 +22,7 @@ use File;
 use Exception;
 use App\Helper\shipStationHelper;
 use App\Models\Checkout;
+use App\Models\UserPics;
 use GuzzleHttp\Guzzle;
 use LaravelShipStation;
 use LaravelShipStation\ShipStation;
@@ -338,6 +339,8 @@ die();*/
       $prescribe_shipments =  array();
     }
     $checkout = Checkout::where('case_id', $user_case_management_data['id'])->where('user_id', $user_case_management_data['user_id'])->get();
+    $user_pic = UserPics::where('case_id', $user_case_management_data['id'])->where('user_id', $user_case_management_data['user_id'])->get();
+    dd($user_pic);
     return view('casemanagement.view', compact('user_case_management_data', 'category', 'general_que', 'accutane_que', 'topical_que', 'skincare_summary', 'message_data', 'message_details', 'msg_history', 'followup_que', 'prescribe_shipments', 'checkout'));
   }
 

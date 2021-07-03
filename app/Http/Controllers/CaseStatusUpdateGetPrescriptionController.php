@@ -217,7 +217,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                     $curexa_para['case_id'] = $case_id;
                     $curexa_para['system_case_id'] = $system_case_id;
 
-                    foreach($prescription_data as $key=>$prescription){
+                    /*foreach($prescription_data as $key=>$prescription){
                       $curexa_para['rx_id'] =  $prescription->dosespot_prescription_id;
                       $curexa_para['quantity_dispensed'] = $prescription->quantity;
                       $curexa_para['days_supply'] = $prescription->days_supply;
@@ -229,7 +229,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                       if(!empty($curexa_create_order_data)){
                           $this->store_curexa_order_data($curexa_create_order_data);
                       }
-                    }
+                    }*/
                    
 
                     //end of curexa  create order api 

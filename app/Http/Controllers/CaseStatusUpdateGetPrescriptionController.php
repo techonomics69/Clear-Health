@@ -591,23 +591,24 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
             $input_prescription['dosespot_prescription_sync_status'] = $prescription->dosespot_prescription_sync_status;
             $input_prescription['dosespot_confirmation_status'] = $prescription->dosespot_confirmation_status;
 
-            echo "<pre> 111";
-            print_r($input_prescription);
-            echo "<pre>";
-            exit();  
 
-            $input_prescription['dosespot_confirmation_status_details'] =($prescription->dosespot_confirmation_status_details !='')? $prescription->dosespot_confirmation_status_details : NULL;
+            $input_prescription['dosespot_confirmation_status_details'] = (isset($prescription->dosespot_confirmation_status_details !='')) ? $prescription->dosespot_confirmation_status_details : NULL;
             $input_prescription['refills'] = $prescription->refills;
             $input_prescription['quantity'] = $prescription->quantity;
             $input_prescription['days_supply'] = $prescription->days_supply;
             $input_prescription['no_substitutions'] = $prescription->no_substitutions;
-            $input_prescription['pharmacy_notes'] = ($prescription->pharmacy_notes != '') ? $prescription->pharmacy_notes : NULL;
+            $input_prescription['pharmacy_notes'] = (isset($prescription->pharmacy_notes != '')) ? $prescription->pharmacy_notes : NULL;
             $input_prescription['directions'] = $prescription->directions;
             $input_prescription['dispense_unit_id'] = $prescription->dispense_unit_id;
             $input_prescription['preferred_pharmacy_id'] = $prescription->pharmacy_id;
             $input_prescription['case_id'] = '"'.$case_id.'"';
             $input_prescription['user_id'] = $user_id;
             $input_prescription['system_case_id'] = $system_case_id;
+
+            echo "<pre>";
+            print_r($input_prescription);
+            echo "<pre>";
+            exit();
 
             $CasePrescription_data = CasePrescriptions::create($input_prescription);
           

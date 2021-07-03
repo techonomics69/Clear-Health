@@ -270,8 +270,8 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                     print_r($display_till_date);
                     echo "<pre>";
 
-                    $date1 = Carbon::createFromFormat('Y-m-d H:i:s', $today_date);
-                    $date2 = Carbon::createFromFormat('Y-m-d H:i:s', $display_till_date);
+                    $today_date = Carbon::createFromFormat('Y-m-d H:i:s', $today_date);
+                    $display_till_date = Carbon::createFromFormat('Y-m-d H:i:s', $display_till_date);
                   
 
                     $result = $date1->lt($date2);

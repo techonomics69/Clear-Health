@@ -60,7 +60,7 @@
             </div> -->
             <div class="row" style="padding: 20px;">
                 <div class="col-md-12">
-            <table class="table  table-responsive-md table-striped table-bordered" style="width:100%" id="productsList">
+            <table class="table  table-responsive table-striped table-bordered" style="width:100%" id="productsList">
                 <thead>
                 <tr>
                     <th width="60px">No</th>
@@ -136,6 +136,19 @@
     jQuery( document ).ready(function( $ ) {
         $('#productsList').DataTable({
             "dom": '<"top"if>rt<"bottom"lp><"clear">',
+            "aoColumnDefs": [
+     
+     {"sWidth": "300px", "aTargets": [0]},
+     {"sWidth": "100px", "aTargets": [1]},
+     {"sWidth": "200px", "aTargets": [2]},
+     {"sWidth": "100px", "aTargets": [3]},
+     {"sWidth": "100px", "aTargets": [5]},
+     {"sWidth": "200px", "aTargets": [6]},
+     {"sWidth": "300px", "aTargets": [7]},
+
+    
+    
+ ],
         });
     });
     

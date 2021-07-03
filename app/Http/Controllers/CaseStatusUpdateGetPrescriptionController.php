@@ -560,9 +560,10 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
    
 
-      foreach($prescription_data[0] as $key=>$prescription){
+      foreach($prescription_data as $key=>$prescription){
 
           echo "<pre>";
+          print_r($key);
           print_r($prescription);
           echo "<pre>";
           exit();

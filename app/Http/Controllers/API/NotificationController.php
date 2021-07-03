@@ -33,6 +33,7 @@ class NotificationController extends BaseController
             if(count($data)>0){
                 $queryString = ['user_id'=>$userId];
                 $data->appends($queryString);
+                
                 return $this->sendResponse($data, 'Records found');
             }else{
                return $this->sendError('No records found');    

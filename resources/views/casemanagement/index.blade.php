@@ -197,7 +197,7 @@
         });*/
   // });
 
-  $(document).ready(function() {
+  jQuery(document).ready(function() {
     $('#CaseManagementList').DataTable(
         {
 

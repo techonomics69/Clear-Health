@@ -169,7 +169,7 @@
     $('#CaseManagementList').DataTable({
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
       // "dom": '<"dt-buttons"Bfli>rtp',
-			"paging": false,
+			"paging": true,
 			"autoWidth": true,
 			"fixedHeader": true,
 		

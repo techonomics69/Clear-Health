@@ -1234,33 +1234,33 @@
 								<div class="card-body">
 									<div class="box-block mtb32">
 										<h3 class="font-weight-bold"><span class="text-underline">Payments</span></h3>
+										<table class="table table-responsive-md table-striped no-footer">
+											<thead>
+												<tr>
+													<th scope="col">No</th>
+													<th scope="col">Date/Time</th>
+													<th scope="col">Order id</th>
+													<th scope="col">Transaction id</th>
+													<th scope="col">Amount</th>
+													<th scope="col">Status</th>
+													<!-- <th scope="col">Action</th> -->
+												</tr>
+											</thead>
+											<tbody class="list_view_outer">
+												@foreach($checkout as $key => $data)
+												<tr>
+													<td>{{$key + 1}}</td>
+													<td>{{$data->updated_at}}</td>
+													<td>{{$data->order_id}}</td>
+													<td>{{$data->transaction_id}}</td>
+													<td>{{$data->total_amount}}</td>
+													<td>{{$data->payment_status}}</td>
+													<!-- <td><i class="fa fa-eye"></i></td> -->
+												</tr>
+												@endforeach
+											</tbody>
+										</table>
 									</div>
-									<table class="table table-responsive-md table-striped no-footer">
-										<thead>
-											<tr>
-												<th scope="col">No</th>
-												<th scope="col">Date/Time</th>
-												<th scope="col">Order id</th>
-												<th scope="col">Transaction id</th>
-												<th scope="col">Amount</th>
-												<th scope="col">Status</th>
-												<!-- <th scope="col">Action</th> -->
-											</tr>
-										</thead>
-										<tbody class="list_view_outer">
-											@foreach($checkout as $key => $data)
-											<tr>
-												<td>{{$key + 1}}</td>
-												<td>{{$data->updated_at}}</td>
-												<td>{{$data->order_id}}</td>
-												<td>{{$data->transaction_id}}</td>
-												<td>{{$data->total_amount}}</td>
-												<td>{{$data->payment_status}}</td>
-												<!-- <td><i class="fa fa-eye"></i></td> -->
-											</tr>
-											@endforeach
-										</tbody>
-									</table>
 								</div>
 							</section>
 						</div>

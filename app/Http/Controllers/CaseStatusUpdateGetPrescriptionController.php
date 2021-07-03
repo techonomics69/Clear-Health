@@ -162,13 +162,13 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
               //end of welcome email  
 
               //welcome sms
-                $smsdata = array();
+                /*$smsdata = array();
 
                 //$user = array($user_phone);
                 $user = array('+917874257069');
                 $smsdata['users'] = $user;
                 $smsdata['body'] = "Welcome SMS to Clear Health when treatment is approved detailing Accutane instructions + prompt them to sign forms";
-                $sms_sent = sendsms($smsdata);
+                $sms_sent = sendsms($smsdata);*/
 
               //end of welcome message                                                      
 
@@ -252,7 +252,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                   if($md_case_status == 'completed' && $value['prior_auth_date'] != NULL){
 
-                    //$prior_auth_date = new Carbon($value['prior_auth_date']);
+                    $prior_auth_date = new Carbon($value['prior_auth_date']);
 
                     //$auth_date = Carbon::createFromFormat('Y-m-d H:i:s', $value['prior_auth_date']);
                     $now = Carbon::now();

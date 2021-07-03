@@ -61,7 +61,9 @@ class FollowupController extends BaseController
         ->where('case_id', $data['case_id'])
         ->where('follow_up_status', 'completed')
         ->count();
-      dd($followUpCount);
+        echo '<pre>';
+        print_r($followUpCount);
+        die;
       $followUpAns = FollowUp::where('user_id', $data['user_id'])
         ->where('case_id', $data['case_id'])
         // ->where('follow_up_no', $data['follow_up_no'])

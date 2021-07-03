@@ -136,6 +136,19 @@
     jQuery( document ).ready(function( $ ) {
         $('#productsList').DataTable({
             "dom": '<"top"if>rt<"bottom"lp><"clear">',
+            "aoColumnDefs": [
+     
+     {"sWidth": "300px", "aTargets": [0]},
+     {"sWidth": "500px", "aTargets": [1]},
+     {"sWidth": "500px", "aTargets": [2]},
+     {"sWidth": "500px", "aTargets": [3]},
+     {"sWidth": "500px", "aTargets": [5]},
+     {"sWidth": "500px", "aTargets": [6]},
+     {"sWidth": "500px", "aTargets": [7]},
+
+    
+    
+ ],
         });
     });
     

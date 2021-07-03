@@ -168,13 +168,13 @@
   jQuery(document).ready(function($) {
     $('#CaseManagementList').DataTable({
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
-      "dom": '<"dt-buttons"Bfli>rtp',
+
 			"paging": true,
 			"autoWidth": true,
 			"fixedHeader": true,
 		
-       "scrollY": 400,
-      "scrollX": true,
+        "scrollY": 400,
+      // "scrollX": true,
 
  
 

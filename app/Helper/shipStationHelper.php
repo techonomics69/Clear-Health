@@ -6,6 +6,7 @@ use LaravelShipStation\ShipStation;
 use Illuminate\Support\Facades\App;
 use DB;
 use Config;
+use App\Models\Notifications;
 
 class shipStationHelper {
     

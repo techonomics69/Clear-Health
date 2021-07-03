@@ -564,10 +564,10 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
          // $prescription = json_decode(json_encode($prescription), true);
 
-         echo "<pre> data is ";
-         print_r($prescription->dosespot_prescription_sync_status);
-         echo "<pre>";
-         exit();
+         // echo "<pre> data is ";
+         // print_r($prescription->dosespot_prescription_sync_status);
+         // echo "<pre>";
+         // exit();
 
           // echo "<pre>";
           // print_r($prescription);

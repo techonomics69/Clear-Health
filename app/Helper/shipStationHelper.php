@@ -38,7 +38,7 @@ class shipStationHelper {
                     
                 if(!empty($value) || ($value!=null)){
                     $getproducts = DB::table('carts as c')->join('products as p','c.product_id','=','p.id')
-                                ->select('p.id as productId','p.name','p.image','p.image_detail',
+                                ->select('p.id as productId','p.name','p.image','p.image',
                                 'c.product_price as prod_price','c.quantity as prod_qty',
                                 'c.status as csatus')
                                 ->where('c.id',$value)->get();
@@ -46,7 +46,7 @@ class shipStationHelper {
                         $arr1 = array('productId'=>$getproducts[0]->productId,'name'=>$getproducts[0]->name,'quantity'=>$getproducts[0]->prod_qty,
                                 'unitPrice'=>($getproducts[0]->prod_price!='') ? $getproducts[0]->prod_price : '0',
                                 'warehouseLocation'=>'Nefaire 141 Post Road East Westport, CT 06880',
-                                'imageUrl'=>asset(config('filesystems.products.imageurl').''.$getproducts[0]->image_detail));
+                                'imageUrl'=>asset(config('filesystems.products.imageurl').''.$getproducts[0]->image));
                         array_push($getitems, $arr1);
                         // $item->name = $getproducts[0]->name;
                         // $item->quantity = $getproducts[0]->prod_qty;
@@ -123,7 +123,7 @@ class shipStationHelper {
             foreach($getCarts as $key => $value){
                 if(!empty($value) || ($value!=null)){
                     $getproducts = DB::table('carts as c')->join('products as p','c.product_id','=','p.id')
-                                ->select('p.id as productId','p.name','p.image','p.image_detail',
+                                ->select('p.id as productId','p.name','p.image','p.image',
                                 'c.product_price as prod_price','c.quantity as prod_qty',
                                 'c.status as csatus','c.product_id as cart_prod')
                                 ->where('c.id',$value)->get();
@@ -134,7 +134,7 @@ class shipStationHelper {
                             $arr1 = array('productId'=>$getproducts[0]->productId,'name'=>$getproducts[0]->name,'quantity'=>$getproducts[0]->prod_qty,
                             'unitPrice'=>($getproducts[0]->prod_price!='') ? $getproducts[0]->prod_price : '0',
                             'warehouseLocation'=>'Nefaire 141 Post Road East Westport, CT 06880',
-                            'imageUrl'=>asset(config('filesystems.products.imageurl').''.$getproducts[0]->image_detail));
+                            'imageUrl'=>asset(config('filesystems.products.imageurl').''.$getproducts[0]->image));
                             array_push($getitems, $arr1);
                             // $item->name = $getproducts[0]->name;
                             // $item->quantity = $getproducts[0]->prod_qty;

@@ -57,11 +57,21 @@ class FollowupController extends BaseController
       if ($validator->fails()) {
         return $this->sendError('Validation Error.', $validator->errors()->all());
       }
-      echo '<pre>';     
-      print_r($data);
+      $followUpCount = FollowUp::where('user_id', $data['user_id'])
+        ->where('case_id', $data['case_id'])
+        ->where('follow_up_status', 'completed')
+        ->count();
+        echo '<pre>';
+        print_r($followUpCount);
+        die;
+      $followUpAns = FollowUp::where('user_id', $data['user_id'])
+        ->where('case_id', $data['case_id'])
+        // ->where('follow_up_no', $data['follow_up_no'])
+        ->where('follow_up_status', '<>', 'completed')
+        ->get();
+      echo '<pre>';
+      print_r($followUpAns);
       die;
-      $followUpAns = FollowUp::where('user_id', $data['user_id'])->where('case_id', $data['case_id'])->get();
-     
       if (!empty($followUpAns)) :
         $followUpAns = $followUpAns->update($data);
       else :
@@ -111,6 +121,7 @@ class FollowupController extends BaseController
       $destinationPath = public_path('/images/Users');
       $userGender = User::find($user_id)->gender;
       $followUpAns = FollowUp::where([['user_id', $user_id], ['case_id', $case_id], ['follow_up_no', $data['follow_up_no']], ['follow_up_status', '<>', 'completed']])->first();
+      dd($followUpAns);
       if ($request['left_face'] != '') {
         $left_face = $request['left_face'];
         $left_face_file_name =  $user_id . '_left_face_' . time() . '.jpeg';
@@ -180,15 +191,14 @@ class FollowupController extends BaseController
           endif;
         }
       }
-echo '<pre>';
-print_r($followUpAns);
-die;
+
       if (!empty($followUpAns)) :
-        echo "data"-$data['follow_up_no'];
-        echo "folo"-$followUpAns['follow_up_no'];
-        die;
-        if (($data['follow_up_no'] !== $followUpAns['follow_up_no']) || ($followUpAns['follow_up_no'] == null)) :
+        echo $data['follow_up_no'];
+        echo $followUpAns['follow_up_no'];
+        dd($caseManage);
+        if ($data['follow_up_no'] !== $followUpAns['follow_up_no']) :
           $caseManage = CaseManagement::find($case_id);
+
           if ($caseManage) :
             $case_data['follow_up'] = $data['follow_up_no'];
             $caseSave = $caseManage->update($case_data);
@@ -199,7 +209,6 @@ die;
             endif;
             $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
           endif;
-          dd($data);
         endif;
         $followUpAns = $followUpAns->update($data);
       endif;

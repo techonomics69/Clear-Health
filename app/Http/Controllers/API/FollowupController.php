@@ -122,7 +122,9 @@ class FollowupController extends BaseController
         ->where('case_id', $data['case_id'])
         ->where('follow_up_status', '<>', 'completed')
         ->first();
-      dd($followUpAns);
+      echo '<pre>';
+      print_r($followUpAns);
+      die;
       if ($request['left_face'] != '') {
         $left_face = $request['left_face'];
         $left_face_file_name =  $user_id . '_left_face_' . time() . '.jpeg';

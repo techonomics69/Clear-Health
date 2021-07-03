@@ -54,6 +54,7 @@ class CartController extends BaseController
         if($validator->fails()){
             return $this->sendError('Validation Error.', $validator->errors()->all());       
         }
+        dd($data);
         if(empty($data['status'])){
             $data['status'] = 'pending';
         }else{

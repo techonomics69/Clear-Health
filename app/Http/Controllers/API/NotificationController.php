@@ -13,7 +13,7 @@ class NotificationController extends BaseController
     public function getHomeNotifications(Request $request){
         try{
             $userId = $request->user_id;
-            $records = (empty($request->records)) ? 3 : $request->records;
+            $records = (isset($request->records)) ? (empty($request->records)) ? 3 : $request->records : 3;
             $data = Notifications::where('user_id',$userId)->orderBy('id','desc')->paginate($records);
             if(count($data)>0){
                 $queryString = ['user_id'=>$userId];

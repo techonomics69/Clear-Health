@@ -667,7 +667,7 @@ die();*/
 
       CaseManagement::whereId($request['case_id'])->update($input);
       $input_data['case_status'] = 'check_off_ipledge';
-      $caseHistory = CaseHistory::whereId($request['case_id'])->update($input_data);
+      $caseHistory = CaseHistory::where('case_id',$request['case_id'])->update($input_data);
       toastr()->success('Prior Auth Uploaded Successfully');
 
       return redirect()->back();

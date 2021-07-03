@@ -13,9 +13,9 @@ class UpdateNotificationTable extends Migration
      */
     public function up()
     {
-        Schema::table('case_managements', function (Blueprint $table) {
+        Schema::table('notifications', function (Blueprint $table) {
             $table->string('order_id')->after('md_case_id')->nullable();
-            
+
         });
     }
 

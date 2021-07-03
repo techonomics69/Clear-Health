@@ -177,7 +177,9 @@ class FollowupController extends BaseController
           endif;
         }
       }
-
+echo '<pre>';
+print_r($followUpAns);
+die;
       if (!empty($followUpAns)) :
         echo "data"-$data['follow_up_no'];
         echo "folo"-$followUpAns['follow_up_no'];

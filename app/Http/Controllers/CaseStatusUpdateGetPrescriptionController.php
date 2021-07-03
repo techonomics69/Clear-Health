@@ -45,7 +45,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
       foreach($data as $key=>$value){
 
-         $follow_up_data = Mdcases::join('case_managements','case_managements.md_case_id', '=','md_cases.case_id' )->join('follow_up','follow_up.md_case_id', '=','md_cases.case_id' )->select('follow_up.follow_up_no')->where('case_managements.md_case_id',$value['md_case_id'])->get()->toArray();
+         $follow_up_data = Mdcases::join('follow_up','follow_up.md_case_id', '=','md_cases.case_id' )->select('follow_up.follow_up_no')->where(' md_cases.md_case_id',$value['md_case_id'])->first();
 
         echo "<pre>";
         print_r($follow_up_data);

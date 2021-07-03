@@ -53,10 +53,12 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
         $user_email =  $value['email'];
         $user_phone = $value['mobile'];
 
-        $gender = 'female';//0;
-        $product_type = "Accutane"
+        $gender = 'Not known';//0;
 
         $product_type = $value['product_type'];
+
+        $gender = 'female';//0;
+        $product_type = "Accutane";
 
         $system_status = 'Telehealth Evaluation Requested';
 
@@ -135,14 +137,6 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
           $prescriptiondata = CasePrescriptions::where([['user_id',$user_id],['case_id',$case_id],['system_case_id',$system_case_id]])->first();
 
 
-          echo "<pre>";
-          print_r($gender);
-          echo "<pre>";
-
-          echo "<pre>";
-          print_r($product_type);
-          echo "<pre>";
-          exit();
           //if($gender == "Female" && $product_type == 'Accutane' && $case_type = 'new'){
           if($gender == "female" && $product_type == 'Accutane'){ 
 

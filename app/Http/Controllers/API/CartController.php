@@ -235,13 +235,16 @@ class CartController extends BaseController
         }
         try{
             $cart = Cart::where('user_id', $id)->where('order_type','AddOn')->where('status','pending')->OrderBy('id','desc')->first();
+            
             if(isset($cart))
             {
-                $UpdateAddon = $cart->update($data);
+                //$UpdateAddon = $cart->update($data);
+                $UpdateAddon = Cart::where('id',$cart->id)->update($data);
             } else {
 
                $InsertAddon = Cart::create($data);
            }
+           
            return $this->sendResponse($data, 'Update Data successfully.');
        }catch(\Exception $ex){
           return $this->sendError('Server error', array($ex->getMessage()));  

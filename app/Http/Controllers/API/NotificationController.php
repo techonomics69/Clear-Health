@@ -13,8 +13,27 @@ class NotificationController extends BaseController
     public function getHomeNotifications(Request $request){
         try{
             $userId = $request->user_id;
-            $data = Notifications::where('user_id',$userId)->paginate(3);
+            $data = Notifications::where('user_id',$userId)->orderBy('id','desc')->paginate(3);
             if(count($data)>0){
+                $queryString = ['user_id'=>$userId];
+                $data->appends($queryString);
+                return $this->sendResponse($data, 'Records found');
+            }else{
+               return $this->sendError('No records found');    
+            }
+        }catch(\Exception $ex){
+           return $this->sendError($ex->getMessage());
+        }
+    }
+
+    public function getAllNotifications(Request $request){
+        try{
+            $userId = $request->user_id;
+            $data = Notifications::where('user_id',$userId)->orderBy('id','desc')->paginate(10);
+            if(count($data)>0){
+                $queryString = ['user_id'=>$userId];
+                $data->appends($queryString);
+
                 return $this->sendResponse($data, 'Records found');
             }else{
                return $this->sendError('No records found');    

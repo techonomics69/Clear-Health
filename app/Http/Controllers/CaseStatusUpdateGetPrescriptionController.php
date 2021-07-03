@@ -413,30 +413,35 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                     //end of curexa  create order api
                   }
 
-                    //Prescription Sent Email 
+                    //Prescription Sent Email
+
+                    $prescriptionemail_data = array();
+
+                    $prescriptionemail_data['email'] = $user_email;
+                    $prescriptionemail_data['title'] = 'helloclearhealth.com';
+                    $prescriptionemail_data['body'] = "prescription sent";
+                    $prescriptionemail_data['template'] = 'emails.mySendMail'; 
+
+
+                     $prescriptionsmsdata = array();
+
+                    //$user = array($user_phone);
+                    $user = array('+917874257069');
+                    $prescriptionsmsdata['users'] = $user;
+                    $prescriptionsmsdata['body'] = "prescription sent";
 
                   if($follow_up_data['follow_up_no'] == 0 && $value['prior_auth_date'] != NULL){
 
-                    $email_data = array();
+                    $email_sent = sendEmail($prescriptionemail_data);
 
-                    $email_data['email'] = $user_email;
-                    $email_data['title'] = 'helloclearhealth.com';
-                    $email_data['body'] = "Welcome Email when prescription is approved detailing Accutane instructions + prompt them to sign forms";
-                    $email_data['template'] = 'emails.mySendMail';
-
-                    $email_sent = sendEmail($email_data);
+                    $sms_sent = sendsms($smsdata);
                   }
 
-                  if($follow_up_data['follow_up_no'] == 0 && $value['prior_auth_date'] != NULL){
+                  if($follow_up_data['follow_up_no'] != 0){
 
-                    $email_data = array();
+                    $email_sent = sendEmail($prescriptionemail_data);
 
-                    $email_data['email'] = $user_email;
-                    $email_data['title'] = 'helloclearhealth.com';
-                    $email_data['body'] = "Welcome Email when prescription is approved detailing Accutane instructions + prompt them to sign forms";
-                    $email_data['template'] = 'emails.mySendMail';
-
-                    $email_sent = sendEmail($email_data);
+                    $sms_sent = sendsms($prescriptionsmsdata);
                   }
                   //end of Prescription Sent Email  
 
@@ -524,6 +529,28 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                   //end of curexa  create order api
                   }  
 
+
+                  //Prescription Sent Email
+
+                    $prescriptionemail_data = array();
+
+                    $prescriptionemail_data['email'] = $user_email;
+                    $prescriptionemail_data['title'] = 'helloclearhealth.com';
+                    $prescriptionemail_data['body'] = "prescription sent";
+                    $prescriptionemail_data['template'] = 'emails.mySendMail';
+
+                    $email_sent = sendEmail($prescriptionemail_data);
+ 
+
+
+                     $prescriptionsmsdata = array();
+                    //$user = array($user_phone);
+                    $user = array('+917874257069');
+                    $prescriptionsmsdata['users'] = $user;
+                    $prescriptionsmsdata['body'] = "prescription sent";
+                    
+                    $sms_sent = sendsms($smsdata);
+                  
                 }
               }
 

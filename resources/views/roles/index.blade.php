@@ -109,6 +109,10 @@
             {"sWidth": "500px", "aTargets": [1]},
            
         ],
+        "bLengthChange": false,
+        "bAutoWidth": true,
+        "bInfo": false,
+        language: {search: "", searchPlaceholder: "Search"},
         });
     });
     

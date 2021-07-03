@@ -137,7 +137,10 @@
         $('#productsList').DataTable({
             "dom": '<"top"if>rt<"bottom"lp><"clear">',
   
-               paging: true,
+            "bLengthChange": false,
+        "bAutoWidth": true,
+        "bInfo": false,
+        language: {search: "", searchPlaceholder: "Search"},
         });
     });
     

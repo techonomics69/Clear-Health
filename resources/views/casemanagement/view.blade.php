@@ -1190,8 +1190,8 @@
 								<div class="card-body">
 									<div class="box-block mtb32">
 										<h3 class="font-weight-bold"><span class="text-underline">Left Face</span></h3>
-										<a href="{{URL('/')}}/public/images/Users/{{$user_pic->left_pic}}" target="_blank">
-											<img src="{{URL('/')}}/public/images/Users/{{$user_pic->left_pic}}" class="img" width="100%">
+										<a href="{{$user_pic->left_pic}}" target="_blank">
+											<img src="{{$user_pic->left_pic}}" class="img" width="100%">
 										</a>
 									</div>
 								</div>
@@ -1204,8 +1204,8 @@
 								<div class="card-body">
 									<div class="box-block mtb32">
 										<h3 class="font-weight-bold"><span class="text-underline">Right Face</span></h3>
-										<a href="{{URL('/')}}/public/images/Users/{{$user_pic->right_pic}}" target="_blank">
-											<img src="{{URL('/')}}/public/images/Users/{{$user_pic->right_pic}}" class="img" width="100%">
+										<a href="{{$user_pic->right_pic}}" target="_blank">
+											<img src="{{$user_pic->right_pic}}" class="img" width="100%">
 										</a>
 									</div>
 								</div>
@@ -1218,8 +1218,8 @@
 								<div class="card-body">
 									<div class="box-block mtb32">
 										<h3 class="font-weight-bold"><span class="text-underline">Straight Face</span></h3>
-										<a href="{{URL('/')}}/public/images/Users/{{$user_pic->straight_pic}}" target="_blank">
-											<img src="{{URL('/')}}/public/images/Users/{{$user_pic->straight_pic}}" class="img" width="100%">
+										<a href="{{$user_pic->straight_pic}}" target="_blank">
+											<img src="{{$user_pic->straight_pic}}" class="img" width="100%">
 										</a>
 									</div>
 								</div>
@@ -1232,8 +1232,8 @@
 								<div class="card-body">
 									<div class="box-block mtb32">
 										<h3 class="font-weight-bold"><span class="text-underline">Back Photo</span></h3>
-										<a href="{{URL('/')}}/public/images/Users/{{$user_pic->back_photo}}" target="_blank">
-											<img src="{{URL('/')}}/public/images/Users/{{$user_pic->back_photo}}" class="img" width="100%">
+										<a href="{{$user_pic->back_photo}}" target="_blank">
+											<img src="{{$user_pic->back_photo}}" class="img" width="100%">
 										</a>
 									</div>
 								</div>
@@ -1246,8 +1246,8 @@
 								<div class="card-body">
 									<div class="box-block mtb32">
 										<h3 class="font-weight-bold"><span class="text-underline">Other Picture</span></h3>
-										<a href="{{URL('/')}}/public/images/Users/{{$user_pic->other_pic}}" target="_blank">
-											<img src="{{URL('/')}}/public/images/Users/{{$user_pic->other_pic}}" class="img" width="100%">
+										<a href="{{$user_pic->other_pic}}" target="_blank">
+											<img src="{{$user_pic->other_pic}}" class="img" width="100%">
 										</a>
 									</div>
 								</div>

@@ -169,11 +169,11 @@
     $('#CaseManagementList').DataTable({
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
 
-			"paging": true,
-			"autoWidth": true,
-			"fixedHeader": true,
+			// "paging": true,
+			// "autoWidth": true,
+			// "fixedHeader": true,
 		
-        "scrollY": 400,
+        // "scrollY": 400,
       // "scrollX": true,
 
  

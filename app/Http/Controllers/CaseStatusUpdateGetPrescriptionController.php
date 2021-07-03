@@ -571,7 +571,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
       //foreach($prescription_data as $key=>$prescription){
 
-      echo "<pre>";
+      echo "<pre> 12";
       print_r($prescription_data[0]->dosespot_prescription_id);
       echo "<pre>";
       exit();

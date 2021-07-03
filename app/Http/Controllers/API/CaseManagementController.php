@@ -1173,7 +1173,7 @@ public function getMdDetailForMessage(Request $request){
 
     
 
-    if($check_form['abstinence_form'] == 1 && $check_form['sign_ipledge_consent'] == 1 ){
+    //if($check_form['abstinence_form'] == 1 && $check_form['sign_ipledge_consent'] == 1 ){
 
       $user = User::select('gender','first_name','last_name')->where('id',$user_id)->first();
 
@@ -1190,7 +1190,7 @@ public function getMdDetailForMessage(Request $request){
       $product_type = $check_form['product_type'];
 
 
-      if($user['gender'] == 'male' && $product_type =='Accutane'){
+      if($user['gender'] == 'male' && $product_type =='Accutane' && $check_form['abstinence_form'] == 1){
 
         $iPledgeId = Ipledge::where([['patients_type','0'],['gender',$gen]])->whereNull('assigned_date')->OrderBy('id', 'ASC')->first();
         ;
@@ -1205,7 +1205,10 @@ public function getMdDetailForMessage(Request $request){
         
       }
 
-      if($user['gender'] == 'female' && $product_type =='Accutane'){
+      //if($user['gender'] == 'female' && $product_type =='Accutane' && $check_form['abstinence_form'] == 1 && $check_form['sign_ipledge_consent'] == 1){ 
+
+      if($user['gender'] == 'female' && $product_type =='Accutane' && $check_form['sign_ipledge_consent'] == 1){ 
+
 
         $iPledgeId = Ipledge::where([['patients_type','1'],['gender',$gen]])->whereNull('assigned_date')->OrderBy('id', 'ASC')->first();
         ;
@@ -1221,7 +1224,7 @@ public function getMdDetailForMessage(Request $request){
       }
 
 
-    }
+    //}
     return $this->sendResponse($data,'Field Updated Successfully.');
 
   }

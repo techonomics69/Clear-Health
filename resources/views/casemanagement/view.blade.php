@@ -1189,10 +1189,12 @@
 
 
 										<div class="row">
-											<div class="col-md-3">1</div>
-											<div class="col-md-3">2</div>
-											<div class="col-md-3">3</div>
-											<div class="col-md-3">4</div>
+											@foreach($followup_que as $key => $data)
+											<div class="col-md-3">
+											{{dd($data);}}
+											<!-- <img src="{{$data}}"> -->
+											</div>
+											@endforeach
 										</div>
 									</div>
 								</div>

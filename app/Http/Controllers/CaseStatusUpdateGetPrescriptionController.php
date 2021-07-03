@@ -276,6 +276,11 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                     if($today_date->lte($display_till_date)){
                         $system_status = 'Awaiting Action Items'; 
+
+                        echo "<pre>";
+                        print_r($case_id);
+                        echo "<pre>";
+                        
                     } 
 
                   }

@@ -197,8 +197,8 @@
         "fixedHeader": {
         header: true,
     },
-       scrollY:        "300px",
-      //   scrollX:        false,
+      //  scrollY:        "300px",
+        scrollX:        false,
 
  
 

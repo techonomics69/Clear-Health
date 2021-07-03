@@ -886,8 +886,8 @@ if(!empty($Patient_data)){
         }*/
 
         $data["email"] = "itqatester12@gmail.com";
-         $data["title"] = $email_data['title'];
-        $data["body"]  = $email_data['body'];
+        $data["title"] = "helloclearhealth.com";
+        $data["body"] = "This is test mail with attachment";
  
         $files = [
             public_path('attachments/pregnancy-test.jpg'),

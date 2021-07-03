@@ -562,6 +562,10 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
       foreach($prescription_data[0] as $key=>$prescription){
 
+          echo "<pre>";
+          print_r($prescription);
+          echo "<pre>";
+          exit();
          
             $input_prescription['dosespot_prescription_id'] = (isset($prescription->dosespot_prescription_id)) ? $prescription->dosespot_prescription_id : NULL;
             $input_prescription['dosespot_prescription_sync_status'] = $prescription->dosespot_prescription_sync_status;

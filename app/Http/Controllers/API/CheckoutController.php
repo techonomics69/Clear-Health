@@ -429,6 +429,20 @@ class CheckoutController extends BaseController
 
     $orderlist['order_total'] =  $pro_amount + $shipping_fee + $telemedicine_fee + $handling_fee + $tax;
 
+    if(isset($orderlist['order_id'])){
+      if($orderlist['order_id']!='' || $orderlist['order_id']!=null){
+        $prescribe_shipments =  DB::table('checkout as ch')->join('curexa_order as cu','cu.order_id','=','ch.order_id')
+                          ->select('cu.order_status','dispached_date')
+                          ->where('cu.order_id',$orderlist['order_id'])
+                          ->get();
+      }else{
+        $prescribe_shipments =  array();
+      }
+    }else{
+      $prescribe_shipments =  array();
+    }  
+
+    $orderlist['prescribe_shipments'] = $prescribe_shipments;
     //}
 
     if (!empty($orderlist)) {

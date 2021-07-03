@@ -255,14 +255,22 @@
 			"dom": '<"top"if>rt<"bottom"lp><"clear">',
 			"oSearch": { "bSmart": false, "bRegex": true },
 			orderCellsTop: true,
-        	fixedHeader: true
+        	fixedHeader: true,
+			"bLengthChange": false,
+        "bAutoWidth": true,
+        "bInfo": false,
+        language: {search: "", searchPlaceholder: "Search"},
 		});
 
 	 $('.ipledgeList').DataTable({
 			"dom": '<"top"if>rt<"bottom"lp><"clear">',
 			"oSearch": { "bSmart": false, "bRegex": true },
 			orderCellsTop: true,
-        	fixedHeader: true
+        	fixedHeader: true,
+			"bLengthChange": false,
+        "bAutoWidth": true,
+        "bInfo": false,
+        language: {search: "", searchPlaceholder: "Search"},
 		});
 	});
 	

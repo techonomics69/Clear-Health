@@ -58,7 +58,10 @@ class FollowupController extends BaseController
         return $this->sendError('Validation Error.', $validator->errors()->all());
       }
 
-      $followUpAns = FollowUp::where('user_id', $data['user_id'])->where('case_id', $data['case_id'])->where('follow_up_no', $data['follow_up_no'])->first();
+      $followUpAns = FollowUp::where('user_id', $data['user_id'])->where('case_id', $data['case_id'])->get();
+     echo '<pre>';
+     print_r($followUpAns);
+     die;
       if (!empty($followUpAns)) :
         $followUpAns = $followUpAns->update($data);
       else :

@@ -192,7 +192,7 @@
         ],
 
         "scrollY": 400,
-      "scrollX": false,
+
 
  
 

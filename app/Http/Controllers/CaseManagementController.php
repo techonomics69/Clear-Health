@@ -158,13 +158,11 @@ class CaseManagementController extends Controller
           $response = curl_exec($curl);
           curl_close($curl);
           $response1 = json_decode($response);
-          if(isset($response1)){
-            if(count($response1)>0){
+          if (isset($response1)) {
+            if (count($response1) > 0) {
               $skincare_summary['pharmacy_pickup'] =  $response1->name;
             }
           }
-          
-          
         } else {
           $skincare_summary['pharmacy_pickup'] = 'Clear Health Pharmacy Network';
         }
@@ -667,7 +665,7 @@ die();*/
 
       CaseManagement::whereId($request['case_id'])->update($input);
       $input_data['case_status'] = 'check_off_ipledge';
-      $caseHistory = CaseHistory::where('case_id',$request['case_id'])->update($input_data);
+      $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
       toastr()->success('Prior Auth Uploaded Successfully');
 
       return redirect()->back();
@@ -695,6 +693,8 @@ die();*/
       toastr()->success('Ipledge Items Verified Successfully');
     endif;
     CaseManagement::whereId($request['case_id'])->update($input);
+    $input_data['case_status'] = 'trigger';
+    $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
     return redirect()->back();
     // $input_data['case_status'] = 'blood_work';
     // $caseHistory = CaseHistory::whereId($request['id'])->update($input_data);

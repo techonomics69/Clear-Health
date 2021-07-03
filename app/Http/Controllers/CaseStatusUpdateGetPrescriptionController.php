@@ -201,7 +201,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
               
                   if(!empty($response)){
-                    $this->save_prescription_response($response,$user_id,$case_id,$system_case_id);
+                    //$this->save_prescription_response($response,$user_id,$case_id,$system_case_id);
                     $prescription_data = json_decode($response);
 
                      //curexa create order api
@@ -325,7 +325,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                     $response = $this->getPrescription($case_id);
 
                     if(!empty($response)){
-                      $this->save_prescription_response($response,$user_id,$case_id,$system_case_id);
+                      //$this->save_prescription_response($response,$user_id,$case_id,$system_case_id);
                        $prescription_data = json_decode($response);
                       //curexa create order api   
 
@@ -372,7 +372,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                   $response = $this->getPrescription($case_id);
                    
                   if(!empty($response)){
-                    $this->save_prescription_response($response,$user_id,$case_id,$system_case_id);
+                    //$this->save_prescription_response($response,$user_id,$case_id,$system_case_id);
 
                      $prescription_data = json_decode($response);
                   //curexa create order api
@@ -558,20 +558,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
     public function save_prescription_response($response,$user_id,$case_id,$system_case_id){
       $prescription_data = json_decode($response);
 
-      
-      // echo "<pre>";
-      // print_r($response);
-      // echo "<pre>";
-
-      // echo "<pre>";
-      // print_r($prescription_data[0]->dosespot_prescription_sync_status);
-      // echo "<pre>";
-      
-      // exit();
-
       foreach($prescription_data as $key=>$prescription){
-
-
 
          // $prescription = json_decode(json_encode($prescription), true);
 
@@ -605,13 +592,12 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
             $input_prescription['user_id'] = $user_id;
             $input_prescription['system_case_id'] = $system_case_id;
 
-            echo "<pre>";
+            /*echo "<pre>";
             print_r($input_prescription);
             echo "<pre>"; 
-            exit();
+            exit();*/
 
             $CasePrescription_data = CasePrescriptions::create($input_prescription);
-          
             
             if(isset($prescription->medication) && !empty($prescription->medication)){
               $input_medication['case_prescription_id'] = $CasePrescription_data->id;
@@ -647,9 +633,6 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
            }
 
       }
-
-      
-
 
    }
 

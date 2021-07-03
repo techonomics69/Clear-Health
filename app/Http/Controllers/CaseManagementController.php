@@ -337,10 +337,10 @@ die();*/
     } else {
       $prescribe_shipments =  array();
     }
-    $checkout = Checkout::where('case_id', $user_case_management_data['case_id'])->where('user_id', $user_case_management_data['user_id'])->get();
+    $checkout = Checkout::where('case_id', $user_case_management_data['id'])->where('user_id', $user_case_management_data['user_id'])->get();
    echo $case_id;'<br>';
    echo $user_case_management_data['user_id'];
-    dd($user_case_management_data);
+    dd($checkout);
     return view('casemanagement.view', compact('user_case_management_data', 'category', 'general_que', 'accutane_que', 'topical_que', 'skincare_summary', 'message_data', 'message_details', 'msg_history', 'followup_que', 'prescribe_shipments'));
   }
 

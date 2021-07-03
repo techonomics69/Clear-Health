@@ -559,15 +559,15 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
       $prescription_data = json_decode($response);
 
       
-      echo "<pre>";
-      print_r($response);
-      echo "<pre>";
+      // echo "<pre>";
+      // print_r($response);
+      // echo "<pre>";
 
-      echo "<pre>";
-      print_r($prescription_data[0]->dosespot_prescription_sync_status);
-      echo "<pre>";
+      // echo "<pre>";
+      // print_r($prescription_data[0]->dosespot_prescription_sync_status);
+      // echo "<pre>";
       
-      exit();
+      // exit();
 
       foreach($prescription_data as $key=>$prescription){
 
@@ -583,9 +583,9 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
           // echo "<pre>";
           // exit();
          
-            $input_prescription['dosespot_prescription_id'] = (isset($prescription->dosespot_prescription_id)) ? $prescription->dosespot_prescription_id : NULL;
-            $input_prescription['dosespot_prescription_sync_status'] = $prescription->dosespot_prescription_sync_status;
-            $input_prescription['dosespot_confirmation_status'] = $prescription->dosespot_confirmation_status;
+            $input_prescription['dosespot_prescription_id'] = (isset($prescription[$key]->dosespot_prescription_id)) ? $prescription[$key]->dosespot_prescription_id : NULL;
+            $input_prescription['dosespot_prescription_sync_status'] = $prescription[$key]->dosespot_prescription_sync_status;
+            $input_prescription['dosespot_confirmation_status'] = $prescription[$key]->dosespot_confirmation_status; 
             $input_prescription['dosespot_confirmation_status_details'] =($prescription->dosespot_confirmation_status_details !='')? $prescription->dosespot_confirmation_status_details : NULL;
             $input_prescription['refills'] = $prescription->refills;
             $input_prescription['quantity'] = $prescription->quantity;

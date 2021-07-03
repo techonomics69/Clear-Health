@@ -182,5 +182,6 @@ Route::get('getshipstationOrderdetail',[shipStationController::class, 'getOrderD
 Route::get('getordershipments/{orderId}',[shipStationController::class, 'getshipments']);
     
     Route::get('showNotifications',[NotificationController::class, 'getHomeNotifications']);
+    Route::get('getAllNotifcations',[NotificationController::class, 'getAllNotifications']);
     
 //});

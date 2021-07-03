@@ -558,14 +558,9 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
     public function save_prescription_response($response,$user_id,$case_id,$system_case_id){
       $prescription_data = json_decode($response);
 
-      
+   
 
-      echo "<pre>";
-      print_r($prescription_data);
-      echo "<pre>";
-      exit();
-
-      foreach($prescription_data as $key=>$prescription){
+      foreach($prescription_data[0] as $key=>$prescription){
 
          
             $input_prescription['dosespot_prescription_id'] = (isset($prescription->dosespot_prescription_id)) ? $prescription->dosespot_prescription_id : NULL;

@@ -58,7 +58,10 @@ class FollowupController extends BaseController
         return $this->sendError('Validation Error.', $validator->errors()->all());
       }
 
-      $followUpAns = FollowUp::where('user_id', $data['user_id'])->where('case_id', $data['case_id'])->where('follow_up_no', $data['follow_up_no'])->first();
+      $followUpAns = FollowUp::where('user_id', $data['user_id'])->where('case_id', $data['case_id'])->get();
+     echo '<pre>';
+     print_r($followUpAns);
+     die;
       if (!empty($followUpAns)) :
         $followUpAns = $followUpAns->update($data);
       else :
@@ -177,13 +180,18 @@ class FollowupController extends BaseController
           endif;
         }
       }
-
-      if (!empty($followUpAns)) :          
-        if ($data['follow_up_no'] !== $followUpAns['follow_up_no']) :
-          $caseManage = CaseManagement::find($case_id);            
+echo '<pre>';
+print_r($followUpAns);
+die;
+      if (!empty($followUpAns)) :
+        echo "data"-$data['follow_up_no'];
+        echo "folo"-$followUpAns['follow_up_no'];
+        die;
+        if (($data['follow_up_no'] !== $followUpAns['follow_up_no']) || ($followUpAns['follow_up_no'] == null)) :
+          $caseManage = CaseManagement::find($case_id);
           if ($caseManage) :
             $case_data['follow_up'] = $data['follow_up_no'];
-            $caseSave = $caseManage->update($case_data);            
+            $caseSave = $caseManage->update($case_data);
             if ($userGender == 'female') :
               $input_data['case_status'] = 'verify_pregnancy';
             else :
@@ -191,10 +199,11 @@ class FollowupController extends BaseController
             endif;
             $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
           endif;
+          dd($data);
         endif;
-        $followUpAns = $followUpAns->update($data);        
+        $followUpAns = $followUpAns->update($data);
       endif;
-      
+
       return $this->sendResponse($followUpAns, 'Follow Up Data Updated Successfully');
     } catch (\Exception $ex) {
       return $this->sendError('Server error', array($ex->getMessage()));

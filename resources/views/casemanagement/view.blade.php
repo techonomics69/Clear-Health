@@ -1188,7 +1188,47 @@
 									<div class="card-body">
 										<div class="box-block mtb32">
 											<h3 class="font-weight-bold"><span class="text-underline">Photos</span></h3>
-											<img src="{{URL('/')}}/public/images/Users/{{$data->left_face}}" class="img" width="300">
+											<img src="{{URL('/')}}/public/images/Users/{{$data->left_face}}" class="img" width="100%">
+										</div>
+									</div>
+								</section>
+							</div>
+							<div class="col-md-3">
+								<section class="card">
+									<div class="card-body">
+										<div class="box-block mtb32">
+											<h3 class="font-weight-bold"><span class="text-underline">Photos</span></h3>
+											<img src="{{URL('/')}}/public/images/Users/{{$data->right_face}}" class="img" width="100%">
+										</div>
+									</div>
+								</section>
+							</div>
+							<div class="col-md-3">
+								<section class="card">
+									<div class="card-body">
+										<div class="box-block mtb32">
+											<h3 class="font-weight-bold"><span class="text-underline">Photos</span></h3>
+											<img src="{{URL('/')}}/public/images/Users/{{$data->center_face}}" class="img" width="100%">
+										</div>
+									</div>
+								</section>
+							</div>
+							<div class="col-md-3">
+								<section class="card">
+									<div class="card-body">
+										<div class="box-block mtb32">
+											<h3 class="font-weight-bold"><span class="text-underline">Photos</span></h3>
+											<img src="{{URL('/')}}/public/images/Users/{{$data->back_photo}}" class="img" width="100%">
+										</div>
+									</div>
+								</section>
+							</div>
+							<div class="col-md-3">
+								<section class="card">
+									<div class="card-body">
+										<div class="box-block mtb32">
+											<h3 class="font-weight-bold"><span class="text-underline">Photos</span></h3>
+											<img src="{{URL('/')}}/public/images/Users/{{$data->chest_photo}}" class="img" width="100%">
 										</div>
 									</div>
 								</section>

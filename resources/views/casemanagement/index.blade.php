@@ -194,7 +194,8 @@
         ],
          "bLengthChange": false,
         "bAutoWidth": true,
-        "bInfo": false
+        "bInfo": false,
+        language: {search: "", searchPlaceholder: "Search"},
     //     "fixedHeader": {
     //     header: true,
         // scrollY:        "300px",

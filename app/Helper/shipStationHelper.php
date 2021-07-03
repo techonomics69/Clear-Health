@@ -97,7 +97,7 @@ class shipStationHelper {
         $addNot->case_id = $orderData['case_id'];
         // $addNot->md_case_id = $orderData['md_case_id'];
         $addNot->order_id = $orderData['checkoutOrderId'];
-        $addNot->noti_message = "Your order ".$orderData['order_id']." has been places!";
+        $addNot->noti_message = "Your order #".$orderData['order_id']." has been places!";
         $addNot->save(); 
 
         return (isset($newOrder)) ? $newOrder : 'none';
@@ -194,7 +194,7 @@ class shipStationHelper {
                 $addNot->case_id = $orderData['case_id'];
                 // $addNot->md_case_id = $orderData['md_case_id'];
                 $addNot->order_id = $orderData['checkoutOrderId'];
-                $addNot->noti_message = "Your order ".$orderData['order_id']." has been places!";
+                $addNot->noti_message = "Your order #".$orderData['order_id']." has been places!";
                 $addNot->save(); 
             }else{
                 $newOrder = ''; 

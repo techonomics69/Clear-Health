@@ -61,6 +61,7 @@ class FollowupController extends BaseController
       $followUpAns = FollowUp::where('user_id', $data['user_id'])->where('case_id', $data['case_id'])->get();
      echo '<pre>';
      print_r($followUpAns);
+     print_r($data);
      die;
       if (!empty($followUpAns)) :
         $followUpAns = $followUpAns->update($data);

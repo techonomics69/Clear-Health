@@ -591,7 +591,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
             $input_prescription['dosespot_prescription_sync_status'] = $prescription->dosespot_prescription_sync_status;
             $input_prescription['dosespot_confirmation_status'] = $prescription->dosespot_confirmation_status;
 
-            echo "<pre>";
+            echo "<pre> 111";
             print_r($input_prescription);
             echo "<pre>";
             exit();  

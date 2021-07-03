@@ -123,10 +123,9 @@
 										</tbody>
 									</table>
 								</div>
-								<div class="col-md-6 col-sm-6 col-xs-12">
-							</div>
+								
 								 <div class="col-md-6 col-sm-6 col-xs-12">
-								<div class="col-xs-12 col-sm-12 col-md-12 text-right">
+								<div class="col-xs-12 col-sm-12 col-md-12 text-left">
                             <a href="{{ route('quiz.index') }}">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                             </a>
@@ -154,7 +153,8 @@
 	jQuery( document ).ready(function( $ ) {
     	$('.quizList').DataTable({
 			"dom": '<"top"if>rt<"bottom"lp><"clear">',
-			"oSearch": { "bSmart": false, "bRegex": true }, "bLengthChange": false,
+			"oSearch": { "bSmart": false, "bRegex": true },
+			 "bLengthChange": false,
         "bAutoWidth": true,
         "bInfo": false,
         language: {search: "", searchPlaceholder: "Search"},

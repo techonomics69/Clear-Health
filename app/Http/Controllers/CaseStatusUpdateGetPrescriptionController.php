@@ -257,7 +257,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                     //$auth_date = Carbon::createFromFormat('Y-m-d H:i:s', $value['prior_auth_date']);
                     $now = Carbon::now();
                     $today_date = $now->toDateTimeString();
-                    
+
                     $checkdate = $prior_auth_date->addDays(7);
 
                     $display_till_date =  $checkdate->toDateTimeString();
@@ -269,10 +269,18 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                     echo "<pre>";
                     print_r($display_till_date);
                     echo "<pre>";
+
+                    $today_date = Carbon::createFromFormat('Y-m-d H:i:s', $today_date);
+                    $display_till_date = Carbon::createFromFormat('Y-m-d H:i:s', $display_till_date);
                
 
                     if($today_date->lte($display_till_date)){
                         $system_status = 'Awaiting Action Items'; 
+
+                        echo "<pre>";
+                        print_r($case_id);
+                        echo "<pre>";
+                        
                     } 
 
                   }

@@ -13,7 +13,7 @@ class SetAddressline1ToNullInCheckoutAddressTable extends Migration
      */
     public function up()
     {
-        Schema::table('null_in_checkout_address', function (Blueprint $table) {
+        Schema::table('checkout_address', function (Blueprint $table) {
             $table->string('addressline1')->nullable()->change();
         });
     }

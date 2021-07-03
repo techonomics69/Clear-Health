@@ -190,7 +190,7 @@
             {"sWidth": "500px", "aTargets": [13]},
            
         ],
-
+        "bLengthChange": false,
 
 
  

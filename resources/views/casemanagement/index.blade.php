@@ -169,7 +169,7 @@
     $('#CaseManagementList').DataTable({
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
       "scrollY": 400,
-      "scrollX": true
+      "scrollX": false
 
     });
 

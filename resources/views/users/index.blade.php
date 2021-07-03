@@ -44,10 +44,10 @@
                   <table class="table  table-responsive table-striped table-bordered" style="width:100%" id="userList">
                     <thead>
                     <tr>
-                      <th>No</th>             
-                      <th>Name</th>
-                      <th>Email</th>
-                      <th>Roles</th>              
+                      <th width="280px">No</th>             
+                      <th width="280px">Name</th>
+                      <th width="280px">Email</th>
+                      <th width="280px">Roles</th>              
                       <th width="280px">Action</th>             
                     </tr>
                     </thead>
@@ -108,8 +108,7 @@
   jQuery( document ).ready(function( $ ) {
       $('#userList').DataTable({
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
-      scrollY: 300,
-    scrollX: true
+     
     });
 
     

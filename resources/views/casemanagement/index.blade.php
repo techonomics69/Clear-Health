@@ -191,6 +191,7 @@
            
         ],
         "bLengthChange": false,
+        "bAutoWidth": true,
 
 
  

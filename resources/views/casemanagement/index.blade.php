@@ -194,7 +194,7 @@
         ],
          "bLengthChange": false,
         "bAutoWidth": true,
-        "Info": false,
+        "bInfo": false
     //     "fixedHeader": {
     //     header: true,
         // scrollY:        "300px",

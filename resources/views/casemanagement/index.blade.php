@@ -172,9 +172,27 @@
 			// "paging": true,
 			// "autoWidth": true,
 			// "fixedHeader": true,
-		
-        // "scrollY": 400,
-      // "scrollX": true,
+		  "aoColumnDefs": [
+     
+            {"sWidth": "300px", "aTargets": [0]},
+            {"sWidth": "500px", "aTargets": [1]},
+            {"sWidth": "500px", "aTargets": [2]},
+            {"sWidth": "500px", "aTargets": [3]},
+            {"sWidth": "500px", "aTargets": [4]},
+            {"sWidth": "500px", "aTargets": [5]},
+            {"sWidth": "500px", "aTargets": [6]},
+            {"sWidth": "500px", "aTargets": [7]},
+            {"sWidth": "500px", "aTargets": [8]},
+            {"sWidth": "500px", "aTargets": [9]},
+            {"sWidth": "500px", "aTargets": [10]},
+            {"sWidth": "500px", "aTargets": [11]},
+            {"sWidth": "500px", "aTargets": [12]},
+            {"sWidth": "500px", "aTargets": [13]},
+           
+        ],
+
+        "scrollY": 400,
+      "scrollX": false,
 
  
 

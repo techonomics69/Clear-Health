@@ -337,7 +337,7 @@ die();*/
     } else {
       $prescribe_shipments =  array();
     }
-    $checkout = Checkout::where('case_id', $case_id)->where('user_id', $user_case_management_data['user_id'])->get();
+    $checkout = Checkout::where('case_id', $user_case_management_data['case_id'])->where('user_id', $user_case_management_data['user_id'])->get();
    echo $case_id;'<br>';
    echo $user_case_management_data['user_id'];
     dd($checkout);

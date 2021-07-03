@@ -122,9 +122,6 @@ class FollowupController extends BaseController
         ->where('case_id', $data['case_id'])
         ->where('follow_up_status', '<>', 'completed')
         ->first();
-      echo '<pre>';
-      print_r($followUpAns);
-      die;
       if ($request['left_face'] != '') {
         $left_face = $request['left_face'];
         $left_face_file_name =  $user_id . '_left_face_' . time() . '.jpeg';
@@ -161,10 +158,12 @@ class FollowupController extends BaseController
         $data['chest_photo'] = $chest_photo_file_name;
         if ($userGender == 'male') :
           $data['follow_up_status'] = 'completed';
-          if ($followUpAns['follow_up_no'] == 0) :
-            $data['follow_up_no'] = 1;
-          else :
-            $data['follow_up_no'] = $data['follow_up_no'] + 1;
+          $caseManage = CaseManagement::find($case_id);
+          if ($caseManage) :
+            $case_data['follow_up'] = $followUpAns['follow_up_no'];
+            $caseSave = $caseManage->update($case_data);
+            $input_data['case_status'] = 'prior_auth';
+            $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
           endif;
         endif;
       }
@@ -186,33 +185,18 @@ class FollowupController extends BaseController
           $data['pregnancy_test'] = $pregnancy_test_file_name;
           if ($userGender == 'female') :
             $data['follow_up_status'] = 'completed';
-            if ($followUpAns['follow_up_no'] == 0) :
-              $data['follow_up_no'] = 1;
-            else :
-              $data['follow_up_no'] = $data['follow_up_no'] + 1;
+            $caseManage = CaseManagement::find($case_id);
+            if ($caseManage) :
+              $case_data['follow_up'] = $followUpAns['follow_up_no'];
+              $caseSave = $caseManage->update($case_data);
+              $input_data['case_status'] = 'verify_pregnancy';
+              $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
             endif;
           endif;
         }
       }
 
       if (!empty($followUpAns)) :
-        echo $data['follow_up_no'];
-        echo $followUpAns['follow_up_no'];
-        dd($caseManage);
-        if ($data['follow_up_no'] !== $followUpAns['follow_up_no']) :
-          $caseManage = CaseManagement::find($case_id);
-
-          if ($caseManage) :
-            $case_data['follow_up'] = $data['follow_up_no'];
-            $caseSave = $caseManage->update($case_data);
-            if ($userGender == 'female') :
-              $input_data['case_status'] = 'verify_pregnancy';
-            else :
-              $input_data['case_status'] = 'prior_auth';
-            endif;
-            $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
-          endif;
-        endif;
         $followUpAns = $followUpAns->update($data);
       endif;
 

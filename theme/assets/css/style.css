@@ -1123,7 +1123,9 @@ margin-left:16px
 }
 /*# sourceMappingURL=style.css.map */
 /* ************************************* */
-
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  padding: 0;
+}
 
 
 

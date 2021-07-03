@@ -142,7 +142,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
           echo "<pre>";
 
           echo "<pre>";
-          print_r($gender);
+          print_r($product_type);
           echo "<pre>";
           exit();
           //if($gender == "Female" && $product_type == 'Accutane' && $case_type = 'new'){

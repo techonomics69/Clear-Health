@@ -6,6 +6,7 @@ use LaravelShipStation\ShipStation;
 use Illuminate\Support\Facades\App;
 use DB;
 use Config;
+use App\Models\Notifications;
 
 class shipStationHelper {
     
@@ -90,6 +91,9 @@ class shipStationHelper {
         $newOrder = $shipStation->orders->create($order);
         $getOrder = json_decode(json_encode($newOrder), true);
         $updateOrder = DB::table('checkout')->where('id',$orderData['checkoutOrderId'])->update(['shipstation_order_id'=>$getOrder['orderId']]);
+
+        $addNot = new Notifications();
+        
 
         return (isset($newOrder)) ? $newOrder : 'none';
     }

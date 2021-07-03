@@ -166,6 +166,8 @@
 <script>
   $.noConflict();
   jQuery(document).ready(function($) {
+
+
     $('#CaseManagementList').DataTable({
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
 
@@ -190,8 +192,11 @@
             {"sWidth": "500px", "aTargets": [13]},
            
         ],
-
-
+         "bLengthChange": false,
+        "bAutoWidth": true,
+        "fixedHeader": {
+        header: true,
+    },
 
  
 

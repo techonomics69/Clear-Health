@@ -154,7 +154,11 @@
 	jQuery( document ).ready(function( $ ) {
     	$('.quizList').DataTable({
 			"dom": '<"top"if>rt<"bottom"lp><"clear">',
-			"oSearch": { "bSmart": false, "bRegex": true }
+			"oSearch": { "bSmart": false, "bRegex": true }, "bLengthChange": false,
+        "bAutoWidth": true,
+        "bInfo": false,
+        language: {search: "", searchPlaceholder: "Search"},
+
 		});
 	});
 	

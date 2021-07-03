@@ -42,7 +42,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 echo "<pre>";
 print_r($data);
 echo "<pre>";
-exit();
+
 
        $user_email =  $data['email'];
 

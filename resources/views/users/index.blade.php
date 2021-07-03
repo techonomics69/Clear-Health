@@ -108,8 +108,7 @@
   jQuery( document ).ready(function( $ ) {
       $('#userList').DataTable({
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
-      scrollY: 300,
-    scrollX: true
+     
     });
 
     

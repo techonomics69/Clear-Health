@@ -167,7 +167,7 @@
   $.noConflict();
   jQuery(document).ready(function($) {
     $('#CaseManagementList').DataTable({
-      "dom": '<"top"if>rt<"bottom"lp><"clear">',
+      // "dom": '<"top"if>rt<"bottom"lp><"clear">',
       "scrollY": 400,
       "scrollX": false,
 
@@ -180,12 +180,12 @@
             {"sWidth": "5%", "aTargets": [4]},
             {"sWidth": "5%", "aTargets": [5]},
             {"sWidth": "5%", "aTargets": [6]},
-            {"sWidth": "10%", "aTargets": [7]},
-            {"sWidth": "10%", "aTargets": [8]},
-            {"sWidth": "10%", "aTargets": [9]},
-            {"sWidth": "10%", "aTargets": [10]},
-            {"sWidth": "10%", "aTargets": [11]},
-            {"sWidth": "10%", "aTargets": [12]},
+            {"sWidth": "5%", "aTargets": [7]},
+            {"sWidth": "5%", "aTargets": [8]},
+            {"sWidth": "5%", "aTargets": [9]},
+            {"sWidth": "5%", "aTargets": [10]},
+            {"sWidth": "5%", "aTargets": [11]},
+            {"sWidth": "5%", "aTargets": [12]},
         ],
 
     });

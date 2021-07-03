@@ -187,6 +187,14 @@ class shipStationHelper {
                 $newOrder = $shipStation->orders->create($order);
                 $getOrder = json_decode(json_encode($newOrder), true);
                 $updateOrder = DB::table('checkout')->where('id',$orderData['checkoutOrderId'])->update(['shipstation_order_id'=>$getOrder['orderId']]);            
+                
+                $addNot = new Notifications();
+                $addNot->user_id = $orderData['user_id'];
+                $addNot->case_id = $orderData['case_id'];
+                $addNot->md_case_id = $orderData['md_case_id'];
+                $addNot->order_id = $orderData['checkoutOrderId'];
+                $addNot->noti_message = "Your order ".$orderData['order_id']." has been places!";
+                $addNot->save(); 
             }else{
                 $newOrder = ''; 
             }            

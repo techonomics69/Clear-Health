@@ -104,9 +104,9 @@
         $('#roleList').DataTable({
             "dom": '<"top"if>rt<"bottom"lp><"clear">',
             "aoColumnDefs": [
-            {"sWidth": "30%", "aTargets": [-1]},
-            {"sWidth": "35%", "aTargets": [0]},
-            {"sWidth": "35%", "aTargets": [1]},
+            {"sWidth": "250px", "aTargets": [-1]},
+            {"sWidth": "300px", "aTargets": [0]},
+            {"sWidth": "500px", "aTargets": [1]},
            
         ],
         });

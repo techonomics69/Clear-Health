@@ -147,6 +147,7 @@ class shipStationHelper {
         }
 
         $item = [];
+        $ProductTotal = 0;
         foreach($getitems as $key => $itm){
             $i = new LaravelShipStation\Models\OrderItem();
             $i->name = $itm['name'];
@@ -155,13 +156,15 @@ class shipStationHelper {
             $i->warehouseLocation = 'Nefaire 141 Post Road East Westport, CT 06880';
             $i->imageUrl = $itm['imageUrl'];
             $item[] = $i;
+            $ProductTotal += (int)$itm['unitPrice'];
         }
+
 
         $order = new LaravelShipStation\Models\Order();
 	    $order->orderNumber = $orderData['order_id'];
 	    $order->orderDate = date("Y-m-d");
 	    $order->orderStatus = 'awaiting_shipment';
-	    $order->amountPaid = $orderData['total_amount'];
+	    $order->amountPaid = $ProductTotal;
 	    $order->taxAmount = $orderData['tax'];
 	    $order->shippingAmount = $orderData['shipping_fee'];
 	    $order->internalNotes = '';

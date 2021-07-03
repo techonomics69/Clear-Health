@@ -53,10 +53,12 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
         $user_email =  $value['email'];
         $user_phone = $value['mobile'];
 
-        $gender = 'female';//0;
-        $product_type = "Accutane"
+        $gender = 'Not known';//0;
 
         $product_type = $value['product_type'];
+
+        $gender = 'female';//0;
+        $product_type = "Accutane";
 
         $system_status = 'Telehealth Evaluation Requested';
 

@@ -244,7 +244,7 @@ class CartController extends BaseController
 
                $InsertAddon = Cart::create($data);
            }
-           dd($UpdateAddon);
+           
            return $this->sendResponse($data, 'Update Data successfully.');
        }catch(\Exception $ex){
           return $this->sendError('Server error', array($ex->getMessage()));  

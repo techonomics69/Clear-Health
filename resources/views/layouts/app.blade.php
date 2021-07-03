@@ -43,7 +43,7 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('theme/app-assets/css/core/colors/palette-gradient.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('theme/app-assets/css/pages/timeline.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('theme/app-assets/css/plugins/forms/checkboxes-radios.css') }}">
-  <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.22/datatables.min.css"/> -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.22/datatables.min.css"/>
   <link rel="stylesheet" type="text/css"  href="{{ asset('theme/app-assets/css/datatables.min.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('theme/app-assets/css/loader.css') }}">
   

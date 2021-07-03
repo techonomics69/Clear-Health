@@ -176,22 +176,7 @@
        "scrollY": 400,
       "scrollX": true,
 
-    "aoColumnDefs": [
-            {"sWidth": "5%", "aTargets": [-1]},
-            {"sWidth": "15%", "aTargets": [0]},
-            {"sWidth": "15%", "aTargets": [1]},
-            {"sWidth": "30%", "aTargets": [2]},
-            {"sWidth": "15%", "aTargets": [3]},
-            {"sWidth": "5%", "aTargets": [4]},
-            {"sWidth": "5%", "aTargets": [5]},
-            {"sWidth": "5%", "aTargets": [6]},
-            {"sWidth": "5%", "aTargets": [7]},
-            {"sWidth": "5%", "aTargets": [8]},
-            {"sWidth": "5%", "aTargets": [9]},
-            {"sWidth": "5%", "aTargets": [10]},
-            {"sWidth": "5%", "aTargets": [11]},
-            {"sWidth": "5%", "aTargets": [12]},
-        ],
+ 
 
     });
 

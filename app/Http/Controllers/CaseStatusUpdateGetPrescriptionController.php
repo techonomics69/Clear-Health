@@ -592,12 +592,12 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
             $input_prescription['dosespot_confirmation_status'] = $prescription->dosespot_confirmation_status;
 
 
-            $input_prescription['dosespot_confirmation_status_details'] = (isset($prescription->dosespot_confirmation_status_details !='')) ? $prescription->dosespot_confirmation_status_details : NULL;
+            $input_prescription['dosespot_confirmation_status_details'] = ($prescription->dosespot_confirmation_status_details !='') ? $prescription->dosespot_confirmation_status_details : NULL;
             $input_prescription['refills'] = $prescription->refills;
             $input_prescription['quantity'] = $prescription->quantity;
             $input_prescription['days_supply'] = $prescription->days_supply;
             $input_prescription['no_substitutions'] = $prescription->no_substitutions;
-            $input_prescription['pharmacy_notes'] = (isset($prescription->pharmacy_notes != '')) ? $prescription->pharmacy_notes : NULL;
+            $input_prescription['pharmacy_notes'] = ($prescription->pharmacy_notes != '') ? $prescription->pharmacy_notes : NULL;
             $input_prescription['directions'] = $prescription->directions;
             $input_prescription['dispense_unit_id'] = $prescription->dispense_unit_id;
             $input_prescription['preferred_pharmacy_id'] = $prescription->pharmacy_id;
@@ -607,7 +607,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
             echo "<pre>";
             print_r($input_prescription);
-            echo "<pre>";
+            echo "<pre>"; 
             exit();
 
             $CasePrescription_data = CasePrescriptions::create($input_prescription);

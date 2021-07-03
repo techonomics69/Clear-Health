@@ -21,6 +21,7 @@ use Session;
 use File;
 use Exception;
 use App\Helper\shipStationHelper;
+use App\Models\Checkout;
 use GuzzleHttp\Guzzle;
 use LaravelShipStation;
 use LaravelShipStation\ShipStation;
@@ -336,7 +337,8 @@ die();*/
     } else {
       $prescribe_shipments =  array();
     }
-dd($user_case_management_data);
+    $checkout = Checkout::where('case_id', $case_id)->where('user_id', $user_id)->get();
+    dd($checkout);
     return view('casemanagement.view', compact('user_case_management_data', 'category', 'general_que', 'accutane_que', 'topical_que', 'skincare_summary', 'message_data', 'message_details', 'msg_history', 'followup_que', 'prescribe_shipments'));
   }
 

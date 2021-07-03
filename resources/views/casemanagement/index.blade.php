@@ -194,7 +194,9 @@
         ],
          "bLengthChange": false,
         "bAutoWidth": true,
-       
+        "fixedHeader": {
+        header: true,
+    },
 
  
 

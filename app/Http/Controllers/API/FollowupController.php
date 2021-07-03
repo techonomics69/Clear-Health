@@ -57,15 +57,19 @@ class FollowupController extends BaseController
       if ($validator->fails()) {
         return $this->sendError('Validation Error.', $validator->errors()->all());
       }
-
+      $followUpCount = FollowUp::where('user_id', $data['user_id'])
+        ->where('case_id', $data['case_id'])
+        ->where('follow_up_status', 'completed')
+        ->count();
+      dd($followUpCount);
       $followUpAns = FollowUp::where('user_id', $data['user_id'])
-                    ->where('case_id', $data['case_id'])
-                    // ->where('follow_up_no', $data['follow_up_no'])
-                    ->where('follow_up_status', '<>', 'completed')
-                    ->get();
-                    echo '<pre>';
-                    print_r($followUpAns);
-                    die;
+        ->where('case_id', $data['case_id'])
+        // ->where('follow_up_no', $data['follow_up_no'])
+        ->where('follow_up_status', '<>', 'completed')
+        ->get();
+      echo '<pre>';
+      print_r($followUpAns);
+      die;
       if (!empty($followUpAns)) :
         $followUpAns = $followUpAns->update($data);
       else :
@@ -187,15 +191,15 @@ class FollowupController extends BaseController
       }
 
       if (!empty($followUpAns)) :
-        echo $data['follow_up_no'];        
-        echo $followUpAns['follow_up_no'];        
-        dd($caseManage);   
+        echo $data['follow_up_no'];
+        echo $followUpAns['follow_up_no'];
+        dd($caseManage);
         if ($data['follow_up_no'] !== $followUpAns['follow_up_no']) :
-          $caseManage = CaseManagement::find($case_id);    
-            
+          $caseManage = CaseManagement::find($case_id);
+
           if ($caseManage) :
             $case_data['follow_up'] = $data['follow_up_no'];
-            $caseSave = $caseManage->update($case_data);            
+            $caseSave = $caseManage->update($case_data);
             if ($userGender == 'female') :
               $input_data['case_status'] = 'verify_pregnancy';
             else :
@@ -204,9 +208,9 @@ class FollowupController extends BaseController
             $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
           endif;
         endif;
-        $followUpAns = $followUpAns->update($data);        
+        $followUpAns = $followUpAns->update($data);
       endif;
-      
+
       return $this->sendResponse($followUpAns, 'Follow Up Data Updated Successfully');
     } catch (\Exception $ex) {
       return $this->sendError('Server error', array($ex->getMessage()));

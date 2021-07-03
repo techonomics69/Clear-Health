@@ -39,9 +39,16 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
       $data = Mdcases::join('case_managements','case_managements.md_case_id', '=','md_cases.case_id' )->join('follow_up','follow_up.md_case_id', '=','md_cases.case_id' )->join('users','users.id','=','md_cases.user_id')->select('case_managements.*','follow_up.follow_up_no','users.*')->get()->toArray();
 
-       $user_email =  $data['email'];
+echo "<pre>";
+print_r($data);
+echo "<pre>";
+
+      if(!empty($data)){
+        $user_email =  $data['email'];
 
        $user_phone = $data['mobile'];
+      }
+       
 
 
       $r = get_token();
@@ -104,9 +111,9 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
          if(!empty($MdCaseStatus)){
 
-            $md_case_status = $MdCaseStatus->case_status->name;//enable this aafter testing is done
+           // $md_case_status = $MdCaseStatus->case_status->name;//enable this aafter testing is done
 
-          //$md_case_status = 'dosespot confirmed'; //remove this
+          $md_case_status = 'completed'; //remove this
 
           if(!empty($MdCaseStatus->case_assignment)){
             $md_status = 'assigned'; 
@@ -193,7 +200,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                 }
 
                 //if($md_case_status == 'dosespot confirmed' && $case_type = 'follow_up'){
-                if($md_case_status == 'processing' && $prescriptiondata['dosespot_confirmation_status']  == 'pharmacy_verified'){
+                if($md_case_status == 'completed'){
 
                   $system_status = 'Prescription Approved';
               
@@ -249,6 +256,15 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                     $prior_auth_date = new Carbon($value['prior_auth_date']);
                     $now = Carbon::now();
                     $checkdate = $prior_auth_date->addDays(7);
+
+                    echo "<pre>";
+                    print_r($now);
+                    echo "<pre>";
+
+                    echo "<pre>";
+                    print_r($checkdate);
+                    echo "<pre>";
+               
 
                     if($now->lte($checkdate)){
                         $system_status = 'Awaiting Action Items'; 
@@ -310,7 +326,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                   }
 
                   //if($md_case_status == 'dosespot confirmed' && $case_type = 'new'){
-                  if($md_case_status == 'processing' && $prescriptiondata['dosespot_confirmation_status']  == 'pharmacy_verified'){
+                  if($md_case_status == 'completed'){
 
                     $system_status = 'Prescription Approved';
 
@@ -356,7 +372,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                 */
 
                 //if($md_case_status == 'dosespot confirmed' && $case_type = 'new'){
-                 if($md_case_status == 'processing' && $prescriptiondata['dosespot_confirmation_status']  == 'pharmacy_verified'){
+                 if($md_case_status == 'completed'){
 
                   $system_status = 'Prescription Approved';
 
@@ -440,8 +456,11 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
 
     }
-
       //end code
+
+    //shippstation
+
+    //end of shipstation
   }
 
     /**

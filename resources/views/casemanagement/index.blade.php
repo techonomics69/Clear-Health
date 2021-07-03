@@ -167,11 +167,16 @@
   $.noConflict();
   jQuery(document).ready(function($) {
     $('#CaseManagementList').DataTable({
-      // "dom": '<"top"if>rt<"bottom"lp><"clear">',
-      "scrollY": 400,
-      "scrollX": false,
+      "dom": '<"top"if>rt<"bottom"lp><"clear">',
+      // "dom": '<"dt-buttons"Bfli>rtp',
+			"paging": true,
+			"autoWidth": true,
+			// "fixedHeader": true,
+		
+       "scrollY": 400,
+      "scrollX": true,
 
-      "aoColumnDefs": [
+    "aoColumnDefs": [
             {"sWidth": "5%", "aTargets": [-1]},
             {"sWidth": "15%", "aTargets": [0]},
             {"sWidth": "15%", "aTargets": [1]},

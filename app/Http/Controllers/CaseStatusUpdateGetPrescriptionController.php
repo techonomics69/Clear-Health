@@ -272,7 +272,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                   
 
-                    $result = $today_date->lte($display_till_date);
+                    $result = $today_date->lt($display_till_date);
 
                     var_dump($result);
                

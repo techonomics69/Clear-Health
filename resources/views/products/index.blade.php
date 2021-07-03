@@ -139,12 +139,12 @@
             "aoColumnDefs": [
      
      {"sWidth": "300px", "aTargets": [0]},
-     {"sWidth": "500px", "aTargets": [1]},
-     {"sWidth": "500px", "aTargets": [2]},
-     {"sWidth": "500px", "aTargets": [3]},
-     {"sWidth": "500px", "aTargets": [5]},
-     {"sWidth": "500px", "aTargets": [6]},
-     {"sWidth": "500px", "aTargets": [7]},
+     {"sWidth": "100px", "aTargets": [1]},
+     {"sWidth": "200px", "aTargets": [2]},
+     {"sWidth": "100px", "aTargets": [3]},
+     {"sWidth": "100px", "aTargets": [5]},
+     {"sWidth": "200px", "aTargets": [6]},
+     {"sWidth": "300px", "aTargets": [7]},
 
     
     

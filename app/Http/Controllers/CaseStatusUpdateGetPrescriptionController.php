@@ -584,9 +584,9 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
           // exit();
          
             $input_prescription['dosespot_prescription_id'] = (isset($prescription->$key->dosespot_prescription_id)) ? $prescription[$key]->dosespot_prescription_id : NULL;
-            $input_prescription['dosespot_prescription_sync_status'] = $prescription[$key]->dosespot_prescription_sync_status;
-            $input_prescription['dosespot_confirmation_status'] = $prescription[$key]->dosespot_confirmation_status; 
-            $input_prescription['dosespot_confirmation_status_details'] =($prescription->dosespot_confirmation_status_details !='')? $prescription->dosespot_confirmation_status_details : NULL;
+            $input_prescription['dosespot_prescription_sync_status'] = $prescription->$key->dosespot_prescription_sync_status;
+            $input_prescription['dosespot_confirmation_status'] = $prescription->$key->dosespot_confirmation_status; 
+            $input_prescription['dosespot_confirmation_status_details'] =($prescription->$key->dosespot_confirmation_status_details !='')? $prescription->$key->dosespot_confirmation_status_details : NULL;
             $input_prescription['refills'] = $prescription->refills;
             $input_prescription['quantity'] = $prescription->quantity;
             $input_prescription['days_supply'] = $prescription->days_supply;

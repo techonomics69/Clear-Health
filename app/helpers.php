@@ -849,12 +849,10 @@ if(!empty($Patient_data)){
 
   function sendEmail($email_data){
 
-    echo "<pre>";
-    print_r($email_data);
-    echo "<pre>";
-    exit();
+   
 
-        $data["email"] = $email_data['email'];
+        //$data["email"] = $email_data['email'];
+        $data["email"] = 'qaitidol@gmail.com';
         $data["title"] = $email_data['title'];
         $data["body"]  = $email_data['body'];
         $files = array();

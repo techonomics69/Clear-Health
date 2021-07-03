@@ -238,7 +238,8 @@ class CartController extends BaseController
             dd($cart);
             if(isset($cart))
             {
-                $UpdateAddon = $cart->update($data);
+                //$UpdateAddon = $cart->update($data);
+                $UpdateAddon = Cart::where('id',$cart->id)->update($data);
             } else {
 
                $InsertAddon = Cart::create($data);

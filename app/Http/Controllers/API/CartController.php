@@ -235,7 +235,7 @@ class CartController extends BaseController
         }
         try{
             $cart = Cart::where('user_id', $id)->where('order_type','AddOn')->where('status','pending')->OrderBy('id','desc')->first();
-            dd($data);
+            dd($cart);
             if(isset($cart))
             {
                 $UpdateAddon = $cart->update($data);

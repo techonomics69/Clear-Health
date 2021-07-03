@@ -114,11 +114,12 @@
 			"oSearch": { "bSmart": false, "bRegex": true }
 
 			"aoColumnDefs": [
-            {"sWidth": "250px", "aTargets": [-1]},
+       
             {"sWidth": "300px", "aTargets": [0]},
             {"sWidth": "200px", "aTargets": [1]},
 			{"sWidth": "300px", "aTargets": [2]},
 			{"sWidth": "300px", "aTargets": [3]},
+			{"sWidth": "300px", "aTargets": [4]},
            
         ],
 

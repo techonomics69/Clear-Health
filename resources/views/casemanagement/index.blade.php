@@ -198,8 +198,8 @@
         language: {search: "", searchPlaceholder: "Search"},
     //     "fixedHeader": {
     //     header: true,
-        scrollY:        "300px",
-     scrollX:        true,
+    //     scrollY:        "300px",
+    //  scrollX:        true,
     // },
  
         // scrollCollapse: true,

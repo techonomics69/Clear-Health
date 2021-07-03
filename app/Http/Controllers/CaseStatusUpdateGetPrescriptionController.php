@@ -39,16 +39,6 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
       $data = Mdcases::join('case_managements','case_managements.md_case_id', '=','md_cases.case_id' )->join('users','users.id','=','md_cases.user_id')->select('case_managements.*','users.*')->get()->toArray();
 
-      echo "<pre>";
-      print_r($data);
-      echo "<pre>";
-      exit();
-      
-     /* $user_email =  $data['email'];
-
-      $user_phone = $data['mobile'];*/
-    
-
       $r = get_token();
       $token_data = json_decode($r);
       $token = $token_data->access_token;
@@ -60,6 +50,8 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
         $user_id = $value['user_id'];
         $case_id = $value['md_case_id'];
         $system_case_id = $value['id'];
+        $user_email =  $value['email'];
+        $user_phone = $value['mobile'];
 
         $gender = 'Not known';//0;
 

@@ -20,7 +20,7 @@ class NotificationController extends BaseController
                return $this->sendError('No records found');    
             }
         }catch(\Exception $ex){
-           return $this->sendError($ex->getMessages());
+           return $this->sendError($ex->getMessage());
         }
     }
 }

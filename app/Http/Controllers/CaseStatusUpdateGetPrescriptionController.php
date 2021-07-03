@@ -144,7 +144,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
               //send welcome email 
 
-            $follow_up_data['follow_up_no'] = 0;
+            $follow_up_data['follow_up_no'] = 2;
 
                 if( $support_reason != NULL && $follow_up_data['follow_up_no'] == 0){
 
@@ -162,12 +162,13 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
               //end of welcome email  
 
               //welcome sms
-                $smsdata = array();
+                /*$smsdata = array();
 
-                $user = array($user_phone);
+                //$user = array($user_phone);
+                $user = array('+917874257069');
                 $smsdata['users'] = $user;
                 $smsdata['body'] = "Welcome SMS to Clear Health when treatment is approved detailing Accutane instructions + prompt them to sign forms";
-                $sms_sent = sendsms($smsdata);
+                $sms_sent = sendsms($smsdata);*/
 
               //end of welcome message                                                      
 
@@ -216,7 +217,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                     $curexa_para['case_id'] = $case_id;
                     $curexa_para['system_case_id'] = $system_case_id;
 
-                    foreach($prescription_data as $key=>$prescription){
+                    /*foreach($prescription_data as $key=>$prescription){
                       $curexa_para['rx_id'] =  $prescription->dosespot_prescription_id;
                       $curexa_para['quantity_dispensed'] = $prescription->quantity;
                       $curexa_para['days_supply'] = $prescription->days_supply;
@@ -228,7 +229,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                       if(!empty($curexa_create_order_data)){
                           $this->store_curexa_order_data($curexa_create_order_data);
                       }
-                    }
+                    }*/
                    
 
                     //end of curexa  create order api 
@@ -252,19 +253,25 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                   if($md_case_status == 'completed' && $value['prior_auth_date'] != NULL){
 
                     $prior_auth_date = new Carbon($value['prior_auth_date']);
+
+                    //$auth_date = Carbon::createFromFormat('Y-m-d H:i:s', $value['prior_auth_date']);
                     $now = Carbon::now();
+                    $today_date = $now->toDateTimeString();
+                    $today = Carbon::createFromFormat('Y-m-d H:i:s',$today_date);
                     $checkdate = $prior_auth_date->addDays(7);
 
+                    $display_till_date =  $checkdate->toDateTimeString();
+
                     echo "<pre>";
-                    print_r($now);
+                    print_r($today);
                     echo "<pre>";
 
                     echo "<pre>";
-                    print_r($checkdate);
+                    print_r($display_till_date);
                     echo "<pre>";
                
 
-                    if($now->lte($checkdate)){
+                    if($today->lte($display_till_date)){
                         $system_status = 'Awaiting Action Items'; 
                     } 
 

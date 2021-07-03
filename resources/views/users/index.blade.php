@@ -108,7 +108,10 @@
   jQuery( document ).ready(function( $ ) {
       $('#userList').DataTable({
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
-     
+      "bLengthChange": false,
+        "bAutoWidth": true,
+        "bInfo": false,
+        language: {search: "", searchPlaceholder: "Search"},
     });
 
     

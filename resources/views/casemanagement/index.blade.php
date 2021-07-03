@@ -41,7 +41,7 @@
           <div class="row" style="padding: 20px;">
             <div class="col-md-12">
               <div class="">
-                <table class="table stripe row-border order-column table-responsive table-striped table-bordered nowrap" style=" width:100%" id="CaseManagementList">
+                <table class="table table-responsive table-striped table-bordered nowrap" style=" width:100%" id="CaseManagementList">
                   <thead>
                     <tr>
                       <th>SR</th>
@@ -176,20 +176,20 @@
 			// "fixedHeader": true,
 		  "aoColumnDefs": [
      
-            {"sWidth": "300px", "aTargets": [0]},
-            {"sWidth": "500px", "aTargets": [1]},
-            {"sWidth": "500px", "aTargets": [2]},
-            {"sWidth": "500px", "aTargets": [3]},
-            {"sWidth": "500px", "aTargets": [4]},
-            {"sWidth": "500px", "aTargets": [5]},
-            {"sWidth": "500px", "aTargets": [6]},
-            {"sWidth": "500px", "aTargets": [7]},
-            {"sWidth": "500px", "aTargets": [8]},
-            {"sWidth": "500px", "aTargets": [9]},
-            {"sWidth": "500px", "aTargets": [10]},
-            {"sWidth": "500px", "aTargets": [11]},
-            {"sWidth": "500px", "aTargets": [12]},
-            {"sWidth": "500px", "aTargets": [13]},
+            {"sWidth": "7%", "aTargets": [0]},
+            {"sWidth": "7%", "aTargets": [1]},
+            {"sWidth": "7%", "aTargets": [2]},
+            {"sWidth": "7%", "aTargets": [3]},
+            {"sWidth": "7%", "aTargets": [4]},
+            {"sWidth": "7%", "aTargets": [5]},
+            {"sWidth": "7%", "aTargets": [6]},
+            {"sWidth": "7%", "aTargets": [7]},
+            {"sWidth": "7%", "aTargets": [8]},
+            {"sWidth": "7%", "aTargets": [9]},
+            {"sWidth": "7%", "aTargets": [10]},
+            {"sWidth": "7%", "aTargets": [11]},
+            {"sWidth": "7%", "aTargets": [12]},
+            {"sWidth": "7%", "aTargets": [13]},
            
         ],
          "bLengthChange": false,
@@ -198,8 +198,9 @@
         language: {search: "", searchPlaceholder: "Search"},
     //     "fixedHeader": {
     //     header: true,
-        // scrollY:        "300px",
-    //     scrollX:        true,
+    //     scrollY:        "300px",
+    //  scrollX:        true,
+    //  scrollCollapse:true,
     // },
  
         // scrollCollapse: true,

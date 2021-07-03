@@ -174,7 +174,7 @@
 			// "fixedHeader": true,
 		
        "scrollY": 400,
-      // "scrollX": false,
+      "scrollX": true,
 
       // "aoColumnDefs": [
       //       {"sWidth": "5%", "aTargets": [-1]},

@@ -118,7 +118,10 @@
     
     
  ],
- 
+ "bLengthChange": false,
+        "bAutoWidth": true,
+        "bInfo": false,
+        language: {search: "", searchPlaceholder: "Search"},
     });
 
     

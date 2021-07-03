@@ -1181,10 +1181,10 @@
 				<!--start 6th tab-->
 				<div id="photos" class="tab-pane fade in ">
 					<div class="row" style="padding: 20px;">
-					<div class="col-md-12">
+						<div class="col-md-12">
 							<h2>User Photos</h2>
 						</div>
-						@if($user_pic->left_pic)
+						@if(isset($user_pic->left_pic))
 						<div class="col-md-3">
 							<section class="card">
 								<div class="card-body">
@@ -1198,7 +1198,7 @@
 							</section>
 						</div>
 						@endif
-						@if($user_pic->right_pic)
+						@if(isset($user_pic->right_pic))
 						<div class="col-md-3">
 							<section class="card">
 								<div class="card-body">
@@ -1212,7 +1212,7 @@
 							</section>
 						</div>
 						@endif
-						@if($user_pic->straight_pic)
+						@if(isset($user_pic->straight_pic))
 						<div class="col-md-3">
 							<section class="card">
 								<div class="card-body">
@@ -1226,7 +1226,7 @@
 							</section>
 						</div>
 						@endif
-						@if($user_pic->back_photo)
+						@if(isset($user_pic->back_photo))
 						<div class="col-md-3">
 							<section class="card">
 								<div class="card-body">
@@ -1240,7 +1240,7 @@
 							</section>
 						</div>
 						@endif
-						@if($user_pic->other_pic)
+						@if(isset($user_pic->other_pic))
 						<div class="col-md-3">
 							<section class="card">
 								<div class="card-body">
@@ -1253,7 +1253,8 @@
 								</div>
 							</section>
 						</div>
-						@endif							
+						@endif
+						@if(isset($followup_que))
 						@foreach($followup_que as $key => $data)
 						<div class="col-md-12">
 							<h2>Follow Up: {{$key+1}}</h2>
@@ -1319,7 +1320,7 @@
 							</section>
 						</div>
 						@endforeach
-
+						@endif
 
 					</div>
 				</div>

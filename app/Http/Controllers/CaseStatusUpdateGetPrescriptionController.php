@@ -131,24 +131,40 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
           }
 
-          if( $support_reason != NULL && $value['follow_up_no'] == 0){
-
-            $email_data = array();
-
-            $email_data['email'] = $user_email;
-            $email_data['title'] = 'helloclearhealth.com';
-            $email_data['body'] = "Welcome Email when prescription is approved detailing Accutane instructions + prompt them to sign forms";
-            $email_data['template'] = 'emails.mySendMail';
-
-            $email_sent = sendEmail($email_data);
-          }
-
 
           $prescriptiondata = CasePrescriptions::where([['user_id',$user_id],['case_id',$case_id],['system_case_id',$system_case_id]])->first();
 
 
           //if($gender == "Female" && $product_type == 'Accutane' && $case_type = 'new'){
-          if($gender == "Female" && $product_type == 'Accutane'){                                                         
+          if($gender == "Female" && $product_type == 'Accutane'){ 
+
+
+              //send welcome email 
+
+                if( $support_reason != NULL && $value['follow_up_no'] == 0){
+
+                  $email_data = array();
+
+                  $email_data['email'] = $user_email;
+                  $email_data['title'] = 'helloclearhealth.com';
+                  $email_data['body'] = "Welcome Email when prescription is approved detailing Accutane instructions + prompt them to sign forms";
+                  $email_data['template'] = 'emails.mySendMail';
+
+                  $email_sent = sendEmail($email_data);
+                }
+
+
+              //end of welcome email  
+
+              //welcome sms
+                $smsdata = array();
+
+                $user = array($user_phone);
+                $smsdata['users'] = $user;
+                $smsdata['body'] = "Welcome SMS to Clear Health when treatment is approved detailing Accutane instructions + prompt them to sign forms";
+                $sms_sent = sendsms($smsdata);
+
+              //end of welcome message                                                      
 
                 /*
                 1.   Telehealth Evaluation Requested -> sent to MD Integrations  (case status MD side = created )
@@ -244,6 +260,34 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                 
 
               }else if($gender == "Male" && $product_type == 'Accutane'){
+
+
+                //send welcome email 
+
+                if( $support_reason != NULL && $value['follow_up_no'] == 0){
+
+                  $email_data = array();
+
+                  $email_data['email'] = $user_email;
+                  $email_data['title'] = 'helloclearhealth.com';
+                  $email_data['body'] = "Welcome Email when prescription is approved detailing Accutane instructions + prompt them to sign forms";
+                  $email_data['template'] = 'emails.mySendMail';
+
+                  $email_sent = sendEmail($email_data);
+                }
+              //end of welcome email 
+
+              //welcome sms
+                $smsdata = array();
+
+                $user = array($user_phone);
+                $smsdata['users'] = $user;
+                $smsdata['body'] = "Welcome SMS to Clear Health when treatment is approved detailing Accutane instructions + prompt them to sign forms";
+                $sms_sent = sendsms($smsdata);
+
+              //end of welcome message           
+
+
                 /*
                   Initial Accutane Male Flow:
             

@@ -200,6 +200,9 @@ class FollowupController extends BaseController
       }
 
       if (!empty($followUpAns)) :
+        echo '<pre>';
+        print_r($data);
+        die;
         $followUpAns = $followUpAns->update($data);
       endif;
 

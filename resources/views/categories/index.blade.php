@@ -115,7 +115,7 @@
 
 			"aoColumnDefs": [
        
-            {"sWidth": "300px", "aTargets": [0]},
+            {"sWidth": "500px", "aTargets": [0]},
             {"sWidth": "200px", "aTargets": [1]},
 			{"sWidth": "300px", "aTargets": [2]},
 			{"sWidth": "300px", "aTargets": [3]},

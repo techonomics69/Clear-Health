@@ -53,7 +53,8 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
         $user_email =  $value['email'];
         $user_phone = $value['mobile'];
 
-        $gender = 'Not known';//0;
+        $gender = 'female';//0;
+        $product_type = "Accutane"
 
         $product_type = $value['product_type'];
 
@@ -143,7 +144,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
           echo "<pre>";
           exit();
           //if($gender == "Female" && $product_type == 'Accutane' && $case_type = 'new'){
-          if($gender == "Female" && $product_type == 'Accutane'){ 
+          if($gender == "female" && $product_type == 'Accutane'){ 
 
               //send welcome email 
 
@@ -274,7 +275,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                 
 
-              }else if($gender == "Male" && $product_type == 'Accutane'){
+              }else if($gender == "male" && $product_type == 'Accutane'){
 
 
                 //send welcome email 

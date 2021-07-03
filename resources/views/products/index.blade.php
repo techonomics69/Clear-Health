@@ -145,10 +145,8 @@
      {"sWidth": "100px", "aTargets": [5]},
      {"sWidth": "200px", "aTargets": [6]},
      {"sWidth": "500px", "aTargets": [7]},
-
-    
-    
  ],
+ paging: true
         });
     });
     

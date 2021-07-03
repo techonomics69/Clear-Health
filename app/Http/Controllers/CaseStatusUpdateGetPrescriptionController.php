@@ -144,7 +144,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
               //send welcome email 
 
-            $follow_up_data['follow_up_no'] = 0;
+            $follow_up_data['follow_up_no'] = 2;
 
                 if( $support_reason != NULL && $follow_up_data['follow_up_no'] == 0){
 
@@ -164,7 +164,8 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
               //welcome sms
                 $smsdata = array();
 
-                $user = array($user_phone);
+                //$user = array($user_phone);
+                $user = array('+917874257069');
                 $smsdata['users'] = $user;
                 $smsdata['body'] = "Welcome SMS to Clear Health when treatment is approved detailing Accutane instructions + prompt them to sign forms";
                 $sms_sent = sendsms($smsdata);
@@ -216,7 +217,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                     $curexa_para['case_id'] = $case_id;
                     $curexa_para['system_case_id'] = $system_case_id;
 
-                    foreach($prescription_data as $key=>$prescription){
+                    /*foreach($prescription_data as $key=>$prescription){
                       $curexa_para['rx_id'] =  $prescription->dosespot_prescription_id;
                       $curexa_para['quantity_dispensed'] = $prescription->quantity;
                       $curexa_para['days_supply'] = $prescription->days_supply;
@@ -228,7 +229,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                       if(!empty($curexa_create_order_data)){
                           $this->store_curexa_order_data($curexa_create_order_data);
                       }
-                    }
+                    }*/
                    
 
                     //end of curexa  create order api 

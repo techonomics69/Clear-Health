@@ -564,7 +564,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
       echo "<pre>";
 
       echo "<pre>";
-      print_r($prescription_data);
+      print_r($prescription_data[0]);
       echo "<pre>";
       
       exit();

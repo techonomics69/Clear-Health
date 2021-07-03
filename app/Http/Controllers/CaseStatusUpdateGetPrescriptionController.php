@@ -43,10 +43,12 @@ echo "<pre>";
 print_r($data);
 echo "<pre>";
 
-
-       $user_email =  $data['email'];
+      if(!empty($data)){
+        $user_email =  $data['email'];
 
        $user_phone = $data['mobile'];
+      }
+       
 
 
       $r = get_token();

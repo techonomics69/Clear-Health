@@ -171,9 +171,9 @@
       // "dom": '<"dt-buttons"Bfli>rtp',
 			"paging": true,
 			"autoWidth": true,
-			"fixedHeader": true,
+			// "fixedHeader": true,
 		
-      // "scrollY": 400,
+       "scrollY": 400,
       // "scrollX": false,
 
       // "aoColumnDefs": [

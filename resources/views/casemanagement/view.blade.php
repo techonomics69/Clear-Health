@@ -1181,63 +1181,73 @@
 				<!--start 6th tab-->
 				<div id="photos" class="tab-pane fade in ">
 					<div class="row" style="padding: 20px;">
-						
-							@foreach($followup_que as $key => $data)
-							<div class="col-md-12">
+
+						@foreach($followup_que as $key => $data)
+						<div class="col-md-12">
 							<h2>Follow Up: {{$key+1}}</h2>
-							</div>
-							<div class="col-md-3">
-								<section class="card">
-									<div class="card-body">
-										<div class="box-block mtb32">
-											<h3 class="font-weight-bold"><span class="text-underline">Photos</span></h3>
+						</div>
+						<div class="col-md-3">
+							<section class="card">
+								<div class="card-body">
+									<div class="box-block mtb32">
+										<h3 class="font-weight-bold"><span class="text-underline">Left Face</span></h3>
+										<a href="{{URL('/')}}/public/images/Users/{{$data->left_face}}" target="_blank">
 											<img src="{{URL('/')}}/public/images/Users/{{$data->left_face}}" class="img" width="100%">
-										</div>
+										</a>
 									</div>
-								</section>
-							</div>
-							<div class="col-md-3">
-								<section class="card">
-									<div class="card-body">
-										<div class="box-block mtb32">
-											<h3 class="font-weight-bold"><span class="text-underline">Photos</span></h3>
+								</div>
+							</section>
+						</div>
+						<div class="col-md-3">
+							<section class="card">
+								<div class="card-body">
+									<div class="box-block mtb32">
+										<h3 class="font-weight-bold"><span class="text-underline">Right Face</span></h3>
+										<a href="{{URL('/')}}/public/images/Users/{{$data->right_face}}" target="_blank">
 											<img src="{{URL('/')}}/public/images/Users/{{$data->right_face}}" class="img" width="100%">
-										</div>
+										</a>
 									</div>
-								</section>
-							</div>
-							<div class="col-md-3">
-								<section class="card">
-									<div class="card-body">
-										<div class="box-block mtb32">
-											<h3 class="font-weight-bold"><span class="text-underline">Photos</span></h3>
+								</div>
+							</section>
+						</div>
+						<div class="col-md-3">
+							<section class="card">
+								<div class="card-body">
+									<div class="box-block mtb32">
+										<h3 class="font-weight-bold"><span class="text-underline">Center Face</span></h3>
+										<a href="{{URL('/')}}/public/images/Users/{{$data->center_face}}" target="_blank">
 											<img src="{{URL('/')}}/public/images/Users/{{$data->center_face}}" class="img" width="100%">
-										</div>
+										</a>
 									</div>
-								</section>
-							</div>
-							<div class="col-md-3">
-								<section class="card">
-									<div class="card-body">
-										<div class="box-block mtb32">
-											<h3 class="font-weight-bold"><span class="text-underline">Photos</span></h3>
+								</div>
+							</section>
+						</div>
+						<div class="col-md-3">
+							<section class="card">
+								<div class="card-body">
+									<div class="box-block mtb32">
+										<h3 class="font-weight-bold"><span class="text-underline">Back Photo</span></h3>
+										<a href="{{URL('/')}}/public/images/Users/{{$data->back_photo}}" target="_blank">
 											<img src="{{URL('/')}}/public/images/Users/{{$data->back_photo}}" class="img" width="100%">
-										</div>
+										</a>
 									</div>
-								</section>
-							</div>
-							<div class="col-md-3">
-								<section class="card">
-									<div class="card-body">
-										<div class="box-block mtb32">
-											<h3 class="font-weight-bold"><span class="text-underline">Photos</span></h3>
+								</div>
+							</section>
+						</div>
+						<div class="col-md-3">
+							<section class="card">
+								<div class="card-body">
+									<div class="box-block mtb32">
+										<h3 class="font-weight-bold"><span class="text-underline">Chest Photo</span></h3>
+										<a href="{{URL('/')}}/public/images/Users/{{$data->chest_photo}}" target="_blank">
 											<img src="{{URL('/')}}/public/images/Users/{{$data->chest_photo}}" class="img" width="100%">
-										</div>
+										</a>
 									</div>
-								</section>
-							</div>
-							@endforeach
-						
+								</div>
+							</section>
+						</div>
+						@endforeach
+
 
 					</div>
 				</div>

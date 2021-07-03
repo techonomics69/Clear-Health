@@ -418,7 +418,7 @@ class CheckoutController extends BaseController
               $skincare_summary['pharmacy_pickup'] =  $response1->name;
             }
           }
-          $products[$product_key]['pharmacy_pickup'] =  $response1->name;
+          //$products[$product_key]['pharmacy_pickup'] =  $response1->name;
         } else {
           $products[$product_key]['pharmacy_pickup'] = 'cash';
         }

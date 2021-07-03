@@ -594,7 +594,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
             echo "<pre>";
             print_r($input_prescription);
             echo "<pre>";
-            exit(); 
+            exit();  
 
             $input_prescription['dosespot_confirmation_status_details'] =($prescription->dosespot_confirmation_status_details !='')? $prescription->dosespot_confirmation_status_details : NULL;
             $input_prescription['refills'] = $prescription->refills;

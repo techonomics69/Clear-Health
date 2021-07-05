@@ -330,7 +330,6 @@ public function addUserPic(Request $request)
 
   if(isset($userpic)){
     $userpicUpdate = UserPics::where('id',$userpic->id)->update($data);
-
     $userpic=UserPics::where('user_id',$request['user_id'])->where('case_id',$request['case_id'])->first();
 
     echo "<pre>";

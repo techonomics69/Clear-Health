@@ -930,11 +930,6 @@ if(!empty($Patient_data)){
     $noti_message = Notificationmessages::where('key',$noti_find_key)->first();
     $noti_message = $noti_message['message'];
 
-    echo "<pre>";
-    print_r($noti_message);
-    echo "<pre>";
-    exit();
-
     return $noti_message;
        
   }

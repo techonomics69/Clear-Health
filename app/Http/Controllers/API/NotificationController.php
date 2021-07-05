@@ -43,4 +43,8 @@ class NotificationController extends BaseController
            return $this->sendError($ex->getMessage());
         }
     }
+
+    public function getUnreadNotifications(Request $request){
+        
+    }
 }

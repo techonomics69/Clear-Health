@@ -796,8 +796,8 @@
 															</label>
 														</div>
 													</div>
-													<input type="hidden" name="case_id" value="{{$user_case_management_data->id}}">
-													<input type="hidden" name="user_id" value="{{$user_case_management_data->user_id}}">
+												<input type="hidden" name="case_id" value="{{$user_case_management_data->id}}">
+											<input type="hidden" name="user_id" value="{{$user_case_management_data->user_id}}">
 
 													@if($user_case_management_data->verify_prior_auth && $user_case_management_data->ipledge_items):
 													<div class="ipledge_button">

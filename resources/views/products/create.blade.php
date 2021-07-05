@@ -101,6 +101,27 @@
                                     {!! Form::textarea('detail', null, array('placeholder' => 'Details','class' => 'details')) !!}
                                 </div>
                             </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <strong>Section 1:</strong>
+                                    <span class="required">*</span>
+                                    {!! Form::textarea('section1', null, array('placeholder' => 'section1','class' => 'details')) !!}
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <strong>Section 2:</strong>
+                                    <span class="required">*</span>
+                                    {!! Form::textarea('section2', null, array('placeholder' => 'section2','class' => 'details')) !!}
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <strong>Section 3:</strong>
+                                    <span class="required">*</span>
+                                    {!! Form::textarea('section3', null, array('placeholder' => 'section3','class' => 'details')) !!}
+                                </div>
+                            </div>
                             <div class="col-md-4 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <strong>Quantity:</strong>
@@ -217,7 +238,11 @@
                 var freeTiny = document.querySelector('.tox .tox-notification--in');
                 freeTiny.style.display = 'none';
             }
-        });    
+        });  
+
+        
+
+         
     
 </script>
 @endsection

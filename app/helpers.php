@@ -927,7 +927,7 @@ if(!empty($Patient_data)){
   }
 
   function getNotificationMessageFromKey($noti_find_key){
-    $noti_message = Notificationmessages::where('noti_key',$noti_find_key)->first();
+    $noti_message = Notificationmessages::where('key',$noti_find_key)->first();
     $noti_message = $noti_message['message'];
     return $noti_message;
        

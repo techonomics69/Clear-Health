@@ -332,12 +332,7 @@ public function addUserPic(Request $request)
     $userpicUpdate = UserPics::where('id',$userpic->id)->update($data);
     $userpic=UserPics::where('user_id',$request['user_id'])->where('case_id',$request['case_id'])->first();
 
-    echo "<pre>";
-    print_r($userpic);
-    echo "<pre>";
-    exit();
-
-    return $this->sendResponse(array(), 'User picture update successfully');
+    return $this->sendResponse($userpic, 'User picture update successfully');
   }else{
 
     $userpic = UserPics::create(array(

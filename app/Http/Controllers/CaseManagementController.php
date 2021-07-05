@@ -17,6 +17,7 @@ use App\Models\Messages;
 use App\Models\MessageFiles;
 use App\Models\FollowUp;
 use App\Models\Triggers;
+use App\Models\Notifications;
 use Redirect;
 use Session;
 use File;

@@ -709,12 +709,14 @@ die();*/
   {
 
     if(isset($request->send_nitification)){
-         toastr()->success('Notification sent successfully.');
+         
 
          $user_id = $request->user_id;
          $case_id = $request->case_id;
          $md_case_id = $request->md_case_id;
          $follow_up = $request->follow_up;
+
+         /*$CaseManagement_data = $data = Mdcases::join('case_managements','case_managements.md_case_id', '=','md_cases.case_id' )->join('users','users.id','=','md_cases.user_id')->select('case_managements.*','users.gender as user_gender')->where([['user_id',$user_id],['case_id',$md_case_id],['system_case_id', $case_id]])->first();*/
 
          $noti_input_data = array();
          $noti_input_data['user_id'] = $user_id;
@@ -735,7 +737,9 @@ die();*/
           $noti_data = Notifications::create($noti_input_data);
 
           $trigger_data = Triggers::create($trigger_input);
-           return redirect()->back();
+
+          toastr()->success('Notification sent successfully.');
+          return redirect()->back();
 
     }else{
       if ($request->prior_auth) :

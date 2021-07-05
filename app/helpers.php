@@ -673,7 +673,7 @@ if(!empty($Patient_data)){
      $noti_input_data['case_id'] = $case_id;
      $noti_input_data['md_case_id'] = $md_case_id;
      $noti_input_data['order_id'] = $order_id;
-     $noti_input_data['noti_message'] = "Your telehealth evaluation request for Accutane has been received, an MD will review your case shortly.";
+     $noti_input_data['noti_message'] = getNotificationMessageFromKey('initial_Case_sent_to_md');
      $noti_input_data['for_month'] = 1;
 
 

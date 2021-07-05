@@ -616,7 +616,7 @@ die();*/
     $case = CaseManagement::find($request['case_id']);
 
     echo "<pre>";
-    print_r( $case);
+    print_r($case);
     echo "<pre>";
     exit();
 

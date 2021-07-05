@@ -803,6 +803,7 @@
 													<div class="ipledge_button">
 														<button class="btn btn-secondry" type="button"> Verified</button>
 														<button class="btn btn-secondry" type="button"> Send Notification</button>
+														<input type="hidden" name="send_nitification" value="1">
 													</div>
 													@else
 													<div class="ipledge_button">

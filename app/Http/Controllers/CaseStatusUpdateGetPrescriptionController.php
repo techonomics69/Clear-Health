@@ -75,6 +75,29 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
        $now = Carbon::now();
        $pickup_medication_difference = $pickup_medication_notification_date->diffInDays($now);
 
+       //code for pickup_notification month wise
+
+       $follow_up_no = $follow_up_data['follow_up_no'];
+       $month_no = $follow_up_data['follow_up_no']+1;
+
+       
+
+       $month_triggers = Triggers::where([['user_id', $user_id],['case_id', $case_id],['md_case_id', $md_case_id],['name','pickup_medication_notification'],['month',$month_no]])->first();
+
+       $month_pickup_medi_noti_date = new Carbon($month_triggers['updated_at']);
+     
+       $now = Carbon::now();
+       $today_date = $now->toDateTimeString();
+
+        $notification_date = $month_pickup_medi_noti_date->addDays(10);
+
+        $sent_notification_date =  $notification_date->toDateTimeString();
+
+        $today_date = Carbon::createFromFormat('Y-m-d H:i:s',$today_date);
+        $sent_notification_date = Carbon::createFromFormat('Y-m-d H:i:s', $sent_notification_date);
+
+       //end of code for pickup_notification month wise
+
 
 
         $gender = 'Not known';//0;
@@ -159,6 +182,22 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
 
           $prescriptiondata = CasePrescriptions::where([['user_id',$user_id],['case_id',$case_id],['system_case_id',$system_case_id]])->first();
+
+
+          //SMS Check-ins    
+
+          if($today_date->eq($sent_notification_date) && $product_type == 'Accutane' && ($gender == "female"||$gender == "male")){
+            $medicin_pickup_notification = array();
+
+                $user = array($user_phone);
+                //$user = array('+917874257069');
+                $medicin_pickup_notification['users'] = $user;
+                $medicin_pickup_notification['body'] = "prescription sent";
+                $medicin_pickup_notification_sent = sendsms($medicin_pickup_notification); 
+        } 
+ 
+
+          //end of SMS Check-ins    
 
 
           //if($gender == "Female" && $product_type == 'Accutane' && $case_type = 'new'){

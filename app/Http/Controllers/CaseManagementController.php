@@ -614,8 +614,30 @@ die();*/
     $case_data['ipledge_username'] = $request['email'];
     $case_data['ipledge_password'] = $request['password'];
     $case = CaseManagement::find($request['case_id']);
+
     if ($case) :
       $case->update($case_data);
+
+      //send sms to user
+        $case = CaseManagement::find($request['case_id']);
+
+        $user_data = User::where('id', $case['user_id'])->first();
+        $user_phone = $user_data['mobile'];
+
+        $user_data['gender'] = 'female';
+        $case['product_type'] = 'Accutane';
+
+        if(($user_data['gender'] == 'male' || $user_data['gender'] == 'female' ) && $case['product_type'] == 'Accutane'){
+           $smsdata = array();
+
+          //$user = array($user_phone);
+          $user = array('+917874257069');
+          $smsdata['users'] = $user;
+          $smsdata['body'] = "Your iPledge ID:".$case['ipledge_id']." iPledge Username:".$case['iledge_username']."iPledge Password:".$case['ipledge_password'];
+          $sms_sent = sendsms($smsdata);
+        }
+
+      //end of code to send smas to user
       toastr()->success('Credentials saved');
     else :
       toastr()->error('Credentials not saved');

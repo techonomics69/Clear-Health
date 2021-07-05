@@ -16,6 +16,7 @@ use App\Models\CaseHistory;
 use App\Models\Messages;
 use App\Models\MessageFiles;
 use App\Models\FollowUp;
+use App\Models\Triggers;
 use Redirect;
 use Session;
 use File;
@@ -706,11 +707,36 @@ die();*/
   public function trigger(Request $request)
   {
 
-    echo "<pre>";
-    print_r($request->all());
-    echo "<pre>";
-    exit();
-    if ($request->prior_auth) :
+    if(isset($request->send_nitification)){
+         toastr()->success('Notification sent successfully.');
+
+         $user_id = $request->user_id;
+         $case_id = $request->case_id;
+         $md_case_id = $request->md_case_id;
+         $follow_up = $request->follow_up;
+
+         $noti_input_data = array();
+         $noti_input_data['user_id'] = $user_id
+         $noti_input_data['case_id'] = $case_id;
+         $noti_input_data['md_case_id'] = $md_case_id;
+
+         $noti_input_data['name'] = getNotificationMessageFromKey('pickup_medication_notification_for_female');
+         $noti_input_data['month'] = $follow_up;
+
+         $trigger_input = array();
+         $trigger_input['user_id'] = $user_id
+         $trigger_input['case_id'] = $case_id;
+         $trigger_input['md_case_id'] = $md_case_id;
+         $trigger_input['name'] = "pickup_medication_notification";
+         $trigger_input['month'] = $follow_up;
+
+          $noti_data = Notifications::create($noti_input_data);
+
+          $trigger_data = Triggers::create($trigger_input);
+
+
+    }else{
+      if ($request->prior_auth) :
       $input['verify_prior_auth'] = $request->prior_auth;
     endif;
     if ($request->ipledge) :
@@ -729,6 +755,8 @@ die();*/
     return redirect()->back();
     // $input_data['case_status'] = 'blood_work';
     // $caseHistory = CaseHistory::whereId($request['id'])->update($input_data);
+    }
+    
   }
   public function bloodWork(Request $request)
   {

@@ -23,6 +23,7 @@ use App\Models\Checkout;
 use App\Models\Cart;
 use App\Models\Ipledge;
 use App\Models\Notifications;
+use App\Models\Triggers;
 
 function get_token(){
   $curl = curl_init();
@@ -922,6 +923,12 @@ if(!empty($Patient_data)){
           return 0;
         }
 
+  }
+
+  function getNotificationMessageFromKey($noti_find_key){
+    $noti_message = Notificationmessages::where('noti_key',$noti_find_key)->first();
+    $noti_message = $noti_message['message'];
+       
   }
 
 ?>

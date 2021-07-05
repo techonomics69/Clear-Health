@@ -100,7 +100,7 @@
 													<a class="icons edit-icon" href="{{ route('quiz.show',$data->id) }}">
 														<i class="fa fa-eye"></i>
 													</a>		
-													@can('quiz-edit')					 
+													<!-- @can('quiz-edit')					 
 													<a class="icons edit-icon" href="{{ route('quiz.edit',$data->id) }}">
 														<i class="fa fa-edit"></i>
 													</a>
@@ -111,7 +111,7 @@
 															<i class="fa fa-trash" aria-hidden="true"></i>
 														</a>
 														<button type="submit" class="btn btn-danger btn_delete{{$data->id}}" style="display:none;">Delete</button>
-													{!! Form::close() !!}
+													{!! Form::close() !!} -->
 													@endcan	
 					                            </div>						
 												</td>

@@ -338,7 +338,7 @@ public function addUserPic(Request $request)
     print_r($userpicUpdate);
     echo "<pre>";
     exit();
-    
+
     return $this->sendResponse(array(), 'User picture update successfully');
   }else{
 
@@ -355,8 +355,6 @@ public function addUserPic(Request $request)
       'right_pic'=>$file_name_right_pic,
       'other_pic' => $file_name_other_pic,*/
     ));
-    
-
 
     echo "<pre>";
     print_r($userpic);

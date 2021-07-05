@@ -735,7 +735,7 @@ die();*/
           $noti_data = Notifications::create($noti_input_data);
 
           $trigger_data = Triggers::create($trigger_input);
-
+           return redirect()->back();
 
     }else{
       if ($request->prior_auth) :

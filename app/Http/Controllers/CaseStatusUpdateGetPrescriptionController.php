@@ -182,13 +182,13 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
               //end of welcome email  
 
               //welcome sms
-                /*$smsdata = array();
+                $smsdata = array();
 
-                //$user = array($user_phone);
-                $user = array('+917874257069');
+                $user = array($user_phone);
+                //$user = array('+917874257069');
                 $smsdata['users'] = $user;
                 $smsdata['body'] = "Welcome SMS to Clear Health when treatment is approved detailing Accutane instructions + prompt them to sign forms";
-                $sms_sent = sendsms($smsdata);*/
+                $sms_sent = sendsms($smsdata);
 
               //end of welcome message                                                      
 
@@ -254,6 +254,43 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                     //end of curexa  create order api 
                   } 
+
+
+                  //Prescription Sent Email
+
+                    $prescriptionemail_data = array();
+
+                    $prescriptionemail_data['email'] = $user_email;
+                    $prescriptionemail_data['title'] = 'helloclearhealth.com';
+                    $prescriptionemail_data['body'] = "prescription sent";
+                    $prescriptionemail_data['template'] = 'emails.mySendMail'; 
+
+
+                     $prescriptionsmsdata = array();
+
+                    $user = array($user_phone);
+                    //$user = array('+917874257069');
+                    $prescriptionsmsdata['users'] = $user;
+                    $prescriptionsmsdata['body'] = "prescription sent";
+                    if($preferred_pharmacy_id !='13012' ){
+                        if($follow_up_data['follow_up_no'] == 0  && $value['ipledge_items'] == 'on' && $value['prior_auth_date'] != NULL){
+
+                       
+                           $email_sent = sendEmail($prescriptionemail_data);
+
+                          $sms_sent = sendsms($smsdata);
+                       }
+
+                   
+                  }
+
+                  if($follow_up_data['follow_up_no'] != 0 && $value['ipledge_items'] == 'on'){
+
+                    $email_sent = sendEmail($prescriptionemail_data);
+
+                    $sms_sent = sendsms($prescriptionsmsdata);
+                  }
+                  //end of Prescription Sent Email  
 
 
                 }

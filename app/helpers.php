@@ -22,6 +22,7 @@ use App\Models\Checkoutaddress;
 use App\Models\Checkout;
 use App\Models\Cart;
 use App\Models\Ipledge;
+use App\Models\Notifications;
 
 function get_token(){
   $curl = curl_init();
@@ -665,6 +666,17 @@ if(!empty($Patient_data)){
 
      $update_order_data  =  Checkout::where('case_id',$case_id)->where('user_id',$user_id)->where('order_id',$order_id)->update(['md_case_id' => $case_data->case_id]);
 
+     $noti_input_data = array();
+     $noti_input_data['user_id'] = $user_id;
+     $noti_input_data['case_id'] = $case_id;
+     $noti_input_data['md_case_id'] = $md_case_id;
+     $noti_input_data['order_id'] = $order_id;
+     $noti_input_data['noti_message'] = "Your telehealth evaluation request for Accutane has been received, an MD will review your case shortly.";
+     $noti_input_data['for_month'] = 1;
+
+
+     $noti_data = Notifications::create($noti_input_data);
+
     curl_close($curl);
 
       //code for update md details
@@ -912,5 +924,4 @@ if(!empty($Patient_data)){
 
   }
 
-
-    ?>
+?>

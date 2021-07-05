@@ -623,6 +623,9 @@ die();*/
         $user_data = User::where('id', $case['user_id'])->first();
         $user_phone = $user_data['mobile'];
 
+        $user_data['gender'] = 'female';
+        $case['product_type'] = 'Accutane';
+
         if(($user_data['gender'] == 'male' || $user_data['gender'] == 'female' ) && $case['product_type'] == 'Accutane'){
            $smsdata = array();
 

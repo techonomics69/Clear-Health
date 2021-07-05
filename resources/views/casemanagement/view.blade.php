@@ -792,7 +792,7 @@
 														<p class="auth_text">Follow Up:</p>&nbsp;&nbsp;
 														<div class="check-register mangesubscription smalltext ">
 															<label class="custome-checkbox">
-																{!! Form::select('follow_up', ['0' => 'New Case','1' => 'First', '2' => 'Second', '3' => 'Third','4' => 'Fourth','5' => 'Fifth','6' => 'Sixth'], null, ['class' => 'form-control']); !!}
+																{!! Form::select('follow_up', ['1' => 'New Case','2' => 'First', '3' => 'Second', '4' => 'Third','5' => 'Fourth','6' => 'Fifth','6' => 'Seventh'], null, ['class' => 'form-control']); !!}
 															</label>
 														</div>
 													</div>

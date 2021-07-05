@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\API;
+
 use App\Http\Controllers\API\BaseController as BaseController;
 
 use Exception;
@@ -30,7 +31,7 @@ class PaymentsController extends BaseController
 
     public function store()
     {
-       /* echo "<pre>";
+        /* echo "<pre>";
         print_r(env('STRIPE_SECRET_KEY'));
         echo "<pre>";
         exit();
@@ -44,7 +45,7 @@ class PaymentsController extends BaseController
 
         */
 
-        
+
         request()->validate([
             'name' => 'required',
             'email' => 'required|email',
@@ -52,38 +53,35 @@ class PaymentsController extends BaseController
         ]);
 
         /** I have hard coded amount. You may fetch the amount based on customers order or anything */
-        $amount     = (int)request('amount')*100;
+        $amount     = (int)request('amount') * 100;
         $currency   = 'USD';
 
-        if(empty(request('stripeToken'))) {
-            return $this->sendResponse(back()->withInput(),'Some error while making the payment. Please try again');
+        if (empty(request('stripeToken'))) {
+            return $this->sendResponse(back()->withInput(), 'Some error while making the payment. Please try again');
         }
         Stripe::setApiKey('sk_test_51J08tDJofjMgVsOdzxZs5Aqlf5A9riwPPwlxUTriC8YPiHvTjlCBoaMjgxiqdIVfvOMPcllgR9JY7EZlihr6TJHy00ixztHFtz');
 
-        $user_data = User::select('id','customer_id')->where('email', request('email'))->first();
+        $user_data = User::select('id', 'customer_id')->where('email', request('email'))->first();
         $user_id = $user_data['id'];
 
-        if($user_data['customer_id'] != NULL){
-          $customer_id = $user_data['customer_id']; 
-        }else{
-             try {
-            /** Add customer to stripe, Stripe customer */
-            $customer = Customer::create([
-                'email'     => request('email'),
-                'source'    => request('stripeToken')
-            ]);
+        if ($user_data['customer_id'] != NULL) {
+            $customer_id = $user_data['customer_id'];
+        } else {
+            try {
+                /** Add customer to stripe, Stripe customer */
+                $customer = Customer::create([
+                    'email'     => request('email'),
+                    'source'    => request('stripeToken')
+                ]);
 
-            //Store customer id in DB for future transaction
-            $customer_id = $customer->id;
-            User::where('id',$user_id)->update(['customer_id' => $customer_id]);
-
-
+                //Store customer id in DB for future transaction
+                $customer_id = $customer->id;
+                User::where('id', $user_id)->update(['customer_id' => $customer_id]);
             } catch (Exception $e) {
                 $apiError = $e->getMessage();
             }
-            
         }
-       
+
         if (empty($apiError) && $customer_id) {
             /** Charge a credit or a debit card */
             try {
@@ -104,7 +102,7 @@ class PaymentsController extends BaseController
                 // Retrieve charge details 
                 $paymentDetails = $charge->jsonSerialize();
 
-             
+
 
                 if ($paymentDetails['amount_refunded'] == 0 && empty($paymentDetails['failure_code']) && $paymentDetails['paid'] == 1 && $paymentDetails['captured'] == 1) {
                     /** You need to create model and other implementations */
@@ -120,13 +118,13 @@ class PaymentsController extends BaseController
                         'transaction_complete_details'  => json_encode($paymentDetails)
                     ]);
                     */
-                    Checkout::where('id',request('order_id'))->update(['transaction_id'=>$paymentDetails['balance_transaction'],'customer'=>$paymentDetails['customer'],'payment_method'=>$paymentDetails['payment_method'],'payment_status'=>$paymentDetails['status'],'transaction_complete_details'=>json_encode($paymentDetails)]);
+                    Checkout::where('id', request('order_id'))->update(['transaction_id' => $paymentDetails['balance_transaction'], 'customer' => $paymentDetails['customer'], 'payment_method' => $paymentDetails['payment_method'], 'payment_status' => $paymentDetails['status'], 'transaction_complete_details' => json_encode($paymentDetails)]);
 
-                    $data['id']= request('order_id');
-                    $data['amount']= request('amount');
+                    $data['id'] = request('order_id');
+                    $data['amount'] = request('amount');
                     $data['transaction_id'] = $paymentDetails['balance_transaction'];
                     $data['payment_status'] = $paymentDetails['status'];
-                    $data['customer'] = $paymentDetails['customer']; 
+                    $data['customer'] = $paymentDetails['customer'];
                     $data['payment_method'] = $paymentDetails['payment_method'];
                     $data['transaction_complete_details'] = json_encode($paymentDetails);
 
@@ -155,33 +153,33 @@ class PaymentsController extends BaseController
         request()->validate([
             'email' => 'required|email',
         ]);
-       // Plan info 
+        // Plan info 
 
-        $plans = array( 
-            '1' => array( 
-                'name' => 'Weekly Subscription', 
-                'price' => 25, 
-                'interval' => 'week' 
-            ), 
-            '2' => array( 
-                'name' => 'Monthly Subscription', 
-                'price' => request('plan_price'), 
-                'interval' => 'month' 
-            ), 
-            '3' => array( 
-                'name' => 'Yearly Subscription', 
-                'price' => 950, 
-                'interval' => 'year' 
-            ) 
-        ); 
+        $plans = array(
+            '1' => array(
+                'name' => 'Weekly Subscription',
+                'price' => 25,
+                'interval' => 'week'
+            ),
+            '2' => array(
+                'name' => 'Monthly Subscription',
+                'price' => request('plan_price'),
+                'interval' => 'month'
+            ),
+            '3' => array(
+                'name' => 'Yearly Subscription',
+                'price' => 950,
+                'interval' => 'year'
+            )
+        );
         //$planID = request('subscr_plan'); 
-        $planID = 2; 
-        $planInfo = $plans[$planID]; 
-        $planName = $planInfo['name']; 
-        $planPrice = $planInfo['price']; 
-        $planInterval = $planInfo['interval']; 
+        $planID = 2;
+        $planInfo = $plans[$planID];
+        $planName = $planInfo['name'];
+        $planPrice = $planInfo['price'];
+        $planInterval = $planInfo['interval'];
 
-        $currency = "USD";  
+        $currency = "USD";
 
         if (empty(request('stripeToken'))) {
             return $this->sendResponse(back()->withInput(), 'Some error while making the payment. Please try again');
@@ -203,111 +201,112 @@ class PaymentsController extends BaseController
 
             /** Charge a credit or a debit card */
             // Convert price to cents 
-            $priceCents = round($planPrice*100); 
+            $priceCents = round($planPrice * 100);
 
             // Create a plan 
-            try { 
-                $plan = \Stripe\Plan::create(array( 
-                    "product" => [ 
-                        "name" => $planName 
-                    ], 
-                    "amount" => $priceCents, 
-                    "currency" => $currency, 
-                    "interval" => $planInterval, 
-                    "interval_count" => 2 
-                )); 
-            }catch(Exception $e) { 
-                $apiError = $e->getMessage(); 
+            try {
+                $plan = \Stripe\Plan::create(array(
+                    "product" => [
+                        "name" => $planName
+                    ],
+                    "amount" => $priceCents,
+                    "currency" => $currency,
+                    "interval" => $planInterval,
+                    "interval_count" => 2
+                ));
+            } catch (Exception $e) {
+                $apiError = $e->getMessage();
             }
 
             if (empty($apiError) && $plan) {
-                try { 
-                    $subscription = \Stripe\Subscription::create(array( 
-                        "customer" => $customer->id, 
-                        "items" => array( 
-                            array( 
-                                "plan" => $plan->id, 
-                            ), 
-                        ), 
-                    )); 
-                }catch(Exception $e) { 
-                    $apiError = $e->getMessage(); 
+                try {
+                    $subscription = \Stripe\Subscription::create(array(
+                        "customer" => $customer->id,
+                        "items" => array(
+                            array(
+                                "plan" => $plan->id,
+                            ),
+                        ),
+                    ));
+                } catch (Exception $e) {
+                    $apiError = $e->getMessage();
                 }
-                if(empty($apiError) && $subscription){ 
+                if (empty($apiError) && $subscription) {
                     // Retrieve charge details 
                     $subsData = $subscription->jsonSerialize();
-                    if($subsData['status'] == 'active'){ 
-                       // Subscription info 
+                    if ($subsData['status'] == 'active') {
+                        // Subscription info 
                         $input_subscr = array();
 
                         $input_subscr['user_id'] = request('user_id');
                         $input_subscr['case_id'] = request('case_id');
                         $input_subscr['md_case_id'] = request('md_case_id');
-                        $input_subscr['subscr_id'] = $subsData['id']; 
-                        $input_subscr['product_id'] = request('product_id'); 
+                        $input_subscr['subscr_id'] = $subsData['id'];
+                        $input_subscr['product_id'] = request('product_id');
                         $input_subscr['customer'] = $subsData['customer'];
                         $input_subscr['plan_id'] = $subsData['plan']['id'];
-                        $input_subscr['plan_amount'] = ($subsData['plan']['amount']/100);
+                        $input_subscr['plan_amount'] = ($subsData['plan']['amount'] / 100);
                         $input_subscr['plan_currency'] = $subsData['plan']['currency'];
                         $input_subscr['plan_interval'] = $subsData['plan']['interval'];
-                        $input_subscr['plan_interval_count'] =$subsData['plan']['interval_count'];
+                        $input_subscr['plan_interval_count'] = $subsData['plan']['interval_count'];
                         $input_subscr['created'] = date("Y-m-d H:i:s", $subsData['created']);
-                        $input_subscr['current_period_start'] = date("Y-m-d H:i:s", $subsData['current_period_start']); 
-                        $input_subscr['current_period_end'] = date("Y-m-d H:i:s", $subsData['current_period_end']); 
+                        $input_subscr['current_period_start'] = date("Y-m-d H:i:s", $subsData['current_period_start']);
+                        $input_subscr['current_period_end'] = date("Y-m-d H:i:s", $subsData['current_period_end']);
                         $input_subscr['subscribed_at'] = Carbon::now();
                         $input_subscr['status'] = $subsData['status'];
 
-                        $add_subscr = Subscription:: create($input_subscr);
+                        $add_subscr = Subscription::create($input_subscr);
 
                         return $this->sendResponse($input_subscr, 'Subscription done successfully');
                     } else {
                         return $this->sendResponse(back()->withInput(), 'Subscription activation failed');
                     }
-                }else{
-                   return $this->sendResponse(back()->withInput(), 'Subscription creation failed! ' . $apiError);
-               } 
-           } else {
-            return $this->sendResponse(back()->withInput(), 'Error in capturing amount: ' . $apiError);
+                } else {
+                    return $this->sendResponse(back()->withInput(), 'Subscription creation failed! ' . $apiError);
+                }
+            } else {
+                return $this->sendResponse(back()->withInput(), 'Error in capturing amount: ' . $apiError);
+            }
+        } else {
+            return $this->sendResponse(back()->withInput(), 'Invalid card details: ' . $apiError);
         }
-    } else {
-       return $this->sendResponse(back()->withInput(), 'Invalid card details: ' . $apiError);
-   }
-}
+    }
 
-    public function cancel_subscription() {
+    public function cancel_subscription()
+    {
         $sub_id = request('subscr_id');
         Stripe::setApiKey('sk_test_51J08tDJofjMgVsOdzxZs5Aqlf5A9riwPPwlxUTriC8YPiHvTjlCBoaMjgxiqdIVfvOMPcllgR9JY7EZlihr6TJHy00ixztHFtz');
 
         $subscription = \Stripe\Subscription::retrieve($sub_id);
         $cancle = $subscription->cancel();
 
-        if($cancle['status'] == 'canceled'){ 
+        if ($cancle['status'] == 'canceled') {
 
-            $subscription_status = Subscription::where('subscr_id',request('subscr_id'))->update(['status'=>'canceled']);
+            $subscription_status = Subscription::where('subscr_id', request('subscr_id'))->update(['status' => 'canceled']);
 
-            if($subscription_status){
+            if ($subscription_status) {
                 return $this->sendResponse(array(), 'Subscription cancleded successfully.');
-            }else{
+            } else {
                 return $this->sendResponse(array(), 'Something went wrong.');
             }
-
-        }else{
-         return $this->sendResponse(back()->withInput(), 'Subscription creation failed! ');
-     }
-
+        } else {
+            return $this->sendResponse(back()->withInput(), 'Subscription creation failed! ');
+        }
     }
 
-    public function customer_payment_methods() {
+    public function customer_payment_methods()
+    {
         Stripe::setApiKey('sk_test_51J08tDJofjMgVsOdzxZs5Aqlf5A9riwPPwlxUTriC8YPiHvTjlCBoaMjgxiqdIVfvOMPcllgR9JY7EZlihr6TJHy00ixztHFtz');
 
         $paymentDetails = \Stripe\PaymentMethod::all([
             'customer' => request('customer'),
             'type' => 'card',
         ]);
-        return $this->sendResponse($paymentDetails,'Customer payment method received successfully ');
+        return $this->sendResponse($paymentDetails, 'Customer payment method received successfully ');
     }
 
-    public function customer_make_direct_payment() {
+    public function customer_make_direct_payment()
+    {
         $customer_id = request('customer');
         $payment_method_id = request('payment_method');
         $amount = request('amount');
@@ -332,40 +331,60 @@ class PaymentsController extends BaseController
             $payment_status = $paymentDetails['data'][0]['status'];
             $transaction_complete_details = json_encode($paymentDetails);
 
-            
-            Checkout::where('id',request('order_id'))->update(['transaction_id'=>$transaction_id,'customer'=>$customer,'payment_method'=>$payment_method,'payment_status'=>$payment_status,'transaction_complete_details'=>$transaction_complete_details]);
 
-                    $data['id']= request('order_id');
-                    $data['amount']= request('amount');
-                    $data['transaction_id'] = $transaction_id;
-                    $data['payment_status'] = $payment_status;
-                    $data['customer'] = $customer; 
-                    $data['payment_method'] = $payment_method;
-                    $data['transaction_complete_details'] = $transaction_complete_details;
+            Checkout::where('id', request('order_id'))->update(['transaction_id' => $transaction_id, 'customer' => $customer, 'payment_method' => $payment_method, 'payment_status' => $payment_status, 'transaction_complete_details' => $transaction_complete_details]);
 
-                    return $this->sendResponse($data, 'Payment done successfully.');
+            $data['id'] = request('order_id');
+            $data['amount'] = request('amount');
+            $data['transaction_id'] = $transaction_id;
+            $data['payment_status'] = $payment_status;
+            $data['customer'] = $customer;
+            $data['payment_method'] = $payment_method;
+            $data['transaction_complete_details'] = $transaction_complete_details;
+
+            return $this->sendResponse($data, 'Payment done successfully.');
         } catch (\Stripe\Exception\CardException $e) {
-               return $this->sendResponse($e->getError()->payment_intent->id, 'Error code is:'.$e->getError()->code);
-           // $payment_intent_id = $e->getError()->payment_intent->id;
+            return $this->sendResponse($e->getError()->payment_intent->id, 'Error code is:' . $e->getError()->code);
+            // $payment_intent_id = $e->getError()->payment_intent->id;
             //$payment_intent = \Stripe\PaymentIntent::retrieve($payment_intent_id);
         }
-
     }
 
-    public function getSubscriptionByUser(){
-        $subscription = Subscription::where('user_id',request('user_id'))->where('status', 'active')->orderBy('id', 'desc')->first();
-        if(!empty($subscription)){
-            $product_id = explode(",",$subscription['product_id']);
+    public function getSubscriptionByUser()
+    {
+        $subscription = Subscription::where('user_id', request('user_id'))->where('status', 'active')->orderBy('id', 'desc')->first();
+        if (!empty($subscription)) {
+            $product_id = explode(",", $subscription['product_id']);
             $productArray = [];
             foreach ($product_id as $key => $value) {
                 $product = Product::find($value);
-                array_push($productArray, $product);                
+                array_push($productArray, $product);
             }
             $subscription['product'] = $productArray;
             return $this->sendResponse($subscription, 'subscription retrieve successfully.');
-        }else{
-           return $this->sendResponse([], 'subscription not found.'); 
+        } else {
+            return $this->sendResponse([], 'subscription not found.');
         }
-        
+    }
+
+    public function changePaymentMethod(Request $request)
+    {
+        try {
+            $stripe = new \Stripe\StripeClient(
+                'sk_test_oLYDLJIuI9U4sVbvbJtRUdai'
+            );
+            $dp = $stripe->paymentMethods->create([
+                'type' => 'card',
+                'card' => [
+                    'number' => '4242424242424242',
+                    'exp_month' => 7,
+                    'exp_year' => 2022,
+                    'cvc' => '314',
+                ],
+            ]);
+            return $this->sendResponse($dp, 'success');
+        } catch (\Stripe\Exception\CardException $e) {
+            return $this->sendResponse($e, 'error');
+        }
     }
 }

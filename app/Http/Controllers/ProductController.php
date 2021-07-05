@@ -73,7 +73,7 @@ class ProductController extends Controller
 
         ]);
         $data = $request->all();
-        
+        dd($data);
         if(!empty($request->image)):
             $imageName = time().'.'.$request->image->extension();
 

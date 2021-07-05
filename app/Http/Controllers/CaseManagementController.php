@@ -716,7 +716,7 @@ die();*/
          $follow_up = $request->follow_up;
 
          $noti_input_data = array();
-         $noti_input_data['user_id'] = $user_id
+         $noti_input_data['user_id'] = $user_id;
          $noti_input_data['case_id'] = $case_id;
          $noti_input_data['md_case_id'] = $md_case_id;
 

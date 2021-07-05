@@ -707,7 +707,7 @@ die();*/
   {
 
     echo "<pre>";
-    print_r($request);
+    print_r($request->all());
     echo "<pre>";
     exit();
     if ($request->prior_auth) :

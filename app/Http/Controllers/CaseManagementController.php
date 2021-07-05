@@ -724,7 +724,7 @@ die();*/
          $noti_input_data['month'] = $follow_up;
 
          $trigger_input = array();
-         $trigger_input['user_id'] = $user_id
+         $trigger_input['user_id'] = $user_id;
          $trigger_input['case_id'] = $case_id;
          $trigger_input['md_case_id'] = $md_case_id;
          $trigger_input['name'] = "pickup_medication_notification";

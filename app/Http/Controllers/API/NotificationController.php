@@ -60,6 +60,7 @@ class NotificationController extends BaseController
     }
 
     public function markAsreadNotification(Request $request){
+        dd($request->all());
         try{
             $userId = $request->user_id;
             $notifi_ids = $request->notifi_ids;
@@ -69,7 +70,7 @@ class NotificationController extends BaseController
             if($data>0){
                 return $this->sendResponse($data, 'Records updated');
             }else{
-               return $this->sendError('No records found');    
+               return $this->sendError('Not updated');    
             }
         }catch(\Exception $ex){
             return $this->sendError($ex->getMessage());

@@ -9,5 +9,5 @@ class Triggers extends Model
 {
     use HasFactory;
     protected $table = 'triggers';
-    protected $fillable = ['user_id', 'case_id', 'md_case_id', 'name'];
+    protected $fillable = ['user_id', 'case_id', 'md_case_id', 'name','month'];
 }

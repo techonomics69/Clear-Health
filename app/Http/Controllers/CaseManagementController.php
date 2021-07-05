@@ -721,8 +721,8 @@ die();*/
          $noti_input_data['case_id'] = $case_id;
          $noti_input_data['md_case_id'] = $md_case_id;
 
-         $noti_input_data['name'] = getNotificationMessageFromKey('pickup_medication_notification_for_female');
-         $noti_input_data['month'] = $follow_up;
+         $noti_input_data['noti_message'] = getNotificationMessageFromKey('pickup_medication_notification_for_female');
+         $noti_input_data['for_month'] = $follow_up;
 
          $trigger_input = array();
          $trigger_input['user_id'] = $user_id;
@@ -731,19 +731,11 @@ die();*/
          $trigger_input['name'] = "pickup_medication_notification";
          $trigger_input['month'] = $follow_up;
 
-         echo "<pre>";
-         print_r($noti_input_data);
-         echo "<pre>";
-
-         echo "<pre>";
-         print_r($trigger_input);
-         echo "<pre>";
-         exit();
 
           $noti_data = Notifications::create($noti_input_data);
 
           $trigger_data = Triggers::create($trigger_input);
-
+           return redirect()->back();
 
     }else{
       if ($request->prior_auth) :

@@ -705,6 +705,11 @@ die();*/
   }
   public function trigger(Request $request)
   {
+
+    echo "<pre>";
+    print_r($request);
+    echo "<pre>";
+    exit();
     if ($request->prior_auth) :
       $input['verify_prior_auth'] = $request->prior_auth;
     endif;

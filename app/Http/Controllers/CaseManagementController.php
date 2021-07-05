@@ -731,14 +731,6 @@ die();*/
          $trigger_input['name'] = "pickup_medication_notification";
          $trigger_input['month'] = $follow_up;
 
-         echo "<pre>";
-         print_r($noti_input_data);
-         echo "<pre>";
-
-         echo "<pre>";
-         print_r($trigger_input);
-         echo "<pre>";
-         exit();
 
           $noti_data = Notifications::create($noti_input_data);
 

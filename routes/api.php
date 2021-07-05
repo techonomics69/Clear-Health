@@ -183,5 +183,6 @@ Route::get('getordershipments/{orderId}',[shipStationController::class, 'getship
     
     Route::get('showNotifications',[NotificationController::class, 'getHomeNotifications']);
     Route::get('getAllNotifcations',[NotificationController::class, 'getAllNotifications']);
+    Route::get("getUnreadNotificationcount",[NotificationController::class, 'getUnreadNotifications']);
     
 //});

@@ -632,7 +632,7 @@ die();*/
           //$user = array($user_phone);
           $user = array('+917874257069');
           $smsdata['users'] = $user;
-          $smsdata['body'] = "Your iPledge ID:".$check_form['ipledge_id']." iPledge Username:".$check_form['iledge_username']."iPledge Password:".$check_form['ipledge_password'];
+          $smsdata['body'] = "Your iPledge ID:".$case['ipledge_id']." iPledge Username:".$case['iledge_username']."iPledge Password:".$case['ipledge_password'];
           $sms_sent = sendsms($smsdata);
         }
 

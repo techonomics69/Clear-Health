@@ -621,11 +621,6 @@ die();*/
       //send sms to user
         $case = CaseManagement::find($request['case_id']);
 
-        echo "<pre>";
-        print_r($case);
-        echo "<pre>";
-        exit();
-
         $user_data = User::where('id', $case['user_id'])->first();
         $user_phone = $user_data['mobile'];
 

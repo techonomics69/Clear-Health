@@ -326,12 +326,16 @@ public function addUserPic(Request $request)
 
   $userpic=UserPics::where('user_id',$request['user_id'])->where('case_id',$request['case_id'])->first();
 
+
+
   if(isset($userpic)){
     $userpicUpdate = UserPics::where('id',$userpic->id)->update($data);
-    return $this->sendResponse(array(), 'User picture update successfully');
+    $userpic=UserPics::where('user_id',$request['user_id'])->where('case_id',$request['case_id'])->first();
+
+    return $this->sendResponse($userpic, 'User picture update successfully');
   }else{
 
-    $parent = UserPics::create(array(
+    $userpic = UserPics::create(array(
       'user_id'=>$user_id,
       'case_id'=>$case_id,
       'left_pic'=>$user_left_pic,
@@ -344,7 +348,8 @@ public function addUserPic(Request $request)
       'right_pic'=>$file_name_right_pic,
       'other_pic' => $file_name_other_pic,*/
     ));
-    return $this->sendResponse($parent, 'User picture saved successfully.');
+
+    return $this->sendResponse($userpic, 'User picture saved successfully.');
   }
 }
 

@@ -66,7 +66,7 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
-                                <strong>Options</strong>(to add the multiple choices (comma separated))
+                                <strong>Options</strong>(to add the multiple choices (add --- between two options))
                                 {!! Form::text('option', null, array('placeholder' => 'Option','class' => 'form-control')) !!}                                
                             </div>                            
                         </div>

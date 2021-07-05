@@ -60,13 +60,14 @@ class NotificationController extends BaseController
     }
 
     public function markAsreadNotification(Request $request){
-        dd($request->all());
+        
         try{
             $userId = $request->user_id;
             $notifi_ids = $request->notifi_ids;
             $data = Notifications::where('user_id',$userId)
                     ->whereIn('id',$notifi_ids)
                     ->update(['read_at'=>date("Y-m-d h:i:s")]);
+            dd($data);        
             if($data>0){
                 return $this->sendResponse($data, 'Records updated');
             }else{

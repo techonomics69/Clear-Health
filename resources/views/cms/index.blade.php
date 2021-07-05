@@ -53,7 +53,7 @@
 						</div> -->
 						<div class="row" style="padding: 20px;">
 							<div class="col-md-12">
-						<table class="table  table-responsive table-striped table-bordered" style="width:100%" id="cmsList">
+						<table class="table  table-responsive-md table-striped table-bordered" style="width:100%" id="cmsList">
 							<thead>
 							<tr>
 								<th width="60px">No</th>
@@ -119,6 +119,10 @@
 	jQuery( document ).ready(function( $ ) {
     	$('#cmsList').DataTable({
 			"dom": '<"top"if>rt<"bottom"lp><"clear">',
+			"bLengthChange": false,
+        "bAutoWidth": true,
+        "bInfo": false,
+        language: {search: "", searchPlaceholder: "Search"},
 		});
 	});
 	

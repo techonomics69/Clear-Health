@@ -66,8 +66,7 @@ class NotificationController extends BaseController
             $notifi_ids = $request->notifi_ids;
             $data = Notifications::where('user_id',$userId)
                     ->whereIn('id',$notifi_ids)
-                    ->update(['read_at'=>date("Y-m-d h:i:s")]);
-            dd($data);        
+                    ->update(['read_at'=>date("Y-m-d h:i:s")]);       
             if($data>0){
                 return $this->sendResponse($data, 'Records updated');
             }else{

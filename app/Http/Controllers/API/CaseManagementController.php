@@ -190,7 +190,10 @@ class CaseManagementController extends BaseController
 
   public function create_patient(Request $request)
   {
-    create_patient();
+     $user_id = $request['user_id'];
+     $case_id = $request['case_id'];
+     $order_id = $request['order_id'];
+    create_patient($user_id,$case_id,$order_id);
   }
 
   public function searchStateDetail(Request $request){

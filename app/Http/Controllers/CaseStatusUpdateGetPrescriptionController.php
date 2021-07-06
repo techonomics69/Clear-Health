@@ -22,6 +22,9 @@ use App\Models\CurexaOrder;
 use App\Models\Mdcases;
 use App\Models\CaseHistory;
 
+use App\Models\Triggers;
+use App\Models\Notifications;
+
 use Session;
 use Carbon\Carbon;
 

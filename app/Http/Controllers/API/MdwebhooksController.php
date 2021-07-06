@@ -9,6 +9,8 @@ use Validator;
 use App\Models\CaseManagement;
 use App\Models\Mdcases;
 use App\Models\User;
+use App\Models\Triggers;
+use App\Models\Notifications;
 
 class MdwebhooksController extends BaseController
 {
@@ -114,6 +116,18 @@ class MdwebhooksController extends BaseController
 			$sms_sent = sendsms($smsdata);*/
 		}
 		//end of new message 
+
+		 $noti_input_data = array();
+         $noti_input_data['user_id'] = $user_id;
+         //$noti_input_data['case_id'] = $case_id;
+         $noti_input_data['md_case_id'] = $event->case_id;
+
+         $noti_input_data['noti_message'] = getNotificationMessageFromKey('message_from_md');
+         //$noti_input_data['for_month'] = $follow_up;
+
+         $noti_data = Notifications::create($noti_input_data);
+
+          
 
 		}
 

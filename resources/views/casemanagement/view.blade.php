@@ -1818,7 +1818,7 @@
 	}
 
 	var loadFile = function(event) {
-		alert();
+		
 		var exts = ['jpg', 'jpeg', 'png'];
 
 		var fname = event.target.files[0].name;

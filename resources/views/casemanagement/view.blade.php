@@ -1217,7 +1217,8 @@
 									<option value="{{$i}}">Follow Up: {{$i}}</option>
 								<?php			
 										}
-									?>								
+									?>
+																	
 								@endif	
 							</select>
 						</div>

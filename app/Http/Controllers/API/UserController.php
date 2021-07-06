@@ -21,237 +21,237 @@ use File;
 
 class UserController extends BaseController
 {
-  public function update_user(Request $request, $id){
-    try{
+  public function update_user(Request $request, $id)
+  {
+    try {
       $user = User::find($id);
-      $validator = Validator::make($request->all(), [     
-               // 'email' => 'required|unique:users,email,'.$user->id,
-                //'zipcode' => 'numeric|digits:6'
+      $validator = Validator::make($request->all(), [
+        // 'email' => 'required|unique:users,email,'.$user->id,
+        //'zipcode' => 'numeric|digits:6'
       ]);
-      if($validator->fails()){
-        return $this->sendError('Validation Error.', $validator->errors()->all());       
+      if ($validator->fails()) {
+        return $this->sendError('Validation Error.', $validator->errors()->all());
       }
 
       $input = $request->all();
 
-      if(isset($request['dob'])){
+      if (isset($request['dob'])) {
 
-       $input['dob'] = date('Y-m-d', strtotime($request['dob']));
-    
+        $input['dob'] = date('Y-m-d', strtotime($request['dob']));
       }
 
       $user->update($input);
 
       return $this->sendResponse(array(), 'User Updated successfully');
-    }catch(\Exception $ex){
-     return $this->sendError('Server error',array($ex->getMessage()));
-   }
- }
-
- public function userlist(){
-  try{
-    $user = User::whereHas(
-      'roles', function($q){
-        $q->where('name', 'Customer');
-      }
-    )->get();
-    return $this->sendResponse($user, 'Users retrieved successfully.');
-  }catch(\Exception $ex){
-    return $this->sendError('Server error', array($ex->getMessage()));
+    } catch (\Exception $ex) {
+      return $this->sendError('Server error', array($ex->getMessage()));
+    }
   }
-}
 
-public function sendmail(Request $request)
-{
-  $data = $request->all();
-  if(empty($data['user_id'])):
-    if(isset($data['token']) && !empty($data['token'])):
-
-      $data['user_id'] = (new Parser())->parse($data['token'])->getClaims()['sub']->getValue();
-
-  endif;  
-endif;  
-try{
-  $userEmail = $request['user_mail'];
-
-
-  $details = [
-   'body' => 'Thank you for showing interest in ClearHealth by Nefaire. We will get back to you soon.'
- ];
-
- \Mail::to($userEmail)->cc('mchang@nefaire.com')->send(new \App\Mail\NotifyMail($details));
- return $this->sendResponse($data, 'Thank you for your interest in clearhealth');
-}catch(\Exception $ex){
-  return $this->sendError('Server error', array($ex->getMessage()));
-}
-}
-
-public function addParentdetails(Request $request)
-{
-  $data = $request->all();
-  if(empty($data['user_id'])):
-    if(isset($data['token']) && !empty($data['token'])):
-
-      $data['user_id'] = (new Parser())->parse($data['token'])->getClaims()['sub']->getValue();
-
-  endif;  
-endif; 
-
-try{
- $validator = Validator::make($data, [
-   'user_id'=> 'required',
-   'first_name' => 'required',
-   'last_name' => 'required', 
-   'phone' => 'required|digits:10',
-   'email' => 'required|email',  
- ]);
- if($validator->fails()){
-  return $this->sendError('Validation Error.', $validator->errors()->all());       
-}
-
-$input = $request->all();
-$parent = Parentdetail::create(array(
-  'user_id'=>$request->user_id,
-  'first_name'=>$request->first_name,
-  'last_name'=>$request->last_name,
-  'phone'=>$request->phone,
-  'email'=>$request->email,
-));
-return $this->sendResponse($parent, 'Parent details saved successfully.');
-}catch(\Exception $ex){
-  return $this->sendError('Server error', array($ex->getMessage()));
-}
-
-
-}
-
-public function getParentdetails(Request $request){
-  $parentdata = Parentdetail::where('user_id',$request['user_id'])->first();
-  return $this->sendResponse($parentdata,'Parentdetail Retrived successfully');
-}
-
-
-public function show($id)
-{
-  $user = User::find($id);
-  dd($user);
-                //$success['user_id'] =  $user->id;
-  $case_status =  CaseManagement::where("user_id", $user->id)->OrderBy("id" , "DESC")->first();
-  $order_status = Checkout::where("user_id",$user->id)->first();
-
-  $complete = true;
-  if(isset($case_status) && $case_status->case_status == 'completed')
+  public function userlist()
   {
-    $complete = false;
+    try {
+      $user = User::whereHas(
+        'roles',
+        function ($q) {
+          $q->where('name', 'Customer');
+        }
+      )->get();
+      return $this->sendResponse($user, 'Users retrieved successfully.');
+    } catch (\Exception $ex) {
+      return $this->sendError('Server error', array($ex->getMessage()));
+    }
   }
 
-  $status = false;
-  if(isset($order_status) && $order_status->user_id == $user->id)
+  public function sendmail(Request $request)
   {
-    $status = true;
+    $data = $request->all();
+    if (empty($data['user_id'])) :
+      if (isset($data['token']) && !empty($data['token'])) :
+
+        $data['user_id'] = (new Parser())->parse($data['token'])->getClaims()['sub']->getValue();
+
+      endif;
+    endif;
+    try {
+      $userEmail = $request['user_mail'];
+
+
+      $details = [
+        'body' => 'Thank you for showing interest in ClearHealth by Nefaire. We will get back to you soon.'
+      ];
+
+      \Mail::to($userEmail)->cc('mchang@nefaire.com')->send(new \App\Mail\NotifyMail($details));
+      return $this->sendResponse($data, 'Thank you for your interest in clearhealth');
+    } catch (\Exception $ex) {
+      return $this->sendError('Server error', array($ex->getMessage()));
+    }
   }
 
-  $user['case_status'] = $complete;
-  $user['order_status'] = $status;
-  return $this->sendResponse($user,'user Retrived successfully');
-}
+  public function addParentdetails(Request $request)
+  {
+    $data = $request->all();
+    if (empty($data['user_id'])) :
+      if (isset($data['token']) && !empty($data['token'])) :
 
-public function updateVerifiedByVouch(Request $request){
-  //try{
+        $data['user_id'] = (new Parser())->parse($data['token'])->getClaims()['sub']->getValue();
 
-        //$input = $request->all();
+      endif;
+    endif;
 
-    $user_id = $request['user_id'];
-    $case_id = $request['case_id'];
-    $order_id = $request['order_id'];
-
-    $data = User::where('id',$user_id)->update(['verified_by_vouch' => $request['verified_by_vouch']]);
-
-    $user = User::find($user_id);
-    
-    $orderdata = checkout::where('checkout.order_id',$order_id)->where('checkout.case_id',$case_id)->where('checkout.user_id',$user_id)->first();
-
-        //code for md create case
-    if($orderdata['medication_type'] == 1){
-
-      if($user['md_patient_id']!='' || $user['md_patient_id'] != null){
-
-        $patient_id = $user['md_patient_id'];
-
-      }else{
-          //call create patient api
-        $patient_id = create_patient($user_id,$case_id,$order_id);
-            //end of code create patient api 
+    try {
+      $validator = Validator::make($data, [
+        'user_id' => 'required',
+        'first_name' => 'required',
+        'last_name' => 'required',
+        'phone' => 'required|digits:10',
+        'email' => 'required|email',
+      ]);
+      if ($validator->fails()) {
+        return $this->sendError('Validation Error.', $validator->errors()->all());
       }
 
+      $input = $request->all();
+      $parent = Parentdetail::create(array(
+        'user_id' => $request->user_id,
+        'first_name' => $request->first_name,
+        'last_name' => $request->last_name,
+        'phone' => $request->phone,
+        'email' => $request->email,
+      ));
+      return $this->sendResponse($parent, 'Parent details saved successfully.');
+    } catch (\Exception $ex) {
+      return $this->sendError('Server error', array($ex->getMessage()));
+    }
+  }
+
+  public function getParentdetails(Request $request)
+  {
+    $parentdata = Parentdetail::where('user_id', $request['user_id'])->first();
+    return $this->sendResponse($parentdata, 'Parentdetail Retrived successfully');
+  }
 
 
-
-      if($patient_id != '' && $data == 1){
-
-       $cart_ids = explode(',', $orderdata['cart_id']);
-
-       $pharmacy_data  =  Cart::select('pharmacy_pickup')->where('user_id',$user_id)->whereIn('id',$cart_ids)->where('order_type', '!=', 'AddOn')->first();
-
-       $preferred_pharmacy_id = $pharmacy_data['pharmacy_pickup'];
-
-       $response = CreateCase($user_id,$case_id,$preferred_pharmacy_id,$patient_id,$order_id);
-
-       $response = json_decode($response);
-
-       if(!empty($response)){
-
-        $md_response = $response;
-
-        return $this->sendResponse($md_response, 'User Status Updated Successfully');
-      }
-    }else{
-     return $this->sendResponse(array(), 'something went wrong!');
-   }
- }
-/*}catch(\Exception $ex){
- return $this->sendError('Server error',array($ex->getMessage()));
-}*/
-}
-
-public function getVouchedDetails(Request $request, $id){
-  try{
-    $input = $request->all();
-
+  public function show($id)
+  {
     $user = User::find($id);
+    //$success['user_id'] =  $user->id;
+    $case_status =  CaseManagement::where("user_id", $user->id)->OrderBy("id", "DESC")->first();
+    $order_status = Checkout::where("user_id", $user->id)->first();
 
-
-    $vouched_details = json_decode($user['vouched_details']);
-
-
-
-    if(!empty($user)){
-      return $this->sendResponse($vouched_details, 'Users vouched details retrived successfully');
-    }else{
-
-      return $this->sendResponse($user, 'NO data found!');  
+    $complete = true;
+    if (isset($case_status) && $case_status->case_status == 'completed') {
+      $complete = false;
     }
 
-  }catch(\Exception $ex){
-   return $this->sendError('Server error',array($ex->getMessage()));
- }
-}
+    $status = false;
+    if (isset($order_status) && $order_status->user_id == $user->id) {
+      $status = true;
+    }
 
-public function addUserPic(Request $request)
-{
-  $data = $request->all();
-  $user_id = $request['user_id'];
-  $case_id = $request['case_id'];
-  $user_left_pic = $request['left_pic'];
-  $user_right_pic = $request['right_pic'];
-  $user_straight_pic = $request['straight_pic'];
-  $user_other_pic = $request['other_pic'];
-  /*$user_left_pic = $request->file('left_pic');
+    $user['case_status'] = $complete;
+    $user['order_status'] = $status;
+    return $this->sendResponse($user, 'user Retrived successfully');
+  }
+
+  public function updateVerifiedByVouch(Request $request)
+  {
+    //try{
+
+    //$input = $request->all();
+
+    $user_id = $request['user_id'];
+    //$case_id = $request['case_id'];
+    $case_id = 120;
+    //$order_id = $request['order_id'];
+    $order_id = 873;
+
+    $data = User::where('id', $user_id)->update(['verified_by_vouch' => $request['verified_by_vouch']]);
+
+    $user = User::find($user_id);
+
+    $orderdata = checkout::where('checkout.order_id', $order_id)->where('checkout.case_id', $case_id)->where('checkout.user_id', $user_id)->first();
+
+    //code for md create case
+    if ($orderdata['medication_type'] == 1) {
+
+      if ($user['md_patient_id'] != '' || $user['md_patient_id'] != null) {
+
+        $patient_id = $user['md_patient_id'];
+      } else {
+        //call create patient api
+        $patient_id = create_patient($user_id, $case_id, $order_id);
+        //end of code create patient api 
+      }
+
+
+
+
+      if ($patient_id != '' && $data == 1) {
+
+        $cart_ids = explode(',', $orderdata['cart_id']);
+
+        $pharmacy_data  =  Cart::select('pharmacy_pickup')->where('user_id', $user_id)->whereIn('id', $cart_ids)->where('order_type', '!=', 'AddOn')->first();
+
+        $preferred_pharmacy_id = $pharmacy_data['pharmacy_pickup'];
+
+        $response = CreateCase($user_id, $case_id, $preferred_pharmacy_id, $patient_id, $order_id);
+
+        $response = json_decode($response);
+
+        if (!empty($response)) {
+
+          $md_response = $response;
+
+          return $this->sendResponse($md_response, 'User Status Updated Successfully');
+        }
+      } else {
+        return $this->sendResponse(array(), 'something went wrong!');
+      }
+    }
+    /*}catch(\Exception $ex){
+ return $this->sendError('Server error',array($ex->getMessage()));
+}*/
+  }
+
+  public function getVouchedDetails(Request $request, $id)
+  {
+    try {
+      $input = $request->all();
+
+      $user = User::find($id);
+
+
+      $vouched_details = json_decode($user['vouched_details']);
+
+
+
+      if (!empty($user)) {
+        return $this->sendResponse($vouched_details, 'Users vouched details retrived successfully');
+      } else {
+
+        return $this->sendResponse($user, 'NO data found!');
+      }
+    } catch (\Exception $ex) {
+      return $this->sendError('Server error', array($ex->getMessage()));
+    }
+  }
+
+  public function addUserPic(Request $request)
+  {
+    $data = $request->all();
+    $user_id = $request['user_id'];
+    $case_id = $request['case_id'];
+    $user_left_pic = $request['left_pic'];
+    $user_right_pic = $request['right_pic'];
+    $user_straight_pic = $request['straight_pic'];
+    $user_other_pic = $request['other_pic'];
+    /*$user_left_pic = $request->file('left_pic');
   $user_right_pic = $request->file('right_pic');
   $user_straight_pic = $request->file('straight_pic');
   $user_other_pic = $request->file('other_pic');*/
 
-  /*$destinationPath = public_path('/images/Users');
+    /*$destinationPath = public_path('/images/Users');
 
   if(!empty($user_left_pic)){
     $left_pic =  $user_left_pic->getClientOriginalName();
@@ -325,44 +325,41 @@ public function addUserPic(Request $request)
     $file_name_other_pic = NULL;
   }*/
 
-  $userpic=UserPics::where('user_id',$request['user_id'])->where('case_id',$request['case_id'])->first();
+    $userpic = UserPics::where('user_id', $request['user_id'])->where('case_id', $request['case_id'])->first();
 
 
 
-  if(isset($userpic)){
-    $userpicUpdate = UserPics::where('id',$userpic->id)->update($data);
-    $userpic=UserPics::where('user_id',$request['user_id'])->where('case_id',$request['case_id'])->first();
+    if (isset($userpic)) {
+      $userpicUpdate = UserPics::where('id', $userpic->id)->update($data);
+      $userpic = UserPics::where('user_id', $request['user_id'])->where('case_id', $request['case_id'])->first();
 
-    return $this->sendResponse($userpic, 'User picture update successfully');
-  }else{
+      return $this->sendResponse($userpic, 'User picture update successfully');
+    } else {
 
-    $userpic = UserPics::create(array(
-      'user_id'=>$user_id,
-      'case_id'=>$case_id,
-      'left_pic'=>$user_left_pic,
-      'straight_pic'=>$user_straight_pic,
-      'right_pic'=>$user_right_pic,
-      'other_pic' => $user_other_pic,
+      $userpic = UserPics::create(array(
+        'user_id' => $user_id,
+        'case_id' => $case_id,
+        'left_pic' => $user_left_pic,
+        'straight_pic' => $user_straight_pic,
+        'right_pic' => $user_right_pic,
+        'other_pic' => $user_other_pic,
 
-      /*'left_pic'=>$file_name_left_pic,
+        /*'left_pic'=>$file_name_left_pic,
       'straight_pic'=>$file_name_straight_pic,
       'right_pic'=>$file_name_right_pic,
       'other_pic' => $file_name_other_pic,*/
-    ));
+      ));
 
+      return $this->sendResponse($userpic, 'User picture saved successfully.');
+    }
+  }
+
+  public function getUserPic(Request $request)
+  {
+
+    $user_id = $request['user_id'];
+    $case_id = $request['case_id'];
+    $userpic = UserPics::where('user_id', $request['user_id'])->where('case_id', $request['case_id'])->fisrt();
     return $this->sendResponse($userpic, 'User picture saved successfully.');
   }
 }
-
-public function getUserPic(Request $request)
-{
-
-  $user_id = $request['user_id'];
-  $case_id = $request['case_id'];
-  $userpic=UserPics::where('user_id',$request['user_id'])->where('case_id',$request['case_id'])->fisrt();
-  return $this->sendResponse($userpic, 'User picture saved successfully.');
-
-}
-
-}
-

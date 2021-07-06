@@ -615,6 +615,29 @@
 									<div id="pregnencytesttab" class="tab-pane fade in">
 										<section class="all_screen_section">
 											<div class="Outer_box_design">
+												<div class="row">
+													<div class="col-md-12">
+														&nbsp;
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-4"></div>
+													<div class="col-md-4">
+														<select class="form-control" id="pfollowselect">
+															<option value="">--SELECT--</option>
+															@if(isset($followup_que))
+																<?php
+																for($i=1;$i<=count($followup_que);$i++){
+															?>
+																<option value="{{$i}}">Follow Up {{$i}}</option>
+															<?php		
+																}
+																?>
+															@endif
+														</select>
+													</div>
+													<div class="col-md-4"></div>
+												</div>
 												<div class="ipledge_outer_design mt24">
 													<table class="table table-responsive-md table-striped no-footer">
 														<thead>
@@ -627,9 +650,9 @@
 														</thead>
 														<tbody class="list_view_outer">
 															@foreach($followup_que as $key => $p_test)
-															<tr>
+															<tr class="pfollow{{$key+1}} pfollows" style="display: none;">
 
-																<th scope="row">{{$key+1}}</th>
+																<th scope="row"><?php echo date("m-d-Y",strtotime($p_test['created_at'])); ?></th>
 																<td><a href="{{ url('/public/images/Users/') }}/{{$p_test['pregnancy_test']}}" target="_blank">File</a></td>
 																<td>{{$p_test['follow_up_no']}}</td>
 																<td><a href="{{ url('/public/images/Users/') }}/{{$p_test['pregnancy_test']}}" target="_blank"><i class="fa fa-eye"></i></a> /
@@ -1891,6 +1914,20 @@
 				$(".followup"+$(this).val()).show();
 			}
 			
+		}
+	});
+
+	$("#pfollowselect").on('change',function(){
+		if($(this).val() == ''){
+			$(".pfollows").each(function(index){
+				$(".pfollow"+(parseFloat(index)+1)).hide();
+			});
+	
+		}else{
+			$(".pfollows").each(function(index){
+				$(".pfollow"+(parseFloat(index)+1)).hide();
+			});
+			$(".pfollow"+$(this).val()).show();	
 		}
 	});
 

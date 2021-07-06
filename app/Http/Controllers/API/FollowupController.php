@@ -164,6 +164,15 @@ class FollowupController extends BaseController
             $caseSave = $caseManage->update($case_data);
             $input_data['case_status'] = 'prior_auth';
             $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
+
+            $noti_input_data = array();
+            $noti_input_data['user_id'] = $user_id;
+            $noti_input_data['case_id'] = $case_id;
+            $noti_input_data['md_case_id'] = $md_case_id;
+            $noti_input_data['noti_message'] = getNotificationMessageFromKey('follow_up_case_submitted');
+            $noti_input_data['for_month'] = $followUpAns['follow_up_no']+1;
+
+            $noti_data = Notifications::create($noti_input_data);
           endif;
         endif;
       }
@@ -194,6 +203,15 @@ class FollowupController extends BaseController
               $caseSave = $caseManage->update($case_data);
               $input_data['case_status'] = 'verify_pregnancy';
               $caseHistory = CaseHistory:: where('case_id', $request['case_id'])->update($input_data);
+
+              $noti_input_data = array();
+              $noti_input_data['user_id'] = $user_id;
+              $noti_input_data['case_id'] = $case_id;
+              $noti_input_data['md_case_id'] = $md_case_id;
+              $noti_input_data['noti_message'] = getNotificationMessageFromKey('follow_up_case_submitted');
+              $noti_input_data['for_month'] = $followUpAns['follow_up_no']+1;
+
+              $noti_data = Notifications::create($noti_input_data);
             endif;
           endif;
         }

@@ -109,8 +109,8 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
         $product_type = $value['product_type'];
 
-        $gender = 'female';//0;
-        $product_type = "Accutane";
+        /*$gender = 'female';//0;
+        $product_type = "Accutane";*/
 
         $system_status = 'Telehealth Evaluation Requested';
 
@@ -264,6 +264,22 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                 //if($md_case_status == 'dosespot confirmed' && $case_type = 'follow_up'){
                 if($md_case_status == 'completed'){
+
+                  //send notification for topical
+
+                  if($product_type != 'Accutane'){
+                    $noti_input_data = array();
+                    $noti_input_data['user_id'] = $user_id;
+                    $noti_input_data['case_id'] = $system_case_id;
+                    $noti_input_data['md_case_id'] = $case_id;
+
+                    $noti_input_data['noti_message'] = getNotificationMessageFromKey('topical_case_completed');
+                    $noti_input_data['for_month'] = $follow_up_data['follow_up_no']+1;
+                  }
+
+                   
+
+                  //end of code to send notification for topical
 
                   $system_status = 'Prescription Approved';
 
@@ -733,6 +749,23 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
               $curexa_ord_status = json_decode($curexa_order_status);
 
               $CurexaOrderStatus  =  CurexaOrder::where('id',$value['curexa_order_id'])->update(['order_status' => $curexa_ord_status->status,'status_details' => $curexa_ord_status->status_details,'tracking_number'=> $curexa_ord_status->tracking_number]);
+
+              if($curexa_ord_status->status == 'out_for_delivery' && $product_type != 'Accutane'){
+
+                 $noti_input_data = array();
+                 $noti_input_data['user_id'] = $user_id;
+                 $noti_input_data['case_id'] = $case_id;
+                 $noti_input_data['md_case_id'] = $md_case_id;
+
+                 $noti_msg = getNotificationMessageFromKey('order_shipped');
+
+                 $noti_message = str_replace("[order_id]",$value['curexa_order_id'], $noti_msg);
+
+                 $noti_input_data['noti_message'] =  $noti_message;
+                 $noti_input_data['for_month'] = $follow_up;
+
+                  $noti_data = Notifications::create($noti_input_data);
+              }
             }
 
           }

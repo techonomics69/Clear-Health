@@ -1225,7 +1225,7 @@
 						<div class="col-md-4">
 						</div>
 					</div>													
-					<div class="row user_photos" style="padding: 20px;">				
+					<div class="row user_photos" style="padding: 20px; display: none;">				
 						<div class="col-md-12">
 							<h2>User Photos</h2>
 						</div>
@@ -1300,13 +1300,13 @@
 						</div>
 						@endif
 					</div>
-					<div class="row followups" style="padding: 20px;">		
+					<div class="row followups" style="padding: 20px; display: none;">		
 						@if(isset($followup_que))
 						@foreach($followup_que as $key => $data)
-						<div class="col-md-12 followup{{$key+1}}">
+						<div class="col-md-12 followup{{$key+1}}" style="display: none;">
 							<h2>Follow Up: {{$key+1}}</h2>
 						</div>
-						<div class="col-md-3 followup{{$key+1}}">
+						<div class="col-md-3 followup{{$key+1}}" style="display: none;">
 							<section class="card">
 								<div class="card-body">
 									<div class="box-block mtb32">
@@ -1318,7 +1318,7 @@
 								</div>
 							</section>
 						</div>
-						<div class="col-md-3 followup{{$key+1}}">
+						<div class="col-md-3 followup{{$key+1}}" style="display: none;">
 							<section class="card">
 								<div class="card-body">
 									<div class="box-block mtb32">
@@ -1330,7 +1330,7 @@
 								</div>
 							</section>
 						</div>
-						<div class="col-md-3 followup{{$key+1}}">
+						<div class="col-md-3 followup{{$key+1}}" style="display: none;">
 							<section class="card">
 								<div class="card-body">
 									<div class="box-block mtb32">
@@ -1342,7 +1342,7 @@
 								</div>
 							</section>
 						</div>
-						<div class="col-md-3 followup{{$key+1}}">
+						<div class="col-md-3 followup{{$key+1}}" style="display: none;">
 							<section class="card">
 								<div class="card-body">
 									<div class="box-block mtb32">
@@ -1354,7 +1354,7 @@
 								</div>
 							</section>
 						</div>
-						<div class="col-md-3 followup{{$key+1}}">
+						<div class="col-md-3 followup{{$key+1}}" style="display: none;">
 							<section class="card">
 								<div class="card-body">
 									<div class="box-block mtb32">
@@ -1870,8 +1870,9 @@
 			$(".user_photos").hide();
 			$(".followups").show();
 			$(".followups").each(function(v,i){
-				$(".followup"+(parseFloat(i+1))).show();
+				$(".followup"+(parseFloat(i+1))).hide();
 			});
+			$(".followup"+$(this).val()).show();
 		}else{
 			$(".user_photos").hide();
 			$(".followups").hide();

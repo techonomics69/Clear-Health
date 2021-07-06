@@ -800,7 +800,7 @@
 
 																<?php
 																	foreach($user_case_management_data['follow_up_data'] as $key=>$value){?>
-																		<option value="{{$value['follow_up_no']}}" data-id="{{$value['md_case_id']}}"> {{$value['follow_up_no']}} </option>
+																		<option value="{{$value['follow_up_no']}}" data-id="{{$value['md_case_id']}}"  data-followupid="{{$value['id']}}"> {{$value['follow_up_no']}} </option>
 															   <?php }?>
 																</select>
 															</label>
@@ -809,6 +809,7 @@
 												<input type="hidden" name="case_id" value="{{$user_case_management_data->id}}">
 											<input type="hidden" name="user_id" value="{{$user_case_management_data->user_id}}">
 											<input type="hidden" name="md_case_id" value="" id="md_case_id">
+											<input type="hidden" name="follow_up_id" value="" id="follow_up_id">
 
 													<?php 
 													if($user_case_management_data->verify_prior_auth && $user_case_management_data->ipledge_items){?>
@@ -1583,7 +1584,9 @@
 
 	$("#follow_up").change(function(){
 		var md_case_id = $(this).find(':selected').attr('data-id');
+		var followupid = $(this).find(':selected').attr('data-followupid');
 		$("#md_case_id").val(md_case_id);
+		$("#follow_up_id").val(followupid);
 	});
 
 	jQuery(document).ready(function($) {

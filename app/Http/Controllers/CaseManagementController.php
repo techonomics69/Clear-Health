@@ -721,8 +721,17 @@ die();*/
          $case_id = $request->case_id;
          $md_case_id = $request->md_case_id;
          $follow_up = $request->follow_up;
+         $follow_up_id = $request->follow_up_id;
 
-        /* $CaseManagement_data = $data = Mdcases::join('case_managements','case_managements.md_case_id', '=','md_cases.case_id' )->join('users','users.id','=','md_cases.user_id')->select('case_managements.*','users.gender as user_gender')->where([['user_id',$user_id],['case_id',$md_case_id],['system_case_id', $case_id]])->first();*/
+
+      $user_case_management_data = CaseManagement::join('users', 'case_managements.user_id', '=', 'users.id')
+      ->select('case_managements.*', 'users.first_name', 'users.last_name', 'users.email', 'users.mobile', 'users.gender')
+      ->where('case_managements.id',$case_id)->first();
+
+      
+
+       $preferred_pharmacy_id = getPickupPharmacy($user_id,$case_id,$md_case_id);
+
 
          $noti_input_data = array();
          $noti_input_data['user_id'] = $user_id;
@@ -740,12 +749,50 @@ die();*/
          $trigger_input['month'] = $follow_up;
 
 
-          $noti_data = Notifications::create($noti_input_data);
 
-          $trigger_data = Triggers::create($trigger_input);
+       if($user_case_management_data['product_type']== "Accutane"){
 
-          toastr()->success('Notification sent successfully.');
-          return redirect()->back();
+        if($user_case_management_data['gender']=="female"  && $preferred_pharmacy_id !='13012' && $user_case_management_data['prior_auth_date']!= NULL){
+
+          if(isset($follow_up_id)){
+            $follow_up_data = FollowUp::where([['case_id',$user_case_management_data['id'],['id',$follow_up_id]],['follow_up_status','completed']])->get()->toArray();
+
+            $iPledge_items = $follow_up_data['ipledge_items'];
+          }else{
+            $iPledge_items = $user_case_management_data['ipledge_items'];
+          }
+
+          if($iPledge_items == 'on') {
+             $noti_data = Notifications::create($noti_input_data);
+
+              $trigger_data = Triggers::create($trigger_input);
+
+              toastr()->success('Notification sent successfully.');
+              return redirect()->back();
+          }else{
+            toastr()->error('Please verify ipledge items first.');
+            return redirect()->back();
+          }
+             
+        }
+
+
+        if($user_case_management_data['gender']=="male"  && $preferred_pharmacy_id !='13012' && $user_case_management_data['prior_auth_date']!= NULL){
+
+             $noti_data = Notifications::create($noti_input_data);
+
+              $trigger_data = Triggers::create($trigger_input);
+
+              toastr()->success('Notification sent successfully.');
+              return redirect()->back();
+          }
+             
+        }
+
+        //return redirect()->back();
+
+       }
+          
 
     }else{
       if ($request->prior_auth) :

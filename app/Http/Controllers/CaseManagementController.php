@@ -374,16 +374,13 @@ die();*/
       }
     }
 
-    $sub_check_union = DB::table("subscription")->select('subscription.*')
-                      ->where('subscription.case_id',$id)
-                      ->where('subscription.user_id',$user_case_management_data['user_id'])
-                      ->union($checkout)
-                      ->get();
+    
 
-    dd($sub_check_union);
-
+  
     return view('casemanagement.view', compact('user_case_management_data', 'category', 'general_que', 'accutane_que', 'topical_que', 'skincare_summary', 'message_data', 'message_details', 'msg_history', 'followup_que', 'prescribe_shipments', 'checkout', 'user_pic','subscription_data'));
   }
+
+  
 
   /**
    * Show the form for editing the specified resource.

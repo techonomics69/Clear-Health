@@ -351,9 +351,11 @@ die();*/
     $user_pic = UserPics::where('case_id', $user_case_management_data['id'])->where('user_id', $user_case_management_data['user_id'])->first();
     
     $subscription_data = Subscription::join('case_managements','subscription.case_id','=','case_managements.id')
+                        ->select('subscription.*')
                         ->where('subscription.case_id',$id)
                         ->where('subscription.user_id',$user_case_management_data['user_id'])
                         ->get();
+
 
 
     return view('casemanagement.view', compact('user_case_management_data', 'category', 'general_que', 'accutane_que', 'topical_que', 'skincare_summary', 'message_data', 'message_details', 'msg_history', 'followup_que', 'prescribe_shipments', 'checkout', 'user_pic','subscription_data'));

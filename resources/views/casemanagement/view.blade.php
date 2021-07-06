@@ -766,6 +766,10 @@
 									<div id="triggerstab" class="tab-pane fade in">
 										<section class="all_screen_section">
 											<div class="Outer_box_design">
+												<?php echo "<pre>";
+												print_r($user_case_management_data);
+												echo "<pre>";
+												exit();?>
 												<div class="ipledge_outer_design ">
 													{!! Form::open(array('route' => 'trigger','method'=>'POST')) !!}
 													<div class="prior_block">
@@ -792,7 +796,17 @@
 														<p class="auth_text">Follow Up:</p>&nbsp;&nbsp;
 														<div class="check-register mangesubscription smalltext ">
 															<label class="custome-checkbox">
-																{!! Form::select('follow_up', ['1' => 'New Case','2' => 'First', '3' => 'Second', '4' => 'Third','5' => 'Fourth','6' => 'Fifth','6' => 'Seventh'], null, ['class' => 'form-control']); !!}
+																{{-- {!! Form::select('follow_up', ['1' => 'New Case','2' => 'First', '3' => 'Second', '4' => 'Third','5' => 'Fourth','6' => 'Fifth','6' => 'Seventh'], null, ['class' => 'form-control']); !!} --}}
+
+																<select name="follow_up" class="form-control" id="follow_up">
+																	<option value="">Select</option>
+																	<option value="0" data-id="{{$user_case_management_data->md_case_id}}">New Case</option>
+
+																<?php
+																	foreach($user_case_management_data['follow_up_data'] as $key=>$value){?>
+																		<option value="{{$value['follow_up_no']}}" data-id="{{$value['md_case_id']}}"> {{$value['md_case_id']}} </option>
+															   <?php }?>
+																</select>
 															</label>
 														</div>
 													</div>

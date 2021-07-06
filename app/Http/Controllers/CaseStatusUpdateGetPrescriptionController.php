@@ -751,6 +751,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
     //end of shipstation
   }
 }
+}
 
     /**
      * Show the form for creating a new resource.

@@ -321,7 +321,7 @@ class PaymentsController extends Controller
 
     public function card_update() {
         
-        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+        \Stripe\Stripe::setApiKey('sk_test_51J08tDJofjMgVsOdzxZs5Aqlf5A9riwPPwlxUTriC8YPiHvTjlCBoaMjgxiqdIVfvOMPcllgR9JY7EZlihr6TJHy00ixztHFtz');
 
         if (empty(request()->get('paymentMethodId'))) {
             session()->flash('error', 'Some error while saving the card. Please try again');

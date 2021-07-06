@@ -1862,21 +1862,21 @@
 	$("#photoSelect").on('change',function(){
 		if($(this).val() == 'user_photos'){
 			$(".user_photos").show();
-			// $(".followups").hide();
-			$(".followups").each(function(v,i){
+			$(".followups").hide();
+			$(".followup").each(function(v,i){
 				$(".followup"+(parseFloat(i+1))).hide();
 			});
 		}else if($.isNumeric($(this).val())){
 			$(".user_photos").hide();
-			// $(".followups").show();
-			// $(".followups").each(function(v,i){
-			// 	$(".followup"+(parseFloat(i+1))).hide();
-			// });
+			$(".followups").show();
+			$(".followup").each(function(v,i){
+				$(".followup"+(parseFloat(i+1))).hide();
+			});
 			$(".followup"+$(this).val()).show();
 		}else{
 			$(".user_photos").hide();
-			// $(".followups").hide();
-			$(".followups").each(function(v,i){
+			$(".followups").hide();
+			$(".followup").each(function(v,i){
 				$(".followup"+(parseFloat(i+1))).hide();
 			});
 		}

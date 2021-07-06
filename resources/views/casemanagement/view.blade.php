@@ -1111,7 +1111,7 @@
 																		if (count($fileExt) > 0) {
 																			if (in_array($fileExt[1], $fileextArr)) {
 																	?>
-																				<img src="{{ asset('public/Message_files/'.$message['file_name']) }}" type="media_type" width='100' style="max-width: 40px;">
+																				<img src="{{ asset('public/Message_files/'.$message['file_name']) }}" type="media_type" width='100' >
 																				<a target="_blank" download="" href="{{ asset('public/Message_files/'.$message['file_name']) }}"> Download</a>
 																			<?php
 																			} else {
@@ -1749,11 +1749,11 @@
 								var fileNameExt2 = ufile.substr(ufile.lastIndexOf('.') + 1);
 
 								if ($.inArray(fileNameExt2, exts2) !== -1) {
-									$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg" + data.id + "'>" + "<p >" + "<img width='100' src={{URL('/')}}/public/Message_files/" + data.file_name + ">" + "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/" + data.file_name + ">" + " Download" + "</a>" + "</p>" + "<h5>" + data.msg_date + "<h5>" + "</li>");
+									$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg" + data.id + "'>" + "<p >" + "<img width='100'  src={{URL('/')}}/public/Message_files/" + data.file_name + ">" + "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/" + data.file_name + ">" + " Download" + "</a>" + "</p>" + "<h5>" + data.msg_date + "<h5>" + "</li>");
 								} else if (fileNameExt2 == 'doc' || fileNameExt2 == 'docx') {
-									$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg" + data.id + "'>" + "<p >" + "<img width='100' src={{URL('/')}}/public/images/msgs/doc.png>" + "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/" + data.file_name + ">" + " Download" + "</a>" + "</p>" + "<h5>" + data.msg_date + "<h5>" + "</li>");
+									$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg" + data.id + "'>" + "<p >" + "<img width='100' class='dafasf' src={{URL('/')}}/public/images/msgs/doc.png>" + "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/" + data.file_name + ">" + " Download" + "</a>" + "</p>" + "<h5>" + data.msg_date + "<h5>" + "</li>");
 								} else if (fileNameExt2 == 'pdf') {
-									$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg" + data.id + "'>" + "<p >" + "<img width='100' src={{URL('/')}}/public/images/msgs/pdf.png>" + "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/" + data.file_name + ">" + " Download" + "</a>" + "</p>" + "<h5>" + data.msg_date + "<h5>" + "</li>");
+									$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg" + data.id + "'>" + "<p  >" + "<img width='100' src={{URL('/')}}/public/images/msgs/pdf.png>" + "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/" + data.file_name + ">" + " Download" + "</a>" + "</p>" + "<h5>" + data.msg_date + "<h5>" + "</li>");
 								} else if (fileNameExt2 == 'txt') {
 									$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg" + data.id + "'>" + "<p >" + "<img width='100' src={{URL('/')}}/public/images/msgs/txt.png>" + "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/" + data.file_name + ">" + " Download" + "</a>" + "</p>" + "<h5>" + data.msg_date + "<h5>" + "</li>");
 								} else if (fileNameExt2 == 'xls' || fileNameExt2 == 'xlsx') {

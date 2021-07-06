@@ -1205,6 +1205,11 @@
 				<!--start 6th tab-->
 				<div id="photos" class="tab-pane fade in ">
 					<div class="row">
+						<div class="col-md-12">
+							&nbsp;
+						</div>
+					</div>	
+					<div class="row">
 						<div class="col-md-4">
 						</div>
 						<div class="col-md-4">
@@ -1226,7 +1231,7 @@
 						<div class="col-md-4">
 						</div>
 					</div>													
-					<div class="row" style="padding: 20px;">
+					<div class="row user_photos" style="padding: 20px; display: none;">				
 						<div class="col-md-12">
 							<h2>User Photos</h2>
 						</div>
@@ -1300,12 +1305,14 @@
 							</section>
 						</div>
 						@endif
+					</div>
+					<div class="row followups" style="padding: 20px; display: none;">		
 						@if(isset($followup_que))
 						@foreach($followup_que as $key => $data)
-						<div class="col-md-12">
+						<div class="col-md-12 followup{{$key+1}} follows" style="display: none;">
 							<h2>Follow Up: {{$key+1}}</h2>
 						</div>
-						<div class="col-md-3">
+						<div class="col-md-3 followup{{$key+1}} follows" style="display: none;">
 							<section class="card">
 								<div class="card-body">
 									<div class="box-block mtb32">
@@ -1317,7 +1324,7 @@
 								</div>
 							</section>
 						</div>
-						<div class="col-md-3">
+						<div class="col-md-3 followup{{$key+1}} follows" style="display: none;">
 							<section class="card">
 								<div class="card-body">
 									<div class="box-block mtb32">
@@ -1329,7 +1336,7 @@
 								</div>
 							</section>
 						</div>
-						<div class="col-md-3">
+						<div class="col-md-3 followup{{$key+1}} follows" style="display: none;">
 							<section class="card">
 								<div class="card-body">
 									<div class="box-block mtb32">
@@ -1341,7 +1348,7 @@
 								</div>
 							</section>
 						</div>
-						<div class="col-md-3">
+						<div class="col-md-3 followup{{$key+1}} follows" style="display: none;">
 							<section class="card">
 								<div class="card-body">
 									<div class="box-block mtb32">
@@ -1353,7 +1360,7 @@
 								</div>
 							</section>
 						</div>
-						<div class="col-md-3">
+						<div class="col-md-3 followup{{$key+1}} follows" style="display: none;">
 							<section class="card">
 								<div class="card-body">
 									<div class="box-block mtb32">
@@ -1859,6 +1866,34 @@
 			$(this).addClass('active');
 		}
 	});
+
+	$("#photoSelect").on('change',function(){
+		if($(this).val() == 'user_photos'){
+			$(".user_photos").show();
+			$(".followups").hide();
+			$(".follows").each(function(v,i){
+				$(".followup"+(parseFloat(i+1))).hide();
+			});
+		}else{
+			if($(this).val() == ''){
+				$(".user_photos").hide();
+				$(".followups").hide();
+				$(".follows").each(function(v,i){
+					$(".followup"+(parseFloat(i+1))).hide();
+				});
+				$(".followup"+$(this).val()).hide();
+			}else{
+				$(".user_photos").hide();
+				$(".followups").show();
+				$(".follows").each(function(i){
+					$(".followup"+(parseFloat(i)+1)).hide();
+				});
+				$(".followup"+$(this).val()).show();
+			}
+			
+		}
+	});
+
 </script>
 
 @if (count($errors) > 0)

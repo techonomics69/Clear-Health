@@ -1877,8 +1877,8 @@
 			}else{
 				$(".user_photos").hide();
 				$(".followups").show();
-				$(".follows").each(function(v,i){
-					alert(parseFloat(i)+1);
+				$(".follows").each(function(i){
+					alert(i);
 					$(".followup"+(parseFloat(i)+1)).hide();
 				});
 				$(".followup"+$(this).val()).show();

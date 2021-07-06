@@ -355,9 +355,9 @@ die();*/
                         ->where('subscription.case_id',$id)
                         ->where('subscription.user_id',$user_case_management_data['user_id'])
                         ->get();
-
-
-
+    $sub_check = array_merge($checkout, $subscription_data);  
+    dd($sub_check);                  
+    
     return view('casemanagement.view', compact('user_case_management_data', 'category', 'general_que', 'accutane_que', 'topical_que', 'skincare_summary', 'message_data', 'message_details', 'msg_history', 'followup_que', 'prescribe_shipments', 'checkout', 'user_pic','subscription_data'));
   }
 

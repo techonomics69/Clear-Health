@@ -24,6 +24,7 @@ use App\Models\CaseHistory;
 
 use App\Models\Triggers;
 use App\Models\Notifications;
+use App\Helper\shipStationHelper;
 
 use Session;
 use Carbon\Carbon;
@@ -60,7 +61,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
        $user_phone = $value['mobile'];
 
         $order_data = Checkout::where([['user_id', $user_id],['case_id', $system_case_id],['md_case_id', $case_id]])->first();
-
+        $ShiStation = shipStationHelper::getOrderData($order_data['shipstation_order_id']);
      /*  $cart_ids = explode(',', $order_data['cart_id']);
        $pharmacy_data  =  Cart::select('pharmacy_pickup')->where('user_id',$user_id)->whereIn('id',$cart_ids)->where('order_type', '!=', 'AddOn')->first();
        $preferred_pharmacy_id = $pharmacy_data['pharmacy_pickup'];*/

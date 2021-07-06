@@ -138,8 +138,8 @@ class CaseManagementController extends Controller
     $product_name = array();
     $addon_product = array();
 
-
-
+    
+    
     foreach ($product_details as $product_key => $product_value) {
       //$products[$product_key]['order_type'] = $product_value['order_type'];
       //$skincare_summary['order_type'] = $product_value['order_type'];

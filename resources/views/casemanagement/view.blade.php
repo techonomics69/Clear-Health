@@ -1203,6 +1203,27 @@
 
 				<!--start 6th tab-->
 				<div id="photos" class="tab-pane fade in ">
+					<div class="row">
+						<div class="col-md-4">
+						</div>
+						<div class="col-md-4">
+							<select class="form-control" id="photoSelect">
+								<option value="">--SELECT--</option>
+								<option value="user_photos">User Photos</option>
+								@if(isset($followup_que))
+									<?php
+										for($i=1;$i<=count($followup_que);$i++){
+								?>
+									<option value="{{$i}}">Follow Up: {{$i}}</option>
+								<?php			
+										}
+									?>								
+								@endif	
+							</select>
+						</div>
+						<div class="col-md-4">
+						</div>
+					</div>													
 					<div class="row" style="padding: 20px;">
 						<div class="col-md-12">
 							<h2>User Photos</h2>

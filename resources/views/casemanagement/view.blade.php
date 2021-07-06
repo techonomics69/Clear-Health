@@ -1203,14 +1203,8 @@
 
 				<!--start 6th tab-->
 				<div id="photos" class="tab-pane fade in ">
-				<div class="row">
-						<div class="col-md-12">
-						&nbsp;																	
-						</div>
-				</div>																			
 					<div class="row">
 						<div class="col-md-4">
-							
 						</div>
 						<div class="col-md-4">
 							<select class="form-control" id="photoSelect">
@@ -1220,10 +1214,11 @@
 									<?php
 										for($i=1;$i<=count($followup_que);$i++){
 								?>
-									<option value="followup{{$i}}">Follow Up: {{$i}}</option>
+									<option value="{{$i}}">Follow Up: {{$i}}</option>
 								<?php			
 										}
 									?>
+																	
 								@endif	
 							</select>
 						</div>
@@ -1590,7 +1585,7 @@
 
 	$("#follow_up").change(function(){
 		var md_case_id = $(this).find(':selected').attr('data-id');
-		$("#md_case_id").val();
+		$("#md_case_id").val(md_case_id);
 	});
 
 	jQuery(document).ready(function($) {

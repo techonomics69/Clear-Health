@@ -1558,6 +1558,12 @@
 
 <script>
 	$.noConflict();
+
+	$("#follow_up").change(function(){
+		alert("The text has been changed.");
+		alert($(this).find(':selected').attr('data-id'));
+	});
+
 	jQuery(document).ready(function($) {
 		$('.c_profile').DataTable({
 			"dom": '<"top"if>rt<"bottom"lp><"clear">',

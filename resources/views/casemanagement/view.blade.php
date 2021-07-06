@@ -1413,7 +1413,7 @@
 												<tr>
 													<th scope="col">No</th>
 													<th scope="col">Date/Time</th>
-													<th scope="col"> Order id </th>
+													<!-- <th scope="col"> Order id </th> -->
 													<th scope="col"> Transaction id </th>
 													<th scope="col">Amount</th>
 													<th scope="col">Status</th>
@@ -1425,7 +1425,7 @@
 												<tr>
 													<td>{{$key + 1}}</td>
 													<td>{{$data->updated_at}}</td>
-													<td><a href="#" data-toggle="modal" data-target="#exampleModal">{{$data->order_id}}</a></td>
+													<!-- <td><a href="#" data-toggle="modal" data-target="#exampleModal"></a></td> -->
 													<td><a href="#" data-toggle="modal" data-target="#exampleModal">{{$data->transaction_id}}</a></td>
 													<td>{{$data->total_amount}}</td>
 													<td>{{$data->payment_status}}</td>

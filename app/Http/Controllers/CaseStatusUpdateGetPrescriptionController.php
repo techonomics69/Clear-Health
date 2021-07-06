@@ -87,7 +87,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
        
 
-       $month_triggers = Triggers::where([['user_id', $user_id],['case_id', $case_id],['md_case_id', $md_case_id],['name','pickup_medication_notification'],['month',$month_no]])->first();
+       $month_triggers = Triggers::where([['user_id', $user_id],['case_id',$system_case_id],['md_case_id', $case_id],['name','pickup_medication_notification'],['month',$month_no]])->first();
 
        $month_pickup_medi_noti_date = new Carbon($month_triggers['updated_at']);
      

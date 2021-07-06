@@ -1353,8 +1353,8 @@
 											<tr>
 												<th scope="col">No</th>
 												<th scope="col">Date/Time</th>
-												<th scope="col"><a href="#" data-toggle="modal" data-target="#exampleModal">  Order id </a></th>
-												<th scope="col"> <a href="#" data-toggle="modal" data-target="#exampleModal"> Transaction id </a></th>
+												<th scope="col"> Order id </th>
+												<th scope="col"> Transaction id </th>
 												<th scope="col">Amount</th>
 												<th scope="col">Status</th>
 												<!-- <th scope="col">Action</th> -->
@@ -1365,8 +1365,8 @@
 											<tr>
 												<td>{{$key + 1}}</td>
 												<td>{{$data->updated_at}}</td>
-												<td>{{$data->order_id}}</td>
-												<td>{{$data->transaction_id}}</td>
+												<td><a href="#" data-toggle="modal" data-target="#exampleModal">{{$data->order_id}}</a></td>
+												<td><a href="#" data-toggle="modal" data-target="#exampleModal">{{$data->transaction_id}}</a></td>
 												<td>{{$data->total_amount}}</td>
 												<td>{{$data->payment_status}}</td>
 												<!-- <td><i class="fa fa-eye"></i></td> -->
@@ -1528,7 +1528,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Payment Details</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -1538,7 +1538,6 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>

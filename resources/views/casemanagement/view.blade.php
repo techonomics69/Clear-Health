@@ -1303,10 +1303,10 @@
 					<div class="row followups" style="padding: 20px; display: none;">		
 						@if(isset($followup_que))
 						@foreach($followup_que as $key => $data)
-						<div class="col-md-12 followup{{$key+1}}" style="display: none;">
+						<div class="col-md-12 followup{{$key+1}} follows" style="display: none;">
 							<h2>Follow Up: {{$key+1}}</h2>
 						</div>
-						<div class="col-md-3 followup{{$key+1}}" style="display: none;">
+						<div class="col-md-3 followup{{$key+1}} follows" style="display: none;">
 							<section class="card">
 								<div class="card-body">
 									<div class="box-block mtb32">
@@ -1318,7 +1318,7 @@
 								</div>
 							</section>
 						</div>
-						<div class="col-md-3 followup{{$key+1}}" style="display: none;">
+						<div class="col-md-3 followup{{$key+1}} follows" style="display: none;">
 							<section class="card">
 								<div class="card-body">
 									<div class="box-block mtb32">
@@ -1330,7 +1330,7 @@
 								</div>
 							</section>
 						</div>
-						<div class="col-md-3 followup{{$key+1}}" style="display: none;">
+						<div class="col-md-3 followup{{$key+1}} follows" style="display: none;">
 							<section class="card">
 								<div class="card-body">
 									<div class="box-block mtb32">
@@ -1342,7 +1342,7 @@
 								</div>
 							</section>
 						</div>
-						<div class="col-md-3 followup{{$key+1}}" style="display: none;">
+						<div class="col-md-3 followup{{$key+1}} follows" style="display: none;">
 							<section class="card">
 								<div class="card-body">
 									<div class="box-block mtb32">
@@ -1354,7 +1354,7 @@
 								</div>
 							</section>
 						</div>
-						<div class="col-md-3 followup{{$key+1}}" style="display: none;">
+						<div class="col-md-3 followup{{$key+1}} follows" style="display: none;">
 							<section class="card">
 								<div class="card-body">
 									<div class="box-block mtb32">
@@ -1863,21 +1863,21 @@
 		if($(this).val() == 'user_photos'){
 			$(".user_photos").show();
 			$(".followups").hide();
-			$(".followup").each(function(v,i){
+			$(".follows").each(function(v,i){
 				$(".followup"+(parseFloat(i+1))).hide();
 			});
 		}else{
 			if($(this).val() == ''){
 				$(".user_photos").hide();
 				$(".followups").hide();
-				$(".followup").each(function(v,i){
+				$(".follows").each(function(v,i){
 					$(".followup"+(parseFloat(i+1))).hide();
 				});
 				$(".followup"+$(this).val()).hide();
 			}else{
 				$(".user_photos").hide();
 				$(".followups").show();
-				$(".followup").each(function(v,i){
+				$(".follows").each(function(v,i){
 					alert(parseFloat(i)+1);
 					$(".followup"+(parseFloat(i)+1)).hide();
 				});

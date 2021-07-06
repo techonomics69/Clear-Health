@@ -1227,7 +1227,7 @@
 									<?php
 										for($i=1;$i<=count($followup_que);$i++){
 								?>
-									<option value="{{$i}}">Follow Up: {{$i}}</option>
+									<option value="followup{{$i}}">Follow Up: {{$i}}</option>
 								<?php			
 										}
 									?>
@@ -1237,7 +1237,7 @@
 						<div class="col-md-4">
 						</div>
 					</div>													
-					<div class="row" style="padding: 20px;">
+					<div class="row" style="padding: 20px;">				
 						<div class="col-md-12">
 							<h2>User Photos</h2>
 						</div>
@@ -1595,7 +1595,7 @@
 
 	$("#follow_up").change(function(){
 		var md_case_id = $(this).find(':selected').attr('data-id');
-		$("#md_case_id").val(md_case_id);
+		$("#md_case_id").val();
 	});
 
 	jQuery(document).ready(function($) {

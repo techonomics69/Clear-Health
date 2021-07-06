@@ -512,6 +512,31 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
               //end of notification download_the_bloodwork_form
 
+              //notification upload_your_pregnancy_test
+
+              $ipledge_credentials_triggers = Triggers::where([['user_id', $user_id],['case_id', $system_case_id],['md_case_id', $case_id],['name','ipledge_credentials_sent_notification'],['month',1]])->first();
+
+              $ipledge_credentials_triggers_notification_date = new Carbon($ipledge_credentials_triggers['updated_at']);
+              $currentdate = Carbon::now();
+              $ipledge_credentials_difference = $ipledge_credentials_triggers_notification_date->diffInDays($currentdate);
+
+              if($ipledge_credentials_difference == 31){
+                $noti_download_the_bloodwork_form = array();
+                $noti_download_the_bloodwork_form['user_id'] = $user_id;
+                $noti_download_the_bloodwork_form['case_id'] = $case_id;
+                $noti_download_the_bloodwork_form['md_case_id'] = $md_case_id;
+
+
+                $noti_download_the_bloodwork_form['noti_message'] = getNotificationMessageFromKey('download_the_bloodwork_form');
+                $noti_download_the_bloodwork_form['for_month'] = $follow_up;
+
+                $noti_download_the_bloodwork_data = Notifications::create($noti_download_the_bloodwork_form);
+              }
+
+              //end of upload_your_pregnancy_test
+
+              
+
             }else if($gender == "male" && $product_type == 'Accutane'){
 
 

@@ -808,7 +808,7 @@
 													</div>
 												<input type="hidden" name="case_id" value="{{$user_case_management_data->id}}">
 											<input type="hidden" name="user_id" value="{{$user_case_management_data->user_id}}">
-											{{-- <input type="hidden" name="md_case_id" value="{{$user_case_management_data->md_case_id}}"> --}}
+											<input type="hidden" name="md_case_id" value="" id="md_case_id">
 
 													<?php 
 													if($user_case_management_data->verify_prior_auth && $user_case_management_data->ipledge_items){?>
@@ -1587,8 +1587,8 @@
 	$.noConflict();
 
 	$("#follow_up").change(function(){
-		alert("The text has been changed.");
-		alert($(this).find(':selected').attr('data-id'));
+		var md_case_id = $(this).find(':selected').attr('data-id');
+		$("#md_case_id").val();
 	});
 
 	jQuery(document).ready(function($) {

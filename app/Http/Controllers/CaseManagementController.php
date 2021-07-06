@@ -101,8 +101,7 @@ class CaseManagementController extends Controller
       print_r($user_case_management_data);
       echo "<pre>";
       exit(); 
-    }
-
+  
     $skincare_summary = CaseManagement::join('users', 'case_managements.user_id', '=', 'users.id')
       ->join('checkout', 'checkout.case_id', '=', 'case_managements.id')
       ->join('carts', 'checkout.cart_id', '=', 'carts.id')

@@ -272,13 +272,14 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                     //$this->save_prescription_response($response,$user_id,$case_id,$system_case_id);
                     $prescription_data = json_decode($response);
 
-                     //curexa create order api
+                    if($preferred_pharmacy_id =='13012' ){
+                     //curexa create order api}
                     $curexa_para = array();
                     $curexa_para['user_id'] = $user_id;
                     $curexa_para['case_id'] = $case_id;
                     $curexa_para['system_case_id'] = $system_case_id;
 
-                    /*foreach($prescription_data as $key=>$prescription){
+                    foreach($prescription_data as $key=>$prescription){
                       $curexa_para['rx_id'] =  $prescription->dosespot_prescription_id;
                       $curexa_para['quantity_dispensed'] = $prescription->quantity;
                       $curexa_para['days_supply'] = $prescription->days_supply;
@@ -288,9 +289,46 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                       $curexa_create_order_data = $this->curexa_create_order($curexa_para);
 
                       if(!empty($curexa_create_order_data)){
+
+                      //pickup_medication_notification
+
+                        if($follow_up_data['follow_up_no'] != 0){
+
+                          $iPledge_items = $follow_up_data['ipledge_items'];
+                        }else{
+                          $iPledge_items = $$value['ipledge_items'];
+                        }
+
+                        if($iPledge_items == 'on') {
+
+                          $noti_input_data = array();
+                          $noti_input_data['user_id'] = $user_id;
+                          $noti_input_data['case_id'] = $system_case_id;
+                          $noti_input_data['md_case_id'] = $case_id;
+
+                          $noti_input_data['noti_message'] = getNotificationMessageFromKey('pickup_medication_notification_for_female');
+                          $noti_input_data['for_month'] = $follow_up_data['follow_up_no']+1;
+
+                          $trigger_input = array();
+                          $trigger_input['user_id'] = $user_id;
+                          $trigger_input['case_id'] = $system_case_id;
+                          $trigger_input['md_case_id'] = $case_id;
+                          $trigger_input['name'] = "pickup_medication_notification";
+                          $trigger_input['month'] = $follow_up_data['follow_up_no']+1;
+
+
+                          $noti_data = Notifications::create($noti_input_data);
+
+                          $trigger_data = Triggers::create($trigger_input);
+                       }
+                       
+
+                    //end of pickup_medication_notification
+
+
                           $this->store_curexa_order_data($curexa_create_order_data);
                       }
-                    }*/
+                    }
 
 
                     //end of curexa  create order api 
@@ -462,11 +500,36 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                     $system_status = 'Prescription Approved';
 
+                    //pickup_medication_notification
+                    $noti_input_data = array();
+                    $noti_input_data['user_id'] = $user_id;
+                    $noti_input_data['case_id'] = $system_case_id;
+                    $noti_input_data['md_case_id'] = $case_id;
+
+                    $noti_input_data['noti_message'] = getNotificationMessageFromKey('pickup_medication_notification_for_male');
+                    $noti_input_data['for_month'] = $follow_up_data['follow_up_no']+1;
+
+                    $trigger_input = array();
+                    $trigger_input['user_id'] = $user_id;
+                    $trigger_input['case_id'] = $system_case_id;
+                    $trigger_input['md_case_id'] = $case_id;
+                    $trigger_input['name'] = "pickup_medication_notification";
+                    $trigger_input['month'] = $follow_up_data['follow_up_no']+1;
+
+
+                    $noti_data = Notifications::create($noti_input_data);
+
+                    $trigger_data = Triggers::create($trigger_input);
+
+                    //end of pickup_medication_notification
+
                     $response = $this->getPrescription($case_id);
 
                     if(!empty($response)){
                       //$this->save_prescription_response($response,$user_id,$case_id,$system_case_id);
                      $prescription_data = json_decode($response);
+
+                      if($preferred_pharmacy_id =='13012' ){
                       //curexa create order api   
 
                      $curexa_para = array();
@@ -503,8 +566,8 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                      $prescriptionsmsdata = array();
 
-                    //$user = array($user_phone);
-                    $user = array('+917874257069');
+                    $user = array($user_phone);
+                    //$user = array('+917874257069');
                     $prescriptionsmsdata['users'] = $user;
                     $prescriptionsmsdata['body'] = "prescription sent";
 

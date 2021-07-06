@@ -374,14 +374,7 @@ die();*/
       }
     }
 
-    $arr = array_merge($checkout_array, $sub_array);
-    $reference_array = array();
-
-    foreach($arr as $key => $row) {
-        $reference_array[$key] = $row['updated_at'];
-    }
-
-    dd(array_multisort($reference_array, 'desc', $arr));
+    
 
   
     return view('casemanagement.view', compact('user_case_management_data', 'category', 'general_que', 'accutane_que', 'topical_que', 'skincare_summary', 'message_data', 'message_details', 'msg_history', 'followup_que', 'prescribe_shipments', 'checkout', 'user_pic','subscription_data'));

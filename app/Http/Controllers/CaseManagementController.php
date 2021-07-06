@@ -676,6 +676,16 @@ die();*/
           $smsdata['users'] = $user;
           $smsdata['body'] = "Your iPledge ID:".$case['ipledge_id']." iPledge Username:".$case['iledge_username']."iPledge Password:".$case['ipledge_password'];
           $sms_sent = sendsms($smsdata);
+
+
+          $ipledge_credentials_input = array();
+          $ipledge_credentials_input['user_id'] = $user_id;
+          $ipledge_credentials_input['case_id'] = $system_case_id;
+          $ipledge_credentials_input['md_case_id'] = $case_id;
+          $ipledge_credentials_input['name'] = "ipledge_credentials_sent_notification";
+          $ipledge_credentials_input['month'] = 1;
+
+          $ipledge_credentials_input_data = Triggers::create($ipledge_credentials_input);
         }
 
       //end of code to send smas to user

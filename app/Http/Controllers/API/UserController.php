@@ -182,6 +182,7 @@ class UserController extends BaseController
       } else {
         //call create patient api
         $patient_id = create_patient($user_id, $case_id, $order_id);
+        dd($patient_id);
         //end of code create patient api 
       }
 

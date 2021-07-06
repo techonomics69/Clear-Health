@@ -1230,83 +1230,80 @@
 						<div class="col-md-4">
 						</div>
 					</div>													
-					<div class="row" style="padding: 20px;">
-						<div class="user_photos">
-							<div class="col-md-12">
-								<h2>User Photos</h2>
-							</div>
-							@if(isset($user_pic->left_pic))
-							<div class="col-md-3">
-								<section class="card">
-									<div class="card-body">
-										<div class="box-block mtb32">
-											<h3 class="font-weight-bold"><span class="text-underline">Left Face</span></h3>
-											<a href="{{$user_pic->left_pic}}" target="_blank">
-												<img src="{{$user_pic->left_pic}}" class="img" width="100%">
-											</a>
-										</div>
+					<div class="row" style="padding: 20px;">				
+						<div class="col-md-12">
+							<h2>User Photos</h2>
+						</div>
+						@if(isset($user_pic->left_pic))
+						<div class="col-md-3">
+							<section class="card">
+								<div class="card-body">
+									<div class="box-block mtb32">
+										<h3 class="font-weight-bold"><span class="text-underline">Left Face</span></h3>
+										<a href="{{$user_pic->left_pic}}" target="_blank">
+											<img src="{{$user_pic->left_pic}}" class="img" width="100%">
+										</a>
 									</div>
-								</section>
-							</div>
-							@endif
-							@if(isset($user_pic->right_pic))
-							<div class="col-md-3">
-								<section class="card">
-									<div class="card-body">
-										<div class="box-block mtb32">
-											<h3 class="font-weight-bold"><span class="text-underline">Right Face</span></h3>
-											<a href="{{$user_pic->right_pic}}" target="_blank">
-												<img src="{{$user_pic->right_pic}}" class="img" width="100%">
-											</a>
-										</div>
+								</div>
+							</section>
+						</div>
+						@endif
+						@if(isset($user_pic->right_pic))
+						<div class="col-md-3">
+							<section class="card">
+								<div class="card-body">
+									<div class="box-block mtb32">
+										<h3 class="font-weight-bold"><span class="text-underline">Right Face</span></h3>
+										<a href="{{$user_pic->right_pic}}" target="_blank">
+											<img src="{{$user_pic->right_pic}}" class="img" width="100%">
+										</a>
 									</div>
-								</section>
-							</div>
-							@endif
-							@if(isset($user_pic->straight_pic))
-							<div class="col-md-3">
-								<section class="card">
-									<div class="card-body">
-										<div class="box-block mtb32">
-											<h3 class="font-weight-bold"><span class="text-underline">Straight Face</span></h3>
-											<a href="{{$user_pic->straight_pic}}" target="_blank">
-												<img src="{{$user_pic->straight_pic}}" class="img" width="100%">
-											</a>
-										</div>
+								</div>
+							</section>
+						</div>
+						@endif
+						@if(isset($user_pic->straight_pic))
+						<div class="col-md-3">
+							<section class="card">
+								<div class="card-body">
+									<div class="box-block mtb32">
+										<h3 class="font-weight-bold"><span class="text-underline">Straight Face</span></h3>
+										<a href="{{$user_pic->straight_pic}}" target="_blank">
+											<img src="{{$user_pic->straight_pic}}" class="img" width="100%">
+										</a>
 									</div>
-								</section>
-							</div>
-							@endif
-							@if(isset($user_pic->back_photo))
-							<div class="col-md-3">
-								<section class="card">
-									<div class="card-body">
-										<div class="box-block mtb32">
-											<h3 class="font-weight-bold"><span class="text-underline">Back Photo</span></h3>
-											<a href="{{$user_pic->back_photo}}" target="_blank">
-												<img src="{{$user_pic->back_photo}}" class="img" width="100%">
-											</a>
-										</div>
+								</div>
+							</section>
+						</div>
+						@endif
+						@if(isset($user_pic->back_photo))
+						<div class="col-md-3">
+							<section class="card">
+								<div class="card-body">
+									<div class="box-block mtb32">
+										<h3 class="font-weight-bold"><span class="text-underline">Back Photo</span></h3>
+										<a href="{{$user_pic->back_photo}}" target="_blank">
+											<img src="{{$user_pic->back_photo}}" class="img" width="100%">
+										</a>
 									</div>
-								</section>
-							</div>
-							@endif
-							@if(isset($user_pic->other_pic))
-							<div class="col-md-3">
-								<section class="card">
-									<div class="card-body">
-										<div class="box-block mtb32">
-											<h3 class="font-weight-bold"><span class="text-underline">Other Picture</span></h3>
-											<a href="{{$user_pic->other_pic}}" target="_blank">
-												<img src="{{$user_pic->other_pic}}" class="img" width="100%">
-											</a>
-										</div>
+								</div>
+							</section>
+						</div>
+						@endif
+						@if(isset($user_pic->other_pic))
+						<div class="col-md-3">
+							<section class="card">
+								<div class="card-body">
+									<div class="box-block mtb32">
+										<h3 class="font-weight-bold"><span class="text-underline">Other Picture</span></h3>
+										<a href="{{$user_pic->other_pic}}" target="_blank">
+											<img src="{{$user_pic->other_pic}}" class="img" width="100%">
+										</a>
 									</div>
-								</section>
-							</div>
-							@endif			
-						</div>				
-						
+								</div>
+							</section>
+						</div>
+						@endif
 						@if(isset($followup_que))
 						@foreach($followup_que as $key => $data)
 						<div class="col-md-12">
@@ -1591,7 +1588,7 @@
 
 	$("#follow_up").change(function(){
 		var md_case_id = $(this).find(':selected').attr('data-id');
-		$("#md_case_id").val(md_case_id);
+		$("#md_case_id").val();
 	});
 
 	jQuery(document).ready(function($) {

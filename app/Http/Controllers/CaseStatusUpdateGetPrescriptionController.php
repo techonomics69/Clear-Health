@@ -421,7 +421,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                     $bloodwork_email_data['body'] = "Please complete your blood work ";
                     $bloodwork_email_data['template'] = 'emails.mySendMail';
 
-                    $smsdata = array();
+                    $bloodworksmsdata = array();
 
                     //$user = array($user_phone);
                     $user = array('+917874257069');
@@ -434,7 +434,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                     $email_sent = sendEmail($bloodwork_email_data); 
 
                   //welcome sms
-                    $sms_sent = sendsms($smsdata);
+                    $sms_sent = sendsms($bloodworksmsdata);
                     
                 }
 
@@ -443,7 +443,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                     $email_sent = sendEmail($bloodwork_email_data); 
 
                   //welcome sms
-                    $sms_sent = sendsms($smsdata);
+                    $sms_sent = sendsms($bloodworksmsdata);
               }
 
                 //end of bloodwork notification

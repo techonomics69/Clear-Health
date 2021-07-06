@@ -354,6 +354,7 @@ die();*/
                         ->select('subscription.*')
                         ->where('subscription.case_id',$id)
                         ->where('subscription.user_id',$user_case_management_data['user_id'])
+                        ->orderBy('subscription.id','desc')
                         ->get();
     // $sub_check = array_merge($checkout, $subscription_data);  
     // dd($sub_check);                  

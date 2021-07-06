@@ -160,7 +160,8 @@ class UserController extends BaseController
 
     //$input = $request->all();
 
-    $user_id = $request['user_id'];
+    //$user_id = $request['user_id'];
+    $user_id = 1716;
     //$case_id = $request['case_id'];
     $case_id = 120;
     //$order_id = $request['order_id'];

@@ -81,7 +81,14 @@ class CaseManagementController extends Controller
       ->where('case_managements.id', $id)->first();
 
     foreach($user_case_management_data as $case_key=>$case_value){
-      $follow_up_data = FollowUp::where('case_id',$case_value['id'])->get()->toArray();
+      //$follow_up_data = FollowUp::where('case_id',$case_value['id'])->get()->toArray();
+
+      $follow_up_data = FollowUp::where('case_id',$case_value['id'])->toSql();
+
+      echo "<pre>";
+      print_r($follow_up_data);
+      echo "<pre>";
+      exit(); 
 
       $user_case_management_data['follow_up_data'] = $follow_up_data;
 

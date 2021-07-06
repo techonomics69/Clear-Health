@@ -74,7 +74,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
        $difference = $dispached_date->diffInDays($now);
 
 
-       $triggers = Triggers::where([['user_id', $user_id],['case_id', $case_id],['md_case_id', $md_case_id],['name','pickup_medication_notification'],['month',1]])->first();
+       $triggers = Triggers::where([['user_id', $user_id],['case_id', $system_case_id],['md_case_id', $case_id],['name','pickup_medication_notification'],['month',1]])->first();
 
        $pickup_medication_notification_date = new Carbon($triggers['updated_at']);
        $now = Carbon::now();

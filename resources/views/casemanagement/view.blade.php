@@ -1867,11 +1867,12 @@
 				$(".followup"+(parseFloat(i+1))).hide();
 			});
 		}else if($.isNumeric($(this).val())){
+			alert(i);
 			$(".user_photos").hide();
 			$(".followups").show();
 			$(".followup").each(function(v,i){
 				// $(".followup"+(parseFloat(i+1))).hide();
-				alert(i);
+				
 			});
 			$(".followup"+$(this).val()).show();
 		}else{

@@ -767,6 +767,12 @@
 										<section class="all_screen_section">
 											<div class="Outer_box_design">
 												<div class="ipledge_outer_design ">
+													<?php
+													echo "<pre>";
+													print_r($user_case_management_data);
+													echo "<pre>";
+													exit();
+													?>
 													{!! Form::open(array('route' => 'trigger','method'=>'POST')) !!}
 													<div class="prior_block">
 														<p class="auth_text">Prior auth:</p>&nbsp;&nbsp;
@@ -808,7 +814,8 @@
 													</div>
 												<input type="hidden" name="case_id" value="{{$user_case_management_data->id}}">
 											<input type="hidden" name="user_id" value="{{$user_case_management_data->user_id}}">
-											<input type="hidden" name="md_case_id" value="" id="md_case_id">
+											<input type="hidden" name="user_gender" value="" id="md_case_id">
+											<input type="hidden" name="product_type" value="" id="md_case_id">
 
 													<?php 
 													if($user_case_management_data->verify_prior_auth && $user_case_management_data->ipledge_items){?>

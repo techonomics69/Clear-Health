@@ -1583,7 +1583,7 @@
 
 	$("#follow_up").change(function(){
 		var md_case_id = $(this).find(':selected').attr('data-id');
-		$("#md_case_id").val();
+		$("#md_case_id").val(md_case_id);
 	});
 
 	jQuery(document).ready(function($) {

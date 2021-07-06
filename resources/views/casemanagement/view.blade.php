@@ -799,7 +799,7 @@
 
 																<?php
 																	foreach($user_case_management_data['follow_up_data'] as $key=>$value){?>
-																		<option value="{{$value['follow_up_no']}}">{{$value['follow_up_no']}}</option>
+																		<option value="{{$value['follow_up_no']}}">@if($value['follow_up_no']==0) @php echo "New Case"; @endphp @else {{$value['follow_up_no']}} @endif</option>
 															   <?php }?>
 																</select>
 															</label>

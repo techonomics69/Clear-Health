@@ -1203,8 +1203,14 @@
 
 				<!--start 6th tab-->
 				<div id="photos" class="tab-pane fade in ">
+				<div class="row">
+						<div class="col-md-12">
+						&nbsp;																	
+						</div>
+				</div>																			
 					<div class="row">
 						<div class="col-md-4">
+							
 						</div>
 						<div class="col-md-4">
 							<select class="form-control" id="photoSelect">
@@ -1218,7 +1224,6 @@
 								<?php			
 										}
 									?>
-																	
 								@endif	
 							</select>
 						</div>

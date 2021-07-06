@@ -1111,7 +1111,7 @@
 																		if (count($fileExt) > 0) {
 																			if (in_array($fileExt[1], $fileextArr)) {
 																	?>
-																				<img src="{{ asset('public/Message_files/'.$message['file_name']) }}" type="media_type" width='100'>
+																				<img src="{{ asset('public/Message_files/'.$message['file_name']) }}" type="media_type" width='100' >
 																				<a target="_blank" download="" href="{{ asset('public/Message_files/'.$message['file_name']) }}"> Download</a>
 																			<?php
 																			} else {
@@ -1400,185 +1400,187 @@
 
 					</div>
 				</div>
-			</div>
-			<!--end 6th tab-->
-
-			<!--start 7th tab-->
-			<div id="payments" class="tab-pane fade in ">
-				<div class="row" style="padding: 20px;">
-					<div class="col-md-12">
-						<section class="card">
-							<div class="card-body">
-								<div class="box-block mtb32">
-									<h3 class="font-weight-bold"><span class="text-underline">Payments</span></h3>
-									<table class="table table-responsive-md table-striped no-footer">
-										<thead>
-											<tr>
-												<th scope="col">No</th>
-												<th scope="col">Date/Time</th>
-												<th scope="col"> Order id </th>
-												<th scope="col"> Transaction id </th>
-												<th scope="col">Amount</th>
-												<th scope="col">Status</th>
-												<!-- <th scope="col">Action</th> -->
-											</tr>
-										</thead>
-										<tbody class="list_view_outer">
-											@foreach($checkout as $key => $data)
-											<tr>
-												<td>{{$key + 1}}</td>
-												<td>{{$data->updated_at}}</td>
-												<td><a href="#" data-toggle="modal" data-target="#exampleModal">{{$data->order_id}}</a></td>
-												<td><a href="#" data-toggle="modal" data-target="#exampleModal">{{$data->transaction_id}}</a></td>
-												<td>{{$data->total_amount}}</td>
-												<td>{{$data->payment_status}}</td>
-												<!-- <td><i class="fa fa-eye"></i></td> -->
-											</tr>
-											@endforeach
-										</tbody>
-									</table>
+				<div id="payments" class="tab-pane fade in ">
+					<div class="row" style="padding: 20px;">
+						<div class="col-md-12">
+							<section class="card">
+								<div class="card-body">
+									<div class="box-block mtb32">
+										<h3 class="font-weight-bold"><span class="text-underline">Payments</span></h3>
+										
+										<table class="table table-responsive-md table-striped no-footer">
+											<thead>
+												<tr>
+													<th scope="col">No</th>
+													<th scope="col">Date/Time</th>
+													<!-- <th scope="col"> Order id </th> -->
+													<th scope="col"> Transaction id </th>
+													<th scope="col">Amount</th>
+													<th scope="col">Status</th>
+													<!-- <th scope="col">Action</th> -->
+												</tr>
+											</thead>
+											<tbody class="list_view_outer">
+												@foreach($checkout as $key => $data)
+												<tr>
+													<td>{{$key + 1}}</td>
+													<td>{{$data->updated_at}}</td>
+													<!-- <td><a href="#" data-toggle="modal" data-target="#exampleModal"></a></td> -->
+													<td><a href="#" data-toggle="modal" data-target="#exampleModal">{{$data->transaction_id}}</a></td>
+													<td>{{$data->total_amount}}</td>
+													<td>{{$data->payment_status}}</td>
+													<!-- <td><i class="fa fa-eye"></i></td> -->
+												</tr>
+												@endforeach
+											</tbody>
+										</table>
+									</div>
 								</div>
-							</div>
-						</section>
+							</section>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div id="shipments" class="tab-pane fade in ">
-				<div class="row" style="padding: 20px;">
-					<div class="col-md-12">
-						<section class="card">
-							<div class="card-body">
-
-								<div class="row">
-									<div class="col-md-6">
-
-										<div class="box-block mtb32">
-											<h3 class="font-weight-bold"><span class="text-underline">Prescribed products shippments</span></h3>
-
-											<div class="col-md-12  form-group">
-												<strong>Order ID :</strong>
-												<?php if (isset($skincare_summary['order_id']) && $skincare_summary['order_id'] != '') { ?>
-													{{$skincare_summary['order_id']}}
-												<?php } ?>
-											</div>
-
-											<div class="col-md-12  form-group">
-												<strong>Product Name:</strong>
-
-												{{$skincare_summary['product_name']}}
-
-											</div>
-
-											<div class="col-md-12  form-group">
-												<strong>Order Status:</strong>
-												<?php
-												if (count($prescribe_shipments) > 0) {
-													if ($prescribe_shipments[0]->order_status == 'new') {
-														echo "New";
-													} else if ($prescribe_shipments[0]->order_status == 'in_progress') {
-														echo "In progress";
-													} else if ($prescribe_shipments[0]->order_status == 'out_for_delivery') {
-														echo "Out for delivery";
-													} else if ($prescribe_shipments[0]->order_status == 'completed') {
-														echo "Completed";
-													} else if ($prescribe_shipments[0]->order_status == 'cancelled') {
-														echo "Cancelled";
+				<div id="shipments" class="tab-pane fade in ">
+					<div class="row" style="padding: 20px;">
+						<div class="col-md-12">
+							<section class="card">
+								<div class="card-body">
+	
+									<div class="row">
+										<div class="col-md-6">
+	
+											<div class="box-block mtb32">
+												<h3 class="font-weight-bold"><span class="text-underline">Prescribed products shippments</span></h3>
+	
+												<div class="col-md-12  form-group">
+													<strong>Order ID :</strong>
+													<?php if (isset($skincare_summary['order_id']) && $skincare_summary['order_id'] != '') { ?>
+														{{$skincare_summary['order_id']}}
+													<?php } ?>
+												</div>
+	
+												<div class="col-md-12  form-group">
+													<strong>Product Name:</strong>
+	
+													{{$skincare_summary['product_name']}}
+	
+												</div>
+	
+												<div class="col-md-12  form-group">
+													<strong>Order Status:</strong>
+													<?php
+													if (count($prescribe_shipments) > 0) {
+														if ($prescribe_shipments[0]->order_status == 'new') {
+															echo "New";
+														} else if ($prescribe_shipments[0]->order_status == 'in_progress') {
+															echo "In progress";
+														} else if ($prescribe_shipments[0]->order_status == 'out_for_delivery') {
+															echo "Out for delivery";
+														} else if ($prescribe_shipments[0]->order_status == 'completed') {
+															echo "Completed";
+														} else if ($prescribe_shipments[0]->order_status == 'cancelled') {
+															echo "Cancelled";
+														}
+													} else {
+														echo "-";
 													}
-												} else {
-													echo "-";
-												}
-												?>
+													?>
+												</div>
+	
+												<div class="col-md-12  form-group">
+													<strong>Shipped date:</strong>
+													<?php
+													if (count($prescribe_shipments) > 0) {
+														echo date("d-m-Y", strtotime($prescribe_shipments[0]->dispached_date));
+													} else {
+														echo "-";
+													}
+													?>
+												</div>
+	
+	
 											</div>
-
-											<div class="col-md-12  form-group">
-												<strong>Shipped date:</strong>
-												<?php
-												if (count($prescribe_shipments) > 0) {
-													echo date("d-m-Y", strtotime($prescribe_shipments[0]->dispached_date));
-												} else {
-													echo "-";
-												}
-												?>
-											</div>
-
-
+	
 										</div>
-
-									</div>
-									<div class="col-md-6">
-
-										<div class="box-block mtb32">
-											<h3 class="font-weight-bold"><span class="text-underline">Add-ons product shipments</span></h3>
-											<?php
-											if (isset($skincare_summary['shipstation_order_id'])) {
-												if ($skincare_summary['shipstation_order_id'] != '') {
-
-													if ($skincare_summary['getOrder'] != '') {
-														$shipStationOrder = json_decode(json_encode($skincare_summary['getOrder']), true);
-											?>
-														<div class="col-md-12  form-group">
-															<strong>Shipstation OrderId : </strong>
-															<?php echo $shipStationOrder['orderId'] ?>
-														</div>
-														<div class="col-md-12  form-group">
-															<strong>Order Number : </strong>
-															<?php echo $shipStationOrder['orderNumber'] ?>
-														</div>
-														<div class="col-md-12  form-group">
-															<strong>Order Date : </strong>
-															<?php echo date("d-m-Y", strtotime($shipStationOrder['orderDate'])); ?>
-														</div>
-														<div class="col-md-12  form-group">
-															<strong>Order Status : </strong>
-															<?php
-															if ($shipStationOrder['orderStatus'] == 'awaiting_payment') {
-																echo "Order Processing";
-															} else if ($shipStationOrder['orderStatus'] == 'awaiting_shipment') {
-																echo "Awaiting shipment";
-															} else if ($shipStationOrder['orderStatus'] == 'shipped') {
-																echo "Shipped";
-															} else {
-															}
-															//  echo $shipStationOrder['orderStatus'];
-															?>
-														</div>
-														<?php
-														if ($shipStationOrder['orderStatus'] == 'shipped') {
-														?>
+										<div class="col-md-6">
+	
+											<div class="box-block mtb32">
+												<h3 class="font-weight-bold"><span class="text-underline">Add-ons product shipments</span></h3>
+												<?php
+												if (isset($skincare_summary['shipstation_order_id'])) {
+													if ($skincare_summary['shipstation_order_id'] != '') {
+	
+														if ($skincare_summary['getOrder'] != '') {
+															$shipStationOrder = json_decode(json_encode($skincare_summary['getOrder']), true);
+												?>
 															<div class="col-md-12  form-group">
-																<strong>Estimated ship date : </strong>
-																<?php echo date("d-m-Y", strtotime($shipStationOrder['shipDate'])); ?>
+																<strong>Shipstation OrderId : </strong>
+																<?php echo $shipStationOrder['orderId'] ?>
+															</div>
+															<div class="col-md-12  form-group">
+																<strong>Order Number : </strong>
+																<?php echo $shipStationOrder['orderNumber'] ?>
+															</div>
+															<div class="col-md-12  form-group">
+																<strong>Order Date : </strong>
+																<?php echo date("d-m-Y", strtotime($shipStationOrder['orderDate'])); ?>
+															</div>
+															<div class="col-md-12  form-group">
+																<strong>Order Status : </strong>
+																<?php
+																if ($shipStationOrder['orderStatus'] == 'awaiting_payment') {
+																	echo "Order Processing";
+																} else if ($shipStationOrder['orderStatus'] == 'awaiting_shipment') {
+																	echo "Awaiting shipment";
+																} else if ($shipStationOrder['orderStatus'] == 'shipped') {
+																	echo "Shipped";
+																} else {
+																}
+																//  echo $shipStationOrder['orderStatus'];
+																?>
 															</div>
 															<?php
-
-
-															$tracking = json_decode(json_encode($skincare_summary['trackOrder']), true);
-															if (isset($tracking['shipments'][0])) {
+															if ($shipStationOrder['orderStatus'] == 'shipped') {
 															?>
 																<div class="col-md-12  form-group">
-																	<strong> Tracking No: </strong>
-																	<a href="https://tools.usps.com/go/TrackConfirmAction.action?tLabels=<?php echo $tracking['shipments'][0]['trackingNumber']; ?>" target="_blank"><?php echo $tracking['shipments'][0]['trackingNumber']; ?></a>
+																	<strong>Estimated ship date : </strong>
+																	<?php echo date("d-m-Y", strtotime($shipStationOrder['shipDate'])); ?>
 																</div>
-											<?php
+																<?php
+	
+	
+																$tracking = json_decode(json_encode($skincare_summary['trackOrder']), true);
+																if (isset($tracking['shipments'][0])) {
+																?>
+																	<div class="col-md-12  form-group">
+																		<strong> Tracking No: </strong>
+																		<a href="https://tools.usps.com/go/TrackConfirmAction.action?tLabels=<?php echo $tracking['shipments'][0]['trackingNumber']; ?>" target="_blank"><?php echo $tracking['shipments'][0]['trackingNumber']; ?></a>
+																	</div>
+												<?php
+																}
 															}
 														}
 													}
 												}
-											}
-											?>
+												?>
+											</div>
+	
 										</div>
-
 									</div>
+	
+	
+	
+	
 								</div>
-
-
-
-
-							</div>
-						</section>
+							</section>
+						</div>
 					</div>
 				</div>
 			</div>
+			<!--end 6th tab-->
+
+			<!--start 7th tab-->
+			
 			<!--end 7th tab-->
 	</div>
 </div>
@@ -1748,11 +1750,11 @@
 								var fileNameExt2 = ufile.substr(ufile.lastIndexOf('.') + 1);
 
 								if ($.inArray(fileNameExt2, exts2) !== -1) {
-									$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg" + data.id + "'>" + "<p >" + "<img width='100' src={{URL('/')}}/public/Message_files/" + data.file_name + ">" + "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/" + data.file_name + ">" + " Download" + "</a>" + "</p>" + "<h5>" + data.msg_date + "<h5>" + "</li>");
+									$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg" + data.id + "'>" + "<p >" + "<img width='40px'  src={{URL('/')}}/public/Message_files/" + data.file_name + ">" + "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/" + data.file_name + ">" + " Download" + "</a>" + "</p>" + "<h5>" + data.msg_date + "<h5>" + "</li>");
 								} else if (fileNameExt2 == 'doc' || fileNameExt2 == 'docx') {
-									$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg" + data.id + "'>" + "<p >" + "<img width='100' src={{URL('/')}}/public/images/msgs/doc.png>" + "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/" + data.file_name + ">" + " Download" + "</a>" + "</p>" + "<h5>" + data.msg_date + "<h5>" + "</li>");
+									$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg" + data.id + "'>" + "<p >" + "<img width='100'  src={{URL('/')}}/public/images/msgs/doc.png>" + "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/" + data.file_name + ">" + " Download" + "</a>" + "</p>" + "<h5>" + data.msg_date + "<h5>" + "</li>");
 								} else if (fileNameExt2 == 'pdf') {
-									$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg" + data.id + "'>" + "<p >" + "<img width='100' src={{URL('/')}}/public/images/msgs/pdf.png>" + "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/" + data.file_name + ">" + " Download" + "</a>" + "</p>" + "<h5>" + data.msg_date + "<h5>" + "</li>");
+									$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg" + data.id + "'>" + "<p  >" + "<img width='40px' class='mynam' src={{URL('/')}}/public/images/msgs/pdf.png>" + "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/" + data.file_name + ">" + " Download" + "</a>" + "</p>" + "<h5>" + data.msg_date + "<h5>" + "</li>");
 								} else if (fileNameExt2 == 'txt') {
 									$(".nonmedicalmessages ul").append("<li class='right' id='bottomDivMsg" + data.id + "'>" + "<p >" + "<img width='100' src={{URL('/')}}/public/images/msgs/txt.png>" + "<a target='_blank' download='' href={{URL('/')}}/public/Message_files/" + data.file_name + ">" + " Download" + "</a>" + "</p>" + "<h5>" + data.msg_date + "<h5>" + "</li>");
 								} else if (fileNameExt2 == 'xls' || fileNameExt2 == 'xlsx') {
@@ -1817,6 +1819,7 @@
 	}
 
 	var loadFile = function(event) {
+		
 		var exts = ['jpg', 'jpeg', 'png'];
 
 		var fname = event.target.files[0].name;

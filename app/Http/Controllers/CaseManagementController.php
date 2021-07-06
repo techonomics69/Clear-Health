@@ -29,6 +29,7 @@ use GuzzleHttp\Guzzle;
 use LaravelShipStation;
 use LaravelShipStation\ShipStation;
 use Illuminate\Support\Facades\App;
+use App\Models\Subscription;
 use DB;
 
 
@@ -346,10 +347,35 @@ die();*/
     } else {
       $prescribe_shipments =  array();
     }
-    $checkout = Checkout::where('case_id', $user_case_management_data['id'])->where('user_id', $user_case_management_data['user_id'])->get();
+    $checkout = Checkout::where('case_id', $user_case_management_data['id'])->where('user_id', $user_case_management_data['user_id'])
+                ->orderBy("updated_at","desc")->get();
     $user_pic = UserPics::where('case_id', $user_case_management_data['id'])->where('user_id', $user_case_management_data['user_id'])->first();
     
-    return view('casemanagement.view', compact('user_case_management_data', 'category', 'general_que', 'accutane_que', 'topical_que', 'skincare_summary', 'message_data', 'message_details', 'msg_history', 'followup_que', 'prescribe_shipments', 'checkout', 'user_pic'));
+    $subscription_data = Subscription::join('case_managements','subscription.case_id','=','case_managements.id')
+                        ->select('subscription.*')
+                        ->where('subscription.case_id',$id)
+                        ->where('subscription.user_id',$user_case_management_data['user_id'])
+                        ->orderBy('subscription.id','desc')
+                        ->get();
+    $checkout_array = array();
+    $sub_array = array();
+    if(count($checkout)>0){
+      foreach($checkout as $ck => $cval){
+        $ckarr1 = array("updated_at"=>$cval->updated_at,"order_id"=>$cval->order_id,"transaction_id"=>$cval->transaction_id,
+                "total_amount"=>$cval->total_amount,"payment_status"=>$cval->payment_status);
+        array_push($checkout_array, $ckarr1);        
+      }
+    }
+    if(count($subscription_data)>0){
+      foreach($subscription_data as $sk => $sval){
+        $skarr1 = array("updated_at"=>$sval->created_at,"order_id"=>'',"transaction_id"=>'',
+                "total_amount"=>$sval->plan_amount,"payment_status"=>$sval->status);
+        array_push($sub_array, $skarr1);        
+      }
+    }
+    dd(array_merge($checkout_array, $sub_array));
+
+    return view('casemanagement.view', compact('user_case_management_data', 'category', 'general_que', 'accutane_que', 'topical_que', 'skincare_summary', 'message_data', 'message_details', 'msg_history', 'followup_que', 'prescribe_shipments', 'checkout', 'user_pic','subscription_data'));
   }
 
   /**

@@ -796,10 +796,11 @@
 
 																<select name="follow_up" class="form-control" id="follow_up">
 																	<option value="">Select</option>
+																	<option value="0" data-id="{{$user_case_management_data->md_case_id}}">New Case</option>
 
 																<?php
 																	foreach($user_case_management_data['follow_up_data'] as $key=>$value){?>
-																		<option value="{{$value['follow_up_no']}}">@if($value['follow_up_no']==0) @php echo "New Case"; @endphp @else {{$value['follow_up_no']}} @endif</option>
+																		<option value="{{$value['follow_up_no']}}" data-id="{{$value['md_case_id']}}"> {{{{$value['md_case_id']}}}} </option>
 															   <?php }?>
 																</select>
 															</label>

@@ -80,7 +80,7 @@ class CaseManagementController extends Controller
       ->select('case_managements.*', 'users.first_name', 'users.last_name', 'users.email', 'users.mobile', 'users.gender')
       ->where('case_managements.id', $id)->first();
 
-      $follow_up_data = FollowUp::where('case_id',$user_case_management_data['id'])->get()->toArray();
+      $follow_up_data = FollowUp::where([['case_id',$user_case_management_data['id'],['follow_up_status','completed']])->get()->toArray();
 
 
       $user_case_management_data['follow_up_data'] = (!empty($follow_up_data))?$follow_up_data:array();

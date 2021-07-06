@@ -228,8 +228,8 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
               //welcome sms
                 $smsdata = array();
 
-                $user = array($user_phone);
-                //$user = array('+917874257069');
+                //$user = array($user_phone);
+                $user = array('+917874257069');
                 $smsdata['users'] = $user;
                 $smsdata['body'] = "Welcome SMS to Clear Health when treatment is approved detailing Accutane instructions + prompt them to sign forms";
                 $sms_sent = sendsms($smsdata);

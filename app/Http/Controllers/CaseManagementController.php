@@ -83,7 +83,7 @@ class CaseManagementController extends Controller
  
 
       echo "<pre>";
-      print_r($case_value);
+      print_r($user_case_management_data);
       echo "<pre>";
       
       //$follow_up_data = FollowUp::where('case_id',$case_value['id'])->get()->toArray();

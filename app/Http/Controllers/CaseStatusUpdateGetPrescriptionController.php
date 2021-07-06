@@ -266,6 +266,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                 //if($md_case_status == 'dosespot confirmed' && $case_type = 'follow_up'){
                 if($md_case_status == 'completed'){
 
+
                   if($follow_up_data['follow_up_no'] == 0){
 
                     if($value['abstinence_form']!= 0 && $value['sign_ipledge_consent']!= 0){
@@ -273,6 +274,19 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                       $system_status = 'Awaiting Action Items';  
 
                     }
+
+                    //notification for action_items_due
+                    if($support_reason != '' || $support_reason != NULL){
+                    $action_items_due_noti = array();
+                    $action_items_due_noti['user_id'] = $user_id;
+                    $action_items_due_noti['case_id'] = $system_case_id;
+                    $action_items_due_noti['md_case_id'] = $case_id;
+
+                    $action_items_due_noti['noti_message'] = getNotificationMessageFromKey('action_items_due');
+                    $action_items_due_noti['for_month'] = $follow_up_data['follow_up_no']+1;
+                    $action_items_due_noti_data = Notifications::create($action_items_due_noti);
+                    }
+                    //end of notification for action_items_due
 
                     //notification for md_has_approved_your_treatment_wait_31_days
 
@@ -476,6 +490,54 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                 //end of bloodwork notification
 
+              //notification download_the_bloodwork_form
+
+              $had_call_triggers = Triggers::where([['user_id', $user_id],['case_id', $system_case_id],['md_case_id', $case_id],['name','had_call_with_md_notification'],['month',1]])->first();
+
+              $had_call_notification_date = new Carbon($had_call_triggers['updated_at']);
+              $current_date = Carbon::now();
+              $had_call_difference = $had_call_notification_date->diffInDays($current_date);
+
+              if($had_call_difference == 60){
+                $noti_download_the_bloodwork_form = array();
+                $noti_download_the_bloodwork_form['user_id'] = $user_id;
+                $noti_download_the_bloodwork_form['case_id'] = $case_id;
+                $noti_download_the_bloodwork_form['md_case_id'] = $md_case_id;
+
+
+                $noti_download_the_bloodwork_form['noti_message'] = getNotificationMessageFromKey('download_the_bloodwork_form');
+                $noti_download_the_bloodwork_form['for_month'] = $follow_up;
+
+                $noti_download_the_bloodwork_data = Notifications::create($noti_download_the_bloodwork_form);
+              }
+
+              //end of notification download_the_bloodwork_form
+
+              //notification upload_your_pregnancy_test
+
+              $ipledge_credentials_triggers = Triggers::where([['user_id', $user_id],['case_id', $system_case_id],['md_case_id', $case_id],['name','ipledge_credentials_sent_notification'],['month',1]])->first();
+
+              $ipledge_credentials_triggers_notification_date = new Carbon($ipledge_credentials_triggers['updated_at']);
+              $currentdate = Carbon::now();
+              $ipledge_credentials_difference = $ipledge_credentials_triggers_notification_date->diffInDays($currentdate);
+
+              if($ipledge_credentials_difference == 31){
+                $noti_download_the_bloodwork_form = array();
+                $noti_download_the_bloodwork_form['user_id'] = $user_id;
+                $noti_download_the_bloodwork_form['case_id'] = $case_id;
+                $noti_download_the_bloodwork_form['md_case_id'] = $md_case_id;
+
+
+                $noti_download_the_bloodwork_form['noti_message'] = getNotificationMessageFromKey('download_the_bloodwork_form');
+                $noti_download_the_bloodwork_form['for_month'] = $follow_up;
+
+                $noti_download_the_bloodwork_data = Notifications::create($noti_download_the_bloodwork_form);
+              }
+
+              //end of upload_your_pregnancy_test
+
+              
+
             }else if($gender == "male" && $product_type == 'Accutane'){
 
 
@@ -528,6 +590,32 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                   //if($md_case_status == 'dosespot confirmed' && $case_type = 'new'){
                   if($md_case_status == 'completed'){
+
+                    if($follow_up_data['follow_up_no'] == 0){
+
+                     $case_status_reason_input = array();
+                     $case_status_reason_input['user_id'] = $user_id;
+                     $case_status_reason_input['case_id'] = $system_case_id;
+                     $case_status_reason_input['md_case_id'] = $case_id;
+                     $case_status_reason_input['name'] = "prescription_sent_notification";
+                     $case_status_reason_input['month'] = $follow_up_data['follow_up_no']+1;
+
+                     $case_status_reason_input_data = Triggers::create($case_status_reason_input);
+
+                   }
+
+                    //notification for action_items_due
+                     $action_items_due_noti = array();
+                    $action_items_due_noti['user_id'] = $user_id;
+                    $action_items_due_noti['case_id'] = $system_case_id;
+                    $action_items_due_noti['md_case_id'] = $case_id;
+
+                    $action_items_due_noti['noti_message'] = getNotificationMessageFromKey('action_items_due');
+                    $action_items_due_noti['for_month'] = $follow_up_data['follow_up_no']+1;
+                    $action_items_due_noti_data = Notifications::create($action_items_due_noti);
+
+
+                    //end of notification for action_items_due
 
                     $system_status = 'Prescription Approved';
 
@@ -671,6 +759,29 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                 //end of bloodwork notification
 
+              //notification download_the_bloodwork_form
+
+              $prescription_sent_triggers = Triggers::where([['user_id', $user_id],['case_id', $system_case_id],['md_case_id', $case_id],['name','prescription_sent_notification'],['month',1]])->first();
+
+              $prescription_sent_notification_date = new Carbon($prescription_sent_triggers['updated_at']);
+              $today_date = Carbon::now();
+              $prescription_difference = $prescription_sent_notification_date->diffInDays($today_date);
+
+              if($prescription_difference == 60){
+                $noti_download_the_bloodwork_form = array();
+                $noti_download_the_bloodwork_form['user_id'] = $user_id;
+                $noti_download_the_bloodwork_form['case_id'] = $case_id;
+                $noti_download_the_bloodwork_form['md_case_id'] = $md_case_id;
+
+
+                $noti_download_the_bloodwork_form['noti_message'] = getNotificationMessageFromKey('download_the_bloodwork_form');
+                $noti_download_the_bloodwork_form['for_month'] = $follow_up;
+
+                $noti_download_the_bloodwork_data = Notifications::create($noti_download_the_bloodwork_form);
+              }
+
+              //end of notification download_the_bloodwork_form
+
 
               }else{
                 /*
@@ -759,7 +870,20 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
               $case_management  =  CaseManagement::where('id',$system_case_id)->where('md_case_id', $case_id)->where('user_id',$user_id)->update(['md_case_status' => $MdCaseStatus->case_status->name,'md_status' => $md_status,'system_status'=> $system_status ]);
 
 
-              $md_cases  =  Mdcases::where('case_id',$case_id)->update(['status' =>$MdCaseStatus->case_status->name,'system_status'=> $system_status]);
+              $md_cases  =  Mdcases::where('case_id',$case_id)->update(['status' =>$MdCaseStatus->case_status->name,'system_status'=> $system_status],['case_status_reason' =>$MdCaseStatus->case_status->reason],['case_status_updated_at' =>$MdCaseStatus->case_status->updated_at]);
+
+              if($follow_up_data['follow_up_no'] == 0 && $MdCaseStatus->case_status->reason != null){
+
+                 $case_status_reason_input = array();
+                 $case_status_reason_input['user_id'] = $user_id;
+                 $case_status_reason_input['case_id'] = $system_case_id;
+                 $case_status_reason_input['md_case_id'] = $case_id;
+                 $case_status_reason_input['name'] = "had_call_with_md_notification";
+                 $case_status_reason_input['month'] = $follow_up_data['follow_up_no']+1;
+
+                 $case_status_reason_input_data = Triggers::create($case_status_reason_input);
+
+              }
 
                //code for update md details
 
@@ -826,7 +950,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
     //end of shipstation
   }
 }
-}
+}}
 
     /**
      * Show the form for creating a new resource.

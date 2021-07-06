@@ -1878,7 +1878,8 @@
 				$(".user_photos").hide();
 				$(".followups").show();
 				$(".followup").each(function(v,i){
-					$(".followup"+(parseFloat(i+1))).hide();
+					alert(parseFloat(i)+1);
+					$(".followup"+(parseFloat(i)+1)).hide();
 				});
 				$(".followup"+$(this).val()).show();
 			}

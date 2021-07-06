@@ -80,6 +80,12 @@ class CaseManagementController extends Controller
       ->select('case_managements.*', 'users.first_name', 'users.last_name', 'users.email', 'users.mobile', 'users.gender')
       ->where('case_managements.id', $id)->first();
 
+      $follow_up_data = FollowUp::where('case_id',$user_case_management_data['id'])->get()->toArray();
+
+
+      $user_case_management_data['follow_up_data'] = (!empty($follow_up_data))?$follow_up_data:array();
+ 
+  
     $skincare_summary = CaseManagement::join('users', 'case_managements.user_id', '=', 'users.id')
       ->join('checkout', 'checkout.case_id', '=', 'case_managements.id')
       ->join('carts', 'checkout.cart_id', '=', 'carts.id')
@@ -716,7 +722,7 @@ die();*/
          $md_case_id = $request->md_case_id;
          $follow_up = $request->follow_up;
 
-         /*$CaseManagement_data = $data = Mdcases::join('case_managements','case_managements.md_case_id', '=','md_cases.case_id' )->join('users','users.id','=','md_cases.user_id')->select('case_managements.*','users.gender as user_gender')->where([['user_id',$user_id],['case_id',$md_case_id],['system_case_id', $case_id]])->first();*/
+        /* $CaseManagement_data = $data = Mdcases::join('case_managements','case_managements.md_case_id', '=','md_cases.case_id' )->join('users','users.id','=','md_cases.user_id')->select('case_managements.*','users.gender as user_gender')->where([['user_id',$user_id],['case_id',$md_case_id],['system_case_id', $case_id]])->first();*/
 
          $noti_input_data = array();
          $noti_input_data['user_id'] = $user_id;

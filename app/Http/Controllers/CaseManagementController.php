@@ -84,6 +84,11 @@ class CaseManagementController extends Controller
       $follow_up_data = FollowUp::where('case_id',$case_value['id'])->get()->toArray();
 
       $user_case_management_data['follow_up_data'] = $follow_up_data;
+
+      echo "<pre>";
+      print_r($user_case_management_data);
+      echo "<pre>";
+      exit(); 
     }
 
     $skincare_summary = CaseManagement::join('users', 'case_managements.user_id', '=', 'users.id')

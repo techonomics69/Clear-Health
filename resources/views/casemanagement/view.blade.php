@@ -1353,7 +1353,7 @@
 											<tr>
 												<th scope="col">No</th>
 												<th scope="col">Date/Time</th>
-												<th scope="col"><a href="#" data-toggle="modal" data-target="#exampleModal">  Order id </a></th>
+												<th scope="col"><a href="#" data-toggle="modal" data-target="#exampleModal"> Order id </a></th>
 												<th scope="col"> <a href="#" data-toggle="modal" data-target="#exampleModal"> Transaction id </a></th>
 												<th scope="col">Amount</th>
 												<th scope="col">Status</th>

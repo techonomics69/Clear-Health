@@ -1112,19 +1112,19 @@
                               </g></svg>  -->
                               
                               <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-                                width="32.000000pt" height="32.000000pt" viewBox="0 0 32.000000 32.000000"
-                                preserveAspectRatio="xMidYMid meet">
-                                <metadata>
-                                Created by potrace 1.16, written by Peter Selinger 2001-2019
-                                </metadata>
-                                <g transform="translate(0.000000,32.000000) scale(0.100000,-0.100000)"
-                                fill="#000000" stroke="none">
-                                <path d="M111 221 c-46 -46 -13 -121 53 -121 95 0 98 130 3 138 -26 2 -42 -3
-                                -56 -17z"/>
-                                <path d="M20 47 l0 -43 98 1 c91 0 100 2 142 30 39 26 42 30 23 33 -12 2 -31
-                                -2 -42 -8 -12 -6 -21 -7 -21 -2 0 10 -53 19 -147 28 l-53 4 0 -43z"/>
-                                </g>
-                                </svg>
+ width="16.000000pt" height="16.000000pt" viewBox="0 0 16.000000 16.000000"
+ preserveAspectRatio="xMidYMid meet">
+
+<g transform="translate(0.000000,16.000000) scale(0.100000,-0.100000)"
+fill="#000000" stroke="none">
+<path d="M71 146 c-7 -8 -11 -25 -9 -38 2 -18 9 -23 32 -23 36 0 56 27 40 53
+-14 22 -48 27 -63 8z m36 -26 c1 -10 -2 -22 -7 -25 -6 -4 -10 7 -10 26 0 34
+12 33 17 -1z"/>
+<path d="M32 57 c-14 -6 -22 -19 -22 -34 0 -21 4 -23 50 -23 38 0 54 5 70 22
+11 12 20 25 20 30 0 13 -17 9 -30 -7 -7 -8 -22 -14 -34 -14 -17 1 -17 2 -3 6
+9 2 17 8 17 13 0 13 -44 17 -68 7z"/>
+</g>
+</svg>
 
                             <span class="" data-i18n="">Fees</span>
 

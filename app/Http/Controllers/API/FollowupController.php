@@ -11,6 +11,7 @@ use Exception;
 use App\Models\User;
 use App\Models\CaseHistory;
 use App\Models\FollowUp;
+use App\Models\Notifications;
 use File;
 
 class FollowupController extends BaseController

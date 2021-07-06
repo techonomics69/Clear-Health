@@ -265,21 +265,70 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                 //if($md_case_status == 'dosespot confirmed' && $case_type = 'follow_up'){
                 if($md_case_status == 'completed'){
 
-                  //send notification for topical
+                  if($follow_up_data['follow_up_no'] == 0){
 
-                  if($product_type != 'Accutane'){
-                    $noti_input_data = array();
-                    $noti_input_data['user_id'] = $user_id;
-                    $noti_input_data['case_id'] = $system_case_id;
-                    $noti_input_data['md_case_id'] = $case_id;
+                    if($value['abstinence_form']!= 0 && $value['sign_ipledge_consent']!= 0){
 
-                    $noti_input_data['noti_message'] = getNotificationMessageFromKey('topical_case_completed');
-                    $noti_input_data['for_month'] = $follow_up_data['follow_up_no']+1;
+                      $system_status = 'Awaiting Action Items';  
+
+                    }
+
+                    //notification for md_has_approved_your_treatment_wait_31_days
+
+                    $approvnoti = array();
+                    $approv_noti['user_id'] = $user_id;
+                    $approv_noti['case_id'] = $system_case_id;
+                    $approv_noti['md_case_id'] = $case_id;
+
+                    $approv_noti['noti_message'] = getNotificationMessageFromKey('md_has_approved_your_treatment_wait_31_days');
+                    $approv_noti['for_month'] = $follow_up_data['follow_up_no']+1;
+                    $approv_noti_data = Notifications::create($approv_noti);
+
+                    //end of notification for md_has_approved_your_treatment_wait_31_days
+
+
+                 }
+
+                 if($follow_up_data['follow_up_no'] != 0){
+
+                  if($value['prior_auth_date'] != NULL){
+
+                    $prior_auth_date = new Carbon($value['prior_auth_date']);
+
+                    //$auth_date = Carbon::createFromFormat('Y-m-d H:i:s', $value['prior_auth_date']);
+                    $now = Carbon::now();
+                    $today_date = $now->toDateTimeString();
+
+                    $checkdate = $prior_auth_date->addDays(7);
+
+                    $display_till_date =  $checkdate->toDateTimeString();
+
+                    $today_date = Carbon::createFromFormat('Y-m-d H:i:s', $today_date);
+                    $display_till_date = Carbon::createFromFormat('Y-m-d H:i:s', $display_till_date);
+
+
+                    if($today_date->lte($display_till_date)){
+                      $system_status = 'Awaiting Action Items'; 
+                    } 
+
                   }
 
-                   
+                  //notification
 
-                  //end of code to send notification for topical
+                      //code  for md_has_approved_your_treatment
+                    $approved_noti = array();
+                    $approved_noti['user_id'] = $user_id;
+                    $approved_noti['case_id'] = $system_case_id;
+                    $approved_noti['md_case_id'] = $case_id;
+
+                    $approved_noti['noti_message'] = getNotificationMessageFromKey('md_has_approved_your_treatment');
+                    $approved_noti['for_month'] = $follow_up_data['follow_up_no']+1;
+                    $approved_noti_data = Notifications::create($approved_noti);
+
+                    //end of code for md_has_approved_your_treatment
+
+                  //end of notification
+                }
 
                   $system_status = 'Prescription Approved';
 
@@ -390,45 +439,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                   }
                   //end of Prescription Sent Email  
 
-
-                }
-                
-
-                if($follow_up_data['follow_up_no'] == 0){
-
-                  if($md_case_status == 'completed' && $value['abstinence_form']!= 0 && $value['sign_ipledge_consent']!= 0){
-
-                    $system_status = 'Awaiting Action Items';  
-
-                  }
-                }
-
-                if($follow_up_data['follow_up_no'] != 0){
-
-                  if($md_case_status == 'completed' && $value['prior_auth_date'] != NULL){
-
-                    $prior_auth_date = new Carbon($value['prior_auth_date']);
-
-                    //$auth_date = Carbon::createFromFormat('Y-m-d H:i:s', $value['prior_auth_date']);
-                    $now = Carbon::now();
-                    $today_date = $now->toDateTimeString();
-
-                    $checkdate = $prior_auth_date->addDays(7);
-
-                    $display_till_date =  $checkdate->toDateTimeString();
-
-                    $today_date = Carbon::createFromFormat('Y-m-d H:i:s', $today_date);
-                    $display_till_date = Carbon::createFromFormat('Y-m-d H:i:s', $display_till_date);
-
-
-                    if($today_date->lte($display_till_date)){
-                      $system_status = 'Awaiting Action Items'; 
-                    } 
-
-                  }
-                }
-
-                //bloodwork notification
+                  //bloodwork notification
 
                     $bloodwork_email_data = array();
 
@@ -519,6 +530,19 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                     $system_status = 'Prescription Approved';
 
+
+                    //code  for md_has_approved_your_treatment
+                    $approved_noti = array();
+                    $approved_noti['user_id'] = $user_id;
+                    $approved_noti['case_id'] = $system_case_id;
+                    $approved_noti['md_case_id'] = $case_id;
+
+                    $approved_noti['noti_message'] = getNotificationMessageFromKey('md_has_approved_your_treatment');
+                    $approved_noti['for_month'] = $follow_up_data['follow_up_no']+1;
+                    $approved_noti_data = Notifications::create($approved_noti);
+
+                    //end of code for md_has_approved_your_treatment
+
                     //pickup_medication_notification
                     $noti_input_data = array();
                     $noti_input_data['user_id'] = $user_id;
@@ -541,6 +565,8 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                     $trigger_data = Triggers::create($trigger_input);
 
                     //end of pickup_medication_notification
+
+
 
                     $response = $this->getPrescription($case_id);
 
@@ -657,6 +683,21 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                 if($md_case_status == 'completed'){
 
                   $system_status = 'Prescription Approved';
+
+                  //send notification for topical
+
+                  if($product_type != 'Accutane'){
+                    $noti_input_data = array();
+                    $noti_input_data['user_id'] = $user_id;
+                    $noti_input_data['case_id'] = $system_case_id;
+                    $noti_input_data['md_case_id'] = $case_id;
+
+                    $noti_input_data['noti_message'] = getNotificationMessageFromKey('topical_case_completed');
+                    $noti_input_data['for_month'] = $follow_up_data['follow_up_no']+1;
+                    $noti_data = Notifications::create($noti_input_data);
+                  }
+
+                  //end of code to send notification for topical
 
 
                   $response = $this->getPrescription($case_id);

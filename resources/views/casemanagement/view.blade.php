@@ -766,6 +766,10 @@
 									<div id="triggerstab" class="tab-pane fade in">
 										<section class="all_screen_section">
 											<div class="Outer_box_design">
+												<?php echo "<pre>";
+												print_r($user_case_management_data);
+												echo "<pre>";
+												exit();?>
 												<div class="ipledge_outer_design ">
 													{!! Form::open(array('route' => 'trigger','method'=>'POST')) !!}
 													<div class="prior_block">

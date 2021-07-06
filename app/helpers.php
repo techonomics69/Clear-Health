@@ -668,14 +668,28 @@ if(!empty($Patient_data)){
 
      $update_order_data  =  Checkout::where('case_id',$case_id)->where('user_id',$user_id)->where('order_id',$order_id)->update(['md_case_id' => $case_data->case_id]);
 
-     $noti_input_data = array();
-     $noti_input_data['user_id'] = $user_id;
-     $noti_input_data['case_id'] = $case_id;
-     $noti_input_data['md_case_id'] = $md_case_id;
-     $noti_input_data['order_id'] = $order_id;
-     $noti_input_data['noti_message'] = getNotificationMessageFromKey('initial_Case_sent_to_md');
-     $noti_input_data['for_month'] = 1;
+     if($product_type != NULL){
+         if($product_type =="Accutane"){
+           $noti_input_data = array();
+           $noti_input_data['user_id'] = $user_id;
+           $noti_input_data['case_id'] = $case_id;
+           $noti_input_data['md_case_id'] = $md_case_id;
+           $noti_input_data['order_id'] = $order_id;
+           $noti_input_data['noti_message'] = getNotificationMessageFromKey('initial_case_sent_to_md');
+           $noti_input_data['for_month'] = 1;
+        }else{
+           $noti_input_data = array();
+           $noti_input_data['user_id'] = $user_id;
+           $noti_input_data['case_id'] = $case_id;
+           $noti_input_data['md_case_id'] = $md_case_id;
+           $noti_input_data['order_id'] = $order_id;
+           $noti_input_data['noti_message'] = getNotificationMessageFromKey('topical_initial_case_sent_to_md');
+           $noti_input_data['for_month'] = 1;
+        }
+     }
+    
 
+     
 
      $noti_data = Notifications::create($noti_input_data);
 

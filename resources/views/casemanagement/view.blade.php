@@ -1111,7 +1111,7 @@
 																		if (count($fileExt) > 0) {
 																			if (in_array($fileExt[1], $fileextArr)) {
 																	?>
-																				<img src="{{ asset('public/Message_files/'.$message['file_name']) }}" type="media_type" width='100'>
+																				<img src="{{ asset('public/Message_files/'.$message['file_name']) }}" type="media_type" width='100' style="max-width: 40px;">
 																				<a target="_blank" download="" href="{{ asset('public/Message_files/'.$message['file_name']) }}"> Download</a>
 																			<?php
 																			} else {

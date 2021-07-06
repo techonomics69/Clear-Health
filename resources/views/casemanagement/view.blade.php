@@ -1866,21 +1866,23 @@
 			$(".followup").each(function(v,i){
 				$(".followup"+(parseFloat(i+1))).hide();
 			});
-		}else if($.isNumeric($(this).val())){
-			alert(i);
-			$(".user_photos").hide();
-			$(".followups").show();
-			$(".followup").each(function(v,i){
-				// $(".followup"+(parseFloat(i+1))).hide();
-				
-			});
-			$(".followup"+$(this).val()).show();
 		}else{
-			$(".user_photos").hide();
-			$(".followups").hide();
-			$(".followup").each(function(v,i){
-				$(".followup"+(parseFloat(i+1))).hide();
-			});
+			if($(this).val() == ''){
+				$(".user_photos").hide();
+				$(".followups").hide();
+				$(".followup").each(function(v,i){
+					$(".followup"+(parseFloat(i+1))).hide();
+				});
+				$(".followup"+$(this).val()).hide();
+			}else{
+				$(".user_photos").hide();
+				$(".followups").show();
+				$(".followup").each(function(v,i){
+					$(".followup"+(parseFloat(i+1))).hide();
+				});
+				$(".followup"+$(this).val()).show();
+			}
+			
 		}
 	});
 

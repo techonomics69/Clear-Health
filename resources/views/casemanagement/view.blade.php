@@ -792,7 +792,16 @@
 														<p class="auth_text">Follow Up:</p>&nbsp;&nbsp;
 														<div class="check-register mangesubscription smalltext ">
 															<label class="custome-checkbox">
-																{!! Form::select('follow_up', ['1' => 'New Case','2' => 'First', '3' => 'Second', '4' => 'Third','5' => 'Fourth','6' => 'Fifth','6' => 'Seventh'], null, ['class' => 'form-control']); !!}
+																{{-- {!! Form::select('follow_up', ['1' => 'New Case','2' => 'First', '3' => 'Second', '4' => 'Third','5' => 'Fourth','6' => 'Fifth','6' => 'Seventh'], null, ['class' => 'form-control']); !!} --}}
+
+																<select name="follow_up" class="form-control" id="follow_up">
+																	<option value="">Select</option>
+
+																<?php
+																	foreach($user_case_management_data['follow_up_data'] as $key=>$value){?>
+																		<option value="{{$value['follow_up_no']}}">{{$value['follow_up_no']}}</option>
+															   <?php }?>
+																</select>
 															</label>
 														</div>
 													</div>

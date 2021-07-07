@@ -16,7 +16,10 @@ class ChangeFieldInCaseFilesTable extends Migration
         Schema::table('case_files', function (Blueprint $table) {
             $table->string('case_id')->nullable()->change();
             $table->string('file')->nullable()->change();
-            $table->string('system_file')->nullable()->change();
+            $table->string('md_file_name')->nullable()->change();
+            $table->string('md_mime_type')->nullable()->change();
+            $table->string('md_url')->nullable()->change();
+            $table->string('md_file_id')->nullable()->change();
         });
     }
 

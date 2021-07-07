@@ -982,7 +982,7 @@ public function getShipStationOrderStatus(Request $request){
   for($i=1;$i<=10;$i++){
     echo $i."<br>";
     flush();
-    sleep(1);
+    sleep(3);
   }         
   die();
 }

@@ -226,15 +226,13 @@ class FollowupController extends BaseController
       }
 
       if (!empty($followUpAns)) :
+     
+        $file_data = createCaseFile($documents,$name,$user_id,$md_case_id,$case_id,$followup=1);
+
         echo "<pre>";
-        print_r($documents);
-        echo "<pre>";
-       
-        echo "<pre>";
-        print_r($name);
+        print_r($file_data);
         echo "<pre>";
         exit();
-        $file_id = createCaseFile($documents,$name,$user_id,$md_case_id,$case_id,$followup=1);
         $followUpAns = $followUpAns->update($data);
 
       endif;

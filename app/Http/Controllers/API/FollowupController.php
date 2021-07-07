@@ -139,6 +139,11 @@ class FollowupController extends BaseController
         $data['left_face_file_id'] = $file_id;
       }
 
+      echo "<pre>";
+      print_r($data);
+      echo "<pre>";
+      exit();
+
       if ($request['right_face'] != '') {
         $right_face = $request['right_face'];
         $right_face_file_name =  $user_id . '_right_face_' . time() . '.jpeg';

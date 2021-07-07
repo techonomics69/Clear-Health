@@ -1350,7 +1350,6 @@ if(!empty($Patient_data)){
       echo "<pre>";
       exit();
 
-
     curl_close($curl);
 
     $case_file_data = json_decode($response);

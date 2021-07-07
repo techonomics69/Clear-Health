@@ -273,11 +273,6 @@ if(!empty($Patient_data)){
     //$file_temp_path = $documents->getpathName();
     //$file_mimeType = $documents->getClientMimeType();
 
-      echo "<pre>";
-      print_r($destinationPath."/".$doc_file_name);
-      echo "<pre>";
-      exit();
-
       $input_data = array();
 
       $fields = [

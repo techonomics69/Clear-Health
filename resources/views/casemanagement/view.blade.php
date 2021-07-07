@@ -1427,11 +1427,11 @@
 													@foreach($subscription_data as $key => $data)
 													<tr>
 														<td>{{$key + 1}}</td>
-														<td>{{$data->updated_at}}</td>
+														<td>{{$data['updated_at']}}</td>
 														<!-- <td><a href="#" data-toggle="modal" data-target="#exampleModal"></a></td> -->
-														<td><a href="#" data-toggle="modal" data-target="#exampleModal">{{$data->transaction_id}}</a></td>
-														<td>{{$data->total_amount}}</td>
-														<td>{{$data->payment_status}}</td>
+														<td><a href="#" data-toggle="modal" data-target="#exampleModal">{{$data['transaction_id']}}</a></td>
+														<td>{{$data['total_amount']}}</td>
+														<td>{{$data['payment_status']}}</td>
 														<!-- <td><i class="fa fa-eye"></i></td> -->
 													</tr>
 													@endforeach

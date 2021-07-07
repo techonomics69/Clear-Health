@@ -254,32 +254,46 @@ if(!empty($Patient_data)){
       $case_id = $request->case_id;
       $system_case_id = $request->system_case_id;*/
 
-      if(!empty($documents)){
-        $file =  $documents->getClientOriginalName();
-        $doc_file_name =  time().'-'.$file;
+      if($followup==''){
 
-        if (!file_exists(public_path('/MD_Case_files'))) {
-          File::makeDirectory(public_path('/MD_Case_files'),0777,true,true);
+          if(!empty($documents)){
+          $file =  $documents->getClientOriginalName();
+          $doc_file_name =  time().'-'.$file;
+
+          if (!file_exists(public_path('/MD_Case_files'))) {
+            File::makeDirectory(public_path('/MD_Case_files'),0777,true,true);
+          }
+          $destinationPath = public_path('/MD_Case_files');
+          $documents->move($destinationPath, $doc_file_name);
+
+          chmod($destinationPath."/".$doc_file_name, 0777);
+
+          $file_path = 'public/MD_Case_files/' .$file;
         }
-        $destinationPath = public_path('/MD_Case_files');
-        $documents->move($destinationPath, $doc_file_name);
 
-        chmod($destinationPath."/".$doc_file_name, 0777);
+      //$file_temp_name = $documents->getfileName();
+      //$file_temp_path = $documents->getpathName();
+      //$file_mimeType = $documents->getClientMimeType();
 
-        $file_path = 'public/MD_Case_files/' .$file;
+        $fields = [
+          'name' => $name,
+        //'file' => new \CurlFile($file_temp_path,$file_mimeType, $doc_file_name)
+          'file' => new \CurlFile($destinationPath."/".$doc_file_name)
+        ];
+
+      }else{
+
+        $fields = [
+          'name' => $name,
+        //'file' => new \CurlFile($file_temp_path,$file_mimeType, $doc_file_name)
+          'file' => new \CurlFile($documents)
+        ];
+
       }
 
-    //$file_temp_name = $documents->getfileName();
-    //$file_temp_path = $documents->getpathName();
-    //$file_mimeType = $documents->getClientMimeType();
+      
 
-      $input_data = array();
-
-      $fields = [
-        'name' => $name,
-      //'file' => new \CurlFile($file_temp_path,$file_mimeType, $doc_file_name)
-        'file' => new \CurlFile($destinationPath."/".$doc_file_name)
-      ];
+       $input_data = array();
 
       $curl = curl_init();
 

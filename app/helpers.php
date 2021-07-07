@@ -927,14 +927,10 @@ if(!empty($Patient_data)){
   function getPickupPharmacy($user_id,$case_id,$md_case_id=''){
 
     if($md_case_id !=''){
-       $where  = "[['user_id', $user_id],['case_id', $case_id],['md_case_id', $md_case_id]]";
+           $order_data = Checkout::where([['user_id', $user_id],['case_id', $case_id],['md_case_id', $md_case_id]])->first();
     }else{
-       $where  = "[['user_id', $user_id],['case_id', $case_id]]";
+          $order_data = Checkout::where([['user_id', $user_id],['case_id', $case_id])->first();
     }
-
-   
-    $order_data = Checkout::where($where)->first();
-
        $cart_ids = explode(',', $order_data['cart_id']);
        $pharmacy_data  =  Cart::select('pharmacy_pickup')->where('user_id',$user_id)->whereIn('id',$cart_ids)->where('order_type', '!=', 'AddOn')->first();
        $preferred_pharmacy_id = $pharmacy_data['pharmacy_pickup'];

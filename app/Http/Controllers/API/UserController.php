@@ -170,10 +170,6 @@ class UserController extends BaseController
     $orderdata = checkout::where('checkout.order_id', $order_id)->where('checkout.case_id', $case_id)->where('checkout.user_id', $user_id)->first();
 
     //code for md create case
-    $patient_id = create_patient($user_id, $case_id, $order_id);
-    echo '<pre>';
-    print_r($patient_id);
-    die;
     if ($orderdata['medication_type'] == 1) {
 
       if ($user['md_patient_id'] != '' || $user['md_patient_id'] != null) {
@@ -181,11 +177,11 @@ class UserController extends BaseController
         $patient_id = $user['md_patient_id'];
       } else {
         //call create patient api
-        
+        $patient_id = create_patient($user_id, $case_id, $order_id);
         //end of code create patient api 
       }
 
-     
+
 
 
       if ($patient_id != '' && $data == 1) {

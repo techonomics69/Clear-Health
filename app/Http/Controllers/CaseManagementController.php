@@ -718,13 +718,13 @@ die();*/
     $data['pregnancy_test_verify'] = 'true';
     $update = $follow_up->update($data);
 
-    $user_id = $request['user_id'];
+    /*$user_id = $request['user_id'];
     $case_id = $request['case_id'];
     $followup_no = $request['follow_up_no'];
     $preferred_pharmacy_id = getPickupPharmacy($user_id,$case_id);
     $order_data = Checkout::where([['user_id', $user_id],['case_id', $case_id]])->select('id','order_id')->first();
 
-    $response = CreateFollowUPCase($user_id,$case_id,$preferred_pharmacy_id,$order_data['order_id'],$followup_no);
+    $response = CreateFollowUPCase($user_id,$case_id,$preferred_pharmacy_id,$order_data['order_id'],$followup_no);*/
 
 
     if ($update) :

@@ -971,11 +971,11 @@ public function getShipStationOrderStatus(Request $request){
   if(count($checkout_order)>0){
     foreach($checkout_order as $chkey => $chval){
       
-        $shipord = shipStationHelper::getOrderData($chval['shipstation_order_id']);
-        if(!empty($shipord)){
+        //$shipord = shipStationHelper::getOrderData($chval['shipstation_order_id']);
+        // if(!empty($shipord)){
           echo $chkey."<br>";
           sleep(3);
-        }
+        // }
       
     }
   }              

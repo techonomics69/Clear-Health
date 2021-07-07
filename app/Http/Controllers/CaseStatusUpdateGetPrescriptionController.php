@@ -964,9 +964,8 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
 public function getShipStationOrderStatus(Request $request){
   $checkout_order = Checkout::select('id','order_id','user_id','cart_id','case_id','md_case_id','medication_type','shipstation_order_id','shipstation_order_status')
-              // ->whereNotNull('shipstation_order_id')
-              // ->whereNotNull('shipstation_order_status')
-              ->where('order_id','ORD-2021-00000974')
+              ->whereNotNull('shipstation_order_id')
+              ->whereNotNull('shipstation_order_status')
               ->orderBy('id','desc')
               ->get();
 

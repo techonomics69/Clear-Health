@@ -1022,7 +1022,7 @@ if(!empty($Patient_data)){
 
     //code to get user's question answer
 
-   $userQueAns = getQuestionAnswerFromUserid($user_id,$case_id);
+   $userQueAns = getFollowUPQuestionAnswerFromUserid($user_id,$case_id);
 
 
    $accutan_strength = 30;
@@ -1312,6 +1312,11 @@ if(!empty($Patient_data)){
 
     function getFollowUPQuestionAnswerFromUserid(){
          $answer_data = FollowUp::where('user_id', $user_id)->where('case_id', $case_id)->get();
+
+          echo "<pre>";
+          print_r($answer_data);
+          echo "<pre>";
+          exit();
 
       if(!empty($answer_data) && count($answer_data)>0){
         $userQueAns = json_decode($answer_data[0]['answer']);

@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Models\CaseHistory;
 use App\Models\FollowUp;
 use App\Models\Notifications;
+use App\Models\Checkout;
 use File;
 
 class FollowupController extends BaseController
@@ -254,6 +255,7 @@ class FollowupController extends BaseController
       $user_id = $request['user_id'];
       $case_id = $request['case_id'];
       $preferred_pharmacy_id = getPickupPharmacy($user_id,$case_id);
+      $order_data = Checkout::where([['user_id', $user_id],['case_id', $case_id]])->select('id','order_id')->first();
       $response = CreateFollowUPCase($user_id,$case_id,$preferred_pharmacy_id,$order_id);
   }
 }

@@ -159,7 +159,9 @@ class UserController extends BaseController
     //try{
 
     $input = $request->all();
-dd($input);
+echo '<pre>';
+print_r($input);
+die;
     $user_id = $request['user_id'];
     $case_id = $request['case_id'];
     $order_id = $request['order_id'];

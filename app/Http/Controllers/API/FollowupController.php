@@ -100,7 +100,6 @@ class FollowupController extends BaseController
 
   public function updateFollowUpData(Request $request)
   {
-
     $data = $request->all();
 
     $user_id = $request['user_id'];

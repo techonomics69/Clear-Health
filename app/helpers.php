@@ -1074,8 +1074,34 @@ if(!empty($Patient_data)){
 
   $patient_file_data = FollowUp::where([['user_id', $user_id],['case_id', $case_id],['follow_up_no', $followup_no]])->first();
 
+  $attachment = array();
+
+  if($patient_file_data['left_face_file_id'] != null){
+    $attachment = $patient_file_data['left_face_file_id'];
+  }
+
+   if($patient_file_data['right_face_file_id'] != null){
+    $attachment = $patient_file_data['right_face_file_id'];
+  }
+
+   if($patient_file_data['center_face_file_id'] != null){
+    $attachment = $patient_file_data['center_face_file_id'];
+  }
+
+   if($patient_file_data['back_photo_file_id'] != null){
+    $attachment = $patient_file_data['back_photo_file_id'];
+  }
+
+   if($patient_file_data['chest_photo_file_id'] != null){
+    $attachment = $patient_file_data['chest_photo_file_id'];
+  }
+
+   if($patient_file_data['pregnancy_test_file_id'] != null){
+    $attachment = $patient_file_data['pregnancy_test_file_id'];
+  }
+
   echo "<pre>";
-  print_r($patient_file_data);
+  print_r($attachment);
   echo "<pre>";
   exit();
 

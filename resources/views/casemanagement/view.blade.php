@@ -774,7 +774,7 @@
 														<tbody class="list_view_outer">
 															<tr>
 																<th scope="row">{{$user_case_management_data['prior_auth_date']}}</th>
-																<td><a href="{{ url('/public/ipledgeimports/prior_auth/')}}/{{$user_case_management_data['prior_auth']}}" target="_blank">File</a></td>
+																<td><a href="javascript:void(0);" target="_blank">@php echo $user_case_management_data['prior_auth']; @endphp</a></td>
 																<td><a href="{{ url('/public/ipledgeimports/prior_auth/')}}/{{$user_case_management_data['prior_auth']}}" target="_blank"><i class="fa fa-eye"></i> </td>
 															</tr>
 														</tbody>

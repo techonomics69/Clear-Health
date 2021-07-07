@@ -243,11 +243,20 @@
         </button>
       </div>
 	  <div class="modal-body">
-        ...
+			<div class="container-fluid">
+    			<div class="row">
+					<div class="col-md-6">
+
+					</div>
+					<div class="col-md-6">
+						
+					</div>
+				</div>
+			</div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary">Ok</button>
       </div>						
       
     </div>

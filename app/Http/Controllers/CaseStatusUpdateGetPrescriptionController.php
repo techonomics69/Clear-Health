@@ -63,7 +63,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
         $order_data = Checkout::where([['user_id', $user_id],['case_id', $system_case_id],['md_case_id', $case_id]])->first();
 
         
-        $ShiStation = shipStationHelper::getOrderData($order_data['shipstation_order_id']);
+        //$ShiStation = shipStationHelper::getOrderData($order_data['shipstation_order_id']);
 
           echo "<pre>";
           print_r($order_data['shipstation_order_id']);

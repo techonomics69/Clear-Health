@@ -963,22 +963,26 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 }
 
 public function getShipStationOrderStatus(Request $request){
-  $checkout_order = Checkout::select('order_id','user_id','cart_id','case_id','md_case_id','medication_type','shipstation_order_id')
-              ->whereNotNull('shipstation_order_id')
-              ->orderBy('id','desc')
-              ->get();
+  // $checkout_order = Checkout::select('order_id','user_id','cart_id','case_id','md_case_id','medication_type','shipstation_order_id')
+  //             ->whereNotNull('shipstation_order_id')
+  //             ->orderBy('id','desc')
+  //             ->get();
 
-  if(count($checkout_order)>0){
-    foreach($checkout_order as $chkey => $chval){
+  // if(count($checkout_order)>0){
+  //   foreach($checkout_order as $chkey => $chval){
       
-        //$shipord = shipStationHelper::getOrderData($chval['shipstation_order_id']);
-        // if(!empty($shipord)){
-          echo $chkey."<br>";
-          sleep(3);
-        // }
+  //       //$shipord = shipStationHelper::getOrderData($chval['shipstation_order_id']);
+  //       // if(!empty($shipord)){
+  //         echo $chkey."<br>";
+  //         sleep(3);
+  //       // }
       
-    }
-  }              
+  //   }
+  // }     
+  for($i=1;$i<=10;$i++){
+    echo $i."<br>";
+    sleep(3);
+  }         
   die();
 }
 

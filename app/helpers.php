@@ -25,6 +25,7 @@ use App\Models\Ipledge;
 use App\Models\Notifications;
 use App\Models\Triggers;
 use App\Models\Notificationmessages;
+use App\Models\FollowUp;
 
 function get_token(){
   $curl = curl_init();
@@ -320,40 +321,12 @@ if(!empty($Patient_data)){
     $input_data['system_file'] = $file_path;
     $input_data['user_id'] = $user_id;
     $input_data['system_case_id'] = $system_case_id;
-    //attach file to case_id
-
-    $curl1 = curl_init();
-
-    curl_setopt_array($curl1, array(
-      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/files/'.$case_file_data->file_id,
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_ENCODING => '',
-      CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 0,
-      CURLOPT_FOLLOWLOCATION => true,
-      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => 'POST',
-      CURLOPT_HTTPHEADER => array(
-        'Authorization: Bearer '.$token,
-        'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
-      ),
-    ));
-
-    $response1 = curl_exec($curl1);
-
-    $md_case_file_data = json_decode($response1);
-
-    $input_data['md_file_name'] = $md_case_file_data->name;
-    $input_data['md_mime_type'] = $md_case_file_data->mime_type;
-    $input_data['md_url'] = $md_case_file_data->url;
-    $input_data['md_url_thumbnail'] = $md_case_file_data->url_thumbnail;
-    $input_data['md_file_id'] = $md_case_file_data->file_id;
 
     $case_file_data = CaseFiles::create($input_data);
 
 
-    curl_close($curl1);
-
+    //attach file to case_id
+    $attechment_case_response = attachFileWithCase($case_file_data->file_id,$user_id,$case_id,$system_case_id);
 
     //end of code to attach file to case_id
     if(!empty($case_file_data)){
@@ -361,8 +334,6 @@ if(!empty($Patient_data)){
     }else{
        return array();
     }
-
-   
 
   }
 
@@ -611,12 +582,12 @@ if(!empty($Patient_data)){
     }
     $medication_compound_data = json_encode($medication_compound_data);
 
-    $input_md_data = '{"patient_id": '.$patient_id.',"case_files": [],"case_prescriptions": '.$medication_compound_data.',"case_questions": '.$userquestion.'}';
+   /* $input_md_data = '{"patient_id": '.$patient_id.',"case_files": [],"case_prescriptions": '.$medication_compound_data.',"case_questions": '.$userquestion.'}';
 
     echo "<pre>";
     print_r($input_md_data);
     echo "<pre>";
-    exit();
+    exit();*/
 
     $curl = curl_init();
 
@@ -953,8 +924,16 @@ if(!empty($Patient_data)){
        
   }
 
-  function getPickupPharmacy($user_id,$case_id,$md_case_id){
-    $order_data = Checkout::where([['user_id', $user_id],['case_id', $case_id],['md_case_id', $md_case_id]])->first();
+  function getPickupPharmacy($user_id,$case_id,$md_case_id=''){
+
+    if($md_case_id !=''){
+       $where  = "[['user_id', $user_id],['case_id', $case_id],['md_case_id', $md_case_id]]";
+    }else{
+       $where  = "[['user_id', $user_id],['case_id', $case_id]]";
+    }
+
+   
+    $order_data = Checkout::where($where)->first();
 
        $cart_ids = explode(',', $order_data['cart_id']);
        $pharmacy_data  =  Cart::select('pharmacy_pickup')->where('user_id',$user_id)->whereIn('id',$cart_ids)->where('order_type', '!=', 'AddOn')->first();
@@ -962,5 +941,391 @@ if(!empty($Patient_data)){
 
        return $preferred_pharmacy_id;
   }
+
+
+  function attachFileWithCase($file_id,$user_id,$case_id,$system_case_id){
+
+      $r = get_token();
+      $token_data = json_decode($r);
+      $token = $token_data->access_token;
+
+   /* if($errno = curl_errno($curl)) {
+      $error_message = curl_strerror($errno);
+      echo "cURL error ({$errno}):\n {$error_message}";
+    }*/
+
+    $curl1 = curl_init();
+
+    curl_setopt_array($curl1, array(
+      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/files/'.$case_file_data->file_id,
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'POST',
+      CURLOPT_HTTPHEADER => array(
+        'Authorization: Bearer '.$token,
+        'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+      ),
+    ));
+
+    $response1 = curl_exec($curl1);
+    curl_close($curl1);
+
+    $md_case_file_data = json_decode($response1);
+
+     $case_management  =  CaseFiles::where([['case_id',$case_id],['user_id',$user_id],['system_case_id',$system_case_id]])->update(['md_file_name' => $md_case_file_data->name,'md_mime_type' => $md_case_file_data->mime_typ,'md_url' => $md_case_file_data->url,'md_url_thumbnail' =>$md_case_file_data->url_thumbnail,'md_file_id' => $md_case_file_data->file_id ]);
+
+    //end of code to attach file to case_id
+    if(!empty($case_file_data)){
+       return $case_file_data;
+    }else{
+       return array();
+    }
+
+  }
+
+  function CreateFollowUPCase($user_id,$case_id,$preferred_pharmacy_id,$order_id){
+    $r = get_token();
+    $token_data = json_decode($r);
+    $token = $token_data->access_token;
+
+    $patient_data = User::select('md_patient_id')->where('id', $user_id)->first();
+
+    $patient_id = '"'.$patient_data['md_patient_id'].'"';
+
+
+    $product_type = getUserProduct($user_id,$case_id);
+
+    if($product_type == 'Topical_low'){
+
+     $product_name = "Topical Low";
+
+   }
+
+   if($product_type == 'Topical_high'){
+
+     $product_name = "Topical High";
+
+   }
+
+   if($product_type == 'Azelaic_Acid'){
+
+     $product_name = "Azelaic Acid";
+
+   }
+   if($product_type == 'Accutane'){
+
+     $product_name = "ISOtretinoin (oral - capsule)";
+
+   }
+
+   $removed_space_pro_name = str_replace(" ","%20",$product_name);
+
+    //code to get user's question answer
+
+   $userQueAns = getQuestionAnswerFromUserid($user_id,$case_id);
+
+
+   $accutan_strength = 30;
+   foreach ($userQueAns as $key => $value) {
+
+    $question = $value->question;
+
+    
+  }
+//end of code to get patient weight 
+  $userquestion = array();
+  foreach($userQueAns as $key=>$value){
+
+      $question = $value->question;
+
+      if($question == "What is your weight in lbs??"){
+        if(isset($value->answer) && $value->answer!=''){
+
+        $answer =  $value->answer;
+
+        if($answer > 154){
+          $accutan_strength = 40;
+        }else{
+          $accutan_strength = 30;
+        }   
+      }
+    }
+
+    if(isset($value->answer) && $value->answer!=''){
+      $userquestion[$key]['question'] = $value->question;
+
+      if(is_array($value->answer)){
+       $userquestion[$key]['answer'] = implode(',',$value->answer);
+     }else{
+
+        if($question =='How would you rate your stress level on a scale of 1 to 10?'){
+             $userquestion[$key]['answer'] = "".$value->answer."";
+        }else{
+          $userquestion[$key]['answer'] = $value->answer;
+        }
+       
+     }
+
+     
+
+     if($value->options_type == "radio"){
+       $userquestion[$key]['type']= "boolean";
+     }else{
+       $userquestion[$key]['type']= "string";
+     }
+
+     $userquestion[$key]['important']= true;
+
+   }
+
+ }
+
+ $userquestion = json_encode($userquestion);
+
+  //end of code to get user's question answer
+
+
+
+ if($product_type !="Accutane"){
+
+  $days_supply = "60";
+  $refills = "11";
+  $directions = "Twice per day.Take one at the morning and another before bed";
+  //$no_substitutions = false;
+  //$pharmacy_notes =  "";
+  $quantity = 30;
+  $preferred_pharmacy_id =13012;//pharmacy id of curexa=13012
+
+
+      /*$DispensUnitId = $this->getDispensUnitId();
+
+      $DispensUnitId = json_decode($DispensUnitId);
+      
+      $DispensUnitId= $DispensUnitId[0]->dispense_unit_id;*/
+
+      $DispensUnitId = 8;
+
+
+
+      $curl = curl_init();
+
+      curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/compounds/search?name='.$removed_space_pro_name,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'GET',
+        CURLOPT_HTTPHEADER => array(
+          'Authorization: Bearer '.$token,
+          'Cookie: __cfduid=da01d92d82d19a6cccebfdc9852303eb81620627650'
+        ),
+      ));
+
+      $response = curl_exec($curl);
+
+      curl_close($curl);
+
+      $compounds= $response;
+
+
+      $compounds = json_decode($compounds);
+
+      $partner_compound_id = $compounds[0]->partner_compound_id;
+
+      $medication_compound_data = array();
+      $medication_compound_data[0]['partner_compound_id'] = $partner_compound_id;
+      $medication_compound_data[0]['refills'] = $refills;
+      $medication_compound_data[0]['quantity'] = $quantity;
+      $medication_compound_data[0]['days_supply'] = $days_supply;
+      $medication_compound_data[0]['directions'] = $directions;
+      $medication_compound_data[0]['dispense_unit_id'] = $DispensUnitId;
+      $medication_compound_data[0]['pharmacy_id'] = $preferred_pharmacy_id;
+     //$medication_compound_data[0]['no_substitutions'] = $no_substitutions;
+      //$medication_compound_data[0]['pharmacy_notes'] = $pharmacy_notes;
+
+    }else{
+      $days_supply = "30";
+      $refills = "0";
+      $directions = "Twice per day.Take one at the morning and another before bed";
+      //$product_name = "Isotretinoin";
+      //$no_substitutions = false;
+     // $pharmacy_notes =  "";
+      $quantity = $accutan_strength;
+      $strength = $accutan_strength.'%20mg';
+
+      $curl = curl_init();
+
+      curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name='.$removed_space_pro_name.'&strength='.$strength,
+        //CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name=ISOtretinoin%20(oral%20-%20capsule)&strength=30%20mg',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'GET',
+        CURLOPT_HTTPHEADER => array(
+          'Authorization: Bearer '.$token,
+          'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+        ),
+      ));
+
+      $response = curl_exec($curl);
+
+      curl_close($curl);
+
+      $medications = $response;
+
+      $medications = json_decode($medications);
+
+      $DispensUnitId = $medications->dispense_unit_id;
+      $dosespot_medication_id = $medications->dosespot_medication_id;
+
+      $medication_compound_data = array();
+      $medication_compound_data[0]['dosespot_medication_id'] = $dosespot_medication_id;
+      $medication_compound_data[0]['refills'] = $refills;
+      $medication_compound_data[0]['quantity'] = $quantity;
+      $medication_compound_data[0]['days_supply'] = $days_supply;
+      $medication_compound_data[0]['directions'] = $directions;
+      $medication_compound_data[0]['dispense_unit_id'] = $DispensUnitId;
+      $medication_compound_data[0]['pharmacy_id'] = ($preferred_pharmacy_id == 'cash')?13012:$preferred_pharmacy_id;
+     // $medication_compound_data[0]['no_substitutions'] = $no_substitutions;
+      //$medication_compound_data[0]['pharmacy_notes'] = $pharmacy_notes;
+
+    }
+    $medication_compound_data = json_encode($medication_compound_data);
+
+   /* $input_md_data = '{"patient_id": '.$patient_id.',"case_files": [],"case_prescriptions": '.$medication_compound_data.',"case_questions": '.$userquestion.'}';
+
+    echo "<pre>";
+    print_r($input_md_data);
+    echo "<pre>";
+    exit();*/
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases',
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'POST',
+      CURLOPT_POSTFIELDS =>'{
+        "patient_id": '.$patient_id.',
+        "case_files": [
+        ],
+        "case_prescriptions": '.$medication_compound_data.',
+        "case_questions": '.$userquestion.'
+      }',
+      CURLOPT_HTTPHEADER => array(
+        'Content-Type: application/json',
+        'Authorization: Bearer '.$token,
+        'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+      ),
+    ));
+
+    $response = curl_exec($curl);
+
+    $case_data = json_decode($response);
+
+   
+
+    $input_data['prioritized_at'] = $case_data->prioritized_at;
+    $input_data['prioritized_reason'] = $case_data->prioritized_reason;
+    $input_data['cancelled_at'] = $case_data->prioritized_reason;
+    
+    if(isset($case_data->case_assignment) && $case_data->case_assignment != null){
+      $input_data['md_created_at'] = $case_data->case_assignment->created_at;
+    }else{
+      $input_data['md_created_at'] = $case_data->created_at;
+    }
+   
+    //$input_data['support_reason'] = $case_data->support_reason;
+    $input_data['case_id'] = $case_data->case_id;
+    $input_data['status'] = $case_data->case_status->name ;
+    $input_data['case_status_reason'] = $case_data->case_status->reason ;
+    $input_data['case_status_updated_at'] = $case_data->case_status->updated_at ;
+    $input_data['user_id'] = $user_id;
+    $input_data['system_case_id'] = $case_id;
+
+    $md_case_data = Mdcases::create($input_data);
+
+    $case_management  =  CaseManagement::where('id',$case_id)->where('user_id',$user_id)->update(['md_case_status' => $case_data->case_status->name,'system_status' => 'Telehealth Evaluation Requested','md_case_id' => $case_data->case_id]);
+
+     $update_order_data  =  Checkout::where('case_id',$case_id)->where('user_id',$user_id)->where('order_id',$order_id)->update(['md_case_id' => $case_data->case_id]);
+
+     if($product_type != NULL){
+         if($product_type =="Accutane"){
+           $noti_input_data = array();
+           $noti_input_data['user_id'] = $user_id;
+           $noti_input_data['case_id'] = $case_id;
+           $noti_input_data['md_case_id'] = $md_case_id;
+           $noti_input_data['order_id'] = $order_id;
+           $noti_input_data['noti_message'] = getNotificationMessageFromKey('initial_case_sent_to_md');
+           $noti_input_data['for_month'] = 1;
+        }else{
+           $noti_input_data = array();
+           $noti_input_data['user_id'] = $user_id;
+           $noti_input_data['case_id'] = $case_id;
+           $noti_input_data['md_case_id'] = $md_case_id;
+           $noti_input_data['order_id'] = $order_id;
+           $noti_input_data['noti_message'] = getNotificationMessageFromKey('topical_initial_case_sent_to_md');
+           $noti_input_data['for_month'] = 1;
+        }
+     }
+    
+
+     
+
+     $noti_data = Notifications::create($noti_input_data);
+
+    curl_close($curl);
+
+      //code for update md details
+    if(isset($case_data->case_assignment) && $case_data->case_assignment != null){
+
+      $inputmd_data['status'] = $status;
+      $inputmd_data['image'] = "";
+      $inputmd_data['language_id'] = "";
+      $inputmd_data['md_id'] = $case_data->case_assignment->clinician->clinician_id;
+      $inputmd_data['name'] = $case_data->case_assignment->clinician->full_name;
+      $inputmd_data['reason'] = $case_data->case_assignment->reason;;
+      $inputmd_data['case_assignment_id'] = $case_data->case_assignment->case_assignment_id;
+
+      $mdmanagement_data = Mdmanagement::where('case_id', $case_id)->first();
+      if(!empty($mdmanagement_data)){
+        $mdmanagement_data->update($inputmd_data);
+      }else{
+        $md_case_data = Mdmanagement::create($inputmd_data);
+      }
+
+    }
+      return $response;
+    }
+
+    function getFollowUPQuestionAnswerFromUserid(){
+         $answer_data = FollowUp::where('user_id', $user_id)->where('case_id', $case_id)->get();
+
+      if(!empty($answer_data) && count($answer_data)>0){
+        $userQueAns = json_decode($answer_data[0]['answer']);
+
+      }else{
+         $userQueAns = array();
+      }
+
+      return $userQueAns;
+    }
+
 
 ?>

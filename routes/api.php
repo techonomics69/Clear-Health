@@ -157,6 +157,7 @@ Route::post('getToken', [CaseManagementController::class, 'get_token']);
     Route::post('addFollowUpAnswer',[FollowupController::class, 'addFollowUpData']);
     Route::post('getFollowUpAnswer',[FollowupController::class,'getFollowUpAnswer']);
     Route::post('updateFollowUpData',[FollowupController::class,'updateFollowUpData']);
+    Route::post('createFollowUpMDCase',[FollowupController::class,'createFollowUpMDCase']);
 
     //payment
     Route::post('payments', [PaymentsController::class, 'store']);

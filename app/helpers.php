@@ -1310,7 +1310,7 @@ if(!empty($Patient_data)){
       return $response;
     }
 
-    function getFollowUPQuestionAnswerFromUserid(){
+    function getFollowUPQuestionAnswerFromUserid($user_id,$case_id){
          $answer_data = FollowUp::where('user_id', $user_id)->where('case_id', $case_id)->get();
 
           echo "<pre>";

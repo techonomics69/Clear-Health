@@ -93,7 +93,7 @@ class shipStationHelper {
         $updateOrder = DB::table('checkout')
                                 ->where('id',$orderData['checkoutOrderId'])
                                 ->update(['shipstation_order_id'=>$getOrder['orderId'],
-                                'shipstation_order_id'=>$getOrder['orderStatus']]);
+                                'shipstation_order_status'=>$getOrder['orderStatus']]);
 
         $addNot = new Notifications();
         $addNot->user_id = $orderData['user_id'];
@@ -193,7 +193,7 @@ class shipStationHelper {
                 $updateOrder = DB::table('checkout')
                                 ->where('id',$orderData['checkoutOrderId'])
                                 ->update(['shipstation_order_id'=>$getOrder['orderId'],
-                                'shipstation_order_id'=>$getOrder['orderStatus']]);            
+                                'shipstation_order_status'=>$getOrder['orderStatus']]);            
                 
                 
                 $addNot = new Notifications();

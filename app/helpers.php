@@ -1345,6 +1345,11 @@ if(!empty($Patient_data)){
 
       $response = curl_exec($curl);
 
+      echo "<pre>";
+      print_r($response);
+      echo "<pre>";
+      exit();
+
 
     curl_close($curl);
 

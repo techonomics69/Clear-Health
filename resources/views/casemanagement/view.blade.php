@@ -1407,7 +1407,13 @@
 								<div class="card-body">
 									<div class="box-block mtb32">
 										<h3 class="font-weight-bold"><span class="text-underline">Payments</span></h3>
-										@php print_r($subscription_data); @endphp
+										@php 
+											if(count($subscription_data)>0){
+												foreach($subscription_data as $sk => $sval){
+													echo $sval['updated_at']."<br>";
+												}
+											}
+										@endphp
 										<table class="table table-responsive-md table-striped no-footer">
 											<thead>
 												<tr>

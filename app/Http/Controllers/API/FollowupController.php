@@ -119,8 +119,11 @@ class FollowupController extends BaseController
       }
 
       $destinationPath = public_path('/images/Users');
-      $userGender = User::find($user_id)->gender;
-      $followUpAns = FollowUp::where('user_id', $user_id)
+      //$userGender = User::find($user_id)->gender;
+      $userGender = User::select('gender')->where('id', $data['user_id'])->first();
+      $userGender = $userGender['gender'];
+
+      $followUpAns = FollowUp::where('user_id', $data['user_id'])
         ->where('case_id', $data['case_id'])
         ->where('follow_up_status', '<>', 'completed')
         ->first();

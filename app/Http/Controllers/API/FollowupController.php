@@ -254,6 +254,6 @@ class FollowupController extends BaseController
       $user_id = $request['user_id'];
       $case_id = $request['case_id'];
       $preferred_pharmacy_id = getPickupPharmacy($user_id,$case_id);
-      $response = CreateFollowUPCase($user_id,$case_id,$preferred_pharmacy_id,$order_id)
+      $response = CreateFollowUPCase($user_id,$case_id,$preferred_pharmacy_id,$order_id);
   }
 }

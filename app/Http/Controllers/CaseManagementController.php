@@ -376,7 +376,7 @@ die();*/
 
     $subscription_data = array_merge($checkout_array, $sub_array);   
 
-    dd(json_decode(json_encode($subscription_data), true));
+    // dd(json_decode(json_encode($subscription_data), true));
 
   
     return view('casemanagement.view', compact('user_case_management_data', 'category', 'general_que', 'accutane_que', 'topical_que', 'skincare_summary', 'message_data', 'message_details', 'msg_history', 'followup_que', 'prescribe_shipments', 'checkout', 'user_pic','subscription_data'));

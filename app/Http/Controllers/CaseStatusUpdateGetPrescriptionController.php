@@ -61,9 +61,9 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
        $user_email =  $value['email'];
        $user_phone = $value['mobile'];
 
-        $order_data = Checkout::where([['user_id', $user_id],['case_id', $system_case_id],['md_case_id', $case_id]])->first();
+      $order_data = Checkout::where([['user_id', $user_id],['case_id', $system_case_id],['md_case_id', $case_id]])->first();
 
-        array_push($ship_orderIds, $order_data);
+        
         //$ShiStation = shipStationHelper::getOrderData($order_data['shipstation_order_id']);
 
          
@@ -958,7 +958,14 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
   }
 }
 }
-dd($ship_orderIds);
+
+  $checkout_order = Checkout::select('order_id','user_id','cart_id','case_id','md_case_id','medication_type')
+              ->whereNotNull('shipstation_order_id')
+              ->orderBy('id','desc')
+              ->get();
+                
+
+dd($checkout_order);
 }
 
     /**

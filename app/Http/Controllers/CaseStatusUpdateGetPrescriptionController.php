@@ -963,7 +963,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 }
 
 public function getShipStationOrderStatus(Request $request){
-  $checkout_order = Checkout::select('order_id','user_id','cart_id','case_id','md_case_id','medication_type','shipstation_order_id','shipstation_order_status')
+  $checkout_order = Checkout::select('id','order_id','user_id','cart_id','case_id','md_case_id','medication_type','shipstation_order_id','shipstation_order_status')
               ->whereNotNull('shipstation_order_id')
               ->whereNull('shipstation_order_status')
               ->orderBy('id','desc')
@@ -972,9 +972,12 @@ public function getShipStationOrderStatus(Request $request){
       if(count($checkout_order)>0){
         foreach($checkout_order as $chkey => $chval){
           if($chkey==0){
+            
             $shipord = shipStationHelper::getOrderData($chval['shipstation_order_id']);
             if(!empty($shipord)){
-              print_r($shipord)."<br>";
+              $status = json_decode(json_encode($shipord), true);
+              // $updateShip = Checkout::where('id',$chval['id'])->update(["shipstation_order_status"=>])
+              echo $status['orderStatus'];   
               sleep(1);
             }
           }else{

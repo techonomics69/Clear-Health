@@ -983,7 +983,7 @@ if(!empty($Patient_data)){
 
   }
 
-  function CreateFollowUPCase($user_id,$case_id,$preferred_pharmacy_id,$order_id){
+  function CreateFollowUPCase($user_id,$case_id,$preferred_pharmacy_id,$order_id,$followup_no){
     $r = get_token();
     $token_data = json_decode($r);
     $token = $token_data->access_token;
@@ -1069,6 +1069,18 @@ if(!empty($Patient_data)){
  }
 
  $userquestion = json_encode($userquestion);
+
+
+ //get files attachment
+
+  $patient_file_data = FollowUp::where([['user_id', $user_id],['case_id', $case_id],['follow_up_no', $followup_no]])->first();
+
+  echo "<pre>";
+  print_r($patient_file_data);
+  echo "<pre>";
+  exit();
+
+ //end of code for file attachment
 
   //end of code to get user's question answer
 

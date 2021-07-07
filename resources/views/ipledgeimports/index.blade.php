@@ -88,28 +88,30 @@
 									<table class="table table-responsive-md table-striped table-bordered ipledgeListAll" style="width:100%">
 										<thead>
 											<tr>
-												<th>ID</th>
+												
 												<th>Patient ID</th>
-												<th>Assigned To</th>
-												<th>Patient Name</th>
-												<th>Gender</th>
+												<th>Addon Date</th>
+												<th>Addon By</th>
 												<th>Patient Type</th>
-												{{-- <th>Patient Status</th> --}}
-												<th>Date</th>
+												<th>Assigned Patient Name</th>
+												<th>Assigned Date</th>
+												<th>Gender</th>
+												
 											</tr>
 										</thead>
 										<tbody>	
 										<?php $i = 1; ?>			
 										@foreach($ipledge_data as $key => $data)
 										<tr>
-											<td>{{$i++}}</td>
+											
 											<td>{{ $data->patient_id}}</td>
-											<td>{{($data->user_case_id1 != '') ? $data->user_case_id : '-'}}</td>
-											<td>{{ $data->patient_name}}</td>
-											<td>{{ $data->gender}}</td>
+											<td></td>
+											<td></td>
 											<td>{{ ($data->patients_type) ==0 ? "CanNotPregnant" :"CanPregnant"}}</td>
-											{{-- <td>{{ ($data->assigned_by !='') ? "Assigned" : "Unassigned"}}</td> --}}
+											<td>{{ $data->patient_name}}</td>
 											<td><?php if($data->assigned_date !=''){echo date('d-m-Y', strtotime($data->assigned_date));}else{echo "-";}  ?></td>
+											<td>{{ $data->gender}}</td>
+											
 
 										</tr>
 										@endforeach

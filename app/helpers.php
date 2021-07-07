@@ -1101,7 +1101,7 @@ if(!empty($Patient_data)){
   }
 
   echo "<pre>";
-  print_r($attachment);
+  print_r(json_encode($attachment));
   echo "<pre>";
   exit();
 

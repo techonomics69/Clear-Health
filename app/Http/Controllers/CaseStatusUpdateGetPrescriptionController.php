@@ -970,8 +970,12 @@ public function getShipStationOrderStatus(Request $request){
 
   if(count($checkout_order)>0){
     foreach($checkout_order as $chkey => $chval){
-      $shipord = shipStationHelper::getOrderData($chval['shipstation_order_id']);
-      print_r($shipord)."<br><br>";
+      if($chkey==0){
+        $shipord = shipStationHelper::getOrderData($chval['shipstation_order_id']);
+        print_r($shipord)."<br><br>";
+      }else{
+        break;
+      }
     }
   }              
   die();

@@ -620,28 +620,12 @@
 														&nbsp;
 													</div>
 												</div>
-												<div class="row">
-													<div class="col-md-4"></div>
-													<div class="col-md-4">
-														<select class="form-control" id="pfollowselect">
-															<option value="">--SELECT--</option>
-															@if(isset($followup_que))
-																<?php
-																for($i=1;$i<=count($followup_que);$i++){
-															?>
-																<option value="{{$i}}">Follow Up {{$i}}</option>
-															<?php		
-																}
-																?>
-															@endif
-														</select>
-													</div>
-													<div class="col-md-4"></div>
-												</div>
+												
 												<div class="ipledge_outer_design mt24">
 													<table class="table table-responsive-md table-striped no-footer">
 														<thead>
 															<tr>
+																<th scope="col">Visit NO.</th>
 																<th scope="col">Date</th>
 																<th scope="col">Pregnancy Test</th>
 																<th scope="col">Month</th>
@@ -651,7 +635,7 @@
 														<tbody class="list_view_outer">
 															@foreach($followup_que as $key => $p_test)
 															<tr class="pfollow{{$key+1}} pfollows" style="display: none;">
-
+																<th scope="row"><?php echo $p_test['follow_up_no']; ?></th>
 																<th scope="row"><?php echo date("m-d-Y",strtotime($p_test['created_at'])); ?></th>
 																<td><a href="{{ url('/public/images/Users/') }}/{{$p_test['pregnancy_test']}}" target="_blank">File</a></td>
 																<td>{{$p_test['follow_up_no']}}</td>

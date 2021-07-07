@@ -256,6 +256,13 @@ class FollowupController extends BaseController
       $case_id = $request['case_id'];
       $preferred_pharmacy_id = getPickupPharmacy($user_id,$case_id);
       $order_data = Checkout::where([['user_id', $user_id],['case_id', $case_id]])->select('id','order_id')->first();
+
       $response = CreateFollowUPCase($user_id,$case_id,$preferred_pharmacy_id,$order_data['order_id']);
-  }
+
+      if(!empty($response)){
+        return $this->sendResponse($response, 'MD Case Created Successfully');
+      }else{
+         return $this->sendError(array(),'something went wrong!');
+      }
+     
 }

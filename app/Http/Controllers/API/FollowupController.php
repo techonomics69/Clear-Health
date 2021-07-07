@@ -142,7 +142,7 @@ class FollowupController extends BaseController
       if ($request['right_face'] != '') {
         $right_face = $request['right_face'];
         $right_face_file_name =  $user_id . '_right_face_' . time() . '.jpeg';
-        $this->createImage($right_face, $right_face_file_name);
+        $img_destinationPath = $this->createImage($right_face, $right_face_file_name);
         $data['right_face'] = $right_face_file_name;
 
         $documents =  $img_destinationPath;
@@ -155,7 +155,7 @@ class FollowupController extends BaseController
       if ($request['center_face'] != '') {
         $center_face = $request['center_face'];
         $center_face_file_name =  $user_id . '_center_face_' . time() . '.jpeg';
-        $this->createImage($center_face, $center_face_file_name);
+        $img_destinationPath =$this->createImage($center_face, $center_face_file_name);
         $data['center_face'] = $center_face_file_name;
 
         $documents =  $img_destinationPath;
@@ -167,14 +167,19 @@ class FollowupController extends BaseController
       if ($request['back_photo'] != '') {
         $back_photo = $request['back_photo'];
         $back_photo_file_name =  $user_id . 'back_photo' . time() . '.jpeg';
-        $this->createImage($back_photo, $back_photo_file_name);
+        $img_destinationPath = $this->createImage($back_photo, $back_photo_file_name);
         $data['back_photo'] = $back_photo_file_name;
+
+        $documents =  $img_destinationPath;
+        $name = 'back_photo';
+        $file_id = createFollowupCaseFile($documents,$name,$user_id,$md_case_id,$case_id);
+        $data['back_photo_file_id'] = $file_id;
       }
 
       if ($request['chest_photo'] != '') {
         $chest_photo = $request['chest_photo'];
         $chest_photo_file_name =  $user_id . 'chest_photo' . time() . '.jpeg';
-        $this->createImage($chest_photo, $chest_photo_file_name);
+        $img_destinationPath = $this->createImage($chest_photo, $chest_photo_file_name);
         $data['chest_photo'] = $chest_photo_file_name;
         if ($userGender == 'male') :
           $data['follow_up_status'] = 'completed';
@@ -195,6 +200,11 @@ class FollowupController extends BaseController
             $noti_data = Notifications::create($noti_input_data);
           endif;
         endif;
+
+        $documents =  $img_destinationPath;
+        $name = 'chest_photo';
+        $file_id = createFollowupCaseFile($documents,$name,$user_id,$md_case_id,$case_id);
+        $data['chest_photo_file_id'] = $file_id;
       }
 
       if ($request->file('pregnancy_test') != '') {
@@ -212,6 +222,13 @@ class FollowupController extends BaseController
           chmod($destinationPath . "/" . $pregnancy_test_file_name, 0777);
 
           $data['pregnancy_test'] = $pregnancy_test_file_name;
+
+        $documents =  $destinationPath . "/" . $pregnancy_test_file_name;
+        $name = 'pregnancy_test';
+        $file_id = createFollowupCaseFile($documents,$name,$user_id,$md_case_id,$case_id);
+        $data['pregnancy_test_file_id'] = $file_id;
+
+
           if ($userGender == 'female') :
             $data['follow_up_status'] = 'completed';
             $caseManage = CaseManagement::find($case_id);

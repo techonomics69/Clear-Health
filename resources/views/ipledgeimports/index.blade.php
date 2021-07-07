@@ -245,10 +245,13 @@
 	  <div class="modal-body">
 			<div class="container-fluid">
     			<div class="row">
-					<div class="col-md-6">
+					<div class="col-md-12">
 						<img class="img-fluid" src="{{ asset('public/images/image_ipledge1.png') }}">
 					</div>
-					<div class="col-md-6">
+					
+				</div>
+				<div class="row">
+					<div class="col-md-12">
 						<img class="img-fluid" src="{{ asset('public/images/image_ipledge2.png') }}">
 					</div>
 				</div>

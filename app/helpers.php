@@ -502,7 +502,7 @@ if(!empty($Patient_data)){
 
   $days_supply = "60";
   $refills = "11";
-  $directions = "Take one at the morning and another before bed";
+  $directions = "Twice per day.Take one at the morning and another before bed";
   //$no_substitutions = false;
   //$pharmacy_notes =  "";
   $quantity = 30;
@@ -561,7 +561,7 @@ if(!empty($Patient_data)){
     }else{
       $days_supply = "30";
       $refills = "0";
-      $directions = "Take one at the morning and another before bed";
+      $directions = "Twice per day.Take one at the morning and another before bed";
       //$product_name = "Isotretinoin";
       //$no_substitutions = false;
      // $pharmacy_notes =  "";

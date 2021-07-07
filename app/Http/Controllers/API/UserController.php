@@ -171,7 +171,9 @@ class UserController extends BaseController
 
     //code for md create case
     $patient_id = create_patient($user_id, $case_id, $order_id);
-    dd($patient_id);
+    echo '<pre>';
+    print_r($patient_id);
+    die;
     if ($orderdata['medication_type'] == 1) {
 
       if ($user['md_patient_id'] != '' || $user['md_patient_id'] != null) {

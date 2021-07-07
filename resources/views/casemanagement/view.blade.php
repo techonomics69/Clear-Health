@@ -634,7 +634,7 @@
 														</thead>
 														<tbody class="list_view_outer">
 															@foreach($followup_que as $key => $p_test)
-															<tr class="pfollow{{$key+1}} pfollows" style="display: none;">
+															<tr class="pfollow{{$key+1}} pfollows">
 																<th scope="row"><?php echo $p_test['follow_up_no']; ?></th>
 																<th scope="row"><?php echo date("m-d-Y",strtotime($p_test['created_at'])); ?></th>
 																<td><a href="{{ url('/public/images/Users/') }}/{{$p_test['pregnancy_test']}}" target="_blank">File</a></td>

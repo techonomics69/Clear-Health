@@ -66,7 +66,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
         $ShiStation = shipStationHelper::getOrderData($order_data['shipstation_order_id']);
 
           echo "<pre>";
-          print_r( $ShiStation);
+          print_r($order_data['shipstation_order_id']);
           echo "<pre>";
           exit();
 

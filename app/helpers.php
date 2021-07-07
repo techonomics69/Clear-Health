@@ -1026,14 +1026,11 @@ if(!empty($Patient_data)){
 
 
    $accutan_strength = 30;
-   foreach ($userQueAns as $key => $value) {
-
-    $question = $value->question;
-
-    
-  }
+   
+   
 //end of code to get patient weight 
   $userquestion = array();
+  if(!empty($userQueAns)){
   foreach($userQueAns as $key=>$value){
 
       $question = $value->question;
@@ -1067,6 +1064,8 @@ if(!empty($Patient_data)){
    }
 
  }
+
+}
 
  $userquestion = json_encode($userquestion);
 

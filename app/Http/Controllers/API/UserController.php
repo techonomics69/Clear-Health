@@ -158,14 +158,11 @@ class UserController extends BaseController
   {
     //try{
 
-    //$input = $request->all();
-
-    //$user_id = $request['user_id'];
-    $user_id = 1716;
-    //$case_id = $request['case_id'];
-    $case_id = 120;
-    //$order_id = $request['order_id'];
-    $order_id = 873;
+    $input = $request->all();
+dd($input);
+    $user_id = $request['user_id'];
+    $case_id = $request['case_id'];
+    $order_id = $request['order_id'];
 
     $data = User::where('id', $user_id)->update(['verified_by_vouch' => $request['verified_by_vouch']]);
 

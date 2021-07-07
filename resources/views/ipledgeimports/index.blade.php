@@ -62,7 +62,7 @@
 			<div class="content-header-right col-md-6 col-12 mb-2">
 				<div class="pull-right">
 					{{-- @can('quiz-create')		 --}}			
-					<a class="btn btn-secondry" href="{{ route('ipledgeimports.create') }}"><i class="fa fa-plus" aria-hidden="true"></i> Upload Ipledge ID's </a>
+					<a class="btn btn-secondry" href="javascript:void(0);" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fa fa-plus" aria-hidden="true"></i> Upload Ipledge ID's </a>
 					{{-- @endcan	 --}}
 				</div>
 			</div>
@@ -228,6 +228,28 @@
 		</div>
 	</div>
 </div>
+</div>
+
+<!-- Large modal -->
+
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      ...
+    </div>
+  </div>
+</div>
+
+<!-- Small modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm">Small modal</button>
+
+<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      ...
+    </div>
+  </div>
 </div>
 @endsection
 

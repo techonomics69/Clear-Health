@@ -131,10 +131,12 @@ class FollowupController extends BaseController
         $left_face = $request['left_face'];
         $left_face_file_name =  $user_id . '_left_face_' . time() . '.jpeg';
         $img_destinationPath = $this->createImage($left_face, $left_face_file_name);
+        $data['left_face'] = $left_face_file_name;
 
         $documents =  $img_destinationPath;
         $name = 'left_face';
-        $data['left_face'] = $left_face_file_name;
+        $file_id = createFollowupCaseFile($documents,$name,$user_id,$md_case_id,$case_id);
+        $data['left_face_file_id'] = $file_id;
       }
 
       if ($request['right_face'] != '') {
@@ -142,6 +144,11 @@ class FollowupController extends BaseController
         $right_face_file_name =  $user_id . '_right_face_' . time() . '.jpeg';
         $this->createImage($right_face, $right_face_file_name);
         $data['right_face'] = $right_face_file_name;
+
+        $documents =  $img_destinationPath;
+        $name = 'right_face';
+        $file_id = createFollowupCaseFile($documents,$name,$user_id,$md_case_id,$case_id);
+        $data['right_face_file_id'] = $file_id;
       }
 
 
@@ -150,6 +157,11 @@ class FollowupController extends BaseController
         $center_face_file_name =  $user_id . '_center_face_' . time() . '.jpeg';
         $this->createImage($center_face, $center_face_file_name);
         $data['center_face'] = $center_face_file_name;
+
+        $documents =  $img_destinationPath;
+        $name = 'center_face';
+        $file_id = createFollowupCaseFile($documents,$name,$user_id,$md_case_id,$case_id);
+        $data['center_face_file_id'] = $file_id;
       }
 
       if ($request['back_photo'] != '') {
@@ -226,13 +238,6 @@ class FollowupController extends BaseController
       }
 
       if (!empty($followUpAns)) :
-     
-        $file_data = createFollowupCaseFile($documents,$name,$user_id,$md_case_id,$case_id);
-
-        echo "<pre>";
-        print_r($file_data);
-        echo "<pre>";
-        exit();
         $followUpAns = $followUpAns->update($data);
 
       endif;

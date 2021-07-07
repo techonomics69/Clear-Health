@@ -1344,9 +1344,33 @@ if(!empty($Patient_data)){
       ));
 
       $response = curl_exec($curl);
-   
-      return $response;
-   
+
+
+    curl_close($curl);
+
+    $case_file_data = json_decode($response);
+
+    $input_data['name'] = $case_file_data->name;
+    $input_data['mime_type'] = $case_file_data->mime_type;
+    $input_data['url'] = $case_file_data->url;
+    $input_data['url_thumbnail'] = $case_file_data->url_thumbnail;
+    $input_data['file_id'] = $case_file_data->file_id;
+    $input_data['case_id'] = $case_id;
+    $input_data['user_id'] = $user_id;
+    $input_data['system_case_id'] = $system_case_id;
+
+    $case_file_data = CaseFiles::create($input_data);
+
+
+    //end of code to attach file to case_id
+    if(!empty($case_file_data)){
+
+      $file_id = $case_file_data->file_id;;
+       return $case_file_data->file_id;
+    }else{
+       $file_id = null;
+       return $file_id;
+    }
 
   }
 

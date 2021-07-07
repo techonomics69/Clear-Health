@@ -1077,27 +1077,27 @@ if(!empty($Patient_data)){
   $attachment = array();
 
   if($patient_file_data['left_face_file_id'] != null){
-    $attachment = $patient_file_data['left_face_file_id'];
+    $attachment[] = $patient_file_data['left_face_file_id'];
   }
 
    if($patient_file_data['right_face_file_id'] != null){
-    $attachment = $patient_file_data['right_face_file_id'];
+    $attachment[] = $patient_file_data['right_face_file_id'];
   }
 
    if($patient_file_data['center_face_file_id'] != null){
-    $attachment = $patient_file_data['center_face_file_id'];
+    $attachment[] = $patient_file_data['center_face_file_id'];
   }
 
    if($patient_file_data['back_photo_file_id'] != null){
-    $attachment = $patient_file_data['back_photo_file_id'];
+    $attachment[] = $patient_file_data['back_photo_file_id'];
   }
 
    if($patient_file_data['chest_photo_file_id'] != null){
-    $attachment = $patient_file_data['chest_photo_file_id'];
+    $attachment[] = $patient_file_data['chest_photo_file_id'];
   }
 
    if($patient_file_data['pregnancy_test_file_id'] != null){
-    $attachment = $patient_file_data['pregnancy_test_file_id'];
+    $attachment[] = $patient_file_data['pregnancy_test_file_id'];
   }
 
   echo "<pre>";

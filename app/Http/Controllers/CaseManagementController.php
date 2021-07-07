@@ -374,7 +374,17 @@ die();*/
       }
     }
 
-    $subscription_data = array_merge($checkout_array, $sub_array);   
+    if((count($checkout_array)>0) && (count($sub_array)>0)){
+      $subscription_data = array_merge($checkout_array, $sub_array);   
+    }else if((count($checkout_array)>0) && (count($sub_array)<0)){
+      $subscription_data = $checkout_array;   
+    }else if((count($checkout_array)<0) && (count($sub_array)>0)){
+      $subscription_data = $sub_array;   
+    }else{
+      $subscription_data = array();   
+    }
+
+    
 
     // dd(json_decode(json_encode($subscription_data), true));
 

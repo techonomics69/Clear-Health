@@ -107,7 +107,7 @@ class FollowupController extends BaseController
     $case_id = $request['case_id'];
     $md_case_id = $request['md_case_id'];
 
-    try {
+    //try {
       $validator = Validator::make($data, [
         'user_id' => 'required',
         'case_id' => 'required',
@@ -237,9 +237,9 @@ class FollowupController extends BaseController
       endif;
 
       return $this->sendResponse($followUpAns, 'Follow Up Data Updated Successfully');
-    } catch (\Exception $ex) {
+    /*} catch (\Exception $ex) {
       return $this->sendError('Server error', array($ex->getMessage()));
-    }
+    }*/
   }
 
 

@@ -291,10 +291,11 @@ class FollowupController extends BaseController
   public function createFollowUpMDCase(request $request){
       $user_id = $request['user_id'];
       $case_id = $request['case_id'];
+      $followup_no = $request['follow_up_no'];
       $preferred_pharmacy_id = getPickupPharmacy($user_id,$case_id);
       $order_data = Checkout::where([['user_id', $user_id],['case_id', $case_id]])->select('id','order_id')->first();
 
-      $response = CreateFollowUPCase($user_id,$case_id,$preferred_pharmacy_id,$order_data['order_id']);
+      $response = CreateFollowUPCase($user_id,$case_id,$preferred_pharmacy_id,$order_data['order_id'],$followup_no);
 
       if(!empty($response)){
         return $this->sendResponse($response, 'MD Case Created Successfully');

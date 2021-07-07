@@ -604,5 +604,14 @@ class CheckoutController extends BaseController
       return $this->sendResponse(array(), 'No Data Found.');
     }
   }
+
+  public function getUsersLatestOrder(Request $request) {
+    $checkout = Checkout::where('user_id', $request['user_id'])->where('case_id', $request['case_id'])->orderBy('id', 'desc')->first();
+    if (isset($checkout)) {
+      return $this->sendResponse($checkout, 'Checkout retrieved successfully.');
+    } else {
+      return $this->sendResponse(array(), 'No Data Found.');
+    }
+  }
   
 }

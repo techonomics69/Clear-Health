@@ -100,6 +100,7 @@ Route::post('getOrderDetail', [CheckoutController::class, 'getCheckoutdetail']);
 Route::post('getCheckoutAddress', [CheckoutController::class, 'getCheckoutAddress']);
 Route::post('getTaxes', [CheckoutController::class,'getTaxes']);
 Route::post('getCheckoutByCustomer', [CheckoutController::class,'getCheckoutByCustomer']);
+Route::post('getUsersLatestOrder', [CheckoutController::class,'getUsersLatestOrder']);
 Route::get('getUpsellProductDetails', [ProductController::class, 'getUpsellProductDetails']);
 Route::get('getskincareplan', [ProductController::class, 'getskincareplan']);
 Route::post('ProductRecommend',[QuizAnswerController::class, 'ProductRecommend']);

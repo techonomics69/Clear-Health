@@ -710,12 +710,6 @@ die();*/
   {
     $follow_up = FollowUp::find($request->id);
 
-
-    echo "<pre>";
-    print_r($follow_up);
-    echo "<pre>";
-    exit();
-    
     $data['pregnancy_test_verify'] = 'true';
     
 

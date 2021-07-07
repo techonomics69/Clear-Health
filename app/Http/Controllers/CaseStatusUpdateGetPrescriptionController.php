@@ -47,6 +47,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
       $token_data = json_decode($r);
       $token = $token_data->access_token;
 
+      $ship_orderIds = array();
 
       foreach($data as $key=>$value){
 
@@ -62,13 +63,10 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
         $order_data = Checkout::where([['user_id', $user_id],['case_id', $system_case_id],['md_case_id', $case_id]])->first();
 
-        
+        dd($order_data);
         //$ShiStation = shipStationHelper::getOrderData($order_data['shipstation_order_id']);
 
-          echo "<pre>";
-          print_r($order_data['shipstation_order_id']);
-          echo "<pre>";
-          exit();
+         
 
 
      /*  $cart_ids = explode(',', $order_data['cart_id']);
@@ -959,7 +957,9 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
     //end of shipstation
   }
 }
-}}
+}
+
+}
 
     /**
      * Show the form for creating a new resource.

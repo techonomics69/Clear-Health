@@ -1038,18 +1038,6 @@ if(!empty($Patient_data)){
 
       $question = $value->question;
 
-      if($question == "What is your weight in lbs??"){
-        if(isset($value->answer) && $value->answer!=''){
-
-        $answer =  $value->answer;
-
-        if($answer > 154){
-          $accutan_strength = 40;
-        }else{
-          $accutan_strength = 30;
-        }   
-      }
-    }
 
     if(isset($value->answer) && $value->answer!=''){
       $userquestion[$key]['question'] = $value->question;
@@ -1058,11 +1046,11 @@ if(!empty($Patient_data)){
        $userquestion[$key]['answer'] = implode(',',$value->answer);
      }else{
 
-        if($question =='How would you rate your stress level on a scale of 1 to 10?'){
+        /*if($question =='How would you rate your stress level on a scale of 1 to 10?'){
              $userquestion[$key]['answer'] = "".$value->answer."";
-        }else{
+        }else{*/
           $userquestion[$key]['answer'] = $value->answer;
-        }
+       /* }*/
        
      }
 
@@ -1261,16 +1249,16 @@ if(!empty($Patient_data)){
 
      $update_order_data  =  Checkout::where('case_id',$case_id)->where('user_id',$user_id)->where('order_id',$order_id)->update(['md_case_id' => $case_data->case_id]);
 
-     if($product_type != NULL){
-         if($product_type =="Accutane"){
+     /*if($product_type != NULL){
+         if($product_type =="Accutane"){*/
            $noti_input_data = array();
            $noti_input_data['user_id'] = $user_id;
            $noti_input_data['case_id'] = $case_id;
            $noti_input_data['md_case_id'] = $md_case_id;
            $noti_input_data['order_id'] = $order_id;
-           $noti_input_data['noti_message'] = getNotificationMessageFromKey('initial_case_sent_to_md');
+           $noti_input_data['noti_message'] = getNotificationMessageFromKey('follow_up_case_submitted');
            $noti_input_data['for_month'] = 1;
-        }else{
+        /*}else{
            $noti_input_data = array();
            $noti_input_data['user_id'] = $user_id;
            $noti_input_data['case_id'] = $case_id;
@@ -1279,7 +1267,7 @@ if(!empty($Patient_data)){
            $noti_input_data['noti_message'] = getNotificationMessageFromKey('topical_initial_case_sent_to_md');
            $noti_input_data['for_month'] = 1;
         }
-     }
+    }*/
     
 
      
@@ -1312,11 +1300,6 @@ if(!empty($Patient_data)){
 
     function getFollowUPQuestionAnswerFromUserid($user_id,$case_id){
          $answer_data = FollowUp::where('user_id', $user_id)->where('case_id', $case_id)->get();
-
-          echo "<pre>";
-          print_r($answer_data);
-          echo "<pre>";
-          exit();
 
       if(!empty($answer_data) && count($answer_data)>0){
         $userQueAns = json_decode($answer_data[0]['answer']);

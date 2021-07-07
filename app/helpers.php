@@ -242,7 +242,7 @@ if(!empty($Patient_data)){
   }
 
 
-    function createCaseFile($documents,$name,$user_id,$case_id,$system_case_id){
+    function createCaseFile($documents,$name,$user_id,$case_id,$system_case_id,$followup=''){
 
       $r = get_token();
       $token_data = json_decode($r);

@@ -127,7 +127,10 @@ class FollowupController extends BaseController
       if ($request['left_face'] != '') {
         $left_face = $request['left_face'];
         $left_face_file_name =  $user_id . '_left_face_' . time() . '.jpeg';
-        $this->createImage($left_face, $left_face_file_name);
+        $img_destinationPath = $this->createImage($left_face, $left_face_file_name);
+
+        $documents =  $img_destinationPath;
+        $name = 'left_face';
         $data['left_face'] = $left_face_file_name;
       }
 
@@ -220,7 +223,17 @@ class FollowupController extends BaseController
       }
 
       if (!empty($followUpAns)) :
+        echo "<pre>";
+        print_r($documents);
+        echo "<pre>";
+       
+        echo "<pre>";
+        print_r($name);
+        echo "<pre>";
+        exit();
+        $file_id = createCaseFile($documents,$name,$user_id,$md_case_id,$case_id,$followup=1);
         $followUpAns = $followUpAns->update($data);
+
       endif;
 
       return $this->sendResponse($followUpAns, 'Follow Up Data Updated Successfully');
@@ -249,6 +262,8 @@ class FollowupController extends BaseController
     file_put_contents($destinationPath, $data) or print_r(error_get_last());
 
     chmod($destinationPath, 0777);
+
+    return  $destinationPath;
   }
 
   public function createFollowUpMDCase(request $request){

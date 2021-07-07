@@ -972,7 +972,11 @@ public function getShipStationOrderStatus(Request $request){
     foreach($checkout_order as $chkey => $chval){
       if($chkey==0){
         $shipord = shipStationHelper::getOrderData($chval['shipstation_order_id']);
-        echo count($shipord);
+        if(!empty($shipord)){
+          echo "here in if";
+        }else{
+          echo "here in else";
+        }
       }else{
         break;
       }

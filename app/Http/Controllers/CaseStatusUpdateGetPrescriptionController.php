@@ -63,7 +63,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
         $order_data = Checkout::where([['user_id', $user_id],['case_id', $system_case_id],['md_case_id', $case_id]])->first();
 
-        dd($order_data);
+        array_push($ship_orderIds, $order_data);
         //$ShiStation = shipStationHelper::getOrderData($order_data['shipstation_order_id']);
 
          
@@ -958,7 +958,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
   }
 }
 }
-
+dd($ship_orderIds);
 }
 
     /**

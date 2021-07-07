@@ -265,4 +265,5 @@ class FollowupController extends BaseController
          return $this->sendError(array(),'something went wrong!');
       }
      
+ }
 }

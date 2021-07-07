@@ -963,24 +963,32 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 }
 
 public function getShipStationOrderStatus(Request $request){
-  $checkout_order = Checkout::select('order_id','user_id','cart_id','case_id','md_case_id','medication_type','shipstation_order_id')
+  $checkout_order = Checkout::select('id','order_id','user_id','cart_id','case_id','md_case_id','medication_type','shipstation_order_id','shipstation_order_status')
               ->whereNotNull('shipstation_order_id')
+              ->whereNotNull('shipstation_order_status')
               ->orderBy('id','desc')
               ->get();
 
       if(count($checkout_order)>0){
         foreach($checkout_order as $chkey => $chval){
           
+            
             $shipord = shipStationHelper::getOrderData($chval['shipstation_order_id']);
             if(!empty($shipord)){
-              echo $chkey."<br>";
-              sleep(3);
-            }
-          
+              $status = json_decode(json_encode($shipord), true);
+              if($status['orderStatus'] == 'shipped'){
+                $addNot = new Notifications();
+                $addNot->user_id = $chval['user_id'];
+                $addNot->case_id = $chval['case_id'];
+                // $addNot->md_case_id = $orderData['md_case_id'];
+                $addNot->order_id = $chval['id'];
+                $addNot->noti_message = "Your order #".$chval['order_id']." has been shipped!";
+                $addNot->save(); 
+              }
+              sleep(1);
+            } 
         }
   }     
-      
-  die();
 }
 
     /**

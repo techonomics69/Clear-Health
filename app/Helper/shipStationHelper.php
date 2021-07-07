@@ -90,7 +90,10 @@ class shipStationHelper {
 
         $newOrder = $shipStation->orders->create($order);
         $getOrder = json_decode(json_encode($newOrder), true);
-        $updateOrder = DB::table('checkout')->where('id',$orderData['checkoutOrderId'])->update(['shipstation_order_id'=>$getOrder['orderId']]);
+        $updateOrder = DB::table('checkout')
+                                ->where('id',$orderData['checkoutOrderId'])
+                                ->update(['shipstation_order_id'=>$getOrder['orderId'],
+                                'shipstation_order_status'=>$getOrder['orderStatus']]);
 
         $addNot = new Notifications();
         $addNot->user_id = $orderData['user_id'];
@@ -187,7 +190,10 @@ class shipStationHelper {
             if(count($getitems)>0){
                 $newOrder = $shipStation->orders->create($order);
                 $getOrder = json_decode(json_encode($newOrder), true);
-                $updateOrder = DB::table('checkout')->where('id',$orderData['checkoutOrderId'])->update(['shipstation_order_id'=>$getOrder['orderId']]);            
+                $updateOrder = DB::table('checkout')
+                                ->where('id',$orderData['checkoutOrderId'])
+                                ->update(['shipstation_order_id'=>$getOrder['orderId'],
+                                'shipstation_order_status'=>$getOrder['orderStatus']]);            
                 
                 
                 $addNot = new Notifications();

@@ -62,7 +62,7 @@
 			<div class="content-header-right col-md-6 col-12 mb-2">
 				<div class="pull-right">
 					{{-- @can('quiz-create')		 --}}			
-					<a class="btn btn-secondry" href="{{ route('ipledgeimports.create') }}"><i class="fa fa-plus" aria-hidden="true"></i> Upload Ipledge ID's </a>
+					<a class="btn btn-secondry" href="javascript:void(0);" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fa fa-plus" aria-hidden="true"></i> Upload Ipledge ID's </a>
 					{{-- @endcan	 --}}
 				</div>
 			</div>
@@ -88,28 +88,30 @@
 									<table class="table table-responsive-md table-striped table-bordered ipledgeListAll" style="width:100%">
 										<thead>
 											<tr>
-												<th>ID</th>
+												
 												<th>Patient ID</th>
-												<th>Assigned To</th>
-												<th>Patient Name</th>
-												<th>Gender</th>
+												<th>Addon Date</th>
+												<th>Addon By</th>
 												<th>Patient Type</th>
-												{{-- <th>Patient Status</th> --}}
-												<th>Date</th>
+												<th>Assigned Patient Name</th>
+												<th>Assigned Date</th>
+												<th>Gender</th>
+												
 											</tr>
 										</thead>
 										<tbody>	
 										<?php $i = 1; ?>			
 										@foreach($ipledge_data as $key => $data)
 										<tr>
-											<td>{{$i++}}</td>
+											
 											<td>{{ $data->patient_id}}</td>
-											<td>{{($data->user_case_id1 != '') ? $data->user_case_id : '-'}}</td>
-											<td>{{ $data->patient_name}}</td>
-											<td>{{ $data->gender}}</td>
+											<td>@php echo (!empty($data->addon_date)) ? date("m-d-Y",strtotime($data->addon_date)) : '-'; @endphp</td>
+											<td>{{$data->addon_by}}</td>
 											<td>{{ ($data->patients_type) ==0 ? "CanNotPregnant" :"CanPregnant"}}</td>
-											{{-- <td>{{ ($data->assigned_by !='') ? "Assigned" : "Unassigned"}}</td> --}}
+											<td>{{ $data->patient_name}}</td>
 											<td><?php if($data->assigned_date !=''){echo date('d-m-Y', strtotime($data->assigned_date));}else{echo "-";}  ?></td>
+											<td>{{ $data->gender}}</td>
+											
 
 										</tr>
 										@endforeach
@@ -227,6 +229,42 @@
 	</div>
 </div>
 </div>
+
+<!-- Large modal -->
+
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg .modal-dialog-centered">
+    <div class="modal-content">
+	<div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Sample csv with mentioned fields to be considered while uploading a csv</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+	  <div class="modal-body">
+			<div class="container-fluid">
+    			<div class="row">
+					<div class="col-md-12">
+						<img class="img-fluid" src="{{ asset('public/images/image_ipledge1.png') }}">
+					</div>
+					
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<img class="img-fluid" src="{{ asset('public/images/image_ipledge2.png') }}">
+					</div>
+				</div>
+			</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="gotoadd();">Ok</button>
+      </div>						
+      
+    </div>
+  </div>
+</div>
 @endsection
 
 @section('scriptsection')
@@ -289,6 +327,10 @@
 			} 
 		});
 	};
+
+	function gotoadd(){
+		window.location.href="{{ route('ipledgeimports.create') }}";
+	}
 </script>
 @endsection
 

@@ -710,12 +710,6 @@ die();*/
   {
     $follow_up = FollowUp::find($request->id);
 
-
-    echo "<pre>";
-    print_r($follow_up);
-    echo "<pre>";
-    exit();
-    
     $data['pregnancy_test_verify'] = 'true';
     
 
@@ -727,12 +721,8 @@ die();*/
 
     $response = CreateFollowUPCase($user_id,$case_id,$preferred_pharmacy_id,$order_data['order_id'],$followup_no);
 
-    echo "<pre>";
-    print_r($response);
-    echo "<pre>";
-    exit();
-
-$update = $follow_up->update($data);
+  
+    $update = $follow_up->update($data);
 
     if ($update) :
       toastr()->success('Verified Successfully');

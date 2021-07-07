@@ -995,10 +995,6 @@ if(!empty($Patient_data)){
 
     $product_type = getUserProduct($user_id,$case_id);
 
-    echo "<pre>";
-    print_r($product_type);
-    echo "<pre>";
-    exit();
 
     if($product_type == 'Topical_low'){
 

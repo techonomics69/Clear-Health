@@ -15,7 +15,7 @@ class ChangeFieldeTypeInIpledgeAgreementTable extends Migration
     {
         Schema::table('ipledge_agreement', function (Blueprint $table) {
             $table->date('patients_signature_date')->nullable()->change();
-            $table->date('guardians_signature_date')->nullable()->change()
+            $table->date('guardians_signature_date')->nullable()->change();
         });
     }
 

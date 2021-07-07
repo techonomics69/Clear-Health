@@ -965,7 +965,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
               ->get();
                 
 
-dd($checkout_order);
+dd($checkout_order->getOriginal());
 }
 
     /**

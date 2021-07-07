@@ -1407,13 +1407,7 @@
 								<div class="card-body">
 									<div class="box-block mtb32">
 										<h3 class="font-weight-bold"><span class="text-underline">Payments</span></h3>
-										@php 
-											if(count($subscription_data)>0){
-												foreach($subscription_data as $sk => $sval){
-													echo $sval['updated_at']."<br>";
-												}
-											}
-										@endphp
+										
 										<table class="table table-responsive-md table-striped no-footer">
 											<thead>
 												<tr>
@@ -1426,18 +1420,32 @@
 													<!-- <th scope="col">Action</th> -->
 												</tr>
 											</thead>
+											
 											<tbody class="list_view_outer">
-												@foreach($checkout as $key => $data)
+											@if(isset($subscription_data))
+												@if(count($subscription_data)>0)
+													@foreach($subscription_data as $key => $data)
+													<tr>
+														<td>{{$key + 1}}</td>
+														<td>{{$data->updated_at}}</td>
+														<!-- <td><a href="#" data-toggle="modal" data-target="#exampleModal"></a></td> -->
+														<td><a href="#" data-toggle="modal" data-target="#exampleModal">{{$data->transaction_id}}</a></td>
+														<td>{{$data->total_amount}}</td>
+														<td>{{$data->payment_status}}</td>
+														<!-- <td><i class="fa fa-eye"></i></td> -->
+													</tr>
+													@endforeach
+												@else
 												<tr>
-													<td>{{$key + 1}}</td>
-													<td>{{$data->updated_at}}</td>
-													<!-- <td><a href="#" data-toggle="modal" data-target="#exampleModal"></a></td> -->
-													<td><a href="#" data-toggle="modal" data-target="#exampleModal">{{$data->transaction_id}}</a></td>
-													<td>{{$data->total_amount}}</td>
-													<td>{{$data->payment_status}}</td>
-													<!-- <td><i class="fa fa-eye"></i></td> -->
+													<td colspan="5" align="center"><b>No records found</b></td>	
 												</tr>
-												@endforeach
+												@endif
+											@else
+												<tr>
+													<td colspan="5" align="center"><b>No records found</b></td>	
+												</tr>
+											@endif
+												
 											</tbody>
 										</table>
 									</div>

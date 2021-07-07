@@ -15,6 +15,7 @@ class ChangeFieldInCaseFilesTable extends Migration
     {
         Schema::table('case_files', function (Blueprint $table) {
             $table->string('case_id')->nullable()->change();
+            $table->string('file')->nullable()->change();
         });
     }
 

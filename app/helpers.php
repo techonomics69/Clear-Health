@@ -1100,10 +1100,8 @@ if(!empty($Patient_data)){
     $attachment[] = $patient_file_data['pregnancy_test_file_id'];
   }
 
-  echo "<pre>";
-  print_r(json_encode($attachment));
-  echo "<pre>";
-  exit();
+ $user_attachment = json_encode($attachment);
+  
 
  //end of code for file attachment
 
@@ -1244,8 +1242,7 @@ if(!empty($Patient_data)){
       CURLOPT_CUSTOMREQUEST => 'POST',
       CURLOPT_POSTFIELDS =>'{
         "patient_id": '.$patient_id.',
-        "case_files": [
-        ],
+        "case_files": '.$user_attachment.',
         "case_prescriptions": '.$medication_compound_data.',
         "case_questions": '.$userquestion.'
       }',

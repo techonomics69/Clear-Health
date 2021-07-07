@@ -259,7 +259,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">Ok</button>
+        <button type="button" class="btn btn-primary" onclick="gotoadd();">Ok</button>
       </div>						
       
     </div>
@@ -327,6 +327,10 @@
 			} 
 		});
 	};
+
+	function gotoadd(){
+		window.location.href="{{ route('ipledgeimports.create') }}";
+	}
 </script>
 @endsection
 

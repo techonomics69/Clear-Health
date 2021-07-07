@@ -105,7 +105,7 @@
 										<tr>
 											
 											<td>{{ $data->patient_id}}</td>
-											<td>@php echo (!empty($data->addon_data)) ? date("m-d-Y",strtotime($data->addon_data)) : '-'; @endphp</td>
+											<td>@php echo (!empty($data->addon_date)) ? date("m-d-Y",strtotime($data->addon_date)) : '-'; @endphp</td>
 											<td>{{$data->addon_by}}</td>
 											<td>{{ ($data->patients_type) ==0 ? "CanNotPregnant" :"CanPregnant"}}</td>
 											<td>{{ $data->patient_name}}</td>

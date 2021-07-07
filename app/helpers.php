@@ -242,7 +242,7 @@ if(!empty($Patient_data)){
   }
 
 
-    function createCaseFile($documents,$name,$user_id,$case_id,$system_case_id,$followup=''){
+    function createCaseFile($documents,$name,$user_id,$case_id,$system_case_id){
 
       $r = get_token();
       $token_data = json_decode($r);
@@ -254,46 +254,32 @@ if(!empty($Patient_data)){
       $case_id = $request->case_id;
       $system_case_id = $request->system_case_id;*/
 
-      if($followup==''){
+      if(!empty($documents)){
+        $file =  $documents->getClientOriginalName();
+        $doc_file_name =  time().'-'.$file;
 
-          if(!empty($documents)){
-          $file =  $documents->getClientOriginalName();
-          $doc_file_name =  time().'-'.$file;
-
-          if (!file_exists(public_path('/MD_Case_files'))) {
-            File::makeDirectory(public_path('/MD_Case_files'),0777,true,true);
-          }
-          $destinationPath = public_path('/MD_Case_files');
-          $documents->move($destinationPath, $doc_file_name);
-
-          chmod($destinationPath."/".$doc_file_name, 0777);
-
-          $file_path = 'public/MD_Case_files/' .$file;
+        if (!file_exists(public_path('/MD_Case_files'))) {
+          File::makeDirectory(public_path('/MD_Case_files'),0777,true,true);
         }
+        $destinationPath = public_path('/MD_Case_files');
+        $documents->move($destinationPath, $doc_file_name);
 
-      //$file_temp_name = $documents->getfileName();
-      //$file_temp_path = $documents->getpathName();
-      //$file_mimeType = $documents->getClientMimeType();
+        chmod($destinationPath."/".$doc_file_name, 0777);
 
-        $fields = [
-          'name' => $name,
-        //'file' => new \CurlFile($file_temp_path,$file_mimeType, $doc_file_name)
-          'file' => new \CurlFile($destinationPath."/".$doc_file_name)
-        ];
-
-      }else{
-
-        $fields = [
-          'name' => $name,
-        //'file' => new \CurlFile($file_temp_path,$file_mimeType, $doc_file_name)
-          'file' => new \CurlFile($documents)
-        ];
-
+        $file_path = 'public/MD_Case_files/' .$file;
       }
 
-      
+    //$file_temp_name = $documents->getfileName();
+    //$file_temp_path = $documents->getpathName();
+    //$file_mimeType = $documents->getClientMimeType();
 
-       $input_data = array();
+      $input_data = array();
+
+      $fields = [
+        'name' => $name,
+      //'file' => new \CurlFile($file_temp_path,$file_mimeType, $doc_file_name)
+        'file' => new \CurlFile($destinationPath."/".$doc_file_name)
+      ];
 
       $curl = curl_init();
 
@@ -1324,6 +1310,46 @@ if(!empty($Patient_data)){
 
       return $userQueAns;
     }
+
+    function createFollowupCaseFile($documents,$name,$user_id,$case_id,$system_case_id){
+
+      $r = get_token();
+      $token_data = json_decode($r);
+      $token = $token_data->access_token;
+
+      $fields = [
+        'name' => $name,
+        'file' => new \CurlFile($documents)
+      ];
+
+      $input_data = array();
+
+      $curl = curl_init();
+
+      curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/files',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS =>  $fields,
+        CURLOPT_HTTPHEADER => array(
+          'Content: multipart/form-data;',
+          'Authorization: Bearer '.$token,
+          'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+        ),
+      ));
+
+      $response = curl_exec($curl);
+   
+      return $response;
+   
+
+  }
+
 
 
 ?>

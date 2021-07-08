@@ -203,17 +203,21 @@
 					<div class="accordion" id="accordionExample">
 						<div class="card">
 						  <div class="card-header" id="headingOne">
-							<div class="row">
-								<div class="col">
-									<table width="100%">
-										<tr>
-											<td>Sr No.</td>
-											<td>Date</td>
-											<td>Visit type</td>
-										<tr>
-									</table>
-								</div>
-							</div>
+							<h2 class="mb-0">
+								<button class="btn  btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseTwo">
+								  Collapsible Group Item #2
+								</button>
+							  </h2>
+							  <h2 class="mb-0">
+								<button class="btn  btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseTwo">
+								  Collapsible Group Item #2
+								</button>
+							  </h2>
+							  <h2 class="mb-0">
+								<button class="btn  btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseTwo">
+								  Collapsible Group Item #2
+								</button>
+							  </h2>
 						  </div>
 					  
 						  <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">

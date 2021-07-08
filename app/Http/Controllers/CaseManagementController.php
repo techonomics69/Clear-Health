@@ -835,6 +835,8 @@ die();*/
             $iPledge_items = $user_case_management_data['ipledge_items'];
           }
 
+          dd($request->all());
+
           $updateFollowup = FollowUp::where('id',$follow_up_id)->update(['ipledge_items'=>$iPledge_items]);
 
           if($iPledge_items == 'on') {

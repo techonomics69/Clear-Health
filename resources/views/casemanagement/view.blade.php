@@ -801,20 +801,11 @@
 																	<td>{{$fvalue->first_name}}&nbsp;{{$fvalue->last_name}}</td>
 																	<td>
 																		<div class="prior_block">
-																			<p class="auth_text">Prior auth:</p>&nbsp;&nbsp;
-																			<div class="check-register mangesubscription smalltext checkonly">
-																				<label class="custome-checkbox">
-																					<input type="checkbox" <?php if($fvalue->verify_prior_auth == 'on') echo "checked="; ?> name="prior_auth">
-																					<span class="checkmark"></span>
-																				</label>
-																			</div>
-																		</div>
-				
-																		<div class="prior_block">
 																			<p class="auth_text">iPledge:</p>&nbsp;&nbsp;
 																			<div class="check-register mangesubscription smalltext checkonly">
 																				<label class="custome-checkbox">
-																					<input type="checkbox" <?php if($fvalue->ipledge_items == 'on') echo "checked="; ?>  name="ipledge">
+																					<input type="checkbox" <?php if($fvalue->ipledge_items == 'on') echo "checked="; ?>  name="follow_ipledge[]">
+																					<input type="hidden" name="follow_ipledge_id[]" value="{{$fvalue->id}}">
 																					<span class="checkmark"></span>
 																				</label>
 																			</div>

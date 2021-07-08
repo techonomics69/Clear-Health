@@ -334,7 +334,8 @@ class ProductController extends Controller
             $data['section3_image'] = $section3_imageName;
         endif;
 
-        $product->update($data);       
+        
+        $product =Product::where('id',$id)->update($data);       
                 
         toastr()->success('Category updated successfully');
 

@@ -243,20 +243,97 @@ class ProductController extends Controller
 
             $request->image_detail->move(public_path('images/Products'), $image_detail_Name);  
             //echo $image_detail_Name;
-        chmod($path."/".$image_detail_Name, 0777);
+            chmod($path."/".$image_detail_Name, 0777);
             $oldImg = $path.'/'.$product->image_detail;
 
 
-if(isset($product->image_detail)&&$product->image_detail !='')
-{
-if (File::exists($oldImg)) : // unlink or remove previous image from folder
-                unlink($oldImg);
-            endif;
-}
+            if(isset($product->image_detail)&&$product->image_detail !='')
+            {
+            if (File::exists($oldImg)) : // unlink or remove previous image from folder
+                            unlink($oldImg);
+                        endif;
+            }
             
 
             $data['image_detail'] = $image_detail_Name;
         endif;
+
+
+         if(!empty($request->section1_image)):
+            $section1_imageName = time().'.'.$request->section1_image->extension();
+
+            $path = public_path().'/images/Products';
+
+            if (! File::exists($path)) {
+                File::makeDirectory($path, $mode = 0777, true, true);
+            }
+
+            $request->section1_image->move(public_path('images/Products'), $section1_imageName);
+
+            chmod($path."/".$section1_image, 0777);
+            $oldImg = $path.'/'.$product->section1_image;
+
+
+            if(isset($product->section1_image)&&$product->section1_image !='')
+            {
+            if (File::exists($oldImg)) : // unlink or remove previous image from folder
+                            unlink($oldImg);
+                        endif;
+            }            
+            
+            $data['section1_image'] = $section1_imageName;
+        endif;
+
+        if(!empty($request->section2_image)):
+            $section2_imageName = time().'.'.$request->section2_image->extension();
+
+            $path = public_path().'/images/Products';
+
+            if (! File::exists($path)) {
+                File::makeDirectory($path, $mode = 0777, true, true);
+            }
+
+            $request->section2_image->move(public_path('images/Products'), $section2_imageName);
+
+            chmod($path."/".$section2_image, 0777);
+            $oldImg = $path.'/'.$product->section2_image;
+
+
+            if(isset($product->section2_image)&&$product->section2_image !='')
+            {
+            if (File::exists($oldImg)) : // unlink or remove previous image from folder
+                            unlink($oldImg);
+                        endif;
+            }                        
+            
+            $data['section2_image'] = $section2_imageName;
+        endif;
+
+        if(!empty($request->section3_image)):
+            $section3_imageName = time().'.'.$request->section3_image->extension();
+
+            $path = public_path().'/images/Products';
+
+            if (! File::exists($path)) {
+                File::makeDirectory($path, $mode = 0777, true, true);
+            }
+
+            $request->section3_image->move(public_path('images/Products'), $section3_imageName);            
+            
+             chmod($path."/".$section3_image, 0777);
+            $oldImg = $path.'/'.$product->section3_image;
+
+
+            if(isset($product->section3_image)&&$product->section3_image !='')
+            {
+            if (File::exists($oldImg)) : // unlink or remove previous image from folder
+                            unlink($oldImg);
+                        endif;
+            }    
+            
+            $data['section3_image'] = $section3_imageName;
+        endif;
+
 
         $product->update($data);       
                 

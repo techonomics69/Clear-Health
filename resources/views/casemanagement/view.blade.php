@@ -231,19 +231,94 @@
 									<div class="card-body mb-0">
 										
 										<div class="accordion" id="accordionExampleCategory">
+											
 											@foreach($category as $key => $data)
 											@if(($key == 7) || ($key == 8) || ($key == 9))
 											<div class="card">
 												<div class="card-header">
-													
-													<button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#collapseC{{$key}}" aria-expanded="false" aria-controls="collapseC{{$key}}">
+													@if($key==7)
+													<button class="btn btn-primary " type="button" data-toggle="collapse" data-target="#collapseC{{$key}}" aria-expanded="false" aria-controls="collapseC{{$key}}">
 														{{$data}}
 													</button>
+													@else
+														@if(($key==8) && (count($accutane_que)>0))
+															<button class="btn btn-primary " type="button" data-toggle="collapse" data-target="#collapseC{{$key}}" aria-expanded="false" aria-controls="collapseC{{$key}}">
+																{{$data}}
+															</button>
+														@elseif(($key==9) && (count($topical_que)>0))
+															<button class="btn btn-primary " type="button" data-toggle="collapse" data-target="#collapseC{{$key}}" aria-expanded="false" aria-controls="collapseC{{$key}}">
+																{{$data}}
+															</button>
+														@endif
+													@endif
+													
 													
 												</div>
 												<div id="collapseC{{$key}}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExampleCategory">
 													<div class="card-body">
-													Some placeholder content for the second accordion panel. This panel is hidden by default.
+														@if($key == 7)
+														<?php $j = 0; ?>
+															@foreach($general_que as $key => $general)
+															<div class="row" style="padding: 10px;">
+																<div class="col-md-12">
+				
+																	<?php
+																	if (isset($general->question) && $general->question == 'Hey there! First, we need to know your legal name.') {
+																	?>
+																		<h4><strong>Que <?php echo ++$j; ?> :
+																				<?php
+																				echo $general->question; ?></strong></h4>
+				
+																		<p>Ans: <?php
+																				$first_name = $general->answer = $user_case_management_data->first_name;
+																				$last_name =  $general->answer = $user_case_management_data->last_name;
+																				echo $first_name . " " . $last_name;
+																			} else { ?>
+																		<h4><strong>Que <?php echo ++$j; ?> : <?php echo $general->question; ?></strong></h4>
+				
+																		<p>Ans: <?php if (isset($general->answer)) {
+																					$answer =  (array)$general->answer;
+																					$getanswer = implode(" ", $answer);
+																					echo $getanswer;
+																				} ?>
+																		<?php
+																			}
+																		?>
+																</div>
+															</div>
+															@endforeach
+														@elseif($key == 8)
+														<?php $j = 0; ?>
+															@foreach($accutane_que as $key => $accutane)
+															<div class="row" style="padding: 10px;">
+																<div class="col-md-12">
+																		
+																		<h4><strong>Que <?php echo ++$j; ?> : <?php echo $accutane->question; ?></strong></h4>
+																		<p>Ans:
+																			<?php if (isset($accutane->answer)) {
+																				$answer =  (array)$accutane->answer;
+																				$getanswer = implode(" ", $answer);
+																				echo $getanswer;
+																			} ?>
+																	</div>
+															</div>
+															@endforeach
+														@elseif($key == 9)
+														<?php $j = 0; ?>
+															@foreach($topical_que as $key => $topical)
+															<div class="row" style="padding: 10px;">
+																<div class="col-md-12">
+																	
+																	<h4><strong>Que <?php echo ++$j; ?> : <?php echo $topical->question; ?></strong></h4>
+																	<p>Ans: <?php if (isset($topical->answer)) {
+																				$answer =  (array)$topical->answer;
+																				$getanswer = implode(" ", $answer);
+																				echo $getanswer;
+																			} ?>
+																</div>
+															</div>
+															@endforeach
+														@endif
 													</div>
 												</div>
 											</div>
@@ -257,35 +332,57 @@
 
 						
 							
+							@if(count($followup_que)>0)
+							<?php $findex = 2; ?>
+							@foreach($followup_que as $fkey => $fvalue)
+							<div class="card">
+								<div class="card-header" id="headingTwo{{$findex}}">
+									<table width="100%">
+										<tr style="cursor: pointer;" onclick="questionsCollapse('collapseF{{$findex}}')" style="background-color: #43bfc1;">
+											<td width="25%">{{$findex}}</td>
+											<td width="25%"><?php echo date("m-d-Y",strtotime($fvalue->created_at)); ?></td>
+											<td width="25%">Follow Up: {{$fvalue->follow_up_no}}</td>
+										</tr>
+									</table>
+								</div>
+								<div id="collapseF{{$findex}}" class="collapse" aria-labelledby="headingTwo{{$findex}}" data-parent="#accordionExample">
+									<div class="card-body">
+										<?php 
+											$fanswers = json_decode($fvalue->answer); 
+											if (count($fanswers) > 0) {
+												$findex2 = 1;
+												foreach ($fanswers as $fk => $fans) {
+													?>
+													<div class="row" style="padding: 10px;">
+														<div class="col-md-12">
+
+															<h4><strong>Que <?php echo $findex2; ?> : <?php echo (isset($fans->question)) ? $fans->question : ''; ?></strong></h4>
+															<p>Ans: <?php
+																	if (isset($fans->answer)) {
+																		if (is_array($fans->answer) or ($fans->answer instanceof Traversable)) {
+																			foreach ($fans->answer as $fs) {
+																				echo $fs . "<br>";
+																			}
+																		} else {
+																			echo $fans->answer;
+																		}
+																	}		
+																	?></p>
+														</div>
+													</div>
+										<?php
+													$findex2++;
+												}
+											}
+										?>
+
+									</div>
+								</div>
+							</div>
+							<?php $findex++; ?>
+							@endforeach
+							@endif
 							
-							<div class="card">
-							<div class="card-header" id="headingTwo">
-								<h2 class="mb-0">
-								<button class="btn  btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-									Collapsible Group Item #2
-								</button>
-								</h2>
-							</div>
-							<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-								<div class="card-body">
-								Some placeholder content for the second accordion panel. This panel is hidden by default.
-								</div>
-							</div>
-							</div>
-							<div class="card">
-							<div class="card-header" id="headingThree">
-								<h2 class="mb-0">
-								<button class="btn  btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-									Collapsible Group Item #3
-								</button>
-								</h2>
-							</div>
-							<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-								<div class="card-body">
-								And lastly, the placeholder content for the third and final accordion panel. This panel is hidden by default.
-								</div>
-							</div>
-							</div>
 						</div>
 					
 				</div>

@@ -28,6 +28,7 @@ use App\Http\Controllers\API\ActionitemsController;
 use App\Http\Controllers\API\MdwebhooksController;
 use App\Http\Controllers\API\shipStationController;
 use App\Http\Controllers\API\NotificationController;
+use App\Http\Controllers\API\BirthControlController;
 
 /*
 |--------------------------------------------------------------------------
@@ -188,5 +189,8 @@ Route::get('getordershipments/{orderId}',[shipStationController::class, 'getship
     Route::get('getAllNotifcations',[NotificationController::class, 'getAllNotifications']);
     Route::get("getUnreadNotificationcount",[NotificationController::class, 'getUnreadNotifications']);
     Route::post("markasreadNotifications",[NotificationController::class, 'markAsreadNotification']);
+
+    //BirthControl
+    Route::post("createBirthControl",[BirthControlController::class, 'store']);
     
 //});

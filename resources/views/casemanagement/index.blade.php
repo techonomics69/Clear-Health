@@ -41,7 +41,7 @@
           <div class="row" style="padding: 20px;">
             <div class="col-md-12">
               <div class="">
-                <table class="table table-responsive table-striped table-bordered nowrap" style=" width:100%" id="CaseManagementList">
+                <table class="table table-responsive table-striped table-bordered " style=" width:100%" id="CaseManagementList">
                   <thead>
                     <tr>
                       <th>SR</th>
@@ -174,26 +174,26 @@
 			// "paging": true,
 			// "autoWidth": true,
 			// "fixedHeader": true,
-		  "aoColumnDefs": [
+		  // "aoColumnDefs": [
      
-            {"sWidth": "7%", "aTargets": [0]},
-            {"sWidth": "7%", "aTargets": [1]},
-            {"sWidth": "7%", "aTargets": [2]},
-            {"sWidth": "7%", "aTargets": [3]},
-            {"sWidth": "7%", "aTargets": [4]},
-            {"sWidth": "7%", "aTargets": [5]},
-            {"sWidth": "7%", "aTargets": [6]},
-            {"sWidth": "7%", "aTargets": [7]},
-            {"sWidth": "7%", "aTargets": [8]},
-            {"sWidth": "7%", "aTargets": [9]},
-            {"sWidth": "7%", "aTargets": [10]},
-            {"sWidth": "7%", "aTargets": [11]},
-            {"sWidth": "7%", "aTargets": [12]},
-            {"sWidth": "7%", "aTargets": [13]},
+      //       {"sWidth": "7%", "aTargets": [0]},
+      //       {"sWidth": "7%", "aTargets": [1]},
+      //       {"sWidth": "7%", "aTargets": [2]},
+      //       {"sWidth": "7%", "aTargets": [3]},
+      //       {"sWidth": "7%", "aTargets": [4]},
+      //       {"sWidth": "7%", "aTargets": [5]},
+      //       {"sWidth": "7%", "aTargets": [6]},
+      //       {"sWidth": "7%", "aTargets": [7]},
+      //       {"sWidth": "7%", "aTargets": [8]},
+      //       {"sWidth": "7%", "aTargets": [9]},
+      //       {"sWidth": "7%", "aTargets": [10]},
+      //       {"sWidth": "7%", "aTargets": [11]},
+      //       {"sWidth": "7%", "aTargets": [12]},
+      //       {"sWidth": "7%", "aTargets": [13]},
            
-        ],
+      //   ],
          "bLengthChange": false,
-        "bAutoWidth": true,
+        // "bAutoWidth": true,
         "bInfo": false,
         language: {search: "", searchPlaceholder: "Search"},
     //     "fixedHeader": {

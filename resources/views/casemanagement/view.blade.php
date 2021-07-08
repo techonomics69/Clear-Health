@@ -835,7 +835,7 @@
 													
 													<div class="ipledge_button">
 														
-														<button class="btn btn-secondry" type="submit"> Send Notification</button>
+														<button data-toggle="modal" data-target="#NotificationexampleModal" class="btn btn-secondry" type="button"> Send Notification</button>
 														<input type="hidden" name="send_nitification" value="1">
 													</div>
 													
@@ -1615,6 +1615,26 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="NotificationexampleModal" tabindex="-1" role="dialog" aria-labelledby="NotificationexampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title" id="NotificationexampleModalLabel">Modal title</h5>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<div class="modal-body">
+			Have you completed Prior Auth & Ipledge?
+		</div>
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+		  <button type="button" onclick="submitNotificationbtn();" class="btn btn-primary">Yes</button>
+		</div>
+	  </div>
+	</div>
+  </div>
 @endsection
 
 @section('scriptsection')
@@ -1953,6 +1973,10 @@
 	function settriggerFollowupid(id){
 		$("#follow_up_id").val(id);
 	}	
+
+	function submitNotificationbtn(){
+
+	}
 
 </script>
 

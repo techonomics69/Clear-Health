@@ -28,6 +28,7 @@ use App\Http\Controllers\API\ActionitemsController;
 use App\Http\Controllers\API\MdwebhooksController;
 use App\Http\Controllers\API\shipStationController;
 use App\Http\Controllers\API\NotificationController;
+use App\Http\Controllers\API\BirthControlController;
 
 /*
 |--------------------------------------------------------------------------

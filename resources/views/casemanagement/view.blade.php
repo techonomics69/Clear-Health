@@ -798,10 +798,30 @@
 															@foreach($followup_que as $flkey => $flvalue)
 																<tr>
 																	<td>{{$tindex}}</td>
-																	<td></td>
-																	<td></td>
-																	<td></td>
-																	<td></td>
+																	<td>{{$fvalue->first_name}}&nbsp;{{$fvalue->last_name}}</td>
+																	<td>
+																		<div class="prior_block">
+																			<p class="auth_text">Prior auth:</p>&nbsp;&nbsp;
+																			<div class="check-register mangesubscription smalltext checkonly">
+																				<label class="custome-checkbox">
+																					<input type="checkbox" <?php if($fvalue->verify_prior_auth == 'on') echo "checked="; ?> name="prior_auth">
+																					<span class="checkmark"></span>
+																				</label>
+																			</div>
+																		</div>
+				
+																		<div class="prior_block">
+																			<p class="auth_text">iPledge:</p>&nbsp;&nbsp;
+																			<div class="check-register mangesubscription smalltext checkonly">
+																				<label class="custome-checkbox">
+																					<input type="checkbox" <?php if($fvalue->verify_prior_auth == 'on') echo "checked="; ?> @endif name="ipledge">
+																					<span class="checkmark"></span>
+																				</label>
+																			</div>
+																		</div>
+																	</td>
+																	<td>{{$fvalue->follow_up_status}}</td>
+																	<td>Follow Up {{$fvalue->follow_up_no}}</td>
 																</tr>
 																<?php $tindex++; ?>
 															@endforeach

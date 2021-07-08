@@ -840,6 +840,10 @@ die();*/
 
               $trigger_data = Triggers::create($trigger_input);
 
+              if(isset($follow_up_id)){
+                $updateFollowup = FollowUp::where('id',$follow_up_id)->update(['ipledge_verify'=>'on']);
+              }
+
               toastr()->success('Notification sent successfully.');
               return redirect()->back();
           }else{

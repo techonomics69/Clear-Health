@@ -874,6 +874,7 @@ die();*/
         endif;
         
         CaseManagement::whereId($request['case_id'])->update($input);
+        $input_data = array();
         $input_data['case_status'] = 'trigger';
         $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
         // return redirect()->back();

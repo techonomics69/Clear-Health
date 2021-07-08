@@ -230,7 +230,7 @@
 								<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
 									<div class="card-body mb-0">
 										
-										<div class="accordion" id="accordionExample">
+										<div class="accordion" id="accordionExampleCategory">
 											@foreach($category as $key => $data)
 											<div class="card">
 												<div class="card-header">
@@ -240,7 +240,7 @@
 													</button>
 													
 												</div>
-												<div id="collapseC{{$key}}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+												<div id="collapseC{{$key}}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExampleCategory">
 													<div class="card-body">
 													Some placeholder content for the second accordion panel. This panel is hidden by default.
 													</div>

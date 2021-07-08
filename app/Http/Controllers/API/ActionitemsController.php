@@ -110,7 +110,7 @@ class ActionitemsController extends BaseController
 
         if($preferred_pharmacy_id =='13012' && $curexadata['order_status'] == "out_for_delivery" ){
 
-            if($user_gender['gender'] =='female' && $difference > 90){
+            if($user_gender['gender'] =='female' && $difference > 60){
                 $show_blood_work_labs_due = true;
             }
 

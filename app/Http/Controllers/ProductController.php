@@ -334,10 +334,6 @@ class ProductController extends Controller
             $data['section3_image'] = $section3_imageName;
         endif;
 
-        echo "<pre>";
-        print_r($data);
-        echo "<pre>";
-        exit();
         $product->update($data);       
                 
         toastr()->success('Category updated successfully');

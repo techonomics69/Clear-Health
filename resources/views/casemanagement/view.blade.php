@@ -231,11 +231,22 @@
 									<div class="card-body mb-0">
 										
 										<div class="accordion" id="accordionExample">
+											@foreach($category as $key => $data)
 											<div class="card">
 												<div class="card-header">
 													
+													<button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#collapseC{{$key}}" aria-expanded="false" aria-controls="collapseC{{$key}}">
+														{{$data}}
+													</button>
+													
+												</div>
+												<div id="collapseC{{$key}}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+													<div class="card-body">
+													Some placeholder content for the second accordion panel. This panel is hidden by default.
+													</div>
 												</div>
 											</div>
+											@foreach($category as $key => $data)
 										</div>
 									
 									</div>

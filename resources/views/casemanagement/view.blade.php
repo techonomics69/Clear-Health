@@ -202,19 +202,30 @@
 					
 						<div class="accordion" id="accordionExample">
 							<div class="card">
-							<div class="card-header" id="headingOne">
-								<div class="row">
-									<div class="col-md-4">
-										Sr No.
-									</div>
-									<div class="col-md-4">
-										Date
-									</div>
-									<div class="col-md-4">
-										Visit type
-									</div>
+								<div class="card-header" id="headingOne">
+									<table width="100%">
+										<tr>
+											<th>Sr No.</th>
+											<th>Date</th>
+											<th>Visit type</th>
+										</tr>
+									</table>
 								</div>
 							</div>
+							
+							<div class="card">
+							<div class="card-header" id="headingOne">
+								<a href="javascript:void(0);" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+									<table width="100%">
+										<tr>
+											<td>1</th>
+											<th>07-08-2021</th>
+											<th>Initials</th>
+										</tr>
+									</table>
+								</a>
+							</div>
+
 						
 							<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
 								<div class="card-body mb-0">

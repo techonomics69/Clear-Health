@@ -188,5 +188,8 @@ Route::get('getordershipments/{orderId}',[shipStationController::class, 'getship
     Route::get('getAllNotifcations',[NotificationController::class, 'getAllNotifications']);
     Route::get("getUnreadNotificationcount",[NotificationController::class, 'getUnreadNotifications']);
     Route::post("markasreadNotifications",[NotificationController::class, 'markAsreadNotification']);
+
+    //BirthControl
+    Route::post("createBirthControl",[BirthControlController::class, 'store']);
     
 //});

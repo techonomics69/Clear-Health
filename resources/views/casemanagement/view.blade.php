@@ -814,7 +814,7 @@
 																			<p class="auth_text">iPledge:</p>&nbsp;&nbsp;
 																			<div class="check-register mangesubscription smalltext checkonly">
 																				<label class="custome-checkbox">
-																					<input type="checkbox" <?php if($fvalue->verify_prior_auth == 'on') echo "checked="; ?> @endif name="ipledge">
+																					<input type="checkbox" <?php if($fvalue->ipledge_items == 'on') echo "checked="; ?>  name="ipledge">
 																					<span class="checkmark"></span>
 																				</label>
 																			</div>

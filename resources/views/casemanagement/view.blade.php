@@ -805,7 +805,7 @@
 																			<div class="check-register mangesubscription smalltext checkonly">
 																				<label class="custome-checkbox">
 																					<input type="checkbox" <?php if($fvalue->ipledge_items == 'on') echo "checked="; ?>  name="follow_ipledge[]">
-																					<input type="hidden" name="follow_ipledge_id[]" value="{{$fvalue->id}}">
+																					<input type="hidden" name="follow_up_id[]" value="{{$fvalue->id}}">
 																					<span class="checkmark"></span>
 																				</label>
 																			</div>

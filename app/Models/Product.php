@@ -22,6 +22,9 @@ class Product extends Model
         'image','image_detail', 'url', 'price', 'weight',
         'weight_unit','short_description','sub_title','upsell','product_active',
         'section1','section2','section3',
+        'section1_title','section1_content','section1_image',
+        'section2_title','section2_content','section2_image',
+        'section3_title','section3_content','section3_image',
     ];
 
     

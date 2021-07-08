@@ -126,17 +126,17 @@
 
                             <div class="col-md-4 col-sm-4 col-xs-4">
                                 <div class="form-group">
-                                    <strong>Section 2 Content:</strong>
-                                    <!-- <span class="required">*</span> -->
-                                    {!! Form::textarea('section2_content', null, array('placeholder' => 'section2','class' => 'details')) !!}
-                                </div>
-                            </div>
-
-                            <div class="col-md-4 col-sm-4 col-xs-4">
-                                <div class="form-group">
                                     <strong>Section 2 Image:</strong>
                                     <!-- <span class="required">*</span> -->
                                     {!! Form::file('section2_image', null, array('class' => 'form-control')) !!}
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <strong>Section 2 Content:</strong>
+                                    <!-- <span class="required">*</span> -->
+                                    {!! Form::textarea('section2_content', null, array('placeholder' => 'section2','class' => 'details')) !!}
                                 </div>
                             </div>
 

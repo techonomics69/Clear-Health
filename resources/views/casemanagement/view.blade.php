@@ -244,6 +244,7 @@
 												<div id="collapseC{{$key}}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExampleCategory">
 													<div class="card-body">
 														@if($key == 7)
+														<?php $j = 0; ?>
 															@foreach($general_que as $key => $general)
 															<div class="row" style="padding: 10px;">
 																<div class="col-md-12">
@@ -274,6 +275,7 @@
 															</div>
 															@endforeach
 														@elseif($key == 8)
+														<?php $j = 0; ?>
 															@foreach($accutane_que as $key => $accutane)
 															<div class="row" style="padding: 10px;">
 																<div class="col-md-12">
@@ -289,6 +291,7 @@
 															</div>
 															@endforeach
 														@elseif($key == 9)
+														<?php $j = 0; ?>
 															@foreach($topical_que as $key => $topical)
 															<div class="row" style="padding: 10px;">
 																<div class="col-md-12">

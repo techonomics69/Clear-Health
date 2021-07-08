@@ -758,6 +758,7 @@
 															<th>Sr No.</th>
 															<th>Name</th>
 															<th>Action</th>
+															<th>Status</th>
 															<th>Visit Type</th>
 														</tr>
 													</thead>
@@ -787,11 +788,24 @@
 																	</div>
 																</div>
 															</td>
+															<td></td>
 															<td>Initials</td>
 														</tr>
 														@endif
 
-														
+														@if(count($followup_que)>0)
+															<?php $tindex=2; ?>
+															@foreach($followup_que as $flkey => $flvalue)
+																<tr>
+																	<td>{{$tindex}}</td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+																<?php $tindex++; ?>
+															@endforeach
+														@endif
 
 													</tbody>
 												</table>

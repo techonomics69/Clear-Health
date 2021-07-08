@@ -218,7 +218,7 @@
 								<div class="card-header" id="headingOne">
 									
 										<table width="100%">
-											<tr onclick="questionsCollapse('collapseOne')" style="background-color: #43bfc1;">
+											<tr style="cursor: pointer;" onclick="questionsCollapse('collapseOne')" style="background-color: #43bfc1;">
 												<td width="25%">1</td>
 												<td width="25%">07-08-2021</td>
 												<td width="25%">Initials</td>
@@ -239,7 +239,7 @@
 								
 								</div>
 							</div>
-							</div>
+							
 							<div class="card">
 							<div class="card-header" id="headingTwo">
 								<h2 class="mb-0">

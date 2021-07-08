@@ -208,7 +208,7 @@
 											<td width="25%">Sr No.</td>
 											<td width="25%">Date</td>
 											<td width="25%">Visit type</td>
-											<td width="25%"></td>
+											
 										</tr>
 									</table>
 								</div>
@@ -222,7 +222,7 @@
 												<td width="25%">1</td>
 												<td width="25%">07-08-2021</td>
 												<td width="25%">Initials</td>
-												<td width="25%"></td>
+												
 											</tr>
 										</table>
 									

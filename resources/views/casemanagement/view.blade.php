@@ -221,7 +221,7 @@
 										<table width="100%">
 											<tr style="cursor: pointer;" onclick="questionsCollapse('collapseOne')" style="background-color: #43bfc1;">
 												<td width="25%">1</td>
-												<td width="25%">07-08-2021</td>
+												<td width="25%"><?php if(isset($general['created_at'])) if(!empty($general['created_at'])) echo date("m-d-Y",strtotime($general['created_at'])) ?></td>
 												<td width="25%">Initials</td>
 											</tr>
 										</table>

@@ -743,13 +743,30 @@
 									<div id="triggerstab" class="tab-pane fade in">
 										<div class="row">
 											<div class="col-lg-12">
+												&nbsp;
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-lg-12">
 												<table width="100%">
-													<tr>
-														<th>Sr No.</th>
-														<th>Name</th>
-														<th>Action</th>
-														<th>Visit Type</th>
-													</tr>
+													<thead>
+														<tr>
+															<th>Sr No.</th>
+															<th>Name</th>
+															<th>Action</th>
+															<th>Visit Type</th>
+														</tr>
+													</thead>
+													<tbody>
+														@if(!empty($user_case_management_data))
+														<tr>
+															<td>{{$user_case_management_data}}</td>
+															<td></td>
+															<td></td>
+															<td></td>
+														</tr>
+														@endif
+													</tbody>
 												</table>
 											</div>
 										</div>

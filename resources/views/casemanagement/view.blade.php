@@ -757,6 +757,14 @@
 															<th>Visit Type</th>
 														</tr>
 													</thead>
+													<tbody>
+														<tr>
+															<td>{{count($user_case_management_data)}}</td>
+															<td></td>
+															<td></td>
+															<td></td>
+														</tr>
+													</tbody>
 												</table>
 											</div>
 										</div>

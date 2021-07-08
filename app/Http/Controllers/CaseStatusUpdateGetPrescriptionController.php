@@ -166,9 +166,9 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
          if(!empty($MdCaseStatus)){
 
-           // $md_case_status = $MdCaseStatus->case_status->name;//enable this aafter testing is done
+            $md_case_status = $MdCaseStatus->case_status->name;//enable this aafter testing is done
 
-          $md_case_status = 'completed'; //remove this
+          //$md_case_status = 'completed'; //remove this
 
           if(!empty($MdCaseStatus->case_assignment)){
             $md_status = 'assigned'; 
@@ -192,7 +192,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
             $caseHistory = CaseHistory::where('case_id', $system_case_id)->update($input_data);
 
           }
-
+          //$support_reason = "had call with MD";//remove after testing enable this to test welcome email
 
           $prescriptiondata = CasePrescriptions::where([['user_id',$user_id],['case_id',$case_id],['system_case_id',$system_case_id]])->first();
 

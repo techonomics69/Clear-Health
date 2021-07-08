@@ -1208,9 +1208,9 @@ public function getMdDetailForMessage(Request $request){
         
       }
 
-      //if($user['gender'] == 'female' && $product_type =='Accutane' && $check_form['abstinence_form'] == 1 && $check_form['sign_ipledge_consent'] == 1){ 
+      if($user['gender'] == 'female' && $product_type =='Accutane' && $check_form['abstinence_form'] == 1 && $check_form['sign_ipledge_consent'] == 1){ 
 
-      if($user['gender'] == 'female' && $product_type =='Accutane' && $check_form['sign_ipledge_consent'] == 1){ 
+      //if($user['gender'] == 'female' && $product_type =='Accutane' && $check_form['sign_ipledge_consent'] == 1){ 
 
 
         $iPledgeId = Ipledge::where([['patients_type','1'],['gender',$gen]])->whereNull('assigned_date')->OrderBy('id', 'ASC')->first();

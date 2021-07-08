@@ -245,9 +245,7 @@
 															<button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#collapseC{{$key}}" aria-expanded="false" aria-controls="collapseC{{$key}}">
 																{{$data}}
 															</button>
-														@endif 	
-													
-														@if(($key==9) && (count($topical_que)>0))
+														@elseif(($key==9) && (count($topical_que)>0))
 															<button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#collapseC{{$key}}" aria-expanded="false" aria-controls="collapseC{{$key}}">
 																{{$data}}
 															</button>

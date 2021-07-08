@@ -202,7 +202,7 @@
 					
 						<div class="accordion" id="accordionExample">
 							<div class="card">
-								<div class="card-header" id="headingOne">
+								<div class="card-header">
 									<table width="100%">
 										<tr>
 											<th>Sr No.</th>
@@ -214,16 +214,17 @@
 							</div>
 							
 							<div class="card">
-							<div class="card-header" id="headingOne">
-								
-									<table width="100%">
-										<tr>
-											<th>1</th>
-											<th>07-08-2021</th>
-											<th>Initials</th>
-										</tr>
-									</table>
-								
+								<div class="card-header" id="headingOne">
+									
+										<table width="100%">
+											<tr>
+												<th>1</th>
+												<th>07-08-2021</th>
+												<th>Initials</th>
+											</tr>
+										</table>
+									
+								</div>
 							</div>
 
 						

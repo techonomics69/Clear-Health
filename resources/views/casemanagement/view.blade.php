@@ -804,7 +804,7 @@
 																			<p class="auth_text">iPledge:</p>&nbsp;&nbsp;
 																			<div class="check-register mangesubscription smalltext checkonly">
 																				<label class="custome-checkbox">
-																					<input type="checkbox" value="{{$fvalue->id}}" onclick="settriggerFollowupid('{{$fvalue->id}}')" <?php if($fvalue->ipledge_items == 'on') echo "checked="; ?>  name="follow_ipledge[]">
+																					<input type="checkbox"  onclick="settriggerFollowupid('{{$fvalue->id}}')" <?php if($fvalue->ipledge_items == 'on') echo "checked="; ?>  name="follow_ipledge">
 																					
 																					<span class="checkmark"></span>
 																				</label>

@@ -828,25 +828,26 @@ die();*/
           if(isset($follow_up_id)){
 
             
-            $follow_up_data = FollowUp::where([['case_id',$user_case_management_data['id'],['id',$follow_up_id]],['follow_up_status','completed']])->get()->toArray();
+            //$follow_up_data = FollowUp::where([['case_id',$user_case_management_data['id'],['id',$follow_up_id]],['follow_up_status','completed']])->get()->toArray();
 
-            $iPledge_items = $follow_up_data['ipledge_items'];
+            $iPledge_items = $request->follow_ipledge;
           }else{
             $iPledge_items = $user_case_management_data['ipledge_items'];
           }
+
+          $updateFollowup = FollowUp::where('id',$follow_up_id)->update(['ipledge_items'=>$iPledge_items]);
 
           if($iPledge_items == 'on') {
              $noti_data = Notifications::create($noti_input_data);
 
               $trigger_data = Triggers::create($trigger_input);
 
-              if(isset($follow_up_id)){
-                $updateFollowup = FollowUp::where('id',$follow_up_id)->update(['ipledge_verify'=>'on']);
-              }
+              
 
               toastr()->success('Notification sent successfully.');
               return redirect()->back();
           }else{
+
             toastr()->error('Please verify ipledge items first.');
             return redirect()->back();
           }

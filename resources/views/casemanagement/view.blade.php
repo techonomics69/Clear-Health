@@ -741,6 +741,18 @@
 									</div>
 
 									<div id="triggerstab" class="tab-pane fade in">
+										<div class="row">
+											<div class="col-lg-12">
+												<table width="100%">
+													<tr>
+														<th>Sr No.</th>
+														<th>Name</th>
+														<th>Action</th>
+														<th>Visit Type</th>
+													</tr>
+												</table>
+											</div>
+										</div>
 										<section class="all_screen_section">
 											<div class="Outer_box_design">
 												<div class="ipledge_outer_design ">
@@ -765,24 +777,7 @@
 														</div>
 													</div>
 
-													<div class="prior_block">
-														<p class="auth_text">Follow Up:</p>&nbsp;&nbsp;
-														<div class="check-register mangesubscription smalltext ">
-															<label class="custome-checkbox">
-																{{-- {!! Form::select('follow_up', ['1' => 'New Case','2' => 'First', '3' => 'Second', '4' => 'Third','5' => 'Fourth','6' => 'Fifth','6' => 'Seventh'], null, ['class' => 'form-control']); !!} --}}
-
-																<select name="follow_up" class="form-control" id="follow_up">
-																	<option value="">Select</option>
-																	<option value="0" data-id="{{$user_case_management_data->md_case_id}}">New Case</option>
-
-																<?php
-																	foreach($user_case_management_data['follow_up_data'] as $key=>$value){?>
-																		<option value="{{$value['follow_up_no']}}" data-id="{{$value['md_case_id']}}"  data-followupid="{{$value['id']}}"> {{$value['follow_up_no']}} </option>
-															   <?php }?>
-																</select>
-															</label>
-														</div>
-													</div>
+											
 												<input type="hidden" name="case_id" value="{{$user_case_management_data->id}}">
 											<input type="hidden" name="user_id" value="{{$user_case_management_data->user_id}}">
 											<input type="hidden" name="md_case_id" value="" id="md_case_id">

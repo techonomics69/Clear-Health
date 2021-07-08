@@ -222,7 +222,7 @@ class CaseManagementController extends Controller
     }
 
     $followup_que = FollowUp::join('users','follow_up.user_id','=','users.id')
-      ->select('follow_up.*','user.first_name','user.last_name')
+      ->select('follow_up.*','users.first_name','users.last_name')
       ->where("follow_up.user_id", $user_case_management_data['user_id'])
       ->where("follow_up.case_id", $user_case_management_data['id'])->get();
 

@@ -830,7 +830,7 @@
 												<input type="hidden" name="case_id" value="{{$user_case_management_data->id}}">
 											<input type="hidden" name="user_id" value="{{$user_case_management_data->user_id}}">
 											<input type="hidden" name="md_case_id" value="" id="md_case_id">
-											<input type="hidden" name="follow_up_id" value="" id="follow_up_id">
+											<!-- <input type="hidden" name="follow_up_id" value="" id="follow_up_id"> -->
 
 													
 													<div class="ipledge_button">

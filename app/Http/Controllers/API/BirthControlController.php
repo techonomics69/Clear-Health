@@ -39,15 +39,16 @@ class BirthControlController extends BaseController
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
         try{
+            $data = $request->all();
             $validator = Validator::make($data, [
                 'user_name' => 'required',
             ]);
             if($validator->fails()){
                 return $this->sendError('Validation Error.', $validator->errors()->all());       
             }
-            $data = $request->all();
+            
             $insert = Birthcontrol::create($data);
             if($insert->id > 0){
                 return $this->sendResponse(array(), 'Data Added Successfully');

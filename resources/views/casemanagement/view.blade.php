@@ -246,7 +246,7 @@
 													</div>
 												</div>
 											</div>
-											@foreach($category as $key => $data)
+											@endforeach
 										</div>
 									
 									</div>

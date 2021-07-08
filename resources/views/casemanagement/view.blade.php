@@ -334,7 +334,35 @@
 								</div>
 								<div id="collapseF{{$findex}}" class="collapse" aria-labelledby="headingTwo{{$findex}}" data-parent="#accordionExample">
 									<div class="card-body">
-										
+										<?php 
+											$fanswers = json_decode($fvalue->answer); 
+											if (count($fanswers) > 0) {
+												$findex2 = 1;
+												foreach ($fanswers as $fk => $fans) {
+													?>
+													<div class="row" style="padding: 10px;">
+														<div class="col-md-12">
+
+															<h4><strong>Que <?php echo $findex2; ?> : <?php echo (isset($fans->question)) ? $fans->question : ''; ?></strong></h4>
+															<p>Ans: <?php
+																	if (isset($fans->answer)) {
+																		if (is_array($fans->answer) or ($fans->answer instanceof Traversable)) {
+																			foreach ($fans->answer as $fs) {
+																				echo $fs . "<br>";
+																			}
+																		} else {
+																			echo $fans->answer;
+																		}
+																	}		
+																	?></p>
+														</div>
+													</div>
+										<?php
+													$findex2++;
+												}
+											}
+										?>
+
 									</div>
 								</div>
 							</div>

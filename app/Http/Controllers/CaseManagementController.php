@@ -829,7 +829,7 @@ die();*/
 
           if(isset($follow_up_id)){
 
-            dd('here 2');
+            // dd('here 2');
             
             //$follow_up_data = FollowUp::where([['case_id',$user_case_management_data['id'],['id',$follow_up_id]],['follow_up_status','completed']])->get()->toArray();
 
@@ -838,13 +838,13 @@ die();*/
             $iPledge_items = $user_case_management_data['ipledge_items'];
           }
 
-          dd('here 3');
+          // dd('here 3');
 
-          $updateFollowup = FollowUp::where('id',$follow_up_id)->update(['ipledge_items'=>$iPledge_items]);
+          
 
           if($iPledge_items == 'on') {
 
-            dd('here 4');
+            // dd('here 4');
              $noti_data = Notifications::create($noti_input_data);
 
               $trigger_data = Triggers::create($trigger_input);
@@ -863,7 +863,7 @@ die();*/
 
 
         if($user_case_management_data['gender']=="male"  && $preferred_pharmacy_id !='13012' && $user_case_management_data['prior_auth_date']!= NULL){
-          dd('here 5');
+          // dd('here 5');
              $noti_data = Notifications::create($noti_input_data);
 
               $trigger_data = Triggers::create($trigger_input);
@@ -890,7 +890,17 @@ die();*/
           return redirect()->back();
         }
 
-        dd('here 6');
+        if(isset($follow_up_id)){
+          $iPledge_items = $request->follow_ipledge;
+          $updateFollowup = FollowUp::where('id',$follow_up_id)->update(['ipledge_items'=>$iPledge_items]);
+          $noti_data = Notifications::create($noti_input_data);
+
+              $trigger_data = Triggers::create($trigger_input);
+          toastr()->success('Notification sent successfully.');
+          return redirect()->back();
+        }
+
+        // dd('here 6');
         
         // return redirect()->back();
 

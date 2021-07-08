@@ -746,7 +746,7 @@
 												&nbsp;
 											</div>
 										</div>
-										{!! Form::open(array('route' => 'trigger','method'=>'POST')) !!}
+										{!! Form::open(array('route' => 'trigger','method'=>'POST', 'id' => 'sendNotificationForm')) !!}
 										<section class="all_screen_section">
 											<div class="Outer_box_design">
 												<div class="ipledge_outer_design ">
@@ -1975,7 +1975,7 @@
 	}	
 
 	function submitNotificationbtn(){
-
+		$("#sendNotificationForm").submit();
 	}
 
 </script>

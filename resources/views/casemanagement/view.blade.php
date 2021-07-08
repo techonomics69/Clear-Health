@@ -788,18 +788,13 @@
 											<input type="hidden" name="md_case_id" value="" id="md_case_id">
 											<input type="hidden" name="follow_up_id" value="" id="follow_up_id">
 
-													<?php 
-													if($user_case_management_data->verify_prior_auth && $user_case_management_data->ipledge_items){?>
+													
 													<div class="ipledge_button">
-														<button class="btn btn-secondry" type="button"> Verified</button>
+														
 														<button class="btn btn-secondry" type="submit"> Send Notification</button>
 														<input type="hidden" name="send_nitification" value="1">
 													</div>
-													<?php }else{?>
-													<div class="ipledge_button">
-														<button class="btn btn-secondry" type="submit"> Verify</button>
-													</div>
-													<?php }?>
+													
 													{!! Form::close() !!}
 												</div>
 											</div>

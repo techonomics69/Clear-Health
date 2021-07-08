@@ -240,12 +240,12 @@
 														{{$data}}
 													</button>
 													@else
-													 @if(($key==8) && (($accutane_que)>0))
-														<button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#collapseC{{$key}}" aria-expanded="false" aria-controls="collapseC{{$key}}">
-															{{$data}}
-														</button>
-													  @endif 	
-													@else
+														@if(($key==8) && (($accutane_que)>0))
+															<button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#collapseC{{$key}}" aria-expanded="false" aria-controls="collapseC{{$key}}">
+																{{$data}}
+															</button>
+														@endif 	
+													
 														@if(($key==9) && (($topical_que)>0))
 															<button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#collapseC{{$key}}" aria-expanded="false" aria-controls="collapseC{{$key}}">
 																{{$data}}

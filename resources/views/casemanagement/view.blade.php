@@ -208,6 +208,7 @@
 											<th>Sr No.</th>
 											<th>Date</th>
 											<th>Visit type</th>
+											<th></th>
 										</tr>
 									</table>
 								</div>
@@ -221,6 +222,7 @@
 												<th>1</th>
 												<th>07-08-2021</th>
 												<th>Initials</th>
+												<th></th>
 											</tr>
 										</table>
 									

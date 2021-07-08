@@ -323,16 +323,16 @@
 							<?php $findex = 2; ?>
 							@foreach($followup_que as $fkey => $fvalue)
 							<div class="card">
-								<div class="card-header" id="headingTwo">
+								<div class="card-header" id="headingTwo{{$findex}}">
 									<table width="100%">
-										<tr style="cursor: pointer;" onclick="questionsCollapse('collapseOne')" style="background-color: #43bfc1;">
+										<tr style="cursor: pointer;" onclick="questionsCollapse('collapseF{{$findex}}')" style="background-color: #43bfc1;">
 											<td width="25%">{{$findex}}</td>
 											<td width="25%"><?php echo date("m-d-Y",strtotime($fvalue->created_at)); ?></td>
 											<td width="25%">Follow Up: {{$fvalue->follow_up_no}}</td>
 										</tr>
 									</table>
 								</div>
-								<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+								<div id="collapseF{{$findex}}" class="collapse" aria-labelledby="headingTwo{{$findex}}" data-parent="#accordionExample">
 									<div class="card-body">
 										
 									</div>

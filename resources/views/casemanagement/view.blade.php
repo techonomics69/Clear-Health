@@ -743,13 +743,20 @@
 									<div id="triggerstab" class="tab-pane fade in">
 										<div class="row">
 											<div class="col-lg-12">
+												&nbsp;
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-lg-12">
 												<table width="100%">
-													<tr>
-														<th>Sr No.</th>
-														<th>Name</th>
-														<th>Action</th>
-														<th>Visit Type</th>
-													</tr>
+													<thead>
+														<tr>
+															<th>Sr No.</th>
+															<th>Name</th>
+															<th>Action</th>
+															<th>Visit Type</th>
+														</tr>
+													</thead>
 												</table>
 											</div>
 										</div>

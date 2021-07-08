@@ -866,22 +866,25 @@ die();*/
              
         }
 
-        if ($request->prior_auth) :
-          $input['verify_prior_auth'] = $request->prior_auth;
-        endif;
-        if ($request->ipledge) :
-          $input['ipledge_items'] = $request->ipledge;
-        endif;
+        if(isset($request->prior_auth) || isset($request->ipledge)){
+          if ($request->prior_auth) :
+            $input['verify_prior_auth'] = $request->prior_auth;
+          endif;
+          if ($request->ipledge) :
+            $input['ipledge_items'] = $request->ipledge;
+          endif;
+          
+          CaseManagement::whereId($request['case_id'])->update($input);
+          $input_data = array();
+          $input_data['case_status'] = 'trigger';
+          $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
+        }
         
-        CaseManagement::whereId($request['case_id'])->update($input);
-        $input_data = array();
-        $input_data['case_status'] = 'trigger';
-        $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
         // return redirect()->back();
 
         
 
-
+        toastr()->success('Notification sent successfully.');
         return redirect()->back();
 
 

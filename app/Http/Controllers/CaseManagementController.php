@@ -783,7 +783,7 @@ die();*/
   public function trigger(Request $request)
   {
 
-    dd($request->all());
+    
 
     if(isset($request->send_nitification)){
          

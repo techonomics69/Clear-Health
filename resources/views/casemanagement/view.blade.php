@@ -772,7 +772,7 @@
 																	<p class="auth_text">Prior auth:</p>&nbsp;&nbsp;
 																	<div class="check-register mangesubscription smalltext checkonly">
 																		<label class="custome-checkbox">
-																			<input type="checkbox" @if($user_case_management_data->verify_prior_auth): checked="checked" @endif name="cas_prior_auth">
+																			<input type="checkbox" @if($user_case_management_data->verify_prior_auth): checked="checked" @endif name="case_prior_auth">
 																			<span class="checkmark"></span>
 																		</label>
 																	</div>

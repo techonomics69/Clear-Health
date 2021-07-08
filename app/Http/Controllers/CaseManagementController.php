@@ -221,8 +221,10 @@ class CaseManagementController extends Controller
       $topical_que = [];
     }
 
-    $followup_que = FollowUp::where("user_id", $user_case_management_data['user_id'])
-      ->where("case_id", $user_case_management_data['id'])->get();
+    $followup_que = FollowUp::join('users','follow_up.user_id','=','users.id')
+      ->select('follow_up.*','user.first_name','user.last_name')
+      ->where("follow_up.user_id", $user_case_management_data['user_id'])
+      ->where("follow_up.case_id", $user_case_management_data['id'])->get();
 
 
 

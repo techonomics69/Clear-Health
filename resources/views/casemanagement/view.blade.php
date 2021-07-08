@@ -772,7 +772,7 @@
 																	<p class="auth_text">Prior auth:</p>&nbsp;&nbsp;
 																	<div class="check-register mangesubscription smalltext checkonly">
 																		<label class="custome-checkbox">
-																			<input type="checkbox" @if($user_case_management_data->verify_prior_auth): checked="checked" @endif name="case_prior_auth">
+																			<input type="checkbox" @if($user_case_management_data->verify_prior_auth): checked="checked" disabled @endif name="prior_auth">
 																			<span class="checkmark"></span>
 																		</label>
 																	</div>
@@ -782,7 +782,7 @@
 																	<p class="auth_text">iPledge:</p>&nbsp;&nbsp;
 																	<div class="check-register mangesubscription smalltext checkonly">
 																		<label class="custome-checkbox">
-																			<input type="checkbox" @if($user_case_management_data->ipledge_items): checked="checked" @endif name="case_ipledge">
+																			<input type="checkbox" @if($user_case_management_data->ipledge_items): checked="checked" disabled @endif name="ipledge">
 																			<span class="checkmark"></span>
 																		</label>
 																	</div>
@@ -804,8 +804,8 @@
 																			<p class="auth_text">iPledge:</p>&nbsp;&nbsp;
 																			<div class="check-register mangesubscription smalltext checkonly">
 																				<label class="custome-checkbox">
-																					<input type="checkbox" <?php if($fvalue->ipledge_items == 'on') echo "checked="; ?>  name="follow_ipledge[]">
-																					<input type="hidden" name="follow_up_id[]" value="{{$fvalue->id}}">
+																					<input type="checkbox" value="{{$fvalue->id}}" onclick="settriggerFollowupid('{{$fvalue->id}}')" <?php if($fvalue->ipledge_items == 'on') echo "checked="; ?>  name="follow_ipledge[]">
+																					
 																					<span class="checkmark"></span>
 																				</label>
 																			</div>
@@ -830,7 +830,7 @@
 												<input type="hidden" name="case_id" value="{{$user_case_management_data->id}}">
 											<input type="hidden" name="user_id" value="{{$user_case_management_data->user_id}}">
 											<input type="hidden" name="md_case_id" value="" id="md_case_id">
-											<!-- <input type="hidden" name="follow_up_id" value="" id="follow_up_id"> -->
+											<input type="hidden" name="follow_up_id" value="" id="follow_up_id">
 
 													
 													<div class="ipledge_button">
@@ -1949,6 +1949,10 @@
 			$(".pfollow"+$(this).val()).show();	
 		}
 	});
+
+	function settriggerFollowupid(id){
+		$("#follow_up_id").val(id);
+	}	
 
 </script>
 

@@ -826,6 +826,8 @@ die();*/
         if($user_case_management_data['gender']=="female"  && $preferred_pharmacy_id !='13012' && $user_case_management_data['prior_auth_date']!= NULL){
 
           if(isset($follow_up_id)){
+
+            
             $follow_up_data = FollowUp::where([['case_id',$user_case_management_data['id'],['id',$follow_up_id]],['follow_up_status','completed']])->get()->toArray();
 
             $iPledge_items = $follow_up_data['ipledge_items'];
@@ -860,17 +862,17 @@ die();*/
              
         }
 
-        if ($request->case_prior_auth) :
-          $input['verify_prior_auth'] = $request->case_prior_auth;
+        if ($request->prior_auth) :
+          $input['verify_prior_auth'] = $request->prior_auth;
         endif;
-        if ($request->case_ipledge) :
-          $input['ipledge_items'] = $request->case_ipledge;
+        if ($request->ipledge) :
+          $input['ipledge_items'] = $request->ipledge;
         endif;
         
         CaseManagement::whereId($request['case_id'])->update($input);
         $input_data['case_status'] = 'trigger';
         $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
-        return redirect()->back();
+        // return redirect()->back();
 
         
 

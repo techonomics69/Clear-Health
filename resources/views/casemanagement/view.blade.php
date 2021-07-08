@@ -232,6 +232,7 @@
 										
 										<div class="accordion" id="accordionExampleCategory">
 											@foreach($category as $key => $data)
+											@if(($key == 7) || ($key == 8) || ($key == 9))
 											<div class="card">
 												<div class="card-header">
 													
@@ -246,6 +247,7 @@
 													</div>
 												</div>
 											</div>
+											@endif
 											@endforeach
 										</div>
 									

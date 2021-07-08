@@ -898,6 +898,8 @@ die();*/
               $trigger_data = Triggers::create($trigger_input);
           toastr()->success('Notification sent successfully.');
           return redirect()->back();
+        }else{
+          return redirect()->back();
         }
 
         // dd('here 6');

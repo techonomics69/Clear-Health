@@ -58,6 +58,9 @@ class ProductController extends BaseController
     {
         $product = Product::find($id);
         $product->category_name = $product->category->name;
+        $product->section1_image = asset('public/images/Products/'.$product->section1_image);
+        $product->section2_image = asset('public/images/Products/'.$product->section2_image);
+        $product->section3_image = asset('public/images/Products/'.$product->section3_image);
   
         if (is_null($product)) {
             return $this->sendError('Product not found.');

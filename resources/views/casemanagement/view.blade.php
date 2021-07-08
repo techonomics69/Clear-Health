@@ -229,7 +229,7 @@
 							</div>
 
 						
-							<div id="collapseOne show" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+							<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
 								<div class="card-body mb-0">
 								<div class="row">
 									<div class="col-lg-12">

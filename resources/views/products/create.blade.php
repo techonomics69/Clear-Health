@@ -120,7 +120,7 @@
                                 <div class="form-group">
                                     <strong>Section 2 Title:</strong>
                                     <!-- <span class="required">*</span> -->
-                                     {!! Form::text('section2_title', null, array('placeholder' => 'Title of Section 2','class' => 'form-control available_date')) !!}
+                                     {!! Form::text('section2_title', null, array('placeholder' => 'Title of Section 2','class' => 'form-control ')) !!}
                                 </div>
                             </div>
 

@@ -176,12 +176,6 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::find($id);
-
-        echo "<pre>";
-        print_r($product);
-        echo "<pre>";
-        exit();
-
         $date = date('Y-m-d', strtotime($product->available_date));
         $Categories = Category::pluck('name', 'id')->toArray();
         return view('products.edit',compact('product','Categories','date'));

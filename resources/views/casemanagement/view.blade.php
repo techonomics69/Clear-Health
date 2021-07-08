@@ -235,18 +235,22 @@
 											@if(($key == 7) || ($key == 8) || ($key == 9))
 											<div class="card">
 												<div class="card-header">
-													@if($key==8 && ($accutane_que)>0)
-													<button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#collapseC{{$key}}" aria-expanded="false" aria-controls="collapseC{{$key}}">
-														{{$data}}
-													</button>
-													@elseif($key==9 && ($topical_que)>0)
+													@if($key==7)
 													<button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#collapseC{{$key}}" aria-expanded="false" aria-controls="collapseC{{$key}}">
 														{{$data}}
 													</button>
 													@else
-													<button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#collapseC{{$key}}" aria-expanded="false" aria-controls="collapseC{{$key}}">
-														{{$data}}
-													</button>
+													 @if(($key==8) && (($accutane_que)>0))
+														<button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#collapseC{{$key}}" aria-expanded="false" aria-controls="collapseC{{$key}}">
+															{{$data}}
+														</button>
+													  @endif 	
+													@else
+														@if(($key==9) && (($topical_que)>0))
+															<button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#collapseC{{$key}}" aria-expanded="false" aria-controls="collapseC{{$key}}">
+																{{$data}}
+															</button>
+														@endif
 													@endif
 													
 													

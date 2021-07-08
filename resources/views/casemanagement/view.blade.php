@@ -747,6 +747,9 @@
 											</div>
 										</div>
 										{!! Form::open(array('route' => 'trigger','method'=>'POST')) !!}
+										<section class="all_screen_section">
+											<div class="Outer_box_design">
+												<div class="ipledge_outer_design ">
 										<div class="row">
 											<div class="col-lg-12">
 												<table width="100%">
@@ -791,9 +794,7 @@
 												</table>
 											</div>
 										</div>
-										<section class="all_screen_section">
-											<div class="Outer_box_design">
-												<div class="ipledge_outer_design ">
+										
 													
 													
 

@@ -759,7 +759,7 @@
 													</thead>
 													<tbody>
 														<tr>
-															<td>{{count($user_case_management_data)}}</td>
+															<td>{{$user_case_management_data}}</td>
 															<td></td>
 															<td></td>
 															<td></td>

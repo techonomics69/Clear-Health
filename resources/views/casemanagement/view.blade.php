@@ -203,12 +203,11 @@
 					<div class="accordion" id="accordionExample">
 						<div class="card">
 						  <div class="card-header" id="headingOne">
-							<ul class="nav justify-content-end">
-								<li class="nav-item">
-								  <a class="nav-link active" data-toggle="collapse" data-target="#collapseOne">Active</a>
-								</li>
-							</ul>
-							  
+							<h2 class="mb-0">
+								<button class="btn  btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseTwo">
+								  Collapsible Group Item #2
+								</button>
+							  </h2>
 						  </div>
 					  
 						  <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">

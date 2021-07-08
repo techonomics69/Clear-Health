@@ -319,21 +319,28 @@
 
 						
 							
-							
+							@if(count($followup_que)>0)
+							<?php $findex = 2; ?>
+							@foreach($followup_que as $fkey => $fvalue)
 							<div class="card">
 								<div class="card-header" id="headingTwo">
-									<h2 class="mb-0">
-									<button class="btn  btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-										Collapsible Group Item #2
-									</button>
-									</h2>
+									<table width="100%">
+										<tr style="cursor: pointer;" onclick="questionsCollapse('collapseOne')" style="background-color: #43bfc1;">
+											<td width="25%">{{$findex}}</td>
+											<td width="25%"><?php echo date("m-d-Y",strtotime($fvalue->created_at)); ?></td>
+											<td width="25%">Follow Up: {{$fvalue->follow_up_no}}</td>
+										</tr>
+									</table>
 								</div>
 								<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
 									<div class="card-body">
-									Some placeholder content for the second accordion panel. This panel is hidden by default.
+										
 									</div>
 								</div>
 							</div>
+							<?php $findex++; ?>
+							@endforeach
+							@endif
 							
 						</div>
 					

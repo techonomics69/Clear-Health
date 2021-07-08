@@ -215,7 +215,7 @@
 							
 							<div class="card">
 							<div class="card-header" id="headingOne">
-								<a class="btn btn-primary" href="javascript:void(0);" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+								
 									<table width="100%">
 										<tr>
 											<td>1</td>
@@ -223,7 +223,7 @@
 											<td>Initials</td>
 										</tr>
 									</table>
-								</a>
+								
 							</div>
 
 						

@@ -237,16 +237,16 @@
 											<div class="card">
 												<div class="card-header">
 													@if($key==7)
-													<button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#collapseC{{$key}}" aria-expanded="false" aria-controls="collapseC{{$key}}">
+													<button class="btn btn-primary " type="button" data-toggle="collapse" data-target="#collapseC{{$key}}" aria-expanded="false" aria-controls="collapseC{{$key}}">
 														{{$data}}
 													</button>
 													@else
 														@if(($key==8) && (count($accutane_que)>0))
-															<button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#collapseC{{$key}}" aria-expanded="false" aria-controls="collapseC{{$key}}">
+															<button class="btn btn-primary " type="button" data-toggle="collapse" data-target="#collapseC{{$key}}" aria-expanded="false" aria-controls="collapseC{{$key}}">
 																{{$data}}
 															</button>
 														@elseif(($key==9) && (count($topical_que)>0))
-															<button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#collapseC{{$key}}" aria-expanded="false" aria-controls="collapseC{{$key}}">
+															<button class="btn btn-primary " type="button" data-toggle="collapse" data-target="#collapseC{{$key}}" aria-expanded="false" aria-controls="collapseC{{$key}}">
 																{{$data}}
 															</button>
 														@endif

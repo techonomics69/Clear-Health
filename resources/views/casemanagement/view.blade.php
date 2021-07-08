@@ -199,6 +199,7 @@
 				Session::forget('que_current_tab');
 				@endphp
 				<div id="questions" class="tab-pane fade in">
+					<div class="row">
 					<div class="accordion" id="accordionExample">
 						<div class="card">
 						  <div class="card-header" id="headingOne">
@@ -244,6 +245,7 @@
 						  </div>
 						</div>
 					  </div>
+					</div>
 				</div>
 
 

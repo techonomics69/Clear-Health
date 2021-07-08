@@ -203,13 +203,17 @@
 					<div class="accordion" id="accordionExample">
 						<div class="card">
 						  <div class="card-header" id="headingOne">
-							<table width="100%">
-								<tr>
-									<td>Sr No.</td>
-									<td>Date</td>
-									<td>Visit type</td>
-								<tr>
-							</table>
+							<div class="row">
+								<div class="col">
+									<table width="100%">
+										<tr>
+											<td>Sr No.</td>
+											<td>Date</td>
+											<td>Visit type</td>
+										<tr>
+									</table>
+								</div>
+							</div>
 						  </div>
 					  
 						  <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">

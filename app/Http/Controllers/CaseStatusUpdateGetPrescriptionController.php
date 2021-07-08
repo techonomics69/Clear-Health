@@ -487,7 +487,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                     
                 }
 
-              if($preferred_pharmacy_id !='13012' && $pickup_medication_difference = 80){
+              if($preferred_pharmacy_id !='13012' && $pickup_medication_difference = 60){
                 //send welcome email 
                     $email_sent = sendEmail($bloodwork_email_data); 
 
@@ -756,7 +756,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                     
                 }
 
-              if($preferred_pharmacy_id !='13012' && $pickup_medication_difference = 50){
+              if($preferred_pharmacy_id !='13012' && $pickup_medication_difference = 60){
                 //send welcome email 
                     $email_sent = sendEmail($bloodwork_email_data); 
 

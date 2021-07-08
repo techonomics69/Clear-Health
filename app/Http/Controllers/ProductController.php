@@ -102,6 +102,48 @@ class ProductController extends Controller
             $data['image_detail'] = $image_detail_Name;
         endif;
 
+        if(!empty($request->section1_image)):
+            $section1_imageName = time().'.'.$request->section1_image->extension();
+
+            $path = public_path().'/images/Products';
+
+            if (! File::exists($path)) {
+                File::makeDirectory($path, $mode = 0777, true, true);
+            }
+
+            $request->section1_image->move(public_path('images/Products'), $section1_imageName);            
+            
+            $data['section1_image'] = $section1_imageName;
+        endif;
+
+        if(!empty($request->section2_image)):
+            $section2_imageName = time().'.'.$request->section2_image->extension();
+
+            $path = public_path().'/images/Products';
+
+            if (! File::exists($path)) {
+                File::makeDirectory($path, $mode = 0777, true, true);
+            }
+
+            $request->section2_image->move(public_path('images/Products'), $section2_imageName);            
+            
+            $data['section2_image'] = $section2_imageName;
+        endif;
+
+        if(!empty($request->section3_image)):
+            $section3_imageName = time().'.'.$request->section3_image->extension();
+
+            $path = public_path().'/images/Products';
+
+            if (! File::exists($path)) {
+                File::makeDirectory($path, $mode = 0777, true, true);
+            }
+
+            $request->section3_image->move(public_path('images/Products'), $section3_imageName);            
+            
+            $data['section3_image'] = $section3_imageName;
+        endif;
+
         $Products = Product::create($data);
                 
         toastr()->success('Product created successfully');
@@ -159,7 +201,7 @@ class ProductController extends Controller
            /* 'sub_title' => 'required', */
             'category_id' => 'required|not_in:0',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5000',
-            'discount_price' => 'required|numeric|min:1', 
+            'discount_price' => 'required|numeric|min:0', 
             'detail' => 'required',
             'quantity' => 'required|numeric|min:1', 
             'min_quantity_alert' => 'required|numeric|min:1',

@@ -889,6 +889,8 @@ die();*/
           toastr()->success('Notification sent successfully.');
           return redirect()->back();
         }
+
+        dd('here 6');
         
         // return redirect()->back();
 

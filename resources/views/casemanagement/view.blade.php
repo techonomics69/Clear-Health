@@ -758,12 +758,14 @@
 														</tr>
 													</thead>
 													<tbody>
+														@if(!empty($user_case_management_data))
 														<tr>
 															<td>{{$user_case_management_data}}</td>
 															<td></td>
 															<td></td>
 															<td></td>
 														</tr>
+														@endif
 													</tbody>
 												</table>
 											</div>

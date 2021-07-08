@@ -330,7 +330,7 @@ class ProductController extends Controller
                             unlink($oldImg);
                         endif;
             }    
-            
+
             $data['section3_image'] = $section3_imageName;
         endif;
 
@@ -365,6 +365,24 @@ class ProductController extends Controller
          $oldImg = $path.'/'.$product->image_detail;
             if (File::exists($oldImg)) : 
                 unlink($oldImg);
+            endif;
+
+        //section1_image
+         $oldImgSec1 = $path.'/'.$product->section1_image;
+            if (File::exists($oldImgSec1)) : 
+                unlink($oldImgSec1);
+            endif;
+
+        //section2_image
+         $oldImgSec2 = $path.'/'.$product->section2_image;
+            if (File::exists($oldImgSec2)) : 
+                unlink($oldImgSec2);
+            endif;
+
+        //section3_image
+         $oldImgSec3 = $path.'/'.$product->section3_image;
+            if (File::exists($oldImgSec3)) : 
+                unlink($oldImgSec3);
             endif;
             
         toastr()->success('Product deleted successfully');

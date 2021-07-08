@@ -270,7 +270,7 @@ class ProductController extends Controller
 
             $request->section1_image->move(public_path('images/Products'), $section1_imageName);
 
-            chmod($path."/".$section1_image, 0777);
+            chmod($path."/".$section1_imageName, 0777);
             $oldImg = $path.'/'.$product->section1_image;
 
 
@@ -295,7 +295,7 @@ class ProductController extends Controller
 
             $request->section2_image->move(public_path('images/Products'), $section2_imageName);
 
-            chmod($path."/".$section2_image, 0777);
+            chmod($path."/".$section2_imageName, 0777);
             $oldImg = $path.'/'.$product->section2_image;
 
 
@@ -320,7 +320,7 @@ class ProductController extends Controller
 
             $request->section3_image->move(public_path('images/Products'), $section3_imageName);            
             
-             chmod($path."/".$section3_image, 0777);
+             chmod($path."/".$section3_imageName, 0777);
             $oldImg = $path.'/'.$product->section3_image;
 
 

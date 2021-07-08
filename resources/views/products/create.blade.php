@@ -116,7 +116,7 @@
                                 </div>
                             </div> --}}
 
-                            <div class="col-md-4 col-sm-4 col-xs-4">
+                            <div class="col-md-6 col-sm-6 col-xs-6">
                                 <div class="form-group">
                                     <strong>Section 2 Title:</strong>
                                     <!-- <span class="required">*</span> -->
@@ -124,7 +124,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-4 col-sm-4 col-xs-4">
+                            <div class="col-md-6 col-sm-6 col-xs-6">
                                 <div class="form-group">
                                     <strong>Section 2 Image:</strong>
                                     <!-- <span class="required">*</span> -->

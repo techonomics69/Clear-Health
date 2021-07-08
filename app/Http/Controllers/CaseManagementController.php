@@ -196,7 +196,7 @@ class CaseManagementController extends Controller
 
     $general = Answers::where('case_id', $user_case_management_data['id'])->where('user_id', $user_case_management_data['user_id'])->where('category_id', 7)->first();
 
-
+    dd($general);
     if (isset($general)) {
       $general_que = json_decode($general->answer);
     } else {

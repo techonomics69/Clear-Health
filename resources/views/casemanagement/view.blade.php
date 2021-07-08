@@ -218,9 +218,9 @@
 								
 									<table width="100%">
 										<tr>
-											<td>1</td>
-											<td>07-08-2021</td>
-											<td>Initials</td>
+											<th>1</th>
+											<th>07-08-2021</th>
+											<th>Initials</th>
 										</tr>
 									</table>
 								

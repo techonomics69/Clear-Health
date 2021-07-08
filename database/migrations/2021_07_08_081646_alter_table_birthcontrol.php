@@ -13,9 +13,9 @@ class AlterTableBirthcontrol extends Migration
      */
     public function up()
     {
-        Schema::create('birthcontrol', function (Blueprint $table) {
-            $table->string('user_name')->nullable()->change();
-            $table->string('user_id')->nullable()->change();
+        Schema::table('birthcontrol', function (Blueprint $table) {
+            $table->string('user_name')->nullable();
+            $table->string('user_id')->nullable();
         });
     }
 

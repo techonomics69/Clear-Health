@@ -212,7 +212,12 @@
 					  
 						  <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
 							<div class="card-body">
-							  Some placeholder content for the first accordion panel. This panel is shown by default, thanks to the <code>.show</code> class.
+							  <div class="row">
+								  <div class="col-lg-12">
+									Some placeholder content for the first accordion panel. This panel is shown by default, thanks to the <code>.show</code> class.
+								  </div>
+							  </div>		
+							  
 							</div>
 						  </div>
 						</div>

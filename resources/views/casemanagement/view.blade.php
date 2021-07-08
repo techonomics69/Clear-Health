@@ -761,7 +761,7 @@
 													<tbody>
 														@if(!empty($user_case_management_data))
 														<tr>
-															<td>{{$user_case_management_data}}</td>
+															<td>1</td>
 															<td>{{$user_case_management_data->first_name}}&nbsp;{{$user_case_management_data->last_name}}</td>
 															<td>
 																<div class="prior_block">

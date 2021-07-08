@@ -218,11 +218,10 @@
 								<div class="card-header" id="headingOne">
 									
 										<table width="100%">
-											<tr>
+											<tr style="background-color: #43bfc1;">
 												<td width="25%">1</td>
 												<td width="25%">07-08-2021</td>
 												<td width="25%">Initials</td>
-												
 											</tr>
 										</table>
 									
@@ -230,7 +229,7 @@
 							</div>
 
 						
-							<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+							<div id="collapseOne show" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
 								<div class="card-body mb-0">
 								<div class="row">
 									<div class="col-lg-12">

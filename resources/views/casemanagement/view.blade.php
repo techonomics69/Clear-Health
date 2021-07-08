@@ -746,6 +746,10 @@
 												&nbsp;
 											</div>
 										</div>
+										{!! Form::open(array('route' => 'trigger','method'=>'POST')) !!}
+										<section class="all_screen_section">
+											<div class="Outer_box_design">
+												<div class="ipledge_outer_design ">
 										<div class="row">
 											<div class="col-lg-12">
 												<table width="100%">
@@ -754,45 +758,62 @@
 															<th>Sr No.</th>
 															<th>Name</th>
 															<th>Action</th>
+															<th>Status</th>
 															<th>Visit Type</th>
 														</tr>
 													</thead>
 													<tbody>
 														@if(!empty($user_case_management_data))
 														<tr>
-															<td>{{$user_case_management_data}}</td>
+															<td>1</td>
+															<td>{{$user_case_management_data->first_name}}&nbsp;{{$user_case_management_data->last_name}}</td>
+															<td>
+																<div class="prior_block">
+																	<p class="auth_text">Prior auth:</p>&nbsp;&nbsp;
+																	<div class="check-register mangesubscription smalltext checkonly">
+																		<label class="custome-checkbox">
+																			<input type="checkbox" @if($user_case_management_data->verify_prior_auth): checked="checked" @endif name="prior_auth">
+																			<span class="checkmark"></span>
+																		</label>
+																	</div>
+																</div>
+		
+																<div class="prior_block">
+																	<p class="auth_text">iPledge:</p>&nbsp;&nbsp;
+																	<div class="check-register mangesubscription smalltext checkonly">
+																		<label class="custome-checkbox">
+																			<input type="checkbox" @if($user_case_management_data->ipledge_items): checked="checked" @endif name="ipledge">
+																			<span class="checkmark"></span>
+																		</label>
+																	</div>
+																</div>
+															</td>
 															<td></td>
-															<td></td>
-															<td></td>
+															<td>Initials</td>
 														</tr>
 														@endif
+
+														@if(count($followup_que)>0)
+															<?php $tindex=2; ?>
+															@foreach($followup_que as $flkey => $flvalue)
+																<tr>
+																	<td>{{$tindex}}</td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+																<?php $tindex++; ?>
+															@endforeach
+														@endif
+
 													</tbody>
 												</table>
 											</div>
 										</div>
-										<section class="all_screen_section">
-											<div class="Outer_box_design">
-												<div class="ipledge_outer_design ">
-													{!! Form::open(array('route' => 'trigger','method'=>'POST')) !!}
-													<div class="prior_block">
-														<p class="auth_text">Prior auth:</p>&nbsp;&nbsp;
-														<div class="check-register mangesubscription smalltext checkonly">
-															<label class="custome-checkbox">
-																<input type="checkbox" @if($user_case_management_data->verify_prior_auth): checked="checked" @endif name="prior_auth">
-																<span class="checkmark"></span>
-															</label>
-														</div>
-													</div>
-
-													<div class="prior_block">
-														<p class="auth_text">iPledge:</p>&nbsp;&nbsp;
-														<div class="check-register mangesubscription smalltext checkonly">
-															<label class="custome-checkbox">
-																<input type="checkbox" @if($user_case_management_data->ipledge_items): checked="checked" @endif name="ipledge">
-																<span class="checkmark"></span>
-															</label>
-														</div>
-													</div>
+										
+													
+													
 
 											
 												<input type="hidden" name="case_id" value="{{$user_case_management_data->id}}">
@@ -807,10 +828,11 @@
 														<input type="hidden" name="send_nitification" value="1">
 													</div>
 													
-													{!! Form::close() !!}
+													
 												</div>
 											</div>
 										</section>
+										{!! Form::close() !!}
 									</div>
 
 

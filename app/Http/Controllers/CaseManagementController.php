@@ -823,7 +823,7 @@ die();*/
 
        if($user_case_management_data['product_type']== "Accutane"){
 
-        dd('here 1');
+        // dd('here 1');
 
         if($user_case_management_data['gender']=="female"  && $preferred_pharmacy_id !='13012' && $user_case_management_data['prior_auth_date']!= NULL){
 

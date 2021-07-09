@@ -97,7 +97,7 @@
 @section('scriptsection')
 <script>
   $.noConflict();
-  jQuery(document).ready(function($) {
+  // jQuery(document).ready(function($) {
 
     var token = "{{ csrf_token() }}";
 		var url = "{{ route('casemanagement.showList') }}";
@@ -198,15 +198,15 @@
             }
         });*/
 
-        $('#filter1').on('change', function(){
+        
+  //  });
+
+   
+   $('#filter1').on('change', function(){
             var filter_value = $(this).val();
             Datatable.init();
             
-          });
-   });
-
-   
-
+  });
    
 
 </script>

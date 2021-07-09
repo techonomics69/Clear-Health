@@ -117,7 +117,7 @@
 
       'ajax': {
           'url':url,
-          'data': {_token:token},
+          'data': {_token:token, filterValue:$("#filter1").val()},
       },
       'columns': [
 		      	{ data: 'srno' },

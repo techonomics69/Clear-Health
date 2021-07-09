@@ -57,6 +57,11 @@ class CaseManagementController extends Controller
         $totalRecords = CaseManagement::join('users', 'case_managements.user_id', '=', 'users.id')
                       ->leftjoin('case_histories', 'case_managements.id', '=', 'case_histories.case_id')
                       ->count();
+        if($columnName == 'srno'){
+          $columnName = 'cm.id';
+        }else{
+          $columnName = $columnName;
+        }              
         
         $data = array();
         $searchValue = $_POST['search']['value']; // search in date, caseid, firstname, lastname, gender, md caseid, 

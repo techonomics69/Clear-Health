@@ -201,7 +201,9 @@
         $('#filter1').on('change', function(){
           
             var filter_value = $(this).val();
+            Datatable.searching =  true;
             Datatable.processing = true;
+            Datatable.serverSide = true;
           });
    });
 

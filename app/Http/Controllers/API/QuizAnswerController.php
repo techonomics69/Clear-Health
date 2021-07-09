@@ -466,6 +466,7 @@ public function ProductRecommendBasedONTretinoinFormula(Request $request)
         }
     }
 
+
     //logic for female patient 
         $question = $value->question;
 
@@ -499,7 +500,6 @@ public function ProductRecommendBasedONTretinoinFormula(Request $request)
 if($user_is_pregnant == 1 || $user_is_breastfeeding == 1){
    $data = 'Azelaic_Acid';
 }else{
-
     if($ts1 == 1){
         $TretinoinFormula = 'Topical_low';
     }else if($ts1 == 2){
@@ -509,7 +509,7 @@ if($user_is_pregnant == 1 || $user_is_breastfeeding == 1){
     if($ts2 == 0){
         $data ='Azelaic_Acid';
     }else{
-       $data = $TretinoinFormula; 
+       $data = $TretinoinFormula;
     }
 }
 

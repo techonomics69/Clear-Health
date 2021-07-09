@@ -220,7 +220,7 @@
                                 <div class="form-group">
                                     <strong>Show Section 2 Button :</strong>
                                     <!-- <span class="required">*</span> -->
-                                    {!! Form::checkbox('section2_button_show', $product['section2_button_show'], '') !!}
+                                    {!! Form::checkbox('section2_button_show', $product['section2_button_show'], '') !!} 
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">

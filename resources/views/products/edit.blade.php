@@ -98,6 +98,19 @@
                                     {!! Form::textarea('short_description', null, array('placeholder' => 'Details','class' => 'form-control')) !!}
                                 </div>
                             </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <strong>Important Info:</strong>
+                                    {!! Form::text('imp_info_title', null, array('placeholder' => 'Title of Important information','class' => 'form-control ')) !!}
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <strong>Important Info details:</strong>
+                                    <span class="required">*</span>
+                                    {!! Form::textarea('imp_info_content', null, array('placeholder' => 'Content of important info','class' => 'details')) !!}
+                                </div>
+                            </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">    
                                 <div class="form-group">
                                     <strong>Details</strong>
@@ -150,6 +163,20 @@
                                     {!! Form::textarea('section1_content', null, array('placeholder' => 'section1','class' => 'details')) !!}
                                 </div>
                             </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <strong>Section 1 Button Content:</strong>
+                                    <!-- <span class="required">*</span> -->
+                                    {!! Form::checkbox('section1_button_show', 'true', '') !!}
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <strong>Section 1 Button:</strong>
+                                    <!-- <span class="required">*</span> -->
+                                    {!! Form::text('section1_button_content', null, array('placeholder' => 'Title of Section 1 button content','class' => 'form-control ')) !!}
+                                </div>
+                            </div>
                             {{-- <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <strong>Section 2:</strong>
@@ -182,6 +209,21 @@
                                 </div>
                             </div>
 
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <strong>Section 2 Content:</strong>
+                                    <!-- <span class="required">*</span> -->
+                                    {!! Form::textarea('section2_content', null, array('placeholder' => 'section2','class' => 'details')) !!}
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <strong>Section 2 Button Content:</strong>
+                                    <!-- <span class="required">*</span> -->
+                                    {!! Form::checkbox('section2_button_show', 'true', '') !!}
+                                </div>
+                            </div>
+
                              <div class="col-md-6 col-sm-6 col-xs-6">
                                 <div class="form-group">
                                     <strong>Section 3 Title:</strong>
@@ -206,6 +248,22 @@
                                     {!! Form::textarea('section3_content', null, array('placeholder' => 'section3','class' => 'details')) !!}
                                 </div>
                             </div>
+
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <strong>Section 3 Button:</strong>
+                                    <!-- <span class="required">*</span> -->
+                                    {!! Form::checkbox('section3_button_show', 'true', '') !!}
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <strong>Section 3 Button Content:</strong>
+                                    <!-- <span class="required">*</span> -->
+                                    {!! Form::text('section3_button_content', null, array('placeholder' => 'Title of Section 3 button content','class' => 'form-control ')) !!}
+                                </div>
+                            </div>    
+
                             <div class="col-md-4 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <strong>Quantity</strong>

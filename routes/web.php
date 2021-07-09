@@ -221,7 +221,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     //User Case Management 
     Route::get('admin/casemanagement', [CaseManagementController::class, 'index'])->name('casemanagement.index');
-    Route::match(['get','post'],'admin/casemanagement',[CaseManagementController::class,'showList'])->name('casemanagement.showList');
+    Route::post('admin/casemanagement',[CaseManagementController::class,'showList'])->name('casemanagement.showList');
     Route::get('admin/casemanagement/show/{id}', [CaseManagementController::class, 'show'])->name('casemanagement.show');
     Route::post('admin/casemanagement/upload_pregnancy_test_report', [CaseManagementController::class, 'upload_pregnancy_test_report'])->name('upload_pregnancy_test_report');
     Route::post('admin/casemanagement/upload_blood_test_report', [CaseManagementController::class, 'upload_blood_test_report'])->name('upload_blood_work_test_report');

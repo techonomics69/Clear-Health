@@ -114,11 +114,12 @@ class CheckoutController extends BaseController
 
     //code to insert data in checkout table
     $checkoutdata = Checkout::create($data);
+
     $checkcout_address = Checkoutaddress::where('user_id', $data['user_id'])->OrderBy('id', 'DESC')->first();
 
     if (!empty($checkcout_address)) {
 
-      $update_checkout_address  =  Checkoutaddress::where('id', $checkcout_address['id'])->update(['order_id' => $order_id]);
+      $update_checkout_address  =  Checkoutaddress::where('id', $checkcout_address['id'])->update(['order_id' => $checkoutdata->id]);
     }
     $data['checkoutOrderId'] = $checkoutdata->id;
     if ($request->medication_type == "2") {
@@ -289,7 +290,7 @@ class CheckoutController extends BaseController
     //try{
     $orderlist = checkout::join('users', 'users.id', '=', 'checkout.user_id')
       ->join('carts', 'carts.id', '=', 'checkout.cart_id')
-      ->join('checkout_address', 'checkout_address.order_id', '=', 'checkout.order_id')
+      ->join('checkout_address', 'checkout_address.order_id', '=', 'checkout.id')
       ->select(
         'checkout.id',
         'checkout.user_id',
@@ -332,7 +333,7 @@ class CheckoutController extends BaseController
     $orderlist['ipladege_id'] = $users_ipledge_id;
 
     $shipping_address = Checkoutaddress::select('*')
-      ->where('checkout_address.order_id', $orderlist['order_id'])
+      ->where('checkout_address.order_id', $orderlist['id'])
       ->where('checkout_address.address_type', 1)
       ->OrderBy('id', 'DESC')
       ->first();
@@ -344,7 +345,7 @@ class CheckoutController extends BaseController
     }
 
     $billing_address = Checkoutaddress::select('*')
-      ->where('checkout_address.order_id', $orderlist['order_id'])
+      ->where('checkout_address.order_id', $orderlist['id'])
       ->where('checkout_address.address_type', 2)
       ->OrderBy('id', 'DESC')
       ->first();
@@ -434,8 +435,8 @@ class CheckoutController extends BaseController
 
     $orderlist['order_total'] =  $pro_amount + $shipping_fee + $telemedicine_fee + $handling_fee + $tax;
 
-    if(isset($orderlist['order_id'])){
-      if($orderlist['order_id']!='' || $orderlist['order_id']!=null){
+    if(isset($orderlist['id'])){
+      if($orderlist['id']!='' || $orderlist['id']!=null){
         $prescribe_shipments =  DB::table('checkout as ch')->join('curexa_order as cu','cu.order_id','=','ch.order_id')
                           ->select('cu.order_status','dispached_date')
                           ->where('cu.order_id',$orderlist['order_id'])

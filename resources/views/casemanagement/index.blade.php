@@ -197,15 +197,17 @@
                  alert(res);  
             }
         });*/
+
+        $('#filter1').on('change', function(){
+          
+            var filter_value = $(this).val();
+            Datatable.ajax.load();
+          });
    });
 
    
 
-   $('#filter1').on('change', function(){
-     alert();
-      var filter_value = $(this).val();
-      Datatable.ajax.load();
-    });
+   
 
 </script>
 @endsection

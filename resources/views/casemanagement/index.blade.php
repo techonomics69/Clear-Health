@@ -38,8 +38,9 @@
           <!-- <header class="card-header top-heading">                
                 <h3 class="main-title-heading">Users Management</h3> 
               </header> -->
-          <div class="row">
+          <div class="row" style="padding: 20px;">
             <div class="col-md-4">
+
                 <select id="filter1" class="form-control">
                     <option value="">--SELECT ACTION--</option>
                     <option value="All">All</option>

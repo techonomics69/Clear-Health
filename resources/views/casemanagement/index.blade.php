@@ -202,8 +202,8 @@
    
 
    $('#filter1').on('change', function(){
-    var filter_value = $(this).val();
-      
+      var filter_value = $(this).val();
+      Datatable.ajax.load();
     });
 
 </script>

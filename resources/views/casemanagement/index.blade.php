@@ -198,7 +198,11 @@
         });*/
    });
 
+   $(document).on('change','#filter1',function(){
+      $.post("{{ route('casemanagement.showList')",{_token:"{{ csrf_token() }}",filter:$(this).val()},function(){
 
+      });
+   });
 
 </script>
 @endsection

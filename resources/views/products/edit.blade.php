@@ -115,7 +115,7 @@
                                 <div class="form-group">
                                     <strong>Details</strong>
                                     <span class="required">*</span>
-                                    {!! Form::textarea('detail', null, array('placeholder' => 'Details','class' => 'details')) !!}
+                                    {!! Form::textarea('detail', null, array('placeholder' => 'Details','class' => 'form-control')) !!}
                                 </div>
                             </div>
                             {{-- <div class="col-md-12 col-sm-12 col-xs-12">
@@ -165,14 +165,14 @@
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <strong>Section 1 Button Content:</strong>
+                                    <strong>Section 1 Button :</strong>
                                     <!-- <span class="required">*</span> -->
                                     {!! Form::checkbox('section1_button_show', 'true', '') !!}
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <strong>Section 1 Button:</strong>
+                                    <strong>Section 1 Button Content:</strong>
                                     <!-- <span class="required">*</span> -->
                                     {!! Form::text('section1_button_content', null, array('placeholder' => 'Title of Section 1 button content','class' => 'form-control ')) !!}
                                 </div>

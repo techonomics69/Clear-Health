@@ -199,7 +199,6 @@
         });*/
 
         $('#filter1').on('change', function(){
-            alert();
             var filter_value = $(this).val();
             Datatable.init();
           });

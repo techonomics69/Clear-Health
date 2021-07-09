@@ -357,8 +357,11 @@ padding: 1.8rem;
 .dropdown-menu{
   padding: 0 !important;
 }
-.accordion .card .card-header{
-background-color: #16D39A;
+.accordion .card:nth-child(1) .card-header{
+  background-color: #43bfc1;
+  }
+.accordion .card:nth-child(2) .card-header{
+background-color: #ccc;
 }
 .card-header .card-title{font-size: 18px}
 .switchery{height: 25px!important}

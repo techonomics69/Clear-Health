@@ -320,7 +320,6 @@ class CheckoutController extends BaseController
         'checkout.handling_fee',
         'checkout.tax',
         'checkout.address_type',
-        'checkout_address.order_id',
         'checkout.cart_amount',
         'checkout.gift_code_discount',
         'checkout.shipstation_order_id'
@@ -331,6 +330,11 @@ class CheckoutController extends BaseController
 
     $users_ipledge_id = getAssignedIpledgeIdToUser($orderlist['user_id'], $orderlist['case_id'], $orderlist['md_case_id']);
     $orderlist['ipladege_id'] = $users_ipledge_id;
+
+    echo "<pre>";
+    print_r($orderlist);
+    echo "<pre>";
+    exit();
 
     $shipping_address = Checkoutaddress::select('*')
       ->where('checkout_address.order_id', $orderlist['id'])

@@ -57,17 +57,22 @@ class CaseManagementController extends Controller
         $totalRecords = CaseManagement::join('users', 'case_managements.user_id', '=', 'users.id')
                       ->leftjoin('case_histories', 'case_managements.id', '=', 'case_histories.case_id')
                       ->count();
+        if($columnName == 'srno'){
+          $columnName = 'cm.id';
+        }else{
+          $columnName = $columnName;
+        }              
         
         $data = array();
         $searchValue = $_POST['search']['value']; // search in date, caseid, firstname, lastname, gender, md caseid, 
         
         $user_case_management_data = DB::table('case_managements as cm')->join('users as u', 'cm.user_id', '=', 'u.id')
-                    ->leftjoin('case_histories ch', 'cm.id', '=', 'ch.case_id')
+                    ->leftjoin('case_histories as ch', 'cm.id', '=', 'ch.case_id')
                     ->select('cm.*', 'u.email', 'u.first_name', 'u.last_name',
                     'u.gender', 'ch.case_status');
         
         $usercase_count = DB::table('case_managements as cm')->join('users as u', 'cm.user_id', '=', 'u.id')
-                        ->leftjoin('case_histories ch', 'cm.id', '=', 'ch.case_id')
+                        ->leftjoin('case_histories as ch', 'cm.id', '=', 'ch.case_id')
                         ->select('cm.*', 'u.email', 'u.first_name', 'u.last_name',
                         'u.gender', 'ch.case_status');
 
@@ -109,9 +114,9 @@ class CaseManagementController extends Controller
         }
 
         foreach($user_case_management_data as $key => $value){
-          if ($case_data['md_status'] == 0) {
+          if ($value['md_status'] == 0) {
             $mdStatus = 'pending ';
-          } else if ($case_data['md_status'] == 1) {
+          } else if ($value['md_status'] == 1) {
             $mdStatus = 'support';
           } else {
             $mdStatus = 'accepted';
@@ -124,17 +129,17 @@ class CaseManagementController extends Controller
                                 </a>';
                     break;
               case 'store_ipledge':
-                    $action1 = ' <a href="'.route('casemanagement.show',$case_data['id']).'"?active=action_items">
+                    $action1 = ' <a href="'.route('casemanagement.show',$value['id']).'"?active=action_items">
                                   <span class="badge badge-info">Register Ipledge</span>
                                 </a>';
                     break;
               case 'verify_pregnancy':
-                    $action1 = '<a href="'.route('casemanagement.show',$case_data['id']).'"?active=pregnancy_test">
+                    $action1 = '<a href="'.route('casemanagement.show',$value['id']).'"?active=pregnancy_test">
                                   <span class="badge badge-info">Review Pregnancy Test & send case to MD</span>
                                 </a>';
                     break;
               case 'prior_auth':
-                    $action1 = '<a href="'.route('casemanagement.show',$case_data['id']).'"?active=prior_auth">
+                    $action1 = '<a href="'.route('casemanagement.show',$value['id']).'"?active=prior_auth">
                                   <span class="badge badge-info">Complete Prior Authorization</span>
                                 </a>';
                     break;
@@ -144,17 +149,17 @@ class CaseManagementController extends Controller
                                 </a>';
                     break;
               case 'trigger':
-                    $action1 = '<a href="'.route('casemanagement.show',$case_data['id']).'"?active=triggers">
+                    $action1 = '<a href="'.route('casemanagement.show',$value['id']).'"?active=triggers">
                                   <span class="badge badge-info">Send Prescription Pickup Notification</span>
                                 </a>';
                     break;
               case 'blood_work':
-                    $action1 = '<a href="'.route('casemanagement.show',$case_data['id']).'"?active=blood_work">
+                    $action1 = '<a href="'.route('casemanagement.show',$value['id']).'"?active=blood_work">
                                   <span class="badge badge-info">Upload Bloodwork Results</span>
                                 </a>';
                     break;
               case 'low_income_program':
-                    $action1 = '<a href="'.route('casemanagement.show',$case_data['id']).'"?active=blood_work">
+                    $action1 = '<a href="'.route('casemanagement.show',$value['id']).'"?active=blood_work">
                                   <span class="badge badge-info">Enroll Absorica Patient Assistance Program</span>
                                 </a>';
                     break;
@@ -168,18 +173,18 @@ class CaseManagementController extends Controller
           $data[] = array(
             'srno' => ($key + 1),
             'date' => $value['created_at']->format('d/m/Y'),
-            'caseid' => $case_data['ref_id'],
-            'firstname' => $case_data['first_name'],
-            'lastname' => $case_data['last_name'],
-            'gender' => (!empty($case_data['gender'])) ? strtoupper($case_data['gender'][0]) : '',
-            'visitnumber' => (empty($case_data['follow_up'])) ? 1 : ($case_data['follow_up'] + 1),
-            'mdcaseid' => $case_data['md_case_id'],
+            'caseid' => $value['ref_id'],
+            'firstname' => $value['first_name'],
+            'lastname' => $value['last_name'],
+            'gender' => (!empty($value['gender'])) ? strtoupper($value['gender'][0]) : '',
+            'visitnumber' => (empty($value['follow_up'])) ? 1 : ($value['follow_up'] + 1),
+            'mdcaseid' => $value['md_case_id'],
             'mdstatus' => $mdStatus,
-            'visittype' => (empty($case_data['follow_up'])) ? 'Initial' : 'FollowUp',
+            'visittype' => (empty($value['follow_up'])) ? 'Initial' : 'FollowUp',
             'treatmentplan' => '',
             'pharmacy' => '',
             'action1' => '<div class="d-flex">
-                      <a class="icons edit-icon" href="'.route('casemanagement.show',$case_data['id']).'"><i class="fa fa-eye"></i></a>
+                      <a class="icons edit-icon" href="'.route('casemanagement.show',$value['id']).'"><i class="fa fa-eye"></i></a>
                       </div>',
             'action' => $action1, 
           );

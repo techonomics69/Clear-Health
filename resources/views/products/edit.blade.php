@@ -115,7 +115,7 @@
                                 <div class="form-group">
                                     <strong>Details</strong>
                                     <span class="required">*</span>
-                                    {!! Form::textarea('detail', null, array('placeholder' => 'Details','class' => 'form-control')) !!}
+                                    {!! Form::textarea('detail', null, array('placeholder' => 'Details','class' => 'details')) !!}
                                 </div>
                             </div>
                             {{-- <div class="col-md-12 col-sm-12 col-xs-12">

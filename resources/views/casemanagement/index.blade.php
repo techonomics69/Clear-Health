@@ -61,89 +61,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <?php $i = 0; ?>
-                    @foreach ($user_case_management_data as $key => $case_data)
-
-                    <tr>
-                      <td>{{ ++$i }}</td>
-                      <td>{{ $case_data['created_at']->format('d/m/Y') }}</td>
-                      <td>{{ $case_data['ref_id']}}</td>
-                      <td>{{ $case_data['first_name'] }}</td>
-                      <td>{{ $case_data['last_name'] }}</td>
-                      <td>{{ strtoupper($case_data['gender'][0]) }}</td>
-                      <td>
-                        @if(empty($case_data['follow_up']))
-                        1
-                        @else
-                        {{ $case_data['follow_up'] + 1 }}
-                        @endif
-                      </td>
-                      <td>{{ $case_data['md_case_id'] }}</td>
-                      <td><?php if ($case_data['md_status'] == 0) {
-                            echo 'pending ';
-                          } else if ($case_data['md_status'] == 1) {
-                            echo 'support';
-                          } else {
-                            echo 'accepted';
-                          } ?></td>
-                      <td>
-                        @if(empty($case_data['follow_up']))
-                        Initial
-                        @else
-                        FollowUp
-                        @endif
-                      </td>
-                      <td></td>
-                      <td></td>
-                      <td>
-                        <div class="d-flex">
-                          <a class="icons edit-icon" href="{{ route('casemanagement.show',$case_data['id']) }}"><i class="fa fa-eye"></i></a>
-                        </div>
-                      </td>
-                      <td>
-                        @if($case_data['case_status'] == 'generate_ipledge')
-                        <a href="https://www.ipledgeprogram.com/iPledgeUI/home.u" target="_blank">
-                          <span class="badge badge-info">Generate iPledge Credentials</span>
-                        </a>
-                        @elseif($case_data['case_status'] == 'store_ipledge')
-
-                        <a href="{{ route('casemanagement.show',$case_data['id']) }}?active=action_items">
-                          <span class="badge badge-info">Register Ipledge</span>
-                        </a>
-                        
-                        @elseif($case_data['case_status'] == 'verify_pregnancy')
-                        <a href="{{ route('casemanagement.show',$case_data['id']) }}?active=pregnancy_test">
-                          <span class="badge badge-info">Review Pregnancy Test & send case to MD</span>
-                        </a>
-                        
-                        @elseif($case_data['case_status'] == 'prior_auth')
-                        <a href="{{ route('casemanagement.show',$case_data['id']) }}?active=prior_auth">
-                          <span class="badge badge-info">Complete Prior Authorization</span>
-                        </a>
-                        @elseif($case_data['case_status'] == 'check_off_ipledge')
-                        <a href="https://www.ipledgeprogram.com/iPledgeUI/home.u" target="_blank">
-                          <span class="badge badge-info">Check Off Admin iPledge.com Items</span>
-                        </a>
-                        @elseif($case_data['case_status'] == 'trigger')
-                        <a href="{{ route('casemanagement.show',$case_data['id']) }}?active=triggers">
-                          <span class="badge badge-info">Send Prescription Pickup Notification</span>
-                        </a>
-                        @elseif($case_data['case_status'] == 'blood_work')
-                        <a href="{{ route('casemanagement.show',$case_data['id']) }}?active=blood_work">
-                          <span class="badge badge-info">Upload Bloodwork Results</span>
-                        </a>
-                        @elseif($case_data['case_status'] == 'low_income_program')
-                        <a href="{{ route('casemanagement.show',$case_data['id']) }}?active=blood_work">
-                          <span class="badge badge-info">Enroll Absorica Patient Assistance Program</span>
-                        </a>
-                        @elseif($case_data['case_status'] == 'finish')
-                        <span class="badge badge-info">Finish</span>
-                        @else
-                        <span class="badge badge-secondary">Action pending from patient</span>
-                        @endif
-                      </td>
-                    </tr>
-                    @endforeach
+                    
                   </tbody>
                 </table>
               </div>
@@ -159,7 +77,8 @@
 </div>
 
 </div>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://kendo.cdn.telerik.com/2020.1.219/js/kendo.all.min.js"></script>
 @endsection
 
 @section('scriptsection')
@@ -167,9 +86,51 @@
   $.noConflict();
   jQuery(document).ready(function($) {
 
+    var token = "{{ csrf_token() }}";
+		var url = "{{ route('casemanagement.showList') }}";
 
     $('#CaseManagementList').DataTable({
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
+      "bLengthChange": false,
+      "bInfo": false,
+        language: {search: "", searchPlaceholder: "Search"},
+      'searching': true,
+      'processing': true,
+      'serverSide': true,
+      'serverMethod': 'post',
+        "lengthChange": false,
+        //"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, 'All']],
+
+      'ajax': {
+          'url':url,
+          'data': {_token:token},
+      },
+      'columns': [
+		      	{ data: 'srno' },
+            { data: 'date' },
+            { data: 'caseid' },
+            { data: 'firstname' },
+            { data: 'lastname' },
+            { data: 'gender' },
+            { data: 'visitnumber' },
+            { data: 'mdcaseid' },
+            { data: 'mdstatus' },
+            { data: 'visittype' },
+            { data: 'treatmentplan' },
+            { data: 'pharmacy' },
+            { data: 'action1' },
+            { data: 'action' },
+            ],aoColumnDefs: [
+              {
+                bSortable: false,
+                aTargets: [ -1 ]
+              }
+				],
+				language: {
+        			"processing": "Loading....."
+    			},
+    		"order": [[ 0, "desc" ]],  
+      
 
 			// "paging": true,
 			// "autoWidth": true,
@@ -192,10 +153,9 @@
       //       {"sWidth": "7%", "aTargets": [13]},
            
       //   ],
-         "bLengthChange": false,
+         
         // "bAutoWidth": true,
-        "bInfo": false,
-        language: {search: "", searchPlaceholder: "Search"},
+        
     //     "fixedHeader": {
     //     header: true,
     //     scrollY:        "300px",

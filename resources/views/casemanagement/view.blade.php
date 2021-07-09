@@ -729,7 +729,6 @@
 													<thead>
 														<tr>
 															<th>Sr No.</th>
-															<th>Name</th>
 															<th>Action</th>
 															<th>Status</th>
 															<th>Visit Type</th>
@@ -739,7 +738,7 @@
 														@if(!empty($user_case_management_data))
 														<tr>
 															<td>1</td>
-															<td>{{$user_case_management_data->first_name}}&nbsp;{{$user_case_management_data->last_name}}</td>
+															
 															<td>
 																<div class="prior_block">
 																	<p class="auth_text">Prior auth:</p>&nbsp;&nbsp;
@@ -771,7 +770,7 @@
 															@foreach($followup_que as $flkey => $flvalue)
 																<tr>
 																	<td>{{$tindex}}</td>
-																	<td>{{$fvalue->first_name}}&nbsp;{{$fvalue->last_name}}</td>
+																	
 																	<td>
 																		<div class="prior_block">
 																			<p class="auth_text">iPledge:</p>&nbsp;&nbsp;

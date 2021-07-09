@@ -113,7 +113,7 @@ class CaseManagementController extends Controller
             $usercase_count = $usercase_count->where('cm.created_at','like',"%{$searchValue}%")
                             ->orWhere('cm.ref_id','like',"%{$searchValue}%")->orWhere('u.first_name','like',"%{$searchValue}%")
                             ->orWhere('u.last_name','like',"%{$searchValue}%")->orWhere('u.gender','like',"%{$searchValue}%")
-                            ->orWhere('cm.md_case_id','like',"%{$searchValue}%")->count();                            
+                            ->orWhere('cm.md_case_id','like',"%{$searchValue}%")->get()->count();                            
           }else{
 
           }
@@ -131,7 +131,7 @@ class CaseManagementController extends Controller
             $usercase_count = $usercase_count->where('cm.created_at','like',"%{$searchValue}%")
                             ->orWhere('cm.ref_id','like',"%{$searchValue}%")->orWhere('u.first_name','like',"%{$searchValue}%")
                             ->orWhere('u.last_name','like',"%{$searchValue}%")->orWhere('u.gender','like',"%{$searchValue}%")
-                            ->orWhere('cm.md_case_id','like',"%{$searchValue}%")->count();                            
+                            ->orWhere('cm.md_case_id','like',"%{$searchValue}%")->get()->count();                            
           }else{
 
           }

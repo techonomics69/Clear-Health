@@ -227,7 +227,7 @@
                                 <div class="form-group">
                                     <strong>Section 2 Button Content:</strong>
                                     <!-- <span class="required">*</span> -->
-                                    {!! Form::checkbox('section2_button_show', 'true', '') !!}
+                                    {!! Form::text('section2_button_content', null, array('placeholder' => 'Title of Section 2 button content','class' => 'form-control ')) !!}
                                 </div>
                             </div>
 

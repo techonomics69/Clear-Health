@@ -111,7 +111,8 @@
       'processing': true,
       'serverSide': true,
       'serverMethod': 'post',
-        "lengthChange": false,
+      "lengthChange": false,
+      "filter": true,
         //"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, 'All']],
 
       'ajax': {

@@ -59,9 +59,11 @@ function get_token(){
 
 function create_patient($user_id,$case_id,$order_id)
 {
-	$r = get_token();
-	$token_data = json_decode($r);
-	$token = $token_data->access_token;
+
+ 
+  $r = get_token();
+  $token_data = json_decode($r);
+  $token = $token_data->access_token;
 
   $allergies ="";
   $current_medications = "";
@@ -70,6 +72,8 @@ function create_patient($user_id,$case_id,$order_id)
   $gender_id = 0;
 
  $userQueAns = getQuestionAnswerFromUserid($user_id,$case_id);
+
+ 
  foreach ($userQueAns as $key => $value) {
 
   $question = $value->question;
@@ -127,7 +131,7 @@ $user_data = User::where('id', $user_id)->first();
 
 
  $shipping_address = Checkoutaddress::select('*')
-   ->where('checkout_address.order_id',$order_id)
+   ->where('checkout_address.id',$order_id)
    ->where('checkout_address.address_type',1)
    ->OrderBy('id', 'DESC')
    ->first();
@@ -152,6 +156,7 @@ if($shipping_address['state']!=''){
   $u_address .= ','.$shipping_address['zipcode'];
 }*/
 
+$u_address = "3135 Easton, USA";
 
 $input_data = array();
 $address = array();
@@ -159,8 +164,8 @@ $address = array();
 $input_data['first_name'] = $user_data['first_name'];
 $input_data['last_name'] = $user_data['last_name'];
 $input_data['gender'] = $gender_id;
-$input_data['date_of_birth'] = $user_data['dob'];
-$input_data['phone_number'] = $user_data['mobile'];
+$input_data['date_of_birth'] = "1991-02-02";//$user_data['dob'];
+$input_data['phone_number'] = '(415) 555-2671';//$user_data['mobile'];
 $input_data['phone_type'] = 2;
 $input_data['email'] = $user_data['email'];
 $address['address'] = $u_address;
@@ -173,6 +178,7 @@ $input_data['current_medications'] = $current_medications;
 $input_data['allergies'] = $allergies;
 
 $input = json_encode($input_data);
+
 
 $curl = curl_init();
 
@@ -193,6 +199,8 @@ curl_setopt_array($curl, array(
 ));
 
 $response = curl_exec($curl);
+
+
 
 
 $Patient_data = json_decode($response);
@@ -234,7 +242,7 @@ if(!empty($Patient_data)){
       }
       else
       {
-      	return $this->sendResponse($input_data,'Patient Created Successfully'); 
+        return $this->sendResponse($input_data,'Patient Created Successfully'); 
      }*/
      return $Patient_data->patient_id;
       
@@ -380,19 +388,19 @@ if(!empty($Patient_data)){
 
     if($product_type == 'Topical_low'){
 
-     $product_name = "Topical Low";
+     $product_name = "Low Tretinoin 0.04% Topical";
 
    }
 
    if($product_type == 'Topical_high'){
 
-     $product_name = "Topical High";
+     $product_name = "High Tretinoin 0.09% Topical";
 
    }
 
    if($product_type == 'Azelaic_Acid'){
 
-     $product_name = "Azelaic Acid";
+     $product_name = "Azelaic Acid 5% Topical";
 
    }
    if($product_type == 'Accutane'){
@@ -582,12 +590,8 @@ if(!empty($Patient_data)){
     }
     $medication_compound_data = json_encode($medication_compound_data);
 
-   /* $input_md_data = '{"patient_id": '.$patient_id.',"case_files": [],"case_prescriptions": '.$medication_compound_data.',"case_questions": '.$userquestion.'}';
+    $input_md_data = '{"patient_id": '.$patient_id.',"case_files": [],"case_prescriptions": '.$medication_compound_data.',"case_questions": '.$userquestion.'}';
 
-    echo "<pre>";
-    print_r($input_md_data);
-    echo "<pre>";
-    exit();*/
 
     $curl = curl_init();
 
@@ -642,14 +646,14 @@ if(!empty($Patient_data)){
 
     $case_management  =  CaseManagement::where('id',$case_id)->where('user_id',$user_id)->update(['md_case_status' => $case_data->case_status->name,'system_status' => 'Telehealth Evaluation Requested','md_case_id' => $case_data->case_id]);
 
-     $update_order_data  =  Checkout::where('case_id',$case_id)->where('user_id',$user_id)->where('order_id',$order_id)->update(['md_case_id' => $case_data->case_id]);
+     $update_order_data  =  Checkout::where('case_id',$case_id)->where('user_id',$user_id)->where('id',$order_id)->update(['md_case_id' => $case_data->case_id]);
 
      if($product_type != NULL){
          if($product_type =="Accutane"){
            $noti_input_data = array();
            $noti_input_data['user_id'] = $user_id;
            $noti_input_data['case_id'] = $case_id;
-           $noti_input_data['md_case_id'] = $md_case_id;
+           $noti_input_data['md_case_id'] = $case_data->case_id;
            $noti_input_data['order_id'] = $order_id;
            $noti_input_data['noti_message'] = getNotificationMessageFromKey('initial_case_sent_to_md');
            $noti_input_data['for_month'] = 1;
@@ -657,7 +661,7 @@ if(!empty($Patient_data)){
            $noti_input_data = array();
            $noti_input_data['user_id'] = $user_id;
            $noti_input_data['case_id'] = $case_id;
-           $noti_input_data['md_case_id'] = $md_case_id;
+           $noti_input_data['md_case_id'] = $case_data->case_id;
            $noti_input_data['order_id'] = $order_id;
            $noti_input_data['noti_message'] = getNotificationMessageFromKey('topical_initial_case_sent_to_md');
            $noti_input_data['for_month'] = 1;

@@ -95,7 +95,7 @@
                             <div class="col-md-12 col-sm-12 col-xs-12">    
                                 <div class="form-group">
                                     <strong>Short Description</strong>
-                                    {!! Form::textarea('short_description', $product['detail'], array('placeholder' => 'Details','class' => 'form-control')) !!}
+                                    {!! Form::textarea('short_description', strip_tags($product['detail']), array('placeholder' => 'Details','class' => 'form-control')) !!}
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">

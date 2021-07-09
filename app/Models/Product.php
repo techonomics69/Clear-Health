@@ -25,6 +25,9 @@ class Product extends Model
         'section1_title','section1_content','section1_image',
         'section2_title','section2_content','section2_image',
         'section3_title','section3_content','section3_image',
+        'imp_info_title', 'imp_info_content', 'section1_button_show',
+        'section1_button_content', 'section2_button_show', 'section2_button_content',
+        'section3_button_show', 'section3_button_content'
     ];
 
     

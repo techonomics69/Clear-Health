@@ -119,7 +119,7 @@ class CaseManagementController extends Controller
           }
           $user_case_management_data = $user_case_management_data->orderBy('cm.case_status', $columnSortOrder)
                                       ->offset($row)->limit($rowperpage)->get();
-          $usercase_count = $usercase_count->count();
+          $usercase_count = $usercase_count->get()->count();
 
         }else{
           if($searchValue!=''){
@@ -137,7 +137,7 @@ class CaseManagementController extends Controller
           }
           $user_case_management_data = $user_case_management_data->orderBy($columnName, $columnSortOrder)
                                       ->offset($row)->limit($rowperpage)->get();
-          $usercase_count = $usercase_count->count();
+          $usercase_count = $usercase_count->get()->count();
         }
 
         foreach($user_case_management_data as $key => $value){

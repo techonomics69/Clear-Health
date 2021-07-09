@@ -320,7 +320,6 @@ class CheckoutController extends BaseController
         'checkout.handling_fee',
         'checkout.tax',
         'checkout.address_type',
-        'checkout_address.order_id',
         'checkout.cart_amount',
         'checkout.gift_code_discount',
         'checkout.shipstation_order_id'

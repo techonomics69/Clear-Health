@@ -114,6 +114,7 @@ class CaseManagementController extends Controller
         }
 
         foreach($user_case_management_data as $key => $value){
+          $value = json_decode(json_encode($value), true);
           if ($value['md_status'] == 0) {
             $mdStatus = 'pending ';
           } else if ($value['md_status'] == 1) {

@@ -140,7 +140,7 @@
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <strong>Section 1 Button:</strong>
+                                    <strong>Show/hide Section 1 Button:</strong><br>
                                     <!-- <span class="required">*</span> -->
                                     {!! Form::checkbox('section1_button_show', 'true', '') !!}
                                 </div>

@@ -1491,6 +1491,11 @@ table.table tbody td {
   padding: 15px;
 }
 
+#action_items .list_view_outer .pfollows th,
+#action_items .list_view_outer .pfollows td{
+border: 1px solid;
+}
+
 .all_screen_section .list_view_outer .btn {
   line-height: 0.25;
   padding    : 0.5rem 0.5rem;

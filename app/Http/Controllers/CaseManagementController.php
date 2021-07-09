@@ -47,6 +47,155 @@ class CaseManagementController extends Controller
     return view('casemanagement.index', compact('user_case_management_data'))->with('i', ($request->input('page', 1) - 1) * 5);
   }
 
+  public function showList(Request $request){
+        $draw = $request->draw;
+        $row = $request->start;
+        $rowperpage = $request->length; // Rows display per page
+        $columnIndex = $_POST['order'][0]['column']; // Column index
+        $columnName = $_POST['columns'][$columnIndex]['data']; // Column name
+        $columnSortOrder = $_POST['order'][0]['dir']; // asc or desc
+        $totalRecords = CaseManagement::join('users', 'case_managements.user_id', '=', 'users.id')
+                      ->leftjoin('case_histories', 'case_managements.id', '=', 'case_histories.case_id')
+                      ->count();
+        
+        $data = array();
+        $searchValue = $_POST['search']['value']; // search in date, caseid, firstname, lastname, gender, md caseid, 
+        
+        $user_case_management_data = DB::table('case_managements as cm')->join('users as u', 'cm.user_id', '=', 'u.id')
+                    ->leftjoin('case_histories ch', 'cm.id', '=', 'ch.case_id')
+                    ->select('cm.*', 'u.email', 'u.first_name', 'u.last_name',
+                    'u.gender', 'ch.case_status');
+        
+        $usercase_count = DB::table('case_managements as cm')->join('users as u', 'cm.user_id', '=', 'u.id')
+                        ->leftjoin('case_histories ch', 'cm.id', '=', 'ch.case_id')
+                        ->select('cm.*', 'u.email', 'u.first_name', 'u.last_name',
+                        'u.gender', 'ch.case_status');
+
+        if($columnName == 'action'){
+          if($searchValue!=''){
+            $user_case_management_data = $user_case_management_data->where('cm.created_at','like',"%{$searchValue}%")
+                                        ->orWhere('cm.ref_id','like',"%{$searchValue}%")->orWhere('u.first_name','like',"%{$searchValue}%")
+                                        ->orWhere('u.last_name','like',"%{$searchValue}%")->orWhere('u.gender','like',"%{$searchValue}%")
+                                        ->orWhere('cm.md_case_id','like',"%{$searchValue}%");
+
+            $usercase_count = $usercase_count->where('cm.created_at','like',"%{$searchValue}%")
+                            ->orWhere('cm.ref_id','like',"%{$searchValue}%")->orWhere('u.first_name','like',"%{$searchValue}%")
+                            ->orWhere('u.last_name','like',"%{$searchValue}%")->orWhere('u.gender','like',"%{$searchValue}%")
+                            ->orWhere('cm.md_case_id','like',"%{$searchValue}%")->count();                            
+          }else{
+
+          }
+          $user_case_management_data = $user_case_management_data->orderBy('cm.case_status', $columnSortOrder)
+                                      ->offset($row)->limit($rowperpage)->get();
+          $usercase_count = $usercase_count->count();
+
+        }else{
+          if($searchValue!=''){
+            $user_case_management_data = $user_case_management_data->where('cm.created_at','like',"%{$searchValue}%")
+                                        ->orWhere('cm.ref_id','like',"%{$searchValue}%")->orWhere('u.first_name','like',"%{$searchValue}%")
+                                        ->orWhere('u.last_name','like',"%{$searchValue}%")->orWhere('u.gender','like',"%{$searchValue}%")
+                                        ->orWhere('cm.md_case_id','like',"%{$searchValue}%");
+
+            $usercase_count = $usercase_count->where('cm.created_at','like',"%{$searchValue}%")
+                            ->orWhere('cm.ref_id','like',"%{$searchValue}%")->orWhere('u.first_name','like',"%{$searchValue}%")
+                            ->orWhere('u.last_name','like',"%{$searchValue}%")->orWhere('u.gender','like',"%{$searchValue}%")
+                            ->orWhere('cm.md_case_id','like',"%{$searchValue}%")->count();                            
+          }else{
+
+          }
+          $user_case_management_data = $user_case_management_data->orderBy($columnName, $columnSortOrder)
+                                      ->offset($row)->limit($rowperpage)->get();
+          $usercase_count = $usercase_count->count();
+        }
+
+        foreach($user_case_management_data as $key => $value){
+          if ($case_data['md_status'] == 0) {
+            $mdStatus = 'pending ';
+          } else if ($case_data['md_status'] == 1) {
+            $mdStatus = 'support';
+          } else {
+            $mdStatus = 'accepted';
+          }
+
+          switch($value['case_status']){
+              case 'generate_ipledge':
+                    $action1 = ' <a href="https://www.ipledgeprogram.com/iPledgeUI/home.u" target="_blank">
+                                  <span class="badge badge-info">Generate iPledge Credentials</span>
+                                </a>';
+                    break;
+              case 'store_ipledge':
+                    $action1 = ' <a href="'.route('casemanagement.show',$case_data['id']).'"?active=action_items">
+                                  <span class="badge badge-info">Register Ipledge</span>
+                                </a>';
+                    break;
+              case 'verify_pregnancy':
+                    $action1 = '<a href="'.route('casemanagement.show',$case_data['id']).'"?active=pregnancy_test">
+                                  <span class="badge badge-info">Review Pregnancy Test & send case to MD</span>
+                                </a>';
+                    break;
+              case 'prior_auth':
+                    $action1 = '<a href="'.route('casemanagement.show',$case_data['id']).'"?active=prior_auth">
+                                  <span class="badge badge-info">Complete Prior Authorization</span>
+                                </a>';
+                    break;
+              case 'check_off_ipledge':
+                    $action1 = ' <a href="https://www.ipledgeprogram.com/iPledgeUI/home.u" target="_blank">
+                                  <span class="badge badge-info">Check Off Admin iPledge.com Items</span>
+                                </a>';
+                    break;
+              case 'trigger':
+                    $action1 = '<a href="'.route('casemanagement.show',$case_data['id']).'"?active=triggers">
+                                  <span class="badge badge-info">Send Prescription Pickup Notification</span>
+                                </a>';
+                    break;
+              case 'blood_work':
+                    $action1 = '<a href="'.route('casemanagement.show',$case_data['id']).'"?active=blood_work">
+                                  <span class="badge badge-info">Upload Bloodwork Results</span>
+                                </a>';
+                    break;
+              case 'low_income_program':
+                    $action1 = '<a href="'.route('casemanagement.show',$case_data['id']).'"?active=blood_work">
+                                  <span class="badge badge-info">Enroll Absorica Patient Assistance Program</span>
+                                </a>';
+                    break;
+              case 'finish':
+                    $action1 = '<span class="badge badge-info">Finish</span>';
+                    break;
+              default:  
+                    $action1 = '<span class="badge badge-secondary">Action pending from patient</span>';
+                    break;      
+          }
+          $data[] = array(
+            'srno' => ($key + 1),
+            'date' => $value['created_at']->format('d/m/Y'),
+            'caseid' => $case_data['ref_id'],
+            'firstname' => $case_data['first_name'],
+            'lastname' => $case_data['last_name'],
+            'gender' => (!empty($case_data['gender'])) ? strtoupper($case_data['gender'][0]) : '',
+            'visitnumber' => (empty($case_data['follow_up']) ? 1 : ($case_data['follow_up'] + 1),
+            'mdcaseid' => $case_data['md_case_id'],
+            'mdstatus' => $mdStatus,
+            'visittype' => (empty($case_data['follow_up'])) ? 'Initial' : 'FollowUp',
+            'treatmentplan' => ,
+            'pharmacy' => '',
+            'action1' => '<div class="d-flex">
+                      <a class="icons edit-icon" href="'.route('casemanagement.show',$case_data['id']).'"><i class="fa fa-eye"></i></a>
+                      </div>',
+            'action' => $action1, 
+          );
+        }
+
+        $response = array(
+            "draw" => intval($draw),
+            "iTotalRecords" => $totalRecords,
+            "iTotalDisplayRecords" => $usercase_count,
+            "aaData" => $data
+        );
+
+        echo json_encode($response);
+
+  }
+
   /**
    * Show the form for creating a new resource.
    *

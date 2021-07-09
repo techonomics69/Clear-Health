@@ -95,12 +95,12 @@
                             <div class="col-md-12 col-sm-12 col-xs-12">    
                                 <div class="form-group">
                                     <strong>Short Description</strong>
-                                    {!! Form::textarea('short_description', null, array('placeholder' => 'Details','class' => 'form-control')) !!}
+                                    {!! Form::textarea('short_description', {{$product['detail']}}, array('placeholder' => 'Details','class' => 'form-control')) !!}
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <strong>Important Info:</strong>
+                                    <strong>Important Info Title:</strong>
                                     {!! Form::text('imp_info_title', null, array('placeholder' => 'Title of Important information','class' => 'form-control ')) !!}
                                 </div>
                             </div>

@@ -96,7 +96,7 @@
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <strong>Important Info:</strong>
+                                    <strong>Important Info Title:</strong>
                                     {!! Form::text('imp_info_title', null, array('placeholder' => 'Title of Important information','class' => 'form-control ')) !!}
                                 </div>
                             </div>

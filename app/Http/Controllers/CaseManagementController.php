@@ -57,6 +57,33 @@ class CaseManagementController extends Controller
         $totalRecords = CaseManagement::join('users', 'case_managements.user_id', '=', 'users.id')
                       ->leftjoin('case_histories', 'case_managements.id', '=', 'case_histories.case_id')
                       ->count();
+        switch($columnName){
+          case 'srno':
+                $columnName = 'cm.id';
+                break;
+          case 'date':
+                $columnName = 'cm.created_at';
+                break;
+          case 'caseid':
+                $columnName = 'cm.ref_id';
+                break;
+          case 'firstname':
+                $columnName = 'u.first_name';
+                break;
+          case 'lastname':
+                $columnName = 'u.last_name';
+                break;
+          case 'gender':
+                $columnName = 'u.gender';
+                break;
+          case 'mdcaseid':
+                $columnName = 'cm.md_case_id';
+                break;
+          default:
+              $columnName = $columnName;
+              break;
+        }
+
         if($columnName == 'srno'){
           $columnName = 'cm.id';
         }else{

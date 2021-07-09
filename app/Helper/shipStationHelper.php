@@ -19,7 +19,7 @@ class shipStationHelper {
         $Shipaddress = new LaravelShipStation\Models\Address();
         $shippingAdd = DB::table('checkout_address')->select('patient_firstname','patient_lastname',
                         'addressline2','addressline1','city','state','zipcode','phone')
-                        ->where('order_id',$orderData['order_id'])->get();
+                        ->where('order_id',$orderData['checkoutOrderId'])->get();
         if(count($shippingAdd)>0){
             $Shipaddress->name = $shippingAdd[0]->patient_firstname." ".$shippingAdd[0]->patient_lastname;
             $Shipaddress->street1 = $shippingAdd[0]->addressline2;
@@ -116,7 +116,7 @@ class shipStationHelper {
         $Shipaddress = new LaravelShipStation\Models\Address();
         $shippingAdd = DB::table('checkout_address')->select('patient_firstname','patient_lastname',
                         'addressline2','addressline1','city','state','zipcode','phone')
-                        ->where('order_id',$orderData['order_id'])->get();
+                        ->where('order_id',$orderData['checkoutOrderId'])->get();
         if(count($shippingAdd)>0){
             $Shipaddress->name = $shippingAdd[0]->patient_firstname." ".$shippingAdd[0]->patient_lastname;
             $Shipaddress->street1 = $shippingAdd[0]->addressline2;

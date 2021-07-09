@@ -104,7 +104,7 @@
                                 <div class="form-group">
                                     <strong>Important Info details:</strong>
                                     <span class="required">*</span>
-                                    {!! Form::textarea('imp_info_content', null, array('placeholder' => 'Content of important info','class' => 'details')) !!}
+                                    {!! Form::textarea('imp_info_content', null, array('placeholder' => 'Content of important info','class' => 'imp_info')) !!}
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">

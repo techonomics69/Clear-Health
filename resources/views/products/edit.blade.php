@@ -167,7 +167,7 @@
                                 <div class="form-group">
                                     <strong>Show Section 1 Button: :</strong>
                                     <!-- <span class="required">*</span> -->
-                                    {!! Form::checkbox('section1_button_show', $product['section1_button_show'], '') !!}
+                                    {!! Form::checkbox('section1_button_show', 'true', $product['section1_button_show']) !!}
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -220,7 +220,7 @@
                                 <div class="form-group">
                                     <strong>Show Section 2 Button :</strong>
                                     <!-- <span class="required">*</span> -->
-                                    {!! Form::checkbox('section2_button_show', $product['section2_button_show'], '') !!} 
+                                    {!! Form::checkbox('section2_button_show', 'true', $product['section1_button_show']) !!}
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -260,7 +260,7 @@
                                 <div class="form-group">
                                     <strong>Show Section 3 Button:</strong>
                                     <!-- <span class="required">*</span> -->
-                                    {!! Form::checkbox('section3_button_show', $product['section3_button_show'], '') !!}
+                                    {!! Form::checkbox('section3_button_show', 'true', $product['section1_button_show']) !!}
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">

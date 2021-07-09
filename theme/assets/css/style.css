@@ -359,9 +359,11 @@ padding: 1.8rem;
 }
 .accordion .card:nth-child(1) .card-header{
   background-color: #43bfc1;
+    margin: 14px 0px 3px;
   }
-.accordion .card:nth-child(2) .card-header{
+.accordion .card .card-header{
 background-color: #ccc;
+margin: 14px 0px 3px;
 }
 .card-header .card-title{font-size: 18px}
 .switchery{height: 25px!important}

@@ -112,7 +112,7 @@
                                     <strong>Details:</strong>
                                     <span class="required">*</span>
                                     {!! Form::textarea('detail', null, array('placeholder' => 'Details','class' => 'details')) !!}
-                                </div>
+                                </div> 
                             </div>
 
                              <div class="col-md-6 col-sm-6 col-xs-6">

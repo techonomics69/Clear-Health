@@ -199,13 +199,12 @@
         });*/
    });
 
-   $(document).on('change','#filter1',function(){
+   
+
+   $('#filter1').on('change', function(){
     var filter_value = $(this).val();
-    Datatable.ajax.data.search = filter_value;
-    Datatable.ajax.load();
-    //var new_url = Laravel.appURL+'/user/json/'+filter_value;
-    // dtListUsers.ajax.url('+new_url+').load();
-   });
+      
+    });
 
 </script>
 @endsection

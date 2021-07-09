@@ -442,7 +442,7 @@ html body .content .content-wrapper {
 
 .accordion .card .card-header {
   background-color: #ccc;
-  margin          : 14px 0px 3px;
+  /* margin          : 14px 0px 3px; */
 }
 
 .accordion .card .card-header th,

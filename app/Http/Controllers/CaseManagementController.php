@@ -173,7 +173,7 @@ class CaseManagementController extends Controller
           }
           $data[] = array(
             'srno' => ($key + 1),
-            'date' => $value['created_at']->format('d/m/Y'),
+            'date' => date("d/m/Y",strtotime($value['created_at'])),
             'caseid' => $value['ref_id'],
             'firstname' => $value['first_name'],
             'lastname' => $value['last_name'],

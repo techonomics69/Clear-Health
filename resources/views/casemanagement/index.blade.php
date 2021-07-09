@@ -38,6 +38,18 @@
           <!-- <header class="card-header top-heading">                
                 <h3 class="main-title-heading">Users Management</h3> 
               </header> -->
+          <div class="row">
+            <div class="col-md-4">
+                <select id="filter1" class="form-control">
+                    <option value="">--SELECT ACTION--</option>
+                    <option value="All">All</option>
+                    <option value="Action by admin" selected>Action by admin</option>
+                    <option value="Action by Patient">Action by Patient</option>
+                    <option value="Action by Patient">Action by Patient</option>
+                    <option value="No action required">No action required</option>
+                </select>
+            </div>
+          </div>    
           <div class="row" style="padding: 20px;">
             <div class="col-md-12">
               <div class="">

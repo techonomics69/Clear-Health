@@ -340,7 +340,8 @@ class ProductController extends Controller
                 
         toastr()->success('Category updated successfully');
 
-        return redirect()->route('products.index');
+        return redirect()->back();
+        // return redirect()->route('products.index');
     }
     
     /**

@@ -592,7 +592,7 @@
 												</div>
 												
 												<div class="ipledge_outer_design mt24">
-													<table class="table table-responsive-md table-striped no-footer">
+													<table class="table table-bordered table-responsive-md table-striped no-footer">
 														<thead>
 															<tr>
 																<th scope="col">Visit NO.</th>

@@ -198,8 +198,13 @@ class CaseManagementController extends Controller
                     $action1 = '<span class="badge badge-secondary">Action pending from patient</span>';
                     break;      
           }
+          if($columnSortOrder=="asc"){
+              $counter = ($row==0) ? ($usercase_count - ($key)) : ($usercase_count - ($key+$row));    
+          }else{
+              $counter = ($row==0) ? ($key+1) : (($key+1)+$row);
+          }
           $data[] = array(
-            'srno' => ($key + 1),
+            'srno' => $counter,
             'date' => date("d/m/Y",strtotime($value['created_at'])),
             'caseid' => $value['ref_id'],
             'firstname' => $value['first_name'],

@@ -422,6 +422,8 @@ public function ProductRecommendBasedONTretinoinFormula(Request $request)
     $ts2 = 0;
     $data = '';
     $TretinoinFormula = "Topical_low";
+    $user_is_pregnant = 0;
+    $user_is_breastfeeding = 0;
 
     foreach ($recommendation as $key => $value) {
 
@@ -464,20 +466,53 @@ public function ProductRecommendBasedONTretinoinFormula(Request $request)
         }
     }
 
+    //logic for female patient 
+        $question = $value->question;
+
+         if($question == "Are you Pregnant?"){
+            if(isset($value->answer)){
+
+                $answer =  $value->answer;
+
+            if($answer == 'Yes'){
+                $user_is_pregnant = 1;
+                }   
+            }
+        }
+
+         if($question == "Are you breastfeeding?"){
+             if(isset($value->answer)){
+
+                $answer =  $value->answer;
+
+            if($answer == 'Yes'){
+                $user_is_breastfeeding = 1;
+                }   
+            }
+         }
+
+        //end of code 
+
 
 } 
 
-if($ts1 == 1){
-    $TretinoinFormula = 'Topical_low';
-}else if($ts1 == 2){
-    $TretinoinFormula = 'Topical_high';
+if($user_is_pregnant == 1 || $user_is_breastfeeding == 1){
+   $data = 'Azelaic_Acid';
+}else{
+
+    if($ts1 == 1){
+        $TretinoinFormula = 'Topical_low';
+    }else if($ts1 == 2){
+        $TretinoinFormula = 'Topical_high';
+    }
+
+    if($ts2 == 0){
+        $data ='Azelaic_Acid';
+    }else{
+       $data = $TretinoinFormula; 
+    }
 }
 
-if($ts2 == 0){
-    $data = $TretinoinFormula;
-}else{
-    $data ='Azelaic_Acid';
-}
 
 return $this->sendResponse($data, 'Product recommendation successfully.');   
            // }

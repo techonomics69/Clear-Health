@@ -61,7 +61,7 @@ class CaseManagementController extends BaseController
       $case = CaseManagement::OrderBy('id','desc')->first();
       $query = 'insert';
       if(!empty($data['user_id'])):
-        $caseUser = CaseManagement::where('user_id', $data['user_id'])->OrderBy('id','desc')->first();
+        $caseUser = CaseManagement::where('user_id', $data['user_id'],'id', $data['id'])->OrderBy('id','desc')->first();
         if(!empty($caseUser)):
           if($caseUser->case_status != 'completed'):            
             $query = 'update';

@@ -172,11 +172,11 @@ class CaseManagementController extends Controller
             'firstname' => $case_data['first_name'],
             'lastname' => $case_data['last_name'],
             'gender' => (!empty($case_data['gender'])) ? strtoupper($case_data['gender'][0]) : '',
-            'visitnumber' => (empty($case_data['follow_up']) ? 1 : ($case_data['follow_up'] + 1),
+            'visitnumber' => (empty($case_data['follow_up'])) ? 1 : ($case_data['follow_up'] + 1),
             'mdcaseid' => $case_data['md_case_id'],
             'mdstatus' => $mdStatus,
             'visittype' => (empty($case_data['follow_up'])) ? 'Initial' : 'FollowUp',
-            'treatmentplan' => ,
+            'treatmentplan' => '',
             'pharmacy' => '',
             'action1' => '<div class="d-flex">
                       <a class="icons edit-icon" href="'.route('casemanagement.show',$case_data['id']).'"><i class="fa fa-eye"></i></a>

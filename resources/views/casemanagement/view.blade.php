@@ -264,13 +264,14 @@
 																</div>
 															</div>
 															@endforeach
+												<?php $k=$j; ?>			
 														@elseif($key == 8)
 														
 															@foreach($accutane_que as $key => $accutane)
 															<div class="row" style="padding: 10px;">
 																<div class="col-md-12">
 																		
-																		<h4><strong>Que <?php echo ++$j; ?> : <?php echo $accutane->question; ?></strong></h4>
+																		<h4><strong>Que <?php echo ++$k; ?> : <?php echo $accutane->question; ?></strong></h4>
 																		<p>Ans:
 																			<?php if (isset($accutane->answer)) {
 																				$answer =  (array)$accutane->answer;
@@ -286,7 +287,7 @@
 															<div class="row" style="padding: 10px;">
 																<div class="col-md-12">
 																	
-																	<h4><strong>Que <?php echo ++$j; ?> : <?php echo $topical->question; ?></strong></h4>
+																	<h4><strong>Que <?php echo ++$k; ?> : <?php echo $topical->question; ?></strong></h4>
 																	<p>Ans: <?php if (isset($topical->answer)) {
 																				$answer =  (array)$topical->answer;
 																				$getanswer = implode(" ", $answer);

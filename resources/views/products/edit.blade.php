@@ -211,9 +211,16 @@
 
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <strong>Show Section 2 Content:</strong>
+                                    <strong> Section 2 Content:</strong>
                                     <!-- <span class="required">*</span> -->
                                     {!! Form::textarea('section2_content', null, array('placeholder' => 'section2','class' => 'details')) !!}
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <strong>Show Section 2 Button :</strong>
+                                    <!-- <span class="required">*</span> -->
+                                    {!! Form::checkbox('section2_button_show', 'true', '') !!}
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">

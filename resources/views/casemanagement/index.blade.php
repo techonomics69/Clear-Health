@@ -102,7 +102,7 @@
     var token = "{{ csrf_token() }}";
 		var url = "{{ route('casemanagement.showList') }}";
 
-    $('#CaseManagementList').DataTable({
+    var Datatable = $('#CaseManagementList').DataTable({
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
       "bLengthChange": false,
       "bInfo": false,

@@ -200,9 +200,10 @@
    });
 
    $(document).on('change','#filter1',function(){
-      $.post("{{ route('casemanagement.showList') }}",{_token:"{{ csrf_token() }}",filter:$(this).val()},function(data){
-        console.log(data);
-      });
+    var filter_value = $(this).val();
+    
+    //var new_url = Laravel.appURL+'/user/json/'+filter_value;
+    // dtListUsers.ajax.url('+new_url+').load();
    });
 
 </script>

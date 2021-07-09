@@ -231,6 +231,7 @@
 								</div>
 								<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
 									<div class="card-body mb-0">
+										@if(count($category)>0)
 										@foreach($category as $key => $data)
 										<?php $j = 0; ?>
 													@if($key == 7)
@@ -298,6 +299,7 @@
 															@endforeach
 														@endif
 											@endforeach
+											@endif
 									</div>
 								</div>
 							</div>

@@ -357,6 +357,9 @@ padding: 1.8rem;
 .dropdown-menu{
   padding: 0 !important;
 }
+.card:nth-child(2) .card-header{
+background-color: #16D39A;
+}
 .card-header .card-title{font-size: 18px}
 .switchery{height: 25px!important}
 .switchery>small{

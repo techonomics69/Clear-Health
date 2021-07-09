@@ -62,12 +62,12 @@ class CaseManagementController extends Controller
         $searchValue = $_POST['search']['value']; // search in date, caseid, firstname, lastname, gender, md caseid, 
         
         $user_case_management_data = DB::table('case_managements as cm')->join('users as u', 'cm.user_id', '=', 'u.id')
-                    ->leftjoin('case_histories ch', 'cm.id', '=', 'ch.case_id')
+                    ->leftjoin('case_histories as ch', 'cm.id', '=', 'ch.case_id')
                     ->select('cm.*', 'u.email', 'u.first_name', 'u.last_name',
                     'u.gender', 'ch.case_status');
         
         $usercase_count = DB::table('case_managements as cm')->join('users as u', 'cm.user_id', '=', 'u.id')
-                        ->leftjoin('case_histories ch', 'cm.id', '=', 'ch.case_id')
+                        ->leftjoin('case_histories as ch', 'cm.id', '=', 'ch.case_id')
                         ->select('cm.*', 'u.email', 'u.first_name', 'u.last_name',
                         'u.gender', 'ch.case_status');
 

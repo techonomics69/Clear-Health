@@ -98,10 +98,7 @@ class CaseManagementController extends Controller
                     ->select('cm.*', 'u.email', 'u.first_name', 'u.last_name',
                     'u.gender', 'ch.case_status');
         
-        $usercase_count = DB::table('case_managements as cm')->join('users as u', 'cm.user_id', '=', 'u.id')
-                        ->leftjoin('case_histories as ch', 'cm.id', '=', 'ch.case_id')
-                        ->select('cm.*', 'u.email', 'u.first_name', 'u.last_name',
-                        'u.gender', 'ch.case_status');
+       
 
         if($columnName == 'action'){
           if($searchValue!=''){
@@ -110,7 +107,10 @@ class CaseManagementController extends Controller
                                         ->orWhere('u.last_name','like',"%{$searchValue}%")->orWhere('u.gender','like',"%{$searchValue}%")
                                         ->orWhere('cm.md_case_id','like',"%{$searchValue}%");
 
-            $usercase_count = $usercase_count->where('cm.created_at','like',"%{$searchValue}%")
+            $usercase_count = DB::table('case_managements as cm')->join('users as u', 'cm.user_id', '=', 'u.id')
+            ->leftjoin('case_histories as ch', 'cm.id', '=', 'ch.case_id')
+            ->select('cm.*', 'u.email', 'u.first_name', 'u.last_name',
+            'u.gender', 'ch.case_status')->where('cm.created_at','like',"%{$searchValue}%")
                             ->orWhere('cm.ref_id','like',"%{$searchValue}%")->orWhere('u.first_name','like',"%{$searchValue}%")
                             ->orWhere('u.last_name','like',"%{$searchValue}%")->orWhere('u.gender','like',"%{$searchValue}%")
                             ->orWhere('cm.md_case_id','like',"%{$searchValue}%")->get()->count();                            
@@ -119,7 +119,11 @@ class CaseManagementController extends Controller
           }
           $user_case_management_data = $user_case_management_data->orderBy('cm.case_status', $columnSortOrder)
                                       ->offset($row)->limit($rowperpage)->get();
-          $usercase_count = $usercase_count->get()->count();
+                                      
+          $usercase_count = DB::table('case_managements as cm')->join('users as u', 'cm.user_id', '=', 'u.id')
+          ->leftjoin('case_histories as ch', 'cm.id', '=', 'ch.case_id')
+          ->select('cm.*', 'u.email', 'u.first_name', 'u.last_name',
+          'u.gender', 'ch.case_status')->get()->count();
 
         }else{
           if($searchValue!=''){
@@ -128,16 +132,23 @@ class CaseManagementController extends Controller
                                         ->orWhere('u.last_name','like',"%{$searchValue}%")->orWhere('u.gender','like',"%{$searchValue}%")
                                         ->orWhere('cm.md_case_id','like',"%{$searchValue}%");
 
-            $usercase_count = $usercase_count->where('cm.created_at','like',"%{$searchValue}%")
+            $usercase_count = DB::table('case_managements as cm')->join('users as u', 'cm.user_id', '=', 'u.id')
+            ->leftjoin('case_histories as ch', 'cm.id', '=', 'ch.case_id')
+            ->select('cm.*', 'u.email', 'u.first_name', 'u.last_name',
+            'u.gender', 'ch.case_status')->where('cm.created_at','like',"%{$searchValue}%")
                             ->orWhere('cm.ref_id','like',"%{$searchValue}%")->orWhere('u.first_name','like',"%{$searchValue}%")
                             ->orWhere('u.last_name','like',"%{$searchValue}%")->orWhere('u.gender','like',"%{$searchValue}%")
-                            ->orWhere('cm.md_case_id','like',"%{$searchValue}%")->get()->count();                            
+                            ->orWhere('cm.md_case_id','like',"%{$searchValue}%")->get()->count();                         
           }else{
 
           }
           $user_case_management_data = $user_case_management_data->orderBy($columnName, $columnSortOrder)
                                       ->offset($row)->limit($rowperpage)->get();
-          $usercase_count = $usercase_count->get()->count();
+
+          $usercase_count = DB::table('case_managements as cm')->join('users as u', 'cm.user_id', '=', 'u.id')
+          ->leftjoin('case_histories as ch', 'cm.id', '=', 'ch.case_id')
+          ->select('cm.*', 'u.email', 'u.first_name', 'u.last_name',
+          'u.gender', 'ch.case_status')->get()->count();
         }
 
         foreach($user_case_management_data as $key => $value){

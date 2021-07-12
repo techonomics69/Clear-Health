@@ -180,7 +180,7 @@
                             {{-- <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <strong>Section 2:</strong>
-                                    <!-- <span class="required">*</span> -->
+                                    <span class="required">*</span>
                                     {!! Form::textarea('section2', null, array('placeholder' => 'section2','class' => 'details')) !!}
                                 </div>
                             </div> --}}

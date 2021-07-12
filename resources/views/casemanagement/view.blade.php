@@ -2036,7 +2036,7 @@
 
 	}
 	.card .card-header {
-    background-color: #e3ebf3;
+    background-color: #e3ebf3 !important;
 	}
    
 </style>

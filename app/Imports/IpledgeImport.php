@@ -79,7 +79,7 @@ class IpledgeImport implements  OnEachRow
                     
             }else{
 
-                $add = new Ipledge([
+                return new Ipledge([
                         'patient_id'     => $row[0],
                         'addon_date'    => isset($row[1]) ? $row[1] : null,
                         'addon_by' => isset($row[2]) ? $row[2] : "",

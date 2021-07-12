@@ -252,7 +252,7 @@
    
    $('#filter1').on('change', function(){
     var filter_value = $(this).val();
-
+    Datatable.destroy();
   });
    
 

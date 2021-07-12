@@ -123,6 +123,7 @@ class IpledgeimportsController extends Controller
         
       ]);
 
+        dd($documents);
 
          Excel::import(new IpledgeImport($request->patients_type),$request->file('files'));  
 

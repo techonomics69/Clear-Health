@@ -131,7 +131,7 @@ $user_data = User::where('id', $user_id)->first();
 
 
  $shipping_address = Checkoutaddress::select('*')
-   ->where('checkout_address.id',$order_id)
+   ->where('checkout_address.order_id',$order_id)
    ->where('checkout_address.address_type',1)
    ->OrderBy('id', 'DESC')
    ->first();

@@ -49,17 +49,19 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
       $ship_orderIds = array();
 
+      $follow_up_data = array();
+
       foreach($data as $key=>$value){
 
        $follow_up_data = Mdcases::join('follow_up','follow_up.md_case_id', '=','md_cases.case_id' )->select('follow_up.follow_up_no')->where('md_cases.case_id',$value['md_case_id'])->first();
-
-       
 
        $user_id = $value['user_id'];
        $case_id = $value['md_case_id'];
        $system_case_id = $value['id'];
        $user_email =  $value['email'];
        $user_phone = $value['mobile'];
+
+       $gender = $value['gender'];
 
       $order_data = Checkout::where([['user_id', $user_id],['case_id', $system_case_id],['md_case_id', $case_id]])->first();
 
@@ -111,10 +113,6 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
        //end of code for pickup_notification month wise
 
-
-
-        $gender = 'Not known';//0;
-
         $product_type = $value['product_type'];
 
         /*$gender = 'female';//0;
@@ -127,7 +125,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
           $userQueAns = getQuestionAnswerFromUserid($user_id,$system_case_id);
 
-          if(!empty($userQueAns)){
+          /*if(!empty($userQueAns)){
             foreach ($userQueAns as $k => $val) {
              $question = $val->question;
              if($question == "What was your gender assigned at birth?"){
@@ -137,7 +135,9 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
               }
             }
           }
-        }
+        }*/
+
+        //$gender =  $gender = $value['gender'];
 
         if($case_id != '' || $case_id != NULL){
 
@@ -161,6 +161,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
          $response = curl_exec($curl);
 
          $MdCaseStatus = json_decode($response);
+
 
          curl_close($curl);
 
@@ -212,22 +213,22 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
           //end of SMS Check-ins    
 
-
           //if($gender == "Female" && $product_type == 'Accutane' && $case_type = 'new'){
           if($gender == "female" && $product_type == 'Accutane'){ 
 
               //send welcome email 
 
-            if( $support_reason != NULL && $follow_up_data['follow_up_no'] == 0){
+            if( $support_reason != NULL && empty($follow_up_data)){
 
               $email_data = array();
 
-              $email_data['email'] = $user_email;
+              $email_data['email'] = 'itqatester12@gmail.com';//$user_email;
               $email_data['title'] = 'helloclearhealth.com';
               $email_data['body'] = "Welcome Email when prescription is approved detailing Accutane instructions + prompt them to sign forms";
               $email_data['template'] = 'emails.mySendMail';
 
               $email_sent = sendEmail($email_data);
+
             }
 
 
@@ -274,7 +275,8 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                 if($md_case_status == 'completed'){
 
 
-                  if($follow_up_data['follow_up_no'] == 0){
+                  //if($follow_up_data['follow_up_no'] == 0){
+                  if(empty($follow_up_data)){
 
                     if($value['abstinence_form']!= 0 && $value['sign_ipledge_consent']!= 0){
 
@@ -712,7 +714,8 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                     $prescriptionsmsdata['users'] = $user;
                     $prescriptionsmsdata['body'] = "prescription sent";
 
-                  if($follow_up_data['follow_up_no'] == 0 && $value['prior_auth_date'] != NULL){
+                  //if($follow_up_data['follow_up_no'] == 0 && $value['prior_auth_date'] != NULL){
+                  if(empty($follow_up_data) && $value['prior_auth_date'] != NULL){
 
                     $email_sent = sendEmail($prescriptionemail_data);
 
@@ -879,7 +882,8 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
               $md_cases  =  Mdcases::where('case_id',$case_id)->update(['status' =>$MdCaseStatus->case_status->name,'system_status'=> $system_status],['case_status_reason' =>$MdCaseStatus->case_status->reason],['case_status_updated_at' =>$MdCaseStatus->case_status->updated_at]);
 
-              if($follow_up_data['follow_up_no'] == 0 && $MdCaseStatus->case_status->reason != null){
+              //if($follow_up_data['follow_up_no'] == 0 && $MdCaseStatus->case_status->reason != null){
+              if(empty($follow_up_data) && $MdCaseStatus->case_status->reason != null){
 
                  $case_status_reason_input = array();
                  $case_status_reason_input['user_id'] = $user_id;
@@ -1184,7 +1188,7 @@ public function getShipStationOrderStatus(Request $request){
 
          $order_data = Checkout::where([['user_id', $user_id],['case_id', $case_id],['md_case_id', $system_case_id]])->get()->toArray();
          if(!empty($order_data)){
-          $order_id = $order_data['order_id'];
+          $order_id = $order_data['id'];
 
           $user = User::find($user_id);
 
@@ -1243,9 +1247,40 @@ public function getShipStationOrderStatus(Request $request){
                 $patient_dob = date('Ymd', strtotime($patient_data['dob']));
 
 
+                //medicin name
+                $product_type = getUserProduct($user_id,$case_id);
+
+
+                if($product_type == 'Topical_low'){
+
+                 $product_name = "Low Tretinoin 0.04% Topical";
+
+               }
+
+               if($product_type == 'Topical_high'){
+
+                 $product_name = "High Tretinoin 0.09% Topical";
+
+               }
+
+               if($product_type == 'Azelaic_Acid'){
+
+                 $product_name = "Azelaic Acid 5% Topical";
+
+               }
+               if($product_type == 'Accutane'){
+
+                 $product_name = "Isotretinoin capsules";
+
+               }
+
+                //end of code for medicin name
+
+
                 $rx_items= array();
 
                 $rx_items['rx_id'] = $curexa_para['rx_id'];
+                $rx_items['medication_name'] = $product_name;
                 $rx_items['quantity_dispensed'] = $curexa_para['quantity_dispensed'];
                 $rx_items['days_supply'] = $curexa_para['days_supply'];
                 $rx_items['prescribing_doctor'] =  $md_deatail['name'];
@@ -1272,7 +1307,7 @@ public function getShipStationOrderStatus(Request $request){
                     "patient_last_name": '.$patient_data['last_name'].',
                     "patient_dob": '.$patient_dob.',
                     "patient_gender":'.$patient_gender.',
-                    "carrier":"FEDEX",
+                    "carrier":"USPS,",
                     "shipping_method":"",
                     "address_to_name":'.$shipping_address['patient_firstname'].' '.$shipping_address['patient_lastname'].',
                     "address_to_street1":'.$shipping_address['addressline1'].',
@@ -1369,12 +1404,5 @@ public function getShipStationOrderStatus(Request $request){
           $data['body'] = "Hello clear health test sms";
           sendsms($data);
         }
-
-
-
-
-
-
-
 
       }

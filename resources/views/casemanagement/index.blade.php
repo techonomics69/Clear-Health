@@ -59,7 +59,7 @@
                       <th>SR</th>
                       <th>Date</th>
                       <th>CaseID</th>
-                      <th>FirstName</th>
+                      <th>FirstName one</th>
                       <th>LastName</th>
                       <th>Gender</th>
                       <th>VisitNumber</th>

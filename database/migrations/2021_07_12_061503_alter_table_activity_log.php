@@ -13,7 +13,7 @@ class AlterTableActivityLog extends Migration
      */
     public function up()
     {
-        Schema::create('activity_log', function (Blueprint $table) {
+        Schema::table('activity_log', function (Blueprint $table) {
             $table->string('ref_id')->nullable()->after('description');
             $table->string('case_id')->nullable()->after('ref_id');
             $table->string('md_case_id')->nullable()->after('case_id');

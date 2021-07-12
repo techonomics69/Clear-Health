@@ -60,7 +60,7 @@ class CaseManagementController extends Controller
         $filterValue = $request->filterValue;
         switch($filterValue){
           case 'All':
-                
+                // $filterIn = 
                 break;
           case 'Action by admin':
                 break;
@@ -188,8 +188,8 @@ class CaseManagementController extends Controller
                                 </a>';
                     break;
               case 'verify_pregnancy':
-                    $action1 = '<a href="'.route('casemanagement.show',$value['id']).'"?active=pregnancy_test">
-                                  <span class="badge badge-info">Review 1 Pregnancy Test & send case to MD</span>
+                    $action1 = '<a href="'.route('casemanagement.show',[$value['id'], 'active'=>'pregnancy_test']).'"?active=pregnancy_test">
+                                  <span class="badge badge-info">Review  Pregnancy Test & send case to MD</span>
                                 </a>';
                     break;
               case 'prior_auth':

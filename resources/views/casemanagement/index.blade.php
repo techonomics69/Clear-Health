@@ -73,7 +73,38 @@
                     </tr>
                   </thead>
                   <tbody>
-                    
+                  <tr>
+                      <td>SR</td>
+                      <td>Date</td>
+                      <td>CaseID</td>
+                      <td>FirstName</td>
+                      <td>LastName</td>
+                      <td>Gender</td>
+                      <td>VisitNumber</td>
+                      <td>MDCaseID</td>
+                      <td>MDStatus</td>
+                      <td>VisitType</td>
+                      <td>TreatmentPlan</td>
+                      <td>Pharmacy</td>
+                      <td>Action</td>
+                      <td>Actions Needed</td>
+                    </tr>
+                    <tr>
+                      <td>SR</td>
+                      <td>Date</td>
+                      <td>CaseID</td>
+                      <td>FirstName</td>
+                      <td>LastName</td>
+                      <td>Gender</td>
+                      <td>VisitNumber</td>
+                      <td>MDCaseID</td>
+                      <td>MDStatus</td>
+                      <td>VisitType</td>
+                      <td>TreatmentPlan</td>
+                      <td>Pharmacy</td>
+                      <td>Action</td>
+                      <td>Actions Needed</td>
+                    </tr>
                   </tbody>
                 </table>
             

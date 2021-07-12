@@ -71,7 +71,26 @@ class IpledgeImport implements  OnEachRow
         $row      = $row->toArray();
         
         if($rowIndex > 4){
-            echo $row[0]."<br>";
+            $ipledge_data = Ipledge::where('patient_id',$row[0])->get(); 
+
+            $patientstype = $this->patients_type;
+
+            if(!empty($ipledge_data) && count($ipledge_data)>0){
+                    
+            }else{
+
+                $add = new Ipledge([
+                        'patient_id'     => $row[0],
+                        'addon_date'    => isset($row[1]) ? $row[1] : null,
+                        'addon_by' => isset($row[2]) ? $row[2] : "",
+                        'patient_name' => isset($row[3]) ? $row[3] : "",
+                        'patients_type' => $patientstype,
+                        'gender' => isset($row[4]) ? $row[4] : "",
+                        'assigned_date' => isset($row[5]) ? $row[5] : null,
+                        //'assigned_by' => isset($row[]) ? $row['assigned_by'] : "",
+                        'notes' => isset($row[6]) ? $row[6] : "",
+                    ]); 
+            }
         }
 
         // $group = Group::firstOrCreate([

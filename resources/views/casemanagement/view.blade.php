@@ -217,7 +217,7 @@
 							</div>
 							
 							
-							<div class="card">
+							<div class="card subcard">
 								<div class="card-header" id="headingOne">
 									
 										<table width="100%">
@@ -2035,7 +2035,7 @@
 		width: 100%;
 
 	}
-	.card .card-header {
+	.card.subcard.card-header {
     background-color: #e3ebf3 !important;
 	}
    

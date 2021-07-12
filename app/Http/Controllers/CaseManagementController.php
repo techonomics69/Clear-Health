@@ -1007,6 +1007,17 @@ die();*/
     $update = $follow_up->update($data);
 
     if ($update) :
+      $userRole = DB::table('users')->join('roles','users.role','=','roles.id')->select('users.id as userId','roles.name as roleName')
+                  ->where('users.id',Auth::user()->id)->get();
+
+      $activityLog = array();
+      $activityLog['user_type'] = $userRole[0]->roleName;
+      $activityLog['action_module'] = config('activity.action_module.case_management.action_items.pregnancy_test');
+      $activityLog['action']  = config('activity.action.Update');
+      $activityLog['user_id'] = $userRole[0]->userId;
+      $activityLog['description'] = 'Verified pregnancy test';
+      $activityLog['ref_id'] = $request->id;
+      $add_Activity = activityHelper::insertActivity($activityLog);
       toastr()->success('Verified Successfully');
     else :
       toastr()->error('Verification Failed');

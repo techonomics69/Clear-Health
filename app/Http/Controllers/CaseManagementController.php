@@ -1007,7 +1007,7 @@ die();*/
     $update = $follow_up->update($data);
     
     if ($update) :
-      dd($update);
+      
       $userRole = DB::table('users')->join('roles','users.role','=','roles.id')->select('users.id as userId','roles.name as roleName')
                   ->where('users.id',Auth::user()->id)->get();
 

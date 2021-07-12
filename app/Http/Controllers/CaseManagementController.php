@@ -23,6 +23,7 @@ use Session;
 use File;
 use Exception;
 use App\Helper\shipStationHelper;
+use App\Helper\activityHelper;
 use App\Models\Checkout;
 use App\Models\UserPics;
 use App\Models\Activity_log;
@@ -927,7 +928,12 @@ die();*/
     $case = CaseManagement::find($request['case_id']);
 
     if ($case) :
+      dd(Auth::user()->id);
       $case->update($case_data);
+      
+      //Store in activity
+      //$activityLog = array();
+      //$activityLog['user_type'=>]
 
       //send sms to user
         $case = CaseManagement::find($request['case_id']);

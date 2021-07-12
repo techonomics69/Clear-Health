@@ -588,7 +588,7 @@
 																	@if($p_test['pregnancy_test_verify'] == 'true')
 																	<a class="btn btn-secondry ">Verified</a>
 																	@else
-																	<a class="btn btn-secondry " href="{{route('verifyPregnancy')}}?id={{$p_test['id']}}" onclick="return confirm('Are you sure ?')">Verify</a>
+																	<a class="btn btn-secondry " href="{{route('verifyPregnancy')}}?id={{$p_test['id']}}" onclick="return confirm('Are you sure ?')">Verify {{$p_test['id']}}</a>
 																</td>
 																@endif
 															</tr>

@@ -103,48 +103,48 @@
     var token = "{{ csrf_token() }}";
 		var url = "{{ route('casemanagement.showList') }}";
 
-    var Datatable = $('#CaseManagementList').DataTable({
-      "dom": '<"top"if>rt<"bottom"lp><"clear">',
-      "bLengthChange": false,
-      "bInfo": false,
-        language: {search: "", searchPlaceholder: "Search"},
-      'searching': true,
-      'processing': true,
-      'serverSide': true,
-      'serverMethod': 'post',
-      "lengthChange": false,
-      "filter": true,
-        //"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, 'All']],
+    // var Datatable = $('#CaseManagementList').DataTable({
+    //   "dom": '<"top"if>rt<"bottom"lp><"clear">',
+    //   "bLengthChange": false,
+    //   "bInfo": false,
+    //     language: {search: "", searchPlaceholder: "Search"},
+    //   'searching': true,
+    //   'processing': true,
+    //   'serverSide': true,
+    //   'serverMethod': 'post',
+    //   "lengthChange": false,
+    //   "filter": true,
+    //     //"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, 'All']],
 
-      'ajax': {
-          'url':url,
-          'data': {_token:token, filterValue:$("#filter1").val()},
-      },
-      'columns': [
-		      	{ data: 'srno' },
-            { data: 'date' },
-            { data: 'caseid' },
-            { data: 'firstname' },
-            { data: 'lastname' },
-            { data: 'gender' },
-            { data: 'visitnumber' },
-            { data: 'mdcaseid' },
-            { data: 'mdstatus' },
-            { data: 'visittype' },
-            { data: 'treatmentplan' },
-            { data: 'pharmacy' },
-            { data: 'action1' },
-            { data: 'action' },
-            ],aoColumnDefs: [
-              {
-                bSortable: false,
-                aTargets: [ 6,8,9,10,11,12 ]
-              }
-				],
-				language: {
-        			"processing": "Loading....."
-    			},
-    		"order": [[ 0, "desc" ]],  
+    //   'ajax': {
+    //       'url':url,
+    //       'data': {_token:token, filterValue:$("#filter1").val()},
+    //   },
+    //   'columns': [
+		//       	{ data: 'srno' },
+    //         { data: 'date' },
+    //         { data: 'caseid' },
+    //         { data: 'firstname' },
+    //         { data: 'lastname' },
+    //         { data: 'gender' },
+    //         { data: 'visitnumber' },
+    //         { data: 'mdcaseid' },
+    //         { data: 'mdstatus' },
+    //         { data: 'visittype' },
+    //         { data: 'treatmentplan' },
+    //         { data: 'pharmacy' },
+    //         { data: 'action1' },
+    //         { data: 'action' },
+    //         ],aoColumnDefs: [
+    //           {
+    //             bSortable: false,
+    //             aTargets: [ 6,8,9,10,11,12 ]
+    //           }
+		// 		],
+		// 		language: {
+    //     			"processing": "Loading....."
+    // 			},
+    // 		"order": [[ 0, "desc" ]],  
       
 
 			// "paging": true,
@@ -181,7 +181,7 @@
         // scrollCollapse: true,
  
 
-     });
+    //  });
 
     /*$.ajax({
             method:"post",
@@ -202,9 +202,58 @@
         
   //  });
 
+  function InitilizeTable(searchValue){
+    var Datatable = $('#CaseManagementList').DataTable({
+      "dom": '<"top"if>rt<"bottom"lp><"clear">',
+      "bLengthChange": false,
+      "bInfo": false,
+        language: {search: "", searchPlaceholder: "Search"},
+      'searching': true,
+      'processing': true,
+      'serverSide': true,
+      'serverMethod': 'post',
+      "lengthChange": false,
+      "filter": true,
+        //"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, 'All']],
+
+      'ajax': {
+          'url':url,
+          'data': {_token:token, filterValue:searchValue},
+      },
+      'columns': [
+		      	{ data: 'srno' },
+            { data: 'date' },
+            { data: 'caseid' },
+            { data: 'firstname' },
+            { data: 'lastname' },
+            { data: 'gender' },
+            { data: 'visitnumber' },
+            { data: 'mdcaseid' },
+            { data: 'mdstatus' },
+            { data: 'visittype' },
+            { data: 'treatmentplan' },
+            { data: 'pharmacy' },
+            { data: 'action1' },
+            { data: 'action' },
+            ],aoColumnDefs: [
+              {
+                bSortable: false,
+                aTargets: [ 6,8,9,10,11,12 ]
+              }
+				],
+				language: {
+        			"processing": "Loading....."
+    			},
+    		"order": [[ 0, "desc" ]],  
+
+    });
+  }
+
+  InitilizeTable('');
    
    $('#filter1').on('change', function(){
     var filter_value = $(this).val();
+
   });
    
 

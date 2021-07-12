@@ -208,7 +208,7 @@
 										<tr>
 											<td width="25%">Sr No.</td>
 											<td width="25%">Date</td>
-											<td wisth="25%">Product Type</td>
+											<td wisth="25%">Product</td>
 											<td width="25%">Visit type</td>
 											
 										</tr>
@@ -2035,6 +2035,9 @@
 		width: 100%;
 
 	}
+	.card .card-header {
+    background-color: #e3ebf3;
+   
 </style>
 
 <script>

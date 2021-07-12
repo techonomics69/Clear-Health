@@ -925,6 +925,7 @@ die();*/
 
   public function saveiPledgeCredentials(Request $request)
   {
+    dd($request->all());
     $case_data['ipledge_username'] = $request['email'];
     $case_data['ipledge_password'] = $request['password'];
     $case = CaseManagement::find($request['case_id']);

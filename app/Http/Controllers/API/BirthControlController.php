@@ -70,7 +70,7 @@ class BirthControlController extends BaseController
     public function show($id)
     {
         try{
-            $birthControl = Birthcontrol::find($id);
+            $birthControl = Birthcontrol::where('user_id',$id);
             if($birthControl){
                 return $this->sendResponse($birthControl, 'Records found');
 

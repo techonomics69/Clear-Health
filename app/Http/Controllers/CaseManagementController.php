@@ -1014,12 +1014,12 @@ die();*/
       $activityLog = array();
       $activityLog['user_type'] = $userRole[0]->roleName;
       $activityLog['action_module'] = config('activity.action_module.case_management.action_items.pregnancy_test');
-      $activityLog['action']  = config('activity.action.Update');
+      $activityLog['action']  = config('activity.action.update');
       $activityLog['user_id'] = $userRole[0]->userId;
       $activityLog['description'] = 'Verified pregnancy test';
       $activityLog['ref_id'] = $request->id;
       $add_Activity = activityHelper::insertActivity($activityLog);
-      dd($add_Activity);
+      
       toastr()->success('Verified Successfully');
     else :
       toastr()->error('Verification Failed');

@@ -1018,6 +1018,7 @@ die();*/
       $activityLog['user_id'] = $userRole[0]->userId;
       $activityLog['description'] = 'Verified pregnancy test';
       $activityLog['ref_id'] = $request->id;
+      $activityLog['case_id'] = $follow_up['case_id'];
       $add_Activity = activityHelper::insertActivity($activityLog);
       
       toastr()->success('Verified Successfully');

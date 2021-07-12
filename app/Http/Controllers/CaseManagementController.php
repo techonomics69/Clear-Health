@@ -930,7 +930,7 @@ die();*/
     $case = CaseManagement::find($request['case_id']);
 
     if ($case) :
-      dd($case->id);
+      
       $updateCase = CaseManagement::find($request['case_id'])->update($case_data);
       
       //Store in activity

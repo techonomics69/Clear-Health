@@ -207,7 +207,7 @@
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
       "bLengthChange": false,
       "bInfo": false,
-      "bAutoWidth": true,
+      
         language: {search: "", searchPlaceholder: "Search"},
       'searching': true,
       'processing': true,
@@ -236,12 +236,13 @@
             { data: 'pharmacy' },
             { data: 'action1' },
             { data: 'action' },
-            ],aoColumnDefs: [
-              {
-                bSortable: false,
-                aTargets: [ 6,8,9,10,11,12 ]
-              }
-				],
+           ],
+        //aoColumnDefs: [
+        //       {
+        //         bSortable: false,
+        //         aTargets: [ 6,8,9,10,11,12 ]
+        //       }
+				// ],
 				language: {
         			"processing": "Loading....."
     			},
@@ -288,12 +289,13 @@
               { data: 'pharmacy' },
               { data: 'action1' },
               { data: 'action' },
-              ],aoColumnDefs: [
-                {
-                  bSortable: false,
-                  aTargets: [ 6,8,9,10,11,12 ]
-                }
-          ],
+              ]
+          //     ,aoColumnDefs: [
+          //       {
+          //         bSortable: false,
+          //         aTargets: [ 6,8,9,10,11,12 ]
+          //       }
+          // ],
           language: {
                 "processing": "Loading....."
             },

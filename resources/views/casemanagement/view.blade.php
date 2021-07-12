@@ -1582,6 +1582,19 @@
 														<th>Description</th>
 													</tr>
 												</thead>
+												<tbody>
+													@if(count($logs)>0)
+														@foreach($logs as $lkey => $lvalue)
+															<tr>
+																<td><?php echo date("Y-m-d h:i a",strtotime($lvalue->created_at)); ?></td>
+																<td>{{$lvalue->action}}</td>
+																<td>{{$lvalue->module}}</td>
+																<td>{{$lvalue->user_type}}</td>
+																<td>{{$lvalue->Description}}</td>
+															</tr>
+														@endforeach
+													@endif
+												</tbody>
 											</table>		
 												
 

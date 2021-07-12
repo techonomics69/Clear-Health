@@ -1019,6 +1019,7 @@ die();*/
       $activityLog['description'] = 'Verified pregnancy test';
       $activityLog['ref_id'] = $request->id;
       $add_Activity = activityHelper::insertActivity($activityLog);
+      dd($add_Activity);
       toastr()->success('Verified Successfully');
     else :
       toastr()->error('Verification Failed');

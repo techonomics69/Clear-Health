@@ -195,7 +195,7 @@
 
                             <div class="col-md-6 col-sm-6 col-xs-6">
                                 <div class="form-group">
-                                    <strong>Section 2 Image:</strong>
+                                    <strong>Section 2 Image dfdsf:</strong>
                                     <!-- <span class="required">*</span> -->
                                     {!! Form::file('section2_image', null, array('class' => 'form-control')) !!}
                                 </div>

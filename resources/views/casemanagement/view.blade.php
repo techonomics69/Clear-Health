@@ -1590,7 +1590,7 @@
 																<td>{{$lvalue->action}}</td>
 																<td>{{$lvalue->module}}</td>
 																<td>{{$lvalue->user_type}}</td>
-																<td>{{$lvalue->Description}}</td>
+																<td>{{$lvalue->description}}</td>
 															</tr>
 														@endforeach
 													@endif

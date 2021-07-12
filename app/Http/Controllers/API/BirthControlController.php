@@ -43,7 +43,8 @@ class BirthControlController extends BaseController
         try{
             $data = $request->all();
             $validator = Validator::make($data, [
-                'user_name' => 'required',
+                // 'user_name' => 'required',
+                'user_id'   =>  'required',
             ]);
             if($validator->fails()){
                 return $this->sendError('Validation Error.', $validator->errors()->all());       
@@ -72,7 +73,7 @@ class BirthControlController extends BaseController
             $birthControl = Birthcontrol::find($id);
             if($birthControl){
                 return $this->sendResponse($birthControl, 'Records found');
-                
+
             }
             return $this->sendError('Server error','No Records found');
         }catch(\Exception $ex){

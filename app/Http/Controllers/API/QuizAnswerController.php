@@ -419,7 +419,7 @@ public function ProductRecommendBasedONTretinoinFormula(Request $request)
     $recommendation = json_decode($answer_data[0]['answer']);
 
     $ts1 = 0;
-    $ts2 = 0;
+    $ts2 = '';
     $data = '';
     $TretinoinFormula = "Topical_low";
     $user_is_pregnant = 0;

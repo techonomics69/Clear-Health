@@ -39,27 +39,27 @@ class IpledgeImport implements ToModel, WithHeadingRow, WithStartRow
     public function model(array $row)
     {
         
-        dd($row[0]);
-        $ipledge_data = Ipledge::where('patient_id',$row['patient_id'])->get(); 
+        print_r($row)."<br>";
+        // $ipledge_data = Ipledge::where('patient_id',$row['patient_id'])->get(); 
 
-            $patientstype = $this->patients_type;
+        //     $patientstype = $this->patients_type;
 
-        if(!empty($ipledge_data) && count($ipledge_data)>0){
+        // if(!empty($ipledge_data) && count($ipledge_data)>0){
                 
-        }else{
+        // }else{
 
-            return new Ipledge([
-            'patient_id'     => $row['patient_id'],
-            'addon_date'    => isset($row['addon_date']) ? $row['addon_date'] : null,
-            'addon_by' => isset($row['addon_by']) ? $row['addon_by'] : "",
-            'patient_name' => isset($row['patient_name']) ? $row['patient_name'] : "",
-            'patients_type' => $patientstype,
-            'gender' => isset($row['gender']) ? $row['gender'] : "",
-            'assigned_date' => isset($row['assigned_date']) ? $row['assigned_date'] : null,
-            'assigned_by' => isset($row['assigned_by']) ? $row['assigned_by'] : "",
-            'notes' => isset($row['notes']) ? $row['notes'] : "",
-        ]); 
-        }
+        //     return new Ipledge([
+        //     'patient_id'     => $row['patient_id'],
+        //     'addon_date'    => isset($row['addon_date']) ? $row['addon_date'] : null,
+        //     'addon_by' => isset($row['addon_by']) ? $row['addon_by'] : "",
+        //     'patient_name' => isset($row['patient_name']) ? $row['patient_name'] : "",
+        //     'patients_type' => $patientstype,
+        //     'gender' => isset($row['gender']) ? $row['gender'] : "",
+        //     'assigned_date' => isset($row['assigned_date']) ? $row['assigned_date'] : null,
+        //     'assigned_by' => isset($row['assigned_by']) ? $row['assigned_by'] : "",
+        //     'notes' => isset($row['notes']) ? $row['notes'] : "",
+        // ]); 
+        // }
        
         
     }

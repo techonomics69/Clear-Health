@@ -33,6 +33,7 @@ use LaravelShipStation\ShipStation;
 use Illuminate\Support\Facades\App;
 use App\Models\Subscription;
 use DB;
+use Auth;
 
 
 class CaseManagementController extends Controller

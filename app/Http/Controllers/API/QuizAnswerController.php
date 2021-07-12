@@ -506,7 +506,7 @@ if($user_is_pregnant == 1 || $user_is_breastfeeding == 1){
         $TretinoinFormula = 'Topical_high';
     }
 
-    if($ts2 == 0){
+    if($ts2 === 0){
         $data ='Azelaic_Acid';
     }else{
        $data = $TretinoinFormula;

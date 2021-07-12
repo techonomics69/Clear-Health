@@ -1575,14 +1575,14 @@
 											<table class="table table-responsive-md table-striped no-footer">
 												<thead>
 													<tr>
-														<th>Date</th>
-														<th>Action</th>
-														<th>Action in</th>
-														<th>Action performed by</th>
-														<th>Description</th>
+														<th scope="col">Date</th>
+														<th scope="col">Action</th>
+														<th scope="col">Action in</th>
+														<th scope="col">Action performed by</th>
+														<th scope="col">Description</th>
 													</tr>
 												</thead>
-												<tbody>
+												<tbody class="list_view_outer">
 													@if(count($logs)>0)
 														@foreach($logs as $lkey => $lvalue)
 															<tr>

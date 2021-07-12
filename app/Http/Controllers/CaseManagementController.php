@@ -1265,16 +1265,17 @@ die();*/
     $documents = $request->file('file');
 
     $this->validate($request, [
-      'file' => 'required|mimes:jpg,jpeg,png,pdf',
+      'file' => 'required',
     ], [
       'file.required' => 'Blood Work Test file field is required.',
-      'file.mimes' => 'Blood Work  File must be a file of type:jpg,jpeg,png,pdf',
+      //'file.mimes' => 'Blood Work  File must be a file of type:jpg,jpeg,png,pdf',
 
     ]);
 
 
     if (!empty($documents)) {
       $file =  $documents->getClientOriginalName();
+      dd($file);
       $doc_file_name =  time() . '-' . $file;
       //$doc_file_name = time() . '-' . $doc->getClientOriginalExtension();
 

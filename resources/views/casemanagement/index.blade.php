@@ -169,9 +169,9 @@
     var Datatable = $('#CaseManagementList').DataTable({
      "dom": '<"top"if>rt<"bottom"lp><"clear">',
     
-       "bLengthChange": false,
-        // "bAutoWidth": false,
-         "bInfo": false,
+      //  "bLengthChange": false,
+      //   // "bAutoWidth": false,
+      //    "bInfo": false,
        
   //     //scrollX:  true,
   //       language: {search: "", searchPlaceholder: "Search"},

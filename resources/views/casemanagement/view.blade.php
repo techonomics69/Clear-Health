@@ -586,9 +586,9 @@
 																<td>{{$p_test['follow_up_no']}}</td>
 																<td><a href="{{ url('/public/images/Users/') }}/{{$p_test['pregnancy_test']}}" target="_blank"><i class="fa fa-eye"></i></a> /
 																	@if($p_test['pregnancy_test_verify'] == 'true')
-																	<a class="btn btn-secondry ">Verified</a>
+																	<a class="btn btn-secondry ">Verified {{$p_test['id']}}</a>
 																	@else
-																	<a class="btn btn-secondry " href="{{route('verifyPregnancy')}}?id={{$p_test['id']}}" onclick="return confirm('Are you sure ?')">Verify</a>
+																	<a class="btn btn-secondry " href="{{route('verifyPregnancy')}}?id={{$p_test['id']}}" onclick="return confirm('Are you sure ?')">Verify </a>
 																</td>
 																@endif
 															</tr>

@@ -41,7 +41,7 @@ class UserController extends BaseController
       }
 
       if(isset($request['mobile'])){
-      	 $input['mobile'] =  preg_replace('~.*(\d{3})[^\d]{0,7}(\d{3})[^\d]{0,7}(\d{4}).*~', '($1) $2-$3', $request['mobile']). "\n";
+      	 $input['mobile'] =  preg_replace('~.*(\d{3})[^\d]{0,7}(\d{3})[^\d]{0,7}(\d{4}).*~', '($1) $2-$3', $request['mobile']);
 
       }
 

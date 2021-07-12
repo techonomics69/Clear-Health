@@ -40,6 +40,11 @@ class UserController extends BaseController
         $input['dob'] = date('Y-m-d', strtotime($request['dob']));
       }
 
+      if(isset($request['mobile'])){
+      	 $input['mobile'] =  preg_replace('~.*(\d{3})[^\d]{0,7}(\d{3})[^\d]{0,7}(\d{4}).*~', '($1) $2-$3', $request['mobile']). "\n";
+
+      }
+
       $user->update($input);
 
       return $this->sendResponse(array(), 'User Updated successfully');

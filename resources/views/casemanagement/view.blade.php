@@ -660,11 +660,11 @@
 									<div id="priorauthtab" class="tab-pane fade in">
 										<section class="all_screen_section">
 											<div class="Outer_box_design">
-												@if(empty($user_case_management_data['prior_auth']) || $user_case_management_data['prior_auth'] == 0)
+												
 												<div class="ipledge_button m-0">
 													<a class="btn btn-secondry" href="javascript:void(0);" onclick="openprior();"><i class="fa fa-plus" aria-hidden="true"></i> Add New</a>
 												</div>
-												@endif
+												
 												<div class="ipledge_outer_design outre_boxes mt24 priorauth priorshow priorhide">
 													{!! Form::open(array('route' => 'priorAuth','method'=>'POST','enctype'=>"multipart/form-data",'id'=>'p_test_form')) !!}
 

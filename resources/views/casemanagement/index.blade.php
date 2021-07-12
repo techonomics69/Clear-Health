@@ -170,7 +170,7 @@
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
     
       "bLengthChange": false,
-        "bAutoWidth": true,
+       "bAutoWidth": false,
         "bInfo": false,
        
       //scrollX:  true,

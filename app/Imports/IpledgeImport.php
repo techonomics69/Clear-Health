@@ -78,18 +78,16 @@ class IpledgeImport implements  OnEachRow
             if(!empty($ipledge_data) && count($ipledge_data)>0){
                     
             }else{
-
-                return new Ipledge([
-                        'patient_id'     => $row[0],
-                        'addon_date'    => isset($row[1]) ? date("Y-m-d",strtotime($row[1])) : null,
-                        'addon_by' => isset($row[2]) ? $row[2] : "",
-                        'patient_name' => isset($row[3]) ? $row[3] : "",
-                        'patients_type' => $patientstype,
-                        'gender' => isset($row[4]) ? $row[4] : "",
-                        'assigned_date' => isset($row[5]) ? $row[5] : null,
-                        //'assigned_by' => isset($row[]) ? $row['assigned_by'] : "",
-                        'notes' => isset($row[6]) ? $row[6] : "",
-                    ]); 
+                $ipledge = new Ipledge();
+                $ipledge->patient_id = $row[0];
+                $ipledge->addon_date = isset($row[1]) ? date("Y-m-d",strtotime($row[1])) : null;
+                $ipledge->addon_by = isset($row[2]) ? $row[2] : "";
+                $ipledge->patient_name =  isset($row[3]) ? $row[3] : "";
+                $ipledge->patients_type = $patientstype;
+                $ipledge->gender = isset($row[4]) ? $row[4] : "";
+                $ipledge->assigned_date = isset($row[5]) ? date("Y-m-d",strtotime($row[5])) : null;
+                $ipledge->notes = isset($row[6]) ? $row[6] : "";
+                $ipledge->save();
             }
         }
 

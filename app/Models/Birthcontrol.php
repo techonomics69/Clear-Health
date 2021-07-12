@@ -11,5 +11,5 @@ class Birthcontrol extends Model
     use HasFactory;
     protected $table = 'birthcontrol';
 
-    protected $fillable = ['user_name','user_id'];
+    protected $fillable = ['user_name','user_id','answer1','answer2','answer3','answer4'];
 }

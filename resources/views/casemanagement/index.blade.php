@@ -207,6 +207,7 @@
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
       "bLengthChange": false,
       "bInfo": false,
+      
         language: {search: "", searchPlaceholder: "Search"},
       'searching': true,
       'processing': true,

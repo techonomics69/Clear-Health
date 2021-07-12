@@ -46,7 +46,6 @@
                     <option value="All">All</option>
                     <option value="Action by admin" selected>Action by admin</option>
                     <option value="Action by Patient">Action by Patient</option>
-                    <option value="Action by Patient">Action by Patient</option>
                     <option value="No action required">No action required</option>
                 </select>
             </div>

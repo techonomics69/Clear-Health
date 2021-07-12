@@ -57,6 +57,21 @@ class CaseManagementController extends Controller
         $totalRecords = CaseManagement::join('users', 'case_managements.user_id', '=', 'users.id')
                       ->leftjoin('case_histories', 'case_managements.id', '=', 'case_histories.case_id')
                       ->count();
+        $filterValue = $request->filterValue;
+        switch($filterValue){
+          case 'All':
+                $filterIn = 
+                break;
+          case 'Action by admin':
+                break;
+          case 'Action by Patient':
+                break;
+          case 'No action required':
+                break;
+          default:
+                break;
+        }  
+        
         switch($columnName){
           case 'srno':
                 $columnName = 'cm.id';
@@ -174,7 +189,7 @@ class CaseManagementController extends Controller
                     break;
               case 'verify_pregnancy':
                     $action1 = '<a href="'.route('casemanagement.show',$value['id']).'"?active=pregnancy_test">
-                                  <span class="badge badge-info">Review Pregnancy Test & send case to MD</span>
+                                  <span class="badge badge-info">Review 1 Pregnancy Test & send case to MD</span>
                                 </a>';
                     break;
               case 'prior_auth':

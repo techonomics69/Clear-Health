@@ -206,7 +206,7 @@
            
         ],
       'columns': [
-		      	{ data: 'srno' },
+		      	{ data: 'srno', "sWidth": "15%" },
             { data: 'date' },
             { data: 'caseid' },
             { data: 'firstname' },

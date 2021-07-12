@@ -1248,7 +1248,7 @@ public function getShipStationOrderStatus(Request $request){
 
 
                 //medicin name
-                $product_type = getUserProduct($user_id,$case_id);
+                $product_type = getUserProduct($user_id,$system_case_id);
 
 
                 if($product_type == 'Topical_low'){

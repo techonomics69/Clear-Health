@@ -39,7 +39,7 @@
 
                     <div class="row" style="padding: 20px;">
                         <div class="col-md-12">
-                            <table class="table table-responsive-md table-striped table-bordered " style="width:100%" id="Mdmanagement">
+                            <table class="table table-responsive table-striped table-bordered " style="width:100%" id="Mdmanagement">
                                 <thead>
                                     <tr>
                                         <th width="60px">Sr. No</th>

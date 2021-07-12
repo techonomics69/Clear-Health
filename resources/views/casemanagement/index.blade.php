@@ -52,8 +52,8 @@
           </div>    
           <div class="row" style="padding: 20px;">
             <div class="col-md-12">
-              <div class="">
-                <table class="table table-responsive table-striped table-bordered " style=" width:100%" id="CaseManagementList">
+            
+                <table class="table table-responsive table-striped table-bordered nowrap" style=" width:100%" id="CaseManagementList">
                   <thead>
                     <tr>
                       <th>SR</th>
@@ -76,7 +76,7 @@
                     
                   </tbody>
                 </table>
-              </div>
+            
             </div>
 
           </div>
@@ -102,17 +102,17 @@
     var token = "{{ csrf_token() }}";
 		var url = "{{ route('casemanagement.showList') }}";
 
-    var Datatable = $('#CaseManagementList').DataTable({
-      "dom": '<"top"if>rt<"bottom"lp><"clear">',
-      "bLengthChange": false,
-      "bInfo": false,
+    // var Datatable = $('#CaseManagementList').DataTable({
+    //   "dom": '<"top"if>rt<"bottom"lp><"clear">',
+    //   "bLengthChange": false,
+    //   "bInfo": false,
      
       
 
 			// "paging": true,
 			// "autoWidth": true,
 			// "fixedHeader": true,
-		  // "aoColumnDefs": [
+		  //  "aoColumnDefs": [
      
       //       {"sWidth": "7%", "aTargets": [0]},
       //       {"sWidth": "7%", "aTargets": [1]},
@@ -136,7 +136,7 @@
     //     "fixedHeader": {
     //     header: true,
     //     scrollY:        "300px",
-    //  scrollX:        true,
+     // scrollX:        true,
     //  scrollCollapse:true,
     // },
  
@@ -162,109 +162,130 @@
         });*/
 
         
-   });
+  //  });
   
 
-  function InitilizeTable(searchValue){
+  // function InitilizeTable(searchValue){
     var Datatable = $('#CaseManagementList').DataTable({
-      "dom": '<"top"if>rt<"bottom"lp><"clear">',
-      "bLengthChange": false,
-      "bInfo": false,
+     "dom": '<"top"if>rt<"bottom"lp><"clear">',
+    
+       "bLengthChange": false,
+        // "bAutoWidth": false,
+         "bInfo": false,
+       
+  //     //scrollX:  true,
+  //       language: {search: "", searchPlaceholder: "Search"},
+  //     'searching': true,
+  //     'processing': true,
+  //     'serverSide': true,
+  //     'serverMethod': 'post',
+  //     // "lengthChange": false,
+  //     "filter": true,
+  //       //"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, 'All']],
+
+  //     'ajax': {
+  //         'url':url,
+  //         'data': {_token:token, filterValue:searchValue},
+  //     },
+  //     	// 	   "aoColumnDefs": [
      
-        language: {search: "", searchPlaceholder: "Search"},
-      'searching': true,
-      'processing': true,
-      'serverSide': true,
-      'serverMethod': 'post',
-      "lengthChange": false,
-      "filter": true,
-        //"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, 'All']],
+  //       //     {"sWidth": "7%", "aTargets": [0]},
+  //       //     {"sWidth": "7%", "aTargets": [1]},
+  //       //     {"sWidth": "7%", "aTargets": [2]},
+  //       //     {"sWidth": "7%", "aTargets": [3]},
+  //       //     {"sWidth": "7%", "aTargets": [4]},
+  //       //     {"sWidth": "7%", "aTargets": [5]},
+  //       //     {"sWidth": "7%", "aTargets": [6]},
+  //       //     {"sWidth": "7%", "aTargets": [7]},
+  //       //     {"sWidth": "7%", "aTargets": [8]},
+  //       //     {"sWidth": "7%", "aTargets": [9]},
+  //       //     {"sWidth": "7%", "aTargets": [10]},
+  //       //     {"sWidth": "7%", "aTargets": [11]},
+  //       //     {"sWidth": "7%", "aTargets": [12]},
+  //       //     {"sWidth": "7%", "aTargets": [13]},
+           
+  //       // ],
+  //     'columns': [
+	// 	      	{ data: 'srno', "sWidth": "15%","aTargets": [0] },
+  //           { data: 'date' },
+  //           { data: 'caseid' },
+  //           { data: 'firstname' },
+  //           { data: 'lastname' },
+  //           { data: 'gender' },
+  //           { data: 'visitnumber' },
+  //           { data: 'mdcaseid' },
+  //           { data: 'mdstatus' },
+  //           { data: 'visittype' },
+  //           { data: 'treatmentplan' },
+  //           { data: 'pharmacy' },
+  //           { data: 'action1' },
+  //           { data: 'action' },
+  //           ],aoColumnDefs: [
+  //             {
+  //               bSortable: false,
+  //               aTargets: [ 6,8,9,10,11,12 ]
+  //             }
+	// 			],
+	// 			language: {
+  //       			"processing": "Loading....."
+  //   			},
+  //   		"order": [[ 0, "desc" ]],  
 
-      'ajax': {
-          'url':url,
-          'data': {_token:token, filterValue:searchValue},
-      },
-      'columns': [
-		      	{ data: 'srno' },
-            { data: 'date' },
-            { data: 'caseid' },
-            { data: 'firstname' },
-            { data: 'lastname' },
-            { data: 'gender' },
-            { data: 'visitnumber' },
-            { data: 'mdcaseid' },
-            { data: 'mdstatus' },
-            { data: 'visittype' },
-            { data: 'treatmentplan' },
-            { data: 'pharmacy' },
-            { data: 'action1' },
-            { data: 'action' },
-            ],aoColumnDefs: [
-              {
-                bSortable: false,
-                aTargets: [ 6,8,9,10,11,12 ]
-              }
-				],
-				language: {
-        			"processing": "Loading....."
-    			},
-    		"order": [[ 0, "desc" ]],  
+   });
+  // }
 
-    });
-  }
-
-  //InitilizeTable('');
+  // InitilizeTable('');
    
-   $('#filter1').on('change', function(){
-    var filter_value = $(this).val();
-    $("#CaseManagementList").DataTable().destroy();
+  //  $('#filter1').on('change', function(){
+  //   var filter_value = $(this).val();
+  //   $("#CaseManagementList").DataTable().destroy();
     
-      var Datatable = $('#CaseManagementList').DataTable({
-        "dom": '<"top"if>rt<"bottom"lp><"clear">',
-        "bLengthChange": false,
-        "bInfo": false,
-          language: {search: "", searchPlaceholder: "Search"},
-        'searching': true,
-        'processing': true,
-        'serverSide': true,
-        'serverMethod': 'post',
-        "lengthChange": false,
-        "filter": true,
-          //"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, 'All']],
+  //     var Datatable = $('#CaseManagementList').DataTable({
+  //       "dom": '<"top"if>rt<"bottom"lp><"clear">',
+  //       "bLengthChange": false,
+  //       "bInfo": false,
+  //         language: {search: "", searchPlaceholder: "Search"},
+  //       'searching': true,
+  //       'processing': true,
+  //       'serverSide': true,
+  //       'serverMethod': 'post',
+  //       "lengthChange": false,
+  //       "filter": true,
+  //         //"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, 'All']],
 
-        'ajax': {
-            'url':url,
-            'data': {_token:token, filterValue:filter_value},
-        },
-        'columns': [
-              { data: 'srno' },
-              { data: 'date' },
-              { data: 'caseid' },
-              { data: 'firstname' },
-              { data: 'lastname' },
-              { data: 'gender' },
-              { data: 'visitnumber' },
-              { data: 'mdcaseid' },
-              { data: 'mdstatus' },
-              { data: 'visittype' },
-              { data: 'treatmentplan' },
-              { data: 'pharmacy' },
-              { data: 'action1' },
-              { data: 'action' },
-              ],aoColumnDefs: [
-                {
-                  bSortable: false,
-                  aTargets: [ 6,8,9,10,11,12 ]
-                }
-          ],
-          language: {
-                "processing": "Loading....."
-            },
-          "order": [[ 0, "desc" ]],  
+  //       'ajax': {
+  //           'url':url,
+  //           'data': {_token:token, filterValue:filter_value},
+  //       },
+  //       'columns': [
+  //             { data: 'srno' },
+  //             { data: 'date' },
+  //             { data: 'caseid' },
+  //             { data: 'firstname' },
+  //             { data: 'lastname' },
+  //             { data: 'gender' },
+  //             { data: 'visitnumber' },
+  //             { data: 'mdcaseid' },
+  //             { data: 'mdstatus' },
+  //             { data: 'visittype' },
+  //             { data: 'treatmentplan' },
+  //             { data: 'pharmacy' },
+  //             { data: 'action1' },
+  //             { data: 'action' },
+  //             ],aoColumnDefs: [
+  //               {
+  //                 bSortable: false,
+  //                 aTargets: [ 6,8,9,10,11,12 ]
+  //               }
+  //         ],
+  //         language: {
+  //               "processing": "Loading....."
+  //           },
+  //         "order": [[ 0, "desc" ]],  
 
-      });
+  //     });
     
-  });
+  // });
    
 
 </script>

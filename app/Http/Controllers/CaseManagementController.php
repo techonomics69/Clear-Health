@@ -925,13 +925,15 @@ die();*/
 
   public function saveiPledgeCredentials(Request $request)
   {
+    
     $case_data['ipledge_username'] = $request['email'];
     $case_data['ipledge_password'] = $request['password'];
     $case = CaseManagement::find($request['case_id']);
 
     if ($case) :
       
-      $updateCase = CaseManagement::find($request['case_id'])->update($case_data);
+      $updateCase = CaseManagement::where('id',$request['case_id'])->update($case_data);
+
       
       //Store in activity
       $userRole = DB::table('users')->join('roles','users.role','=','roles.id')->select('users.id as userId','roles.name as roleName')
@@ -966,9 +968,9 @@ die();*/
 
 
           $ipledge_credentials_input = array();
-          $ipledge_credentials_input['user_id'] = $user_id;
-          $ipledge_credentials_input['case_id'] = $system_case_id;
-          $ipledge_credentials_input['md_case_id'] = $case_id;
+          $ipledge_credentials_input['user_id'] = $case['user_id'];
+          $ipledge_credentials_input['case_id'] = $request['case_id'];
+          $ipledge_credentials_input['md_case_id'] = $case['md_case_id'];
           $ipledge_credentials_input['name'] = "ipledge_credentials_sent_notification";
           $ipledge_credentials_input['month'] = 1;
 

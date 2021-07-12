@@ -1275,7 +1275,8 @@ die();*/
 
     if (!empty($documents)) {
       $file =  $documents->getClientOriginalName();
-      dd($file);
+      $ext = pathinfo($file, PATHINFO_EXTENSION);
+      dd($ext);
       $doc_file_name =  time() . '-' . $file;
       //$doc_file_name = time() . '-' . $doc->getClientOriginalExtension();
 

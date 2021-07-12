@@ -33,6 +33,8 @@ use LaravelShipStation\ShipStation;
 use Illuminate\Support\Facades\App;
 use App\Models\Subscription;
 use DB;
+use Auth;
+use Config;
 
 
 class CaseManagementController extends Controller
@@ -923,17 +925,28 @@ die();*/
 
   public function saveiPledgeCredentials(Request $request)
   {
+    
     $case_data['ipledge_username'] = $request['email'];
     $case_data['ipledge_password'] = $request['password'];
     $case = CaseManagement::find($request['case_id']);
 
     if ($case) :
-      dd(Auth::user()->id);
-      $case->update($case_data);
+      
+      $updateCase = CaseManagement::where('id',$request['case_id'])->update($case_data);
+
       
       //Store in activity
-      //$activityLog = array();
-      //$activityLog['user_type'=>]
+      $userRole = DB::table('users')->join('roles','users.role','=','roles.id')->select('users.id as userId','roles.name as roleName')
+                  ->where('users.id',Auth::user()->id)->get();
+
+      $activityLog = array();
+      $activityLog['user_type'] = $userRole[0]->roleName;
+      $activityLog['action_module'] = config('activity.action_module.case_management.action_items.ipledge');
+      $activityLog['action']  = config('activity.action.insert');
+      $activityLog['user_id'] = $userRole[0]->userId;
+      $activityLog['description'] = 'Stored ipledge creadential';
+      $activityLog['case_id'] = $request['case_id'];
+      $add_Activity = activityHelper::insertActivity($activityLog);
 
       //send sms to user
         $case = CaseManagement::find($request['case_id']);
@@ -955,9 +968,9 @@ die();*/
 
 
           $ipledge_credentials_input = array();
-          $ipledge_credentials_input['user_id'] = $user_id;
-          $ipledge_credentials_input['case_id'] = $system_case_id;
-          $ipledge_credentials_input['md_case_id'] = $case_id;
+          $ipledge_credentials_input['user_id'] = $case['user_id'];
+          $ipledge_credentials_input['case_id'] = $request['case_id'];
+          $ipledge_credentials_input['md_case_id'] = $case['md_case_id'];
           $ipledge_credentials_input['name'] = "ipledge_credentials_sent_notification";
           $ipledge_credentials_input['month'] = 1;
 

@@ -193,7 +193,7 @@ class CaseManagementController extends Controller
                                 </a>';
                     break;
               case 'prior_auth':
-                    $action1 = "<a href='".route('casemanagement.show',$value['id'])."?active=prior_auth"'>
+                    $action1 = '<a href="'.route('casemanagement.show',$value['id']).'"?active=prior_auth">
                                   <span class="badge badge-info">Complete Prior Authorization</span>
                                 </a>';
                     break;

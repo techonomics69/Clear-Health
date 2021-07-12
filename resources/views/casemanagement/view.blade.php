@@ -1588,7 +1588,7 @@
 															<tr>
 																<td><?php echo date("Y-m-d h:i a",strtotime($lvalue->created_at)); ?></td>
 																<td>{{$lvalue->action}}</td>
-																<td>{{$lvalue->module}}</td>
+																<td>{{$lvalue->action_module}}</td>
 																<td>{{$lvalue->user_type}}</td>
 																<td>{{$lvalue->description}}</td>
 															</tr>

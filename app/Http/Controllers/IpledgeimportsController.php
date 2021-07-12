@@ -127,7 +127,7 @@ class IpledgeimportsController extends Controller
 
          Excel::import(new IpledgeImport($request->patients_type),$request->file('files'));  
 
-         die();
+         
 
         if(!empty($documents)){
 

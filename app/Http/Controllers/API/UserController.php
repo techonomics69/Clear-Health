@@ -41,7 +41,7 @@ class UserController extends BaseController
       }
 
       if(isset($request['mobile'])){
-      	 $input['mobile'] =  preg_replace('~.*(\d{3})[^\d]{0,7}(\d{3})[^\d]{0,7}(\d{4}).*~', '($1) $2-$3', $request['mobile']);
+         $input['mobile'] =  preg_replace('~.*(\d{3})[^\d]{0,7}(\d{3})[^\d]{0,7}(\d{4}).*~', '($1) $2-$3', $request['mobile']);
 
       }
 
@@ -185,8 +185,6 @@ class UserController extends BaseController
         $patient_id = create_patient($user_id, $case_id, $order_id);
         //end of code create patient api 
       }
-
-
 
 
       if ($patient_id != '' && $data == 1) {

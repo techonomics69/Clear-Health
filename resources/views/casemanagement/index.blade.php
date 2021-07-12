@@ -168,8 +168,11 @@
   function InitilizeTable(searchValue){
     var Datatable = $('#CaseManagementList').DataTable({
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
+    
       "bLengthChange": false,
-      "bInfo": false,
+        "bAutoWidth": true,
+        "bInfo": false,
+       
       //scrollX:  true,
         language: {search: "", searchPlaceholder: "Search"},
       'searching': true,

@@ -27,6 +27,11 @@ class IpledgeImport implements ToModel, WithHeadingRow, WithStartRow
       $this->patients_type= $patients_type; 
   }
 
+  public function startRow(): int
+    {
+        return 3;
+    }
+
      // function __construct($patients_type) {
      //        $this->$patients_type = $patients_type;
      // }
@@ -34,7 +39,7 @@ class IpledgeImport implements ToModel, WithHeadingRow, WithStartRow
     public function model(array $row)
     {
         
-        dd($row);
+        
         $ipledge_data = Ipledge::where('patient_id',$row['patient_id'])->get(); 
 
             $patientstype = $this->patients_type;
@@ -59,8 +64,5 @@ class IpledgeImport implements ToModel, WithHeadingRow, WithStartRow
         
     }
 
-    public function startRow(): int
-    {
-        return 3;
-    }
+    
 }

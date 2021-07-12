@@ -72,7 +72,7 @@ class BirthControlController extends BaseController
         try{
             $birthControl = Birthcontrol::where('user_id',$id)->get();
             if(count($birthControl)>0){
-                return $this->sendResponse($birthControl, 'Records found');
+                return $this->sendResponse($birthControl[0], 'Records found');
 
             }
             return $this->sendError('Server error','No Records found');

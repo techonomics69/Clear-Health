@@ -931,16 +931,17 @@ die();*/
 
     if ($case) :
       
-      $case->update($case_data);
+      $updateCase = CaseManagement::find($request['case_id'])->update($case_data);
       
       //Store in activity
       $userRole = DB::table('users')->join('roles','users.role','=','roles.id')->select('users.id as userId','roles.name as roleName')
-                  ->where('users.id',Auth::user()->id)->first();
+                  ->where('users.id',Auth::user()->id)->get();
+
       $activityLog = array();
-      $activityLog['user_type'] = $userRole['roleName'];
+      $activityLog['user_type'] = $userRole[0]->roleName;
       $activityLog['action_module'] = config('activity.action_module.case_management.action_items.ipledge');
       $activityLog['action']  = config('activity.action.insert');
-      $activityLog['user_id'] = $userRole['userId'];
+      $activityLog['user_id'] = $userRole[0]->userId;
       $activityLog['description'] = 'Stored ipledge creadential';
       $activityLog['case_id'] = $request['case_id'];
       $add_Activity = activityHelper::insertActivity($activityLog);

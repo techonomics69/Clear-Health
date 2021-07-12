@@ -192,5 +192,6 @@ Route::get('getordershipments/{orderId}',[shipStationController::class, 'getship
 
     //BirthControl
     Route::post("createBirthControl",[BirthControlController::class, 'store']);
+    Route::get("getbirthcontrol/{id}",[BirthControlController::class,'show']);
     
 //});

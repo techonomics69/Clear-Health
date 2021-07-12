@@ -254,7 +254,7 @@
    $('#filter1').on('change', function(){
     var filter_value = $(this).val();
     // InitilizeTable(filter_value);
-    $("#CaseManagementList").DataTable.destroy();
+    $("#CaseManagementList").DataTable().destroy();
     // if($.fn.dataTable.isDataTable( '#CaseManagementList' )){
       var Datatable = $('#CaseManagementList').DataTable({
         "dom": '<"top"if>rt<"bottom"lp><"clear">',

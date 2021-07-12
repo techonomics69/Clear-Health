@@ -1570,10 +1570,21 @@
 										<div class="col-md-12">
 	
 											<div class="box-block mtb32">
-												<h3 class="font-weight-bold"><span class="text-underline">Prescribed products shippments</span></h3>
-	
+												<h3 class="font-weight-bold"><span class="text-underline">Activity log</span></h3>
+											
+											<table class="table-responsive-md table-striped no-footer">
+												<thead>
+													<tr>
+														<th>Date</th>
+														<th>Action</th>
+														<th>Action in</th>
+														<th>Action performed by</th>
+														<th>Description</th>
+													</tr>
+												</thead>
+											</table>		
 												
-												
+
 											</div>
 	
 										</div>

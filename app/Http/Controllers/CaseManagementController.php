@@ -1259,6 +1259,19 @@ die();*/
       $input['bloodwork_date'] = $request['date'];
 
       CaseManagement::whereId($request['case_id'])->update($input);
+
+      $userRole = DB::table('users')->join('roles','users.role','=','roles.id')->select('users.id as userId','roles.name as roleName')
+                  ->where('users.id',Auth::user()->id)->get();
+
+      $activityLog = array();
+      $activityLog['user_type'] = $userRole[0]->roleName;
+      $activityLog['action_module'] = config('activity.action_module.case_management.action_items.boodwork');
+      $activityLog['action']  = config('activity.action.insert');
+      $activityLog['user_id'] = $userRole[0]->userId;
+      $activityLog['description'] = 'Uploaded blood work report';
+      $activityLog['case_id'] = $request['case_id'];
+      $add_Activity = activityHelper::insertActivity($activityLog);
+
       toastr()->success('Blood Work Report Uploaded Successfully');
 
       return redirect()->back();

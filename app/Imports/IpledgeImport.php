@@ -39,7 +39,7 @@ class IpledgeImport implements ToModel, WithHeadingRow, WithStartRow
     public function model(array $row)
     {
         
-        
+        dd($row[0]);
         $ipledge_data = Ipledge::where('patient_id',$row['patient_id'])->get(); 
 
             $patientstype = $this->patients_type;

@@ -127,6 +127,8 @@ class CaseManagementController extends Controller
                                         ->orWhere('cm.ref_id','like',"%{$searchValue}%")->orWhere('u.first_name','like',"%{$searchValue}%")
                                         ->orWhere('u.last_name','like',"%{$searchValue}%")->orWhere('u.gender','like',"%{$searchValue}%")
                                         ->orWhere('cm.md_case_id','like',"%{$searchValue}%");
+            
+                                                   
 
             $usercase_count = DB::table('case_managements as cm')->join('users as u', 'cm.user_id', '=', 'u.id')
             ->leftjoin('case_histories as ch', 'cm.id', '=', 'ch.case_id')
@@ -134,12 +136,31 @@ class CaseManagementController extends Controller
             'u.gender', 'ch.case_status')->where('cm.created_at','like',"%{$searchValue}%")
                             ->orWhere('cm.ref_id','like',"%{$searchValue}%")->orWhere('u.first_name','like',"%{$searchValue}%")
                             ->orWhere('u.last_name','like',"%{$searchValue}%")->orWhere('u.gender','like',"%{$searchValue}%")
-                            ->orWhere('cm.md_case_id','like',"%{$searchValue}%")->get()->count();                            
+                            ->orWhere('cm.md_case_id','like',"%{$searchValue}%");
+            
+            if(!empty($filterValue)){
+              if(count($filterIn)){
+                $user_case_management_data = $user_case_management_data->whereIn('cm.case_status',$filterIn);
+                $usercase_count = $usercase_count->whereIn('cm.case_status',$filterIn);
+              }
+            } 
+                            
+            $usercase_count = $usercase_count->get()->count();                            
+
           }else{
             $usercase_count = DB::table('case_managements as cm')->join('users as u', 'cm.user_id', '=', 'u.id')
             ->leftjoin('case_histories as ch', 'cm.id', '=', 'ch.case_id')
             ->select('cm.*', 'u.email', 'u.first_name', 'u.last_name',
-            'u.gender', 'ch.case_status')->get()->count();
+            'u.gender', 'ch.case_status');
+
+            if(!empty($filterValue)){
+              if(count($filterIn)){
+                $user_case_management_data = $user_case_management_data->whereIn('cm.case_status',$filterIn);
+                $usercase_count = $usercase_count->whereIn('cm.case_status',$filterIn);
+              }
+            } 
+            
+            $usercase_count = $usercase_count->get()->count();                            
           }
           $user_case_management_data = $user_case_management_data->orderBy('cm.case_status', $columnSortOrder)
                                       ->offset($row)->limit($rowperpage)->get();
@@ -159,12 +180,30 @@ class CaseManagementController extends Controller
             'u.gender', 'ch.case_status')->where('cm.created_at','like',"%{$searchValue}%")
                             ->orWhere('cm.ref_id','like',"%{$searchValue}%")->orWhere('u.first_name','like',"%{$searchValue}%")
                             ->orWhere('u.last_name','like',"%{$searchValue}%")->orWhere('u.gender','like',"%{$searchValue}%")
-                            ->orWhere('cm.md_case_id','like',"%{$searchValue}%")->get()->count();                         
+                            ->orWhere('cm.md_case_id','like',"%{$searchValue}%");
+
+            if(!empty($filterValue)){
+              if(count($filterIn)){
+                $user_case_management_data = $user_case_management_data->whereIn('cm.case_status',$filterIn);
+                $usercase_count = $usercase_count->whereIn('cm.case_status',$filterIn);
+              }
+            } 
+            
+            $usercase_count = $usercase_count->get()->count();
           }else{
             $usercase_count = DB::table('case_managements as cm')->join('users as u', 'cm.user_id', '=', 'u.id')
             ->leftjoin('case_histories as ch', 'cm.id', '=', 'ch.case_id')
             ->select('cm.*', 'u.email', 'u.first_name', 'u.last_name',
-            'u.gender', 'ch.case_status')->get()->count();
+            'u.gender', 'ch.case_status');
+
+            if(!empty($filterValue)){
+              if(count($filterIn)){
+                $user_case_management_data = $user_case_management_data->whereIn('cm.case_status',$filterIn);
+                $usercase_count = $usercase_count->whereIn('cm.case_status',$filterIn);
+              }
+            } 
+            
+            $usercase_count = $usercase_count->get()->count();
           }
           $user_case_management_data = $user_case_management_data->orderBy($columnName, $columnSortOrder)
                                       ->offset($row)->limit($rowperpage)->get();

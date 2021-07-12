@@ -72,6 +72,7 @@ class BirthControlController extends BaseController
             $birthControl = Birthcontrol::find($id);
             if($birthControl){
                 return $this->sendResponse($birthControl, 'Records found');
+                
             }
             return $this->sendError('Server error','No Records found');
         }catch(\Exception $ex){

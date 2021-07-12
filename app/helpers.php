@@ -245,7 +245,7 @@ if(!empty($Patient_data)){
       {
         return $this->sendResponse($input_data,'Patient Created Successfully'); 
       }*/
-    // return $Patient_data->patient_id;
+     return $Patient_data->patient_id;
       
     }
   }

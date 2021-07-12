@@ -172,7 +172,7 @@ class UserController extends BaseController
 
     $user = User::find($user_id);
 
-    $orderdata = checkout::where('checkout.order_id', $order_id)->where('checkout.case_id', $case_id)->where('checkout.user_id', $user_id)->first();
+    $orderdata = checkout::where('checkout.id', $order_id)->where('checkout.case_id', $case_id)->where('checkout.user_id', $user_id)->first();
 
     //code for md create case
     if ($orderdata['medication_type'] == 1) {

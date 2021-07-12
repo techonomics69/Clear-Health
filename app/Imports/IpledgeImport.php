@@ -10,7 +10,7 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Row;
 use Maatwebsite\Excel\Concerns\OnEachRow;
 
-class IpledgeImport implements ToModel, WithHeadingRow, WithStartRow, OnEachRow
+class IpledgeImport implements  OnEachRow
 
 //class IpledgeImport implements ToModel
 {

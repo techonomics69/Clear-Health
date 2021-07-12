@@ -1269,7 +1269,7 @@ die();*/
     ], [
       'file.required' => 'Blood Work Test file field is required.',
       // 'file.mimes' => 'Blood Work  File must be a file of type:jpg,jpeg,png,pdf',
-      'file.max'  =>  'Please upload file size less than 5MB'
+      'file.max'  =>  'Please upload file size less than 5MB',
 
     ]);
 

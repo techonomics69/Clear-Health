@@ -1060,6 +1060,19 @@ die();*/
       CaseManagement::whereId($request['case_id'])->update($input);
       $input_data['case_status'] = 'check_off_ipledge';
       $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
+
+      $userRole = DB::table('users')->join('roles','users.role','=','roles.id')->select('users.id as userId','roles.name as roleName')
+                  ->where('users.id',Auth::user()->id)->get();
+
+      $activityLog = array();
+      $activityLog['user_type'] = $userRole[0]->roleName;
+      $activityLog['action_module'] = config('activity.action_module.case_management.action_items.prior_auth');
+      $activityLog['action']  = config('activity.action.update');
+      $activityLog['user_id'] = $userRole[0]->userId;
+      $activityLog['description'] = 'Prior Auth Uploaded';
+      $activityLog['case_id'] = $request['case_id'];
+      $add_Activity = activityHelper::insertActivity($activityLog);
+
       toastr()->success('Prior Auth Uploaded Successfully');
 
       return redirect()->back();

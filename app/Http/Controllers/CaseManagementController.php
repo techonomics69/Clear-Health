@@ -183,7 +183,7 @@ class CaseManagementController extends Controller
                                 </a>';
                     break;
               case 'store_ipledge':
-                    $action1 = ' <a href="'.route('casemanagement.show',$value['id']).'"?active=action_items">
+                    $action1 = ' <a href="'.route('casemanagement.show',[$value['id'], 'active'=>'action_items']).'"?active=action_items">
                                   <span class="badge badge-info">Register Ipledge</span>
                                 </a>';
                     break;
@@ -193,7 +193,7 @@ class CaseManagementController extends Controller
                                 </a>';
                     break;
               case 'prior_auth':
-                    $action1 = '<a href="'.route('casemanagement.show',$value['id']).'"?active=prior_auth">
+                    $action1 = '<a href="'.route('casemanagement.show',[$value['id'], 'active'=>'prior_auth']).'"?active=prior_auth">
                                   <span class="badge badge-info">Complete Prior Authorization</span>
                                 </a>';
                     break;
@@ -203,17 +203,17 @@ class CaseManagementController extends Controller
                                 </a>';
                     break;
               case 'trigger':
-                    $action1 = '<a href="'.route('casemanagement.show',$value['id']).'"?active=triggers">
+                    $action1 = '<a href="'.route('casemanagement.show',[$value['id'], 'active'=>'triggers']).'"?active=triggers">
                                   <span class="badge badge-info">Send Prescription Pickup Notification</span>
                                 </a>';
                     break;
               case 'blood_work':
-                    $action1 = '<a href="'.route('casemanagement.show',$value['id']).'"?active=blood_work">
+                    $action1 = '<a href="'.route('casemanagement.show',[$value['id'], 'active'=>'blood_work']).'"?active=blood_work">
                                   <span class="badge badge-info">Upload Bloodwork Results</span>
                                 </a>';
                     break;
               case 'low_income_program':
-                    $action1 = '<a href="'.route('casemanagement.show',$value['id']).'"?active=blood_work">
+                    $action1 = '<a href="'.route('casemanagement.show',[$value['id'], 'active'=>'blood_work']).'"?active=blood_work">
                                   <span class="badge badge-info">Enroll Absorica Patient Assistance Program</span>
                                 </a>';
                     break;

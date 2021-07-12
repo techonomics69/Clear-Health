@@ -1265,16 +1265,22 @@ die();*/
     $documents = $request->file('file');
 
     $this->validate($request, [
-      'file' => 'required|mimes:jpg,jpeg,png,pdf',
+      'file' => 'required|max:5000',
     ], [
       'file.required' => 'Blood Work Test file field is required.',
-      'file.mimes' => 'Blood Work  File must be a file of type:jpg,jpeg,png,pdf',
+      // 'file.mimes' => 'Blood Work  File must be a file of type:jpg,jpeg,png,pdf',
+      'file.max'  =>  'Please upload file size less than 5MB'
 
     ]);
 
 
     if (!empty($documents)) {
       $file =  $documents->getClientOriginalName();
+      $ext = pathinfo($file, PATHINFO_EXTENSION);
+      if($ext == 'exe'){
+        toastr()->error('Excutable file is not allowed');
+        return redirect()->back();
+      }
       $doc_file_name =  time() . '-' . $file;
       //$doc_file_name = time() . '-' . $doc->getClientOriginalExtension();
 

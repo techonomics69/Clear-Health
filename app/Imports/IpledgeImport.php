@@ -5,10 +5,11 @@ namespace App\Imports;
 use App\Models\Ipledge;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Exceptions\NoTypeDetectedException;
+use Maatwebsite\Excel\Concerns\WithStartRow;
 
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class IpledgeImport implements ToModel, WithHeadingRow
+class IpledgeImport implements ToModel, WithHeadingRow, WithStartRow
 
 //class IpledgeImport implements ToModel
 {
@@ -56,5 +57,10 @@ class IpledgeImport implements ToModel, WithHeadingRow
         }
        
         
+    }
+
+    public function startRow(): int
+    {
+        return 3;
     }
 }

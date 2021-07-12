@@ -60,7 +60,7 @@ function get_token(){
 function create_patient($user_id,$case_id,$order_id)
 {
 
- 
+
   $r = get_token();
   $token_data = json_decode($r);
   $token = $token_data->access_token;
@@ -71,77 +71,77 @@ function create_patient($user_id,$case_id,$order_id)
   $height = 0;
   $gender_id = 0;
 
- $userQueAns = getQuestionAnswerFromUserid($user_id,$case_id);
+  $userQueAns = getQuestionAnswerFromUserid($user_id,$case_id);
 
- 
- foreach ($userQueAns as $key => $value) {
 
-  $question = $value->question;
+  foreach ($userQueAns as $key => $value) {
 
-  if($question == "Please list medications that you are allergic to."){
-    if(isset($value->answer) && $value->answer!=''){
+    $question = $value->question;
 
-      $allergies =  $value->answer;
+    if($question == "Please list medications that you are allergic to."){
+      if(isset($value->answer) && $value->answer!=''){
 
-    }
-  }
+        $allergies =  $value->answer;
 
-  if($question == "Please list any other medications that you’re currently taking."){
-    if(isset($value->answer) && $value->answer!=''){
-
-      $current_medications =  $value->answer;
-
-    }
-  }
-
-  if($question == "What is your weight in lbs?"){
-    if(isset($value->answer) && $value->answer!=''){
-      $weight =  $value->answer;
-    }
-  }
-
-  if($question == "What is your Height?"){
-    if(isset($value->answer) && $value->answer!=''){
-      $height =  $value->answer;
-    }
-  }
-
-  if($question == "What was your gender assigned at birth?"){
-    if(isset($value->answer) && $value->answer!=''){
-
-      $gender =  $value->answer;
-      if($gender == "Male"){
-        $gender_id = 1;
-      }else{
-        $gender_id = 2;
       }
+    }
+
+    if($question == "Please list any other medications that you’re currently taking."){
+      if(isset($value->answer) && $value->answer!=''){
+
+        $current_medications =  $value->answer;
+
+      }
+    }
+
+    if($question == "What is your weight in lbs?"){
+      if(isset($value->answer) && $value->answer!=''){
+        $weight =  $value->answer;
+      }
+    }
+
+    if($question == "What is your Height?"){
+      if(isset($value->answer) && $value->answer!=''){
+        $height =  $value->answer;
+      }
+    }
+
+    if($question == "What was your gender assigned at birth?"){
+      if(isset($value->answer) && $value->answer!=''){
+
+        $gender =  $value->answer;
+        if($gender == "Male"){
+          $gender_id = 1;
+        }else{
+          $gender_id = 2;
+        }
       /*  0 = Not known;
           1 = Male;
           2 = Female;
           9 = Not applicable.
       */
 
+        }
+
+
+      }
     }
 
-
-  }
-}
-
-$user_data = User::where('id', $user_id)->first();
+    $user_data = User::where('id', $user_id)->first();
 
 
- $shipping_address = Checkoutaddress::select('*')
-   ->where('checkout_address.order_id',$order_id)
-   ->where('checkout_address.address_type',1)
-   ->OrderBy('id', 'DESC')
-   ->first();
+    $shipping_address = Checkoutaddress::select('*')
+    ->where('checkout_address.order_id',$order_id)
+    ->where('checkout_address.address_type',1)
+    ->OrderBy('id', 'DESC')
+    ->first();
 
-$u_address = "";
+    $u_address = "";
 
  /*if($shipping_address['addressline1']!=''){
   $u_address = $shipping_address['addressline1'];
 }*/
- if($shipping_address['addressline2']!='' && $u_address!=''){
+if($shipping_address['addressline2']!='' && $u_address!=''){
   $u_address = $u_address.','.$shipping_address['addressline2'];
 }
  /*if($shipping_address['city']!=''){
@@ -156,7 +156,11 @@ if($shipping_address['state']!=''){
   $u_address .= ','.$shipping_address['zipcode'];
 }*/
 
-$u_address = "3135 Easton, USA";
+//$u_address = "3135 Easton, USA";
+
+$user_zipcode = explode('-', $shipping_address['zipcode']);
+
+$city_id = getCityAndStateFromZipcode($user_zipcode[0]);
 
 $input_data = array();
 $address = array();
@@ -164,13 +168,13 @@ $address = array();
 $input_data['first_name'] = $user_data['first_name'];
 $input_data['last_name'] = $user_data['last_name'];
 $input_data['gender'] = $gender_id;
-$input_data['date_of_birth'] = "1991-02-02";//$user_data['dob'];
-$input_data['phone_number'] = '(415) 555-2671';//$user_data['mobile'];
+$input_data['date_of_birth'] = date("Y-m-d", strtotime($user_data['dob'])); //"1991-02-02";
+$input_data['phone_number'] = $user_data['mobile']; //'(415) 555-2671';
 $input_data['phone_type'] = 2;
 $input_data['email'] = $user_data['email'];
 $address['address'] = $u_address;
-$address['city_id'] = '31f5afce-1c7f-4636-b9b4-3874a177de90';//$user_data['city_id'];
-$address['zip_code'] = $user_data['zip'];
+$address['city_id'] = $city_id; //'31f5afce-1c7f-4636-b9b4-3874a177de90';
+$address['zip_code'] = $user_zipcode[0];//$user_data['zip'];
 $input_data['address'] = $address;
 $input_data['height'] = $height;
 $input_data['weight'] = $weight;
@@ -199,9 +203,6 @@ curl_setopt_array($curl, array(
 ));
 
 $response = curl_exec($curl);
-
-
-
 
 $Patient_data = json_decode($response);
 
@@ -243,18 +244,18 @@ if(!empty($Patient_data)){
       else
       {
         return $this->sendResponse($input_data,'Patient Created Successfully'); 
-     }*/
-     return $Patient_data->patient_id;
+      }*/
+    // return $Patient_data->patient_id;
       
     }
   }
 
 
-    function createCaseFile($documents,$name,$user_id,$case_id,$system_case_id){
+  function createCaseFile($documents,$name,$user_id,$case_id,$system_case_id){
 
-      $r = get_token();
-      $token_data = json_decode($r);
-      $token = $token_data->access_token;
+    $r = get_token();
+    $token_data = json_decode($r);
+    $token = $token_data->access_token;
 
     /*  $documents = $request->file('file');
       $name = $request->name;
@@ -338,45 +339,45 @@ if(!empty($Patient_data)){
 
     //end of code to attach file to case_id
     if(!empty($case_file_data)){
-       return $case_file_data;
-    }else{
-       return array();
-    }
+     return $case_file_data;
+   }else{
+     return array();
+   }
 
-  }
+ }
 
-  function getPharmacyById($pharmacy_id){
-    $r = get_token();
-    $token_data = json_decode($r);
-    $token = $token_data->access_token;
+ function getPharmacyById($pharmacy_id){
+  $r = get_token();
+  $token_data = json_decode($r);
+  $token = $token_data->access_token;
 
 
 
-    $curl = curl_init();
+  $curl = curl_init();
 
-    curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/pharmacies/'.$pharmacy_id,
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_ENCODING => '',
-      CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 0,
-      CURLOPT_FOLLOWLOCATION => true,
-      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => 'GET',
-      CURLOPT_HTTPHEADER => array(
-        'Authorization: Bearer '.$token,
-      ),
-    ));
+  curl_setopt_array($curl, array(
+    CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/pharmacies/'.$pharmacy_id,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => '',
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => 'GET',
+    CURLOPT_HTTPHEADER => array(
+      'Authorization: Bearer '.$token,
+    ),
+  ));
 
-    $response = curl_exec($curl);
-    curl_close($curl);
-    return $response;
-  }
+  $response = curl_exec($curl);
+  curl_close($curl);
+  return $response;
+}
 
-  function CreateCase($user_id,$case_id,$preferred_pharmacy_id,$patient_id,$order_id){
-    $r = get_token();
-    $token_data = json_decode($r);
-    $token = $token_data->access_token;
+function CreateCase($user_id,$case_id,$preferred_pharmacy_id,$patient_id,$order_id){
+  $r = get_token();
+  $token_data = json_decode($r);
+  $token = $token_data->access_token;
 
     /*$patient_data = User::select('md_patient_id')->where('id', $user_id)->first();
 
@@ -427,10 +428,10 @@ if(!empty($Patient_data)){
   $userquestion = array();
   foreach($userQueAns as $key=>$value){
 
-      $question = $value->question;
+    $question = $value->question;
 
-      if($question == "What is your weight in lbs??"){
-        if(isset($value->answer) && $value->answer!=''){
+    if($question == "What is your weight in lbs??"){
+      if(isset($value->answer) && $value->answer!=''){
 
         $answer =  $value->answer;
 
@@ -449,35 +450,35 @@ if(!empty($Patient_data)){
        $userquestion[$key]['answer'] = implode(',',$value->answer);
      }else{
 
-        if($question =='How would you rate your stress level on a scale of 1 to 10?'){
-             $userquestion[$key]['answer'] = "".$value->answer."";
-        }else{
-          $userquestion[$key]['answer'] = $value->answer;
-        }
-       
-     }
-
-     
-
-     if($value->options_type == "radio"){
-       $userquestion[$key]['type']= "boolean";
+      if($question =='How would you rate your stress level on a scale of 1 to 10?'){
+       $userquestion[$key]['answer'] = "".$value->answer."";
      }else{
-       $userquestion[$key]['type']= "string";
-     }
+      $userquestion[$key]['answer'] = $value->answer;
+    }
 
-     $userquestion[$key]['important']= true;
+  }
 
-   }
 
+
+  if($value->options_type == "radio"){
+   $userquestion[$key]['type']= "boolean";
+ }else{
+   $userquestion[$key]['type']= "string";
  }
 
- $userquestion = json_encode($userquestion);
+ $userquestion[$key]['important']= true;
+
+}
+
+}
+
+$userquestion = json_encode($userquestion);
 
   //end of code to get user's question answer
 
 
 
- if($product_type !="Accutane"){
+if($product_type !="Accutane"){
 
   $days_supply = "60";
   $refills = "11";
@@ -622,7 +623,7 @@ if(!empty($Patient_data)){
 
     $case_data = json_decode($response);
 
-   
+
 
     $input_data['prioritized_at'] = $case_data->prioritized_at;
     $input_data['prioritized_reason'] = $case_data->prioritized_reason;
@@ -633,7 +634,7 @@ if(!empty($Patient_data)){
     }else{
       $input_data['md_created_at'] = $case_data->created_at;
     }
-   
+
     //$input_data['support_reason'] = $case_data->support_reason;
     $input_data['case_id'] = $case_data->case_id;
     $input_data['status'] = $case_data->case_status->name ;
@@ -646,160 +647,160 @@ if(!empty($Patient_data)){
 
     $case_management  =  CaseManagement::where('id',$case_id)->where('user_id',$user_id)->update(['md_case_status' => $case_data->case_status->name,'system_status' => 'Telehealth Evaluation Requested','md_case_id' => $case_data->case_id]);
 
-     $update_order_data  =  Checkout::where('case_id',$case_id)->where('user_id',$user_id)->where('id',$order_id)->update(['md_case_id' => $case_data->case_id]);
+    $update_order_data  =  Checkout::where('case_id',$case_id)->where('user_id',$user_id)->where('id',$order_id)->update(['md_case_id' => $case_data->case_id]);
 
-     if($product_type != NULL){
-         if($product_type =="Accutane"){
-           $noti_input_data = array();
-           $noti_input_data['user_id'] = $user_id;
-           $noti_input_data['case_id'] = $case_id;
-           $noti_input_data['md_case_id'] = $case_data->case_id;
-           $noti_input_data['order_id'] = $order_id;
-           $noti_input_data['noti_message'] = getNotificationMessageFromKey('initial_case_sent_to_md');
-           $noti_input_data['for_month'] = 1;
-        }else{
-           $noti_input_data = array();
-           $noti_input_data['user_id'] = $user_id;
-           $noti_input_data['case_id'] = $case_id;
-           $noti_input_data['md_case_id'] = $case_data->case_id;
-           $noti_input_data['order_id'] = $order_id;
-           $noti_input_data['noti_message'] = getNotificationMessageFromKey('topical_initial_case_sent_to_md');
-           $noti_input_data['for_month'] = 1;
-        }
+    if($product_type != NULL){
+     if($product_type =="Accutane"){
+       $noti_input_data = array();
+       $noti_input_data['user_id'] = $user_id;
+       $noti_input_data['case_id'] = $case_id;
+       $noti_input_data['md_case_id'] = $case_data->case_id;
+       $noti_input_data['order_id'] = $order_id;
+       $noti_input_data['noti_message'] = getNotificationMessageFromKey('initial_case_sent_to_md');
+       $noti_input_data['for_month'] = 1;
+     }else{
+       $noti_input_data = array();
+       $noti_input_data['user_id'] = $user_id;
+       $noti_input_data['case_id'] = $case_id;
+       $noti_input_data['md_case_id'] = $case_data->case_id;
+       $noti_input_data['order_id'] = $order_id;
+       $noti_input_data['noti_message'] = getNotificationMessageFromKey('topical_initial_case_sent_to_md');
+       $noti_input_data['for_month'] = 1;
      }
-    
+   }
 
-     
 
-     $noti_data = Notifications::create($noti_input_data);
 
-    curl_close($curl);
+
+   $noti_data = Notifications::create($noti_input_data);
+
+   curl_close($curl);
 
       //code for update md details
-    if(isset($case_data->case_assignment) && $case_data->case_assignment != null){
+   if(isset($case_data->case_assignment) && $case_data->case_assignment != null){
 
-      $inputmd_data['status'] = $status;
-      $inputmd_data['image'] = "";
-      $inputmd_data['language_id'] = "";
-      $inputmd_data['md_id'] = $case_data->case_assignment->clinician->clinician_id;
-      $inputmd_data['name'] = $case_data->case_assignment->clinician->full_name;
-      $inputmd_data['reason'] = $case_data->case_assignment->reason;;
-      $inputmd_data['case_assignment_id'] = $case_data->case_assignment->case_assignment_id;
+    $inputmd_data['status'] = $status;
+    $inputmd_data['image'] = "";
+    $inputmd_data['language_id'] = "";
+    $inputmd_data['md_id'] = $case_data->case_assignment->clinician->clinician_id;
+    $inputmd_data['name'] = $case_data->case_assignment->clinician->full_name;
+    $inputmd_data['reason'] = $case_data->case_assignment->reason;;
+    $inputmd_data['case_assignment_id'] = $case_data->case_assignment->case_assignment_id;
 
-      $mdmanagement_data = Mdmanagement::where('case_id', $case_id)->first();
-      if(!empty($mdmanagement_data)){
-        $mdmanagement_data->update($inputmd_data);
-      }else{
-        $md_case_data = Mdmanagement::create($inputmd_data);
-      }
-
-    }
-      return $response;
+    $mdmanagement_data = Mdmanagement::where('case_id', $case_id)->first();
+    if(!empty($mdmanagement_data)){
+      $mdmanagement_data->update($inputmd_data);
+    }else{
+      $md_case_data = Mdmanagement::create($inputmd_data);
     }
 
-    function detach_file_from_case(Request $request){
+  }
+  return $response;
+}
 
-      $r = get_token();
-      $token_data = json_decode($r);
-      $token = $token_data->access_token;
+function detach_file_from_case(Request $request){
 
-      $file_id = $request['md_file_id'];
-      $case_id = $request['md_case_id'];
+  $r = get_token();
+  $token_data = json_decode($r);
+  $token = $token_data->access_token;
 
-      $destinationPath = public_path('/MD_Case_files');
+  $file_id = $request['md_file_id'];
+  $case_id = $request['md_case_id'];
 
-      $input = $request->all();
+  $destinationPath = public_path('/MD_Case_files');
 
-      $casefiles_details = CaseFiles::select('*')->where('case_id', $case_id)->where('md_file_id',$file_id)->get();
+  $input = $request->all();
 
-      if(!empty($casefiles_details) && count($casefiles_details)>0){
+  $casefiles_details = CaseFiles::select('*')->where('case_id', $case_id)->where('md_file_id',$file_id)->get();
 
-        if(file_exists($destinationPath.'/'.$casefiles_details[0]['file'])){
-          unlink($destinationPath.'/'.$casefiles_details[0]['file']);
-        }
+  if(!empty($casefiles_details) && count($casefiles_details)>0){
 
-        $casefiles = CaseFiles::find($casefiles_details[0]['id']);
-        $casefiles->delete();
+    if(file_exists($destinationPath.'/'.$casefiles_details[0]['file'])){
+      unlink($destinationPath.'/'.$casefiles_details[0]['file']);
+    }
 
-        $curl = curl_init();
+    $casefiles = CaseFiles::find($casefiles_details[0]['id']);
+    $casefiles->delete();
 
-        curl_setopt_array($curl, array(
-          CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/files/'.$file_id,
-          CURLOPT_RETURNTRANSFER => true,
-          CURLOPT_ENCODING => '',
-          CURLOPT_MAXREDIRS => 10,
-          CURLOPT_TIMEOUT => 0,
-          CURLOPT_FOLLOWLOCATION => true,
-          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-          CURLOPT_CUSTOMREQUEST => 'DELETE',
-          CURLOPT_HTTPHEADER => array(
-            'Authorization: Bearer '.$token,
-            'Cookie: __cfduid=da01d92d82d19a6cccebfdc9852303eb81620627650'
-          ),
-        ));
+    $curl = curl_init();
 
-        $response = curl_exec($curl);
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/files/'.$file_id,
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'DELETE',
+      CURLOPT_HTTPHEADER => array(
+        'Authorization: Bearer '.$token,
+        'Cookie: __cfduid=da01d92d82d19a6cccebfdc9852303eb81620627650'
+      ),
+    ));
 
-        curl_close($curl);
+    $response = curl_exec($curl);
+
+    curl_close($curl);
             // $response;
-        return $this->sendResponse($response,'File Detach Successfully');
+    return $this->sendResponse($response,'File Detach Successfully');
 
-      }else{
-        return $this->sendResponse(array(),'File not Exist.');
-      }
-
-
-    }
-
-    function getQuestionAnswerFromUserid($user_id,$case_id){
-
-      $answer_data = Answers::where('user_id', $user_id)->where('case_id', $case_id)->get();
-
-      if(!empty($answer_data) && count($answer_data)>0){
-        $userQueAns = json_decode($answer_data[0]['answer']);
-
-      }else{
-         $userQueAns = array();
-      }
-
-      return $userQueAns;
+  }else{
+    return $this->sendResponse(array(),'File not Exist.');
+  }
 
 
-    }
+}
 
-    function update_read_at_for_non_medical(){
+function getQuestionAnswerFromUserid($user_id,$case_id){
+
+  $answer_data = Answers::where('user_id', $user_id)->where('case_id', $case_id)->get();
+
+  if(!empty($answer_data) && count($answer_data)>0){
+    $userQueAns = json_decode($answer_data[0]['answer']);
+
+  }else{
+   $userQueAns = array();
+ }
+
+ return $userQueAns;
+
+
+}
+
+function update_read_at_for_non_medical(){
        //$messages  =  Messages::where('id',$msg_id)->where('user_id',$user_id)->where('read_at',NULL)->update(['read_at' => Carbon::now()->format('Y-m-d H:i:s')]);
 
-        $messages  =  Messages::where('read_at',NULL)->update(['read_at' => Carbon::now()->format('Y-m-d H:i:s')]);
+  $messages  =  Messages::where('read_at',NULL)->update(['read_at' => Carbon::now()->format('Y-m-d H:i:s')]);
 
-       return $messages;
-      
-    }
+  return $messages;
 
-    function UnreadMsgCountOfUser($user_id){
-       $user_unread_count  =  Messages::where('read_at','!=',NULL)->where('user_id',$user_id)->where('sender','admin')->get()->toArray();
+}
 
-       return count($user_unread_count);
-      
-    }
+function UnreadMsgCountOfUser($user_id){
+ $user_unread_count  =  Messages::where('read_at','!=',NULL)->where('user_id',$user_id)->where('sender','admin')->get()->toArray();
 
-    function UnreadMsgCountOfAdmin($user_id){
-      $admin_unread_count  =  Messages::where('read_at','!=',NULL)->where('user_id',$user_id)->where('sender','user')->get()->toArray();
+ return count($user_unread_count);
 
-       return count($admin_unread_count);
-      
-    }
+}
 
-    function getCaseType($user_id,$case_id,$system_case_id){
-        $case_type_detail = Mdcases::select('case_type')->where('user_id',$user_id)->where('case_id',$case_id)->where('system_case_id',$system_case_id)->first();
+function UnreadMsgCountOfAdmin($user_id){
+  $admin_unread_count  =  Messages::where('read_at','!=',NULL)->where('user_id',$user_id)->where('sender','user')->get()->toArray();
 
-        if(!empty($case_type_detail)){
-          $case_type = $case_type_detail['case_type'];
-        }else{
-          $case_type = '';
-        }
-        return  $case_type;
-    }
+  return count($admin_unread_count);
+
+}
+
+function getCaseType($user_id,$case_id,$system_case_id){
+  $case_type_detail = Mdcases::select('case_type')->where('user_id',$user_id)->where('case_id',$case_id)->where('system_case_id',$system_case_id)->first();
+
+  if(!empty($case_type_detail)){
+    $case_type = $case_type_detail['case_type'];
+  }else{
+    $case_type = '';
+  }
+  return  $case_type;
+}
 
     /*function getLastUnAssignedIPledgeID($gender){
 
@@ -817,9 +818,9 @@ if(!empty($Patient_data)){
 
          return $product_type;
 
-    }
+       }
 
-    function getAssignedIpledgeIdToUser($user_id,$case_id,$md_case_id){
+       function getAssignedIpledgeIdToUser($user_id,$case_id,$md_case_id){
 
 
          $assigned_ipledge_id = CaseManagement::select('ipledge_id')->where([['id',$case_id],['user_id',$user_id],['md_case_id',$md_case_id]])->first();
@@ -828,36 +829,36 @@ if(!empty($Patient_data)){
 
          return $assigned_ipledge_id;
 
-    }
+       }
 
-    
-    /*end of code for send sms twilio*/
-    /*functions for send sms twilio*/
-     function sendsms($data){
+
+       /*end of code for send sms twilio*/
+       /*functions for send sms twilio*/
+       function sendsms($data){
        /* $validatedData = $request->validate([
             'users' => 'required|array',
             'body' => 'required',
-        ]);*/
-        $recipients = $data["users"];
+          ]);*/
+          $recipients = $data["users"];
         // iterate over the array of recipients and send a twilio request for each
-        foreach ($recipients as $recipient) {
+          foreach ($recipients as $recipient) {
             sendMessage($data["body"], $recipient);
+          }
+          return back()->with(['success' => "Messages on their way!"]);
         }
-        return back()->with(['success' => "Messages on their way!"]);
-    }
 
-   function sendMessage($message, $recipients)
-    {
+        function sendMessage($message, $recipients)
+        {
         $account_sid = "ACb0e7a35b6e659da3d101a5df4c382a53";//getenv("TWILIO_SID");
         $auth_token = "9564b429663887219c3af4807e6e6596";//getenv("TWILIO_AUTH_TOKEN");
         $twilio_number = "15854548260";//getenv("TWILIO_NUMBER");
         $client = new Client($account_sid, $auth_token);
         $client->messages->create($recipients, ['from' => $twilio_number, 'body' => $message]);
-    }
+      }
 
-  function sendEmail($email_data){
+      function sendEmail($email_data){
 
-   
+
 
         /*$data["email"] = $email_data['email'];
         $data["title"] = $email_data['title'];
@@ -867,7 +868,7 @@ if(!empty($Patient_data)){
        /* $files = [
             public_path('attachments/pregnancy-test.jpg'),
             //public_path('attachments/Laravel_8_pdf_Example.pdf'),
-        ];*/
+          ];*/
 
         /*if(isset($email_data['attachments'])){
           $files = $email_data['attachments'];
@@ -896,19 +897,19 @@ if(!empty($Patient_data)){
         $data["email"] = "itqatester12@gmail.com";
         $data["title"] = "helloclearhealth.com";
         $data["body"] = "This is test mail with attachment";
- 
+
         $files = [
-            public_path('attachments/pregnancy-test.jpg'),
+          public_path('attachments/pregnancy-test.jpg'),
             //public_path('attachments/Laravel_8_pdf_Example.pdf'),
         ];
-  
+
         $mail_sent = Mail::send('emails.mySendMail',$data, function($message)use($data, $files) {
-            $message->to($data["email"])
-                    ->subject($data["title"]);
- 
-            foreach ($files as $file){
-                $message->attach($file);
-            }            
+          $message->to($data["email"])
+          ->subject($data["title"]);
+
+          foreach ($files as $file){
+            $message->attach($file);
+          }            
         });
 
         if($mail_sent){
@@ -918,36 +919,36 @@ if(!empty($Patient_data)){
           return 0;
         }
 
-  }
+      }
 
-  function getNotificationMessageFromKey($noti_find_key){
-    $noti_message = Notificationmessages::where('key',$noti_find_key)->first();
-    $noti_message = $noti_message['message'];
+      function getNotificationMessageFromKey($noti_find_key){
+        $noti_message = Notificationmessages::where('key',$noti_find_key)->first();
+        $noti_message = $noti_message['message'];
 
-    return $noti_message;
-       
-  }
+        return $noti_message;
 
-  function getPickupPharmacy($user_id,$case_id,$md_case_id=''){
+      }
 
-    if($md_case_id !=''){
-        $order_data = Checkout::where([['user_id', $user_id],['case_id', $case_id],['md_case_id', $md_case_id]])->first();
-    }else{
+      function getPickupPharmacy($user_id,$case_id,$md_case_id=''){
+
+        if($md_case_id !=''){
+          $order_data = Checkout::where([['user_id', $user_id],['case_id', $case_id],['md_case_id', $md_case_id]])->first();
+        }else{
           $order_data = Checkout::where([['user_id', $user_id],['case_id', $case_id]])->first();
-    }
-       $cart_ids = explode(',', $order_data['cart_id']);
-       $pharmacy_data  =  Cart::select('pharmacy_pickup')->where('user_id',$user_id)->whereIn('id',$cart_ids)->where('order_type', '!=', 'AddOn')->first();
-       $preferred_pharmacy_id = $pharmacy_data['pharmacy_pickup'];
+        }
+        $cart_ids = explode(',', $order_data['cart_id']);
+        $pharmacy_data  =  Cart::select('pharmacy_pickup')->where('user_id',$user_id)->whereIn('id',$cart_ids)->where('order_type', '!=', 'AddOn')->first();
+        $preferred_pharmacy_id = $pharmacy_data['pharmacy_pickup'];
 
-       return $preferred_pharmacy_id;
-  }
+        return $preferred_pharmacy_id;
+      }
 
 
-  function attachFileWithCase($file_id,$user_id,$case_id,$system_case_id){
+      function attachFileWithCase($file_id,$user_id,$case_id,$system_case_id){
 
-      $r = get_token();
-      $token_data = json_decode($r);
-      $token = $token_data->access_token;
+        $r = get_token();
+        $token_data = json_decode($r);
+        $token = $token_data->access_token;
 
    /* if($errno = curl_errno($curl)) {
       $error_message = curl_strerror($errno);
@@ -976,69 +977,69 @@ if(!empty($Patient_data)){
 
     $md_case_file_data = json_decode($response1);
 
-     $case_management  =  CaseFiles::where([['case_id',$case_id],['user_id',$user_id],['system_case_id',$system_case_id]])->update(['md_file_name' => $md_case_file_data->name,'md_mime_type' => $md_case_file_data->mime_typ,'md_url' => $md_case_file_data->url,'md_url_thumbnail' =>$md_case_file_data->url_thumbnail,'md_file_id' => $md_case_file_data->file_id ]);
+    $case_management  =  CaseFiles::where([['case_id',$case_id],['user_id',$user_id],['system_case_id',$system_case_id]])->update(['md_file_name' => $md_case_file_data->name,'md_mime_type' => $md_case_file_data->mime_typ,'md_url' => $md_case_file_data->url,'md_url_thumbnail' =>$md_case_file_data->url_thumbnail,'md_file_id' => $md_case_file_data->file_id ]);
 
     //end of code to attach file to case_id
     if(!empty($case_file_data)){
-       return $case_file_data;
-    }else{
-       return array();
-    }
-
-  }
-
-  function CreateFollowUPCase($user_id,$case_id,$preferred_pharmacy_id,$order_id,$followup_no){
-    $r = get_token();
-    $token_data = json_decode($r);
-    $token = $token_data->access_token;
-
-    $patient_data = User::select('md_patient_id')->where('id', $user_id)->first();
-
-    $patient_id = '"'.$patient_data['md_patient_id'].'"';
-
-
-    $product_type = getUserProduct($user_id,$case_id);
-
-
-    if($product_type == 'Topical_low'){
-
-     $product_name = "Topical Low";
-
+     return $case_file_data;
+   }else{
+     return array();
    }
 
-   if($product_type == 'Topical_high'){
+ }
 
-     $product_name = "Topical High";
+ function CreateFollowUPCase($user_id,$case_id,$preferred_pharmacy_id,$order_id,$followup_no){
+  $r = get_token();
+  $token_data = json_decode($r);
+  $token = $token_data->access_token;
 
-   }
+  $patient_data = User::select('md_patient_id')->where('id', $user_id)->first();
 
-   if($product_type == 'Azelaic_Acid'){
+  $patient_id = '"'.$patient_data['md_patient_id'].'"';
 
-     $product_name = "Azelaic Acid";
 
-   }
-   if($product_type == 'Accutane'){
+  $product_type = getUserProduct($user_id,$case_id);
 
-     $product_name = "ISOtretinoin (oral - capsule)";
 
-   }
+  if($product_type == 'Topical_low'){
 
-   $removed_space_pro_name = str_replace(" ","%20",$product_name);
+   $product_name = "Topical Low";
+
+ }
+
+ if($product_type == 'Topical_high'){
+
+   $product_name = "Topical High";
+
+ }
+
+ if($product_type == 'Azelaic_Acid'){
+
+   $product_name = "Azelaic Acid";
+
+ }
+ if($product_type == 'Accutane'){
+
+   $product_name = "ISOtretinoin (oral - capsule)";
+
+ }
+
+ $removed_space_pro_name = str_replace(" ","%20",$product_name);
 
     //code to get user's question answer
 
-   $userQueAns = getFollowUPQuestionAnswerFromUserid($user_id,$case_id);
+ $userQueAns = getFollowUPQuestionAnswerFromUserid($user_id,$case_id);
 
 
-   $accutan_strength = 30;
-   
-   
+ $accutan_strength = 30;
+
+
 //end of code to get patient weight 
-  $userquestion = array();
-  if(!empty($userQueAns)){
+ $userquestion = array();
+ if(!empty($userQueAns)){
   foreach($userQueAns as $key=>$value){
 
-      $question = $value->question;
+    $question = $value->question;
 
 
     if(isset($value->answer) && $value->answer!=''){
@@ -1050,62 +1051,62 @@ if(!empty($Patient_data)){
 
         /*if($question =='How would you rate your stress level on a scale of 1 to 10?'){
              $userquestion[$key]['answer'] = "".$value->answer."";
-        }else{*/
-          $userquestion[$key]['answer'] = $value->answer;
-       /* }*/
-       
+           }else{*/
+            $userquestion[$key]['answer'] = $value->answer;
+            /* }*/
+
+          }
+
+
+
+          if($value->options_type == "radio"){
+           $userquestion[$key]['type']= "boolean";
+         }else{
+           $userquestion[$key]['type']= "string";
+         }
+
+         $userquestion[$key]['important']= true;
+
+       }
+
      }
-
-     
-
-     if($value->options_type == "radio"){
-       $userquestion[$key]['type']= "boolean";
-     }else{
-       $userquestion[$key]['type']= "string";
-     }
-
-     $userquestion[$key]['important']= true;
 
    }
 
- }
-
-}
-
- $userquestion = json_encode($userquestion);
+   $userquestion = json_encode($userquestion);
 
 
  //get files attachment
 
-  $patient_file_data = FollowUp::where([['user_id', $user_id],['case_id', $case_id],['follow_up_no', $followup_no]])->first();
+   $patient_file_data = FollowUp::where([['user_id', $user_id],['case_id', $case_id],['follow_up_no', $followup_no]])->first();
 
-  $attachment = array();
+   $attachment = array();
 
-  if($patient_file_data['left_face_file_id'] != null){
+   if($patient_file_data['left_face_file_id'] != null){
     $attachment[] = $patient_file_data['left_face_file_id'];
   }
 
-   if($patient_file_data['right_face_file_id'] != null){
+  if($patient_file_data['right_face_file_id'] != null){
     $attachment[] = $patient_file_data['right_face_file_id'];
   }
 
-   if($patient_file_data['center_face_file_id'] != null){
+  if($patient_file_data['center_face_file_id'] != null){
     $attachment[] = $patient_file_data['center_face_file_id'];
   }
 
-   if($patient_file_data['back_photo_file_id'] != null){
+  if($patient_file_data['back_photo_file_id'] != null){
     $attachment[] = $patient_file_data['back_photo_file_id'];
   }
 
-   if($patient_file_data['chest_photo_file_id'] != null){
+  if($patient_file_data['chest_photo_file_id'] != null){
     $attachment[] = $patient_file_data['chest_photo_file_id'];
   }
 
-   if($patient_file_data['pregnancy_test_file_id'] != null){
+  if($patient_file_data['pregnancy_test_file_id'] != null){
     $attachment[] = $patient_file_data['pregnancy_test_file_id'];
   }
 
- $user_attachment = json_encode($attachment);
+  $user_attachment = json_encode($attachment);
   
 
  //end of code for file attachment
@@ -1114,14 +1115,14 @@ if(!empty($Patient_data)){
 
 
 
- if($product_type !="Accutane"){
+  if($product_type !="Accutane"){
 
-  $days_supply = "60";
-  $refills = "11";
-  $directions = "Twice per day.Take one at the morning and another before bed";
+    $days_supply = "60";
+    $refills = "11";
+    $directions = "Twice per day.Take one at the morning and another before bed";
   //$no_substitutions = false;
   //$pharmacy_notes =  "";
-  $quantity = 30;
+    $quantity = 30;
   $preferred_pharmacy_id =13012;//pharmacy id of curexa=13012
 
 
@@ -1262,7 +1263,7 @@ if(!empty($Patient_data)){
 
     $case_data = json_decode($response);
 
-   
+
 
     $input_data['prioritized_at'] = $case_data->prioritized_at;
     $input_data['prioritized_reason'] = $case_data->prioritized_reason;
@@ -1273,7 +1274,7 @@ if(!empty($Patient_data)){
     }else{
       $input_data['md_created_at'] = $case_data->created_at;
     }
-   
+
     //$input_data['support_reason'] = $case_data->support_reason;
     $input_data['case_id'] = $case_data->case_id;
     $input_data['status'] = $case_data->case_status->name ;
@@ -1286,17 +1287,17 @@ if(!empty($Patient_data)){
 
     $case_management  =  CaseManagement::where('id',$case_id)->where('user_id',$user_id)->update(['md_case_status' => $case_data->case_status->name,'system_status' => 'Telehealth Evaluation Requested','md_case_id' => $case_data->case_id]);
 
-     $update_order_data  =  Checkout::where('case_id',$case_id)->where('user_id',$user_id)->where('order_id',$order_id)->update(['md_case_id' => $case_data->case_id]);
+    $update_order_data  =  Checkout::where('case_id',$case_id)->where('user_id',$user_id)->where('order_id',$order_id)->update(['md_case_id' => $case_data->case_id]);
 
      /*if($product_type != NULL){
-         if($product_type =="Accutane"){*/
-           $noti_input_data = array();
-           $noti_input_data['user_id'] = $user_id;
-           $noti_input_data['case_id'] = $case_id;
-           $noti_input_data['md_case_id'] = $md_case_id;
-           $noti_input_data['order_id'] = $order_id;
-           $noti_input_data['noti_message'] = getNotificationMessageFromKey('follow_up_case_submitted');
-           $noti_input_data['for_month'] = 1;
+       if($product_type =="Accutane"){*/
+         $noti_input_data = array();
+         $noti_input_data['user_id'] = $user_id;
+         $noti_input_data['case_id'] = $case_id;
+         $noti_input_data['md_case_id'] = $md_case_id;
+         $noti_input_data['order_id'] = $order_id;
+         $noti_input_data['noti_message'] = getNotificationMessageFromKey('follow_up_case_submitted');
+         $noti_input_data['for_month'] = 1;
         /*}else{
            $noti_input_data = array();
            $noti_input_data['user_id'] = $user_id;
@@ -1306,112 +1307,144 @@ if(!empty($Patient_data)){
            $noti_input_data['noti_message'] = getNotificationMessageFromKey('topical_initial_case_sent_to_md');
            $noti_input_data['for_month'] = 1;
         }
-    }*/
-    
+      }*/
 
-     
 
-     $noti_data = Notifications::create($noti_input_data);
 
-    curl_close($curl);
+
+      $noti_data = Notifications::create($noti_input_data);
+
+      curl_close($curl);
 
       //code for update md details
-    if(isset($case_data->case_assignment) && $case_data->case_assignment != null){
+      if(isset($case_data->case_assignment) && $case_data->case_assignment != null){
 
-      $inputmd_data['status'] = $status;
-      $inputmd_data['image'] = "";
-      $inputmd_data['language_id'] = "";
-      $inputmd_data['md_id'] = $case_data->case_assignment->clinician->clinician_id;
-      $inputmd_data['name'] = $case_data->case_assignment->clinician->full_name;
-      $inputmd_data['reason'] = $case_data->case_assignment->reason;;
-      $inputmd_data['case_assignment_id'] = $case_data->case_assignment->case_assignment_id;
+        $inputmd_data['status'] = $status;
+        $inputmd_data['image'] = "";
+        $inputmd_data['language_id'] = "";
+        $inputmd_data['md_id'] = $case_data->case_assignment->clinician->clinician_id;
+        $inputmd_data['name'] = $case_data->case_assignment->clinician->full_name;
+        $inputmd_data['reason'] = $case_data->case_assignment->reason;;
+        $inputmd_data['case_assignment_id'] = $case_data->case_assignment->case_assignment_id;
 
-      $mdmanagement_data = Mdmanagement::where('case_id', $case_id)->first();
-      if(!empty($mdmanagement_data)){
-        $mdmanagement_data->update($inputmd_data);
-      }else{
-        $md_case_data = Mdmanagement::create($inputmd_data);
+        $mdmanagement_data = Mdmanagement::where('case_id', $case_id)->first();
+        if(!empty($mdmanagement_data)){
+          $mdmanagement_data->update($inputmd_data);
+        }else{
+          $md_case_data = Mdmanagement::create($inputmd_data);
+        }
+
       }
-
-    }
       return $response;
     }
 
     function getFollowUPQuestionAnswerFromUserid($user_id,$case_id){
-         $answer_data = FollowUp::where('user_id', $user_id)->where('case_id', $case_id)->get();
+     $answer_data = FollowUp::where('user_id', $user_id)->where('case_id', $case_id)->get();
 
-      if(!empty($answer_data) && count($answer_data)>0){
-        $userQueAns = json_decode($answer_data[0]['answer']);
+     if(!empty($answer_data) && count($answer_data)>0){
+      $userQueAns = json_decode($answer_data[0]['answer']);
 
-      }else{
-         $userQueAns = array();
-      }
+    }else{
+     $userQueAns = array();
+   }
 
-      return $userQueAns;
-    }
+   return $userQueAns;
+ }
 
-    function createFollowupCaseFile($documents,$name,$user_id,$case_id,$system_case_id){
+ function createFollowupCaseFile($documents,$name,$user_id,$case_id,$system_case_id){
 
-      $r = get_token();
-      $token_data = json_decode($r);
-      $token = $token_data->access_token;
+  $r = get_token();
+  $token_data = json_decode($r);
+  $token = $token_data->access_token;
 
-      $fields = [
-        'name' => $name,
-        'file' => new \CurlFile($documents)
-      ];
+  $fields = [
+    'name' => $name,
+    'file' => new \CurlFile($documents)
+  ];
 
-      $input_data = array();
+  $input_data = array();
 
-      $curl = curl_init();
+  $curl = curl_init();
 
-      curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/files',
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => '',
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => 'POST',
-        CURLOPT_POSTFIELDS =>  $fields,
-        CURLOPT_HTTPHEADER => array(
-          'Content: multipart/form-data;',
-          'Authorization: Bearer '.$token,
-          'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
-        ),
-      ));
+  curl_setopt_array($curl, array(
+    CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/files',
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => '',
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => 'POST',
+    CURLOPT_POSTFIELDS =>  $fields,
+    CURLOPT_HTTPHEADER => array(
+      'Content: multipart/form-data;',
+      'Authorization: Bearer '.$token,
+      'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+    ),
+  ));
 
-      $response = curl_exec($curl);
+  $response = curl_exec($curl);
 
 
-    curl_close($curl);
+  curl_close($curl);
 
-    $case_file_data = json_decode($response);
+  $case_file_data = json_decode($response);
 
-    $input_data['name'] = $case_file_data->name;
-    $input_data['mime_type'] = $case_file_data->mime_type;
-    $input_data['url'] = $case_file_data->url;
-    $input_data['url_thumbnail'] = $case_file_data->url_thumbnail;
-    $input_data['file_id'] = $case_file_data->file_id;
-    $input_data['case_id'] = $case_id;
-    $input_data['user_id'] = $user_id;
-    $input_data['system_case_id'] = $system_case_id;
+  $input_data['name'] = $case_file_data->name;
+  $input_data['mime_type'] = $case_file_data->mime_type;
+  $input_data['url'] = $case_file_data->url;
+  $input_data['url_thumbnail'] = $case_file_data->url_thumbnail;
+  $input_data['file_id'] = $case_file_data->file_id;
+  $input_data['case_id'] = $case_id;
+  $input_data['user_id'] = $user_id;
+  $input_data['system_case_id'] = $system_case_id;
 
-    $case_file_data = CaseFiles::create($input_data);
+  $case_file_data = CaseFiles::create($input_data);
 
 
     //end of code to attach file to case_id
-    if(!empty($case_file_data)){
+  if(!empty($case_file_data)){
 
-      $file_id = $case_file_data->file_id;;
-       return $case_file_data->file_id;
-    }else{
-       $file_id = null;
-       return $file_id;
-    }
+    $file_id = $case_file_data->file_id;;
+    return $case_file_data->file_id;
+  }else{
+   $file_id = null;
+   return $file_id;
+ }
 
-  }
+}
+
+function getCityAndStateFromZipcode($zipcode){
+ $r = get_token();
+ $token_data = json_decode($r);
+ $token = $token_data->access_token;
+
+ $curl = curl_init();
+
+ curl_setopt_array($curl, array(
+  CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/metadata/zipcodes?search='.$zipcode,
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'GET',
+  CURLOPT_HTTPHEADER => array(
+    'Authorization: Bearer '.$token
+  ),
+));
+
+ $response = curl_exec($curl);
+
+ curl_close($curl);
+ $city_state_data = json_decode($response);
+
+ $city_id = $city_state_data[0]->city->city_id;
+
+ return $city_id;
+
+}
 
 
 

@@ -60,7 +60,7 @@ class CaseManagementController extends Controller
         $filterValue = $request->filterValue;
         switch($filterValue){
           case 'All':
-                $filterIn = 
+                
                 break;
           case 'Action by admin':
                 break;

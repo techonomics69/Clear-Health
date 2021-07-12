@@ -34,6 +34,7 @@ use Illuminate\Support\Facades\App;
 use App\Models\Subscription;
 use DB;
 use Auth;
+use Config;
 
 
 class CaseManagementController extends Controller
@@ -929,12 +930,20 @@ die();*/
     $case = CaseManagement::find($request['case_id']);
 
     if ($case) :
-      dd(Auth::user()->id);
+      
       $case->update($case_data);
       
       //Store in activity
-      //$activityLog = array();
-      //$activityLog['user_type'=>]
+      $userRole = DB::table('users')->join('roles','users.role','=','roles.id')->select('users.id as userId','roles.name as roleName')
+                  ->where('users.id',Auth::user()->id)->first();
+      $activityLog = array();
+      $activityLog['user_type'] = $userRole['roleName'];
+      $activityLog['action_module'] = config('activity.action_module.case_management.action_items.ipledge');
+      $activityLog['action']  = config('activity.action.insert');
+      $activityLog['user_id'] = $userRole['userId'];
+      $activityLog['description'] = 'Stored ipledge creadential';
+      $activityLog['case_id'] = $request['case_id'];
+      $add_Activity = activityHelper::insertActivity($activityLog);
 
       //send sms to user
         $case = CaseManagement::find($request['case_id']);

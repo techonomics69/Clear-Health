@@ -52,14 +52,14 @@
           </div>    
           <div class="row" style="padding: 20px;">
             <div class="col-md-12">
-            <div class="">
+            
                 <table class="table table-responsive table-striped table-bordered nowrap" style=" width:100%" id="CaseManagementList">
                   <thead>
                     <tr>
                       <th>SR</th>
                       <th>Date</th>
                       <th>CaseID</th>
-                      <th>FirstName one</th>
+                      <th>FirstName</th>
                       <th>LastName</th>
                       <th>Gender</th>
                       <th>VisitNumber</th>
@@ -76,7 +76,7 @@
                     
                   </tbody>
                 </table>
-              </div>
+            
             </div>
 
           </div>

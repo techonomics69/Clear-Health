@@ -1572,7 +1572,7 @@
 											<div class="box-block mtb32">
 												<h3 class="font-weight-bold"><span class="text-underline">Activity log</span></h3>
 											
-											<table class="table-responsive-md table-striped no-footer">
+											<table class="table table-responsive-md table-striped no-footer">
 												<thead>
 													<tr>
 														<th>Date</th>

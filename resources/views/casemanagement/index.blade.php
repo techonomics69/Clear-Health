@@ -73,7 +73,38 @@
                     </tr>
                   </thead>
                   <tbody>
-                    
+                  <tr>
+                      <td>SR</td>
+                      <td>Date</td>
+                      <td>CaseID</td>
+                      <td>FirstName</td>
+                      <td>LastName</td>
+                      <td>Gender</td>
+                      <td>VisitNumber</td>
+                      <td>MDCaseID</td>
+                      <td>MDStatus</td>
+                      <td>VisitType</td>
+                      <td>TreatmentPlan</td>
+                      <td>Pharmacy</td>
+                      <td>Action</td>
+                      <td>Actions Needed</td>
+                    </tr>
+                    <tr>
+                      <td>SR</td>
+                      <td>Date</td>
+                      <td>CaseID</td>
+                      <td>FirstName</td>
+                      <td>LastName</td>
+                      <td>Gender</td>
+                      <td>VisitNumber</td>
+                      <td>MDCaseID</td>
+                      <td>MDStatus</td>
+                      <td>VisitType</td>
+                      <td>TreatmentPlan</td>
+                      <td>Pharmacy</td>
+                      <td>Action</td>
+                      <td>Actions Needed</td>
+                    </tr>
                   </tbody>
                 </table>
             
@@ -169,9 +200,9 @@
     var Datatable = $('#CaseManagementList').DataTable({
      "dom": '<"top"if>rt<"bottom"lp><"clear">',
     
-       "bLengthChange": false,
-        // "bAutoWidth": false,
-         "bInfo": false,
+      //  "bLengthChange": false,
+      //   // "bAutoWidth": false,
+      //    "bInfo": false,
        
   //     //scrollX:  true,
   //       language: {search: "", searchPlaceholder: "Search"},

@@ -932,7 +932,8 @@ die();*/
 
     if ($case) :
       
-      $updateCase = CaseManagement::find($request['case_id'])->update($case_data);
+      $updateCase = CaseManagement::where('id',$request['case_id'])->update($case_data);
+
       
       //Store in activity
       $userRole = DB::table('users')->join('roles','users.role','=','roles.id')->select('users.id as userId','roles.name as roleName')

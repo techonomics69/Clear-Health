@@ -70,7 +70,9 @@ class IpledgeImport implements  OnEachRow
         $rowIndex = $row->getIndex();
         $row      = $row->toArray();
         
-        echo $rowIndex."<br>";
+        if($rowIndex > 4){
+            echo $row[0]."<br>";
+        }
 
         // $group = Group::firstOrCreate([
         //     'name' => $row[1],

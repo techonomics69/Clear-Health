@@ -136,7 +136,7 @@
     //     "fixedHeader": {
     //     header: true,
     //     scrollY:        "300px",
-    //  scrollX:        true,
+      scrollX:        true,
     //  scrollCollapse:true,
     // },
  

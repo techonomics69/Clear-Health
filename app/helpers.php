@@ -857,9 +857,6 @@ function getCaseType($user_id,$case_id,$system_case_id){
       }
 
       function sendEmail($email_data){
-
-
-
         /*$data["email"] = $email_data['email'];
         $data["title"] = $email_data['title'];
         $data["body"]  = $email_data['body'];
@@ -870,15 +867,15 @@ function getCaseType($user_id,$case_id,$system_case_id){
             //public_path('attachments/Laravel_8_pdf_Example.pdf'),
           ];*/
 
-        /*if(isset($email_data['attachments'])){
+        if(isset($email_data['attachments'])){
           $files = $email_data['attachments'];
         }else{
            $files = array();
         }
 
-        $mail_sent = Mail::send($email_data['template'],$data, function($message)use($data, $files) {
-            $message->to($data["email"])
-                    ->subject($data["title"]);
+        $mail_sent = Mail::send($email_data['template'],$email_data, function($message)use($email_data, $files) {
+            $message->to($email_data["email"])
+                    ->subject($email_data["title"]);
             if(!empty($files)){
               foreach ($files as $file){
                 $message->attach($file);
@@ -892,9 +889,9 @@ function getCaseType($user_id,$case_id,$system_case_id){
 
         }else{
           return 0;
-        }*/
+        }
 
-        $data["email"] = "itqatester12@gmail.com";
+        /*$data["email"] = "itqatester12@gmail.com";
         $data["title"] = "helloclearhealth.com";
         $data["body"] = "This is test mail with attachment";
 
@@ -917,7 +914,7 @@ function getCaseType($user_id,$case_id,$system_case_id){
 
         }else{
           return 0;
-        }
+        }*/
 
       }
 

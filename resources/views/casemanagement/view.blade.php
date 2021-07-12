@@ -1702,6 +1702,9 @@
 			$('#action_item').trigger('click')
 			$('#triggers').trigger('click')
 		}
+		if(actionUrl == 'activity'){
+			$('#activity').trigger('click')
+		}
 	});
 
 	$(document).on('click', '#i_pledge_agreement', function() {

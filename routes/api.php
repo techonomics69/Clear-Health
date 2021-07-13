@@ -47,6 +47,7 @@ Route::post('forgot_password', [RegisterController::class, 'forgot_password']);
 
 Route::middleware('auth:api')->group(function () {    
     Route::get("getbirthcontrol/{id}", [BirthControlController::class, 'show']);
+    Route::get('user/{id}', [UserController::class, 'show']);
 });
 Route::resource('blogs', BlogController::class);
 Route::resource('checkout', CheckoutController::class);

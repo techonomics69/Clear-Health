@@ -374,17 +374,19 @@ class PaymentsController extends BaseController
             $product_id = explode(",", $subscription['product_id']);
             $productArray = [];
             foreach ($product_id as $key => $value) {
-                $products = Product::where('category_id','6')->where('id',$value)->get();
-                if(count($products)>0){
-                    foreach($products as $pkey => $pvalue){
-                        if($pvalue->id == $value){
-                            $products[$pkey]['isAdded'] = true;
-                        }else{
-                            $products[$pkey]['isAdded'] = true;
-                        }       
-                        array_push($productArray, $products);  
-                    } 
-                }
+                // $products = Product::where('category_id','6')->where('id',$value)->get();
+                // if(count($products)>0){
+                //     foreach($products as $pkey => $pvalue){
+                //         if($pvalue->id == $value){
+                //             $products[$pkey]['isAdded'] = true;
+                //         }else{
+                //             $products[$pkey]['isAdded'] = true;
+                //         }       
+                //         array_push($productArray, $products);  
+                //     } 
+                // }
+                $product = Product::find($value);
+                array_push($productArray, $product);
             }
             $subscription['product'] = $productArray;
             return $this->sendResponse($subscription, 'subscription retrieve successfully.');

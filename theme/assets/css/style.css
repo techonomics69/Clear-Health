@@ -1529,7 +1529,7 @@ border: 1px solid #e3ebf3;
 }
 
 
-.all_screen_section table.table thead th,
+/* .all_screen_section table.table thead th, */
 .all_screen_section table.table tbody td {
  
   vertical-align: middle;

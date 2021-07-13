@@ -75,7 +75,7 @@ Route::get('/reset-password/{token}', [ResetPasswordController::class, 'getPassw
 Route::post('/reset-password', [ResetPasswordController::class, 'updatePassword'])->name('reset.password');
 
 //Admin Routes
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth:web']], function () {
 
     // Dashboard Routes    
     Route::get('admin/dashboard', [HomeController::class, 'index'])->name("home.dashboard");

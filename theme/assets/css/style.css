@@ -1496,6 +1496,10 @@ table.table tbody td {
 border: 1px solid #98A4B8;
 }
 
+.list_view_outer .table td {
+  border: 1px solid #e3ebf3;
+}
+
 #action_items .table thead th{
   border-bottom: none;
 }

@@ -888,7 +888,7 @@
                         </a>
                     </li>
                     <li class="sub-menu ipledgeimports-create">
-                        <a  data-toggle="modal" data-target=".createipledge">
+                        <a href="javascript:void(0);" onclick="openIpledg();">
                             Ipledge Imports Create
                         </a>
                     </li>
@@ -1404,6 +1404,11 @@
     function gotoadd(){
 		window.location.href="{{ route('ipledgeimports.create') }}";
 	}
+
+    function openIpledg(){
+        $(".createipledge").modal('show');
+    }
+
     </script>
 
     <style>

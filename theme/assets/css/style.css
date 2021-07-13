@@ -1552,7 +1552,7 @@ border-right: none;
   padding: 10px 14px !important;
 } 
 
-table.table thead th, table.table tbody td {
+table.table thead th {
   vertical-align: middle;
   padding: 10px 14px !important;
 }

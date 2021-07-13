@@ -98,7 +98,7 @@
 @section('scriptsection')
   
 <script>
-	$.noConflict();
+	
 	jQuery( document ).ready(function( $ ) {
     	$('#faqList').DataTable({
 			"dom": '<"top"if>rt<"bottom"lp><"clear">',

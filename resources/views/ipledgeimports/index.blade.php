@@ -270,7 +270,7 @@
 @section('scriptsection')
 
 <script>
-	$.noConflict();
+	
 	jQuery( document ).ready(function( $ ) {
 
 

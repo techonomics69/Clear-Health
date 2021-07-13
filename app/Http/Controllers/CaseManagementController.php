@@ -507,7 +507,7 @@ class CaseManagementController extends Controller
 
       $date = strtotime($value['created_at']);
 
-      $message_data[$key]['date'] = date('M j', $date);
+      $message_data[$key]['date'] = date('M j H:i', $date);
       $message_data[$key]['created_at'] = $value['created_at'];
 
       if ($value['sender'] == 'admin') {

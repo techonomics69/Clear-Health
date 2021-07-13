@@ -368,8 +368,8 @@ class PaymentsController extends BaseController
         }
     }
 
-    public function changeMyPlan(){
-        $subscription = Subscription::where('user_id', request('user_id'))->where('status', 'active')->orderBy('id', 'desc')->first();
+    public function changeMyPlan(Request $request){
+        $subscription = Subscription::where('user_id', $request->user_id)->where('status', 'active')->orderBy('id', 'desc')->first();
         if (!empty($subscription)) {
             return $this->sendResponse($subscription, 'subscription retrieve successfully.');
         }else{

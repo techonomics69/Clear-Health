@@ -379,7 +379,7 @@ class PaymentsController extends BaseController
                     if(count($product_id)>0){
                         foreach ($product_id as $pkey => $pvalue) {
                             if($value == $value->id){
-                                array_push($productArray, $products);
+                                array_push($productsArr, $products[$key]);
                             }
                         }
                     }
@@ -405,7 +405,7 @@ class PaymentsController extends BaseController
         //         }
         //     }
         //     $subscription['product'] = $productArray;
-            return $this->sendResponse($productArray, 'subscription retrieve successfully.');
+            return $this->sendResponse($productsArr, 'subscription retrieve successfully.');
         // }else{
         //     return $this->sendResponse([], 'subscription not found.');
         // }

@@ -1153,7 +1153,7 @@
         </p>
     </footer>
 
-    <div class="modal fade bd-example-modal-lg createipledge" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal fade bd-example-modal-lg createipledge show" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg .modal-dialog-centered">
           <div class="modal-content">
           <div class="modal-header">

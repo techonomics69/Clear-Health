@@ -20,14 +20,8 @@ class Authenticate extends Middleware
     protected $invalidToken     =   404;
     public function handle($request, Closure $next, ...$guards)
     {
-        $url = explode("/", $request->url());
         if (!empty(trim($request->header('Authorization')))) {
-
-            // if(end($url) == "verifyotp"){
             $is_exists = User::where('id', Auth::guard('api')->id())->exists();
-            // }else{
-            //     $is_exists = User::where('id' , Auth::guard('api')->id())->whereNotNull('email_verified_at')->exists();    
-            // }
             if ($is_exists) {
                 $this->authenticate($request, $guards);
                 return $next($request);

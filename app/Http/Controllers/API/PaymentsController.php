@@ -385,10 +385,10 @@ class PaymentsController extends BaseController
                         }
                     }
                 }
-                if($value->category_id == '6'){
-                    $products[$key]['isAdded'] = false;
-                    array_push($productsArr, $products[$key]);
-                }
+                // if($value->category_id == '6'){
+                //     $products[$key]['isAdded'] = false;
+                //     array_push($productsArr, $products[$key]);
+                // }
             }
         }
         // if (!empty($products)) {

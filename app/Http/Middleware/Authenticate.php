@@ -22,6 +22,7 @@ class Authenticate extends Middleware
     public function handle($request, Closure $next, ...$guards)
     {
         $url = explode("/", $request->url());
+        dd($request->url());
         if(strpos($request->url(), 'api')!==false){
             dd($request->header());
             if (!empty(trim($request->header('Authorization')))) {

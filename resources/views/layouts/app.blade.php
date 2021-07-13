@@ -1218,8 +1218,8 @@
     <!-- END STACK JS-->
 
     <!-- BEGIN PAGE LEVEL JS-->
-    <script src="{{ asset('theme/app-assets/js/scripts/pages/dashboard-ecommerce.js') }}" type="text/javascript">
-    </script>
+    <!-- <script src="{{ asset('theme/app-assets/js/scripts/pages/dashboard-ecommerce.js') }}" type="text/javascript">
+    </script> -->
     <!-- END PAGE LEVEL JS-->
     <script src="{{ asset('theme/app-assets/js/scripts/extensions/toastr.js') }}" type="text/javascript"></script>
     <script src="{{ asset('theme/app-assets/js/scripts/extensions/sweet-alerts.js') }}" type="text/javascript"></script>

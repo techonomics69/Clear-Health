@@ -887,8 +887,8 @@
                             Ipledge Imports List
                         </a>
                     </li>
-                    <li class="sub-menu ipledgeimports-create">
-                        <a href="javascript:void(0);" onclick="openIpledg();">
+                    <li class="">
+                        <a href="javascript:void(0);" data-toggle="modal" data-target=".createipledge" >
                             Ipledge Imports Create
                         </a>
                     </li>

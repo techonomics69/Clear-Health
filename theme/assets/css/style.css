@@ -1554,7 +1554,11 @@ border-right: none;
   font-weight  : 600;
   margin-bottom: 20px;
 }
-
+table.table thead th, table.table tbody td {
+  border-width: 1px !important;
+  vertical-align: middle;
+  padding: 10px 14px !important;
+}
  tbody.list_view_outer td {
   /* border: 1px so
   lid #e3ebf3 !important; */

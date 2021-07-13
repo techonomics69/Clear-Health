@@ -645,7 +645,7 @@
 														</thead>
 														<tbody class="list_view_outer">
 															<tr>
-																<th scope="row">{{$user_case_management_data['bloodwork_date']}}</th>
+																<td scope="row">{{$user_case_management_data['bloodwork_date']}}</td>
 																<td><a href="{{ url('/public/ipledgeimports/blood_work/')}}/{{$user_case_management_data['blood_work']}}" target="_blank">File</a></td>
 																<td><a href="{{ url('/public/ipledgeimports/blood_work/')}}/{{$user_case_management_data['blood_work']}}" target="_blank"><i class="fa fa-eye"></i> </td>
 															</tr>
@@ -703,7 +703,7 @@
 
 														<tbody class="list_view_outer">
 															<tr>
-																<th scope="row">{{$user_case_management_data['prior_auth_date']}}</th>
+																<td scope="row">{{$user_case_management_data['prior_aud_date']}}</td>
 																<td><a href="javascript:void(0);" >@php echo $user_case_management_data['prior_auth']; @endphp</a></td>
 																<td><a href="{{ url('/public/ipledgeimports/prior_auth/')}}/{{$user_case_management_data['prior_auth']}}" target="_blank"><i class="fa fa-eye"></i> </td>
 															</tr>
@@ -2038,6 +2038,8 @@
 	.card.subcard .card-header {
     background-color: #e3ebf3 !important;
 	}
+
+
    
 </style>
 

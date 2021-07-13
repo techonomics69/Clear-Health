@@ -369,16 +369,53 @@ class PaymentsController extends BaseController
     }
 
     public function changeMyPlan(Request $request){
-        $subscription = Subscription::where('user_id', $request->user_id)->where('status', 'active')->orderBy('id', 'desc')->first();
-        if (!empty($subscription)) {
-            return $this->sendResponse($subscription, 'subscription retrieve successfully.');
+        
+        $productsArr = [];
+        $subscription = Subscription::where('user_id', request('user_id'))->where('status', 'active')->orderBy('id', 'desc')->first();
+        if(!empty($subscription)){
+            $product_id = explode(",", $subscription['product_id']);
+            if(count($product_id)>0){
+                foreach ($product_id as $pkey => $pvalue) {
+                    $product = Product::find($pvalue);
+                    $product['isAdded'] = true;
+                    array_push($productsArr, $product);
+                }
+            }
+        }
+
+        $products = Product::where('category_id','6')->get();
+        if(count($products)>0){
+            foreach($products as $key => $value){
+                $subscription = Subscription::where('user_id', request('user_id'))->where('status', 'active')->orderBy('id', 'desc')->first();
+                $cnt = 0;
+                if(!empty($subscription)){
+                    $product_id = explode(",", $subscription['product_id']);
+                    if(count($product_id)>0){
+                        foreach ($product_id as $pkey => $pvalue) {
+                            if($value->id == $pvalue){
+                                $cnt++;
+                            }
+                        }
+                    }
+                }
+                if($cnt == 0){
+                    $products[$key]['isAdded'] = false;
+                    array_push($productsArr, $products[$key]);
+                }
+                
+            }
+        }
+                
+            
+        if (count($productsArr)>0) {
+            return $this->sendResponse($productsArr, 'Records found');
         }else{
-            return $this->sendResponse([], 'subscription not found.');
+            return $this->sendResponse([], 'No records found');
         }
     }
 
     public function updateMyPlan(){
-
+        
     }
 
     public function changePaymentMethod(Request $request)

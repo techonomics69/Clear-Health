@@ -507,7 +507,7 @@ class CaseManagementController extends Controller
 
       $date = strtotime($value['created_at']);
 
-      $message_data[$key]['date'] = date('M j', $date);
+      $message_data[$key]['date'] = date('M j H:i', $date);
       $message_data[$key]['created_at'] = $value['created_at'];
 
       if ($value['sender'] == 'admin') {
@@ -704,13 +704,18 @@ die();*/
 
     $documents = $request->file('pregnancy_test');
 
-    $this->validate($request, [
+    $validator = \Validator::make($request->all(),[  
       'pregnancy_test' => 'required|mimes:jpg,jpeg,png,pdf',
     ], [
       'pregnancy_test.required' => 'Pregnancy Test file field is required.',
       'pregnancy_test.mimes' => 'Pregnancy Test File must be a file of type:jpg,jpeg,png,pdf',
 
     ]);
+
+    if($validator->fails()){
+      toastr()->error($validator->errors()->first());
+      return redirect()->back();
+    } 
 
 
 
@@ -747,13 +752,18 @@ die();*/
 
     $documents = $request->file('blood_work');
 
-    $this->validate($request, [
+    $validator = \Validator::make($request->all(),[  
       'blood_work' => 'required|mimes:jpg,jpeg,png,pdf',
     ], [
       'blood_work.required' => 'Blood Work Test file field is required.',
       'blood_work.mimes' => 'Blood Work  File must be a file of type:jpg,jpeg,png,pdf',
 
     ]);
+
+    if($validator->fails()){
+      toastr()->error($validator->errors()->first());
+      return redirect()->back();
+    } 
 
 
     if (!empty($documents)) {
@@ -892,7 +902,7 @@ die();*/
       $input_data['sender'] = $sender;
 
       $message_data = Messages::create($input_data);
-      $message_data['msg_date'] = $message_data['created_at']->format('M j');
+      $message_data['msg_date'] = $message_data['created_at']->format('M j H:i');
 
       //$message_data['date'] = date('M j', $message_data['created_at']);
 
@@ -1040,13 +1050,18 @@ die();*/
   {
     $documents = $request->file('file');
 
-    $this->validate($request, [
+    $validator = \Validator::make($request->all(),[  
       'file' => 'required|mimes:jpg,jpeg,png,pdf',
     ], [
       'file.required' => 'Prior Auth Test file field is required.',
       'file.mimes' => 'Prior Auth  File must be a file of type:jpg,jpeg,png,pdf',
 
     ]);
+
+    if($validator->fails()){
+      toastr()->error($validator->errors()->first());
+      return redirect()->back();
+    }  
 
 
     if (!empty($documents)) {
@@ -1269,23 +1284,28 @@ die();*/
 
     $documents = $request->file('file');
 
-    $this->validate($request, [
-      'file' => 'required|max:5000',
+    $validator = \Validator::make($request->all(),[
+      'file' => 'required|max:5000|mimes:jpg,jpeg,png,pdf',
     ], [
       'file.required' => 'Blood Work Test file field is required.',
-      // 'file.mimes' => 'Blood Work  File must be a file of type:jpg,jpeg,png,pdf',
+      'file.mimes' => 'Blood Work  File must be a file of type:jpg,jpeg,png,pdf',
       'file.max'  =>  'Please upload file size less than 5MB',
 
     ]);
 
+    if($validator->fails()){
+        toastr()->error($validator->errors()->first());
+        return redirect()->back();
+    }  
+
 
     if (!empty($documents)) {
       $file =  $documents->getClientOriginalName();
-      $ext = pathinfo($file, PATHINFO_EXTENSION);
-      if($ext == 'exe'){
-        toastr()->error('Excutable file is not allowed');
-        return redirect()->back();
-      }
+      // $ext = pathinfo($file, PATHINFO_EXTENSION);
+      // if($ext == 'exe'){
+      //   toastr()->error('Excutable file is not allowed');
+      //   return redirect()->back();
+      // }
       $doc_file_name =  time() . '-' . $file;
       //$doc_file_name = time() . '-' . $doc->getClientOriginalExtension();
 

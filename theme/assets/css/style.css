@@ -1547,9 +1547,15 @@ border-right: none;
 }
 
  tbody.list_view_outer td {
-  /* border: 1px solid #e3ebf3 !important; */
+  /* border: 1px so
+  lid #e3ebf3 !important; */
   padding: 10px 14px !important;
 } 
+
+table.table thead th, table.table tbody td {
+  vertical-align: middle;
+  padding: 10px 14px !important;
+}
 
 .select2-container--default .select2-selection--multiple .select2-selection__rendered li:after {
   content    : "\f107 ";

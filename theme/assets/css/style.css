@@ -1491,7 +1491,7 @@ table.table tbody td {
   padding: 15px;
 }
 
-#action_items .list_view_outer th,
+/* #action_items .list_view_outer th, */
 #action_items .list_view_outer td{
 border: 1px solid #e3ebf3;
 }
@@ -1529,7 +1529,7 @@ border: 1px solid #e3ebf3;
 }
 
 
-.all_screen_section table.table thead th,
+/* .all_screen_section table.table thead th, */
 .all_screen_section table.table tbody td {
  
   vertical-align: middle;

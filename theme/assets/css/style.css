@@ -1493,14 +1493,14 @@ table.table tbody td {
 
 #action_items .list_view_outer th,
 #action_items .list_view_outer td{
-/* border: 1px solid #98A4B8; */
+border: 1px solid #e3ebf3;
 }
 
 
 
-#action_items .table thead th{
+/* #action_items .table thead th{
   border-bottom: none;
-}
+} */
 
 .all_screen_section .list_view_outer .btn {
   line-height: 0.25;

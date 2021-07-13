@@ -328,9 +328,9 @@
 		});
 	};
 
-	function gotoadd(){
-		window.location.href="{{ route('ipledgeimports.create') }}";
-	}
+	// function gotoadd(){
+	// 	window.location.href="{{ route('ipledgeimports.create') }}";
+	// }
 </script>
 @endsection
 

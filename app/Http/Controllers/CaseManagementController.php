@@ -704,13 +704,18 @@ die();*/
 
     $documents = $request->file('pregnancy_test');
 
-    $this->validate($request, [
+    $validator = \Validator::make($request->all(),[  
       'pregnancy_test' => 'required|mimes:jpg,jpeg,png,pdf',
     ], [
       'pregnancy_test.required' => 'Pregnancy Test file field is required.',
       'pregnancy_test.mimes' => 'Pregnancy Test File must be a file of type:jpg,jpeg,png,pdf',
 
     ]);
+
+    if($validator->fails()){
+      toastr()->error($validator->errors()->first());
+      return redirect()->back();
+    } 
 
 
 
@@ -747,13 +752,18 @@ die();*/
 
     $documents = $request->file('blood_work');
 
-    $this->validate($request, [
+    $validator = \Validator::make($request->all(),[  
       'blood_work' => 'required|mimes:jpg,jpeg,png,pdf',
     ], [
       'blood_work.required' => 'Blood Work Test file field is required.',
       'blood_work.mimes' => 'Blood Work  File must be a file of type:jpg,jpeg,png,pdf',
 
     ]);
+
+    if($validator->fails()){
+      toastr()->error($validator->errors()->first());
+      return redirect()->back();
+    } 
 
 
     if (!empty($documents)) {
@@ -1040,13 +1050,18 @@ die();*/
   {
     $documents = $request->file('file');
 
-    $this->validate($request, [
+    $validator = \Validator::make($request->all(),[  
       'file' => 'required|mimes:jpg,jpeg,png,pdf',
     ], [
       'file.required' => 'Prior Auth Test file field is required.',
       'file.mimes' => 'Prior Auth  File must be a file of type:jpg,jpeg,png,pdf',
 
     ]);
+
+    if($validator->fails()){
+      toastr()->error($validator->errors()->first());
+      return redirect()->back();
+    }  
 
 
     if (!empty($documents)) {
@@ -1269,7 +1284,7 @@ die();*/
 
     $documents = $request->file('file');
 
-    $this->validate($request, [
+    $validator = \Validator::make($request->all(),[
       'file' => 'required|max:5000|mimes:jpg,jpeg,png,pdf',
     ], [
       'file.required' => 'Blood Work Test file field is required.',

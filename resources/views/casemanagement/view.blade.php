@@ -202,7 +202,7 @@
 				<div id="questions" class="tab-pane fade in">
 					
 						<div class="accordion" id="accordionExample">
-							<div class="card">
+							<div class="card ">
 								<div class="card-header">
 									<table width="100%">
 										<tr>
@@ -310,7 +310,7 @@
 							@if(count($followup_que)>0)
 							<?php $findex = 2; ?>
 							@foreach($followup_que as $fkey => $fvalue)
-							<div class="card">
+							<div class="card subcard">
 								<div class="card-header" id="headingTwo{{$findex}}">
 									<table width="100%">
 										<tr style="cursor: pointer;" onclick="questionsCollapse('collapseF{{$findex}}')" style="background-color: #43bfc1;">
@@ -581,8 +581,8 @@
 														<tbody class="list_view_outer">
 															@foreach($followup_que as $key => $p_test)
 															<tr class="pfollow{{$key+1}} pfollows">
-																<th scope="row"><?php echo $p_test['follow_up_no']; ?></th>
-																<th scope="row"><?php echo date("m-d-Y",strtotime($p_test['created_at'])); ?></th>
+																<td ><?php echo $p_test['follow_up_no']; ?></td>
+																<td ><?php echo date("m-d-Y",strtotime($p_test['created_at'])); ?></td>
 																<td><a href="{{ url('/public/images/Users/') }}/{{$p_test['pregnancy_test']}}" target="_blank">File</a></td>
 																<td>{{$p_test['follow_up_no']}}</td>
 																<td><a href="{{ url('/public/images/Users/') }}/{{$p_test['pregnancy_test']}}" target="_blank"><i class="fa fa-eye"></i></a> /
@@ -703,7 +703,7 @@
 
 														<tbody class="list_view_outer">
 															<tr>
-																<th scope="row">{{$user_case_management_data['prior_auth_date']}}</th>
+																<td scope="row">{{$user_case_management_data['prior_aud_date']}}</td>
 																<td><a href="javascript:void(0);" >@php echo $user_case_management_data['prior_auth']; @endphp</a></td>
 																<td><a href="{{ url('/public/ipledgeimports/prior_auth/')}}/{{$user_case_management_data['prior_auth']}}" target="_blank"><i class="fa fa-eye"></i> </td>
 															</tr>
@@ -737,7 +737,7 @@
 															<th>Visit Type</th>
 														</tr>
 													</thead>
-													<tbody>
+													<tbody class="list_view_outer">
 														@if(!empty($user_case_management_data))
 														<tr>
 															<td>1</td>

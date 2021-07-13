@@ -156,6 +156,24 @@ class PaymentsController extends BaseController
         ]);
         // Plan info 
 
+        // $plans = array(
+        //     '1' => array(
+        //         'name' => 'Weekly Subscription',
+        //         'price' => 25,
+        //         'interval' => 'week'
+        //     ),
+        //     '2' => array(
+        //         'name' => 'Monthly Subscription',
+        //         'price' => request('plan_price'),
+        //         'interval' => 'month'
+        //     ),
+        //     '3' => array(
+        //         'name' => 'Yearly Subscription',
+        //         'price' => 950,
+        //         'interval' => 'year'
+        //     )
+        // );
+
         $plans = array(
             '1' => array(
                 'name' => 'Weekly Subscription',
@@ -163,9 +181,9 @@ class PaymentsController extends BaseController
                 'interval' => 'week'
             ),
             '2' => array(
-                'name' => 'Monthly Subscription',
+                'name' => 'Daily Subscription',
                 'price' => request('plan_price'),
-                'interval' => 'month'
+                'interval' => 'day'
             ),
             '3' => array(
                 'name' => 'Yearly Subscription',
@@ -213,7 +231,7 @@ class PaymentsController extends BaseController
                     "amount" => $priceCents,
                     "currency" => $currency,
                     "interval" => $planInterval,
-                    "interval_count" => 2
+                    "interval_count" => 1
                 ));
             } catch (Exception $e) {
                 $apiError = $e->getMessage();

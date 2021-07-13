@@ -1196,6 +1196,7 @@
       <script src="http://code.jquery.com/jquery-3.6.0.js"></script>  
       <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
     <script>
+        $.noConflict();
         function gotoadd(){
 		window.location.href="{{ route('ipledgeimports.create') }}";
 	}
@@ -1204,7 +1205,7 @@
         var options = {
             "show":true
         }
-        jQuery("#createipledge").modal(options);
+        $("#createipledge").modal(options);
     }
     </script>  
 

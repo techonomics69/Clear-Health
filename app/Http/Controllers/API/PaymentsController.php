@@ -382,6 +382,28 @@ class PaymentsController extends BaseController
                 }
             }
         }
+
+        $products = Product::where('category_id','6')->get();
+        if(count($products)>0){
+            foreach($products as $key => $value){
+                $subscription = Subscription::where('user_id', request('user_id'))->where('status', 'active')->orderBy('id', 'desc')->first();
+                $cnt = 0;
+                if(!empty($subscription)){
+                    $product_id = explode(",", $subscription['product_id']);
+                    if(count($product_id)>0){
+                        foreach ($product_id as $pkey => $pvalue) {
+                            if($value->id == $pvalue){
+                                $cnt++;
+                            }
+                        }
+                    }
+                }
+                if($cnt == 0){
+                    array_push($productsArr, $products);
+                }
+                
+            }
+        }
                 
             
         // if (!empty($products)) {

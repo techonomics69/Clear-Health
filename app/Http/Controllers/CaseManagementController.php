@@ -117,6 +117,7 @@ class CaseManagementController extends Controller
         
         $data = array();
         $searchValue = $_POST['search']['value']; // search in date, caseid, firstname, lastname, gender, md caseid, 
+        DB::enableQueryLog();
         
         $user_case_management_data = DB::table('case_managements as cm')->join('users as u', 'cm.user_id', '=', 'u.id')
                     ->leftjoin('case_histories as ch', 'cm.id', '=', 'ch.case_id')
@@ -214,6 +215,8 @@ class CaseManagementController extends Controller
 
           
         }
+
+        dd(DB::getQueryLog());
 
         foreach($user_case_management_data as $key => $value){
           $value = json_decode(json_encode($value), true);

@@ -384,8 +384,8 @@ class PaymentsController extends BaseController
                         }else{
                             $products[$pkey]['isAdded'] = true;
                         }       
-                        array_push($productArray, $products);  
-                    } 
+                    }
+                    array_push($productArray, $products);   
                 }
 
                 // array_push($productArray, $product);

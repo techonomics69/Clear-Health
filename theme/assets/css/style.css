@@ -1493,7 +1493,7 @@ table.table tbody td {
 
 /* #action_items .list_view_outer th, */
 #action_items .list_view_outer td{
-border: 1px solid #e3ebf3;
+border: 1px solid #e3ebf3 !important;
 }
 
 

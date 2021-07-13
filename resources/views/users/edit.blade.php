@@ -142,7 +142,7 @@
                             <div class="row">
                                 <div class="col-lg-12 submit-buton text-right">
                                     <a  href="{{ route('users.index') }}"><button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button></a>
-                                    <button type="submit" class="btn btn-secondry" data-dismiss="modal">Submit</button>
+                                    <button type="submit" class="btn btn-secondry" data-dismiss="modal">Save</button>
                                 </div>
                             </div>
 

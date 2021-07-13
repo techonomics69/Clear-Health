@@ -369,55 +369,53 @@ class PaymentsController extends BaseController
     }
 
     public function changeMyPlan(Request $request){
-        $products = Product::all();
+        
         $productsArr = [];
+        $subscription = Subscription::where('user_id', request('user_id'))->where('status', 'active')->orderBy('id', 'desc')->first();
+        if(!empty($subscription)){
+            $product_id = explode(",", $subscription['product_id']);
+            if(count($product_id)>0){
+                foreach ($product_id as $pkey => $pvalue) {
+                    $product = Product::find($pvalue);
+                    $product['isAdded'] = true;
+                    array_push($productsArr, $product);
+                }
+            }
+        }
+
+        $products = Product::where('category_id','6')->get();
         if(count($products)>0){
             foreach($products as $key => $value){
                 $subscription = Subscription::where('user_id', request('user_id'))->where('status', 'active')->orderBy('id', 'desc')->first();
+                $cnt = 0;
                 if(!empty($subscription)){
                     $product_id = explode(",", $subscription['product_id']);
                     if(count($product_id)>0){
                         foreach ($product_id as $pkey => $pvalue) {
-                            if($pvalue == $value->id){
-                                $products[$key]['isAdded'] = true;
-                                array_push($productsArr, $products[$key]);
+                            if($value->id == $pvalue){
+                                $cnt++;
                             }
                         }
                     }
                 }
-                // if($value->category_id == '6'){
-                //     $products[$key]['isAdded'] = false;
-                //     array_push($productsArr, $products[$key]);
-                // }
+                if($cnt == 0){
+                    $products[$key]['isAdded'] = false;
+                    array_push($productsArr, $products[$key]);
+                }
+                
             }
         }
-        // if (!empty($products)) {
-        //     $product_id = explode(",", $subscription['product_id']);
-        //     $productArray = [];
-        //     foreach ($product_id as $key => $value) {
-        //         $products = Product::where('category_id','6')->orWhere('id',$value)->get();
-        //         $cnt = 0;
-        //         if(count($products)>0){
-        //             foreach($products as $pkey => $pvalue){
-        //                 if($pvalue->id == $value){
-        //                     $cnt++;
-        //                     $products[$pkey]['isAdded'] = true;
-        //                 }else{
-        //                     $products[$pkey]['isAdded'] = true;
-        //                 }       
-        //             }
-        //             array_push($productArray, $products);   
-        //         }
-        //     }
-        //     $subscription['product'] = $productArray;
-            return $this->sendResponse($productsArr, 'subscription retrieve successfully.');
-        // }else{
-        //     return $this->sendResponse([], 'subscription not found.');
-        // }
+                
+            
+        if (count($productsArr)>0) {
+            return $this->sendResponse($productsArr, 'Records found');
+        }else{
+            return $this->sendResponse([], 'No records found');
+        }
     }
 
     public function updateMyPlan(){
-
+        
     }
 
     public function changePaymentMethod(Request $request)

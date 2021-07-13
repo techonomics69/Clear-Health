@@ -1278,14 +1278,19 @@ die();*/
 
     ]);
 
+    if($validator->fails()){
+        toastr()->error($validator->errors()->first());
+        return redirect()->back();
+    }  
+
 
     if (!empty($documents)) {
       $file =  $documents->getClientOriginalName();
-      $ext = pathinfo($file, PATHINFO_EXTENSION);
-      if($ext == 'exe'){
-        toastr()->error('Excutable file is not allowed');
-        return redirect()->back();
-      }
+      // $ext = pathinfo($file, PATHINFO_EXTENSION);
+      // if($ext == 'exe'){
+      //   toastr()->error('Excutable file is not allowed');
+      //   return redirect()->back();
+      // }
       $doc_file_name =  time() . '-' . $file;
       //$doc_file_name = time() . '-' . $doc->getClientOriginalExtension();
 

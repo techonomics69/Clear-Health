@@ -369,28 +369,21 @@ class PaymentsController extends BaseController
     }
 
     public function changeMyPlan(Request $request){
-        $products = Product::all();
+        
         $productsArr = [];
-        if(count($products)>0){
-            foreach($products as $key => $value){
-                $subscription = Subscription::where('user_id', request('user_id'))->where('status', 'active')->orderBy('id', 'desc')->first();
-                if(!empty($subscription)){
-                    $product_id = explode(",", $subscription['product_id']);
-                    if(count($product_id)>0){
-                        foreach ($product_id as $pkey => $pvalue) {
-                            if($pvalue == $value->id){
-                                $products[$key]['isAdded'] = true;
-                                array_push($productsArr, $products[$key]);
-                            }
-                        }
-                    }
+        $subscription = Subscription::where('user_id', request('user_id'))->where('status', 'active')->orderBy('id', 'desc')->first();
+        if(!empty($subscription)){
+            $product_id = explode(",", $subscription['product_id']);
+            if(count($product_id)>0){
+                foreach ($product_id as $pkey => $pvalue) {
+                    $product = Product::find($value);
+                    $product[$pkey]['isAdded'] = true;
+                    array_push($productsArr, $product);
                 }
-                // if($value->category_id == '6'){
-                //     $products[$key]['isAdded'] = false;
-                //     array_push($productsArr, $products[$key]);
-                // }
             }
         }
+                
+            
         // if (!empty($products)) {
         //     $product_id = explode(",", $subscription['product_id']);
         //     $productArray = [];

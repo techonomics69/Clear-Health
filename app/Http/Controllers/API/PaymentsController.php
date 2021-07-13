@@ -407,29 +407,11 @@ class PaymentsController extends BaseController
         }
                 
             
-        // if (!empty($products)) {
-        //     $product_id = explode(",", $subscription['product_id']);
-        //     $productArray = [];
-        //     foreach ($product_id as $key => $value) {
-        //         $products = Product::where('category_id','6')->orWhere('id',$value)->get();
-        //         $cnt = 0;
-        //         if(count($products)>0){
-        //             foreach($products as $pkey => $pvalue){
-        //                 if($pvalue->id == $value){
-        //                     $cnt++;
-        //                     $products[$pkey]['isAdded'] = true;
-        //                 }else{
-        //                     $products[$pkey]['isAdded'] = true;
-        //                 }       
-        //             }
-        //             array_push($productArray, $products);   
-        //         }
-        //     }
-        //     $subscription['product'] = $productArray;
-            return $this->sendResponse($productsArr, 'subscription retrieve successfully.');
-        // }else{
-        //     return $this->sendResponse([], 'subscription not found.');
-        // }
+        if (count($productsArr)>0) {
+            return $this->sendResponse($productsArr, 'Records found');
+        }else{
+            return $this->sendResponse([], 'No records found');
+        }
     }
 
     public function updateMyPlan(){

@@ -737,7 +737,7 @@
 															<th>Visit Type</th>
 														</tr>
 													</thead>
-													<tbody>
+													<tbody class="list_view_outer">
 														@if(!empty($user_case_management_data))
 														<tr>
 															<td>1</td>

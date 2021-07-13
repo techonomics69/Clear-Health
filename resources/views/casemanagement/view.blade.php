@@ -20,18 +20,18 @@
 
 	<style type="text/css">
 		#casemanagement-tab-menu li a.active {
-			background-color: #43bfc1;
+			background-color: #359b9e;;
 			color: #ffffff;
 		}
 	</style>
 	<style type="text/css">
 		#messages-tab-menu li a.active {
-			background-color: #43bfc1;
+			background-color: #359b9e;;
 			color: #ffffff;
 		}
 
 		#questions-tab-menu li a.active {
-			background-color: #43bfc1;
+			background-color: #359b9e;;
 			color: #ffffff;
 		}
 
@@ -221,7 +221,7 @@
 								<div class="card-header" id="headingOne">
 									
 										<table width="100%">
-											<tr style="cursor: pointer;" onclick="questionsCollapse('collapseOne')" style="background-color: #43bfc1;">
+											<tr style="cursor: pointer;" onclick="questionsCollapse('collapseOne')" style="background-color: #359b9e;;">
 												<td width="25%">1</td>
 												<td width="25%"><?php if(isset($general['created_at'])) if(!empty($general['created_at'])) echo date("m-d-Y",strtotime($general['created_at'])) ?></td>
 												<td width="25%"><span><?php if(count($accutane_que)>0){ echo "Accutane"; }else if(count($topical_que)>0){ echo "Topical"; } ?></span></td>
@@ -313,7 +313,7 @@
 							<div class="card subcard">
 								<div class="card-header" id="headingTwo{{$findex}}">
 									<table width="100%">
-										<tr style="cursor: pointer;" onclick="questionsCollapse('collapseF{{$findex}}')" style="background-color: #43bfc1;">
+										<tr style="cursor: pointer;" onclick="questionsCollapse('collapseF{{$findex}}')" style="background-color: #359b9e;;">
 											<td width="25%">{{$findex}}</td>
 											<td width="25%"><?php echo date("m-d-Y",strtotime($fvalue->created_at)); ?></td>
 											<td width="25%"><span><?php if(count($accutane_que)>0){ echo "Accutane"; }else if(count($topical_que)>0){ echo "Topical"; } ?></span></td>

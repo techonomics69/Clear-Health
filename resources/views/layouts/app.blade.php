@@ -1204,7 +1204,7 @@
         var options = {
             "show":true
         }
-        $("#createipledge").modal(options);
+        jQuery("#createipledge").modal(options);
     }
     </script>  
 

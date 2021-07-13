@@ -97,7 +97,7 @@
 <script src="https://kendo.cdn.telerik.com/2020.1.219/js/kendo.all.min.js"></script>
 <script src="http://code.jquery.com/jquery-3.6.0.js"></script>  
 <script>
-  // $.noConflict();
+  $.noConflict();
   // jQuery(document).ready(function($) {
 
     var token = "{{ csrf_token() }}";

@@ -1546,9 +1546,10 @@ border-right: none;
   margin-bottom: 20px;
 }
 
-/* tbody.list_view_outer td {
-  border: 1px solid #e3ebf3 !important;
-} */
+ tbody.list_view_outer td {
+  /* border: 1px solid #e3ebf3 !important; */
+  padding: 10px 14px !important;
+} 
 
 .select2-container--default .select2-selection--multiple .select2-selection__rendered li:after {
   content    : "\f107 ";

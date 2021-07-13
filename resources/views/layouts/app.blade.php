@@ -888,7 +888,7 @@
                         </a>
                     </li>
                     <li class="sub-menu ipledgeimports-create">
-                        <a href="javascript:void(0);" data-toggle="modal" data-target=".createipledge">
+                        <a  data-toggle="modal" data-target=".createipledge">
                             Ipledge Imports Create
                         </a>
                     </li>

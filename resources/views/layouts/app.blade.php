@@ -1406,7 +1406,7 @@
 	}
 
     function openIpledg(){
-        $(".createipledge").modal('show');
+        $(".bd-example-modal-lg").modal('show');
     }
 
     </script>

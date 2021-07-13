@@ -57,7 +57,7 @@
         href="{{ asset('theme/app-assets/css/plugins/forms/checkboxes-radios.css') }}">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.22/datatables.min.css" />
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/app-assets/css/datatables.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('theme/app-assets/css/loader.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('theme/app-assets/css/loader.min.css') }}">
 
     @toastr_css
     <!-- END Page Level CSS-->
@@ -74,12 +74,15 @@
     }
     </style>
     <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+    
     <!-- END Custom CSS-->
     @yield('stylesection')
 </head>
 
 <body class="vertical-layout vertical-menu 2-columns   menu-expanded fixed-navbar" data-open="click"
     data-menu="vertical-menu" data-col="2-columns">
+
+    
     <!-- fixed-top-->
     <nav
         class="header-navbar navbar-expand-md navbar navbar-with-menu fixed-top navbar-dark bg-gradient-x-primary navbar-shadow">
@@ -888,7 +891,7 @@
                         </a>
                     </li>
                     <li class="sub-menu ipledgeimports-create">
-                        <a  data-toggle="modal" data-target=".createipledge">
+                        <a href="javascript:void(0);" onclick="openIpledg();">
                             Ipledge Imports Create
                         </a>
                     </li>
@@ -1141,6 +1144,7 @@
 
     <div class="container-fluid p-0">
         @yield('content')
+        
     </div>
 
     
@@ -1151,9 +1155,12 @@
                     class="text-bold-800 grey darken-2" href="{{ route('home.dashboard') }}" target="_blank">clearHealth
                 </a>, All rights reserved. </span>
         </p>
+
+        
+
     </footer>
 
-    <div class="modal fade bd-example-modal-lg createipledge" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal fade bd-example-modal-lg" id="createipledge"  role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg .modal-dialog-centered">
           <div class="modal-content">
           <div class="modal-header">
@@ -1185,9 +1192,24 @@
           </div>
         </div>
       </div>
+    
+      <script src="http://code.jquery.com/jquery-3.6.0.js"></script>  
+      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+    <script>
+        function gotoadd(){
+		window.location.href="{{ route('ipledgeimports.create') }}";
+	}
 
+    function openIpledg(){
+        var options = {
+            "show":true
+        }
+        $("#createipledge").modal(options);
+    }
+    </script>  
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
     <script src="https://kendo.cdn.telerik.com/2020.1.219/js/kendo.all.min.js"></script>
     <!-- BEGIN VENDOR JS-->
     <script src="{{ asset('theme/app-assets/vendors/js/vendors.min.js') }}" type="text/javascript"></script>
@@ -1211,8 +1233,8 @@
     <!-- END STACK JS-->
 
     <!-- BEGIN PAGE LEVEL JS-->
-    <script src="{{ asset('theme/app-assets/js/scripts/pages/dashboard-ecommerce.js') }}" type="text/javascript">
-    </script>
+    <!-- <script src="{{ asset('theme/app-assets/js/scripts/pages/dashboard-ecommerce.js') }}" type="text/javascript">
+    </script> -->
     <!-- END PAGE LEVEL JS-->
     <script src="{{ asset('theme/app-assets/js/scripts/extensions/toastr.js') }}" type="text/javascript"></script>
     <script src="{{ asset('theme/app-assets/js/scripts/extensions/sweet-alerts.js') }}" type="text/javascript"></script>
@@ -1227,11 +1249,15 @@
     <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
 
     <script src="https://cdn.datatables.net/fixedcolumns/3.3.3/js/dataTables.fixedColumns.min.js"></script>
+    
 
     @toastr_js
     @toastr_render
     @yield('scriptsection')
     <script type="text/javascript">
+    // $("#createipledge").modal('show');
+
+    
     $(document).ready(function() {
         /* $('.select2').select2({width:'100%'});*/
 
@@ -1401,9 +1427,8 @@
 
     });
 
-    function gotoadd(){
-		window.location.href="{{ route('ipledgeimports.create') }}";
-	}
+   
+
     </script>
 
     <style>

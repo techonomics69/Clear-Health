@@ -6,7 +6,7 @@
 <script>
     // Create an instance of the Stripe object
     // Set your publishable API key
-    var stripe = Stripe('{{ env("STRIPE_PUBLISH_KEY") }}');
+    var stripe = Stripe('pk_test_51J68rTSAxcezccSJuY1VVZLuYikkAjDNpxyfRqqf5dDuJPZQrzU0wwe2NkF6lIr5UCdekq8rdmCo7CLAqXV7U9iJ00cj2mKwre');
 
     // Create an instance of elements
     var elements = stripe.elements();

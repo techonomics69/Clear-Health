@@ -9,6 +9,7 @@ use Exception;
 use Stripe\Charge;
 use Stripe\Stripe;
 use Stripe\Customer;
+use Stripe\PaymentMethod;
 use Illuminate\Http\Request;
 use App\Models\Checkout;
 use App\Models\User;
@@ -369,22 +370,38 @@ class PaymentsController extends BaseController
 
     public function changePaymentMethod(Request $request)
     {
-        try {
-            $stripe = new \Stripe\StripeClient(
-                'sk_test_oLYDLJIuI9U4sVbvbJtRUdai'
-            );
-            $dp = $stripe->paymentMethods->create([
-                'type' => 'card',
-                'card' => [
-                    'number' => '4242424242424242',
-                    'exp_month' => 7,
-                    'exp_year' => 2022,
-                    'cvc' => '314',
-                ],
-            ]);
-            return $this->sendResponse($dp, 'success');
-        } catch (\Stripe\Exception\CardException $e) {
-            return $this->sendResponse($e, 'error');
-        }
+        $customer_id = request('customer');
+        $number = request('number');
+        $exp = explode("/",request('exp'));
+        $cvc = request('cvc');
+
+        
+        	Stripe::setApiKey("sk_test_51J08tDJofjMgVsOdzxZs5Aqlf5A9riwPPwlxUTriC8YPiHvTjlCBoaMjgxiqdIVfvOMPcllgR9JY7EZlihr6TJHy00ixztHFtz");
+        	try{
+        		$create = \Stripe\PaymentMethod::create([
+        			'type' => 'card',
+        			'card' => [
+        				'number' => $number,
+        				'exp_month' => $exp[0],
+        				'exp_year' => $exp[1],
+        				'cvc' => $cvc
+        			],
+        		]);
+
+        		$payment_method_id = $create->id;
+        		$customer_id = $customer_id; //Take From Database
+        
+	            $payment_method = \Stripe\PaymentMethod::retrieve($payment_method_id);
+	            $payment_method->attach(['customer' => $customer_id]);
+
+	            \Stripe\Customer::update(
+	                $customer_id,
+	                ['invoice_settings' => ['default_payment_method' => $payment_method_id]]
+	              );
+        		return $this->sendResponse($create, 'success');
+        	} catch (\Stripe\Exception\CardException $e) {
+	            return $this->sendResponse($e, 'error');
+	        }
+
     }
 }

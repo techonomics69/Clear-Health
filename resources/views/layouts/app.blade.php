@@ -1141,38 +1141,7 @@
 
     <div class="container-fluid p-0">
         @yield('content')
-        <div class="modal fade bd-example-modal-lg" id="createipledge"  role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg .modal-dialog-centered">
-          <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">Sample csv with mentioned fields to be considered while uploading a csv</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-                  <div class="container-fluid">
-                      <div class="row">
-                          <div class="col-md-12">
-                              <img class="img-fluid" src="{{ asset('public/images/image_ipledge1.png') }}">
-                          </div>
-                          
-                      </div>
-                      <div class="row">
-                          <div class="col-md-12">
-                              <img class="img-fluid" src="{{ asset('public/images/image_ipledge2.png') }}">
-                          </div>
-                      </div>
-                  </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-              <button type="button" class="btn btn-primary" onclick="gotoadd();">Ok</button>
-            </div>						
-            
-          </div>
-        </div>
-      </div>
+        
     </div>
 
     
@@ -1183,6 +1152,40 @@
                     class="text-bold-800 grey darken-2" href="{{ route('home.dashboard') }}" target="_blank">clearHealth
                 </a>, All rights reserved. </span>
         </p>
+
+        <div class="modal fade bd-example-modal-lg" id="createipledge"  role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg .modal-dialog-centered">
+              <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Sample csv with mentioned fields to be considered while uploading a csv</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                      <div class="container-fluid">
+                          <div class="row">
+                              <div class="col-md-12">
+                                  <img class="img-fluid" src="{{ asset('public/images/image_ipledge1.png') }}">
+                              </div>
+                              
+                          </div>
+                          <div class="row">
+                              <div class="col-md-12">
+                                  <img class="img-fluid" src="{{ asset('public/images/image_ipledge2.png') }}">
+                              </div>
+                          </div>
+                      </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-primary" onclick="gotoadd();">Ok</button>
+                </div>						
+                
+              </div>
+            </div>
+          </div>
+
     </footer>
 
     

@@ -902,7 +902,7 @@ die();*/
       $input_data['sender'] = $sender;
 
       $message_data = Messages::create($input_data);
-      $message_data['msg_date'] = $message_data['created_at']->format('M j');
+      $message_data['msg_date'] = $message_data['created_at']->format('M j H:i');
 
       //$message_data['date'] = date('M j', $message_data['created_at']);
 

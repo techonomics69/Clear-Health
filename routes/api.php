@@ -173,6 +173,9 @@ Route::post('customer_make_direct_payment', [PaymentsController::class, 'custome
 Route::post('getSubscriptionByUser', [PaymentsController::class, 'getSubscriptionByUser']);
 Route::post('changePaymentMethod', [PaymentsController::class, 'changePaymentMethod']);
 
+//Change Plan
+Route::get('changeMyPlan',[PaymentsController::class, 'changeMyPlan']);
+
 //Action Items
 
 Route::post('addIpledgeAgreement', [ActionitemsController::class, 'addIpledgeAgreement']);

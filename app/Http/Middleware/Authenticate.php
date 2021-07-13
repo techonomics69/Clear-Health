@@ -22,16 +22,20 @@ class Authenticate extends Middleware
     public function handle($request, Closure $next, ...$guards)
     {
         $url = explode("/", $request->url());
-        dd($url);
-        if (!empty(trim($request->header('Authorization')))) {
-            $is_exists = User::where('id', Auth::guard('api')->id())->exists();
-            if ($is_exists) {
-                $this->authenticate($request, $guards);
-                return $next($request);
+        if(strpos($url, 'api')!==false){
+            if (!empty(trim($request->header('Authorization')))) {
+                $is_exists = User::where('id', Auth::guard('api')->id())->exists();
+                if ($is_exists) {
+                    $this->authenticate($request, $guards);
+                    return $next($request);
+                }
             }
+    
+            return abort(401, 'You are not authenticated to this service');
+        }else{
+            return $next($request);
         }
-
-        return abort(401, 'You are not authenticated to this service');
+        
     }
 
 

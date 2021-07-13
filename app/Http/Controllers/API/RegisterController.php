@@ -104,8 +104,12 @@ class RegisterController extends BaseController
                 $success['email'] =  $user->email;
                 $success['user_id'] =  $user->id;
 
-                $case_status =  CaseManagement::where("user_id", $user->id)->OrderBy("id" , "DESC")->first(); 
-                $order_status = Checkout::where("user_id",$user->id)->OrderBy("id" , "DESC")->first();
+                $case_status =  CaseManagement::where("user_id", $user->id)->OrderBy("id" , "DESC")->first();
+                $order_status = false;
+                if($user->verified_by_vouch == 'success'):
+                    $order_status = true;
+                endif; 
+                
 
                 $complete = true;
 

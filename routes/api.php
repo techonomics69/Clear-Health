@@ -187,9 +187,6 @@ Route::post('webhookTriggers', [MdwebhooksController::class, 'webhookTriggers'])
 //Change Password
 Route::post('changePassword', [ChangePasswordController::class, 'changePassword']);
 
-Route::group(['middleware' => 'auth:api'], function () {
-});
-
 Route::get('getshipstationOrderdetail', [shipStationController::class, 'getOrderDetails']);
 Route::get('getordershipments/{orderId}', [shipStationController::class, 'getshipments']);
 

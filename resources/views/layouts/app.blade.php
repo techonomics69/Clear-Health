@@ -1404,12 +1404,12 @@
 
     <style>
     .main-menu.menu-light .navigation>li.active>a {
-        color: #43bfc1 !important;
+        color: #359b9e; !important;
         font-weight: 600;
     }
 
     .main-menu.menu-light .navigation>li ul .active>a {
-        color: #43bfc1 !important;
+        color: #359b9e; !important;
         font-weight: 600;
     }
 
@@ -1421,7 +1421,7 @@
 
     .main-menu.menu-light .navigation .sub>li ul.menu-content li:hover>a.menu-item,
     .main-menu.menu-light .navigation>li:hover>a {
-        color: #43bfc1;
+        color: #359b9e;;
     }
     </style>
 </body>

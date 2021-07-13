@@ -13,7 +13,7 @@
 
 <style type="text/css">
 	#question-tab-menu li a.active{
-		background-color: #43bfc1;
+		background-color: #359b9e;;
 		color: #ffffff;
 	}	
 </style>

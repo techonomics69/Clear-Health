@@ -2038,6 +2038,12 @@
 	.card.subcard .card-header {
     background-color: #e3ebf3 !important;
 	}
+
+	table.table thead th, table.table tbody td {
+    border-width: 1px !important;
+    vertical-align: middle;
+    padding: 10px 14px !important;
+}
    
 </style>
 

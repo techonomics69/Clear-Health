@@ -378,7 +378,7 @@ class PaymentsController extends BaseController
                     $product_id = explode(",", $subscription['product_id']);
                     if(count($product_id)>0){
                         foreach ($product_id as $pkey => $pvalue) {
-                            if($value == $value->id){
+                            if($pvalue == $value->id){
                                 array_push($productsArr, $products[$key]);
                             }
                         }

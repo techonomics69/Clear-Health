@@ -105,13 +105,17 @@ class RegisterController extends BaseController
                 $success['user_id'] =  $user->id;
 
                 $case_status =  CaseManagement::where("user_id", $user->id)->OrderBy("id", "DESC")->first();
+                $orderData = Checkout::where("user_id", $user->id)->where("payment_status", "succeeded")->OrderBy("id", "ASC")->get();
                 $order_status = false;
                 $complete = true;
                 if ($user->verified_by_vouch == 'success') :
                     $order_status = true;
                     $complete = false;
                 endif;
-               
+                if (!empty($orderData)) :
+                    $order_status = true;
+                endif;
+
                 $success['case_status'] = $complete;
                 $success['order_status'] = $order_status;
 

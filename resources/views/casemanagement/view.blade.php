@@ -581,8 +581,8 @@
 														<tbody class="list_view_outer">
 															@foreach($followup_que as $key => $p_test)
 															<tr class="pfollow{{$key+1}} pfollows">
-																<th ><?php echo $p_test['follow_up_no']; ?></th>
-																<th ><?php echo date("m-d-Y",strtotime($p_test['created_at'])); ?></th>
+																<td ><?php echo $p_test['follow_up_no']; ?></td>
+																<td ><?php echo date("m-d-Y",strtotime($p_test['created_at'])); ?></td>
 																<td><a href="{{ url('/public/images/Users/') }}/{{$p_test['pregnancy_test']}}" target="_blank">File</a></td>
 																<td>{{$p_test['follow_up_no']}}</td>
 																<td><a href="{{ url('/public/images/Users/') }}/{{$p_test['pregnancy_test']}}" target="_blank"><i class="fa fa-eye"></i></a> /

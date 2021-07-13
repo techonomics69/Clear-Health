@@ -2035,7 +2035,7 @@
 		width: 100%;
 
 	}
-	.card.subcard.card-header {
+	.card.subcard .card-header {
     background-color: #e3ebf3 !important;
 	}
    

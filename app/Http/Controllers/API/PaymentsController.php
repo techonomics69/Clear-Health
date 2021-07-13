@@ -370,7 +370,22 @@ class PaymentsController extends BaseController
 
     public function changeMyPlan(Request $request){
         $products = Product::all();
-
+        $productsArr = [];
+        if(count($products)>0){
+            foreach($products as $key => $value){
+                $subscription = Subscription::where('user_id', request('user_id'))->where('status', 'active')->orderBy('id', 'desc')->first();
+                if(!empty($subscription)){
+                    $product_id = explode(",", $subscription['product_id']);
+                    if(count($product_id)>0){
+                        foreach ($product_id as $pkey => $pvalue) {
+                            if($pvalue == $value->id){
+                                array_push($productsArr, $products[$key]);
+                            }
+                        }
+                    }
+                }
+            }
+        }
         // if (!empty($products)) {
         //     $product_id = explode(",", $subscription['product_id']);
         //     $productArray = [];
@@ -390,7 +405,7 @@ class PaymentsController extends BaseController
         //         }
         //     }
         //     $subscription['product'] = $productArray;
-            return $this->sendResponse(count($products), 'subscription retrieve successfully.');
+            return $this->sendResponse($productsArr, 'subscription retrieve successfully.');
         // }else{
         //     return $this->sendResponse([], 'subscription not found.');
         // }

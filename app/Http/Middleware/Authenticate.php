@@ -21,6 +21,8 @@ class Authenticate extends Middleware
     protected $invalidToken     =   404;
     public function handle($request, Closure $next, ...$guards)
     {
+        $url = explode("/", $request->url());
+        dd($url);
         if (!empty(trim($request->header('Authorization')))) {
             $is_exists = User::where('id', Auth::guard('api')->id())->exists();
             if ($is_exists) {

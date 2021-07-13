@@ -1496,7 +1496,7 @@ table.table tbody td {
 border: 1px solid #98A4B8;
 }
 
-.list_view_outer .table td {
+tbody.list_view_outer td {
   border: 1px solid #e3ebf3;
 }
 

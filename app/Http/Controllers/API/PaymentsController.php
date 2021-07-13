@@ -399,7 +399,8 @@ class PaymentsController extends BaseController
                     }
                 }
                 if($cnt == 0){
-                    array_push($productsArr, $products);
+                    $product = Product::find($value);
+                    array_push($productsArr, $product);
                 }
                 
             }

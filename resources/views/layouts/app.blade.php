@@ -888,7 +888,7 @@
                         </a>
                     </li>
                     <li class="sub-menu ipledgeimports-create">
-                        <a href="javascript:void(0);" data-toggle="modal" data-target=".bd-example-modal-lg1">
+                        <a href="javascript:void(0);" data-toggle="modal" data-target=".createIpledge">
                             Ipledge Imports Create
                         </a>
                     </li>
@@ -1143,7 +1143,7 @@
         @yield('content')
     </div>
 
-    <div class="modal fade bd-example-modal-lg1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal fade bd-example-modal-lg createIpledge" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg .modal-dialog-centered">
     <div class="modal-content">
 	<div class="modal-header">

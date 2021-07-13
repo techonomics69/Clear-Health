@@ -367,14 +367,6 @@ class PaymentsController extends BaseController
         }
     }
 
-    public function changeMyPlan(Request $request){
-
-    }
-
-    public function updateMyPlan(Request $request){
-        
-    }
-
     public function changePaymentMethod(Request $request)
     {
         try {

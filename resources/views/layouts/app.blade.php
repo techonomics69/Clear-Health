@@ -888,7 +888,7 @@
                         </a>
                     </li>
                     <li class="sub-menu ipledgeimports-create">
-                        <a href="{{ route('ipledgeimports.create') }}">
+                        <a  data-toggle="modal" data-target=".createipledge">
                             Ipledge Imports Create
                         </a>
                     </li>
@@ -1143,6 +1143,8 @@
         @yield('content')
     </div>
 
+    
+
     <footer class="footer footer-static footer-light navbar-border">
         <p class="clearfix blue-grey lighten-2 text-sm-center text-center mb-0 px-2">
             <span class=" d-block d-md-inline-block">Copyright &copy; <?php echo date("Y"); ?> <a
@@ -1150,6 +1152,41 @@
                 </a>, All rights reserved. </span>
         </p>
     </footer>
+
+    <div class="modal fade bd-example-modal-lg createipledge" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg .modal-dialog-centered">
+          <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Sample csv with mentioned fields to be considered while uploading a csv</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                  <div class="container-fluid">
+                      <div class="row">
+                          <div class="col-md-12">
+                              <img class="img-fluid" src="{{ asset('public/images/image_ipledge1.png') }}">
+                          </div>
+                          
+                      </div>
+                      <div class="row">
+                          <div class="col-md-12">
+                              <img class="img-fluid" src="{{ asset('public/images/image_ipledge2.png') }}">
+                          </div>
+                      </div>
+                  </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-primary" onclick="gotoadd();">Ok</button>
+            </div>						
+            
+          </div>
+        </div>
+      </div>
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://kendo.cdn.telerik.com/2020.1.219/js/kendo.all.min.js"></script>
     <!-- BEGIN VENDOR JS-->
@@ -1363,16 +1400,20 @@
         }
 
     });
+
+    function gotoadd(){
+		window.location.href="{{ route('ipledgeimports.create') }}";
+	}
     </script>
 
     <style>
     .main-menu.menu-light .navigation>li.active>a {
-        color: #43bfc1 !important;
+        color: #359b9e; !important;
         font-weight: 600;
     }
 
     .main-menu.menu-light .navigation>li ul .active>a {
-        color: #43bfc1 !important;
+        color: #359b9e; !important;
         font-weight: 600;
     }
 
@@ -1384,7 +1425,7 @@
 
     .main-menu.menu-light .navigation .sub>li ul.menu-content li:hover>a.menu-item,
     .main-menu.menu-light .navigation>li:hover>a {
-        color: #43bfc1;
+        color: #359b9e;;
     }
     </style>
 </body>

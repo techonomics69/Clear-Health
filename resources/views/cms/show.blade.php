@@ -77,7 +77,7 @@
         </div>  
         <div class="form-group">
             <strong>Description:</strong>
-			<div class="col-lg-12" style="border: 1px solid #43bfc1;">
+			<div class="col-lg-12" style="border: 1px solid #359b9e;;">
 			<textarea id="description" class="description">{!! $cms->description !!}</textarea>
 			</div>
         </div>      

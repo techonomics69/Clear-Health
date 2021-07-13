@@ -420,7 +420,7 @@ input:focus ~ .bg-primary {
     padding: 8px 0px;
 }
 ul.pagination nav div span, ul.pagination nav div a{padding: 8px 10px !important}
-      .breadcrumb-item a {font-weight: 600; color: #43bfc1 !important;}
+      .breadcrumb-item a {font-weight: 600; color: #359b9e; !important;}
     .navbar-brand img{filter: invert(0);}
 .btn-primary {
   border-color: #3EC0F9 !important;
@@ -6287,7 +6287,7 @@ table.table::-webkit-scrollbar-track {
  
 /* Handle */
 table.table::-webkit-scrollbar-thumb {
-  background: #43bfc1; border-radius:10px;
+  background: #359b9e;; border-radius:10px;
 }
 
 /* Handle on hover */
@@ -6301,7 +6301,7 @@ body.menu-collapsed img.brand-logo{display: none;}
 .card.border-grey img{filter: invert(0);}
 form.form-horizontal fieldset label{display: none;}
 table.table{overflow: auto;}
-.bg-gradient-x-primary{background:#43bfc1 !important;}
+.bg-gradient-x-primary{background:#359b9e; !important;}
 .flexbox-container .col-10.box-shadow-2{border-radius: 10px;overflow: hidden;}
 form.form-horizontal button{margin-top: 40px;
   background-color: #3EC0F9 ;

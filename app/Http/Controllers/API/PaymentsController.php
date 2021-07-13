@@ -370,6 +370,7 @@ class PaymentsController extends BaseController
 
     public function changeMyPlan(Request $request){
         $products = Product::all();
+
         // if (!empty($products)) {
         //     $product_id = explode(",", $subscription['product_id']);
         //     $productArray = [];
@@ -389,7 +390,7 @@ class PaymentsController extends BaseController
         //         }
         //     }
         //     $subscription['product'] = $productArray;
-            return $this->sendResponse($products, 'subscription retrieve successfully.');
+            return $this->sendResponse(count($products), 'subscription retrieve successfully.');
         // }else{
         //     return $this->sendResponse([], 'subscription not found.');
         // }

@@ -32,8 +32,11 @@ class Authenticate extends Middleware
                     return $next($request);
                 }
             }
-    
-            return abort(401, 'You are not authenticated to this service');
+            $response = [
+                'success' => false,
+                'message' => 'You are not authenticated to this service',
+            ];
+            return response()->json($response, 401);
         }else{
             return $next($request);
         }

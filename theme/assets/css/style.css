@@ -1491,8 +1491,8 @@ table.table tbody td {
   padding: 15px;
 }
 
-#action_items .list_view_outer .pfollows th,
-#action_items .list_view_outer .pfollows td{
+#action_items .list_view_outer th,
+#action_items .list_view_outer td{
 border: 1px solid #98A4B8;
 }
 

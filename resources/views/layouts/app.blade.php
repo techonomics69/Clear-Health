@@ -1143,14 +1143,6 @@
         @yield('content')
     </div>
 
-    <footer class="footer footer-static footer-light navbar-border">
-        <p class="clearfix blue-grey lighten-2 text-sm-center text-center mb-0 px-2">
-            <span class=" d-block d-md-inline-block">Copyright &copy; <?php echo date("Y"); ?> <a
-                    class="text-bold-800 grey darken-2" href="{{ route('home.dashboard') }}" target="_blank">clearHealth
-                </a>, All rights reserved. </span>
-        </p>
-    </footer>
-
     <div class="modal fade bd-example-modal-lg1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg .modal-dialog-centered">
     <div class="modal-content">
@@ -1183,6 +1175,16 @@
     </div>
   </div>
 </div>
+
+    <footer class="footer footer-static footer-light navbar-border">
+        <p class="clearfix blue-grey lighten-2 text-sm-center text-center mb-0 px-2">
+            <span class=" d-block d-md-inline-block">Copyright &copy; <?php echo date("Y"); ?> <a
+                    class="text-bold-800 grey darken-2" href="{{ route('home.dashboard') }}" target="_blank">clearHealth
+                </a>, All rights reserved. </span>
+        </p>
+    </footer>
+
+    
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

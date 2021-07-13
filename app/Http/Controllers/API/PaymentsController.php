@@ -368,6 +368,14 @@ class PaymentsController extends BaseController
         }
     }
 
+    public function changeMyPlan(){
+
+    }
+
+    public function updateMyPlan(){
+        
+    }
+
     public function changePaymentMethod(Request $request)
     {
         $customer_id = request('customer');

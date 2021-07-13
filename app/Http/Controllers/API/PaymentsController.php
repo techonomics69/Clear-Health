@@ -415,7 +415,7 @@ class PaymentsController extends BaseController
     }
 
     public function updateMyPlan(){
-
+        
     }
 
     public function changePaymentMethod(Request $request)

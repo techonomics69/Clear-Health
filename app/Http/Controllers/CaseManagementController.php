@@ -216,7 +216,9 @@ class CaseManagementController extends Controller
           
         }
 
-        dd(DB::getQueryLog());
+        // dd(DB::getQueryLog());
+        print_r(DB::getQueryLog());
+        die();
 
         foreach($user_case_management_data as $key => $value){
           $value = json_decode(json_encode($value), true);

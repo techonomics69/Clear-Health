@@ -1496,9 +1496,7 @@ table.table tbody td {
 border: 1px solid #98A4B8;
 }
 
-tbody.list_view_outer td {
-  border: 1px solid #e3ebf3;
-}
+
 
 #action_items .table thead th{
   border-bottom: none;
@@ -1544,6 +1542,9 @@ tbody.list_view_outer td {
   margin-bottom: 20px;
 }
 
+tbody.list_view_outer td {
+  border: 1px solid #e3ebf3;
+}
 
 .select2-container--default .select2-selection--multiple .select2-selection__rendered li:after {
   content    : "\f107 ";

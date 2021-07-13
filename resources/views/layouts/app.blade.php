@@ -1241,7 +1241,6 @@
 
     function openIpledg(){
         var options = {
-            "backdrop" : "static",
             "show":true
         }
         $("#createipledge").modal(options);

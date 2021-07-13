@@ -54,6 +54,7 @@ Route::get('cmspages/{pagenameid}', [CmsController::class, 'show']);
 Route::get('faqlist/{category}', [FaqController::class, 'index']);
 Route::get('faq_category', [FaqController::class, 'getFaqCategoryList']);
 Route::resource('testimonial', TestimonialController::class);
+Route::get('getAllStates', [CaseManagementController::class, 'getAllStates']);
 
 Route::group(['middleware' => ['auth:api']], function () {
     Route::get("getbirthcontrol/{id}", [BirthControlController::class, 'show']);
@@ -105,7 +106,6 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('demo', [CaseManagementController::class, 'demo']);
     Route::post('getToken', [CaseManagementController::class, 'get_token']);
     Route::post('searchStateDetail', [CaseManagementController::class, 'searchStateDetail']); //search state data
-    Route::get('getAllStates', [CaseManagementController::class, 'getAllStates']);
     Route::post('getCitiesFromGivenState', [CaseManagementController::class, 'getCitiesFromGivenState']);
     Route::post('SearchCitiesFromGivenState', [CaseManagementController::class, 'SearchCitiesFromGivenState']); //search city data
     Route::post('createCaseFile', [CaseManagementController::class, 'createCaseFile']);

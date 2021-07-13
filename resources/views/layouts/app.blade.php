@@ -1141,7 +1141,7 @@
 
     <div class="container-fluid p-0">
         @yield('content')
-        <div class="modal fade bd-example-modal-lg createipledge" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal fade bd-example-modal-lg" id="createipledge" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg .modal-dialog-centered">
           <div class="modal-content">
           <div class="modal-header">
@@ -1240,7 +1240,11 @@
 	}
 
     function openIpledg(){
-        $(".bd-example-modal-lg").modal('show');
+        var options = {
+            "backdrop" : "static",
+            "show":true
+        }
+        $("#createipledge").modal(options);
     }
     $(document).ready(function() {
         /* $('.select2').select2({width:'100%'});*/

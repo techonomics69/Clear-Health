@@ -22,7 +22,7 @@ class Authenticate extends Middleware
     public function handle($request, Closure $next, ...$guards)
     {
         $url = explode("/", $request->url());
-        if(strpos($url, 'api')!==false){
+        if(strpos($request->url(), 'api')!==false){
             if (!empty(trim($request->header('Authorization')))) {
                 $is_exists = User::where('id', Auth::guard('api')->id())->exists();
                 if ($is_exists) {

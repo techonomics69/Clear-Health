@@ -1531,6 +1531,9 @@ border-right: none;
   color: #43bfc1;
 }
 
+.all_screen_section table.table thead th{
+  padding : 10px 14px !important;
+}
 
 /* .all_screen_section table.table thead th, */
 .all_screen_section table.table tbody td {

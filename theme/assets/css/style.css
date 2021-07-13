@@ -1500,7 +1500,9 @@ border-right: none;
 }
 
 
-
+.list_view_outer tr:nth-of-type(odd) {
+  background-color: rgba(245, 247, 250, 0.5) !important;
+}
 /* #action_items .table thead th{
   border-bottom: none;
 } */
@@ -1545,9 +1547,7 @@ border-right: none;
 .all_screen_section table thead th {
   padding : 10px 14px !important;
 }
-.table-striped tbody tr:nth-of-type(odd) {
-  background-color: rgba(245, 247, 250, 0.5);
-}
+
 
 .all_screen_section .ipledge_outer_design .heading_text {
   font-size    : 20px;

@@ -399,7 +399,7 @@ class PaymentsController extends BaseController
                     }
                 }
                 if($cnt == 0){
-                    $product = Product::find($value);
+                    $products[$key]['isAdded'] = false;
                     array_push($productsArr, $products[$key]);
                 }
                 

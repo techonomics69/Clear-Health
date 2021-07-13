@@ -112,7 +112,7 @@ class RegisterController extends BaseController
                     $order_status = true;
                     $complete = false;
                 endif;
-                if (!empty($orderData)) :
+                if (count($orderData) > 0) :
                     $order_status = true;
                 endif;
 

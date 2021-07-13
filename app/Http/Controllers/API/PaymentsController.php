@@ -379,7 +379,7 @@ class PaymentsController extends BaseController
                     if(count($product_id)>0){
                         foreach ($product_id as $pkey => $pvalue) {
                             if($value == $value->id){
-                                array_push($productArray, $product);
+                                array_push($productArray, $products);
                             }
                         }
                     }

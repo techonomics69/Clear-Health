@@ -3,6 +3,11 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Middleware\abort;
+use Illuminate\Http\Request;
+use App\Models\API\User;
+
 
 class Authenticate extends Middleware
 {
@@ -12,9 +17,30 @@ class Authenticate extends Middleware
      * @param  \Illuminate\Http\Request  $request
      * @return string|null
      */
+    protected $invalidToken     =   404;
+    public function handle($request, Closure $next, ...$guards)
+    {
+        $url = explode("/", $request->url());
+        if (!empty(trim($request->header('Authorization')))) {
+
+            // if(end($url) == "verifyotp"){
+            $is_exists = User::where('id', Auth::guard('api')->id())->exists();
+            // }else{
+            //     $is_exists = User::where('id' , Auth::guard('api')->id())->whereNotNull('email_verified_at')->exists();    
+            // }
+            if ($is_exists) {
+                $this->authenticate($request, $guards);
+                return $next($request);
+            }
+        }
+
+        return abort(401, 'You are not authenticated to this service');
+    }
+
+
     protected function redirectTo($request)
     {
-        if (! $request->expectsJson()) {
+        if (!$request->expectsJson()) {
             return route('login');
         }
     }

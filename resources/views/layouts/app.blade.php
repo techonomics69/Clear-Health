@@ -1233,6 +1233,14 @@
     @toastr_render
     @yield('scriptsection')
     <script type="text/javascript">
+
+    function gotoadd(){
+		window.location.href="{{ route('ipledgeimports.create') }}";
+	}
+
+    function openIpledg(){
+        $(".bd-example-modal-lg").modal('show');
+    }
     $(document).ready(function() {
         /* $('.select2').select2({width:'100%'});*/
 
@@ -1402,13 +1410,7 @@
 
     });
 
-    function gotoadd(){
-		window.location.href="{{ route('ipledgeimports.create') }}";
-	}
-
-    function openIpledg(){
-        $(".bd-example-modal-lg").modal('show');
-    }
+   
 
     </script>
 

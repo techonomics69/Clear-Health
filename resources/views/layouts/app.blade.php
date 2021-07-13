@@ -1192,6 +1192,7 @@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://kendo.cdn.telerik.com/2020.1.219/js/kendo.all.min.js"></script>
     <!-- BEGIN VENDOR JS-->
     <script src="{{ asset('theme/app-assets/vendors/js/vendors.min.js') }}" type="text/javascript"></script>

@@ -1192,10 +1192,24 @@
           </div>
         </div>
       </div>
+    
+      <script src="http://code.jquery.com/jquery-3.6.0.js"></script>  
+      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+    <script>
+        function gotoadd(){
+		window.location.href="{{ route('ipledgeimports.create') }}";
+	}
 
+    function openIpledg(){
+        var options = {
+            "show":true
+        }
+        $("#createipledge").modal(options);
+    }
+    </script>  
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="http://code.jquery.com/jquery-3.6.0.js"></script>
+    
     <script src="https://kendo.cdn.telerik.com/2020.1.219/js/kendo.all.min.js"></script>
     <!-- BEGIN VENDOR JS-->
     <script src="{{ asset('theme/app-assets/vendors/js/vendors.min.js') }}" type="text/javascript"></script>
@@ -1235,7 +1249,7 @@
     <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
 
     <script src="https://cdn.datatables.net/fixedcolumns/3.3.3/js/dataTables.fixedColumns.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+    
 
     @toastr_js
     @toastr_render
@@ -1243,16 +1257,7 @@
     <script type="text/javascript">
     // $("#createipledge").modal('show');
 
-    function gotoadd(){
-		window.location.href="{{ route('ipledgeimports.create') }}";
-	}
-
-    function openIpledg(){
-        var options = {
-            "show":true
-        }
-        $("#createipledge").modal(options);
-    }
+    
     $(document).ready(function() {
         /* $('.select2').select2({width:'100%'});*/
 

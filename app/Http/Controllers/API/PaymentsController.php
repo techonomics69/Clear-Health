@@ -376,7 +376,7 @@ class PaymentsController extends BaseController
             $product_id = explode(",", $subscription['product_id']);
             if(count($product_id)>0){
                 foreach ($product_id as $pkey => $pvalue) {
-                    $product = Product::find($value);
+                    $product = Product::find($pvalue);
                     $product[$pkey]['isAdded'] = true;
                     array_push($productsArr, $product);
                 }

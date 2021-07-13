@@ -202,7 +202,7 @@
 				<div id="questions" class="tab-pane fade in">
 					
 						<div class="accordion" id="accordionExample">
-							<div class="card">
+							<div class="card ">
 								<div class="card-header">
 									<table width="100%">
 										<tr>
@@ -310,7 +310,7 @@
 							@if(count($followup_que)>0)
 							<?php $findex = 2; ?>
 							@foreach($followup_que as $fkey => $fvalue)
-							<div class="card">
+							<div class="card subcard">
 								<div class="card-header" id="headingTwo{{$findex}}">
 									<table width="100%">
 										<tr style="cursor: pointer;" onclick="questionsCollapse('collapseF{{$findex}}')" style="background-color: #43bfc1;">
@@ -737,7 +737,7 @@
 															<th>Visit Type</th>
 														</tr>
 													</thead>
-													<tbody>
+													<tbody class="list_view_outer">
 														@if(!empty($user_case_management_data))
 														<tr>
 															<td>1</td>

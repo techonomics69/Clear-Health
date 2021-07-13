@@ -1443,6 +1443,12 @@ function getCityAndStateFromZipcode($zipcode){
 
 }
 
+function findNotificationtriggered($user_id,$case_id,$trigger_name,$month){
+    $trigger_data = Triggers::where([['user_id', $user_id],['md_case_id', $case_id],['name',$trigger_name],['month',$month]])->first();
+
+    return $trigger_data ;
+}
+
 
 
 ?>

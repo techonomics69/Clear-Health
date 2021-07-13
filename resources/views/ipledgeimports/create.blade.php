@@ -82,6 +82,7 @@
 
 @section('scriptsection')
 <script type="text/javascript">
+    
     $('form').submit(function(){
         $(this).find('button[type=submit]').prop('disabled', true);
     });

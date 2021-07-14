@@ -292,6 +292,7 @@ class CaseManagementController extends Controller
             'gender' => (!empty($value['gender'])) ? strtoupper($value['gender'][0]) : '',
             'visitnumber' => (empty($value['follow_up'])) ? 1 : ($value['follow_up'] + 1),
             'mdcaseid' => $value['md_case_id'],
+            'casestatus' => $value['md_case_status'],
             'mdstatus' => $mdStatus,
             'visittype' => (empty($value['follow_up'])) ? 'Initial' : 'FollowUp',
             'treatmentplan' => '',

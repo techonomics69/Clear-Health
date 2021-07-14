@@ -160,6 +160,7 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     //Change Plan
     Route::get('changeMyPlan', [PaymentsController::class, 'changeMyPlan']);
+    Route::post('updateMyPlan', [PaymentsController::class, 'updateMyPlan']);
 
     //Action Items
 

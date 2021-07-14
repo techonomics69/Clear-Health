@@ -334,6 +334,8 @@ class CheckoutController extends BaseController
       ->where('checkout.id', $request->id)
       ->OrderBy('id', 'DESC')
       ->first();
+    
+     
 
     $users_ipledge_id = getAssignedIpledgeIdToUser($orderlist['user_id'], $orderlist['case_id'], $orderlist['md_case_id']);
     $orderlist['ipladege_id'] = $users_ipledge_id;

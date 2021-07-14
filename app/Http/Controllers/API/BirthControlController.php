@@ -70,8 +70,8 @@ class BirthControlController extends BaseController
     public function show($id)
     {
         try{
-            $birthControl = DB::table('birthcontrol')->where('user_id',$id)->get();
-            if(count($birthControl)>0){
+            $birthControl = DB::table('birthcontrol')->where('user_id',$id)->orderBy('id', 'desc')->first();
+            if($birthControl){
                 return $this->sendResponse($birthControl, 'Records found');
             }
             return $this->sendError('Server error','No Records found');

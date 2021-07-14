@@ -1230,15 +1230,17 @@
                     $(".ipledgeimports-sub-menu").addClass('open active');
                     $(".ipledgeimports-list").addClass('active');
                 }
-            } else if (pagename == "casemanagement") {
-                if (splitUrl[splitUrl.length - 1] == "show") {
-                    $(".casemanagement-sub-menu").addClass('open active');
-                    $(".casemanagement-create").addClass('active');
-                } else {
-                    $(".casemanagement-sub-menu").addClass('open active');
-                    $(".casemanagement-list").addClass('active');
-                }
-            } else if (pagename == "cms") {
+            }
+            //  else if (pagename == "casemanagement") {
+            //     if (splitUrl[splitUrl.length - 1] == "show") {
+            //         $(".casemanagement-sub-menu").addClass('open active');
+            //         $(".casemanagement-create").addClass('active');
+            //     } else {
+            //         $(".casemanagement-sub-menu").addClass('open active');
+            //         $(".casemanagement-list").addClass('active');
+            //     }
+            // }
+             else if (pagename == "cms") {
                 if (splitUrl[splitUrl.length - 1] == "create") {
                     $(".cms-sub-menu").addClass('open active');
                     $(".cms-create").addClass('active');

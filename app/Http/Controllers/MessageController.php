@@ -8,6 +8,7 @@ class MessageController extends Controller
 {
     public function index(Request $request)
     {
-        return view('messages.index');
+        $msg_tab = ''
+        return view('messages.index',compact('compact'));
     }
 }

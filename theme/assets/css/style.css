@@ -856,6 +856,14 @@ a.favourite i {
   border-radius: 5px;
 }
 
+.page-item.active .page-link {
+  z-index: 1;
+  color: #fff;
+  background-color: #359b9e;
+  border-color: #359b9e;
+}
+
+
 /*.vertical_tab ul.nav li{flex: 1;text-align: center;}*/
 .icons {
   padding: 0 16px;

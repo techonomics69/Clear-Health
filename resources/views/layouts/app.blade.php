@@ -652,7 +652,7 @@
             <!-- -->
             {{-- @canany(['quiz-list','quiz-create', 'quiz-edit', 'quiz-delete','quizCategory-list','quizCategory-create','quizCategory-edit','quizCategory-delete']) --}}
             <li class="nav-item">
-                <a class="menu-item" href="{{ route('casemanagement.index') }}">
+                <a class="menu-item casemanagement" href="{{ route('casemanagement.index') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 449.353 449.353" style="enable-background:new 0 0 449.353 449.353;" xml:space="preserve">
                         <g>
                             <g>
@@ -691,7 +691,7 @@
             <!-- -->
             
             <li class="nav-item">
-                <a class="menu-item" href="{{ route('casemanagement.index') }}">
+                <a class="menu-item message" href="{{ route('message.index') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 449.353 449.353" style="enable-background:new 0 0 449.353 449.353;" xml:space="preserve">
                         <g>
                             <g>
@@ -1280,6 +1280,9 @@
                 //     $(".casemanagement-sub-menu").addClass('open active');
                 //     $(".casemanagement-list").addClass('active');
                 // }
+            }
+            else if(pagename == "messages") {
+                $(".messages").addClass('open active');
             }
              else if (pagename == "cms") {
                 if (splitUrl[splitUrl.length - 1] == "create") {

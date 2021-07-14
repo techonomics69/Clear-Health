@@ -40,10 +40,11 @@
 								<div class="tab-content">
 									<div id="medical" class="tab-pane fade in @if($msg_tab != 1) active show @endif">
 										<div class="row" style="padding: 10px;">
-											<div class="col-md-12">
+											<!--<div class="col-md-12"> -->
 												<!-- <div class="box-block mtb32" id="tab1"> -->
 												<!-- <h3 class="font-weight-bold"><span class="text-underline">Medical Messgaes</span></h3> -->
-												<div class="right-cht">
+												<div class="col-md-4"></div>
+                                                <div class="col-md-8">
 													<div class="chating-section medicalmessages">
 														<ul>
 
@@ -73,7 +74,7 @@
 												</div>
 
 												<!-- </div> -->
-											</div>
+											<!--</div> -->
 										</div>
 									</div>
 

@@ -196,6 +196,7 @@ class PaymentsController extends BaseController
             return $this->sendError('Subscriptions data not found');
         }
         
+        die();
         
 
         $plans = array(

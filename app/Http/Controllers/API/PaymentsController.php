@@ -16,6 +16,9 @@ use App\Models\User;
 use App\Models\Subscription;
 use Carbon\Carbon;
 use App\Models\Product;
+use App\Models\SubscriptionLog;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class PaymentsController extends BaseController
 {
@@ -149,6 +152,167 @@ class PaymentsController extends BaseController
         }
     }
 
+    public function updateMyPlan(Request $request){
+        try{
+            $validator = \Validator::make($request->all(),[  
+                'user_id'       =>  'required',
+                'case_id'       =>  'required',
+                'md_case_id'    =>  'required',
+                'products'      =>  'required',
+                'plan_price'    =>  'required',
+                'current_subscription_id'   =>  'required',
+            ], [
+                'user_id.required'  =>  'Request has missing User id',
+                'case_id.required'  =>  'Request has missing Case id',
+                'md_case_id.required'  =>  'Request has missing Md Case id',
+                'products.required'  =>  'Request has missing Products',
+                'plan_price.required'  =>  'Request has missing Plan price',
+                'current_subscription_id.required'   =>  'Request has missing Current subscription id',
+            ]);
+          
+            if($validator->fails()){
+                return $this->sendError($validator->errors()->first());
+            } 
+            $products = (strpos($request->products, ",") !== false) ? (!empty($request->products)) ? explode(",", $request->products) : array() : (!empty($request->products)) ? explode(",", $request->products) : array();
+            Stripe::setApiKey('sk_test_51J08tDJofjMgVsOdzxZs5Aqlf5A9riwPPwlxUTriC8YPiHvTjlCBoaMjgxiqdIVfvOMPcllgR9JY7EZlihr6TJHy00ixztHFtz'); 
+            $storePreviousData = [];
+            $previousData = Subscription::find($request->current_subscription_id);
+            if(!empty($previousData)){
+                $SubScriptionTable = new Subscription;
+                $GetSubtableName = $SubScriptionTable->getTable();
+                $getSubColumns = Schema::getColumnListing($GetSubtableName);
+                
+                $SubScriptionLogTable = new SubscriptionLog;
+                $GetSubLogtableName = $SubScriptionLogTable->getTable();
+                $getSublogColumns = Schema::getColumnListing($GetSubLogtableName);
+                foreach($getSubColumns as $key => $value){
+                    //echo $previousData[$value]."<br>";
+                    if(in_array($value, $getSublogColumns)){
+                        $storePreviousData[$value] = $previousData[$value];
+                    }
+                }    
+                $storePreviousData['subscription_id'] = $previousData['id'];
+                $product_id = explode(",",$previousData['product_id']);
+                $diffCounter = 0;
+                foreach($products as $key => $value){
+                    if(in_array($value, $product_id)){
+                    }else{
+                        $diffCounter++;
+                    }
+                }
+                // echo $diffCounter;
+                // die();
+                if($diffCounter>0){
+                }else{
+                    return $this->sendError('Can not update plan! please select new products');    
+                }
+            }else{
+                return $this->sendError('Subscriptions data not found');
+            }
+            
+    
+            $plans = array(
+                '1' => array(
+                    'name' => 'Weekly Subscription',
+                    'price' => 25,
+                    'interval' => 'week'
+                ),
+                '2' => array(
+                    'name' => 'Daily Subscription',
+                    'price' => request('plan_price'),
+                    'interval' => 'day'
+                ),
+                '3' => array(
+                    'name' => 'Yearly Subscription',
+                    'price' => 950,
+                    'interval' => 'year'
+                )
+            );
+    
+            $planID = 2;
+            $planInfo = $plans[$planID];
+            $planName = $planInfo['name'];
+            $planPrice = $planInfo['price'];
+            $planInterval = $planInfo['interval'];
+    
+            $customer = User::select('customer_id')->where('id',$request->user_id)->first();
+            if(!empty($customer)){
+                $priceCents = round($planPrice * 100);
+                $currency = "USD";
+                try {
+                    $plan = \Stripe\Plan::create(array(
+                        "product" => [
+                            "name" => $planName
+                        ],
+                        "amount" => $priceCents,
+                        "currency" => $currency,
+                        "interval" => $planInterval,
+                        "interval_count" => 1
+                    ));
+                } catch (Exception $e) {
+                    $apiError = $e->getMessage();
+                }
+                if (empty($apiError) && $plan) {
+                    try {
+                        $subscription = \Stripe\Subscription::create(array(
+                            "customer" => $customer['customer_id'],
+                            "items" => array(
+                                array(
+                                    "plan" => $plan->id,
+                                ),
+                            ),
+                        ));
+                    } catch (Exception $e) {
+                        $apiError = $e->getMessage();
+                    }
+                    if (empty($apiError) && $subscription) {
+                        // Retrieve charge details 
+                        $subsData = $subscription->jsonSerialize();
+                        if ($subsData['status'] == 'active') {
+                            // Subscription info 
+                            $input_subscr = array();
+    
+                            $input_subscr['user_id'] = request('user_id');
+                            $input_subscr['case_id'] = request('case_id');
+                            $input_subscr['md_case_id'] = request('md_case_id');
+                            $input_subscr['subscr_id'] = $subsData['id'];
+                            $input_subscr['product_id'] = request('products');
+                            $input_subscr['customer'] = $subsData['customer'];
+                            $input_subscr['plan_id'] = $subsData['plan']['id'];
+                            $input_subscr['plan_amount'] = ($subsData['plan']['amount'] / 100);
+                            $input_subscr['plan_currency'] = $subsData['plan']['currency'];
+                            $input_subscr['plan_interval'] = $subsData['plan']['interval'];
+                            $input_subscr['plan_interval_count'] = $subsData['plan']['interval_count'];
+                            $input_subscr['created'] = date("Y-m-d H:i:s", $subsData['created']);
+                            $input_subscr['current_period_start'] = date("Y-m-d H:i:s", $subsData['current_period_start']);
+                            $input_subscr['current_period_end'] = date("Y-m-d H:i:s", $subsData['current_period_end']);
+                            $input_subscr['subscribed_at'] = Carbon::now();
+                            $input_subscr['status'] = $subsData['status'];
+                            $input_subscr['renew_flag'] = true;
+    
+                            
+                            $add_subscr = Subscription::where('id',$request->current_subscription_id)->update($input_subscr);
+    
+                            $updatePrevious = SubscriptionLog::create($storePreviousData);
+    
+                            return $this->sendResponse($input_subscr, 'Subscription done successfully');
+                        } else {
+                            return $this->sendError('Subscription activation failed');
+                        }
+                    } else {
+                        return $this->sendError('Subscription creation failed! ' . $apiError);
+                    }
+                }else{
+                    return $this->sendError('Error in capturing amount: ' . $apiError);
+                }
+            }else{
+                return $this->sendError('Customer id is not found in system');
+            }
+        }catch(\Exception $ex){
+            return $this->sendError($ex->getMessage());
+        }
+    }
+
     public function subscribe_store()
     {
         request()->validate([
@@ -204,17 +368,38 @@ class PaymentsController extends BaseController
             return $this->sendResponse(back()->withInput(), 'Some error while making the payment. Please try again');
         }
         Stripe::setApiKey('sk_test_51J08tDJofjMgVsOdzxZs5Aqlf5A9riwPPwlxUTriC8YPiHvTjlCBoaMjgxiqdIVfvOMPcllgR9JY7EZlihr6TJHy00ixztHFtz');
-        try {
-            /** Add customer to stripe, Stripe customer */
-            $customer = Customer::create([
-                'email'     => request('email'),
-                'source'    => request('stripeToken')
-            ]);
-        } catch (Exception $e) {
-            $apiError = $e->getMessage();
+        // try {
+        //     /** Add customer to stripe, Stripe customer */
+        //     $customer = Customer::create([
+        //         'email'     => request('email'),
+        //         'source'    => request('stripeToken')
+        //     ]);
+        // } catch (Exception $e) {
+        //     $apiError = $e->getMessage();
+        // }
+
+        $user_data = User::select('id', 'customer_id')->where('email', request('email'))->first();
+        $user_id = $user_data['id'];
+
+        if ($user_data['customer_id'] != NULL) {
+            $customer_id = $user_data['customer_id'];
+        } else {
+            try {
+                /** Add customer to stripe, Stripe customer */
+                $customer = Customer::create([
+                    'email'     => request('email'),
+                    'source'    => request('stripeToken')
+                ]);
+
+                //Store customer id in DB for future transaction
+                $customer_id = $customer->id;
+                User::where('id', $user_id)->update(['customer_id' => $customer_id]);
+            } catch (Exception $e) {
+                $apiError = $e->getMessage();
+            }
         }
 
-        if (empty($apiError) && $customer) {
+        if (empty($apiError) && $customer_id) {
 
             //Store customer id in DB for future transaction
 
@@ -240,7 +425,7 @@ class PaymentsController extends BaseController
             if (empty($apiError) && $plan) {
                 try {
                     $subscription = \Stripe\Subscription::create(array(
-                        "customer" => $customer->id,
+                        "customer" => $customer_id,
                         "items" => array(
                             array(
                                 "plan" => $plan->id,
@@ -273,6 +458,7 @@ class PaymentsController extends BaseController
                         $input_subscr['current_period_end'] = date("Y-m-d H:i:s", $subsData['current_period_end']);
                         $input_subscr['subscribed_at'] = Carbon::now();
                         $input_subscr['status'] = $subsData['status'];
+                        $input_subscr['renew_flag'] = false;
 
                         $add_subscr = Subscription::create($input_subscr);
 
@@ -432,9 +618,7 @@ class PaymentsController extends BaseController
         }
     }
 
-    public function updateMyPlan(Request $request){
-        
-    }
+    
 
     public function changePaymentMethod(Request $request)
     {

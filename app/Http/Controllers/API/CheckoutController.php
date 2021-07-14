@@ -11,6 +11,7 @@ use App\Models\Product;
 use App\Models\Cart;
 use App\Models\CaseManagement;
 use App\Models\Fees;
+use App\Models\Mdcases;
 use App\Helper\shipStationHelper;
 use Validator;
 use Exception;
@@ -39,15 +40,18 @@ class CheckoutController extends BaseController
 
 
 
-    foreach ($orderlist as $key => $val) {
-      $cart_ids = explode(',', $val['cart_id']);
-      $product_name = array();
-      $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name')->get()->toArray();
-      foreach ($product_details as $product_key => $product_value) {
-        $product_name[] = $product_value['product_name'];
+      foreach ($orderlist as $key => $val) {
+        $cart_ids = explode(',', $val['cart_id']);
+        $product_name = array();
+        $product_id = array();
+        $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name', 'products.id AS product_id')->get()->toArray();
+        foreach ($product_details as $product_key => $product_value) {
+          $product_name[] = $product_value['product_name'];
+          $product_id[] = $product_value['product_id'];
+        }
+        $orderlist[$key]->product_name = implode(', ', $product_name);
+        $orderlist[$key]->product_id = "[".implode(', ', $product_id)."]";
       }
-      $orderlist[$key]->product_name = implode(', ', $product_name);
-    }
 
 
     if (!empty($orderlist)) {
@@ -324,7 +328,8 @@ class CheckoutController extends BaseController
         'checkout.address_type',
         'checkout.cart_amount',
         'checkout.gift_code_discount',
-        'checkout.shipstation_order_id'
+        'checkout.shipstation_order_id',
+        'checkout.medication_type'
       )
       ->where('checkout.id', $request->id)
       ->OrderBy('id', 'DESC')
@@ -332,6 +337,21 @@ class CheckoutController extends BaseController
 
     $users_ipledge_id = getAssignedIpledgeIdToUser($orderlist['user_id'], $orderlist['case_id'], $orderlist['md_case_id']);
     $orderlist['ipladege_id'] = $users_ipledge_id;
+
+
+    if($orderlist['medication_type'] == 1){
+      $md_case_data = Mdcases::where('case_id',$orderlist['md_case_id'])->first();
+
+      $system_status = $md_case_data['system_status'];
+
+    }else{
+
+      $system_status = "";
+
+    }
+
+    $orderlist['system_status'] = $system_status;
+      
 
     
 
@@ -365,7 +385,7 @@ class CheckoutController extends BaseController
     $orderlist['order_item'] = count($cart_ids);
 
     $products = array();
-    $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name', 'products.image', 'products.discount_price', 'carts.quantity', 'carts.order_type', 'carts.pharmacy_pickup', 'carts.product_price as price')->get()->toArray();
+    $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name', 'products.id AS product_id', 'products.image', 'products.discount_price', 'carts.quantity', 'carts.order_type', 'carts.pharmacy_pickup', 'carts.product_price as price')->get()->toArray();
 
 
     $s_total = 0;
@@ -382,6 +402,7 @@ class CheckoutController extends BaseController
     foreach ($product_details as $product_key => $product_value) {
 
       $product_name[] = $product_value['product_name'];
+      $product_id[] = $product_value['product_id'];
       $products[$product_key]['name'] = $product_value['product_name'];
       $products[$product_key]['price'] = $product_value['price'];
       $products[$product_key]['image'] = $product_value['image'];
@@ -431,6 +452,7 @@ class CheckoutController extends BaseController
       }
     }
     $orderlist['product_name'] = implode(', ', $product_name);
+    $orderlist['product_id'] = "[".implode(', ', $product_id)."]";
 
     $orderlist['products'] = $products;
 

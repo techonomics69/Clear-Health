@@ -6301,7 +6301,7 @@ body.menu-collapsed img.brand-logo{display: none;}
 .card.border-grey img{filter: invert(0);}
 form.form-horizontal fieldset label{display: none;}
 table.table{overflow: auto;}
-.bg-gradient-x-primary{background:#359b9e; !important;}
+.bg-gradient-x-primary{background:#359b9e !important;}
 .flexbox-container .col-10.box-shadow-2{border-radius: 10px;overflow: hidden;}
 form.form-horizontal button{margin-top: 40px;
   background-color: #3EC0F9 ;

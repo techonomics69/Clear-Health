@@ -33,7 +33,7 @@ class MdwebhooksController extends BaseController
 
 
 		$filename = "LOG_" . strtotime(date('Y-m-d H:i:s')) . ".txt";
-		$file = fopen($_SERVER['DOCUMENT_ROOT'] . '/dev.backend/storage/logs/' . $filename, 'w');
+		$file = fopen($_SERVER['DOCUMENT_ROOT'] . '/backend/storage/logs/' . $filename, 'w');
 		$txt = $response;
 		fwrite($file, $txt);
 		fclose($file);

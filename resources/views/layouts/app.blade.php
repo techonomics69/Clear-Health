@@ -1281,8 +1281,8 @@
                 //     $(".casemanagement-list").addClass('active');
                 // }
             }
-            else if(pagename == "messages") {
-                $(".messages").addClass('open active');
+            else if(pagename == "message") {
+                $(".message").addClass('open active');
             }
              else if (pagename == "cms") {
                 if (splitUrl[splitUrl.length - 1] == "create") {

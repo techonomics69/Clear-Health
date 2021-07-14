@@ -727,9 +727,11 @@
                             </g>
                         </g>
                     </svg>
+                    <a href="{{ route('casemanagement.index') }}">
                     <span class="" data-i18n="">Case Management</span>
+                    </a>
                 </a>
-                <ul class="menu-content">
+                {# <ul class="menu-content">
                     <li class="sub-menu casemanagement-list">
                         <a href="{{ route('casemanagement.index') }}">
                             Case Management List
@@ -740,7 +742,7 @@
                     Ipledge Imports Create
                     </a>
             </li> --}}
-            </ul>
+            </ul> #}
             </li>
             {{-- @endcanany --}}
             <!-- -->

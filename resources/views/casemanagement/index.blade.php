@@ -64,6 +64,7 @@
                       <th>Gender</th>
                       <th>VisitNumber</th>
                       <th>MDCaseID</th>
+                      <th>CaseStatus</th>
                       <th>MDStatus</th>
                       <th>VisitType</th>
                       <th>TreatmentPlan</th>
@@ -173,9 +174,9 @@
       "bLengthChange": false,
       //  "bAutoWidth": false,
         "bInfo": false,
-        language: {search: "", searchPlaceholder: "Search"},
+       
       //scrollX:  true,
-        
+        language: {search: "", searchPlaceholder: "Search"},
       'searching': true,
       'processing': true,
       'serverSide': true,
@@ -215,6 +216,7 @@
             { data: 'gender' },
             { data: 'visitnumber' },
             { data: 'mdcaseid' },
+            { data: 'casestatus' },
             { data: 'mdstatus' },
             { data: 'visittype' },
             { data: 'treatmentplan' },

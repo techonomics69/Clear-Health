@@ -869,7 +869,7 @@ a.favourite i {
 }
 
 .btn-secondry:hover {
-  background-color: #fff;
+  background-color: #fff !important;
   color           : #359b9e !important;
   border          : 1px solid #359b9e;;
 }

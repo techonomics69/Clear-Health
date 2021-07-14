@@ -42,9 +42,11 @@ class CheckoutController extends BaseController
     foreach ($orderlist as $key => $val) {
       $cart_ids = explode(',', $val['cart_id']);
       $product_name = array();
-      $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name')->get()->toArray();
+      $product_id = array();
+      $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name', 'products.id AS product_id')->get()->toArray();
       foreach ($product_details as $product_key => $product_value) {
         $product_name[] = $product_value['product_name'];
+        $product_id[] = $product_value['product_id'];
       }
       $orderlist[$key]->product_name = implode(', ', $product_name);
     }

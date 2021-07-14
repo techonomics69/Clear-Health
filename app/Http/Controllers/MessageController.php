@@ -11,6 +11,6 @@ class MessageController extends Controller
         $msg_tab = '';
         $msg_history = [];
         $user_case_management_data = '';
-        return view('messages.index',compact('msg_tab', 'msg_history', 'user_case_management_data '));
+        return view('messages.index',compact('msg_tab', 'msg_history', 'user_case_management_data'));
     }
 }

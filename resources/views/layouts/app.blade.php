@@ -789,7 +789,7 @@
             </li>
             @endcanany
 
-            <li class="nav-item">
+            <li class="nav-item ordermanagement">
                 <a class="menu-item" href="{{ route('ordermanagement.index') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" enable-background="new 0 0 511.938 511.938" height="20" viewBox="0 0 511.938 511.938" width="20">
                         <g>
@@ -1309,6 +1309,7 @@
                     $(".guides-list").addClass('active');
                 }
             } else if (pagename == "ordermanagement") {
+                $(".ordermanagement").addClass('open active');
                 // if (splitUrl[splitUrl.length - 1] == "create") {
                 //     $(".ordermanagement-sub-menu").addClass('open active');
                 //     $(".ordermanagement-create").addClass('active');

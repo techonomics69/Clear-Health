@@ -79,12 +79,15 @@ class ActionitemsController extends BaseController
         
         $md_case_data = Mdcases::select('status','case_status_reason')->where('case_id', $md_case_id)->first();
 
-
-        if($user_gender['gender'] =='male' && !empty($md_case_data['md_case_id']) ){
+        echo '<pre>';
+        print_r($user_gender);
+        print_r($md_case_data);
+        die;
+        if($user_gender['gender'] =='male' && isset($md_case_data['md_case_id']) ){
             $show_ipledge_agreement_form = true;
         }
 
-        if($user_gender['gender'] =='female' && $md_case_data['case_status_reason'] != NULL ){
+        if($user_gender['gender'] =='female' && isset($md_case_data['case_status_reason']) ){
             $show_ipledge_agreement_form = true;
         }
         //end of code for ipledge agreement(sign_ipledge_consent) and birthcontrol form (abstinence_form)

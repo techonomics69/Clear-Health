@@ -175,7 +175,7 @@ class PaymentsController extends BaseController
         $products = $request->products;
         Stripe::setApiKey('sk_test_51J08tDJofjMgVsOdzxZs5Aqlf5A9riwPPwlxUTriC8YPiHvTjlCBoaMjgxiqdIVfvOMPcllgR9JY7EZlihr6TJHy00ixztHFtz'); 
         $storePreviousData = array();
-        $previousData = Subscription::find($request->current_subscription_id);
+        $previousData = Subscription::find('7812781728178');
         if(!empty($previousData)){
             echo "in here";
         }else{

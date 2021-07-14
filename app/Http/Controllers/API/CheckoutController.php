@@ -385,7 +385,7 @@ class CheckoutController extends BaseController
     $orderlist['order_item'] = count($cart_ids);
 
     $products = array();
-    $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name', 'products.image', 'products.discount_price', 'carts.quantity', 'carts.order_type', 'carts.pharmacy_pickup', 'carts.product_price as price')->get()->toArray();
+    $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name', 'products.id AS product_id', 'products.image', 'products.discount_price', 'carts.quantity', 'carts.order_type', 'carts.pharmacy_pickup', 'carts.product_price as price')->get()->toArray();
 
 
     $s_total = 0;
@@ -402,6 +402,7 @@ class CheckoutController extends BaseController
     foreach ($product_details as $product_key => $product_value) {
 
       $product_name[] = $product_value['product_name'];
+      $product_id[] = $product_value['product_id'];
       $products[$product_key]['name'] = $product_value['product_name'];
       $products[$product_key]['price'] = $product_value['price'];
       $products[$product_key]['image'] = $product_value['image'];
@@ -451,6 +452,7 @@ class CheckoutController extends BaseController
       }
     }
     $orderlist['product_name'] = implode(', ', $product_name);
+    $orderlist['product_id'] = implode(', ', $product_id);
 
     $orderlist['products'] = $products;
 

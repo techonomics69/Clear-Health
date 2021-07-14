@@ -176,8 +176,10 @@ class PaymentsController extends BaseController
         Stripe::setApiKey('sk_test_51J08tDJofjMgVsOdzxZs5Aqlf5A9riwPPwlxUTriC8YPiHvTjlCBoaMjgxiqdIVfvOMPcllgR9JY7EZlihr6TJHy00ixztHFtz'); 
         $storePreviousData = array();
         $previousData = Subscription::find($request->current_subscription_id);
-        $getColumns = Schema::getColumnListing(Subscription::getTable());
-        dd($getColumns);
+        $getTable = new Subscription;
+        $table = $getTable->getTable();
+        // $getColumns = Schema::getColumnListing(Subscription::getTable());
+        dd($table);
 
         $plans = array(
             '1' => array(

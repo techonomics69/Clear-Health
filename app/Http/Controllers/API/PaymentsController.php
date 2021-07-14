@@ -181,9 +181,9 @@ class PaymentsController extends BaseController
             $table = $getTable->getTable();
             $getColumns = Schema::getColumnListing($table);
             foreach($getColumns as $key => $value){
-                $storePreviousData[$value] = $previousData[$key]->$value;
+                echo $value."<br>";
             }    
-            dd($storePreviousData);
+            die();
         }else{
             return $this->sendError('Subscriptions data not found');
         }

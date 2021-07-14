@@ -184,8 +184,7 @@ class PaymentsController extends BaseController
                 //echo $previousData[$value]."<br>";
                 $storePreviousData[$value] = $previousData[$value];
             }    
-            print_r($storePreviousData);
-            die();
+            $storePreviousData['subscription_id'] = $previousData['id'];
         }else{
             return $this->sendError('Subscriptions data not found');
         }
@@ -274,7 +273,7 @@ class PaymentsController extends BaseController
                         
                         $add_subscr = Subscription::where('id',$request->current_subscription_id)->update($input_subscr);
 
-                        
+                        $updatePrevious = SubscriptionLog::create($storePreviousData);
 
                         return $this->sendResponse($input_subscr, 'Subscription done successfully');
                     } else {

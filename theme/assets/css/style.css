@@ -1569,6 +1569,9 @@ table.table thead th, table.table tbody td {
   vertical-align: middle;
   padding: 10px 14px !important;
 }
+table.table thead th{
+  border-bottom: none;
+}
  tbody.list_view_outer td {
   /* border: 1px so
   lid #e3ebf3 !important; */

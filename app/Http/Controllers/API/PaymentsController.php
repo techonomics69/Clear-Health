@@ -198,7 +198,7 @@ class PaymentsController extends BaseController
                     if(in_array($value, $products)){
                         echo $value."<br>";
                     }else{
-                        echo "Not found"
+                        echo "Not found";
                         $diffCounter++;
                     }
                 }

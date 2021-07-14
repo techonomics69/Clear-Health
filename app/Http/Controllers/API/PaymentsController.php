@@ -184,6 +184,7 @@ class PaymentsController extends BaseController
             $SubScriptionLog_Table = new SubscriptionLog;
             $GetSubLog_tableName = $SubScriptionLog_Table->getTable();
             $getSublog_Columns = Schema::getColumnListing($GetSubLog_tableName);
+            dd($getSublog_Columns);
             foreach($getSubColumns as $key => $value){
                 //echo $previousData[$value]."<br>";
                 if(in_array($value, $getSublog_Columns)){

@@ -194,11 +194,11 @@ class PaymentsController extends BaseController
                 $storePreviousData['subscription_id'] = $previousData['id'];
                 $product_id = explode(",",$previousData['product_id']);
                 $diffCounter = 0;
-                foreach($product_id as $key => $value){
-                    if(in_array($value, $products)){
-                        echo $value."<br>";
+                foreach($products as $key => $value){
+                    if(in_array($value, $product_id)){
+                        echo "Exist".$value."<br>";
                     }else{
-                        echo "Not found";
+                        echo "Not exist".$value."<br>";
                         $diffCounter++;
                     }
                 }

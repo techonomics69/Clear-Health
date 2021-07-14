@@ -863,7 +863,9 @@ a.favourite i {
   border-color: #359b9e;
 }
 
-
+.badge-info {
+  background-color: #359b9e;
+}
 /*.vertical_tab ul.nav li{flex: 1;text-align: center;}*/
 .icons {
   padding: 0 16px;

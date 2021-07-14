@@ -181,7 +181,7 @@ class PaymentsController extends BaseController
             $table = $getTable->getTable();
             $getColumns = Schema::getColumnListing($table);
             foreach($getColumns as $key => $value){
-                echo $value."<br>";
+                echo $previousData[$value]."<br>";
             }    
             die();
         }else{

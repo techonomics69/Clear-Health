@@ -170,7 +170,7 @@ class PaymentsController extends BaseController
         ]);
       
         if($validator->fails()){
-            return $this->sendError([], 'Missing required parameters error'. $validator->errors()->first());
+            return $this->sendError('Missing required parameters error'. $validator->errors()->first());
         } 
         $products = $request->products;
         Stripe::setApiKey('sk_test_51J08tDJofjMgVsOdzxZs5Aqlf5A9riwPPwlxUTriC8YPiHvTjlCBoaMjgxiqdIVfvOMPcllgR9JY7EZlihr6TJHy00ixztHFtz'); 
@@ -265,16 +265,16 @@ class PaymentsController extends BaseController
 
                         return $this->sendResponse($input_subscr, 'Subscription done successfully');
                     } else {
-                        return $this->sendResponse(back()->withInput(), 'Subscription activation failed');
+                        return $this->sendError('Subscription activation failed');
                     }
                 } else {
-                    return $this->sendResponse(back()->withInput(), 'Subscription creation failed! ' . $apiError);
+                    return $this->sendError('Subscription creation failed! ' . $apiError);
                 }
             }else{
-                return $this->sendResponse(back()->withInput(), 'Error in capturing amount: ' . $apiError);
+                return $this->sendError('Error in capturing amount: ' . $apiError);
             }
         }else{
-            return $this->sendResponse(back()->withInput(), 'Customer id is not found in system');
+            return $this->sendError('Customer id is not found in system');
         }
     }
 

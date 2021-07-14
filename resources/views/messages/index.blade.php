@@ -43,7 +43,13 @@
                                                         <!--<div class="col-md-12"> -->
                                                         <!-- <div class="box-block mtb32" id="tab1"> -->
                                                         <!-- <h3 class="font-weight-bold"><span class="text-underline">Medical Messgaes</span></h3> -->
-                                                        <div class="col-md-3"></div>
+                                                        <div class="col-md-3">
+                                                            <div class="right-cht">
+                                                                <div class="chating-section medicalmessages">
+                                                                    1
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                         <div class="col-md-9">
                                                             <div class="right-cht">
                                                                 <div class="chating-section medicalmessages">

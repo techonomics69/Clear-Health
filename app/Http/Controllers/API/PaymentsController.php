@@ -166,7 +166,7 @@ class PaymentsController extends BaseController
             'md_case_id.required'  =>  'Request has missing Md Case id',
             'products.required'  =>  'Request has missing Products',
             'plan_price.required'  =>  'Request has missing Plan price',
-            'current_subscription_id'   =>  'Request has missing Current subscription id',
+            'current_subscription_id.required'   =>  'Request has missing Current subscription id',
         ]);
       
         if($validator->fails()){
@@ -175,7 +175,7 @@ class PaymentsController extends BaseController
         $products = $request->products;
         Stripe::setApiKey('sk_test_51J08tDJofjMgVsOdzxZs5Aqlf5A9riwPPwlxUTriC8YPiHvTjlCBoaMjgxiqdIVfvOMPcllgR9JY7EZlihr6TJHy00ixztHFtz'); 
         $storePreviousData = array();
-        $previousData = Subscription::find('id',$request->current_subscription_id);
+        $previousData = Subscription::find($request->current_subscription_id);
         $getColumns = Schema::getColumnListing(Subscription::getTable());
         dd($getColumns);
 

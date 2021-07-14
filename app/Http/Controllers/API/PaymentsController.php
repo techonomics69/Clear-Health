@@ -333,17 +333,38 @@ class PaymentsController extends BaseController
             return $this->sendResponse(back()->withInput(), 'Some error while making the payment. Please try again');
         }
         Stripe::setApiKey('sk_test_51J08tDJofjMgVsOdzxZs5Aqlf5A9riwPPwlxUTriC8YPiHvTjlCBoaMjgxiqdIVfvOMPcllgR9JY7EZlihr6TJHy00ixztHFtz');
-        try {
-            /** Add customer to stripe, Stripe customer */
-            $customer = Customer::create([
-                'email'     => request('email'),
-                'source'    => request('stripeToken')
-            ]);
-        } catch (Exception $e) {
-            $apiError = $e->getMessage();
+        // try {
+        //     /** Add customer to stripe, Stripe customer */
+        //     $customer = Customer::create([
+        //         'email'     => request('email'),
+        //         'source'    => request('stripeToken')
+        //     ]);
+        // } catch (Exception $e) {
+        //     $apiError = $e->getMessage();
+        // }
+
+        $user_data = User::select('id', 'customer_id')->where('email', request('email'))->first();
+        $user_id = $user_data['id'];
+
+        if ($user_data['customer_id'] != NULL) {
+            $customer_id = $user_data['customer_id'];
+        } else {
+            try {
+                /** Add customer to stripe, Stripe customer */
+                $customer = Customer::create([
+                    'email'     => request('email'),
+                    'source'    => request('stripeToken')
+                ]);
+
+                //Store customer id in DB for future transaction
+                $customer_id = $customer->id;
+                User::where('id', $user_id)->update(['customer_id' => $customer_id]);
+            } catch (Exception $e) {
+                $apiError = $e->getMessage();
+            }
         }
 
-        if (empty($apiError) && $customer) {
+        if (empty($apiError) && $customer_id) {
 
             //Store customer id in DB for future transaction
 
@@ -369,7 +390,7 @@ class PaymentsController extends BaseController
             if (empty($apiError) && $plan) {
                 try {
                     $subscription = \Stripe\Subscription::create(array(
-                        "customer" => $customer->id,
+                        "customer" => $customer_id,
                         "items" => array(
                             array(
                                 "plan" => $plan->id,

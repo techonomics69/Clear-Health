@@ -651,20 +651,6 @@
 
             <!-- -->
             {{-- @canany(['quiz-list','quiz-create', 'quiz-edit', 'quiz-delete','quizCategory-list','quizCategory-create','quizCategory-edit','quizCategory-delete']) --}}
-            <li class="nav-item dashboard">
-                    <a class="menu-item" href="{{ url('admin/dashboard') }}">
-
-                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20" height="20" viewBox="0 0 60 60" style="enable-background:new 0 0 60 60;" xml:space="preserve">
-                            <g>
-                                <path d="M23.1,0H4.4C2,0,0,1.9,0,4.3v11.2C0,18,2,20,4.4,20h18.8c2.4,0,4.4-2,4.4-4.4V4.3C27.5,1.9,25.5,0,23.1,0z" />
-                                <path d="M23.1,25H4.4C2,25,0,26.9,0,29.3v26.3C0,58,2,60,4.4,60h18.8c2.4,0,4.4-2,4.4-4.4V29.3C27.5,26.9,25.5,25,23.1,25z" />
-                                <path d="M55.6,40H36.9c-2.4,0-4.4,2-4.4,4.4v11.2c0,2.4,2,4.4,4.4,4.4h18.8c2.4,0,4.4-2,4.4-4.4V44.3C60,41.9,58,40,55.6,40z" />
-                                <path d="M55.6,0H36.9c-2.4,0-4.4,2-4.4,4.4v26.2c0,2.4,2,4.4,4.4,4.4h18.8c2.4,0,4.4-2,4.4-4.4V4.3C60,1.9,58,0,55.6,0z" />
-                            </g>
-                        </svg>
-                        <span class="menu-title siebartext" data-i18n="">Dashboard</span></a>
-
-                </li>
             <li class="nav-item">
                 <a class="menu-item" href="{{ route('casemanagement.index') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 449.353 449.353" style="enable-background:new 0 0 449.353 449.353;" xml:space="preserve">

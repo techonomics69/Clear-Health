@@ -183,7 +183,7 @@ class PaymentsController extends BaseController
             
             $SubScriptionLog_Table = new SubscriptionLog;
             $GetSubLog_tableName = $SubScriptionLog_Table->getTable();
-            dd($GetSubLog_tableName);
+            dd($GetSubtableName);
             $getSublog_Columns = Schema::getColumnListing($GetSubLog_tableName);
             dd($getSublog_Columns);
             foreach($getSubColumns as $key => $value){

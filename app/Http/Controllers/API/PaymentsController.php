@@ -185,6 +185,13 @@ class PaymentsController extends BaseController
                 $storePreviousData[$value] = $previousData[$value];
             }    
             $storePreviousData['subscription_id'] = $previousData['id'];
+            $product_id = json_decode($previousData['product_id']);
+            $products = explode(",",$request->products);
+            $diff = array_diff($product_id, $products);
+            if(count($diff)>0){
+            }else{
+                return $this->sendError('Can not update plan! please select new products');    
+            }
         }else{
             return $this->sendError('Subscriptions data not found');
         }

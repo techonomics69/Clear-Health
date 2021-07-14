@@ -49,6 +49,7 @@ class CheckoutController extends BaseController
         $product_id[] = $product_value['product_id'];
       }
       $orderlist[$key]->product_name = implode(', ', $product_name);
+      $orderlist[$key]->product_id = implode(', ', $product_id);
     }
 
 

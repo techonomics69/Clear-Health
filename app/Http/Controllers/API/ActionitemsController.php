@@ -84,7 +84,7 @@ class ActionitemsController extends BaseController
             $show_ipledge_agreement_form = true;
         }
 
-        if($user_gender['gender'] =='female' && $md_case_data['case_status_reason'] != NULL ){
+        if($user_gender['gender'] =='female' && !empty($md_case_data['case_status_reason']) ){
             $show_ipledge_agreement_form = true;
         }
         //end of code for ipledge agreement(sign_ipledge_consent) and birthcontrol form (abstinence_form)

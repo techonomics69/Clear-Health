@@ -452,7 +452,7 @@ class CheckoutController extends BaseController
       }
     }
     $orderlist['product_name'] = implode(', ', $product_name);
-    $orderlist['product_id'] = implode(', ', $product_id);
+    $orderlist['product_id'] = "[".implode(', ', $product_id)."]";
 
     $orderlist['products'] = $products;
 

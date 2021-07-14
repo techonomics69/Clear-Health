@@ -16,6 +16,7 @@ use App\Models\User;
 use App\Models\Subscription;
 use Carbon\Carbon;
 use App\Models\Product;
+use App\Models\SubscriptionLog;
 
 class PaymentsController extends BaseController
 {

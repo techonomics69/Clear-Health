@@ -24,5 +24,16 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="card">
+                    <div class="row" style="padding: 20px;">
+                        <div class="col-md-12">
+                            message
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
     </div>
 </div>

@@ -191,8 +191,6 @@ class PaymentsController extends BaseController
                 }
             }    
             $storePreviousData['subscription_id'] = $previousData['id'];
-            
-            dd($storePreviousData);
             $product_id = explode(",",$previousData['product_id']);
             $diff = array_diff($products, $product_id);
             if(count($diff)>0){

@@ -177,14 +177,21 @@ class PaymentsController extends BaseController
         $storePreviousData = [];
         $previousData = Subscription::find($request->current_subscription_id);
         if(!empty($previousData)){
-            $getTable = new Subscription;
-            $table = $getTable->getTable();
-            $getColumns = Schema::getColumnListing($table);
-            foreach($getColumns as $key => $value){
+            $SubScriptionTable = new Subscription;
+            $GetSubtableName = $SubScriptionTable->getTable();
+            $getSubColumns = Schema::getColumnListing($GetSubtableName);
+            
+            $SubScriptionLog_Table = new SubscriptionLog;
+            $GetSubLog_tableName = $SubScriptionLog_Table->getTable();
+            $getSublog_Columns = Schema::getColumnListing($GetSubLog_tableName);
+            foreach($getSubColumns as $key => $value){
                 //echo $previousData[$value]."<br>";
-                $storePreviousData[$value] = $previousData[$value];
+                if(in_array($value, $getSublog_Columns)){
+                    $storePreviousData[$value] = $previousData[$value];
+                }
             }    
             $storePreviousData['subscription_id'] = $previousData['id'];
+            
             dd($storePreviousData);
             $product_id = explode(",",$previousData['product_id']);
             $diff = array_diff($products, $product_id);

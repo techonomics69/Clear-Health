@@ -172,22 +172,30 @@ class PaymentsController extends BaseController
         if($validator->fails()){
             return $this->sendError($validator->errors()->first());
         } 
-        $products = $request->products;
+        $products = (strpos($request->products, ",") !== false) ? (!empty($request->products)) ? explode(",", $request->products) : array() : (!empty($request->products)) ? explode(",", $request->products) : array();
         Stripe::setApiKey('sk_test_51J08tDJofjMgVsOdzxZs5Aqlf5A9riwPPwlxUTriC8YPiHvTjlCBoaMjgxiqdIVfvOMPcllgR9JY7EZlihr6TJHy00ixztHFtz'); 
-        $storePreviousData = array();
-        $previousData = Subscription::find('7812781728178');
+        $storePreviousData = [];
+        $previousData = Subscription::find($request->current_subscription_id);
         if(!empty($previousData)){
-            echo "in here";
+            $getTable = new Subscription;
+            $table = $getTable->getTable();
+            $getColumns = Schema::getColumnListing($table);
+            foreach($getColumns as $key => $value){
+                //echo $previousData[$value]."<br>";
+                $storePreviousData[$value] = $previousData[$value];
+            }    
+            $storePreviousData['subscription_id'] = $previousData['id'];
+            $product_id = explode(",",$previousData['product_id']);
+            $products = explode(",",$request->products);
+            $diff = array_diff($product_id, $products);
+            if(count($diff)>0){
+            }else{
+                return $this->sendError('Can not update plan! please select new products');    
+            }
         }else{
-            echo "in else";
+            return $this->sendError('Subscriptions data not found');
         }
-        die();
-        $getTable = new Subscription;
-        $table = $getTable->getTable();
-        $getColumns = Schema::getColumnListing($table);
-        foreach($getColumns as $key => $value){
-
-        }
+        
 
         $plans = array(
             '1' => array(
@@ -271,7 +279,7 @@ class PaymentsController extends BaseController
                         
                         $add_subscr = Subscription::where('id',$request->current_subscription_id)->update($input_subscr);
 
-                        
+                        $updatePrevious = SubscriptionLog::create($storePreviousData);
 
                         return $this->sendResponse($input_subscr, 'Subscription done successfully');
                     } else {

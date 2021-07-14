@@ -335,7 +335,7 @@ class CheckoutController extends BaseController
       ->OrderBy('id', 'DESC')
       ->first();
     
-    dd($orderlist);  
+     
 
     $users_ipledge_id = getAssignedIpledgeIdToUser($orderlist['user_id'], $orderlist['case_id'], $orderlist['md_case_id']);
     $orderlist['ipladege_id'] = $users_ipledge_id;

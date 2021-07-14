@@ -79,7 +79,10 @@ class ActionitemsController extends BaseController
         
         $md_case_data = Mdcases::select('status','case_status_reason')->where('case_id', $md_case_id)->first();
 
-
+        echo '<pre>';
+        print_r($user_gender);
+        print_r($md_case_data);
+        die;
         if($user_gender['gender'] =='male' && isset($md_case_data['md_case_id']) ){
             $show_ipledge_agreement_form = true;
         }

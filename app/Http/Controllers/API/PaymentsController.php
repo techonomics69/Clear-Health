@@ -166,17 +166,19 @@ class PaymentsController extends BaseController
             'md_case_id.required'  =>  'Request has missing Md Case id',
             'products.required'  =>  'Request has missing Products',
             'plan_price.required'  =>  'Request has missing Plan price',
-            'current_subscription_id'   =>  'Request has missing Current subscription id',
+            'current_subscription_id.required'   =>  'Request has missing Current subscription id',
         ]);
       
         if($validator->fails()){
-            return $this->sendError([], 'Missing required parameters error'. $validator->errors()->first());
+            return $this->sendError($validator->errors()->first());
         } 
         $products = $request->products;
         Stripe::setApiKey('sk_test_51J08tDJofjMgVsOdzxZs5Aqlf5A9riwPPwlxUTriC8YPiHvTjlCBoaMjgxiqdIVfvOMPcllgR9JY7EZlihr6TJHy00ixztHFtz'); 
         $storePreviousData = array();
-        $previousData = Subscription::find('id',$request->current_subscription_id);
-        $getColumns = Schema::getColumnListing(Subscription::getTable());
+        $previousData = Subscription::find($request->current_subscription_id);
+        $getTable = new Subscription;
+        $table = $getTable->getTable();
+        $getColumns = Schema::getColumnListing($table);
         dd($getColumns);
 
         $plans = array(
@@ -265,16 +267,16 @@ class PaymentsController extends BaseController
 
                         return $this->sendResponse($input_subscr, 'Subscription done successfully');
                     } else {
-                        return $this->sendResponse(back()->withInput(), 'Subscription activation failed');
+                        return $this->sendError('Subscription activation failed');
                     }
                 } else {
-                    return $this->sendResponse(back()->withInput(), 'Subscription creation failed! ' . $apiError);
+                    return $this->sendError('Subscription creation failed! ' . $apiError);
                 }
             }else{
-                return $this->sendResponse(back()->withInput(), 'Error in capturing amount: ' . $apiError);
+                return $this->sendError('Error in capturing amount: ' . $apiError);
             }
         }else{
-            return $this->sendResponse(back()->withInput(), 'Customer id is not found in system');
+            return $this->sendError('Customer id is not found in system');
         }
     }
 

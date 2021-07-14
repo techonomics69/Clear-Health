@@ -29,7 +29,7 @@
                 <section class="card">
                     <div class="row" style="padding: 20px;">
                         <div class="col-md-12">
-                        <div id="messages" class="tab-pane fade in nonmedicalmsg">
+                        <div id="messages">
 					<div class="row" style="padding: 20px;">
 						<div class="col-md-12">
 							<section class="card">

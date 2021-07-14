@@ -432,7 +432,7 @@ class PaymentsController extends BaseController
         }
     }
 
-    public function updateMyPlan(){
+    public function updateMyPlan(Request $request){
         
     }
 

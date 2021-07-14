@@ -28,6 +28,7 @@ use App\Http\Controllers\CaseStatusUpdateGetPrescriptionController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\TestsmsController;
+use App\Http\Controllers\MessageController;
 
 
 /*
@@ -288,6 +289,9 @@ Route::group(['middleware' => ['auth:web']], function () {
     Route::post('checkOffIpledge', [CaseManagementController::class, 'checkOffIpledge']);
     Route::post('trigger', [CaseManagementController::class, 'trigger'])->name('trigger');
     Route::post('admin/bloodWork', [CaseManagementController::class, 'bloodWork'])->name('bloodWork');
+
+    //Message
+    Route::get('admin/message', [MessageController::class, 'index'])->name('message.index');
 });
 
 //Strip Payment APIs

@@ -200,8 +200,8 @@ class PaymentsController extends BaseController
                         $diffCounter++;
                     }
                 }
-                echo $diffCounter;
-                die();
+                // echo $diffCounter;
+                // die();
                 if($diffCounter>0){
                 }else{
                     return $this->sendError('Can not update plan! please select new products');    

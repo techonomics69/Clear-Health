@@ -41,9 +41,6 @@
                                             <div class="tab-content">
                                                 <div id="medical" class="tab-pane fade in @if($msg_tab != 1) active show @endif">
                                                     <div class="row" style="padding: 10px;">
-                                                        <!--<div class="col-md-12"> -->
-                                                        <!-- <div class="box-block mtb32" id="tab1"> -->
-                                                        <!-- <h3 class="font-weight-bold"><span class="text-underline">Medical Messgaes</span></h3> -->
                                                         <div class="col-md-3">
                                                             <div class="right-cht">
                                                                 <div class="chating-section">
@@ -66,10 +63,7 @@
                                                                                     if (isset($md_message['message']) &&  $md_message['message'] != '') {
                                                                                         echo $md_message['message'];
                                                                                     } else {
-                                                                                        //echo $md_message['url'];
                                                                                     ?>
-                                                                                        <!-- <img src="$md_message['url']" type="media_type"width='100'>
-													<a target="_blank" download="" href="$md_message['url']"> Download</a> -->
                                                                                     <?php
                                                                                     }
                                                                                     ?>
@@ -83,12 +77,9 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-
-                                                        <!-- </div> -->
-                                                        <!--</div> -->
                                                     </div>
                                                 </div>
-                                                <div id="support" class="tab-pane fane in support"></div>                                    
+                                                <div id="support" class="tab-pane fane in support"></div>
                                                 <div id="nonmedical" class="tab-pane fade in nonmedicalmsg">
                                                     @if(isset($message_data))
                                                     @if(count($message_data)>0)
@@ -195,15 +186,6 @@
                                                                 </div>
 
                                                                 <div id="last-typing-section" class="last-typing-section">
-                                                                    <!-- <div class="camera lastimg">
-<img src="{{asset('public/images/camera.png')}}" alt="">
-</div> -->
-                                                                    <!-- <div class="row"> -->
-                                                                    <!-- <div class="col-12"> -->
-
-                                                                    <!-- </div> -->
-                                                                    <!-- </div> -->
-
                                                                     <div class="attachment lastimg pinclip">
                                                                         <div class="variants">
                                                                             <div class='file'>
@@ -216,10 +198,7 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <!-- <div class="attachment lastimg">
-<input class="form-control" type="file" name="file" id="file">
-<img src="{{asset('public/images/paperclip.png')}}" alt="">
-</div> -->
+
                                                                     <div class="search">
 
                                                                         <input class="form-control" type="text" name="text" placeholder="Type a message..." id="text">
@@ -241,8 +220,8 @@
                                                     </div>
                                                 </div>
                                                 <div id="support" class="tab-pane fane in support">
-                                                    
-                                                </div> 
+
+                                                </div>
                                             </div>
                                         </section>
                                     </div>

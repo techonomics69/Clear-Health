@@ -36,6 +36,7 @@
                                             <ul class="nav nav-tabs" id="messages-tab-menu">
                                                 <li><a class="btn @if($msg_tab != 1) active @endif" data-toggle="tab" href="#medical">Medical Messgaes</a></li>
                                                 <li><a class="btn nonmedicalmsg" data-toggle="tab" href="#nonmedical" onclick="Gotobottom();">Non-Medical Messgaes</a></li>
+                                                <li><a class="btn support" data-toggle="tab" href="#support">Support</a></li>
                                             </ul>
                                             <div class="tab-content">
                                                 <div id="medical" class="tab-pane fade in @if($msg_tab != 1) active show @endif">
@@ -87,7 +88,7 @@
                                                         <!--</div> -->
                                                     </div>
                                                 </div>
-
+                                                <div id="support" class="tab-pane fane in support"></div>                                    
                                                 <div id="nonmedical" class="tab-pane fade in nonmedicalmsg">
                                                     @if(isset($message_data))
                                                     @if(count($message_data)>0)
@@ -239,6 +240,9 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div id="support" class="tab-pane fane in support">
+                                                    
+                                                </div> 
                                             </div>
                                         </section>
                                     </div>

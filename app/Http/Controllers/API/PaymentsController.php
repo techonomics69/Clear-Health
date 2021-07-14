@@ -178,8 +178,8 @@ class PaymentsController extends BaseController
         $previousData = Subscription::find($request->current_subscription_id);
         $getTable = new Subscription;
         $table = $getTable->getTable();
-        // $getColumns = Schema::getColumnListing(Subscription::getTable());
-        dd($table);
+        $getColumns = Schema::getColumnListing($table);
+        dd($getColumns);
 
         $plans = array(
             '1' => array(

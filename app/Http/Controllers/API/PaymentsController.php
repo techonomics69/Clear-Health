@@ -170,7 +170,7 @@ class PaymentsController extends BaseController
         ]);
       
         if($validator->fails()){
-            return $this->sendResponse(back()->withInput(), 'Missing required parameters error'. $validator->errors()->first());
+            return $this->sendError([], 'Missing required parameters error'. $validator->errors()->first());
         } 
         $products = $request->products;
         Stripe::setApiKey('sk_test_51J08tDJofjMgVsOdzxZs5Aqlf5A9riwPPwlxUTriC8YPiHvTjlCBoaMjgxiqdIVfvOMPcllgR9JY7EZlihr6TJHy00ixztHFtz'); 

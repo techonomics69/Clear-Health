@@ -172,7 +172,7 @@ class PaymentsController extends BaseController
         if($validator->fails()){
             return $this->sendError($validator->errors()->first());
         } 
-        $products = $request->products;
+        $products = (strpos($request->products, ",") !== false) ? (!empty($request->products)) ? explode(",", $request->products) : array() : (!empty($request->products)) ? explode(",", $request->products) : array();
         Stripe::setApiKey('sk_test_51J08tDJofjMgVsOdzxZs5Aqlf5A9riwPPwlxUTriC8YPiHvTjlCBoaMjgxiqdIVfvOMPcllgR9JY7EZlihr6TJHy00ixztHFtz'); 
         $storePreviousData = [];
         $previousData = Subscription::find($request->current_subscription_id);
@@ -188,7 +188,6 @@ class PaymentsController extends BaseController
             $product_id = explode(",",$previousData['product_id']);
             $products = explode(",",$request->products);
             $diff = array_diff($product_id, $products);
-            dd($diff);
             if(count($diff)>0){
             }else{
                 return $this->sendError('Can not update plan! please select new products');    

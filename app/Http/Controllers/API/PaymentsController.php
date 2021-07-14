@@ -196,13 +196,12 @@ class PaymentsController extends BaseController
                 $diffCounter = 0;
                 foreach($products as $key => $value){
                     if(in_array($value, $product_id)){
-                        
                     }else{
-                        
                         $diffCounter++;
                     }
                 }
-                die($diffCounter);
+                echo $diffCounter;
+                die();
                 if($diffCounter>0){
                 }else{
                     return $this->sendError('Can not update plan! please select new products');    

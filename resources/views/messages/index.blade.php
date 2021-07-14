@@ -45,8 +45,10 @@
                                                         <!-- <h3 class="font-weight-bold"><span class="text-underline">Medical Messgaes</span></h3> -->
                                                         <div class="col-md-3">
                                                             <div class="right-cht">
-                                                                <div class="chating-section medicalmessages">
-                                                                    1
+                                                                <div class="chating-section">
+                                                                    <ul>
+                                                                        <li></li>
+                                                                    </ul>
                                                                 </div>
                                                             </div>
                                                         </div>

@@ -173,7 +173,7 @@
       "bLengthChange": false,
       //  "bAutoWidth": false,
         "bInfo": false,
-       
+        language: {search: "", searchPlaceholder: "Search"},
       //scrollX:  true,
         language: {search: "", searchPlaceholder: "Search"},
       'searching': true,

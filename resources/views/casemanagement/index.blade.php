@@ -175,6 +175,7 @@
         "bInfo": false,
         language: {search: "", searchPlaceholder: "Search"},
       //scrollX:  true,
+        
       'searching': true,
       'processing': true,
       'serverSide': true,

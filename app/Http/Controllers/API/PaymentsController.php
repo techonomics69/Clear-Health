@@ -175,19 +175,20 @@ class PaymentsController extends BaseController
         $products = $request->products;
         Stripe::setApiKey('sk_test_51J08tDJofjMgVsOdzxZs5Aqlf5A9riwPPwlxUTriC8YPiHvTjlCBoaMjgxiqdIVfvOMPcllgR9JY7EZlihr6TJHy00ixztHFtz'); 
         $storePreviousData = array();
-        $previousData = Subscription::find('7812781728178');
+        $previousData = Subscription::find($request->current_subscription_id);
         if(!empty($previousData)){
-            echo "in here";
+            $getTable = new Subscription;
+            $table = $getTable->getTable();
+            $getColumns = Schema::getColumnListing($table);
+            foreach($getColumns as $key => $value){
+                $storePreviousData[$value] = $previousData[$key]->$value;
+            }    
+            dd($storePreviousData);
         }else{
-            echo "in else";
+            return $this->sendError('Subscriptions data not found');
         }
-        die();
-        $getTable = new Subscription;
-        $table = $getTable->getTable();
-        $getColumns = Schema::getColumnListing($table);
-        foreach($getColumns as $key => $value){
-
-        }
+        
+        
 
         $plans = array(
             '1' => array(

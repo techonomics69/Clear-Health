@@ -656,4 +656,50 @@ class PaymentsController extends BaseController
 	        }
 
     }
+
+    public function stripe_webhook()
+    {
+
+        \Stripe\Stripe::setApiKey('sk_test_51J08tDJofjMgVsOdzxZs5Aqlf5A9riwPPwlxUTriC8YPiHvTjlCBoaMjgxiqdIVfvOMPcllgR9JY7EZlihr6TJHy00ixztHFtz');
+        
+        $payload = @file_get_contents('php://input');
+        $event = null;
+        try {
+            $event = \Stripe\Event::constructFrom(
+                json_decode($payload, true)
+            );
+        } catch(\UnexpectedValueException $e) {
+            // Invalid payload
+            http_response_code(400);
+            exit();
+        }
+
+        // Handle the event
+        switch ($event->type) {
+            case 'customer.subscription.updated':
+                $paymentIntent = $event->data->object;
+                
+                
+                $customer_id = $paymentIntent->customer;
+                $subscription_id = $paymentIntent->id;
+                $status = $paymentIntent->status;
+                $data = json_encode($paymentIntent);
+                $data_log = json_encode(["customer_id" =>$customer_id,"subscription_id" =>$subscription_id,"status" =>$status]);
+                DB::insert('insert into logs (type,data,allData) values(?,?,?)',["customer.subscription.updated",$data_log,$data]);
+
+                if($status=="active") {
+                    //update db entries based on $cutomer_id,$subscription_id
+                }
+                else if($status=="past_due")
+                {
+                    //Notify customer about faild transaction
+                }
+                
+                break;
+            default:
+                echo 'Received unknown event type ' . $event->type;
+        }
+
+        http_response_code(200);
+    }
 }

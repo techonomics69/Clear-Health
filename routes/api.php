@@ -157,6 +157,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('customer_make_direct_payment', [PaymentsController::class, 'customer_make_direct_payment']);
     Route::post('getSubscriptionByUser', [PaymentsController::class, 'getSubscriptionByUser']);
     Route::post('changePaymentMethod', [PaymentsController::class, 'changePaymentMethod']);
+    
 
     //Change Plan
     Route::get('changeMyPlan', [PaymentsController::class, 'changeMyPlan']);
@@ -185,3 +186,4 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post("createBirthControl", [BirthControlController::class, 'store']);
     Route::get("getbirthcontrol/{id}", [BirthControlController::class, 'show']);
 });
+Route::post('stripe_webhook', [PaymentsController::class, 'stripe_webhook']);

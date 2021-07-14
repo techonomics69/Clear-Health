@@ -80,7 +80,7 @@ class ActionitemsController extends BaseController
         $md_case_data = Mdcases::select('status','case_status_reason')->where('case_id', $md_case_id)->first();
 
 
-        if($user_gender['gender'] =='male' && $md_case_data['status'] == 'completed' ){
+        if($user_gender['gender'] =='male' && !empty($md_case_data['md_case_id']) ){
             $show_ipledge_agreement_form = true;
         }
 

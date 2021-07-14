@@ -261,7 +261,7 @@ class PaymentsController extends BaseController
                         $input_subscr['case_id'] = request('case_id');
                         $input_subscr['md_case_id'] = request('md_case_id');
                         $input_subscr['subscr_id'] = $subsData['id'];
-                        $input_subscr['product_id'] = request('product_id');
+                        $input_subscr['product_id'] = request('products');
                         $input_subscr['customer'] = $subsData['customer'];
                         $input_subscr['plan_id'] = $subsData['plan']['id'];
                         $input_subscr['plan_amount'] = ($subsData['plan']['amount'] / 100);

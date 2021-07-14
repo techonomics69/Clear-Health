@@ -749,8 +749,8 @@
             </li>
             @endcanany
 
-            <li class="nav-item sub-menu has-sub ordermanagement-sub-menu {{ Request::is('admin/ordermanagement*') ? 'active' : '' }}">
-                <a class="menu-item" href="#">
+            <li class="nav-item">
+                <a class="menu-item" href="{{ route('ordermanagement.index') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" enable-background="new 0 0 511.938 511.938" height="20" viewBox="0 0 511.938 511.938" width="20">
                         <g>
                             <path d="m217.941 11.378h73.482v88.591h-73.482z" />
@@ -765,18 +765,18 @@
                     <span class="menu-title siebartext" data-i18n="">Order Management</span>
 
                 </a>
-                <ul class="menu-content">
+                <!--<ul class="menu-content">
                     <li class="sub-menu ordermanagement-list ">
                         <a href="{{ route('ordermanagement.index') }}">
                             Order Management List
                         </a>
                     </li>
-                    <!-- <li class="sub-menu  mdmanagement-create">
+                     <li class="sub-menu  mdmanagement-create">
                           <a href="{{ route('mdmanagement.create') }}">
                             Md Management Create
                           </a>                          
-                        </li>  -->
-                </ul>
+                        </li>  
+                </ul> -->
             </li>
 
             <!---->
@@ -1266,13 +1266,13 @@
                     $(".guides-list").addClass('active');
                 }
             } else if (pagename == "ordermanagement") {
-                if (splitUrl[splitUrl.length - 1] == "create") {
-                    $(".ordermanagement-sub-menu").addClass('open active');
-                    $(".ordermanagement-create").addClass('active');
-                } else {
-                    $(".ordermanagement-sub-menu").addClass('open active');
-                    $(".ordermanagement-list").addClass('active');
-                }
+                // if (splitUrl[splitUrl.length - 1] == "create") {
+                //     $(".ordermanagement-sub-menu").addClass('open active');
+                //     $(".ordermanagement-create").addClass('active');
+                // } else {
+                //     $(".ordermanagement-sub-menu").addClass('open active');
+                //     $(".ordermanagement-list").addClass('active');
+                // }
             } else if (pagename == "offers") {
                 if (splitUrl[splitUrl.length - 1] == "create") {
                     $(".offer-promotion-sub-menu").addClass('open active');

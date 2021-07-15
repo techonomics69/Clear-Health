@@ -39,9 +39,12 @@ class MessageController extends Controller
     public function getMedicalMessage(Request $request)
     {
         $data = $request->all();
-        $message = MdMessages::where('case_id', $data['case_id'])->get();
+        $message = MdMessages::where('case_id', $data['case_id'])
+                    ->join('users', 'users.id', '=', 'md_messages.user_id')
+                    ->select('md_messages.msg_time, md_messages.from, md_messages.text, users.first_name, user.last_name')
+                    ->get();
 
-        $html = '';
+        $html = '<h3>' . $message[0]['first_name'] .' '. $message[0]['last_name'] . '</h3>';
         foreach ($message as $key => $value) :
             $createdAt = Carbon::parse($value->msg_time);
             $time =  $createdAt->format('H:i:s m/d/Y');

@@ -48,7 +48,7 @@
                                                                         @foreach($mdList as $key => $name)
                                                                         <li><strong>{{$name->first_name}} {{$name->last_name}} - MD</strong>
                                                                             <p>{{$name->last_msg}}
-                                                                                <small>{{ $name->msg_time->format('H:i:s Y.m.d') }}</small>
+                                                                                <small>{{ $name->value }}</small>
                                                                             </p>
                                                                         </li>
                                                                         @endforeach

@@ -25,7 +25,7 @@ class MessageController extends Controller
             $createdAt = Carbon::parse($value->msg_time);
             $value->msg_time =  $createdAt->format('H:i:s m/d/Y');
         endforeach;  
-        dd($mdList);               
+        //dd($mdList);               
         $msg_tab = '';
         $msg_history = [];
         $user_case_management_data['user_id'] = '';

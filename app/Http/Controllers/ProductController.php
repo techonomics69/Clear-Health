@@ -102,8 +102,12 @@ class ProductController extends Controller
             $data['image_detail'] = $image_detail_Name;
         endif;
 
-        if(!empty($request->section1_image)):
-            $section1_imageName = time().'.'.$request->section1_image->extension();
+        $sec1Rnd = rand(10,1000);
+        $sec2Rnd = rand(10,1000);
+        $sec3Rnd = rand(10,1000);
+
+        if(!empty($request->section1_image)){
+            $section1_imageName = $sec1Rnd."".time().'.'.$request->section1_image->extension();
 
             $path = public_path().'/images/Products';
 
@@ -114,10 +118,10 @@ class ProductController extends Controller
             $request->section1_image->move(public_path('images/Products'), $section1_imageName);            
             
             $data['section1_image'] = $section1_imageName;
-        endif;
+        }
 
-        if(!empty($request->section2_image)):
-            $section2_imageName = time().'.'.$request->section2_image->extension();
+        if(!empty($request->section2_image)){
+            $section2_imageName = $sec1Rnd."".time().'.'.$request->section2_image->extension();
 
             $path = public_path().'/images/Products';
 
@@ -128,10 +132,10 @@ class ProductController extends Controller
             $request->section2_image->move(public_path('images/Products'), $section2_imageName);            
             
             $data['section2_image'] = $section2_imageName;
-        endif;
+        }
 
-        if(!empty($request->section3_image)):
-            $section3_imageName = time().'.'.$request->section3_image->extension();
+        if(!empty($request->section3_image)){
+            $section3_imageName = $sec1Rnd."".time().'.'.$request->section3_image->extension();
 
             $path = public_path().'/images/Products';
 
@@ -142,7 +146,7 @@ class ProductController extends Controller
             $request->section3_image->move(public_path('images/Products'), $section3_imageName);            
             
             $data['section3_image'] = $section3_imageName;
-        endif;
+        }
 
         $Products = Product::create($data);
                 
@@ -258,9 +262,13 @@ class ProductController extends Controller
             $data['image_detail'] = $image_detail_Name;
         endif;
 
+         $sec1Rnd = rand(10,1000);
+         $sec2Rnd = rand(10,1000);
+         $sec3Rnd = rand(10,1000);
 
-         if(!empty($request->section1_image)):
-            $section1_imageName = time().'.'.$request->section1_image->extension();
+         if(!empty($request->section1_image)){
+            
+            $section1_imageName = $sec1Rnd."".time().'.'.$request->section1_image->extension();
 
             $path = public_path().'/images/Products';
 
@@ -271,21 +279,22 @@ class ProductController extends Controller
             $request->section1_image->move(public_path('images/Products'), $section1_imageName);
 
             chmod($path."/".$section1_imageName, 0777);
-            $oldImg = $path.'/'.$product->section1_image;
+            $oldImgSec1 = $path.'/'.$product->section1_image;
 
 
             if(isset($product->section1_image)&&$product->section1_image !='')
             {
-            if (File::exists($oldImg)) : // unlink or remove previous image from folder
-                            unlink($oldImg);
+            if (File::exists($oldImgSec1)) : // unlink or remove previous image from folder
+                            unlink($oldImgSec1);
                         endif;
             }            
             
             $data['section1_image'] = $section1_imageName;
-        endif;
+        }
 
-        if(!empty($request->section2_image)):
-            $section2_imageName = time().'.'.$request->section2_image->extension();
+        if(!empty($request->section2_image)){
+            
+            $section2_imageName = $sec2Rnd."".time().'.'.$request->section2_image->extension();
 
             $path = public_path().'/images/Products';
 
@@ -296,21 +305,24 @@ class ProductController extends Controller
             $request->section2_image->move(public_path('images/Products'), $section2_imageName);
 
             chmod($path."/".$section2_imageName, 0777);
-            $oldImg = $path.'/'.$product->section2_image;
+            $oldImgSec2 = $path.'/'.$product->section2_image;
 
 
             if(isset($product->section2_image)&&$product->section2_image !='')
             {
-            if (File::exists($oldImg)) : // unlink or remove previous image from folder
-                            unlink($oldImg);
+            if (File::exists($oldImgSec2)) : // unlink or remove previous image from folder
+                            unlink($oldImgSec2);
                         endif;
             }                        
             
             $data['section2_image'] = $section2_imageName;
-        endif;
+        }
 
-        if(!empty($request->section3_image)):
-            $section3_imageName = time().'.'.$request->section3_image->extension();
+        
+
+        if(!empty($request->section3_image)){
+            
+            $section3_imageName = $sec3Rnd."".time().'.'.$request->section3_image->extension();
 
             $path = public_path().'/images/Products';
 
@@ -321,21 +333,27 @@ class ProductController extends Controller
             $request->section3_image->move(public_path('images/Products'), $section3_imageName);            
             
              chmod($path."/".$section3_imageName, 0777);
-            $oldImg = $path.'/'.$product->section3_image;
+            $oldImgSec3 = $path.'/'.$product->section3_image;
 
 
             if(isset($product->section3_image)&&$product->section3_image !='')
             {
-            if (File::exists($oldImg)) : // unlink or remove previous image from folder
-                            unlink($oldImg);
+            if (File::exists($oldImgSec3)) : // unlink or remove previous image from folder
+                            unlink($oldImgSec3);
                         endif;
             }    
 
             $data['section3_image'] = $section3_imageName;
-        endif;
+        }
 
         unset($data['_token']);
         unset($data['_method']);
+
+        // print_r($data['section1_image']);
+        // print_r($data['section2_image']);
+        // print_r($data['section3_image']);
+        // die();
+
         $product =Product::where('id',$id)->update($data);       
                 
         toastr()->success('Category updated successfully');

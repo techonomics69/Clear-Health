@@ -394,11 +394,11 @@
 
 				<div class="row">
 					<div class="col-lg-12">
-						   <section class="card" style="padding:20px;" >
+						   <section class="card"  >
 
 		                            <div class="row">
 		                                <div class="col-md-12">
-		                                   <table class="table table-responsive-md table-striped table-bordered " style="width:100%" >
+		                                   <table class="table table-responsive-md table-striped table-bordered " style="width:100%;padding:20px;" >
 			                                    <thead>
 			                                        <tr>
 			                                            <th width="60%">Item</th>

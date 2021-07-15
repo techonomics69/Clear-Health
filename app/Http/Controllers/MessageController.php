@@ -15,7 +15,7 @@ class MessageController extends Controller
         $mdList = DB::table('md_messages')
                     ->join('users', 'users.id', '=', 'md_messages.user_id')
                     ->select(DB::raw('count(*) as user_count, md_messages.user_id, users.first_name, users.last_name, md_messages.case_id'),
-                    DB::raw('(SELECT m.text from md_messages as m where m.user_id=users.id group by m.user_id) as last_msg'))                    
+                    DB::raw('(SELECT m.text from md_messages as m where m.user_id=users.id group by m.user_id order by m.id desc) as last_msg'))                    
                     ->groupBy('md_messages.user_id')
                     ->get();
                 //  DB::table('md_messages')

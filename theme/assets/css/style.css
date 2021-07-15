@@ -1627,3 +1627,9 @@ table.table thead th {
 .rate_price{
   font-weight: 700;
 }
+
+/*.refundede table.table thead th, .refundede table.table tbody td {
+     border-width: 0 !important; 
+    vertical-align: middle;
+    padding: 10px 14px !important;
+}*/

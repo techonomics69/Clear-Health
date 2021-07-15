@@ -396,7 +396,7 @@
 					<div class="col-lg-12">
 						   <section class="card"  >
 
-		                            <div class="row">
+		                            <div class="row refundede">
 		                                <div class="col-md-12">
 		                                   <table class="table table-responsive-md table-striped table-bordered " style="width:100%;padding:20px;" >
 			                                    <thead>
@@ -442,6 +442,14 @@
 			                                  	  </div>
 			                                  </div>
 			                                </div>
+			                                <hr>
+			                             <!--    <div class="longer_product" style="padding:20px;">
+			                                	<div class="inner_longer">
+			                                		<button>Refund</button>
+			                                		<p>This order is no longer editable</p>
+			                                	</div>
+
+			                                </div> -->
 		                            	</div>
 		                        	</div>
 		                    </section>

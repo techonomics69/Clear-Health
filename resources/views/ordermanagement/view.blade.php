@@ -396,7 +396,7 @@
 		                                   <table class="table table-responsive-md table-striped table-bordered " style="width:100%" >
 			                                    <thead>
 			                                        <tr>
-			                                            <th width="60px">SR No</th>
+			                                            <th width="60%">SR No</th>
 			                                            <th>Order Id</th>
 			                                            <th>Case Id</th>
 			                                            <th>Email</th>

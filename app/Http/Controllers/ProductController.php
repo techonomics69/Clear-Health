@@ -272,13 +272,13 @@ class ProductController extends Controller
             $request->section1_image->move(public_path('images/Products'), $section1_imageName);
 
             chmod($path."/".$section1_imageName, 0777);
-            $oldImg = $path.'/'.$product->section1_image;
+            $oldImgSec1 = $path.'/'.$product->section1_image;
 
 
             if(isset($product->section1_image)&&$product->section1_image !='')
             {
-            if (File::exists($oldImg)) : // unlink or remove previous image from folder
-                            unlink($oldImg);
+            if (File::exists($oldImgSec1)) : // unlink or remove previous image from folder
+                            unlink($oldImgSec1);
                         endif;
             }            
             
@@ -298,13 +298,13 @@ class ProductController extends Controller
             $request->section2_image->move(public_path('images/Products'), $section2_imageName);
 
             chmod($path."/".$section2_imageName, 0777);
-            $oldImg = $path.'/'.$product->section2_image;
+            $oldImgSec2 = $path.'/'.$product->section2_image;
 
 
             if(isset($product->section2_image)&&$product->section2_image !='')
             {
-            if (File::exists($oldImg)) : // unlink or remove previous image from folder
-                            unlink($oldImg);
+            if (File::exists($oldImgSec2)) : // unlink or remove previous image from folder
+                            unlink($oldImgSec2);
                         endif;
             }                        
             
@@ -326,13 +326,13 @@ class ProductController extends Controller
             $request->section3_image->move(public_path('images/Products'), $section3_imageName);            
             
              chmod($path."/".$section3_imageName, 0777);
-            $oldImg = $path.'/'.$product->section3_image;
+            $oldImgSec3 = $path.'/'.$product->section3_image;
 
 
             if(isset($product->section3_image)&&$product->section3_image !='')
             {
-            if (File::exists($oldImg)) : // unlink or remove previous image from folder
-                            unlink($oldImg);
+            if (File::exists($oldImgSec3)) : // unlink or remove previous image from folder
+                            unlink($oldImgSec3);
                         endif;
             }    
 
@@ -342,7 +342,7 @@ class ProductController extends Controller
         unset($data['_token']);
         unset($data['_method']);
 
-        dd($data);
+        // dd($data);
 
         $product =Product::where('id',$id)->update($data);       
                 

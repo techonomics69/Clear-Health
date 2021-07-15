@@ -309,9 +309,9 @@ class ProductController extends Controller
             $data['section2_image'] = $section2_imageName;
         }
 
-        dd($data);
+        
 
-        if(!empty($request->section3_image)):
+        if(!empty($request->section3_image)){
             $section3_imageName = time().'.'.$request->section3_image->extension();
 
             $path = public_path().'/images/Products';
@@ -334,7 +334,7 @@ class ProductController extends Controller
             }    
 
             $data['section3_image'] = $section3_imageName;
-        endif;
+        }
 
         unset($data['_token']);
         unset($data['_method']);

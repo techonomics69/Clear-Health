@@ -237,6 +237,7 @@
                 },
                 success: function(result) {                                  
                     $('#messageData').html(result);
+                    $("#messageData").animate({ scrollTop: $("#messageData")[0].scrollHeight}, 1000);
                 }
             });
         })

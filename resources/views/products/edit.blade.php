@@ -178,6 +178,13 @@
                                     {!! Form::text('section1_button_content', null, array('placeholder' => 'Title of Section 1 button content','class' => 'form-control ')) !!}
                                 </div>
                             </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <strong>Section 2 Button link:</strong>
+                                    <!-- <span class="required">*</span> -->
+                                    {!! Form::text('section1_button_link', null, array('placeholder' => 'Link of Section 1 button content','class' => 'form-control ')) !!}
+                                </div>
+                            </div>
                             {{-- <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <strong>Section 3:</strong>
@@ -225,6 +232,15 @@
                                     {!! Form::text('section2_button_content', null, array('placeholder' => 'Title of Section 3 button content','class' => 'form-control ')) !!}
                                 </div>
                             </div>
+                            
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <strong>Section 3 Button Link:</strong>
+                                    <!-- <span class="required">*</span> -->
+                                    {!! Form::text('section2_button_link', null, array('placeholder' => 'Link of Section 3 button content','class' => 'form-control ')) !!}
+                                </div>
+                            </div>
+                            
 
                              <div class="col-md-6 col-sm-6 col-xs-6">
                                 <div class="form-group">
@@ -265,6 +281,14 @@
                                     {!! Form::text('section3_button_content', null, array('placeholder' => 'Title of Section 4 button content','class' => 'form-control ')) !!}
                                 </div>
                             </div>    
+
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <strong>Section 4 Button Link:</strong>
+                                    <!-- <span class="required">*</span> -->
+                                    {!! Form::text('section3_button_link', null, array('placeholder' => 'Link of Section 3 button content','class' => 'form-control ')) !!}
+                                </div>
+                            </div>
 
                             <div class="col-md-4 col-sm-6 col-xs-12">
                                 <div class="form-group">

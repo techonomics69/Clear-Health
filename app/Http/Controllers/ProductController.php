@@ -216,6 +216,9 @@ class ProductController extends Controller
             'url' => ['regex:'.$regex,'nullable'],
          
         ]);
+
+        dd($data);
+
         if(!empty($request->image)):
             $imageName = time().'.'.$request->image->extension();
 

@@ -260,80 +260,83 @@ class ProductController extends Controller
 
 
          if(!empty($request->section1_image)){
-            $section1_imageName = time().'.'.$request->section1_image->extension();
+            dd('section 1');
+            // $section1_imageName = time().'.'.$request->section1_image->extension();
 
-            $path = public_path().'/images/Products';
+            // $path = public_path().'/images/Products';
 
-            if (! File::exists($path)) {
-                File::makeDirectory($path, $mode = 0777, true, true);
-            }
+            // if (! File::exists($path)) {
+            //     File::makeDirectory($path, $mode = 0777, true, true);
+            // }
 
-            $request->section1_image->move(public_path('images/Products'), $section1_imageName);
+            // $request->section1_image->move(public_path('images/Products'), $section1_imageName);
 
-            chmod($path."/".$section1_imageName, 0777);
-            $oldImg = $path.'/'.$product->section1_image;
+            // chmod($path."/".$section1_imageName, 0777);
+            // $oldImg = $path.'/'.$product->section1_image;
 
 
-            if(isset($product->section1_image)&&$product->section1_image !='')
-            {
-            if (File::exists($oldImg)) : // unlink or remove previous image from folder
-                            unlink($oldImg);
-                        endif;
-            }            
+            // if(isset($product->section1_image)&&$product->section1_image !='')
+            // {
+            // if (File::exists($oldImg)) : // unlink or remove previous image from folder
+            //                 unlink($oldImg);
+            //             endif;
+            // }            
             
-            $data['section1_image'] = $section1_imageName;
+            // $data['section1_image'] = $section1_imageName;
         }
 
         if(!empty($request->section2_image)){
-            $section2_imageName = time().'.'.$request->section2_image->extension();
+            dd('section 2');
+            // $section2_imageName = time().'.'.$request->section2_image->extension();
 
-            $path = public_path().'/images/Products';
+            // $path = public_path().'/images/Products';
 
-            if (! File::exists($path)) {
-                File::makeDirectory($path, $mode = 0777, true, true);
-            }
+            // if (! File::exists($path)) {
+            //     File::makeDirectory($path, $mode = 0777, true, true);
+            // }
 
-            $request->section2_image->move(public_path('images/Products'), $section2_imageName);
+            // $request->section2_image->move(public_path('images/Products'), $section2_imageName);
 
-            chmod($path."/".$section2_imageName, 0777);
-            $oldImg = $path.'/'.$product->section2_image;
+            // chmod($path."/".$section2_imageName, 0777);
+            // $oldImg = $path.'/'.$product->section2_image;
 
 
-            if(isset($product->section2_image)&&$product->section2_image !='')
-            {
-            if (File::exists($oldImg)) : // unlink or remove previous image from folder
-                            unlink($oldImg);
-                        endif;
-            }                        
+            // if(isset($product->section2_image)&&$product->section2_image !='')
+            // {
+            // if (File::exists($oldImg)) : // unlink or remove previous image from folder
+            //                 unlink($oldImg);
+            //             endif;
+            // }                        
             
-            $data['section2_image'] = $section2_imageName;
+            // $data['section2_image'] = $section2_imageName;
         }
 
         
 
         if(!empty($request->section3_image)){
-            $section3_imageName = time().'.'.$request->section3_image->extension();
+            dd('section 3');
+            // $section3_imageName = time().'.'.$request->section3_image->extension();
 
-            $path = public_path().'/images/Products';
+            // $path = public_path().'/images/Products';
 
-            if (! File::exists($path)) {
-                File::makeDirectory($path, $mode = 0777, true, true);
-            }
+            // if (! File::exists($path)) {
+            //     File::makeDirectory($path, $mode = 0777, true, true);
+            // }
 
-            $request->section3_image->move(public_path('images/Products'), $section3_imageName);            
+            // $request->section3_image->move(public_path('images/Products'), $section3_imageName);            
             
-             chmod($path."/".$section3_imageName, 0777);
-            $oldImg = $path.'/'.$product->section3_image;
+            //  chmod($path."/".$section3_imageName, 0777);
+            // $oldImg = $path.'/'.$product->section3_image;
 
 
-            if(isset($product->section3_image)&&$product->section3_image !='')
-            {
-            if (File::exists($oldImg)) : // unlink or remove previous image from folder
-                            unlink($oldImg);
-                        endif;
-            }    
+            // if(isset($product->section3_image)&&$product->section3_image !='')
+            // {
+            // if (File::exists($oldImg)) : // unlink or remove previous image from folder
+            //                 unlink($oldImg);
+            //             endif;
+            // }    
 
-            $data['section3_image'] = $section3_imageName;
+            // $data['section3_image'] = $section3_imageName;
         }
 
         unset($data['_token']);

@@ -216,6 +216,29 @@ class ProductController extends Controller
             'url' => ['regex:'.$regex,'nullable'],
          
         ]);
+
+        if(isset($data['section1_button_show'])){
+            $data['section1_button_show'] = $data['section1_button_show'];
+        }else{
+            $data['section1_button_show'] = "";
+        }
+
+        if(isset($data['section2_button_show'])){
+            $data['section2_button_show'] = $data['section2_button_show'];
+        }else{
+            $data['section2_button_show'] = "";
+        }
+
+        if(isset($data['section3_button_show'])){
+            $data['section3_button_show'] = $data['section3_button_show'];
+        }else{
+            $data['section3_button_show'] = "";
+        }
+
+        
+
+
+
         if(!empty($request->image)):
             $imageName = time().'.'.$request->image->extension();
 

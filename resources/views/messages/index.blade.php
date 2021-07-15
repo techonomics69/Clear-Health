@@ -246,7 +246,16 @@
     $.noConflict();
     jQuery( document ).ready(function( $ ) {
         $('.userMdList').on('click', function(){
-            alert($(this).attr('data-id'))
+            var case_id = $(this).attr('data-id');
+            $.ajax({
+            url:"{{route('getMedicalMessage')}}",
+            type: "post",
+            dataType: 'json',
+            data: {case_id: case_id},
+            success:function(result){
+                console.log(result.abc);
+            }
+        });            
         })
     });
 </script>

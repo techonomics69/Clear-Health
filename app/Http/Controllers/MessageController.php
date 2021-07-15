@@ -7,6 +7,7 @@ use App\Models\CaseManagement;
 use App\Models\MdMessages;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Reflector;
 
 class MessageController extends Controller
 {
@@ -31,5 +32,10 @@ class MessageController extends Controller
         $user_case_management_data['user_id'] = '';
         $user_case_management_data['id'] = '';
         return view('messages.index', compact('msg_tab', 'msg_history', 'user_case_management_data', 'mdList'));
+    }
+
+    public function getMedicalMessage(Request $request)
+    {
+        echo 'dp';
     }
 }

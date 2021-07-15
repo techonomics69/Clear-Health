@@ -31,6 +31,11 @@ class MdwebhooksController extends BaseController
 
 	public function webhookTriggers(Request $request){
 
+		echo "<pre>hello";
+		print_r( $request->all());
+		echo "<pre>";
+		exit();
+
 
 		$filename = "LOG_" . strtotime(date('Y-m-d H:i:s')) . ".txt";
 		$file = fopen($_SERVER['DOCUMENT_ROOT'] . '/backend/storage/logs/' . $filename, 'w');

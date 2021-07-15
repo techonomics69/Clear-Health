@@ -56,9 +56,9 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-9">
-                                                            <h3 id="usernameLabel"></h3>
                                                             <div class="right-cht">
                                                                 <div class="chating-section medicalmessages">
+                                                                    <h3 id="usernameLabel"></h3>
                                                                     <ul id="messageData"></ul>
                                                                 </div>
                                                             </div>

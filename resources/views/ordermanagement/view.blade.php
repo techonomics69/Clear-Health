@@ -396,11 +396,10 @@
 		                                   <table class="table table-responsive-md table-striped table-bordered " style="width:100%" >
 			                                    <thead>
 			                                        <tr>
-			                                            <th width="60px">SR No</th>
-			                                            <th>Order Id</th>
-			                                            <th>Case Id</th>
-			                                            <th>Email</th>
-			                                            <th>Date</th>
+			                                            <th width="60%">Item</th>
+			                                            <th> Cost</th>
+			                                            <th>Qty</th>
+			                                            <th>Total</th>
 			                                        </tr>
 			                                    </thead>
 			                                    <tbody>
@@ -409,11 +408,32 @@
 			                                    		<td>fd</td>
 			                                    		<td>fd</td>
 			                                    		<td>fd</td>
-			                                    		<td>fd</td>
 			                                    	</tr>
 			                                    </tbody>
 		                                    
 		                                  </table>
+		                                  <div class="product_detail">
+		                                  	  <div class="product_linedetail">
+		                                  	  	<p>Shipping</p>
+		                                  	  	<p>$0</p>
+		                                  	  </div>
+		                                  	   <div class="product_linedetail">
+		                                  	  	<p>Item</p>
+		                                  	  	<p>1</p>
+		                                  	  </div>
+		                                  	   <div class="product_linedetail">
+		                                  	  	<p>Total</p>
+		                                  	  	<p>$106</p>
+		                                  	  </div>
+		                                  	   <div class="product_linedetail">
+		                                  	  	<p>Shipping Payout</p>
+		                                  	  	<p>$0</p>
+		                                  	  </div>
+		                                  	   <div class="product_linedetail">
+		                                  	  	<p>Total payout</p>
+		                                  	  	<p>$106</p>
+		                                  	  </div>
+		                                  </div>
 		                            	</div>
 		                        	</div>
 		                    </section>

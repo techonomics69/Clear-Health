@@ -168,11 +168,7 @@
                                 <div class="form-group">
                                     <strong>Show Section 2 Button: :</strong>
                                     <!-- <span class="required">*</span> -->
-                                    @if($product['section1_button_show'] == 'true')
-                                    {!! Form::checkbox('section1_button_show', 'true', $product['section1_button_show']) !!}
-                                    @else
-                                    {!! Form::checkbox('section1_button_show', 'true') !!}
-                                    @endif
+                                    <input type="checkbox" name="section1_button_show" value="true" <?php if($product['section1_button_show'] == 'true') echo "checked"; ?>>
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -226,11 +222,7 @@
                                 <div class="form-group">
                                     <strong>Show Section 3 Button :</strong>
                                     <!-- <span class="required">*</span> -->
-                                    @if($product['section2_button_show'] == 'true')
-                                    {!! Form::checkbox('section2_button_show', 'true', $product['section2_button_show']) !!}
-                                    @else
-                                    {!! Form::checkbox('section2_button_show', 'true') !!}
-                                    @endif
+                                    <input type="checkbox" name="section2_button_show" value="true" <?php if($product['section2_button_show'] == 'true') echo "checked"; ?>>
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -280,13 +272,7 @@
                                     <strong>Show Section 4 Button:</strong>
                                     <!-- <span class="required">*</span> -->
                                     
-                                    @if($product['section3_button_show'] == true)
-                                    here 1
-                                    {!! Form::checkbox('section3_button_show', '1') !!}
-                                    @else
-                                    here 2
-                                    {!! Form::checkbox('section3_button_show', 'true') !!}
-                                    @endif
+                                    <input type="checkbox" name="section3_button_show" value="true" <?php if($product['section3_button_show'] == 'true') echo "checked"; ?>>
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">

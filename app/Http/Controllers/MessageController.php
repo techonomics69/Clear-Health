@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\CaseManagement;
 use App\Models\MdMessages;
+use Illuminate\Support\Facades\DB;
 
 class MessageController extends Controller
 {
     public function index(Request $request)
     {
-        $mdList = MdMessages::groupBy('md_case_id')->get();
+        $mdList = MdMessages::select("*", DB::raw("count(*) as msg_count"))->groupBy('md_case_id')->get();
         dd($mdList);
         $msg_tab = '';
         $msg_history = [];

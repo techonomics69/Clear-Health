@@ -1607,4 +1607,5 @@ table.table thead th {
 #messages .chating-section ul li{
   padding: 10px;
   border-bottom: 1px solid #e4e4e4;
+  background: none;
 }

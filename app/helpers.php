@@ -169,7 +169,7 @@ $input_data['first_name'] = $user_data['first_name'];
 $input_data['last_name'] = $user_data['last_name'];
 $input_data['gender'] = $gender_id;
 $input_data['date_of_birth'] = date("Y-m-d", strtotime($user_data['dob'])); //"1991-02-02";
-$input_data['phone_number'] ='(415) 555-2671';//preg_replace('~.*(\d{3})[^\d]{0,7}(\d{3})[^\d]{0,7}(\d{4}).*~', '($1) $2-$3', $user_data['mobile']); //
+$input_data['phone_number'] = preg_replace('~.*(\d{3})[^\d]{0,7}(\d{3})[^\d]{0,7}(\d{4}).*~', '($1) $2-$3', $user_data['mobile']); //'(415) 555-2671';
 $input_data['phone_type'] = 2;
 $input_data['email'] = $user_data['email'];
 $address['address'] = $u_address;
@@ -203,11 +203,6 @@ curl_setopt_array($curl, array(
 ));
 
 $response = curl_exec($curl);
-
-echo "<pre>";
-print_r($response);
-echo "<pre>";
-exit();
 
 $Patient_data = json_decode($response);
 

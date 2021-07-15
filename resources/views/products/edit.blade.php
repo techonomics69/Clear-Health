@@ -280,7 +280,7 @@
                                     <strong>Show Section 4 Button:</strong>
                                     <!-- <span class="required">*</span> -->
                                     
-                                    @if($product['section3_button_show'])
+                                    @if($product['section3_button_show'] == true)
                                     here 1
                                     {!! Form::checkbox('section3_button_show', 'true', $product['section3_button_show']) !!}
                                     @else

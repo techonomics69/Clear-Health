@@ -43,7 +43,8 @@ class MessageController extends Controller
 
         $html = '';
         foreach ($message as $key => $value) :
-            
+            $createdAt = Carbon::parse($value->msg_time);
+            $time =  $createdAt->format('H:i:s m/d/Y');
             if ($value->from == 'patient') :
                 $class =  'left';
             else:
@@ -52,7 +53,7 @@ class MessageController extends Controller
             $html .= '<li class="'.$class.'">
                     <div class = "time_messages" > 
                         <p class = "text_mesg">' . $value->text . $value->id. '</p>
-                        <h5></h5>
+                        <h5>'.$time.'</h5>
                     </div>
                 </li>';
         endforeach;

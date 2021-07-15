@@ -29,7 +29,7 @@ class ProductController extends BaseController
                 unset($products[$key]);
             }
         }
-        $products = array_values($products);
+        // $products = array_values($products);
     //return json_encode($products);
         return $this->sendResponse($products, 'Products retrieved successfully.');
     }

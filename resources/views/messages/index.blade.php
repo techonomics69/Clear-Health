@@ -46,7 +46,7 @@
                                                                 <div class="chating-section">
                                                                     <ul>
                                                                         @foreach($mdList as $key => $name)
-                                                                        <li><strong>{{$name->first_name}} {{$name->last_name}} - MD</strong>
+                                                                        <li class="userMdList" data-id="{{$name->case_id}}"><strong>{{$name->first_name}} {{$name->last_name}} - MD</strong>
                                                                             <p>{{$name->last_msg}}</p>
                                                                             <small>{{ $name->msg_time }}</small>
                                                                         </li>

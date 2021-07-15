@@ -1133,7 +1133,7 @@ die();*/
          $follow_up = $request->follow_up;
          $follow_up_id = $request->follow_up_id;
       
-         dd($follow_up_id);
+        //  dd($request->follow_ipledge);
 
 
       $user_case_management_data = CaseManagement::join('users', 'case_managements.user_id', '=', 'users.id')

@@ -18,11 +18,13 @@ class ProductController extends BaseController
     public function index()
     {
         $products = Product::where('product_active', '1')->get();
-         foreach ($products as $key => $value) {
+        $product = [];
+        foreach ($products as $key => $value) {
             $value->category_name = $value->category->name;
+            $product[$key] = $products[$key];
         }
     //return json_encode($products);
-        return $this->sendResponse($products, 'Products retrieved successfully.');
+        return $this->sendResponse($product, 'Products retrieved successfully.');
     }
     /**
      * Store a newly created resource in storage.

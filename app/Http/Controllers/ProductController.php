@@ -258,10 +258,13 @@ class ProductController extends Controller
             $data['image_detail'] = $image_detail_Name;
         endif;
 
+         $sec1Rnd = rand(10,1000);
+         $sec2Rnd = rand(10,1000);
+         $sec3Rnd = rand(10,1000);
 
          if(!empty($request->section1_image)){
             
-            $section1_imageName = time().'.'.$request->section1_image->extension();
+            $section1_imageName = $sec1Rnd."".time().'.'.$request->section1_image->extension();
 
             $path = public_path().'/images/Products';
 
@@ -287,7 +290,7 @@ class ProductController extends Controller
 
         if(!empty($request->section2_image)){
             
-            $section2_imageName = time().'.'.$request->section2_image->extension();
+            $section2_imageName = $sec2Rnd."".time().'.'.$request->section2_image->extension();
 
             $path = public_path().'/images/Products';
 
@@ -315,7 +318,7 @@ class ProductController extends Controller
 
         if(!empty($request->section3_image)){
             
-            $section3_imageName = time().'.'.$request->section3_image->extension();
+            $section3_imageName = $sec3Rnd."".time().'.'.$request->section3_image->extension();
 
             $path = public_path().'/images/Products';
 

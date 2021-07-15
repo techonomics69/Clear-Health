@@ -48,7 +48,7 @@
                                                                         @foreach($mdList as $key => $name)
                                                                         <li><strong>{{$name->first_name}} {{$name->last_name}} - MD</strong>
                                                                             <p>{{$name->last_msg}}
-                                                                                <small>{{ $name->value }}</small>
+                                                                                <small>{{ $name->msg_time }}</small>
                                                                             </p>
                                                                         </li>
                                                                         @endforeach

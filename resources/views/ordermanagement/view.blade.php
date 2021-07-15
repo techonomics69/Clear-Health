@@ -412,7 +412,7 @@
 			                                    </tbody>
 		                                    
 		                                  </table>
-		                                  <div class="Product_detail">
+		                                  <div class="product_detail">
 		                                  	  <div class="product_linedetail">
 		                                  	  	<p>Shipping</p>
 		                                  	  	<p>$0</p>

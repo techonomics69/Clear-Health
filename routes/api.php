@@ -55,6 +55,7 @@ Route::get('faqlist/{category}', [FaqController::class, 'index']);
 Route::get('faq_category', [FaqController::class, 'getFaqCategoryList']);
 Route::resource('testimonial', TestimonialController::class);
 Route::get('getAllStates', [CaseManagementController::class, 'getAllStates']);
+Route::post('stripe_webhook', [PaymentsController::class, 'stripe_webhook']);
 
 Route::group(['middleware' => ['auth:api']], function () {
     Route::get("getbirthcontrol/{id}", [BirthControlController::class, 'show']);
@@ -186,4 +187,3 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post("createBirthControl", [BirthControlController::class, 'store']);
     Route::get("getbirthcontrol/{id}", [BirthControlController::class, 'show']);
 });
-Route::post('stripe_webhook', [PaymentsController::class, 'stripe_webhook']);

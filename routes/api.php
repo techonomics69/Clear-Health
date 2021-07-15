@@ -56,6 +56,8 @@ Route::get('faq_category', [FaqController::class, 'getFaqCategoryList']);
 Route::resource('testimonial', TestimonialController::class);
 Route::get('getAllStates', [CaseManagementController::class, 'getAllStates']);
 Route::post('stripe_webhook', [PaymentsController::class, 'stripe_webhook']);
+//webhook
+Route::post('webhookTriggers', [MdwebhooksController::class, 'webhookTriggers']);
 
 Route::group(['middleware' => ['auth:api']], function () {
     Route::get("getbirthcontrol/{id}", [BirthControlController::class, 'show']);
@@ -170,8 +172,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('getIpledgeAgreement', [ActionitemsController::class, 'getIpledgeAgreement']);
     Route::post('showActionItemsForm', [ActionitemsController::class, 'showActionItemsForm']);
 
-    //webhook
-    Route::post('webhookTriggers', [MdwebhooksController::class, 'webhookTriggers']);
+    
     //Change Password
     Route::post('changePassword', [ChangePasswordController::class, 'changePassword']);
 

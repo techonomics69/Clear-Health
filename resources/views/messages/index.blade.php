@@ -45,7 +45,9 @@
                                                             <div class="right-cht">
                                                                 <div class="chating-section">
                                                                     <ul>
-                                                                        <li></li>
+                                                                        @foreach($mdList as $key => $name)
+                                                                        <li>{{$name->first_name}} {{$name->last_name}} - MD</li>
+                                                                        @endif
                                                                     </ul>
                                                                 </div>
                                                             </div>

@@ -412,6 +412,28 @@
 			                                    </tbody>
 		                                    
 		                                  </table>
+		                                  <div class="Product_detail">
+		                                  	  <div class="product_linedetail">
+		                                  	  	<p>Shipping</p>
+		                                  	  	<p>$0</p>
+		                                  	  </div>
+		                                  	   <div class="product_linedetail">
+		                                  	  	<p>Item</p>
+		                                  	  	<p>1</p>
+		                                  	  </div>
+		                                  	   <div class="product_linedetail">
+		                                  	  	<p>Total</p>
+		                                  	  	<p>$106</p>
+		                                  	  </div>
+		                                  	   <div class="product_linedetail">
+		                                  	  	<p>Shipping Payout</p>
+		                                  	  	<p>$0</p>
+		                                  	  </div>
+		                                  	   <div class="product_linedetail">
+		                                  	  	<p>Total payout</p>
+		                                  	  	<p>$106</p>
+		                                  	  </div>
+		                                  </div>
 		                            	</div>
 		                        	</div>
 		                    </section>

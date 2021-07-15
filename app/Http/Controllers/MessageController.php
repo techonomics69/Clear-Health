@@ -21,8 +21,9 @@ class MessageController extends Controller
                     ->groupBy('md_messages.user_id')
                     ->get();  
         foreach($mdList as $key => $value):
-            dd($value);
+            
             $createdAt = Carbon::parse($value->msg_time);
+            dd($createdAt);
             $value->msg_time =  $createdAt->format('H:i:s Y.m.d');
         endforeach;                 
         $msg_tab = '';

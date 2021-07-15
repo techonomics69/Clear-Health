@@ -62,28 +62,28 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
         echo "<pre>key:: ";
         print_r($key);
         echo "<pre>";
-       
 
-       $follow_up_data = Mdcases::join('follow_up','follow_up.md_case_id', '=','md_cases.case_id' )->select('follow_up.follow_up_no')->where('md_cases.case_id',$value['md_case_id'])->first();
 
-       $user_id = $value['user_id'];
-       $case_id = $value['md_case_id'];
-       $system_case_id = $value['id'];
-       $user_email =  $value['email'];
-       $user_phone = $value['mobile'];
+        $follow_up_data = Mdcases::join('follow_up','follow_up.md_case_id', '=','md_cases.case_id' )->select('follow_up.follow_up_no')->where('md_cases.case_id',$value['md_case_id'])->first();
 
-       $gender = $value['gender'];
+        $user_id = $value['user_id'];
+        $case_id = $value['md_case_id'];
+        $system_case_id = $value['id'];
+        $user_email =  $value['email'];
+        $user_phone = $value['mobile'];
 
-       echo "<pre>Gender ";
-       print_r($gender);
-       echo "<pre>";
+        $gender = $value['gender'];
 
-      $order_data = Checkout::where([['user_id', $user_id],['case_id', $system_case_id],['md_case_id', $case_id]])->first();
+        echo "<pre>Gender ";
+        print_r($gender);
+        echo "<pre>";
+
+        $order_data = Checkout::where([['user_id', $user_id],['case_id', $system_case_id],['md_case_id', $case_id]])->first();
 
         
-      /*  $ShiStation = shipStationHelper::getOrderData($order_data['shipstation_order_id']);*/
+        /*  $ShiStation = shipStationHelper::getOrderData($order_data['shipstation_order_id']);*/
 
-         
+
 
 
      /*  $cart_ids = explode(',', $order_data['cart_id']);
@@ -115,7 +115,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
        $now = Carbon::now();
        $pickup_medication_difference = $pickup_medication_notification_date->diffInDays($now);
 
-      /* code for pickup_notification month wise*/
+       /* code for pickup_notification month wise*/
 
        $follow_up_no = $follow_up_data['follow_up_no'];
        $month_no = $follow_up_data['follow_up_no']+1;
@@ -125,25 +125,25 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
        $month_triggers = Triggers::where([['user_id', $user_id],['case_id',$system_case_id],['md_case_id', $case_id],['name','pickup_medication_notification'],['month',$month_no]])->first();
 
        $month_pickup_medi_noti_date = new Carbon($month_triggers['updated_at']);
-     
+
        $now = Carbon::now();
        $today_date = $now->toDateTimeString();
 
-        $notification_date = $month_pickup_medi_noti_date->addDays(10);
+       $notification_date = $month_pickup_medi_noti_date->addDays(10);
 
-        $sent_notification_date =  $notification_date->toDateTimeString();
+       $sent_notification_date =  $notification_date->toDateTimeString();
 
-        $today_date = Carbon::createFromFormat('Y-m-d H:i:s',$today_date);
-        $sent_notification_date = Carbon::createFromFormat('Y-m-d H:i:s', $sent_notification_date);
+       $today_date = Carbon::createFromFormat('Y-m-d H:i:s',$today_date);
+       $sent_notification_date = Carbon::createFromFormat('Y-m-d H:i:s', $sent_notification_date);
 
-      /* end of code for pickup_notification month wise*/
+       /* end of code for pickup_notification month wise*/
 
-        $product_type = $value['product_type'];
+       $product_type = $value['product_type'];
 
 
-        echo "<pre>product_type => ";
-        print_r($product_type);
-        echo "<pre>";
+       echo "<pre>product_type => ";
+       print_r($product_type);
+       echo "<pre>";
        
 
         /*$gender = 'female';//0;
@@ -170,7 +170,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
           }
         }*/
 
-       /* $gender =  $gender = $value['gender'];*/
+        /* $gender =  $gender = $value['gender'];*/
 
         if($case_id != '' || $case_id != NULL){
 
@@ -206,8 +206,8 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
           print_r($md_case_status);
           echo "<pre>";
 
-           $system_status = $md_case_status;
-      
+          $system_status = $md_case_status;
+
 
           /*$md_case_status = 'completed';remove this*/
 
@@ -233,23 +233,11 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
             $caseHistory = CaseHistory::where('case_id', $system_case_id)->update($input_data);
 
           }
-         /* $support_reason = "had call with MD";//remove after testing enable this to test welcome email*/
+          /* $support_reason = "had call with MD";//remove after testing enable this to test welcome email*/
 
           $prescriptiondata = CasePrescriptions::where([['user_id',$user_id],['case_id',$case_id],['system_case_id',$system_case_id]])->first();
 
 
-          /*SMS Check-ins */   
-
-          if($today_date->eq($sent_notification_date) && $product_type == 'Accutane' && ($gender == "female"||$gender == "male")){
-            $medicin_pickup_notification = array();
-
-                $user = array($user_phone);
-                //$user = array('+917874257069');
-                $medicin_pickup_notification['users'] = $user;
-                $medicin_pickup_notification['body'] = "prescription sent";
-                $medicin_pickup_notification_sent = sendsms($medicin_pickup_notification); 
-          } 
-          /*end of SMS Check-ins   */ 
 
           //if($gender == "Female" && $product_type == 'Accutane' && $case_type = 'new'){
           if($gender == "female" && $product_type == 'Accutane'){                                                 
@@ -262,27 +250,27 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                 6.   Awaiting Action Items
                 */
                 /*if(($md_status != null || $value['md_status']!= null) && $md_case_status == 'pending' && $case_type = 'new'){*/
-                if($md_case_status == 'assigned' ){
+                  if($md_case_status == 'assigned' ){
 
-                  echo "<pre>";
-                  print_r('innnnnn');
-                  echo "<pre>";
+                    echo "<pre>";
+                    print_r('innnnnn');
+                    echo "<pre>";
 
-                  echo "<pre>reason ";
-                  print_r($support_reason = $MdCaseStatus->case_status->reason);
-                  echo "<pre>";
-                  
-                
+                    echo "<pre>reason ";
+                    print_r($support_reason = $MdCaseStatus->case_status->reason);
+                    echo "<pre>";
 
-                  $system_status = 'Awaiting Live Consultation';
 
-                   /* send welcome email */
 
-              if($support_reason != NULL && empty($follow_up_data)){
+                    $system_status = 'Awaiting Live Consultation';
 
-                $email_data = array();
+                    /* send welcome email */
 
-                $email_data['email'] = 'itqatester12@gmail.com';//$user_email;
+                    if($support_reason != NULL && empty($follow_up_data)){
+
+                      $email_data = array();
+
+                $email_data['email'] = $user_email;//'itqatester12@gmail.com';
                 $email_data['title'] = 'helloclearhealth.com';
                 $email_data['body'] = "Welcome Email when prescription is approved detailing Accutane instructions + prompt them to sign forms";
                 $email_data['template'] = 'emails.mySendMail';
@@ -292,19 +280,24 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                 if(empty($welcome_email_trigger_done)){
 
                   $welcome_email_input = array();
-                 $welcome_email_input['user_id'] = $user_id;
-                 $welcome_email_input['case_id'] = $system_case_id;
-                 $welcome_email_input['md_case_id'] = $case_id;
-                 $welcome_email_input['name'] = "welcome_email";
-                 $welcome_email_input['month'] = $follow_up_data['follow_up_no']+1;
+                  $welcome_email_input['user_id'] = $user_id;
+                  $welcome_email_input['case_id'] = $system_case_id;
+                  $welcome_email_input['md_case_id'] = $case_id;
+                  $welcome_email_input['name'] = "welcome_email";
+                  $welcome_email_input['month'] = $follow_up_data['follow_up_no']+1;
 
-                 $welcome_email_input_data = Triggers::create($welcome_email_input);
+                  $welcome_email_input_data = Triggers::create($welcome_email_input);
 
-                 $email_sent = sendEmail($email_data);
+                  $email_sent = sendEmail($email_data);
+
+                   echo "<pre>";
+                        print_r('Email + Female + Accutane');
+                        echo "<pre>"; 
+
 
                 }
 
-                 /*welcome sms*/
+                /*welcome sms*/
                 $smsdata = array();
 
                 //$user = array($user_phone);
@@ -317,35 +310,35 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                 if(empty($welcome_sms_trigger_done)){
 
                   $welcome_sms_input = array();
-                 $welcome_sms_input['user_id'] = $user_id;
-                 $welcome_sms_input['case_id'] = $system_case_id;
-                 $welcome_sms_input['md_case_id'] = $case_id;
-                 $welcome_sms_input['name'] = "welcome_sms";
-                 $welcome_sms_input['month'] = $follow_up_data['follow_up_no']+1;
+                  $welcome_sms_input['user_id'] = $user_id;
+                  $welcome_sms_input['case_id'] = $system_case_id;
+                  $welcome_sms_input['md_case_id'] = $case_id;
+                  $welcome_sms_input['name'] = "welcome_sms";
+                  $welcome_sms_input['month'] = $follow_up_data['follow_up_no']+1;
 
-                 $welcome_sms_input_data = Triggers::create($welcome_sms_input);
-                 $sms_sent = sendsms($smsdata);
+                  $welcome_sms_input_data = Triggers::create($welcome_sms_input);
+                  $sms_sent = sendsms($smsdata);
 
-                 echo "<pre>";
-                 print_r('Female + Accutane');
-                 echo "<pre>";
-                 
+                  echo "<pre>";
+                  print_r('SMS + Female + Accutane');
+                  echo "<pre>";
+
 
                 }
                 
 
-              /*end of welcome message*/
+                /*end of welcome message*/
 
                 
               }
               /*end of welcome email */ 
-                }
+            }
 
-                /*if($md_case_status == 'support' && $case_type = 'new' && ($support_reason != '' || $support_reason != NULL)){*/
-                if($md_case_status == 'completed' && ($support_reason != '' || $support_reason != NULL) && empty($prescriptiondata)){
+            /*if($md_case_status == 'support' && $case_type = 'new' && ($support_reason != '' || $support_reason != NULL)){*/
+              if($md_case_status == 'completed' && ($support_reason != '' || $support_reason != NULL) && empty($prescriptiondata)){
 
-                  $system_status = 'Awaiting Follow-Up';
-                }
+                $system_status = 'Awaiting Follow-Up';
+              }
 
               /* if($md_case_status =='support' && $case_type = 'follow_up'){ */
                 if($md_case_status =='processing'){
@@ -354,159 +347,159 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                 }
 
                 /*if($md_case_status == 'dosespot confirmed' && $case_type = 'follow_up'){*/
-                if($md_case_status == 'completed'){
+                  if($md_case_status == 'completed'){
 
                   //if($follow_up_data['follow_up_no'] == 0){
-                  if(empty($follow_up_data)){
+                    if(empty($follow_up_data)){
 
-                    if($value['abstinence_form']!= 0 && $value['sign_ipledge_consent']!= 0){
+                      if($value['abstinence_form']!= 0 && $value['sign_ipledge_consent']!= 0){
 
-                      $system_status = 'Awaiting Action Items';  
+                        $system_status = 'Awaiting Action Items';  
 
-                    }
+                      }
 
                     //notification for action_items_due
-                    if($support_reason != '' || $support_reason != NULL){
-                    $action_items_due_noti = array();
-                    $action_items_due_noti['user_id'] = $user_id;
-                    $action_items_due_noti['case_id'] = $system_case_id;
-                    $action_items_due_noti['md_case_id'] = $case_id;
+                      if($support_reason != '' || $support_reason != NULL){
+                        $action_items_due_noti = array();
+                        $action_items_due_noti['user_id'] = $user_id;
+                        $action_items_due_noti['case_id'] = $system_case_id;
+                        $action_items_due_noti['md_case_id'] = $case_id;
 
-                    $action_items_due_noti['noti_message'] = getNotificationMessageFromKey('action_items_due');
-                    $action_items_due_noti['for_month'] = $follow_up_data['follow_up_no']+1;
-                    $action_items_due_noti_data = Notifications::create($action_items_due_noti);
-                    }
+                        $action_items_due_noti['noti_message'] = getNotificationMessageFromKey('action_items_due');
+                        $action_items_due_noti['for_month'] = $follow_up_data['follow_up_no']+1;
+                        $action_items_due_noti_data = Notifications::create($action_items_due_noti);
+                      }
                     //end of notification for action_items_due
 
                     //notification for md_has_approved_your_treatment_wait_31_days
 
-                    $approvnoti = array();
-                    $approv_noti['user_id'] = $user_id;
-                    $approv_noti['case_id'] = $system_case_id;
-                    $approv_noti['md_case_id'] = $case_id;
+                      $approvnoti = array();
+                      $approv_noti['user_id'] = $user_id;
+                      $approv_noti['case_id'] = $system_case_id;
+                      $approv_noti['md_case_id'] = $case_id;
 
-                    $approv_noti['noti_message'] = getNotificationMessageFromKey('md_has_approved_your_treatment_wait_31_days');
-                    $approv_noti['for_month'] = $follow_up_data['follow_up_no']+1;
-                    $approv_noti_data = Notifications::create($approv_noti);
+                      $approv_noti['noti_message'] = getNotificationMessageFromKey('md_has_approved_your_treatment_wait_31_days');
+                      $approv_noti['for_month'] = $follow_up_data['follow_up_no']+1;
+                      $approv_noti_data = Notifications::create($approv_noti);
 
                     //end of notification for md_has_approved_your_treatment_wait_31_days
 
 
-                 }
+                    }
 
-                 if($follow_up_data['follow_up_no'] != 0){
+                    if($follow_up_data['follow_up_no'] != 0){
 
-                  if($value['prior_auth_date'] != NULL){
+                      if($value['prior_auth_date'] != NULL){
 
-                    $prior_auth_date = new Carbon($value['prior_auth_date']);
+                        $prior_auth_date = new Carbon($value['prior_auth_date']);
 
                     //$auth_date = Carbon::createFromFormat('Y-m-d H:i:s', $value['prior_auth_date']);
-                    $now = Carbon::now();
-                    $today_date = $now->toDateTimeString();
+                        $now = Carbon::now();
+                        $today_date = $now->toDateTimeString();
 
-                    $checkdate = $prior_auth_date->addDays(7);
+                        $checkdate = $prior_auth_date->addDays(7);
 
-                    $display_till_date =  $checkdate->toDateTimeString();
+                        $display_till_date =  $checkdate->toDateTimeString();
 
-                    $today_date = Carbon::createFromFormat('Y-m-d H:i:s', $today_date);
-                    $display_till_date = Carbon::createFromFormat('Y-m-d H:i:s', $display_till_date);
+                        $today_date = Carbon::createFromFormat('Y-m-d H:i:s', $today_date);
+                        $display_till_date = Carbon::createFromFormat('Y-m-d H:i:s', $display_till_date);
 
 
-                    if($today_date->lte($display_till_date)){
-                      $system_status = 'Awaiting Action Items'; 
-                    } 
+                        if($today_date->lte($display_till_date)){
+                          $system_status = 'Awaiting Action Items'; 
+                        } 
 
-                  }
+                      }
 
                   //notification
 
                   //code  for md_has_approved_your_treatment
-                    $approved_noti = array();
-                    $approved_noti['user_id'] = $user_id;
-                    $approved_noti['case_id'] = $system_case_id;
-                    $approved_noti['md_case_id'] = $case_id;
+                      $approved_noti = array();
+                      $approved_noti['user_id'] = $user_id;
+                      $approved_noti['case_id'] = $system_case_id;
+                      $approved_noti['md_case_id'] = $case_id;
 
-                    $approved_noti['noti_message'] = getNotificationMessageFromKey('md_has_approved_your_treatment');
-                    $approved_noti['for_month'] = $follow_up_data['follow_up_no']+1;
-                    $approved_noti_data = Notifications::create($approved_noti);
+                      $approved_noti['noti_message'] = getNotificationMessageFromKey('md_has_approved_your_treatment');
+                      $approved_noti['for_month'] = $follow_up_data['follow_up_no']+1;
+                      $approved_noti_data = Notifications::create($approved_noti);
 
                     //end of code for md_has_approved_your_treatment
 
                   //end of notification
-                }
+                    }
 
-                  $system_status = 'Prescription Approved';
-                  $response = $this->getPrescription($case_id);
+                    $system_status = 'Prescription Approved';
+                    $response = $this->getPrescription($case_id);
 
 
-                  if(!empty($response)){
-                    $this->save_prescription_response($response,$user_id,$case_id,$system_case_id);
-                    $prescription_data = json_decode($response);
+                    if(!empty($response)){
+                      $this->save_prescription_response($response,$user_id,$case_id,$system_case_id);
+                      $prescription_data = json_decode($response);
 
-                    if($preferred_pharmacy_id =='13012' ){
+                      if($preferred_pharmacy_id =='13012' ){
                      //curexa create order api}
-                    $curexa_para = array();
-                    $curexa_para['user_id'] = $user_id;
-                    $curexa_para['case_id'] = $case_id;
-                    $curexa_para['system_case_id'] = $system_case_id;
+                        $curexa_para = array();
+                        $curexa_para['user_id'] = $user_id;
+                        $curexa_para['case_id'] = $case_id;
+                        $curexa_para['system_case_id'] = $system_case_id;
 
-                    foreach($prescription_data as $key=>$prescription){
-                      $curexa_para['rx_id'] =  $prescription->dosespot_prescription_id;
-                      $curexa_para['quantity_dispensed'] = $prescription->quantity;
-                      $curexa_para['days_supply'] = $prescription->days_supply;
-                      $curexa_para['medication_sig'] = $prescription->directions;
+                        foreach($prescription_data as $key=>$prescription){
+                          $curexa_para['rx_id'] =  $prescription->dosespot_prescription_id;
+                          $curexa_para['quantity_dispensed'] = $prescription->quantity;
+                          $curexa_para['days_supply'] = $prescription->days_supply;
+                          $curexa_para['medication_sig'] = $prescription->directions;
 
 
-                      $curexa_create_order_data = $this->curexa_create_order($curexa_para);
+                          $curexa_create_order_data = $this->curexa_create_order($curexa_para);
 
-                      if(!empty($curexa_create_order_data)){
+                          if(!empty($curexa_create_order_data)){
 
                       //pickup_medication_notification
 
-                        if($follow_up_data['follow_up_no'] != 0){
+                            if($follow_up_data['follow_up_no'] != 0){
 
-                          $iPledge_items = $follow_up_data['ipledge_items'];
-                        }else{
-                          $iPledge_items = $$value['ipledge_items'];
-                        }
+                              $iPledge_items = $follow_up_data['ipledge_items'];
+                            }else{
+                              $iPledge_items = $$value['ipledge_items'];
+                            }
 
-                        if($iPledge_items == 'on') {
+                            if($iPledge_items == 'on') {
 
-                          $noti_input_data = array();
-                          $noti_input_data['user_id'] = $user_id;
-                          $noti_input_data['case_id'] = $system_case_id;
-                          $noti_input_data['md_case_id'] = $case_id;
+                              $noti_input_data = array();
+                              $noti_input_data['user_id'] = $user_id;
+                              $noti_input_data['case_id'] = $system_case_id;
+                              $noti_input_data['md_case_id'] = $case_id;
 
-                          $noti_input_data['noti_message'] = getNotificationMessageFromKey('pickup_medication_notification_for_female');
-                          $noti_input_data['for_month'] = $follow_up_data['follow_up_no']+1;
+                              $noti_input_data['noti_message'] = getNotificationMessageFromKey('pickup_medication_notification_for_female');
+                              $noti_input_data['for_month'] = $follow_up_data['follow_up_no']+1;
 
-                          $trigger_input = array();
-                          $trigger_input['user_id'] = $user_id;
-                          $trigger_input['case_id'] = $system_case_id;
-                          $trigger_input['md_case_id'] = $case_id;
-                          $trigger_input['name'] = "pickup_medication_notification";
-                          $trigger_input['month'] = $follow_up_data['follow_up_no']+1;
+                              $trigger_input = array();
+                              $trigger_input['user_id'] = $user_id;
+                              $trigger_input['case_id'] = $system_case_id;
+                              $trigger_input['md_case_id'] = $case_id;
+                              $trigger_input['name'] = "pickup_medication_notification";
+                              $trigger_input['month'] = $follow_up_data['follow_up_no']+1;
 
 
-                          $noti_data = Notifications::create($noti_input_data);
+                              $noti_data = Notifications::create($noti_input_data);
 
-                          $trigger_data = Triggers::create($trigger_input);
-                       }
-                       
+                              $trigger_data = Triggers::create($trigger_input);
+                            }
+
 
                     //end of pickup_medication_notification
 
-                          
-                          $this->store_curexa_order_data($curexa_create_order_data,$user_id,$case_id,$system_case_id );
-                      }
-                    }
+
+                            $this->store_curexa_order_data($curexa_create_order_data,$user_id,$case_id,$system_case_id );
+                          }
+                        }
 
 
                     //end of curexa  create order api 
-                  } 
+                      } 
 
 
-                  }/*end of getPrescription response */
+                    }/*end of getPrescription response */
 
                    //Prescription Sent Email
 
@@ -518,25 +511,25 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                     $prescriptionemail_data['template'] = 'emails.mySendMail'; 
 
 
-                     $prescriptionsmsdata = array();
+                    $prescriptionsmsdata = array();
 
                     $user = array($user_phone);
                     //$user = array('+917874257069');
                     $prescriptionsmsdata['users'] = $user;
                     $prescriptionsmsdata['body'] = "prescription sent";
                     if($preferred_pharmacy_id !='13012' ){
-                        if($follow_up_data['follow_up_no'] == 0  && $value['ipledge_items'] == 'on' && $value['prior_auth_date'] != NULL){
+                      if($follow_up_data['follow_up_no'] == 0  && $value['ipledge_items'] == 'on' && $value['prior_auth_date'] != NULL){
 
-                       
-                           $email_sent = sendEmail($prescriptionemail_data);
 
-                          $sms_sent = sendsms($prescriptionsmsdata);
-                       }
+                       $email_sent = sendEmail($prescriptionemail_data);
 
-                   
-                  }
+                       $sms_sent = sendsms($prescriptionsmsdata);
+                     }
 
-                  if($follow_up_data['follow_up_no'] != 0 && $value['ipledge_items'] == 'on'){
+
+                   }
+
+                   if($follow_up_data['follow_up_no'] != 0 && $value['ipledge_items'] == 'on'){
 
                     $email_sent = sendEmail($prescriptionemail_data);
 
@@ -546,90 +539,8 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                 }
 
-                //bloodwork notification
-
-                    $bloodwork_email_data = array();
-
-                    $bloodwork_email_data['email'] = $user_email;
-                    $bloodwork_email_data['title'] = 'helloclearhealth.com';
-                    $bloodwork_email_data['body'] = "Please complete your blood work ";
-                    $bloodwork_email_data['template'] = 'emails.mySendMail';
-
-                    $bloodworksmsdata = array();
-
-                    //$user = array($user_phone);
-                    $user = array('+917874257069');
-                    $bloodworksmsdata['users'] = $user;
-                    $bloodworksmsdata['body'] = "Please complete your blood work";
-
-                if($preferred_pharmacy_id =='13012' && $curexadata['order_status'] == "out_for_delivery" && $difference == 80 ){
-                   
-                   //send welcome email 
-                    $email_sent = sendEmail($bloodwork_email_data); 
-
-                  //welcome sms
-                    $sms_sent = sendsms($bloodworksmsdata);
-                    
-                }
-
-              if($preferred_pharmacy_id !='13012' && $pickup_medication_difference == 60){
-                //send welcome email 
-                    $email_sent = sendEmail($bloodwork_email_data); 
-
-                  //welcome sms
-                    $sms_sent = sendsms($bloodworksmsdata);
-              }
-
-                //end of bloodwork notification
-
-              //notification download_the_bloodwork_form
-
-              $had_call_triggers = Triggers::where([['user_id', $user_id],['case_id', $system_case_id],['md_case_id', $case_id],['name','had_call_with_md_notification'],['month',1]])->first();
-
-              $had_call_notification_date = new Carbon($had_call_triggers['updated_at']);
-              $current_date = Carbon::now();
-              $had_call_difference = $had_call_notification_date->diffInDays($current_date);
-
-              if($had_call_difference == 60){
-                $noti_download_the_bloodwork_form = array();
-                $noti_download_the_bloodwork_form['user_id'] = $user_id;
-                $noti_download_the_bloodwork_form['case_id'] = $case_id;
-                $noti_download_the_bloodwork_form['md_case_id'] = $md_case_id;
-
-
-                $noti_download_the_bloodwork_form['noti_message'] = getNotificationMessageFromKey('download_the_bloodwork_form');
-                $noti_download_the_bloodwork_form['for_month'] = $follow_up;
-
-                $noti_download_the_bloodwork_data = Notifications::create($noti_download_the_bloodwork_form);
-              }
-
-              //end of notification download_the_bloodwork_form
-
-              //notification upload_your_pregnancy_test
-
-              $ipledge_credentials_triggers = Triggers::where([['user_id', $user_id],['case_id', $system_case_id],['md_case_id', $case_id],['name','ipledge_credentials_sent_notification'],['month',1]])->first();
-
-              $ipledge_credentials_triggers_notification_date = new Carbon($ipledge_credentials_triggers['updated_at']);
-              $currentdate = Carbon::now();
-              $ipledge_credentials_difference = $ipledge_credentials_triggers_notification_date->diffInDays($currentdate);
-
-              if($ipledge_credentials_difference == 31){
-                $noti_download_the_bloodwork_form = array();
-                $noti_download_the_bloodwork_form['user_id'] = $user_id;
-                $noti_download_the_bloodwork_form['case_id'] = $case_id;
-                $noti_download_the_bloodwork_form['md_case_id'] = $md_case_id;
-
-
-                $noti_download_the_bloodwork_form['noti_message'] = getNotificationMessageFromKey('download_the_bloodwork_form');
-                $noti_download_the_bloodwork_form['for_month'] = $follow_up;
-
-                $noti_download_the_bloodwork_data = Notifications::create($noti_download_the_bloodwork_form);
-              }
-
-              //end of upload_your_pregnancy_test
-
-          } /*end of $gender == "female" && $product_type == 'Accutane'*/
-          else if($gender == "male" && $product_type == 'Accutane'){
+              } /*end of $gender == "female" && $product_type == 'Accutane'*/
+              else if($gender == "male" && $product_type == 'Accutane'){
               /*
                   Initial Accutane Male Flow:
             
@@ -640,15 +551,15 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                 */
 
                   /*if(($md_status != null || $value['md_status']!= null) && $md_case_status == 'pending' && $case_type = 'new'){*/
-                  if($md_case_status == 'assigned'){
+                    if($md_case_status == 'assigned'){
 
-                    $system_status = 'MD Assigned';
+                      $system_status = 'MD Assigned';
 
                     //send welcome email 
 
-                    if(empty($follow_up_data)){
+                      if(empty($follow_up_data)){
 
-                      $email_data = array();
+                        $email_data = array();
 
                       $email_data['email'] = 'itqatester12@gmail.com';//$user_email;
                       $email_data['title'] = 'helloclearhealth.com';
@@ -656,6 +567,11 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                       $email_data['template'] = 'emails.mySendMail';
 
                       $email_sent = sendEmail($email_data);
+
+                       echo "<pre>";
+                        print_r('Email + Male + Accutane');
+                        echo "<pre>"; 
+
 
                       //welcome sms
                       $smsdata = array();
@@ -670,18 +586,18 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                       if(empty($welcome_sms_trigger_done)){
 
                         $welcome_sms_input = array();
-                       $welcome_sms_input['user_id'] = $user_id;
-                       $welcome_sms_input['case_id'] = $system_case_id;
-                       $welcome_sms_input['md_case_id'] = $case_id;
-                       $welcome_sms_input['name'] = "welcome_sms";
-                       $welcome_sms_input['month'] = $follow_up_data['follow_up_no']+1;
+                        $welcome_sms_input['user_id'] = $user_id;
+                        $welcome_sms_input['case_id'] = $system_case_id;
+                        $welcome_sms_input['md_case_id'] = $case_id;
+                        $welcome_sms_input['name'] = "welcome_sms";
+                        $welcome_sms_input['month'] = $follow_up_data['follow_up_no']+1;
 
-                       $welcome_sms_input_data = Triggers::create($welcome_sms_input);
-                       $sms_sent = sendsms($smsdata);
+                        $welcome_sms_input_data = Triggers::create($welcome_sms_input);
+                        $sms_sent = sendsms($smsdata);
 
-                       echo "<pre>";
-                       print_r('Male + Accutane');
-                       echo "<pre>"; 
+                        echo "<pre>";
+                        print_r('SMS +Male + Accutane');
+                        echo "<pre>"; 
 
                       }
 
@@ -691,88 +607,88 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                   }
 
                   /*if($md_case_status =='support' && $case_type = 'new'){*/
-                  if($md_case_status =='processing'){
+                    if($md_case_status =='processing'){
 
-                    $system_status = 'Awaiting Prescription Approval';
-                  }
+                      $system_status = 'Awaiting Prescription Approval';
+                    }
 
 
                   //if($md_case_status == 'dosespot confirmed' && $case_type = 'new'){
-                  if($md_case_status == 'completed'){
-                    if(empty($follow_up_data)){
+                    if($md_case_status == 'completed'){
+                      if(empty($follow_up_data)){
 
-                     $case_status_reason_input = array();
-                     $case_status_reason_input['user_id'] = $user_id;
-                     $case_status_reason_input['case_id'] = $system_case_id;
-                     $case_status_reason_input['md_case_id'] = $case_id;
-                     $case_status_reason_input['name'] = "prescription_sent_notification";
-                     $case_status_reason_input['month'] = $follow_up_data['follow_up_no']+1;
+                       $case_status_reason_input = array();
+                       $case_status_reason_input['user_id'] = $user_id;
+                       $case_status_reason_input['case_id'] = $system_case_id;
+                       $case_status_reason_input['md_case_id'] = $case_id;
+                       $case_status_reason_input['name'] = "prescription_sent_notification";
+                       $case_status_reason_input['month'] = $follow_up_data['follow_up_no']+1;
 
-                     $case_status_reason_input_data = Triggers::create($case_status_reason_input);
+                       $case_status_reason_input_data = Triggers::create($case_status_reason_input);
 
-                   }
+                     }
 
                     //notification for action_items_due
-                   $action_items_due_noti = array();
-                   $action_items_due_noti['user_id'] = $user_id;
-                   $action_items_due_noti['case_id'] = $system_case_id;
-                   $action_items_due_noti['md_case_id'] = $case_id;
+                     $action_items_due_noti = array();
+                     $action_items_due_noti['user_id'] = $user_id;
+                     $action_items_due_noti['case_id'] = $system_case_id;
+                     $action_items_due_noti['md_case_id'] = $case_id;
 
-                   $action_items_due_noti['noti_message'] = getNotificationMessageFromKey('action_items_due');
-                   $action_items_due_noti['for_month'] = $follow_up_data['follow_up_no']+1;
-                   $action_items_due_noti_data = Notifications::create($action_items_due_noti);
+                     $action_items_due_noti['noti_message'] = getNotificationMessageFromKey('action_items_due');
+                     $action_items_due_noti['for_month'] = $follow_up_data['follow_up_no']+1;
+                     $action_items_due_noti_data = Notifications::create($action_items_due_noti);
 
 
                     //end of notification for action_items_due
 
-                   $system_status = 'Prescription Approved';
+                     $system_status = 'Prescription Approved';
 
 
                     //code  for md_has_approved_your_treatment
-                   $approved_noti = array();
-                   $approved_noti['user_id'] = $user_id;
-                   $approved_noti['case_id'] = $system_case_id;
-                   $approved_noti['md_case_id'] = $case_id;
+                     $approved_noti = array();
+                     $approved_noti['user_id'] = $user_id;
+                     $approved_noti['case_id'] = $system_case_id;
+                     $approved_noti['md_case_id'] = $case_id;
 
-                   $approved_noti['noti_message'] = getNotificationMessageFromKey('md_has_approved_your_treatment');
-                   $approved_noti['for_month'] = $follow_up_data['follow_up_no']+1;
-                   $approved_noti_data = Notifications::create($approved_noti);
+                     $approved_noti['noti_message'] = getNotificationMessageFromKey('md_has_approved_your_treatment');
+                     $approved_noti['for_month'] = $follow_up_data['follow_up_no']+1;
+                     $approved_noti_data = Notifications::create($approved_noti);
 
                     //end of code for md_has_approved_your_treatment
 
                     //pickup_medication_notification
-                   $noti_input_data = array();
-                   $noti_input_data['user_id'] = $user_id;
-                   $noti_input_data['case_id'] = $system_case_id;
-                   $noti_input_data['md_case_id'] = $case_id;
+                     $noti_input_data = array();
+                     $noti_input_data['user_id'] = $user_id;
+                     $noti_input_data['case_id'] = $system_case_id;
+                     $noti_input_data['md_case_id'] = $case_id;
 
-                   $noti_input_data['noti_message'] = getNotificationMessageFromKey('pickup_medication_notification_for_male');
-                   $noti_input_data['for_month'] = $follow_up_data['follow_up_no']+1;
+                     $noti_input_data['noti_message'] = getNotificationMessageFromKey('pickup_medication_notification_for_male');
+                     $noti_input_data['for_month'] = $follow_up_data['follow_up_no']+1;
 
-                   $trigger_input = array();
-                   $trigger_input['user_id'] = $user_id;
-                   $trigger_input['case_id'] = $system_case_id;
-                   $trigger_input['md_case_id'] = $case_id;
-                   $trigger_input['name'] = "pickup_medication_notification";
-                   $trigger_input['month'] = $follow_up_data['follow_up_no']+1;
+                     $trigger_input = array();
+                     $trigger_input['user_id'] = $user_id;
+                     $trigger_input['case_id'] = $system_case_id;
+                     $trigger_input['md_case_id'] = $case_id;
+                     $trigger_input['name'] = "pickup_medication_notification";
+                     $trigger_input['month'] = $follow_up_data['follow_up_no']+1;
 
 
-                   $noti_data = Notifications::create($noti_input_data);
+                     $noti_data = Notifications::create($noti_input_data);
 
-                   $trigger_data = Triggers::create($trigger_input);
+                     $trigger_data = Triggers::create($trigger_input);
 
                     //end of pickup_medication_notification
 
 
 
-                   $response = $this->getPrescription($case_id);
-                   if(!empty($response)){
+                     $response = $this->getPrescription($case_id);
+                     if(!empty($response)){
                       $this->save_prescription_response($response,$user_id,$case_id,$system_case_id);
-                     $prescription_data = json_decode($response);
+                      $prescription_data = json_decode($response);
 
-                    
 
-                     if($preferred_pharmacy_id =='13012' ){
+
+                      if($preferred_pharmacy_id =='13012' ){
                       //curexa create order api   
 
                        $curexa_para = array();
@@ -834,77 +750,16 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                   }/*end of getPrescription response*/
                 }/*end of status is completed*/
 
-                //bloodwork notification
+              }/*end of $gender == "male" && $product_type == 'Accutane'*/
+              else{
 
-                    $bloodwork_email_data = array();
+                echo "<pre>in else topical =>md_case_status => ";
+                print_r($md_case_status);
+                echo "<pre>";
 
-                    $bloodwork_email_data['email'] = $user_email;
-                    $bloodwork_email_data['title'] = 'helloclearhealth.com';
-                    $bloodwork_email_data['body'] = "Please complete your blood work ";
-                    $bloodwork_email_data['template'] = 'emails.mySendMail';
-
-                    $bloodworksmsdata = array();
-
-                    //$user = array($user_phone);
-                    $user = array('+917874257069');
-                    $bloodworksmsdata['users'] = $user;
-                    $bloodworksmsdata['body'] = "Please complete your blood work";
-
-                if($preferred_pharmacy_id =='13012' && $curexadata['order_status'] == "out_for_delivery" && $difference == 50 ){
-                   
-                   //send welcome email 
-                    $email_sent = sendEmail($bloodwork_email_data); 
-
-                  //welcome sms
-                    $sms_sent = sendsms($bloodworksmsdata);
-                    
-                }
-
-              if($preferred_pharmacy_id !='13012' && $pickup_medication_difference == 60){
-                //send welcome email 
-                    $email_sent = sendEmail($bloodwork_email_data); 
-
-                  //welcome sms
-                    $sms_sent = sendsms($bloodworksmsdata);
-              }
-
-                //end of bloodwork notification
-
-              //notification download_the_bloodwork_form
-
-              $prescription_sent_triggers = Triggers::where([['user_id', $user_id],['case_id', $system_case_id],['md_case_id', $case_id],['name','prescription_sent_notification'],['month',1]])->first();
-
-              $prescription_sent_notification_date = new Carbon($prescription_sent_triggers['updated_at']);
-              $today_date = Carbon::now();
-              $prescription_difference = $prescription_sent_notification_date->diffInDays($today_date);
-
-              if($prescription_difference == 60){
-                $noti_download_the_bloodwork_form = array();
-                $noti_download_the_bloodwork_form['user_id'] = $user_id;
-                $noti_download_the_bloodwork_form['case_id'] = $case_id;
-                $noti_download_the_bloodwork_form['md_case_id'] = $md_case_id;
-
-
-                $noti_download_the_bloodwork_form['noti_message'] = getNotificationMessageFromKey('download_the_bloodwork_form');
-                $noti_download_the_bloodwork_form['for_month'] = $follow_up;
-
-                $noti_download_the_bloodwork_data = Notifications::create($noti_download_the_bloodwork_form);
-              }
-
-              //end of notification download_the_bloodwork_form
-
-          }/*end of $gender == "male" && $product_type == 'Accutane'*/
-          else{
-
-            echo "<pre>in else topical =>md_case_status => ";
-            print_r($md_case_status);
-            echo "<pre>";
-
-            echo "<pre>system_status: ";
-            print_r($system_status);
-            echo "<pre>";
-            
-         
+                echo "<pre>system_status: ";
+                print_r($system_status);
+                echo "<pre>";
                 /*
                 Topical Male & Female:
 
@@ -915,41 +770,36 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                 //if($md_case_status == 'dosespot confirmed' && $case_type = 'new'){
                 if($md_case_status == 'completed'){
 
-               /*   echo "<pre>inn";
-                  print_r($md_case_status);
-                  echo "<pre>";
-                  exit();*/
-
                   $system_status = 'Prescription Approved';
 
                   //send notification for topical
 
                   //if($product_type != 'Accutane'){
-                    $noti_input_data = array();
-                    $noti_input_data['user_id'] = $user_id;
-                    $noti_input_data['case_id'] = $system_case_id;
-                    $noti_input_data['md_case_id'] = $case_id;
+                  $noti_input_data = array();
+                  $noti_input_data['user_id'] = $user_id;
+                  $noti_input_data['case_id'] = $system_case_id;
+                  $noti_input_data['md_case_id'] = $case_id;
 
-                    $noti_input_data['noti_message'] = getNotificationMessageFromKey('topical_case_completed');
-                    $noti_input_data['for_month'] = $follow_up_data['follow_up_no']+1;
+                  $noti_input_data['noti_message'] = getNotificationMessageFromKey('topical_case_completed');
+                  $noti_input_data['for_month'] = $follow_up_data['follow_up_no']+1;
 
-                    $trigger_done = findNotificationtriggered($user_id,$case_id,'topical_case_completed',$follow_up_data['follow_up_no']+1);
+                  $trigger_done = findNotificationtriggered($user_id,$case_id,'topical_case_completed',$follow_up_data['follow_up_no']+1);
 
-                    if(empty($trigger_done)){
+                  if(empty($trigger_done)){
 
-                      $topical_case_completed_input = array();
-                      $topical_case_completed_input['user_id'] = $user_id;
-                      $topical_case_completed_input['case_id'] = $system_case_id;
-                      $topical_case_completed_input['md_case_id'] = $case_id;
-                      $topical_case_completed_input['name'] = "topical_case_completed";
-                      $topical_case_completed_input['month'] = $follow_up_data['follow_up_no']+1;
+                    $topical_case_completed_input = array();
+                    $topical_case_completed_input['user_id'] = $user_id;
+                    $topical_case_completed_input['case_id'] = $system_case_id;
+                    $topical_case_completed_input['md_case_id'] = $case_id;
+                    $topical_case_completed_input['name'] = "topical_case_completed";
+                    $topical_case_completed_input['month'] = $follow_up_data['follow_up_no']+1;
 
-                      $topical_case_completed_input = Triggers::create($topical_case_completed_input);
+                    $topical_case_completed_input = Triggers::create($topical_case_completed_input);
 
-                       $noti_data = Notifications::create($noti_input_data);
-                    }
+                    $noti_data = Notifications::create($noti_input_data);
+                  }
 
-                   
+
                   //}
 
                   //end of code to send notification for topical
@@ -960,36 +810,31 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                   echo "<pre>retertet";
                   print_r($response);
                   echo "<pre>";
-                
+
 
                   if(!empty($response)){
                     $this->save_prescription_response($response,$user_id,$case_id,$system_case_id);
 
-                   $prescription_data = json_decode($response);
+                    $prescription_data = json_decode($response);
 
                     if($preferred_pharmacy_id =='13012' ){
 
                   //curexa create order api
 
-                   $curexa_para = array();
-                   $curexa_para['user_id'] = $user_id;
-                   $curexa_para['case_id'] = $case_id;
-                   $curexa_para['system_case_id'] = $system_case_id;
-                   foreach($prescription_data as $key=>$prescription){
+                     $curexa_para = array();
+                     $curexa_para['user_id'] = $user_id;
+                     $curexa_para['case_id'] = $case_id;
+                     $curexa_para['system_case_id'] = $system_case_id;
+                     foreach($prescription_data as $key=>$prescription){
                       $curexa_para['rx_id'] =  $prescription->dosespot_prescription_id;
                       $curexa_para['quantity_dispensed'] = $prescription->quantity;
                       $curexa_para['days_supply'] = $prescription->days_supply;
                       $curexa_para['medication_sig'] = $prescription->directions;
-
-                      echo "<pre>";
-                      print_r('call curexa order api');
-                      echo "<pre>";
                       
-
                       $curexa_create_order_data = $this->curexa_create_order($curexa_para);
 
                       if(!empty($curexa_create_order_data)){
-                          $this->store_curexa_order_data($curexa_create_order_data,$user_id,$case_id,$system_case_id );
+                        $this->store_curexa_order_data($curexa_create_order_data,$user_id,$case_id,$system_case_id );
                       }
                       
                     }
@@ -1001,195 +846,334 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                   //Prescription Sent Email
 
-                    $prescriptionemail_data = array();
+                $prescriptionemail_data = array();
 
-                    $prescriptionemail_data['email'] = $user_email;
-                    $prescriptionemail_data['title'] = 'helloclearhealth.com';
-                    $prescriptionemail_data['body'] = "prescription sent";
-                    $prescriptionemail_data['template'] = 'emails.mySendMail';
+                $prescriptionemail_data['email'] = $user_email;
+                $prescriptionemail_data['title'] = 'helloclearhealth.com';
+                $prescriptionemail_data['body'] = "prescription sent";
+                $prescriptionemail_data['template'] = 'emails.mySendMail';
 
-                    $email_sent = sendEmail($prescriptionemail_data);
- 
+                $email_sent = sendEmail($prescriptionemail_data);
 
 
-                     $prescriptionsmsdata = array();
+
+                $prescriptionsmsdata = array();
                     //$user = array($user_phone);
-                    $user = array('+917874257069');
-                    $prescriptionsmsdata['users'] = $user;
-                    $prescriptionsmsdata['body'] = "prescription sent";
-                    
-                    $sms_sent = sendsms($prescriptionsmsdata);
-                  
-                }
-              }/*end of else (topiclas)*/
+                $user = array('+917874257069');
+                $prescriptionsmsdata['users'] = $user;
+                $prescriptionsmsdata['body'] = "prescription sent";
 
-
-          /*code to update data in tables */
-
-      /*    echo "<pre>system_case_id ";
-          print_r($system_case_id);
-          echo "<pre>";
-        
-
-          echo "<pre>case_id ";
-          print_r($case_id);
-          echo "<pre>";
-     
-
-          echo "<pre>user_id ";
-          print_r($user_id);
-          echo "<pre>";
-      
-
-
-          echo "<pre>md_case_status ";
-          print_r($MdCaseStatus->case_status->name);
-          echo "<pre>";
-
-           echo "<pre>md_status ";
-          print_r($md_status);
-          echo "<pre>";
-
-          echo "<pre>system_status ";
-          print_r($system_status);
-          echo "<pre>";
-
-          echo "<pre>case_status_reason ";
-
- 
-          print_r($MdCaseStatus);
-         
-          print_r($MdCaseStatus->case_status->reason);
-          echo "<pre>";
-
-
-          echo "</br>";
-          echo "</br>";
-          echo "</br>";*/
-     
-          $case_management  =  CaseManagement::where('id',$system_case_id)->where('md_case_id', $case_id)->where('user_id',$user_id)->update(['md_case_status' => $MdCaseStatus->case_status->name,'md_status' => $md_status,'system_status'=> $system_status ]);
-
-
-          $md_cases  =  Mdcases::where('case_id',$case_id)->update(['status' =>$MdCaseStatus->case_status->name,'system_status'=> $system_status,'case_status_reason' =>$MdCaseStatus->case_status->reason,'case_status_updated_at' =>$MdCaseStatus->case_status->updated_at]);
-
-              //if($follow_up_data['follow_up_no'] == 0 && $MdCaseStatus->case_status->reason != null){
-              if(empty($follow_up_data) && $MdCaseStatus->case_status->reason != null){
-                
-                $trigger_done = findNotificationtriggered($user_id,$case_id,'had_call_with_md_notification',$follow_up_data['follow_up_no']+1);
-
-                if(empty($trigger_done)){
-
-                  $case_status_reason_input = array();
-                 $case_status_reason_input['user_id'] = $user_id;
-                 $case_status_reason_input['case_id'] = $system_case_id;
-                 $case_status_reason_input['md_case_id'] = $case_id;
-                 $case_status_reason_input['name'] = "had_call_with_md_notification";
-                 $case_status_reason_input['month'] = $follow_up_data['follow_up_no']+1;
-
-                 $case_status_reason_input_data = Triggers::create($case_status_reason_input);
-
-                }
+                $sms_sent = sendsms($prescriptionsmsdata);
 
               }
+            }/*end of else (topiclas)*/
+
+            /*code to update data in tables */
+
+            $case_management  =  CaseManagement::where('id',$system_case_id)->where('md_case_id', $case_id)->where('user_id',$user_id)->update(['md_case_status' => $MdCaseStatus->case_status->name,'md_status' => $md_status,'system_status'=> $system_status ]);
+
+
+            $md_cases  =  Mdcases::where('case_id',$case_id)->update(['status' =>$MdCaseStatus->case_status->name,'system_status'=> $system_status,'case_status_reason' =>$MdCaseStatus->case_status->reason,'case_status_updated_at' =>$MdCaseStatus->case_status->updated_at]);
+
+              //if($follow_up_data['follow_up_no'] == 0 && $MdCaseStatus->case_status->reason != null){
+            if(empty($follow_up_data) && $MdCaseStatus->case_status->reason != null){
+
+              $trigger_done = findNotificationtriggered($user_id,$case_id,'had_call_with_md_notification',$follow_up_data['follow_up_no']+1);
+
+              if(empty($trigger_done)){
+
+                $case_status_reason_input = array();
+                $case_status_reason_input['user_id'] = $user_id;
+                $case_status_reason_input['case_id'] = $system_case_id;
+                $case_status_reason_input['md_case_id'] = $case_id;
+                $case_status_reason_input['name'] = "had_call_with_md_notification";
+                $case_status_reason_input['month'] = $follow_up_data['follow_up_no']+1;
+
+                $case_status_reason_input_data = Triggers::create($case_status_reason_input);
+
+              }
+
+            }
 
                //code for update md details
 
-              if($MdCaseStatus->case_assignment != null){
-               $inputmd_data['status'] = 1;
-               $inputmd_data['image'] = "";
-               $inputmd_data['language_id'] = "";
-               $inputmd_data['expertise'] = $MdCaseStatus->case_assignment->clinician->specialty;;
-               $inputmd_data['case_id'] = $case_id;
-               $inputmd_data['md_id'] = $MdCaseStatus->case_assignment->clinician->clinician_id;
-               $inputmd_data['name'] = $MdCaseStatus->case_assignment->clinician->full_name;
-               $inputmd_data['reason'] = $MdCaseStatus->case_assignment->reason;;
-               $inputmd_data['case_assignment_id'] = $MdCaseStatus->case_assignment->case_assignment_id;
+            if($MdCaseStatus->case_assignment != null){
+             $inputmd_data['status'] = 1;
+             $inputmd_data['image'] = "";
+             $inputmd_data['language_id'] = "";
+             $inputmd_data['expertise'] = $MdCaseStatus->case_assignment->clinician->specialty;;
+             $inputmd_data['case_id'] = $case_id;
+             $inputmd_data['md_id'] = $MdCaseStatus->case_assignment->clinician->clinician_id;
+             $inputmd_data['name'] = $MdCaseStatus->case_assignment->clinician->full_name;
+             $inputmd_data['reason'] = $MdCaseStatus->case_assignment->reason;;
+             $inputmd_data['case_assignment_id'] = $MdCaseStatus->case_assignment->case_assignment_id;
 
-               
 
-               $mdmanagement_data = Mdmanagement::where('case_id', $case_id)->first();
 
-               if(!empty($mdmanagement_data)){
+             $mdmanagement_data = Mdmanagement::where('case_id', $case_id)->first();
 
-                $mdmanagement_data->update($inputmd_data);
+             if(!empty($mdmanagement_data)){
 
-              }else{
+              $mdmanagement_data->update($inputmd_data);
 
-                $md_case_data = Mdmanagement::create($inputmd_data);
-              }
+            }else{
 
-            }
-            /*end of code to store data in db*/
-
-            /*curexa get order status*/
-             if($value['curexa_order_id']!= '' || $value['curexa_order_id']!= NULL){
-
-              $curexa_order_status = $this->curexa_order_status($value['curexa_order_id']);
-
-              $curexa_ord_status = json_decode($curexa_order_status);
-
-              $CurexaOrderStatus  =  CurexaOrder::where('order_id',$value['curexa_order_id'])->update(['order_status' => $curexa_ord_status->status,'status_details' => $curexa_ord_status->status_details,'tracking_number'=> $curexa_ord_status->tracking_number]);
-
-              if($curexa_ord_status->status == 'out_for_delivery' && $product_type != 'Accutane'){
-
-                 $noti_input_data = array();
-                 $noti_input_data['user_id'] = $user_id;
-                 $noti_input_data['case_id'] = $case_id;
-                 $noti_input_data['md_case_id'] = $md_case_id;
-
-                 $noti_msg = getNotificationMessageFromKey('order_shipped');
-
-                 $noti_message = str_replace("[order_id]",$value['curexa_order_id'], $noti_msg);
-
-                 $noti_input_data['noti_message'] =  $noti_message;
-                 $noti_input_data['for_month'] = $follow_up;
-
-                  $noti_data = Notifications::create($noti_input_data);
-              }
+              $md_case_data = Mdmanagement::create($inputmd_data);
             }
 
-            /*end of curexa order status*/
+          }
+          /*end of code to store data in db*/
+
+          /*curexa get order status*/
+          if($value['curexa_order_id']!= '' || $value['curexa_order_id']!= NULL){
+
+            $curexa_order_status = $this->curexa_order_status($value['curexa_order_id']);
+
+            $curexa_ord_status = json_decode($curexa_order_status);
+
+            $CurexaOrderStatus  =  CurexaOrder::where('order_id',$value['curexa_order_id'])->update(['order_status' => $curexa_ord_status->status,'status_details' => $curexa_ord_status->status_details,'tracking_number'=> $curexa_ord_status->tracking_number]);
+
+            if($curexa_ord_status->status == 'out_for_delivery' && $product_type != 'Accutane'){
+
+             $noti_input_data = array();
+             $noti_input_data['user_id'] = $user_id;
+             $noti_input_data['case_id'] = $case_id;
+             $noti_input_data['md_case_id'] = $md_case_id;
+
+             $noti_msg = getNotificationMessageFromKey('order_shipped');
+
+             $noti_message = str_replace("[order_id]",$value['curexa_order_id'], $noti_msg);
+
+             $noti_input_data['noti_message'] =  $noti_message;
+             $noti_input_data['for_month'] = $follow_up;
+
+             $noti_data = Notifications::create($noti_input_data);
+           }
+         }
+
+         /*end of curexa order status*/
 
 
-      }/*end of !empty($MdCaseStatus) get case api response is not null*/
+       }/*end of !empty($MdCaseStatus) get case api response is not null*/
 
-    } /* end of $case_id != ''*/
+     } /* end of $case_id != ''*/
+
+     /*based on days differance notification*/
+
+     /*Female accutane day wise notification*/
+
+
+     /*SMS Check-ins */   
+
+    /* echo "<pre>user_id ";
+     print_r($user_id);
+     echo "<pre>";*/
+
+   /*  echo "<pre>case_id ";
+     print_r($case_id);
+     echo "<pre>";
+
+     echo "<pre>system_case_id ";
+     print_r($system_case_id);
+     echo "<pre>";
+
+     echo "<pre>today_date ";
+     print_r($today_date);
+     echo "<pre>";
+
+     echo "<pre>sent_notification_date ";
+     print_r($sent_notification_date);
+     echo "<pre>";*/
+
+     $f = $today_date->eq($sent_notification_date);
+
+     if($today_date->eq($sent_notification_date) && $product_type == 'Accutane' && ($gender == "female"||$gender == "male")){
+
+      $medicin_pickup_notification = array();
+
+
+    
+      //$user = array($user_phone);
+      $user = array('+917874257069');
+      $medicin_pickup_notification['users'] = $user;
+      $medicin_pickup_notification['body'] = "prescription sent";
+      $medicin_pickup_notification_sent = sendsms($medicin_pickup_notification); 
+    } 
+    /*end of SMS Check-ins   */
+
+
+
+     //bloodwork notification
+    $bloodwork_email_data = array();
+
+    $bloodwork_email_data['email'] = "itqatester12@gmail.com";//$user_email;
+    $bloodwork_email_data['title'] = 'helloclearhealth.com';
+    $bloodwork_email_data['body'] = "Please complete your blood work ";
+    $bloodwork_email_data['template'] = 'emails.mySendMail';
+
+    $bloodworksmsdata = array();
+
+    //$user = array($user_phone);
+    $user = array('+917874257069');
+    $bloodworksmsdata['users'] = $user;
+    $bloodworksmsdata['body'] = "Please complete your blood work";
+
+    if($gender == "female" && $product_type == 'Accutane'){
+
+          //bloodwork notification
+
+      if($preferred_pharmacy_id =='13012' && $curexadata['order_status'] == "out_for_delivery" && $difference == 80 ){
+
+        //send bloodwork email 
+        $email_sent = sendEmail($bloodwork_email_data); 
+
+        //bloodwork sms
+        $sms_sent = sendsms($bloodworksmsdata);
+
+      }
+
+      if($preferred_pharmacy_id !='13012' && $pickup_medication_difference == 60){
+        //send welcome email 
+        $email_sent = sendEmail($bloodwork_email_data); 
+
+        //welcome sms
+        $sms_sent = sendsms($bloodworksmsdata);
+      }
+
+      //end of bloodwork notification
+
+      //notification download_the_bloodwork_form
+
+      $had_call_triggers = Triggers::where([['user_id', $user_id],['case_id', $system_case_id],['md_case_id', $case_id],['name','had_call_with_md_notification'],['month',1]])->first();
+
+      $had_call_notification_date = new Carbon($had_call_triggers['updated_at']);
+      $current_date = Carbon::now();
+      $had_call_difference = $had_call_notification_date->diffInDays($current_date);
+
+      if($had_call_difference == 60){
+        $noti_download_the_bloodwork_form = array();
+        $noti_download_the_bloodwork_form['user_id'] = $user_id;
+        $noti_download_the_bloodwork_form['case_id'] = $case_id;
+        $noti_download_the_bloodwork_form['md_case_id'] = $md_case_id;
+
+
+        $noti_download_the_bloodwork_form['noti_message'] = getNotificationMessageFromKey('download_the_bloodwork_form');
+        $noti_download_the_bloodwork_form['for_month'] = $follow_up;
+
+        $noti_download_the_bloodwork_data = Notifications::create($noti_download_the_bloodwork_form);
+      }
+
+      //end of notification download_the_bloodwork_form
+
+      //notification upload_your_pregnancy_test
+
+      $ipledge_credentials_triggers = Triggers::where([['user_id', $user_id],['case_id', $system_case_id],['md_case_id', $case_id],['name','ipledge_credentials_sent_notification'],['month',1]])->first();
+
+      $ipledge_credentials_triggers_notification_date = new Carbon($ipledge_credentials_triggers['updated_at']);
+      $currentdate = Carbon::now();
+      $ipledge_credentials_difference = $ipledge_credentials_triggers_notification_date->diffInDays($currentdate);
+
+      if($ipledge_credentials_difference == 31){
+        $noti_download_the_bloodwork_form = array();
+        $noti_download_the_bloodwork_form['user_id'] = $user_id;
+        $noti_download_the_bloodwork_form['case_id'] = $case_id;
+        $noti_download_the_bloodwork_form['md_case_id'] = $md_case_id;
+
+
+        $noti_download_the_bloodwork_form['noti_message'] = getNotificationMessageFromKey('download_the_bloodwork_form');
+        $noti_download_the_bloodwork_form['for_month'] = $follow_up;
+
+        $noti_download_the_bloodwork_data = Notifications::create($noti_download_the_bloodwork_form);
+      }
+
+      //end of upload_your_pregnancy_test
+
+    }/*end of Female day wise accutane notification*/
+    /*Male accutane day wise notification*/
+    else if($gender == "male" && $product_type == 'Accutane'){
+        //bloodwork notification
+
+      if($preferred_pharmacy_id =='13012' && $curexadata['order_status'] == "out_for_delivery" && $difference == 50 ){
+
+                   //send welcome email 
+        $email_sent = sendEmail($bloodwork_email_data); 
+
+                  //welcome sms
+        $sms_sent = sendsms($bloodworksmsdata);
+
+      }
+
+      if($preferred_pharmacy_id !='13012' && $pickup_medication_difference == 60){
+                //send welcome email 
+        $email_sent = sendEmail($bloodwork_email_data); 
+
+                  //welcome sms
+        $sms_sent = sendsms($bloodworksmsdata);
+      }
+
+                //end of bloodwork notification
+
+              //notification download_the_bloodwork_form
+
+      $prescription_sent_triggers = Triggers::where([['user_id', $user_id],['case_id', $system_case_id],['md_case_id', $case_id],['name','prescription_sent_notification'],['month',1]])->first();
+
+      $prescription_sent_notification_date = new Carbon($prescription_sent_triggers['updated_at']);
+      $today_date = Carbon::now();
+      $prescription_difference = $prescription_sent_notification_date->diffInDays($today_date);
+
+      if($prescription_difference == 60){
+        $noti_download_the_bloodwork_form = array();
+        $noti_download_the_bloodwork_form['user_id'] = $user_id;
+        $noti_download_the_bloodwork_form['case_id'] = $case_id;
+        $noti_download_the_bloodwork_form['md_case_id'] = $md_case_id;
+
+
+        $noti_download_the_bloodwork_form['noti_message'] = getNotificationMessageFromKey('download_the_bloodwork_form');
+        $noti_download_the_bloodwork_form['for_month'] = $follow_up;
+
+        $noti_download_the_bloodwork_data = Notifications::create($noti_download_the_bloodwork_form);
+      }
+
+              //end of notification download_the_bloodwork_form
+    }
+
+    /*end of  days differance notification */
 
   }/*end of $value['md_case_status']!= 'completed'*/
 
- } /*end of foreach*/
+} /*end of foreach*/
 
 }/*end of index function*/
 
-  
+
 
 
 public function getShipStationOrderStatus(Request $request){
   $checkout_order = Checkout::select('id','order_id','user_id','cart_id','case_id','md_case_id','medication_type','shipstation_order_id','shipstation_order_status')
-              ->whereNotNull('shipstation_order_id')
-              ->whereNotNull('shipstation_order_status')
-              ->orderBy('id','desc')
-              ->get();
+  ->whereNotNull('shipstation_order_id')
+  ->whereNotNull('shipstation_order_status')
+  ->orderBy('id','desc')
+  ->get();
 
-      if(count($checkout_order)>0){
-        foreach($checkout_order as $chkey => $chval){
-          
-            
-            $shipord = shipStationHelper::getOrderData($chval['shipstation_order_id']);
-            if(!empty($shipord)){
-              $status = json_decode(json_encode($shipord), true);
-              if($status['orderStatus'] == 'shipped'){
-                $addNot = new Notifications();
-                $addNot->user_id = $chval['user_id'];
-                $addNot->case_id = $chval['case_id'];
+  if(count($checkout_order)>0){
+    foreach($checkout_order as $chkey => $chval){
+
+
+      $shipord = shipStationHelper::getOrderData($chval['shipstation_order_id']);
+      if(!empty($shipord)){
+        $status = json_decode(json_encode($shipord), true);
+        if($status['orderStatus'] == 'shipped'){
+          $addNot = new Notifications();
+          $addNot->user_id = $chval['user_id'];
+          $addNot->case_id = $chval['case_id'];
                 // $addNot->md_case_id = $orderData['md_case_id'];
-                $addNot->order_id = $chval['id'];
-                $addNot->noti_message = "Your order #".$chval['order_id']." has been shipped!";
-                $addNot->save(); 
-              }
-              sleep(1);
-            } 
+          $addNot->order_id = $chval['id'];
+          $addNot->noti_message = "Your order #".$chval['order_id']." has been shipped!";
+          $addNot->save(); 
         }
+        sleep(1);
+      } 
+    }
   }     
 }
 
@@ -1338,11 +1322,11 @@ public function getShipStationOrderStatus(Request $request){
             $CasePrescription_data = CasePrescriptions::where([['user_id',$user_id],['system_case_id',$system_case_id],['case_id',$case_id]])->first();
 
             if(!empty($casePrescriptions_data)){
-               $CasePrescription_update = CasePrescriptions::where([['user_id',$user_id],['system_case_id',$system_case_id],['case_id',$case_id]])->update($input_prescription);
-            }else{
-                $CasePrescription_data = CasePrescriptions::create($input_prescription);
-            }
-            
+             $CasePrescription_update = CasePrescriptions::where([['user_id',$user_id],['system_case_id',$system_case_id],['case_id',$case_id]])->update($input_prescription);
+           }else{
+            $CasePrescription_data = CasePrescriptions::create($input_prescription);
+          }
+
             /*echo "<pre>";
             print_r($user_id);
             echo "<pre>";
@@ -1363,63 +1347,63 @@ public function getShipStationOrderStatus(Request $request){
               echo "<pre>";
               exit();
 */
-          
-            
-            if(isset($prescription->medication) && !empty($prescription->medication)){
-              $input_medication['case_prescription_id'] = $CasePrescription_data->id;
-              $input_medication['dosespot_medication_id'] = $prescription->medication->dosespot_medication_id;
-              $input_medication['dispense_unit_id'] = $prescription->medication->dispense_unit_id;
-              $input_medication['dose_form'] = $prescription->medication->dose_form;
-              $input_medication['route'] = $prescription->medication->route;
-              $input_medication['strength'] = $prescription->medication->strength;
-              $input_medication['generic_product_name'] = $prescription->medication->generic_product_name;
-              $input_medication['lexi_gen_product_id'] = $prescription->medication->lexi_gen_product_id;
-              $input_medication['lexi_drug_syn_id'] = $prescription->medication->lexi_drug_syn_id;
-              $input_medication['lexi_synonym_type_id'] = $prescription->medication->lexi_synonym_type_id;
-              $input_medication['lexi_gen_drug_id'] = $prescription->medication->lexi_gen_drug_id;
-              $input_medication['rx_cui'] = $prescription->medication->rx_cui;
-              $input_medication['otc'] = $prescription->medication->otc;
-              $input_medication['ndc'] = $prescription->medication->ndc;
-              $input_medication['schedule'] = $prescription->medication->schedule;
-              $input_medication['display_name'] = $prescription->medication->display_name;
-              $input_medication['monograph_path'] = $prescription->medication->monograph_path;
-              $input_medication['drug_classification'] = $prescription->medication->drug_classification;
-              $input_medication['state_schedules'] = json_encode($prescription->medication->state_schedules);
 
-              $prescription_medication_data = PrescriptionMedication::where('case_prescription_id',$CasePrescription_data->id)->first();
 
-              if(!empty($prescription_medication_data)){
+              if(isset($prescription->medication) && !empty($prescription->medication)){
+                $input_medication['case_prescription_id'] = $CasePrescription_data->id;
+                $input_medication['dosespot_medication_id'] = $prescription->medication->dosespot_medication_id;
+                $input_medication['dispense_unit_id'] = $prescription->medication->dispense_unit_id;
+                $input_medication['dose_form'] = $prescription->medication->dose_form;
+                $input_medication['route'] = $prescription->medication->route;
+                $input_medication['strength'] = $prescription->medication->strength;
+                $input_medication['generic_product_name'] = $prescription->medication->generic_product_name;
+                $input_medication['lexi_gen_product_id'] = $prescription->medication->lexi_gen_product_id;
+                $input_medication['lexi_drug_syn_id'] = $prescription->medication->lexi_drug_syn_id;
+                $input_medication['lexi_synonym_type_id'] = $prescription->medication->lexi_synonym_type_id;
+                $input_medication['lexi_gen_drug_id'] = $prescription->medication->lexi_gen_drug_id;
+                $input_medication['rx_cui'] = $prescription->medication->rx_cui;
+                $input_medication['otc'] = $prescription->medication->otc;
+                $input_medication['ndc'] = $prescription->medication->ndc;
+                $input_medication['schedule'] = $prescription->medication->schedule;
+                $input_medication['display_name'] = $prescription->medication->display_name;
+                $input_medication['monograph_path'] = $prescription->medication->monograph_path;
+                $input_medication['drug_classification'] = $prescription->medication->drug_classification;
+                $input_medication['state_schedules'] = json_encode($prescription->medication->state_schedules);
+
+                $prescription_medication_data = PrescriptionMedication::where('case_prescription_id',$CasePrescription_data->id)->first();
+
+                if(!empty($prescription_medication_data)){
                   PrescriptionMedication::where('case_prescription_id',$CasePrescription_data->id)->update($input_medication);
-              }else{
-                $prescription_medication_data = PrescriptionMedication::create($input_medication);
+                }else{
+                  $prescription_medication_data = PrescriptionMedication::create($input_medication);
+                }
+
+
+
               }
 
-              
+              if(!empty($prescription->partner_compound)){
+               $input_compound['case_prescription_id'] = $CasePrescription_data->id;
+               $input_compound['partner_compound_id'] = $prescription->partner_compound->partner_compound_id;
+               $input_compound['title'] = $prescription->partner_compound->title;
 
-            }
+               $prescription_compound = PrescriptionCompound::where('case_prescription_id',$CasePrescription_data->id)->first();
 
-            if(!empty($prescription->partner_compound)){
-             $input_compound['case_prescription_id'] = $CasePrescription_data->id;
-             $input_compound['partner_compound_id'] = $prescription->partner_compound->partner_compound_id;
-             $input_compound['title'] = $prescription->partner_compound->title;
-
-             $prescription_compound = PrescriptionCompound::where('case_prescription_id',$CasePrescription_data->id)->first();
-
-              if(!empty($prescription_compound)){
-                  PrescriptionCompound::where('case_prescription_id',$CasePrescription_data->id)->update($input_compound);
+               if(!empty($prescription_compound)){
+                PrescriptionCompound::where('case_prescription_id',$CasePrescription_data->id)->update($input_compound);
               }else{
                 $prescription_compound_data = PrescriptionCompound::create($input_compound);
               }
-           }
+            }
 
-         }
+          }
 
-       }
+        }
 
 
-       public function curexa_create_order($curexa_para){
+        public function curexa_create_order($curexa_para){
 
-       
+
 
          $user_id = $curexa_para['user_id'];
          $case_id = $curexa_para['case_id'];
@@ -1436,7 +1420,7 @@ public function getShipStationOrderStatus(Request $request){
 
          if(!empty($order_data)){
 
-      
+
 
           $order_id = $order_data['order_id'];
 
@@ -1525,140 +1509,140 @@ public function getShipStationOrderStatus(Request $request){
                 //end of code for medicin name
 
 
-                $rx_items= array();
+               $rx_items= array();
 
-                $rx_items['rx_id'] = $curexa_para['rx_id'];
-                $rx_items['medication_name'] = $product_name;
-                $rx_items['quantity_dispensed'] = $curexa_para['quantity_dispensed'];
-                $rx_items['days_supply'] = $curexa_para['days_supply'];
-                $rx_items['prescribing_doctor'] =  $md_deatail['name'];
-                $rx_items['medication_sig'] = $curexa_para['medication_sig'];
-                $rx_items['non_child_resistant_acknowledgment'] = false;
+               $rx_items['rx_id'] = $curexa_para['rx_id'];
+               $rx_items['medication_name'] = $product_name;
+               $rx_items['quantity_dispensed'] = $curexa_para['quantity_dispensed'];
+               $rx_items['days_supply'] = $curexa_para['days_supply'];
+               $rx_items['prescribing_doctor'] =  $md_deatail['name'];
+               $rx_items['medication_sig'] = $curexa_para['medication_sig'];
+               $rx_items['non_child_resistant_acknowledgment'] = false;
 
-                $curl = curl_init();
+               $curl = curl_init();
 
-                $curexa_api_para = array();
-                $curexa_api_para['order_id'] = $order_id;
-                $curexa_api_para['patient_id'] = $patient_id;
-                $curexa_api_para['patient_first_name'] = $user['first_name'];
-                $curexa_api_para['patient_last_name'] = $user['last_name'];
-                $curexa_api_para['patient_dob'] = $patient_dob;
-                $curexa_api_para['patient_gender'] = $patient_gender; 
-                $curexa_api_para['carrier'] = 'USPS';
-                $curexa_api_para['shipping_method'] = '';
-                $curexa_api_para['address_to_name'] = $shipping_address['patient_firstname'].' '.$shipping_address['patient_lastname'];
-                $curexa_api_para['address_to_street1'] = $shipping_address['addressline1'];
-                $curexa_api_para['address_to_street2'] = $shipping_address['addressline2'];
-                $curexa_api_para['address_to_city'] = $shipping_address['city'];
-                $curexa_api_para['address_to_state'] = $shipping_address['state'];
-                $curexa_api_para['address_to_zip'] = $shipping_address['zipcode'];
-                $curexa_api_para['address_to_country'] = 'US';
-                $curexa_api_para['address_to_phone'] = $shipping_address['phone'];
-                $curexa_api_para['notes'] = 'test';
-                $curexa_api_para['patient_known_allergies'] = $allergies;
-                $curexa_api_para['patient_other_medications'] = $current_medications;
-                $curexa_api_para['rx_items'] = $rx_items;
-
-
-                curl_setopt_array($curl, array(
-                  CURLOPT_URL => 'https://api.curexa.com/orders',
-                  CURLOPT_RETURNTRANSFER => true,
-                  CURLOPT_ENCODING => '',
-                  CURLOPT_MAXREDIRS => 10,
-                  CURLOPT_TIMEOUT => 0,
-                  CURLOPT_FOLLOWLOCATION => true,
-                  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                  CURLOPT_CUSTOMREQUEST => 'POST',
-                  CURLOPT_POSTFIELDS =>json_encode($curexa_api_para),
-                  CURLOPT_HTTPHEADER => array(
-                    'Authorization: Basic Y2xlYXJoZWFsdGhfdGVzdF9Ya1Fzdk1sbVFKbXRWSlBIbGJnWE9WSVd3UU5ETXQxNDpvRW5NZTJITnZndGQzaW9wNm96aWdTZHRmZUJkQUNCNw==',
-                    'Content-Type: application/json'
-                  ),
-                ));
-
-                $response = curl_exec($curl);
-                curl_close($curl);
-                return $response;
-
-              }
-
-            }
-
-          }
+               $curexa_api_para = array();
+               $curexa_api_para['order_id'] = $order_id;
+               $curexa_api_para['patient_id'] = $patient_id;
+               $curexa_api_para['patient_first_name'] = $user['first_name'];
+               $curexa_api_para['patient_last_name'] = $user['last_name'];
+               $curexa_api_para['patient_dob'] = $patient_dob;
+               $curexa_api_para['patient_gender'] = $patient_gender; 
+               $curexa_api_para['carrier'] = 'USPS';
+               $curexa_api_para['shipping_method'] = '';
+               $curexa_api_para['address_to_name'] = $shipping_address['patient_firstname'].' '.$shipping_address['patient_lastname'];
+               $curexa_api_para['address_to_street1'] = $shipping_address['addressline1'];
+               $curexa_api_para['address_to_street2'] = $shipping_address['addressline2'];
+               $curexa_api_para['address_to_city'] = $shipping_address['city'];
+               $curexa_api_para['address_to_state'] = $shipping_address['state'];
+               $curexa_api_para['address_to_zip'] = $shipping_address['zipcode'];
+               $curexa_api_para['address_to_country'] = 'US';
+               $curexa_api_para['address_to_phone'] = $shipping_address['phone'];
+               $curexa_api_para['notes'] = 'test';
+               $curexa_api_para['patient_known_allergies'] = $allergies;
+               $curexa_api_para['patient_other_medications'] = $current_medications;
+               $curexa_api_para['rx_items'] = $rx_items;
 
 
-          public function curexa_order_status($order_id){
-            $curl = curl_init();
+               curl_setopt_array($curl, array(
+                CURLOPT_URL => 'https://api.curexa.com/orders',
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'POST',
+                CURLOPT_POSTFIELDS =>json_encode($curexa_api_para),
+                CURLOPT_HTTPHEADER => array(
+                  'Authorization: Basic Y2xlYXJoZWFsdGhfdGVzdF9Ya1Fzdk1sbVFKbXRWSlBIbGJnWE9WSVd3UU5ETXQxNDpvRW5NZTJITnZndGQzaW9wNm96aWdTZHRmZUJkQUNCNw==',
+                  'Content-Type: application/json'
+                ),
+              ));
 
-            curl_setopt_array($curl, array(
-              CURLOPT_URL => 'https://api.curexa.com/order_status',
-              CURLOPT_RETURNTRANSFER => true,
-              CURLOPT_ENCODING => '',
-              CURLOPT_MAXREDIRS => 10,
-              CURLOPT_TIMEOUT => 0,
-              CURLOPT_FOLLOWLOCATION => true,
-              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-              CURLOPT_CUSTOMREQUEST => 'POST',
-              CURLOPT_POSTFIELDS =>'{
-                "order_id": '.$order_id.'
-              }',
-              CURLOPT_HTTPHEADER => array(
-                'Authorization: Basic Y2xlYXJoZWFsdGhfdGVzdF9Ya1Fzdk1sbVFKbXRWSlBIbGJnWE9WSVd3UU5ETXQxNDpvRW5NZTJITnZndGQzaW9wNm96aWdTZHRmZUJkQUNCNw==',
-                'Content-Type: application/json'
-              ),
-            ));
+               $response = curl_exec($curl);
+               curl_close($curl);
+               return $response;
 
-            $response = curl_exec($curl);
+             }
 
-            curl_close($curl);
-            return $response;
-          }
+           }
 
-          public function store_curexa_order_data($curexa_create_order_data,$user_id,$case_id,$system_case_id ){
-
-            $curexa_order_data = json_decode($curexa_create_order_data);
-
-            $order_data = array();
-            $order_data['order_id'] = $curexa_order_data->order_id;
-            $order_data['rx_item_count'] = $curexa_order_data->rx_item_count;
-            $order_data['otc_item_count'] = $curexa_order_data->otc_item_count;
-            $order_data['status'] = $curexa_order_data->status;
-            if($curexa_order_data->status == 'out_for_delivery'){
-              $order_data['dispached_date'] = Carbon::now();
-            }
-            $order_data['message'] = $curexa_order_data->message;
-
-            $curexa_order_exist = CurexaOrder::where('order_id',$curexa_order_data->order_id)->first();
-
-            if(!empty($curexa_order_exist)){
-              CurexaOrder::where('order_id',$curexa_order_data->order_id)->update($order_data);
-              $inserted_data = $curexa_order_exist;
-              $curexa_order_id = $inserted_data->id;
-            }else{
-              $inserted_data = CurexaOrder::create($order_data);
-              $curexa_order_id = $inserted_data->id;
-            }
-
-            $case_management  =  CaseManagement::where('id',$system_case_id)->where('md_case_id', $case_id)->where('user_id',$user_id)->update(['curexa_order_id' => $curexa_order_id]);
-          }
-
-          public function testemail(){
-           $user_email = sendEmail();
-
-           echo "<pre>";
-           print_r($user_email);
-           echo "<pre>";
-           exit();
          }
 
-         public function testsms(){
 
-          $data = array();
+         public function curexa_order_status($order_id){
+          $curl = curl_init();
 
-          $user = array("+917874257069");
-          $data['users'] = $user;
-          $data['body'] = "Hello clear health test sms";
-          sendsms($data);
+          curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.curexa.com/order_status',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS =>'{
+              "order_id": '.$order_id.'
+            }',
+            CURLOPT_HTTPHEADER => array(
+              'Authorization: Basic Y2xlYXJoZWFsdGhfdGVzdF9Ya1Fzdk1sbVFKbXRWSlBIbGJnWE9WSVd3UU5ETXQxNDpvRW5NZTJITnZndGQzaW9wNm96aWdTZHRmZUJkQUNCNw==',
+              'Content-Type: application/json'
+            ),
+          ));
+
+          $response = curl_exec($curl);
+
+          curl_close($curl);
+          return $response;
         }
 
+        public function store_curexa_order_data($curexa_create_order_data,$user_id,$case_id,$system_case_id ){
+
+          $curexa_order_data = json_decode($curexa_create_order_data);
+
+          $order_data = array();
+          $order_data['order_id'] = $curexa_order_data->order_id;
+          $order_data['rx_item_count'] = $curexa_order_data->rx_item_count;
+          $order_data['otc_item_count'] = $curexa_order_data->otc_item_count;
+          $order_data['status'] = $curexa_order_data->status;
+          if($curexa_order_data->status == 'out_for_delivery'){
+            $order_data['dispached_date'] = Carbon::now();
+          }
+          $order_data['message'] = $curexa_order_data->message;
+
+          $curexa_order_exist = CurexaOrder::where('order_id',$curexa_order_data->order_id)->first();
+
+          if(!empty($curexa_order_exist)){
+            CurexaOrder::where('order_id',$curexa_order_data->order_id)->update($order_data);
+            $inserted_data = $curexa_order_exist;
+            $curexa_order_id = $inserted_data->id;
+          }else{
+            $inserted_data = CurexaOrder::create($order_data);
+            $curexa_order_id = $inserted_data->id;
+          }
+
+          $case_management  =  CaseManagement::where('id',$system_case_id)->where('md_case_id', $case_id)->where('user_id',$user_id)->update(['curexa_order_id' => $curexa_order_id]);
+        }
+
+        public function testemail(){
+         $user_email = sendEmail();
+
+         echo "<pre>";
+         print_r($user_email);
+         echo "<pre>";
+         exit();
+       }
+
+       public function testsms(){
+
+        $data = array();
+
+        $user = array("+917874257069");
+        $data['users'] = $user;
+        $data['body'] = "Hello clear health test sms";
+        sendsms($data);
       }
+
+    }

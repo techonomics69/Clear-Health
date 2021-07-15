@@ -1615,5 +1615,9 @@ table.table thead th {
 }
 
 .product_detail .product_linedetail{
-     display: flex ;
+    display: flex;
+    text-align: right;
+    justify-content: space-between;
+    border: 1px solid green;
+    max-width: 199px;
   }

@@ -396,17 +396,15 @@
 		                                   <table class="table table-responsive-md table-striped table-bordered " style="width:100%" >
 			                                    <thead>
 			                                        <tr>
-			                                            <th width="60%">SR No</th>
-			                                            <th>Order Id</th>
-			                                            <th>Case Id</th>
-			                                            <th>Email</th>
-			                                            <th>Date</th>
+			                                            <th width="60%">Item</th>
+			                                            <th> Cost</th>
+			                                            <th>Qty</th>
+			                                            <th>Total</th>
 			                                        </tr>
 			                                    </thead>
 			                                    <tbody>
 			                                    	<tr>
 			                                    		<td>df</td>
-			                                    		<td>fd</td>
 			                                    		<td>fd</td>
 			                                    		<td>fd</td>
 			                                    		<td>fd</td>

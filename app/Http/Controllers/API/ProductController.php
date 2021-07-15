@@ -18,7 +18,9 @@ class ProductController extends BaseController
     public function index()
     {
         $today = date("Y-m-d");
-        $products = Product::where('product_active', '1')->where('available_date',$today)->get();
+        $products = Product::where('product_active', '1')
+                    // ->where('available_date',$today)
+                    ->get();
         $product = array();
         foreach ($products as $key => $value) {
             $availDate = date("Y-m-d",strtotime($value->available_date));

@@ -1,0 +1,1468 @@
+{
+	"info": {
+		"_postman_id": "21a6cd2c-e342-49a5-a86c-99f58756a769",
+		"name": "Ise_breaker copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "context-id",
+						"value": "{{context-id}}"
+					},
+					{
+						"key": "device-id",
+						"value": "{{device-id}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\":\"daxitpatel61@gmail.com\",\n\t\"hashedSecretPhrase\":\"daxit@123\",\n\t\"deviceOS\":\"jdhsjdhuyuyuy21212\",\n\t\"account_create_type\":\"app\"\n}"
+				},
+				"url": {
+					"raw": "{{apiurl}}register",
+					"host": [
+						"{{apiurl}}register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "context-id",
+						"value": "{{context-id}}"
+					},
+					{
+						"key": "device-id",
+						"value": "{{device-id}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"daxitpatel61@gmail.com\",\n\t\"hashedSecretPhrase\":\"123456\",\n\t\"login_with_social\":\"app\"\n}"
+				},
+				"url": {
+					"raw": "{{apiurl}}login",
+					"host": [
+						"{{apiurl}}login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit_profile",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "context-id",
+						"value": "{{context-id}}"
+					},
+					{
+						"key": "device-id",
+						"value": "{{device-id}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{bearertoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userId\":0,\n\t\"userName\":\"devid@123\",\n\t\"firstName\":\"devid\",\n\t\"lastName\":\"ziguras\",\n\t\"middleName\":\"A\",\n\t\"email\":\"dev.john13411111@gmail.com\",\n\t\"hashedSecretPhrase\":\"123456\",\n\t\"phone\":\"7405675141\",\n\t\"userStatus\":0,\n\t\"deviceID\":\"621af7df4745ae18\",\n\t\"deviceOS\":\"jdhsjdhuyuyuy21212\"\n}"
+				},
+				"url": {
+					"raw": "{{apiurl}}edit",
+					"host": [
+						"{{apiurl}}edit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "forgot_password",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "context-id",
+						"value": "1"
+					},
+					{
+						"key": "device-id",
+						"value": "621af7df4745ae18"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\":\"daxitpatel61@gmail.com\"\n}"
+				},
+				"url": {
+					"raw": "{{apiurl}}forgot_password",
+					"host": [
+						"{{apiurl}}forgot_password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_guest_token",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept-Charset",
+						"value": "UTF-8"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/JSON"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "No-Cache"
+					},
+					{
+						"key": "device-id",
+						"value": "{{device-id}}"
+					},
+					{
+						"key": "context-id",
+						"value": "{{context-id}}"
+					}
+				],
+				"url": {
+					"raw": "{{apiurl}}get_guest_token",
+					"host": [
+						"{{apiurl}}get_guest_token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "image_upload",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{bearertoken}}"
+					},
+					{
+						"key": "device-id",
+						"value": "{{device-id}}"
+					},
+					{
+						"key": "context-id",
+						"value": "{{context-id}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "multipart/form-data",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "photo",
+							"type": "file",
+							"src": "Tulips.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{apiurl}}64/image/upload",
+					"host": [
+						"{{apiurl}}64"
+					],
+					"path": [
+						"image",
+						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "context-id",
+						"value": "{{context-id}}"
+					},
+					{
+						"key": "device-id",
+						"value": "{{device-id}}"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{bearertoken}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{apiurl}}64/logout",
+					"host": [
+						"{{apiurl}}64"
+					],
+					"path": [
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "preference_list",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "context-id",
+						"value": "{{context-id}}"
+					},
+					{
+						"key": "device-id",
+						"value": "{{device-id}}"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{bearertoken}}"
+					}
+				],
+				"url": {
+					"raw": "{{apiurl}}preferences_list",
+					"host": [
+						"{{apiurl}}preferences_list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add_profile",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "context-id",
+						"value": "{{context-id}}"
+					},
+					{
+						"key": "device-id",
+						"value": "{{device-id}}"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{bearertoken}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\":\"devid\",\n\t\"lastName\":\"ziguras\",\n\t\"email\":\"daxitpatel61@gmail.com\",\n\t\"company\":\"test\",\n\t\"address\":\"\",\n\t\"country_code\":\"+91\",\n    \"country_prefix\":\"IND\",\n\t\"country\":\"USA\",\n\t\"city\":\"California\",\n\t\"phone\":\"7405675141\",\n\t\"school\":\"\",\n\t\"university\":\"\"\n}"
+				},
+				"url": {
+					"raw": "{{apiurl}}add_profile",
+					"host": [
+						"{{apiurl}}add_profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add_preference",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "context-id",
+						"value": "{{context-id}}"
+					},
+					{
+						"key": "device-id",
+						"value": "{{device-id}}"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{bearertoken}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"interest\" : [\"Interest 1\",\"interest 3\"]\n}"
+				},
+				"url": {
+					"raw": "{{apiurl}}save_preference",
+					"host": [
+						"{{apiurl}}save_preference"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_preferences",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "context-id",
+						"value": "{{context-id}}"
+					},
+					{
+						"key": "device-id",
+						"value": "{{device-id}}"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{bearertoken}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{apiurl}}get_preferences",
+					"host": [
+						"{{apiurl}}get_preferences"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add_workshop",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "context-id",
+						"value": "{{context-id}}"
+					},
+					{
+						"key": "device-id",
+						"value": "{{device-id}}"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{bearertoken}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "multipart/form-data",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "testing for url",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "testing for url",
+							"type": "text"
+						},
+						{
+							"key": "video",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "interest",
+							"value": "Interest 1,",
+							"type": "text"
+						},
+						{
+							"key": "VideoUrl",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{apiurl}}add_workshop",
+					"host": [
+						"{{apiurl}}add_workshop"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "workshop_list",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "context-id",
+						"value": "{{context-id}}"
+					},
+					{
+						"key": "device-id",
+						"value": "{{device-id}}"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{bearertoken}}"
+					},
+					{
+						"key": "type",
+						"value": "workshop"
+					}
+				],
+				"url": {
+					"raw": "{{apiurl}}workshop?page=1&filterColumn=&searchText=&filterValues=&sortOrder=desc&filterDate=",
+					"host": [
+						"{{apiurl}}workshop"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "filterColumn",
+							"value": ""
+						},
+						{
+							"key": "searchText",
+							"value": ""
+						},
+						{
+							"key": "filterValues",
+							"value": ""
+						},
+						{
+							"key": "sortOrder",
+							"value": "desc"
+						},
+						{
+							"key": "filterDate",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "question_list",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "context-id",
+						"value": "{{context-id}}"
+					},
+					{
+						"key": "device-id",
+						"value": "{{device-id}}"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{bearertoken}}"
+					}
+				],
+				"url": {
+					"raw": "{{apiurl}}get_question_list?type=general&topic_id=30",
+					"host": [
+						"{{apiurl}}get_question_list"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "general"
+						},
+						{
+							"key": "topic_id",
+							"value": "30"
+						}
+					]
+				},
+				"description": "You need to pass query string parameter as follows\n\n1. general\t:\tfor general introductory question\n2. topic\t:\ttopicwise questions"
+			},
+			"response": []
+		},
+		{
+			"name": "like_workshop",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "context-id",
+						"value": "{{context-id}}"
+					},
+					{
+						"key": "device-id",
+						"value": "{{device-id}}"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{bearertoken}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"workshop_video_id\":\"271\"\n}"
+				},
+				"url": {
+					"raw": "{{apiurl}}like_workshop",
+					"host": [
+						"{{apiurl}}like_workshop"
+					]
+				},
+				"description": "like the ise breaker"
+			},
+			"response": []
+		},
+		{
+			"name": "remove_workshop",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "context-id",
+						"value": "{{context-id}}"
+					},
+					{
+						"key": "device-id",
+						"value": "{{device-id}}"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{bearertoken}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{apiurl}}remove_workshop/43",
+					"host": [
+						"{{apiurl}}remove_workshop"
+					],
+					"path": [
+						"43"
+					]
+				},
+				"description": "for deleting workshop"
+			},
+			"response": []
+		},
+		{
+			"name": "get_countries",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{bearertoken}}"
+					},
+					{
+						"key": "device-id",
+						"value": "{{device-id}}"
+					},
+					{
+						"key": "context-id",
+						"value": "{{context-id}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"country\":\"\"\n}"
+				},
+				"url": {
+					"raw": "{{apiurl}}get_countries",
+					"host": [
+						"{{apiurl}}get_countries"
+					]
+				},
+				"description": "list of countries"
+			},
+			"response": []
+		},
+		{
+			"name": "get_cities",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{bearertoken}}"
+					},
+					{
+						"key": "device-id",
+						"value": "{{device-id}}"
+					},
+					{
+						"key": "context-id",
+						"value": "{{context-id}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"country_id\":\"2\",\n\t\"city\":\t\"\" \n}"
+				},
+				"url": {
+					"raw": "{{apiurl}}get_cities",
+					"host": [
+						"{{apiurl}}get_cities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "video_backgrounds",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{bearertoken}}"
+					},
+					{
+						"key": "device-id",
+						"value": "{{device-id}}"
+					},
+					{
+						"key": "context-id",
+						"value": "{{context-id}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"searchBackground\":\"\"\n}"
+				},
+				"url": {
+					"raw": "{{apiurl}}video_backgrounds",
+					"host": [
+						"{{apiurl}}video_backgrounds"
+					]
+				},
+				"description": "list of video backgrounds"
+			},
+			"response": []
+		},
+		{
+			"name": "add_socials",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{bearertoken}}"
+					},
+					{
+						"key": "device-id",
+						"value": "{{device-id}}"
+					},
+					{
+						"key": "context-id",
+						"value": "{{context-id}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "multipart/form-data",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "social_name",
+							"value": "testing for video url 2",
+							"type": "text"
+						},
+						{
+							"key": "social_closure_date",
+							"value": "06-28-2021",
+							"type": "text"
+						},
+						{
+							"key": "isebreaker_due_date",
+							"value": "06-28-2021",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "testing for video url 2",
+							"type": "text"
+						},
+						{
+							"key": "general_question",
+							"value": "Company,School,Education,",
+							"type": "text"
+						},
+						{
+							"key": "topic",
+							"value": "Education,",
+							"type": "text"
+						},
+						{
+							"key": "custom_question",
+							"value": "are you believe in quality & quality in business?",
+							"type": "text"
+						},
+						{
+							"key": "emails",
+							"value": "ptejas778@gmail.com,",
+							"type": "text"
+						},
+						{
+							"key": "video",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "csv_or_txt",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "nickname",
+							"value": "Company,School,edu",
+							"type": "text"
+						},
+						{
+							"key": "VideoUrl",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{apiurl}}add_socials",
+					"host": [
+						"{{apiurl}}add_socials"
+					]
+				},
+				"description": "create socials api"
+			},
+			"response": []
+		},
+		{
+			"name": "socials_list",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{bearertoken}}"
+					},
+					{
+						"key": "device-id",
+						"value": "{{device-id}}"
+					},
+					{
+						"key": "context-id",
+						"value": "{{context-id}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{apiurl}}social_list?social_type=own&social_filter=active&social_name",
+					"host": [
+						"{{apiurl}}social_list"
+					],
+					"query": [
+						{
+							"key": "social_type",
+							"value": "own"
+						},
+						{
+							"key": "social_filter",
+							"value": "active"
+						},
+						{
+							"key": "social_name",
+							"value": null
+						}
+					]
+				},
+				"description": "get all the socials of our own or that you're participated."
+			},
+			"response": []
+		},
+		{
+			"name": "get_social",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{bearertoken}}"
+					},
+					{
+						"key": "device-id",
+						"value": "{{device-id}}"
+					},
+					{
+						"key": "context-id",
+						"value": "{{context-id}}"
+					}
+				],
+				"url": {
+					"raw": "{{apiurl}}get_social/235",
+					"host": [
+						"{{apiurl}}get_social"
+					],
+					"path": [
+						"235"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "verify_otp",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "context-id",
+						"value": "{{context-id}}"
+					},
+					{
+						"key": "device-id",
+						"value": "{{device-id}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{bearertoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"otp\":\"684658\"\n}"
+				},
+				"url": {
+					"raw": "{{apiurl}}verifyotp",
+					"host": [
+						"{{apiurl}}verifyotp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_iseBreakers",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "context-id",
+						"value": "{{context-id}}"
+					},
+					{
+						"key": "device-id",
+						"value": "{{device-id}}"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{bearertoken}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "guesttoken",
+						"value": "{{guesttoken}}"
+					}
+				],
+				"url": {
+					"raw": "{{apiurl}}get_iseBreakers?filterValues='Interest 1,Science %26 Space'&searchText=&sortOrder=asc&page=1&filterColumn=interest&filterDate=03-26-2021",
+					"host": [
+						"{{apiurl}}get_iseBreakers"
+					],
+					"query": [
+						{
+							"key": "filterValues",
+							"value": "'Interest 1,Science & Space'"
+						},
+						{
+							"key": "searchText",
+							"value": ""
+						},
+						{
+							"key": "sortOrder",
+							"value": "asc"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "filterColumn",
+							"value": "interest"
+						},
+						{
+							"key": "filterDate",
+							"value": "03-26-2021"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add_socials_isebreaker",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "context-id",
+						"value": "{{context-id}}"
+					},
+					{
+						"key": "device-id",
+						"value": "{{device-id}}"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{bearertoken}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "multipart/form-data",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "new isebreaker",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "description",
+							"value": "new user, third isebreaker",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "preferences",
+							"value": "Workplace,Company,",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "video",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "social_id",
+							"value": "233",
+							"type": "text"
+						},
+						{
+							"key": "VideoUrl",
+							"value": "sampl.mp4",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{apiurl}}add_socials_isebreaker",
+					"host": [
+						"{{apiurl}}add_socials_isebreaker"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search_socials",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "context-id",
+						"value": "{{context-id}}"
+					},
+					{
+						"key": "device-id",
+						"value": "{{device-id}}"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{bearertoken}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{apiurl}}search_socials?social_id=55&searchText=&filterColumn=&filterValues=''&sortOrder=desc&filterDate=04-12-2021",
+					"host": [
+						"{{apiurl}}search_socials"
+					],
+					"query": [
+						{
+							"key": "social_id",
+							"value": "55"
+						},
+						{
+							"key": "searchText",
+							"value": ""
+						},
+						{
+							"key": "filterColumn",
+							"value": ""
+						},
+						{
+							"key": "filterValues",
+							"value": "''"
+						},
+						{
+							"key": "sortOrder",
+							"value": "desc"
+						},
+						{
+							"key": "filterDate",
+							"value": "04-12-2021"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "report_iseBreaker",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "context-id",
+						"value": "{{context-id}}"
+					},
+					{
+						"key": "device-id",
+						"value": "{{device-id}}"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{bearertoken}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"ise_breaker_video_id\":\"34\",\n\t\"reason\":\"not applicable\"\n}"
+				},
+				"url": {
+					"raw": "{{apiurl}}add_report",
+					"host": [
+						"{{apiurl}}add_report"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "verify_social",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{bearertoken}}"
+					},
+					{
+						"key": "device-id",
+						"value": "{{device-id}}"
+					},
+					{
+						"key": "context-id",
+						"value": "{{context-id}}"
+					}
+				],
+				"url": {
+					"raw": "{{apiurl}}verify_social/11",
+					"host": [
+						"{{apiurl}}verify_social"
+					],
+					"path": [
+						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "interest_list",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{bearertoken}}"
+					},
+					{
+						"key": "device-id",
+						"value": "{{device-id}}"
+					},
+					{
+						"key": "context-id",
+						"value": "{{context-id}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "multipart/form-data",
+						"disabled": true
+					},
+					{
+						"key": "guesttoken",
+						"value": "{{guesttoken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{apiurl}}get_interest",
+					"host": [
+						"{{apiurl}}get_interest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add_interest",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "context-id",
+						"value": "{{context-id}}"
+					},
+					{
+						"key": "device-id",
+						"value": "{{device-id}}"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{bearertoken}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"interest\" : [\"Science & space\",\"Interest 1\",\"interest 2\",\"interest 3\"]\n}"
+				},
+				"url": {
+					"raw": "{{apiurl}}save_interest",
+					"host": [
+						"{{apiurl}}save_interest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_interest",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "context-id",
+						"value": "{{context-id}}"
+					},
+					{
+						"key": "device-id",
+						"value": "{{device-id}}"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{bearertoken}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{apiurl}}get_user_interest",
+					"host": [
+						"{{apiurl}}get_user_interest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "set_push_notification",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "context-id",
+						"value": "{{context-id}}"
+					},
+					{
+						"key": "device-id",
+						"value": "{{device-id}}"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{bearertoken}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "notification_status",
+							"value": "1",
+							"description": "it must be 0 or 1 [ 0 = off  & 1=on ]",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{apiurl}}set_push_notification",
+					"host": [
+						"{{apiurl}}set_push_notification"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "context-id",
+						"value": "{{context-id}}",
+						"type": "text"
+					},
+					{
+						"key": "device-id",
+						"value": "{{device-id}}",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{bearertoken}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"token\":\"AAAAj1iX-qc:APA91bEA-mraNGerlIco_-sFMkac3BsnR1gGP4FMZXivPZF97ehDe4aMTAe8sr6XkwayQIB5oo9lOvqjksHKE9IoLJ5IP84A0_O3\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{apiurl}}update_token",
+					"host": [
+						"{{apiurl}}update_token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "change_password",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "context-id",
+						"value": "{{context-id}}",
+						"type": "text"
+					},
+					{
+						"key": "device-id",
+						"value": "{{device-id}}",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{bearertoken}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "multipart/form-data",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"old_password\":\"123456\",\r\n    \"password\":\"12345678\",\r\n    \"password_confirmation\":\"12345678\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{apiurl}}change_password",
+					"host": [
+						"{{apiurl}}change_password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "send_invites_mail",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "context-id",
+						"value": "{{context-id}}",
+						"type": "text"
+					},
+					{
+						"key": "device-id",
+						"value": "{{device-id}}",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{bearertoken}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "emails",
+							"value": "ptejas778@gmail.com,",
+							"type": "text"
+						},
+						{
+							"key": "social_id",
+							"value": "238",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{apiurl}}send_invites_mail",
+					"host": [
+						"{{apiurl}}send_invites_mail"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -30,6 +30,6 @@ class MdwebhooksController extends BaseController
 	}
 
 	public function webhookTriggers(){
-		die('inn');
+		die('hello');
 	}
 }

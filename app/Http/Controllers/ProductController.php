@@ -345,10 +345,10 @@ class ProductController extends Controller
         unset($data['_token']);
         unset($data['_method']);
 
-        print_r($data['section1_image']);
-        print_r($data['section2_image']);
-        print_r($data['section3_image']);
-        die();
+        // print_r($data['section1_image']);
+        // print_r($data['section2_image']);
+        // print_r($data['section3_image']);
+        // die();
 
         $product =Product::where('id',$id)->update($data);       
                 

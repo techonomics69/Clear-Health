@@ -48,13 +48,13 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<section class="card" >
-						<!-- 	<ul class="nav nav-tabs" id="casemanagement-tab-menu">
+							<!-- <ul class="nav nav-tabs" id="casemanagement-tab-menu">
 								<li><a class="btn active " data-toggle="tab" href="#profile">Profile</a></li>
 								<li><a class="btn" data-toggle="tab" href="#order_summary">Order Summary</a></li>
 								<li><a class="btn" data-toggle="tab" href="#shipments_shipping_details">Shipments & shipping details</a></li>
-							</ul>
-							<div class="tab-content">
-								<!--start 1st tab-->
+							</ul> -->
+						<!-- 	<div class="tab-content">
+								start 1st tab-->
 
 								<!-- <div id="profile" class="tab-pane fade in active show">
 									<div class="row" style="padding: 20px;">
@@ -98,10 +98,11 @@
 											</section>
 										</div>
 									</div>
-								</div> --> 
+								</div>  -->
+
 								<!--End 1st tab--> 
 								<!--start 2nd tab-->
-							<!-- 	<div id="order_summary" class="tab-pane fade in">
+								<!-- <div id="order_summary" class="tab-pane fade in">
 									<div class="row" style="padding: 20px;">
 										<div class="col-md-12">
 											<section class="card">
@@ -164,76 +165,75 @@
 								<!-- End 2nd tab-->
 
 								<!--start 3nd tab-->
-								<!-- <div id="shipments_shipping_details" class="tab-pane fade in">
-									<div class="row" style="padding: 20px;">
-										<div class="col-md-12">
-											<section class="card">
-												<div class="card-body">
-													<div class="box-block mtb32">
-														<h3 class="font-weight-bold"><span class="text-underline">Shipments Shipping Details</span></h3>
-														
-														<?php
-														if($order_data->shipstation_order_id !=''){
-															if($order_data->shipstation!=''){
-																$shipStationOrder = json_decode(json_encode($order_data->shipstation), true);
-														?>
-														<div class="col-md-6  form-group">
-															<strong>Shipstation OrderId : </strong>
-															<?php echo $shipStationOrder['orderId'] ?>
-														</div>
-														<div class="col-md-6  form-group">
-															<strong>Order Number : </strong>
-															<?php echo $shipStationOrder['orderNumber'] ?>
-														</div>
-														<div class="col-md-6  form-group">
-															<strong>Order Date : </strong>
-															<?php echo date("d-m-Y",strtotime($shipStationOrder['orderDate'])); ?>
-														</div>
-														<div class="col-md-6  form-group">
-															<strong>Order Status : </strong>
-															<?php if($shipStationOrder['orderStatus']=='awaiting_payment'){
-																echo "Order Processing";
-															}else if($shipStationOrder['orderStatus']=='awaiting_shipment'){
-																echo "Awaiting shipment";
-															}else if($shipStationOrder['orderStatus']=='shipped'){
-																echo "Shipped";
-															}else{
-																
-															} ?>
-														</div>
-														<?php
-															if($shipStationOrder['orderStatus'] == 'shipped'){
-														?>
-														<div class="col-md-6  form-group">
-															<strong>Ship date : </strong>
-															<?php echo date("d-m-Y",strtotime($shipStationOrder['shipDate'])); ?>
-														</div>	
-														<?php			
-															$tracking = json_decode(json_encode($order_data->shipments), true);
-															if(isset($tracking['shipments'][0])){
-														?>
-														<div class="col-md-6  form-group">
-															<strong> Tracking No: </strong>
-															<a href="https://tools.usps.com/go/TrackConfirmAction.action?tLabels=<?php echo $tracking['shipments'][0]['trackingNumber']; ?>" target="_blank"><?php echo $tracking['shipments'][0]['trackingNumber']; ?></a>
-														</div>
-														<?php
+											<!-- <div id="shipments_shipping_details" class="tab-pane fade in">
+												<div class="row" style="padding: 20px;">
+													<div class="col-md-12">
+														<section class="card">
+															<div class="card-body">
+																<div class="box-block mtb32">
+																	<h3 class="font-weight-bold"><span class="text-underline">Shipments Shipping Details</span></h3>
+																	
+																	<?php
+																	if($order_data->shipstation_order_id !=''){
+																		if($order_data->shipstation!=''){
+																			$shipStationOrder = json_decode(json_encode($order_data->shipstation), true);
+																	?>
+																	<div class="col-md-6  form-group">
+																		<strong>Shipstation OrderId : </strong>
+																		<?php echo $shipStationOrder['orderId'] ?>
+																	</div>
+																	<div class="col-md-6  form-group">
+																		<strong>Order Number : </strong>
+																		<?php echo $shipStationOrder['orderNumber'] ?>
+																	</div>
+																	<div class="col-md-6  form-group">
+																		<strong>Order Date : </strong>
+																		<?php echo date("d-m-Y",strtotime($shipStationOrder['orderDate'])); ?>
+																	</div>
+																	<div class="col-md-6  form-group">
+																		<strong>Order Status : </strong>
+																		<?php if($shipStationOrder['orderStatus']=='awaiting_payment'){
+																			echo "Order Processing";
+																		}else if($shipStationOrder['orderStatus']=='awaiting_shipment'){
+																			echo "Awaiting shipment";
+																		}else if($shipStationOrder['orderStatus']=='shipped'){
+																			echo "Shipped";
+																		}else{
+																			
+																		} ?>
+																	</div>
+																	<?php
+																		if($shipStationOrder['orderStatus'] == 'shipped'){
+																	?>
+																	<div class="col-md-6  form-group">
+																		<strong>Ship date : </strong>
+																		<?php echo date("d-m-Y",strtotime($shipStationOrder['shipDate'])); ?>
+																	</div>	
+																	<?php			
+																		$tracking = json_decode(json_encode($order_data->shipments), true);
+																		if(isset($tracking['shipments'][0])){
+																	?>
+																	<div class="col-md-6  form-group">
+																		<strong> Tracking No: </strong>
+																		<a href="https://tools.usps.com/go/TrackConfirmAction.action?tLabels=<?php echo $tracking['shipments'][0]['trackingNumber']; ?>" target="_blank"><?php echo $tracking['shipments'][0]['trackingNumber']; ?></a>
+																	</div>
+																	<?php
+																				}
+																			}
+																		}
 																	}
-																}
-															}
-														}
-														?>
-														
+																	?>
+																	
 
+																</div>
+															</div>
+														</section>
 													</div>
 												</div>
-											</section>
-										</div>
-									</div>
-								</div>  -->
+											</div>  -->
 								<!-- End 2nd tab-->
-							<!-- </div>-->
-
-							<div class="row">
+							<!-- </div>  -->
+								<div class="row">
 								<div class="col-md-6 col-lg-4">
 									<section class="card">
 												
@@ -388,7 +388,75 @@
 											</section>
 								</div>
 							</div>
-						</section> 
+
+							    <section class="card" >
+                            <div class="row" style="padding: 20px;">
+                                <div class="col-md-12">
+                                   <table class="table table-responsive-md table-striped table-bordered " style="width:100%" id="ordermanagement">
+                                    <thead>
+                                        <tr>
+                                            <th width="60px">SR No</th>
+                                            <th>Order Id</th>
+                                            <th>Case Id</th>
+                                            <th>Email</th>
+                                            <th>Date</th>
+                                            <th>Product Name</th>
+                                            <th>Order Type</th>
+                                            <!--  <th>Order Status</th> -->
+                                            <th width="200px">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $i=1;?>
+                                        @foreach ($order as $key => $order_data)
+                                        <tr> 
+                                            <td>{{ $i++ }}</td>
+                                            <td>{{ $order_data->order_id }} </td>
+                                            <td>{{ $order_data->case_id }}</td>
+                                            <td>{{ $order_data->email }}</td>
+
+                                            <td>{{\Carbon\Carbon::parse($order_data->created_at)->format('d/m/Y')}} </td>
+                                            <!-- <td>{{ $order_data->created_at }}</td> -->
+                                            <td>{{ $order_data->product_name }}</td>
+                                            <!-- <td>{{ $order_data->product_price }}</td>  -->
+                                            <td><?php if($order_data->medication_type == 1){
+                                                echo "Prescribed";
+                                            }else{
+                                                echo "Non Prescribed";
+                                            } ?></td>
+
+                                            <?php if($order_data->medication_type == 2 ) { ?> 
+                                             <td> 
+                                                <div class="d-flex">
+                                                    <a class="icons edit-icon" href="{{ route('ordermanagement.show',$order_data->id)}}">
+                                                        <i class="fa fa-eye"></i>
+                                                    </a> 
+                                                </div>  
+                                            </td>
+                                        <?php }else { ?>
+                                            <?php if(isset($order_data->case_id)){?>
+                                           <td> 
+                                                <div class="d-flex">
+                                                    <a class="icons edit-icon" href="{{ route('casemanagement.show',$order_data->case_id)}}">
+                                                        <i class="fa fa-eye"></i> 
+                                                    </a> 
+                                                </div>  
+                                            </td> 
+                                        <?php }else{
+                                            ?>
+                                            <td></td>
+                                            <?php } ?> 
+                                    <?php  }?>
+                                        </tr>
+                                        @endforeach
+                                    </tbody> 
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+
+                    
+						</section>
 					</div>
 				</div>
 			</div>

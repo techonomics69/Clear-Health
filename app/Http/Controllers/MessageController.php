@@ -42,16 +42,22 @@ class MessageController extends Controller
         $message = MdMessages::where('case_id', $data['case_id'])->get();
 
         $html = '';
-        foreach($message as $key => $value):
-            $html.= '<li class="left">
+        foreach ($message as $key => $value) :
+            
+            if ($value->from == 'patient') :
+                $class =  'left';
+            else:
+                $class =  'right';
+            endif;
+            $html .= '<li class="'.$class.'">
                     <div class = "time_messages" > 
-                        <p class = "text_mesg">'.$value->text.'</p>
+                        <p class = "text_mesg">' . $value->text . $value->id. '</p>
                         <h5></h5>
                     </div>
                 </li>';
         endforeach;
-        
-                    
+
+
         return json_encode($html);
     }
 }

@@ -44,6 +44,7 @@
                                                         <div class="col-md-3">
                                                             <div class="right-cht">
                                                                 <div class="chating-section">
+                                                                    <h3 id="usernameLabel"></h3>
                                                                     <ul>
                                                                         @foreach($mdList as $key => $name)
                                                                         <li class="userMdList" data-id="{{$name->case_id}}"><strong>{{$name->first_name}} {{$name->last_name}} - MD</strong>
@@ -236,7 +237,8 @@
                     case_id: case_id
                 },
                 success: function(result) {                                  
-                    $('#messageData').html(result);
+                    $('#usernameLabel').html(result.username);
+                    $('#messageData').html(result.html);
                     $("#messageData").animate({ scrollTop: $("#messageData")[0].scrollHeight}, 1000);
                 }
             });

@@ -35,6 +35,7 @@ class MdwebhooksController extends BaseController
 		print_r($request->all());
 		echo "<pre>";
 		exit();
+<<<<<<< HEAD
 
 
 		/*$r = get_token();
@@ -139,6 +140,8 @@ class MdwebhooksController extends BaseController
 
 		}
 
+=======
+>>>>>>> 0f34f8f4839bb007385eb27e5d9bbd59b76c1595
 
 	}
 }

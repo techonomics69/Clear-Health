@@ -46,7 +46,7 @@ class MessageController extends Controller
         dd($message);
         $html = '<h3>' . $message[0]->first_name .' '. $message[0]->last_name . '</h3>';
         foreach ($message as $key => $value) :
-            $createdAt = Carbon::parse($value->msg_time);
+            $createdAt = Carbon::parse($value->message_created_at);
             $time =  $createdAt->format('H:i:s m/d/Y');
             if ($value->from == 'patient') :
                 $class =  'left';

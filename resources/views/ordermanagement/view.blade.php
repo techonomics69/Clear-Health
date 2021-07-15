@@ -233,7 +233,51 @@
 								<!-- End 2nd tab-->
 							<!-- </div>-->
 
-							ffjdkgkdfjjgdfb    
+							<div class="row">
+								<div class="col-md-4">
+									<section class="card">
+												<div class="card-body">
+													<div class="box-block mtb32">
+														<h3 class="font-weight-bold"><span class="text-underline">Basic Information</span></h3>
+
+														<div class="col-md-6  form-group">
+															<strong>First Name : </strong>
+															{{$order_data->first_name}}
+														</div>
+
+														<div class="col-md-6 form-group">
+															<strong>Last Name : </strong>
+															{{$order_data->last_name}}
+														</div>
+
+														<div class="col-md-6 form-group">
+															<strong>Email : </strong>
+															{{$order_data->email}}
+														</div>
+
+														<div class="col-md-6 form-group">
+															<strong>Phone no : </strong>
+															{{$order_data->mobile}}
+														</div>
+
+														<div class="col-md-6 form-group">
+															<strong>Address : </strong>
+															{{$order_data->addressline1.','}}
+															{{$order_data->addressline2.','}}
+															{{$order_data->city.','}}
+															{{$order_data->state.','}}
+															{{$order_data->zipcode}}
+														</div>
+
+													</div>
+												</div>
+											</section>
+								</div>
+								<div class="col-md-4">
+								</div>
+								<div class="col-md-4">
+								</div>
+							</div>
 						</section> 
 					</div>
 				</div>

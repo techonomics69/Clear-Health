@@ -25,8 +25,6 @@ class ProductController extends BaseController
             if($availDate <= $today){
                 $value->category_name = $value->category->name;
                 $value->available_date = $availDate;
-            }else{
-                unset($products[$key]);
             }
         }
         // $products = array_values($products);

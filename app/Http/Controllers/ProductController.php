@@ -73,6 +73,25 @@ class ProductController extends Controller
 
         ]);
         $data = $request->all();
+
+        if(isset($data['section1_button_show'])){
+            $data['section1_button_show'] = $data['section1_button_show'];
+        }else{
+            $data['section1_button_show'] = 'false';
+        }
+
+        if(isset($data['section2_button_show'])){
+            $data['section2_button_show'] = $data['section2_button_show'];
+        }else{
+            $data['section2_button_show'] = 'false';
+        }
+
+        if(isset($data['section3_button_show'])){
+            $data['section3_button_show'] = $data['section3_button_show'];
+        }else{
+            $data['section3_button_show'] = 'false';
+        }
+
         
         if(!empty($request->image)):
             $imageName = time().'.'.$request->image->extension();
@@ -238,7 +257,7 @@ class ProductController extends Controller
         }
 
         
-        dd($data);
+        
 
 
         if(!empty($request->image)):

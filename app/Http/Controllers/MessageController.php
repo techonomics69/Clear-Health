@@ -41,8 +41,7 @@ class MessageController extends Controller
         $data = $request->all();
         $message = DB::table('md_messages')
                     ->where('case_id', $data['case_id'])
-                    ->join('users', 'users.id', '=', 'md_messages.user_id')
-                    ->select('md_messages.msg_time, md_messages.from, md_messages.text')
+                    ->join('users', 'users.id', '=', 'md_messages.user_id')                    
                     ->get();
 
         $html = '<h3>' . $message[0]['first_name'] .' '. $message[0]['last_name'] . '</h3>';

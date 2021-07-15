@@ -1609,3 +1609,7 @@ table.table thead th {
   border-bottom: 1px solid #e4e4e4;
   background: none;
 }
+
+.form-group {
+    margin-bottom: 0.5rem;
+}

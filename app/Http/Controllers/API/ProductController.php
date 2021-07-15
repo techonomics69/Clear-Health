@@ -7,6 +7,7 @@ use App\Http\Controllers\API\BaseController as BaseController;
 use App\Models\Product;
 use Validator;
 use App\Http\Resources\Product as ProductResource;
+use DB;
    
 class ProductController extends BaseController
 {
@@ -19,7 +20,7 @@ class ProductController extends BaseController
     {
         $today = date("Y-m-d");
         $products = Product::where('product_active', '1')
-                    // ->where('available_date','>=',$today)
+                    ->where(DB::raw("(DATE_FORMAT(available_date,'%Y-%m-%d'))"),'<=',$today)
                     ->get();
         $product = array();
         foreach ($products as $key => $value) {

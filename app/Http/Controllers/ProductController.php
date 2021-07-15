@@ -217,6 +217,8 @@ class ProductController extends Controller
          
         ]);
 
+
+
         if(isset($data['section1_button_show'])){
             $data['section1_button_show'] = $data['section1_button_show'];
         }else{
@@ -236,7 +238,7 @@ class ProductController extends Controller
         }
 
         
-
+        dd($data);
 
 
         if(!empty($request->image)):

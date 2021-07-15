@@ -21,7 +21,7 @@ class ProductController extends BaseController
         $today = date("m/d/Y");
         DB::enableQueryLog();
         $products = Product::where('product_active', '1')
-                    ->where(DB::raw("(DATE_FORMAT(available_date,'%m/%d/%Y'))"),'<=',$today)
+                    ->where("available_date",'<=',$today)
                     ->get();
                     // dd(DB::getQueryLog());                    
         $product = array();

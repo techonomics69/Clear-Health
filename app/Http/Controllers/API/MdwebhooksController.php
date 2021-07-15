@@ -35,11 +35,7 @@ class MdwebhooksController extends BaseController
 		print_r( $request->all());
 		echo "<pre>";
 		exit();
-		$filename = "LOG_" . strtotime(date('Y-m-d H:i:s')) . ".txt";
-		$file = fopen($_SERVER['DOCUMENT_ROOT'] . '/backend/storage/logs/' . $filename, 'w');
-		$txt = $response;
-		fwrite($file, $txt);
-		fclose($file);
+		
 
 		$r = get_token();
     	$token_data = json_decode($r);
@@ -90,6 +86,12 @@ class MdwebhooksController extends BaseController
 		$response = curl_exec($curl);
 
 		curl_close($curl);
+
+		$filename = "LOG_" . strtotime(date('Y-m-d H:i:s')) . ".txt";
+		$file = fopen($_SERVER['DOCUMENT_ROOT'] . '/backend/storage/logs/' . $filename, 'w');
+		$txt = $response;
+		fwrite($file, $txt);
+		fclose($file);
 	
 
 		

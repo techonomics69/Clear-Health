@@ -388,8 +388,13 @@
 											</section>
 								</div>
 							</div>
+						</section>
+					</div>
+				</div>
 
-							<section class="card" style="padding:20px;" >
+				<div class="row">
+					<div class="col-lg-12">
+						   <section class="card" style="padding:20px;" >
 
 		                            <div class="row">
 		                                <div class="col-md-12">
@@ -412,6 +417,7 @@
 			                                    </tbody>
 		                                    
 		                                  </table>
+		                                  <hr>
 		                                  <div class="pro_block">
 			                                  <div class="product_detail">
 			                                  	  <div class="product_linedetail">
@@ -439,10 +445,7 @@
 		                            	</div>
 		                        	</div>
 		                    </section>
-
-
-						</section>
-					</div>
+					<div>
 				</div>
 			</div>
 		</div>

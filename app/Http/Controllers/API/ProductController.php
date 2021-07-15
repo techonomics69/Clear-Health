@@ -22,7 +22,7 @@ class ProductController extends BaseController
         $today = date("Y-m-d");
         foreach ($products as $key => $value) {
             $availDate = date("Y-m-d",strtotime($value->available_date));
-            if($availDate >= $today){
+            if($availDate <= $today){
                 $value->category_name = $value->category->name;
                 $value->available_date = $availDate;
                 $product[$key] = $products[$key];

@@ -51,7 +51,7 @@ class MessageController extends Controller
             endif;
             $html .= '<li class="'.$class.'">
                     <div class = "time_messages" > 
-                        <p class = "text_mesg">' . $value->text . '</p>
+                        <p class = "text_mesg">' . $value->text . $value->id. '</p>
                         <h5></h5>
                     </div>
                 </li>';

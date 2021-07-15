@@ -279,8 +279,8 @@
                                 <div class="form-group">
                                     <strong>Show Section 4 Button:</strong>
                                     <!-- <span class="required">*</span> -->
-                                    {{$product['section3_button_show']}}
-                                    @if($product['section3_button_show'] == 'true')
+                                    
+                                    @if($product['section3_button_show'])
                                     {!! Form::checkbox('section3_button_show', 'true', $product['section3_button_show']) !!}
                                     @else
                                     {!! Form::checkbox('section3_button_show', 'true') !!}

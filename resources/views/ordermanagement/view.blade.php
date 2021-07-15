@@ -388,12 +388,17 @@
 											</section>
 								</div>
 							</div>
+						</section>
+					</div>
+				</div>
 
-							<section class="card" style="padding:20px;" >
+				<div class="row">
+					<div class="col-lg-12">
+						   <section class="card"  >
 
 		                            <div class="row">
 		                                <div class="col-md-12">
-		                                   <table class="table table-responsive-md table-striped table-bordered " style="width:100%" >
+		                                   <table class="table table-responsive-md table-striped table-bordered " style="width:100%;padding:20px;" >
 			                                    <thead>
 			                                        <tr>
 			                                            <th width="60%">Item</th>
@@ -412,35 +417,35 @@
 			                                    </tbody>
 		                                    
 		                                  </table>
-		                                  <div class="product_detail">
-		                                  	  <div class="product_linedetail">
-		                                  	  	<p>Shipping</p>
-		                                  	  	<p>$0</p>
-		                                  	  </div>
-		                                  	   <div class="product_linedetail">
-		                                  	  	<p>Item</p>
-		                                  	  	<p>1</p>
-		                                  	  </div>
-		                                  	   <div class="product_linedetail">
-		                                  	  	<p>Total</p>
-		                                  	  	<p>$106</p>
-		                                  	  </div>
-		                                  	   <div class="product_linedetail">
-		                                  	  	<p>Shipping Payout</p>
-		                                  	  	<p>$0</p>
-		                                  	  </div>
-		                                  	   <div class="product_linedetail">
-		                                  	  	<p>Total payout</p>
-		                                  	  	<p>$106</p>
-		                                  	  </div>
-		                                  </div>
+		                                  <hr>
+		                                  <div class="pro_block"  style="padding:20px;">
+			                                  <div class="product_detail">
+			                                  	  <div class="product_linedetail">
+			                                  	  	<p>Shipping</p>
+			                                  	  	<p>$0</p>
+			                                  	  </div>
+			                                  	   <div class="product_linedetail">
+			                                  	  	<p>Item</p>
+			                                  	  	<p>1</p>
+			                                  	  </div>
+			                                  	   <div class="product_linedetail">
+			                                  	  	<p>Total</p>
+			                                  	  	<p>$106</p>
+			                                  	  </div>
+			                                  	   <div class="product_linedetail">
+			                                  	  	<p>Shipping Payout</p>
+			                                  	  	<p>$0</p>
+			                                  	  </div>
+			                                  	   <div class="product_linedetail">
+			                                  	  	<p>Total payout</p>
+			                                  	  	<p>$106</p>
+			                                  	  </div>
+			                                  </div>
+			                                </div>
 		                            	</div>
 		                        	</div>
 		                    </section>
-
-
-						</section>
-					</div>
+					<div>
 				</div>
 			</div>
 		</div>

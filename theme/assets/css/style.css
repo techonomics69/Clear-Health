@@ -1613,9 +1613,15 @@ table.table thead th {
 .form-group {
     margin-bottom: 0.5rem;
 }
-
 .product_detail{
-  .product_linedetail{
-     display: flex: ;
-  }
+  max-width: 239px;
+    margin: 0 0 0 auto;
 }
+
+.product_detail .product_linedetail{
+    display: flex;
+    text-align: right;
+    justify-content: space-between;
+    border: 1px solid green;
+   
+  }

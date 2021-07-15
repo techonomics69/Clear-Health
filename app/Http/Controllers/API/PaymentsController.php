@@ -581,6 +581,7 @@ class PaymentsController extends BaseController
             if(count($product_id)>0){
                 foreach ($product_id as $pkey => $pvalue) {
                     $product = Product::find($pvalue);
+                    $product['image'] = asset('public/images/Products/'.$product['image']);
                     $product['isAdded'] = true;
                     array_push($productsArr, $product);
                 }
@@ -604,6 +605,7 @@ class PaymentsController extends BaseController
                 }
                 if($cnt == 0){
                     $products[$key]['isAdded'] = false;
+                    $products[$key]['image'] = asset('public/images/Products/'.$product['image']);
                     array_push($productsArr, $products[$key]);
                 }
                 

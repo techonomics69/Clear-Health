@@ -12,8 +12,9 @@ class MessageController extends Controller
     public function index(Request $request)
     {
         $mdList = DB::table('md_messages')
+                    ->join('users', 'users.id', '=', 'md_messages.user_id')
                     ->select(DB::raw('count(*) as user_count, user_id'))
-                    ->groupBy('user_id')
+                    ->groupBy('md_messages.user_id')
                     ->get();
                 //  DB::table('md_messages')
                 // ->groupBy('case_id')                

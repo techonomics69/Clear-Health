@@ -418,7 +418,7 @@
 		                                    
 		                                  </table>
 		                                  <hr>
-		                                  <div class="pro_block">
+		                                  <div class="pro_block"  style="padding:20px;">
 			                                  <div class="product_detail">
 			                                  	  <div class="product_linedetail">
 			                                  	  	<p>Shipping</p>

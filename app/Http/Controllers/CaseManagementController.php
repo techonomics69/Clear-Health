@@ -1232,6 +1232,7 @@ die();*/
         }
 
         if(isset($follow_up_id)){
+          dd($follow_up_id);
           $iPledge_items = $request->follow_ipledge;
           $updateFollowup = FollowUp::where('id',$follow_up_id)->update(['ipledge_items'=>$iPledge_items]);
           $noti_data = Notifications::create($noti_input_data);

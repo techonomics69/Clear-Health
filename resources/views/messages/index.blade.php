@@ -251,7 +251,7 @@
             url:"{{route('getMedicalMessage')}}",
             type: "post",
             dataType: 'json',
-            data: {case_id: case_id},
+            data: { "_token": "{{ csrf_token() }}", case_id: case_id},
             success:function(result){
                 console.log(result.abc);
             }

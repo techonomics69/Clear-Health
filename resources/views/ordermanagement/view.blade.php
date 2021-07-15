@@ -48,7 +48,7 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<section class="card" >
-							<ul class="nav nav-tabs" id="casemanagement-tab-menu">
+						<!-- 	<ul class="nav nav-tabs" id="casemanagement-tab-menu">
 								<li><a class="btn active " data-toggle="tab" href="#profile">Profile</a></li>
 								<li><a class="btn" data-toggle="tab" href="#order_summary">Order Summary</a></li>
 								<li><a class="btn" data-toggle="tab" href="#shipments_shipping_details">Shipments & shipping details</a></li>
@@ -56,7 +56,7 @@
 							<div class="tab-content">
 								<!--start 1st tab-->
 
-								<div id="profile" class="tab-pane fade in active show">
+								<!-- <div id="profile" class="tab-pane fade in active show">
 									<div class="row" style="padding: 20px;">
 										<div class="col-md-12">
 											<section class="card">
@@ -98,10 +98,10 @@
 											</section>
 										</div>
 									</div>
-								</div> 
+								</div> --> 
 								<!--End 1st tab--> 
 								<!--start 2nd tab-->
-								<div id="order_summary" class="tab-pane fade in">
+							<!-- 	<div id="order_summary" class="tab-pane fade in">
 									<div class="row" style="padding: 20px;">
 										<div class="col-md-12">
 											<section class="card">
@@ -160,79 +160,79 @@
 											</section>
 										</div>
 									</div>
-								</div> 
+								</div>  -->
 								<!-- End 2nd tab-->
 
 								<!--start 3nd tab-->
-		<div id="shipments_shipping_details" class="tab-pane fade in">
-			<div class="row" style="padding: 20px;">
-				<div class="col-md-12">
-					<section class="card">
-						<div class="card-body">
-							<div class="box-block mtb32">
-								<h3 class="font-weight-bold"><span class="text-underline">Shipments Shipping Details</span></h3>
-								
-								<?php
-								if($order_data->shipstation_order_id !=''){
-									if($order_data->shipstation!=''){
-										$shipStationOrder = json_decode(json_encode($order_data->shipstation), true);
-								?>
-								<div class="col-md-6  form-group">
-									<strong>Shipstation OrderId : </strong>
-									<?php echo $shipStationOrder['orderId'] ?>
-								</div>
-								<div class="col-md-6  form-group">
-									<strong>Order Number : </strong>
-									<?php echo $shipStationOrder['orderNumber'] ?>
-								</div>
-								<div class="col-md-6  form-group">
-									<strong>Order Date : </strong>
-									<?php echo date("d-m-Y",strtotime($shipStationOrder['orderDate'])); ?>
-								</div>
-								<div class="col-md-6  form-group">
-									<strong>Order Status : </strong>
-									<?php if($shipStationOrder['orderStatus']=='awaiting_payment'){
-										echo "Order Processing";
-									}else if($shipStationOrder['orderStatus']=='awaiting_shipment'){
-										echo "Awaiting shipment";
-									}else if($shipStationOrder['orderStatus']=='shipped'){
-										echo "Shipped";
-									}else{
-										
-									} ?>
-								</div>
-								<?php
-									if($shipStationOrder['orderStatus'] == 'shipped'){
-								?>
-								<div class="col-md-6  form-group">
-									<strong>Ship date : </strong>
-									<?php echo date("d-m-Y",strtotime($shipStationOrder['shipDate'])); ?>
-								</div>	
-								<?php			
-									$tracking = json_decode(json_encode($order_data->shipments), true);
-									if(isset($tracking['shipments'][0])){
-								?>
-								<div class="col-md-6  form-group">
-									<strong> Tracking No: </strong>
-									<a href="https://tools.usps.com/go/TrackConfirmAction.action?tLabels=<?php echo $tracking['shipments'][0]['trackingNumber']; ?>" target="_blank"><?php echo $tracking['shipments'][0]['trackingNumber']; ?></a>
-								</div>
-								<?php
-											}
-										}
-									}
-								}
-								?>
-								
+								<!-- <div id="shipments_shipping_details" class="tab-pane fade in">
+									<div class="row" style="padding: 20px;">
+										<div class="col-md-12">
+											<section class="card">
+												<div class="card-body">
+													<div class="box-block mtb32">
+														<h3 class="font-weight-bold"><span class="text-underline">Shipments Shipping Details</span></h3>
+														
+														<?php
+														if($order_data->shipstation_order_id !=''){
+															if($order_data->shipstation!=''){
+																$shipStationOrder = json_decode(json_encode($order_data->shipstation), true);
+														?>
+														<div class="col-md-6  form-group">
+															<strong>Shipstation OrderId : </strong>
+															<?php echo $shipStationOrder['orderId'] ?>
+														</div>
+														<div class="col-md-6  form-group">
+															<strong>Order Number : </strong>
+															<?php echo $shipStationOrder['orderNumber'] ?>
+														</div>
+														<div class="col-md-6  form-group">
+															<strong>Order Date : </strong>
+															<?php echo date("d-m-Y",strtotime($shipStationOrder['orderDate'])); ?>
+														</div>
+														<div class="col-md-6  form-group">
+															<strong>Order Status : </strong>
+															<?php if($shipStationOrder['orderStatus']=='awaiting_payment'){
+																echo "Order Processing";
+															}else if($shipStationOrder['orderStatus']=='awaiting_shipment'){
+																echo "Awaiting shipment";
+															}else if($shipStationOrder['orderStatus']=='shipped'){
+																echo "Shipped";
+															}else{
+																
+															} ?>
+														</div>
+														<?php
+															if($shipStationOrder['orderStatus'] == 'shipped'){
+														?>
+														<div class="col-md-6  form-group">
+															<strong>Ship date : </strong>
+															<?php echo date("d-m-Y",strtotime($shipStationOrder['shipDate'])); ?>
+														</div>	
+														<?php			
+															$tracking = json_decode(json_encode($order_data->shipments), true);
+															if(isset($tracking['shipments'][0])){
+														?>
+														<div class="col-md-6  form-group">
+															<strong> Tracking No: </strong>
+															<a href="https://tools.usps.com/go/TrackConfirmAction.action?tLabels=<?php echo $tracking['shipments'][0]['trackingNumber']; ?>" target="_blank"><?php echo $tracking['shipments'][0]['trackingNumber']; ?></a>
+														</div>
+														<?php
+																	}
+																}
+															}
+														}
+														?>
+														
 
-							</div>
-						</div>
-					</section>
-				</div>
-			</div>
-		</div> 
+													</div>
+												</div>
+											</section>
+										</div>
+									</div>
+								</div>  -->
 								<!-- End 2nd tab-->
-							</div>
-						</section>
+							<!-- </div>-->
+						</section> 
 					</div>
 				</div>
 			</div>

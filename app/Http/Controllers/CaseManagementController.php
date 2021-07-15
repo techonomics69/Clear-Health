@@ -1132,6 +1132,8 @@ die();*/
          $md_case_id = $request->md_case_id;
          $follow_up = $request->follow_up;
          $follow_up_id = $request->follow_up_id;
+      
+        //  dd($request->follow_ipledge);
 
 
       $user_case_management_data = CaseManagement::join('users', 'case_managements.user_id', '=', 'users.id')
@@ -1232,6 +1234,7 @@ die();*/
         }
 
         if(isset($follow_up_id)){
+          
           $iPledge_items = $request->follow_ipledge;
           $updateFollowup = FollowUp::where('id',$follow_up_id)->update(['ipledge_items'=>$iPledge_items]);
           $noti_data = Notifications::create($noti_input_data);

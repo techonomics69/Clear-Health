@@ -30,6 +30,14 @@ class MdwebhooksController extends BaseController
 	}
 
 	public function webhookTriggers(){
-		die('hello');
+
+		$response = "this is the log file";
+
+		$filename = "LOG_" . strtotime(date('Y-m-d H:i:s')) . ".txt";
+		//$file = fopen($_SERVER['DOCUMENT_ROOT'] . '/backend/storage/logs/' . $filename, 'w');
+		$file = fopen($_SERVER['DOCUMENT_ROOT'] . '/dev.clearhealth/storage/logs/' . $filename, 'w');
+		$txt = $response;
+		fwrite($file, $txt);
+		fclose($file);
 	}
 }

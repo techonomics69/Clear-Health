@@ -102,8 +102,12 @@ class ProductController extends Controller
             $data['image_detail'] = $image_detail_Name;
         endif;
 
-        if(!empty($request->section1_image)):
-            $section1_imageName = time().'.'.$request->section1_image->extension();
+        $sec1Rnd = rand(10,1000);
+        $sec2Rnd = rand(10,1000);
+        $sec3Rnd = rand(10,1000);
+
+        if(!empty($request->section1_image)){
+            $section1_imageName = $sec1Rnd."".time().'.'.$request->section1_image->extension();
 
             $path = public_path().'/images/Products';
 
@@ -114,10 +118,10 @@ class ProductController extends Controller
             $request->section1_image->move(public_path('images/Products'), $section1_imageName);            
             
             $data['section1_image'] = $section1_imageName;
-        endif;
+        }
 
-        if(!empty($request->section2_image)):
-            $section2_imageName = time().'.'.$request->section2_image->extension();
+        if(!empty($request->section2_image)){
+            $section2_imageName = $sec1Rnd."".time().'.'.$request->section2_image->extension();
 
             $path = public_path().'/images/Products';
 
@@ -128,10 +132,10 @@ class ProductController extends Controller
             $request->section2_image->move(public_path('images/Products'), $section2_imageName);            
             
             $data['section2_image'] = $section2_imageName;
-        endif;
+        }
 
-        if(!empty($request->section3_image)):
-            $section3_imageName = time().'.'.$request->section3_image->extension();
+        if(!empty($request->section3_image)){
+            $section3_imageName = $sec1Rnd."".time().'.'.$request->section3_image->extension();
 
             $path = public_path().'/images/Products';
 
@@ -142,7 +146,7 @@ class ProductController extends Controller
             $request->section3_image->move(public_path('images/Products'), $section3_imageName);            
             
             $data['section3_image'] = $section3_imageName;
-        endif;
+        }
 
         $Products = Product::create($data);
                 

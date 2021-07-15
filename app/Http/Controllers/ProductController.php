@@ -238,7 +238,7 @@ class ProductController extends Controller
         }
 
         
-        dd($data);
+        
 
 
         if(!empty($request->image)):

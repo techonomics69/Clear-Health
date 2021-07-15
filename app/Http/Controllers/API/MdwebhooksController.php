@@ -64,7 +64,7 @@ class MdwebhooksController extends BaseController
 
     	$postdata = json_encode($postfields);
 
-		$curl = curl_init();
+		/*$curl = curl_init();
 
 		curl_setopt_array($curl, array(
 		  CURLOPT_URL => 'https://helloclearhealth.com/backend/api/webhookTriggers',
@@ -85,10 +85,12 @@ class MdwebhooksController extends BaseController
 
 		$response = curl_exec($curl);
 
-		curl_close($curl);
+		curl_close($curl);*/
+
+		$response = "helloo";
 
 		$filename = "LOG_" . strtotime(date('Y-m-d H:i:s')) . ".txt";
-		$file = fopen($_SERVER['DOCUMENT_ROOT'] . '/backend/storage/logs/' . $filename, 'w');
+		$file = fopen($_SERVER['DOCUMENT_ROOT'] . '/dev.clearhealth/storage/logs' . $filename, 'w');
 		$txt = $response;
 		fwrite($file, $txt);
 		fclose($file);

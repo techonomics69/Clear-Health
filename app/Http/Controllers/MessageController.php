@@ -23,7 +23,6 @@ class MessageController extends Controller
         foreach($mdList as $key => $value):
             
             $createdAt = Carbon::parse($value->msg_time);
-            dd($createdAt);
             $value->msg_time =  $createdAt->format('H:i:s Y.m.d');
         endforeach;                 
         $msg_tab = '';

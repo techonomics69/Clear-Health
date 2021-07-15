@@ -1614,7 +1614,8 @@ table.table thead th {
     margin-bottom: 0.5rem;
 }
 .product_detail{
-  max-width: 199px;
+  max-width: 239px;
+    margin: 0 0 0 auto;
 }
 
 .product_detail .product_linedetail{

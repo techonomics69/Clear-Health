@@ -235,8 +235,7 @@
                     "_token": "{{ csrf_token() }}",
                     case_id: case_id
                 },
-                success: function(result) {
-                    console.log(result);                   
+                success: function(result) {                                  
                     $('#messageData').html(result);
                 }
             });

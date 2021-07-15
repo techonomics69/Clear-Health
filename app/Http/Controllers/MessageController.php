@@ -43,6 +43,7 @@ class MessageController extends Controller
 
         $html = '';
         foreach($message as $key => $value):
+            dd($value);
             $html.= '<li class="left">
                     <div class = "time_messages" > 
                         <p class = "text_mesg">'.$value->text.'</p>

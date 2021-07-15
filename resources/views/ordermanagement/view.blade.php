@@ -240,27 +240,27 @@
 													<div class="box-block mtb32">
 														<h3 class="font-weight-bold"><span class="text-underline">Basic Information</span></h3>
 
-														<div class="col-md-6  form-group">
+														<div class="  form-group">
 															<strong>First Name : </strong>
 															{{$order_data->first_name}}
 														</div>
 
-														<div class="col-md-6 form-group">
+														<div class=" form-group">
 															<strong>Last Name : </strong>
 															{{$order_data->last_name}}
 														</div>
 
-														<div class="col-md-6 form-group">
+														<div class=" form-group">
 															<strong>Email : </strong>
 															{{$order_data->email}}
 														</div>
 
-														<div class="col-md-6 form-group">
+														<div class=" form-group">
 															<strong>Phone no : </strong>
 															{{$order_data->mobile}}
 														</div>
 
-														<div class="col-md-6 form-group">
+														<div class=" form-group">
 															<strong>Address : </strong>
 															{{$order_data->addressline1.','}}
 															{{$order_data->addressline2.','}}
@@ -279,12 +279,12 @@
 													<div class="box-block mtb32">
 														<h3 class="font-weight-bold"><span class="text-underline">Order Summary</span></h3>
 
-														<div class="col-md-6  form-group">
+														<div class="  form-group">
 															<strong>Product Name : </strong>
 															{{$order_data->product_name}}
 														</div>
 
-														<div class="col-md-6 form-group">
+														<div class=" form-group">
 															<strong>Product Type : </strong>
 															<?php if($order_data->medication_type == 1){
 																echo "Prescribed";
@@ -293,24 +293,24 @@
 															} ?>
 														</div>
 
-														<div class="col-md-6 form-group">
+														<div class=" form-group">
 															<strong>Quantity : </strong>
 															{{$order_data->quantity}}
 														</div>
 
-														<div class="col-md-6 form-group">
+														<div class=" form-group">
 															<strong>Date : </strong>
 															{{($order_data->created_at)->format('d/m/Y')}}
 														</div>
 
-														<div class="col-md-6 form-group">
+														<div class=" form-group">
 															<strong>Shipping Fees : </strong>
 															$ {{$order_data->shipping_fee}}
 														</div>
 														<?php
 																if(isset($order_data['gift_code_discount']) && $order_data['gift_code_discount']!="" || $order_data['gift_code_discount']!=null){
 															?>
-															<div class="col-md-6  form-group">
+															<div class="  form-group">
 																<strong>Discount :</strong>
 																<?php if(isset($order_data['gift_code_discount']) && $order_data['gift_code_discount'] != '')  { ?>
 																	$ {{$order_data['gift_code_discount']}} 
@@ -320,7 +320,7 @@
 																}
 															?>
 
-														<div class="col-md-6 form-group">
+														<div class=" form-group">
 															<strong>Total Order Amount : </strong>
 															$ {{$order_data->total_amount}}
 														</div>
@@ -340,19 +340,19 @@
 															if($order_data->shipstation!=''){
 																$shipStationOrder = json_decode(json_encode($order_data->shipstation), true);
 														?>
-														<div class="col-md-6  form-group">
+														<div class=" form-group">
 															<strong>Shipstation OrderId : </strong>
 															<?php echo $shipStationOrder['orderId'] ?>
 														</div>
-														<div class="col-md-6  form-group">
+														<div class=" form-group">
 															<strong>Order Number : </strong>
 															<?php echo $shipStationOrder['orderNumber'] ?>
 														</div>
-														<div class="col-md-6  form-group">
+														<div class=" form-group">
 															<strong>Order Date : </strong>
 															<?php echo date("d-m-Y",strtotime($shipStationOrder['orderDate'])); ?>
 														</div>
-														<div class="col-md-6  form-group">
+														<div class=" form-group">
 															<strong>Order Status : </strong>
 															<?php if($shipStationOrder['orderStatus']=='awaiting_payment'){
 																echo "Order Processing";
@@ -367,7 +367,7 @@
 														<?php
 															if($shipStationOrder['orderStatus'] == 'shipped'){
 														?>
-														<div class="col-md-6  form-group">
+														<div class=" form-group">
 															<strong>Ship date : </strong>
 															<?php echo date("d-m-Y",strtotime($shipStationOrder['shipDate'])); ?>
 														</div>	
@@ -375,7 +375,7 @@
 															$tracking = json_decode(json_encode($order_data->shipments), true);
 															if(isset($tracking['shipments'][0])){
 														?>
-														<div class="col-md-6  form-group">
+														<div class=" form-group">
 															<strong> Tracking No: </strong>
 															<a href="https://tools.usps.com/go/TrackConfirmAction.action?tLabels=<?php echo $tracking['shipments'][0]['trackingNumber']; ?>" target="_blank"><?php echo $tracking['shipments'][0]['trackingNumber']; ?></a>
 														</div>

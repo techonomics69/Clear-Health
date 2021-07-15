@@ -12,6 +12,7 @@ use App\Models\Cart;
 use App\Models\CaseManagement;
 use App\Models\Fees;
 use App\Models\Mdcases;
+use App\Models\CurexaOrder;
 use App\Helper\shipStationHelper;
 use Validator;
 use Exception;
@@ -334,6 +335,14 @@ class CheckoutController extends BaseController
       ->where('checkout.id', $request->id)
       ->OrderBy('id', 'DESC')
       ->first();
+
+    $curexa_data = CurexaOrder::where('order_id',$orderlist['order_id'])->first();
+
+    if(!empty($curexa_data)){
+      $orderlist['curexa_datail'] = $curexa_data; 
+    }else{
+      $orderlist['curexa_datail'] = array();
+    }
     
      
 

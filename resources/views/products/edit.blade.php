@@ -281,8 +281,10 @@
                                     <!-- <span class="required">*</span> -->
                                     
                                     @if($product['section3_button_show'])
+                                    here 1
                                     {!! Form::checkbox('section3_button_show', 'true', $product['section3_button_show']) !!}
                                     @else
+                                    here 2
                                     {!! Form::checkbox('section3_button_show', 'true') !!}
                                     @endif
                                 </div>

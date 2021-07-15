@@ -43,7 +43,7 @@ class MessageController extends Controller
             ->where('case_id', $data['case_id'])
             ->join('users', 'users.id', '=', 'md_messages.user_id')
             ->get();
-        $username = $message[0]->first_name . ' ' . $message[0]->last_name;
+        $username = '<b>'.$message[0]->first_name . ' ' . $message[0]->last_name.'</b>';
 
         $html = '';
         foreach ($message as $key => $value) :

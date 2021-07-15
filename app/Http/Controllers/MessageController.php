@@ -9,6 +9,7 @@ class MessageController extends Controller
 {
     public function index(Request $request)
     {
+        $msg_tab = '';
         $msg_history = [];
         $user_case_management_data['user_id'] = '';
         $user_case_management_data['id'] = '';

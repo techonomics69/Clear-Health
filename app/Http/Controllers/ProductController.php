@@ -338,6 +338,9 @@ class ProductController extends Controller
 
         unset($data['_token']);
         unset($data['_method']);
+
+        dd($data);
+
         $product =Product::where('id',$id)->update($data);       
                 
         toastr()->success('Category updated successfully');

@@ -18,7 +18,7 @@ class ProductController extends BaseController
      */
     public function index()
     {
-        $today = date("Y-m-d");
+        $today = date("m/d/Y");
         DB::enableQueryLog();
         $products = Product::where('product_active', '1')
                     ->where(DB::raw("(DATE_FORMAT(available_date,'%m/%d/%Y'))"),'<=',$today)

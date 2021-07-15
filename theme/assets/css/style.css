@@ -1622,6 +1622,8 @@ table.table thead th {
     display: flex;
     text-align: right;
     justify-content: space-between;
-    border: 1px solid green;
    
   }
+.rate_price{
+  font-weight: 600;
+}

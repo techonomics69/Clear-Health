@@ -19,10 +19,11 @@ class MessageController extends Controller
                     DB::raw('(SELECT m.text from md_messages as m where m.user_id=users.id order by m.id desc limit 1) as last_msg'),                    
                     DB::raw('(SELECT m.created_at from md_messages as m where m.user_id=users.id order by m.id desc limit 1) as msg_time'))                    
                     ->groupBy('md_messages.user_id')
+                    ->orderBy('md_messages.id', 'desc')
                     ->get();  
         foreach($mdList as $key => $value):            
             $createdAt = Carbon::parse($value->msg_time);
-            $value->time = $createdAt->format('H:i:s m/d/Y');            
+            $value->msg_time =  $createdAt->format('H:i:s m/d/Y');
         endforeach;                 
         $msg_tab = '';
         $msg_history = [];

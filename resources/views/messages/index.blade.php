@@ -225,26 +225,29 @@
 <script>
     $.noConflict();
     jQuery(document).ready(function($) {
-                $('.userMdList').on('click', function() {
-                        var case_id = $(this).attr('data-id');
-                        $.ajax({
-                                url: "{{route('getMedicalMessage')}}",
-                                type: "post",
-                                dataType: 'json',
-                                data: {
-                                    "_token": "{{ csrf_token() }}",
-                                    case_id: case_id
-                                },
-                                success: function(result) {
-                                    console.log(result);
-                                    $('#messageData').html('<li class="left"><div class = "time_messages" > '+
-                                                            + '<p class = "text_mesg"></p>'+
-                                                            + '<h5></h5>'+
-                                                            + '</div></li>'
-                                                            )
-                                    }
-                                });
-                        })
-                });
+        $('.userMdList').on('click', function() {
+            var case_id = $(this).attr('data-id');
+            $.ajax({
+                url: "{{route('getMedicalMessage')}}",
+                type: "post",
+                dataType: 'json',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    case_id: case_id
+                },
+                success: function(result) {
+                    console.log(result);
+                    $.each(result, function(key, value) {
+                        console.log(key + ": " + value);
+                    });
+                    $('#messageData').html('<li class="left"><div class = "time_messages" > ' +
+                        +'<p class = "text_mesg"></p>' +
+                        +'<h5></h5>' +
+                        +'</div></li>'
+                    )
+                }
+            });
+        })
+    });
 </script>
 @endsection

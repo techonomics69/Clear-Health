@@ -236,15 +236,8 @@
                     case_id: case_id
                 },
                 success: function(result) {
-                    console.log(result);
-                    $.each(result, function(key, value) {
-                        console.log(key + ": " + value);
-                    });
-                    $('#messageData').html('<li class="left"><div class = "time_messages" > ' +
-                        +'<p class = "text_mesg"></p>' +
-                        +'<h5></h5>' +
-                        +'</div></li>'
-                    )
+                    console.log(result);                   
+                    $('#messageData').html(result);
                 }
             });
         })

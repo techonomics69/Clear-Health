@@ -40,6 +40,18 @@ class MessageController extends Controller
     {
         $data = $request->all();
         $message = MdMessages::where('case_id', $data['case_id'])->get();
-        return json_encode($message);
+
+        $html = '';
+        foreach($message as $key => $value):
+            $html.= '<li class="left">
+                    <div class = "time_messages" > 
+                        <p class = "text_mesg">'.$value->text.'</p>
+                        <h5></h5>
+                    </div>
+                </li>';
+        endforeach;
+        
+                    
+        return json_encode($html);
     }
 }

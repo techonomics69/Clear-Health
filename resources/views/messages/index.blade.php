@@ -47,7 +47,7 @@
                                                                     <ul>
                                                                         @foreach($mdList as $key => $name)
                                                                         <li>{{$name->first_name}} {{$name->last_name}} - MD</li>
-                                                                        @endif
+                                                                        @endforeach
                                                                     </ul>
                                                                 </div>
                                                             </div>

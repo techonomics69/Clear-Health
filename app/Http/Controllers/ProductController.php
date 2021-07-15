@@ -342,7 +342,7 @@ class ProductController extends Controller
         unset($data['_token']);
         unset($data['_method']);
 
-        // dd($data);
+        dd($data);
 
         $product =Product::where('id',$id)->update($data);       
                 

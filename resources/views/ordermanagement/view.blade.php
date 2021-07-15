@@ -417,6 +417,7 @@
 			                                    </tbody>
 		                                    
 		                                  </table>
+		                                  <hr>
 		                                  <div class="pro_block">
 			                                  <div class="product_detail">
 			                                  	  <div class="product_linedetail">

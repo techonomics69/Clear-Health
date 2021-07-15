@@ -605,7 +605,7 @@ class PaymentsController extends BaseController
                 }
                 if($cnt == 0){
                     $products[$key]['isAdded'] = false;
-                    $products[$key]['image'] = asset('public/images/Products/'.$product['image']);
+                    $products[$key]['image'] = asset('public/images/Products/'.$products[$key]['image']);
                     array_push($productsArr, $products[$key]);
                 }
                 

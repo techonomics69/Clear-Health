@@ -168,7 +168,11 @@
                                 <div class="form-group">
                                     <strong>Show Section 2 Button: :</strong>
                                     <!-- <span class="required">*</span> -->
+                                    @if($product['section1_button_show'] == 'true')
                                     {!! Form::checkbox('section1_button_show', 'true', $product['section1_button_show']) !!}
+                                    @else
+                                    {!! Form::checkbox('section1_button_show', 'true') !!}
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -222,7 +226,11 @@
                                 <div class="form-group">
                                     <strong>Show Section 3 Button :</strong>
                                     <!-- <span class="required">*</span> -->
+                                    @if($product['section2_button_show'] == 'true')
                                     {!! Form::checkbox('section2_button_show', 'true', $product['section2_button_show']) !!}
+                                    @else
+                                    {!! Form::checkbox('section2_button_show', 'true') !!}
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -271,7 +279,11 @@
                                 <div class="form-group">
                                     <strong>Show Section 4 Button:</strong>
                                     <!-- <span class="required">*</span> -->
+                                    @if($product['section3_button_show'] == 'true')
                                     {!! Form::checkbox('section3_button_show', 'true', $product['section3_button_show']) !!}
+                                    @else
+                                    {!! Form::checkbox('section3_button_show', 'true') !!}
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">

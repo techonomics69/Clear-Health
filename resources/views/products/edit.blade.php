@@ -168,7 +168,7 @@
                                 <div class="form-group">
                                     <strong>Show Section 2 Button: :</strong>
                                     <!-- <span class="required">*</span> -->
-                                    <input type="checkbox" name="section1_button_show" value="{{$product['section1_button_show']}}" <?php if($product['section1_button_show'] == 'checked'); ?>>
+                                    <input type="checkbox" name="section1_button_show" value="{{$product['section1_button_show']}}" <?php if($product['section1_button_show'] == 'true') echo "checked"; ?>>
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -222,7 +222,7 @@
                                 <div class="form-group">
                                     <strong>Show Section 3 Button :</strong>
                                     <!-- <span class="required">*</span> -->
-                                    <input type="checkbox" name="section2_button_show" value="{{$product['section2_button_show']}}" <?php if($product['section2_button_show'] == 'checked'); ?>>
+                                    <input type="checkbox" name="section2_button_show" value="{{$product['section2_button_show']}}" <?php if($product['section2_button_show'] == 'true') echo "checked"; ?>>
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -272,7 +272,7 @@
                                     <strong>Show Section 4 Button:</strong>
                                     <!-- <span class="required">*</span> -->
                                     
-                                    <input type="checkbox" name="section3_button_show" value="{{$product['section3_button_show']}}" <?php if($product['section3_button_show'] == 'checked'); ?>>
+                                    <input type="checkbox" name="section3_button_show" value="{{$product['section3_button_show']}}" <?php if($product['section3_button_show'] == 'true') echo "checked"; ?>>
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">

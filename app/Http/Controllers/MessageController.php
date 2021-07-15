@@ -10,7 +10,7 @@ class MessageController extends Controller
 {
     public function index(Request $request)
     {
-        $mdList = MdMessages::groupBy('md_case_id')->orderBy('id','DESC')->paginate(10);
+        $mdList = MdMessages::groupBy('md_case_id')->orderBy('id','DESC')->get();
         dd($mdList);
         $msg_tab = '';
         $msg_history = [];

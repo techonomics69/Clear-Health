@@ -1614,6 +1614,6 @@ table.table thead th {
     margin-bottom: 0.5rem;
 }
 
-.product_detail.product_linedetail{
+.product_detail .product_linedetail{
      display: flex: ;
   }

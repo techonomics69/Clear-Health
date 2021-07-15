@@ -37,9 +37,9 @@ class MdwebhooksController extends BaseController
 		exit();
 
 
-		$r = get_token();
+		/*$r = get_token();
     	$token_data = json_decode($r);
-    	$token = $token_data->access_token;
+    	$token = $token_data->access_token;*/
 
     	$postfields = array();
 

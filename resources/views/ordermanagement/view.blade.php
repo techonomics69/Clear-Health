@@ -443,7 +443,7 @@
 			                                  </div>
 			                                </div>
 			                                <hr>
-			                                <div class="longer_product">
+			                                <div class="longer_product" style="padding:20px;">
 			                                	<div class="inner_longer">
 			                                		<button>Refund</button>
 			                                		<p>This order is no longer editable</p>

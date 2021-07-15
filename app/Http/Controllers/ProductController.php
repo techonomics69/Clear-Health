@@ -235,7 +235,7 @@ class ProductController extends Controller
             $data['section3_button_show'] = "";
         }
 
-        dd($data);
+        
 
 
 

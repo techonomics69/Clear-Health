@@ -58,27 +58,7 @@
                                                         <div class="col-md-9">
                                                             <div class="right-cht">
                                                                 <div class="chating-section medicalmessages">
-                                                                    <ul>
-
-                                                                        @foreach ($msg_history as $key => $md_message)
-                                                                        <li class="left">
-                                                                            <div class="time_messages">
-                                                                                <p class="text_mesg">
-                                                                                    <?php
-                                                                                    if (isset($md_message['message']) &&  $md_message['message'] != '') {
-                                                                                        echo $md_message['message'];
-                                                                                    } else {
-                                                                                    ?>
-                                                                                    <?php
-                                                                                    }
-                                                                                    ?>
-                                                                                </p>
-
-                                                                                <h5>{{ $md_message['msg_date'] }}</h5>
-                                                                            </div>
-                                                                        </li>
-                                                                        @endforeach
-                                                                    </ul>
+                                                                    <ul id="messageData"></ul>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -244,19 +224,27 @@
 
 <script>
     $.noConflict();
-    jQuery( document ).ready(function( $ ) {
-        $('.userMdList').on('click', function(){
-            var case_id = $(this).attr('data-id');
-            $.ajax({
-            url:"{{route('getMedicalMessage')}}",
-            type: "post",
-            dataType: 'json',
-            data: { "_token": "{{ csrf_token() }}", case_id: case_id},
-            success:function(result){
-                console.log(result.abc);
-            }
-        });            
-        })
-    });
+    jQuery(document).ready(function($) {
+                $('.userMdList').on('click', function() {
+                        var case_id = $(this).attr('data-id');
+                        $.ajax({
+                                url: "{{route('getMedicalMessage')}}",
+                                type: "post",
+                                dataType: 'json',
+                                data: {
+                                    "_token": "{{ csrf_token() }}",
+                                    case_id: case_id
+                                },
+                                success: function(result) {
+                                    console.log(result);
+                                    $('#messageData').html('<li class="left"><div class = "time_messages" > '+
+                                                            + '<p class = "text_mesg"></p>'+
+                                                            + '<h5></h5>'+
+                                                            + '</div></li>'
+                                                            )
+                                    }
+                                });
+                        })
+                });
 </script>
 @endsection

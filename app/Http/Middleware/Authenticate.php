@@ -38,7 +38,11 @@ class Authenticate extends Middleware
             ];
             return response()->json($response, 401);
         }else{
-            return $next($request);
+            if(!Auth::check()){
+                return redirect('/');
+            }else{
+                return $next($request);
+            }
         }
         
     }

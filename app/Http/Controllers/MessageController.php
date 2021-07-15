@@ -11,7 +11,7 @@ class MessageController extends Controller
 {
     public function index(Request $request)
     {
-        DB::enableQueryLog();
+        // DB::enableQueryLog();
         $mdList = DB::table('md_messages')
                     ->join('users', 'users.id', '=', 'md_messages.user_id')
                     ->select(DB::raw('count(*) as user_count, md_messages.user_id, users.first_name, users.last_name, md_messages.case_id'),
@@ -21,7 +21,7 @@ class MessageController extends Controller
                 //  DB::table('md_messages')
                 // ->groupBy('case_id')                
                 // ->get(); 
-                dd(DB::getQueryLog());
+                // dd(DB::getQueryLog());
                 dd($mdList);       
         $msg_tab = '';
         $msg_history = [];

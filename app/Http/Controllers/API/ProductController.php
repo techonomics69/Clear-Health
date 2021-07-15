@@ -20,7 +20,7 @@ class ProductController extends BaseController
     {
         $today = date("Y-m-d");
         $products = Product::where('product_active', '1')
-                    ->where(DB::raw("(DATE_FORMAT(available_date,'%Y-%m-%d'))"),$today)
+                    ->where(DB::raw("(DATE_FORMAT(available_date,'%Y-%m-%d'))"),'<=',$today)
                     ->get();
         $product = array();
         foreach ($products as $key => $value) {

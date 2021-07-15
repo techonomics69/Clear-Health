@@ -1613,11 +1613,14 @@ table.table thead th {
 .form-group {
     margin-bottom: 0.5rem;
 }
+.product_detail{
+  max-width: 199px;
+}
 
 .product_detail .product_linedetail{
     display: flex;
     text-align: right;
     justify-content: space-between;
     border: 1px solid green;
-    max-width: 199px;
+   
   }

@@ -282,7 +282,7 @@
                                     
                                     @if($product['section3_button_show'] == true)
                                     here 1
-                                    {!! Form::checkbox('section3_button_show', '1']) !!}
+                                    {!! Form::checkbox('section3_button_show', '1') !!}
                                     @else
                                     here 2
                                     {!! Form::checkbox('section3_button_show', 'true') !!}

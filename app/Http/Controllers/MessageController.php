@@ -37,7 +37,7 @@ class MessageController extends Controller
     public function getMedicalMessage(Request $request)
     {
         echo '<pre>';
-        print_r($request);
+        print_r($request->all());
         die;
     }
 }

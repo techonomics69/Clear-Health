@@ -44,7 +44,7 @@ class MessageController extends Controller
                     ->join('users', 'users.id', '=', 'md_messages.user_id')                    
                     ->get();
 
-        $html = '<h3>' . $message[0]['first_name'] .' '. $message[0]['last_name'] . '</h3>';
+        $html = '<h3>' . $message[0]->first_name .' '. $message[0]->last_name . '</h3>';
         foreach ($message as $key => $value) :
             $createdAt = Carbon::parse($value->msg_time);
             $time =  $createdAt->format('H:i:s m/d/Y');

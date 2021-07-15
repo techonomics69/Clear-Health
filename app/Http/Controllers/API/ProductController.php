@@ -19,9 +19,14 @@ class ProductController extends BaseController
     {
         $products = Product::where('product_active', '1')->get();
         $product = [];
+        $today = date("Y-m-d");
         foreach ($products as $key => $value) {
-            $value->category_name = $value->category->name;
-            $product[$key] = $products[$key];
+            $availDate = date("Y-m-d",strtotime($value->available_date));
+            if($availDate >= $today){
+                $value->category_name = $value->category->name;
+                $value->available_date = $availDate;
+                $product[$key] = $products[$key];
+            }
         }
     //return json_encode($products);
         return $this->sendResponse($product, 'Products retrieved successfully.');

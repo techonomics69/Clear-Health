@@ -236,7 +236,7 @@
 							<div class="row">
 								<div class="col-md-6 col-lg-4">
 									<section class="card">
-												<div class="card-body">
+												
 													<div class="box-block mtb32">
 														<h3 class="font-weight-bold"><span class="text-underline">Basic Information</span></h3>
 
@@ -268,14 +268,13 @@
 															{{$order_data->state.','}}
 															{{$order_data->zipcode}}
 														</div>
-
 													</div>
-												</div>
+												
 											</section>
 								</div>
 								<div class="col-md-6 col-lg-4">
 									<section class="card">
-												<div class="card-body">
+												
 													<div class="box-block mtb32">
 														<h3 class="font-weight-bold"><span class="text-underline">Order Summary</span></h3>
 
@@ -324,14 +323,13 @@
 															<strong>Total Order Amount : </strong>
 															$ {{$order_data->total_amount}}
 														</div>
-
 													</div>
-												</div>
-											</section>
+												
+									</section>
 								</div>
 								<div class="col-md-6 col-lg-4">
 									<section class="card">
-												<div class="card-body">
+												
 													<div class="box-block mtb32">
 														<h3 class="font-weight-bold"><span class="text-underline">Shipments Shipping Details</span></h3>
 														
@@ -384,11 +382,9 @@
 																}
 															}
 														}
-														?>
-														
-
+														?>												
 													</div>
-												</div>
+												
 											</section>
 								</div>
 							</div>

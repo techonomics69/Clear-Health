@@ -11,6 +11,9 @@ class MessageController extends Controller
     public function index(Request $request)
     {
         $mdList = MdMessages::orderBy('id','DESC')->paginate(10);
+        echo '<pre>';
+        print_r($mdList);
+        die;
         dd($mdList); 
         $msg_tab = '';
         $msg_history = [];

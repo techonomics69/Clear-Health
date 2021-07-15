@@ -15,14 +15,10 @@ class MessageController extends Controller
         $mdList = DB::table('md_messages')
                     ->join('users', 'users.id', '=', 'md_messages.user_id')
                     ->select(DB::raw('count(*) as user_count, md_messages.user_id, users.first_name, users.last_name, md_messages.case_id'),
-                    DB::raw('(SELECT m.text from md_messages as m where m.user_id=users.id order by m.id desc limit 1) as last_msg'))                    
+                    DB::raw('(SELECT m.text from md_messages as m where m.user_id=users.id order by m.id desc limit 1) as last_msg'),                    
+                    DB::raw('(SELECT m.created_at from md_messages as m where m.user_id=users.id order by m.id desc limit 1) as msg_time'))                    
                     ->groupBy('md_messages.user_id')
-                    ->get();
-                //  DB::table('md_messages')
-                // ->groupBy('case_id')                
-                // ->get(); 
-                // dd(DB::getQueryLog());
-                dd($mdList);       
+                    ->get();       
         $msg_tab = '';
         $msg_history = [];
         $user_case_management_data['user_id'] = '';

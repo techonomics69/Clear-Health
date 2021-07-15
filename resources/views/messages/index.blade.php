@@ -46,7 +46,11 @@
                                                                 <div class="chating-section">
                                                                     <ul>
                                                                         @foreach($mdList as $key => $name)
-                                                                        <li>{{$name->first_name}} {{$name->last_name}} - MD</li>
+                                                                        <li><strong>{{$name->first_name}} {{$name->last_name}} - MD</strong>
+                                                                            <p>{{$name->last_msg}}
+                                                                                <small>{{ $name->msg_time->format('H:i:s Y.m.d') }}</small>
+                                                                            </p>
+                                                                        </li>
                                                                         @endforeach
                                                                     </ul>
                                                                 </div>

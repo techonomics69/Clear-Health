@@ -239,3 +239,15 @@
         </div>
     </div>
 </div>
+
+@section('scriptsection')
+
+<script>
+    $.noConflict();
+    jQuery( document ).ready(function( $ ) {
+        $('.userMdList').on('click', function(){
+            alert($(this).attr('data-id'))
+        })
+    });
+</script>
+@endsection

@@ -11,7 +11,7 @@ class MessageController extends Controller
 {
     public function index(Request $request)
     {
-        $mdList = MdMessages::select("*", DB::raw("count(*) as msg_count"))->groupBy('md_case_id')->get();
+        $mdList = MdMessages::select("*", DB::raw("count(*) as msg_count"))->get();
         dd($mdList);
         $msg_tab = '';
         $msg_history = [];

@@ -25,11 +25,13 @@ class ProductController extends BaseController
             if($availDate <= $today){
                 $value->category_name = $value->category->name;
                 $value->available_date = $availDate;
-                $products[] = $products[$key];
+            }else{
+                unset($products[$key]);
             }
         }
+        $products = array_values($products);
     //return json_encode($products);
-        return $this->sendResponse($product, 'Products retrieved successfully.');
+        return $this->sendResponse($products, 'Products retrieved successfully.');
     }
     /**
      * Store a newly created resource in storage.

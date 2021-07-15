@@ -22,7 +22,8 @@ class MessageController extends Controller
                     ->get();  
         foreach($mdList as $key => $value):            
             $createdAt = Carbon::parse($value->msg_time);
-            dd($createdAt->format('H:i:s Y.m.d'));
+            $value['dp'] = $createdAt->format('H:i:s m/d/Y');
+            dd($value);
         endforeach;                 
         $msg_tab = '';
         $msg_history = [];

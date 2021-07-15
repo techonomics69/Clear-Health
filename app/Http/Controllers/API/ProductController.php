@@ -17,15 +17,15 @@ class ProductController extends BaseController
      */
     public function index()
     {
-        $products = Product::where('product_active', '1')->get();
-        $product = array();
         $today = date("Y-m-d");
+        $products = Product::where('product_active', '1')->where('available_date',$today)->get();
+        $product = array();
         foreach ($products as $key => $value) {
             $availDate = date("Y-m-d",strtotime($value->available_date));
-            if($availDate <= $today){
+            // if($availDate <= $today){
                 $value->category_name = $value->category->name;
                 $value->available_date = $availDate;
-            }
+            // }
         }
         // $products = array_values($products);
     //return json_encode($products);

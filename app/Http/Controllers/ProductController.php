@@ -259,7 +259,7 @@ class ProductController extends Controller
         endif;
 
 
-         if(!empty($request->section1_image)):
+         if(!empty($request->section1_image)){
             $section1_imageName = time().'.'.$request->section1_image->extension();
 
             $path = public_path().'/images/Products';
@@ -282,9 +282,9 @@ class ProductController extends Controller
             }            
             
             $data['section1_image'] = $section1_imageName;
-        endif;
+        }
 
-        if(!empty($request->section2_image)):
+        if(!empty($request->section2_image)){
             $section2_imageName = time().'.'.$request->section2_image->extension();
 
             $path = public_path().'/images/Products';
@@ -307,7 +307,9 @@ class ProductController extends Controller
             }                        
             
             $data['section2_image'] = $section2_imageName;
-        endif;
+        }
+
+        dd($data);
 
         if(!empty($request->section3_image)):
             $section3_imageName = time().'.'.$request->section3_image->extension();

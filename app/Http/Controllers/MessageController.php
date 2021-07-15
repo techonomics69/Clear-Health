@@ -11,9 +11,10 @@ class MessageController extends Controller
 {
     public function index(Request $request)
     {
-        $mdList = DB::table('md_messages')
+        $mdList = DB::raw("SELECT count(case_id) as case_id FROM md_messages group by case_id");
+                //  DB::table('md_messages')
                 // ->groupBy('case_id')                
-                ->get();
+                // ->get();
         
         dd($mdList);
         $msg_tab = '';

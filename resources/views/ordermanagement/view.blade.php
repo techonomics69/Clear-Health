@@ -388,6 +388,35 @@
 											</section>
 								</div>
 							</div>
+
+							<section class="card" style="padding:20px;" >
+
+		                            <div class="row">
+		                                <div class="col-md-12">
+		                                   <table class="table table-responsive-md table-striped table-bordered " style="width:100%" >
+			                                    <thead>
+			                                        <tr>
+			                                            <th width="60%">Item</th>
+			                                            <th> Cost</th>
+			                                            <th>Qty</th>
+			                                            <th>Total</th>
+			                                        </tr>
+			                                    </thead>
+			                                    <tbody>
+			                                    	<tr>
+			                                    		<td>df</td>
+			                                    		<td>fd</td>
+			                                    		<td>fd</td>
+			                                    		<td>fd</td>
+			                                    	</tr>
+			                                    </tbody>
+		                                    
+		                                  </table>
+		                            	</div>
+		                        	</div>
+		                    </section>
+
+
 						</section>
 					</div>
 				</div>

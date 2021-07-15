@@ -35,7 +35,9 @@ class MessageController extends Controller
     }
 
     public function getMedicalMessage(Request $request)
-    {
-        echo 'dp';
+    {   
+        $data = $request->all();
+        $message = MdMessages::where('case_id', $data['case_id'])->get();
+       return json_encode($message);
     }
 }

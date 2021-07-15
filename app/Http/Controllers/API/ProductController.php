@@ -23,6 +23,7 @@ class ProductController extends BaseController
             $value->category_name = $value->category->name;
             $product[$key] = $products[$key];
         }
+        dd('here');
     //return json_encode($products);
         return $this->sendResponse($product, 'Products retrieved successfully.');
     }

@@ -85,7 +85,7 @@ class MessageController extends Controller
         $message = DB::table('users')
             ->where('user_id', $data['user_id'])
             ->join('users', 'users.id', '=', 'messages.user_id')
-            ->select('users.*', 'contacts.phone', 'orders.price')
+            ->select('users.*', 'messages.*')
             ->get();
         $username = '<b>' . $message[0]->first_name . ' ' . $message[0]->last_name . '</b>';
         $user_id = $message[0]->user_id;

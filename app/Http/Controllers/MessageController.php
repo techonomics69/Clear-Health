@@ -119,7 +119,7 @@ class MessageController extends Controller
         $data['sender'] = 'admin';
 
         $message = Messages::create($data);
-        $createdAt = Carbon\Carbon::now();
+        $createdAt = Carbon::now();
         $time =  $createdAt->format('H:i:s m/d/Y');
         $html = '<li class="right">
                     <div class="time_messages"> 

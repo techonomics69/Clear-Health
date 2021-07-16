@@ -195,6 +195,7 @@
                 },
                 success: function(result) {
                    if(result != false){
+                    $('#text').val('');
                     $('#messageDataAdmin').append(result);
                    }
                    $("#messageDataAdmin").animate({

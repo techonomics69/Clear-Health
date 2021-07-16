@@ -120,6 +120,10 @@ class MessageController extends Controller
 
         $message = Messages::create($data);
 
-        dd($message);
+        if($message){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

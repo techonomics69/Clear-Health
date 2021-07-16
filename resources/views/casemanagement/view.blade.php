@@ -1872,11 +1872,14 @@
         </button>
       </div>
       <div class="modal-body">  
-          <button class="collapsible active">June 14,2021</button>
+          <button class="collapsible active">07/14/2021</button>
 			<div class="content" style="max-height: 267px;">
-			  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+				<span class="case_status">
+					<p class="status_heading">Case Status</p>
+				     <p> Processing</p>
+				</span>			
 			</div>
-			<button class="collapsible">June 15,2021</button>
+			<button class="collapsible">07/15/2021</button>
 			<div class="content">
 			  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 			</div>

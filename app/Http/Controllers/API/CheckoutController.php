@@ -450,8 +450,10 @@ class CheckoutController extends BaseController
           curl_close($curl);
           $response1 = json_decode($response);
           if(isset($response1)){
-            if(count($response1)>0){
-              $skincare_summary['pharmacy_pickup'] =  $response1->name;
+            if(is_array($response1)){
+              if(count($response1)>0){
+                $skincare_summary['pharmacy_pickup'] =  $response1->name;
+              }
             }
           }
           //$products[$product_key]['pharmacy_pickup'] =  $response1->name;

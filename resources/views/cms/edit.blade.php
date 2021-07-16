@@ -53,7 +53,7 @@
                                     {!! Form::text('title', null, ['placeholder' => 'Title', 'class' => 'form-control']); !!}
                                 </div>
                                 </div>
-                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                {{-- <div class="col-md-4 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <strong>URL:</strong>
                                     <!-- <span class="required">*</span> -->
@@ -80,12 +80,12 @@
                                     <span class="required">*</span>
                                     {!! Form::text('meta_keyword', null, array('placeholder' => 'Meta Keyword','class' => 'form-control')) !!}
                                 </div>
-                                </div>
+                                </div> --}}
                                 <div class="col-md-4 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <strong>Status:</strong>
                                     <span class="required">*</span>
-                                    {!! Form::select('status', [null => 'Please Select', '1' => 'On', '0' => 'Off'], null, ['class' => 'form-control']); !!}
+                                    {!! Form::select('status', [null => 'Please Select', '1' => 'Active', '0' => 'Inactive'], null, ['class' => 'form-control']); !!}
                                 </div>
                             </div>
                             

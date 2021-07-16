@@ -185,13 +185,14 @@ class PaymentsController extends BaseController
             //     $updateData['status'] = 'cancelled';
 
                 //Cancel order from ShipStations
+                dd('here');
                 try{
                     $shipCancel = shipStationHelper::cancelShipstationOrder($data['shipstation_order_id']);
                     dd($shipCancel);
                 }catch(\Exception $e){
                     $apiError = $e->getMessage();
                 }
-                
+
             // }else{
             //     return $this->sendError('Error in Refunding amount: ' . $apiError);
             // }

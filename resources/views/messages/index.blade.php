@@ -83,7 +83,7 @@
                                                                 <div class="chating-section">
                                                                     <ul>
                                                                         @foreach($adminMsg as $key => $value)
-                                                                        <li class="userMdList" data-id="{{$value->case_id}}"><strong>{{$value->first_name}} {{$value->last_name}} - Admin</strong>
+                                                                        <li class="userAdminList" data-id="{{$value->case_id}}"><strong>{{$value->first_name}} {{$value->last_name}} - Admin</strong>
                                                                             <p>{{$value->last_msg}}</p>
                                                                             <small>{{ $value->msg_time }}</small>
                                                                         </li>
@@ -96,76 +96,8 @@
                                                             <div class="right-cht">
                                                                 {!! Form::open(array('method'=>'POST', 'enctype'=>"multipart/form-data", 'id'=>"msgForm")) !!}
                                                                 <div class="chating-section nonmedicalmessages" id="chating-section">
-                                                                    <ul><?php
-                                                                        if (isset($message_data)) { ?>
-                                                                            @foreach ($message_data as $key => $message)
-
-                                                                            <li id="<?php if ($key == count($message_data) - 1) echo 'bottomDivMsg' . $message['id'] ?>" class=<?php if ($message['sender'] == 'admin') { ?>"right"<?php } else { ?> "left" <?php } ?>>
-                                                                                <div class="time_messages">
-                                                                                    <p class="text_mesg">
-                                                                                        <?php
-                                                                                        echo $message['message'];
-                                                                                        if (isset($message['file_name']) && $message['file_name'] != '') {
-                                                                                            echo "<br>";
-                                                                                            $fileExt = explode(".", $message['file_name']);
-
-                                                                                            $fileextArr = ['jpg', 'jpeg', 'png'];
-                                                                                            if (count($fileExt) > 0) {
-                                                                                                if (in_array($fileExt[1], $fileextArr)) {
-                                                                                        ?>
-                                                                                                    <img src="{{ asset('public/Message_files/'.$message['file_name']) }}" type="media_type" width='100'>
-                                                                                                    <a target="_blank" download="" href="{{ asset('public/Message_files/'.$message['file_name']) }}"> Download</a>
-                                                                                                <?php
-                                                                                                } else {
-                                                                                                    switch ($fileExt[1]) {
-                                                                                                        case "doc":
-                                                                                                            $fileName = asset("public/images/msgs/doc.png");
-                                                                                                            break;
-                                                                                                        case "docx":
-                                                                                                            $fileName = asset("public/images/msgs/doc.png");
-                                                                                                            break;
-                                                                                                        case "xls":
-                                                                                                            $fileName = asset("public/images/msgs/xls.png");
-                                                                                                            break;
-                                                                                                        case "xlsx":
-                                                                                                            $fileName = asset("public/images/msgs/xls.png");
-                                                                                                            break;
-                                                                                                        case "txt":
-                                                                                                            $fileName = asset("public/images/msgs/txt.png");
-                                                                                                            break;
-                                                                                                        case "pdf":
-                                                                                                            $fileName = asset("public/images/msgs/pdf.png");
-                                                                                                            break;
-                                                                                                        default:
-                                                                                                            $fileName = asset("public/images/msgs/file.png");
-                                                                                                            break;
-                                                                                                    }
-                                                                                                ?>
-                                                                                                    <img src="{{ $fileName }}" type="media_type" width='100'>
-                                                                                                    <a target="_blank" download="" href="{{ asset('public/Message_files/'.$message['file_name']) }}"> Download</a>
-                                                                                        <?php
-                                                                                                }
-                                                                                            } else {
-                                                                                            }
-                                                                                        }
-                                                                                        ?>
-                                                                                    </p>
-
-                                                                                    <h5>
-                                                                                        <?php
-                                                                                        if (isset($message['date']) && $message['date'] != '') {
-                                                                                            echo $message['date'];
-                                                                                        } ?>
-                                                                                    </h5>
-                                                                                </div>
-                                                                            </li>
-
-
-                                                                            @endforeach
-
-                                                                        <?php } ?>
-                                                                    </ul>
-
+                                                                    <h3 id="usernameLabelAdmin"></h3>
+                                                                    <ul id="messageDataAdmin"></ul>
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-lg-12">
@@ -246,6 +178,25 @@
                     $('#messageData').html(result.html);
                     $("#messageData").animate({
                         scrollTop: $("#messageData")[0].scrollHeight
+                    }, 1000);
+                }
+            });
+        });
+        $('.userAdminList').on('click', function() {
+            var case_id = $(this).attr('data-id');
+            $.ajax({
+                url: "{{route('getNonMedicalMessage')}}",
+                type: "post",
+                dataType: 'json',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    case_id: case_id
+                },
+                success: function(result) {
+                    $('#usernameLabelAdmin').html(result.username);
+                    $('#messageDataAdmin').html(result.html);
+                    $("#messageDataAdmin").animate({
+                        scrollTop: $("#messageDataAdmin")[0].scrollHeight
                     }, 1000);
                 }
             });

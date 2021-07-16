@@ -160,14 +160,14 @@
             });
         });
         $('.userAdminList').on('click', function() {
-            var case_id = $(this).attr('data-id');
+            var user_id = $(this).attr('data-id');
             $.ajax({
                 url: "{{route('getNonMedicalMessage')}}",
                 type: "post",
                 dataType: 'json',
                 data: {
                     "_token": "{{ csrf_token() }}",
-                    case_id: case_id
+                    user_id: user_id
                 },
                 success: function(result) {
                     $('#usernameLabelAdmin').html(result.username);

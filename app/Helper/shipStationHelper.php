@@ -257,6 +257,14 @@ class shipStationHelper {
         return $shipment;
     }
 
+    public static function cancelShipstationOrder($orderId){
+        $app= App::getFacadeRoot();
+    	$app->make('LaravelShipStation\ShipStation');
+    	$shipStation = $app->make('LaravelShipStation\ShipStation');
+        $shipment = $shipStation->orders->delete(['orderId'=>$orderId], $endpoint = '');
+        return $shipment;
+    }
+
 }
 
 ?>

@@ -20,6 +20,7 @@ use App\Models\Product;
 use App\Models\SubscriptionLog;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
+use App\Helper\shipStationHelper;
 
 class PaymentsController extends BaseController
 {
@@ -156,6 +157,7 @@ class PaymentsController extends BaseController
     public function CancleOrder(Request $request){
         try{
             $data = $request->all();
+            $updateData = array();
             $validator = \Validator::make($request->all(),[ 
                 'order_id'  =>  'required',
                 'charge_id' =>  'required',
@@ -169,20 +171,30 @@ class PaymentsController extends BaseController
                 return $this->sendError($validator->errors()->first());
             } 
             Stripe::setApiKey('sk_test_51J08tDJofjMgVsOdzxZs5Aqlf5A9riwPPwlxUTriC8YPiHvTjlCBoaMjgxiqdIVfvOMPcllgR9JY7EZlihr6TJHy00ixztHFtz'); 
-            try {
-                $refund = \Stripe\Refund::create(array(
-                    'charge' => $data['charge_id'],
-                ));
-            } catch (Exception $e) {
-                $apiError = $e->getMessage();
-            }
-            if (empty($apiError) && $refund) {
-                // Retrieve charge details 
-                $refundData = $refund->jsonSerialize();
-                dd($refundData);
-            }else{
-                return $this->sendError('Error in Refunding amount: ' . $apiError);
-            }
+            // try {
+            //     $refund = \Stripe\Refund::create(array(
+            //         'charge' => $data['charge_id'],
+            //     ));
+            // } catch (Exception $e) {
+            //     $apiError = $e->getMessage();
+            // }
+            // if (empty($apiError) && $refund) {
+            //     //Get Refund object from stripe;
+            //     $refundData = $refund->jsonSerialize();
+            //     $updateData['strip_refund_object'] = $refundData;
+            //     $updateData['status'] = 'cancelled';
+
+                //Cancel order from ShipStations
+                try{
+                    $shipCancel = shipStationHelper::cancelShipstationOrder($data['shipstation_order_id']);
+                    dd($shipCancel);
+                }catch(\Exception $e){
+                    $apiError = $e->getMessage();
+                }
+                
+            // }else{
+            //     return $this->sendError('Error in Refunding amount: ' . $apiError);
+            // }
         }catch(\Exception $ex){
             return $this->sendError($ex->getMessage());
         }

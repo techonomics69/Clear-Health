@@ -49,14 +49,14 @@
 								<label>Name</label><span class="required">*</span>
 								{!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
 							</div>
-							<div class="form-group">
+							{{-- <div class="form-group">
 								<label>Image</label><span class="required">*</span>
 								{!! Form::file('image', null, array('class' => 'form-control')) !!}
 							</div>
 							<div class="form-group">
 								<label>Order</label><span class="required">*</span>
 								{!! Form::number('order', null, array('placeholder' => 'Order','class' => 'form-control')) !!}
-							</div>
+							</div> --}}
 						</div> 
 						<div class="col-xs-12 col-sm-12 col-md-12 text-right">
 		                    <a href="{{ route('categories.index') }}">

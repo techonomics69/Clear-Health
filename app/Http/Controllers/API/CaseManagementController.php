@@ -649,7 +649,7 @@ public function CreateCase(Request $request){
        
 
        if(!empty( $message_data)){
-        $message_data = date("M j H:i");
+        $message_data['date'] = date("M j H:i");
         return $this->sendResponse($message_data,'Message created successfully');
       }else{
         return $this->sendResponse(array(),'Some thing went wrong.');
@@ -1035,7 +1035,7 @@ public function CreateCase(Request $request){
       $message_data['file_path'] = $file_path;
       $message_data['mime_type'] = $file_mimeType;
     }
-    $message_data['msg_date'] = date('M j H:i');
+    $message_data['date'] = date("M j H:i");
 
     return $this->sendResponse($message_data,'Message created successfully');
 

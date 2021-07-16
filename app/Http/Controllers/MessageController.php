@@ -91,9 +91,6 @@ class MessageController extends Controller
         $user_id = $message[0]->user_id;
         $html = '';
         foreach ($message as $key => $value) :
-            echo '<pre>';
-            print_r($value);
-            die;
             $createdAt = Carbon::parse($value->created_at);
             $time =  $createdAt->format('H:i:s m/d/Y');
             if ($value->sender == 'user') :

@@ -85,15 +85,12 @@ class MessageController extends Controller
         $message = DB::table('messages')
             ->where('user_id', $data['user_id'])
             ->join('users', 'messages.user_id', '=', 'users.id')
-            ->select('users.first_name', 'users.last_name', 'messages.user_id', 'messages.created_at', 'messages.text')
+            ->select('users.first_name', 'users.last_name', 'messages.user_id', 'messages.created_at', 'messages.text', 'messages.sender')
             ->get();
         $username = '<b>' . $message[0]->first_name . ' ' . $message[0]->last_name . '</b>';
         $user_id = $message[0]->user_id;
         $html = '';
         foreach ($message as $key => $value) :
-            echo '<pre>';
-            print_r($value);
-            die;
             $createdAt = Carbon::parse($value->created_at);
             $time =  $createdAt->format('H:i:s m/d/Y');
             if ($value->sender == 'user') :

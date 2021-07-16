@@ -293,6 +293,7 @@ Route::group(['middleware' => ['auth:web']], function () {
     //Message
     Route::get('admin/message', [MessageController::class, 'index'])->name('message.index');
     Route::post('admin/getMedicalMessage', [MessageController::class, 'getMedicalMessage'])->name('getMedicalMessage');
+    Route::post('admin/getNonMedicalMessage', [MessageController::class, 'getNonMedicalMessage'])->name('getNonMedicalMessage');
 });
 
 //Strip Payment APIs

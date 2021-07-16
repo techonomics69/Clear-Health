@@ -185,7 +185,7 @@ class PaymentsController extends BaseController
             //     $updateData['status'] = 'cancelled';
 
                 //Cancel order from ShipStations
-                dd('here');
+                
                 try{
                     $shipCancel = shipStationHelper::cancelShipstationOrder($data['shipstation_order_id']);
                     dd($shipCancel);

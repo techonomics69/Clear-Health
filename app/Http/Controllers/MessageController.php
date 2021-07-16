@@ -41,14 +41,12 @@ class MessageController extends Controller
             ->get();
         foreach ($adminMsg as $key => $value) :
             $createdAt = Carbon::parse($value->msg_time);
-            $value->msg_time =  $createdAt->format('H:i:s m/d/Y');
-            dd($value);
-        endforeach;
-        dd($adminMsg);
+            $value->msg_time =  $createdAt->format('H:i:s m/d/Y');            
+        endforeach;        
 
         $user_case_management_data['user_id'] = '';
         $user_case_management_data['id'] = '';
-        return view('messages.index', compact('user_case_management_data', 'mdList'));
+        return view('messages.index', compact('user_case_management_data', 'mdList', 'adminMsg'));
     }
 
     public function getMedicalMessage(Request $request)

@@ -66,7 +66,7 @@
                                                     </div>
                                                 </div>
                                                 <div id="support" class="tab-pane fane in support"></div>
-                                                <div id="nonmedical" class="tab-pane fade in nonmedicalmsg">                                                   
+                                                <div id="nonmedical" class="tab-pane fade in nonmedicalmsg">
                                                     <div class="row" style="padding: 10px;">
                                                         <div class="col-md-3">
                                                             <div class="right-cht">
@@ -113,6 +113,7 @@
                                                                     </div>
                                                                     <div class="sending lastimg">
                                                                         <button type="button" id="sendAdminMsg"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
+                                                                        <input type="hidden" id="userId" value="">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -172,6 +173,7 @@
                 success: function(result) {
                     $('#usernameLabelAdmin').html(result.username);
                     $('#messageDataAdmin').html(result.html);
+                    $('#userId').val(result.userId);
                     $("#messageDataAdmin").animate({
                         scrollTop: $("#messageDataAdmin")[0].scrollHeight
                     }, 1000);

@@ -87,7 +87,7 @@ class MessageController extends Controller
             ->join('users', 'users.id', '=', 'messages.user_id')
             ->get();
         $username = '<b>' . $message[0]->first_name . ' ' . $message[0]->last_name . '</b>';
-
+        $user_id = $message[0]->user_id;
         $html = '';
         foreach ($message as $key => $value) :
             $createdAt = Carbon::parse($value->created_at);
@@ -107,6 +107,7 @@ class MessageController extends Controller
 
         $data['html'] = $html;
         $data['username'] = $username;
+        $data['userId'] = $user_id;
         return json_encode($data);
     }
 }

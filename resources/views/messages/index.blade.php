@@ -197,6 +197,9 @@
                    if(result != false){
                     $('#messageDataAdmin').append(result);
                    }
+                   $("#messageDataAdmin").animate({
+                        scrollTop: $("#messageDataAdmin")[0].scrollHeight
+                    }, 1000);
                 }
             });
         });

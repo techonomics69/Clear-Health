@@ -188,7 +188,7 @@ class PaymentsController extends BaseController
                 
                 try{
                     $shipCancel = shipStationHelper::cancelShipstationOrder($data['shipstation_order_id']);
-                    $shipStatus = $shipCancel['status'];
+                    $shipStatus = json_decode(json_encode($shipCancel), true);
 
                     dd($shipStatus);
                 }catch(\Exception $e){

@@ -42,7 +42,10 @@ class MessageController extends Controller
         foreach ($adminMsg as $key => $value) :
             $createdAt = Carbon::parse($value->msg_time);
             $value->msg_time =  $createdAt->format('H:i:s m/d/Y');            
-        endforeach;        
+        endforeach;     
+        echo '<pre>';
+        print_r($adminMsg);
+        die;   
         dd($adminMsg);
         $user_case_management_data['user_id'] = '';
         $user_case_management_data['id'] = '';

@@ -364,7 +364,7 @@ class CheckoutController extends BaseController
     }
 
     $orderlist['system_status'] = $system_status;
-    $orderlist['case_type'] = $case_type;
+    $orderlist['md_case_type'] = $md_case_type;
       
 
     

@@ -320,7 +320,7 @@
 											<td width="20%" onclick="questionsCollapse('collapseF{{$findex}}')"><?php echo date("m-d-Y",strtotime($fvalue->created_at)); ?></td>
 											<td width="20%" onclick="questionsCollapse('collapseF{{$findex}}')"><span><?php if(count($accutane_que)>0){ echo "Accutane"; }else if(count($topical_que)>0){ echo "Topical"; } ?></span></td>
 											<td width="20%" onclick="questionsCollapse('collapseF{{$findex}}')">Follow Up: {{$fvalue->follow_up_no}}</td>
-											<td width="20%"><i class="fa fa-file-text" aria-hidden="true" data-toggle="modal" data-target="#exampleModalCenter"></i></td>
+											<td width="20%" style="padding-left: 15px;"><i class="fa fa-file-text" aria-hidden="true" data-toggle="modal" data-target="#exampleModalCenter"></i></td>
 										</tr>
 									</table>
 								</div>

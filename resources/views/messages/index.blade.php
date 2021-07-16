@@ -34,12 +34,12 @@
                                     <div class="col-md-12">
                                         <section class="card">
                                             <ul class="nav nav-tabs" id="messages-tab-menu">
-                                                <li><a class="btn @if($msg_tab != 1) active @endif" data-toggle="tab" href="#medical">Medical Messgaes</a></li>
+                                                <li><a class="btn active" data-toggle="tab" href="#medical">Medical Messgaes</a></li>
                                                 <li><a class="btn nonmedicalmsg" data-toggle="tab" href="#nonmedical" onclick="Gotobottom();">Non-Medical Messgaes</a></li>
                                                 <li><a class="btn support" data-toggle="tab" href="#support">Support</a></li>
                                             </ul>
                                             <div class="tab-content">
-                                                <div id="medical" class="tab-pane fade in @if($msg_tab != 1) active show @endif">
+                                                <div id="medical" class="tab-pane fade in active show">
                                                     <div class="row" style="padding: 10px;">
                                                         <div class="col-md-3">
                                                             <div class="right-cht">
@@ -58,6 +58,7 @@
                                                         <div class="col-md-9">
                                                             <div class="right-cht">
                                                                 <div class="chating-section medicalmessages">
+                                                                    <h3 id="usernameLabel"></h3>
                                                                     <ul id="messageData"></ul>
                                                                 </div>
                                                             </div>
@@ -235,9 +236,12 @@
                     "_token": "{{ csrf_token() }}",
                     case_id: case_id
                 },
-                success: function(result) {                                  
-                    $('#messageData').html(result);
-                    $("#messageData").animate({ scrollTop: $("#messageData")[0].scrollHeight}, 1000);
+                success: function(result) {
+                    $('#usernameLabel').html(result.username);
+                    $('#messageData').html(result.html);
+                    $("#messageData").animate({
+                        scrollTop: $("#messageData")[0].scrollHeight
+                    }, 1000);
                 }
             });
         })

@@ -39,29 +39,31 @@ class MessageController extends Controller
     public function getMedicalMessage(Request $request)
     {
         $data = $request->all();
-        $message = MdMessages::where('case_id', $data['case_id'])
-                    ->join('users', 'users.id', '=', 'md_messages.user_id')
-                    ->select('md_messages.msg_time, md_messages.from, md_messages.text, users.first_name, user.last_name')
-                    ->get();
+        $message = DB::table('md_messages')
+            ->where('case_id', $data['case_id'])
+            ->join('users', 'users.id', '=', 'md_messages.user_id')
+            ->get();
+        $username = '<b>'.$message[0]->first_name . ' ' . $message[0]->last_name.'</b>';
 
-        $html = '<h3>' . $message[0]['first_name'] .' '. $message[0]['last_name'] . '</h3>';
+        $html = '';
         foreach ($message as $key => $value) :
-            $createdAt = Carbon::parse($value->msg_time);
+            $createdAt = Carbon::parse($value->message_created_at);
             $time =  $createdAt->format('H:i:s m/d/Y');
             if ($value->from == 'patient') :
                 $class =  'left';
-            else:
+            else :
                 $class =  'right';
             endif;
-            $html .= '<li class="'.$class.'">
+            $html .= '<li class="' . $class . '">
                     <div class = "time_messages" > 
                         <p class = "text_mesg">' . $value->text . '</p>
-                        <h5>'.$time.'</h5>
+                        <h5>' . $time . '</h5>
                     </div>
                 </li>';
         endforeach;
 
-
-        return json_encode($html);
+        $data['html'] = $html;
+        $data['username'] = $username;
+        return json_encode($data);
     }
 }

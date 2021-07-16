@@ -1,0 +1,9 @@
+1.Open Postman
+2.Import built
+3.Register
+4.Login
+5.add_profile -> enter first name and last name
+5.Copy Token
+6.Open add_workshop
+7.Click on select file and upload video
+8.Goto Header -> authorization -> Bearer -> paste token and click on send button 

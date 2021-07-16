@@ -54,9 +54,9 @@ class CmsController extends Controller
         $this->validate($request, [
             'title' => 'required',
            /* 'url' => ['regex:'.$regex,'nullable'],*/
-            'meta_title' => 'required',
+            /*'meta_title' => 'required',
             'meta_description' => 'required',
-            'meta_keyword' => 'required',
+            'meta_keyword' => 'required',*/
             'status' => 'required',
             'description' => 'required'
         ],[
@@ -113,9 +113,9 @@ class CmsController extends Controller
         $this->validate($request, [
             'title' => 'required',
             /*'url' => ['regex:'.$regex,'nullable'],*/
-            'meta_title' => 'required',
+           /* 'meta_title' => 'required',
             'meta_description' => 'required',
-            'meta_keyword' => 'required',
+            'meta_keyword' => 'required',*/
             'status' => 'required',
             'description' => 'required'
         ]);  

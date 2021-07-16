@@ -262,12 +262,7 @@ class shipStationHelper {
         $app= App::getFacadeRoot();
     	$app->make('LaravelShipStation\ShipStation');
     	$shipStation = $app->make('LaravelShipStation\ShipStation');
-        $order = new LaravelShipStation\Models\Order();
-        $order->orderStatus = 'cancelled';
-        $order->orderKey = 'cf5c1725ad284f1683f6bdc789a78ec5';
-        dd($order);
-        $shipment = $shipStation->orders->update($order, $orderId);
-        dd($shipment);
+        $shipment = $shipStation->orders->delete($orderId);
         return $shipment;
     }
 

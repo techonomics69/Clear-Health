@@ -221,7 +221,7 @@
 								<div class="card-header" id="headingOne">
 									
 										<table width="100%">
-											<tr style="cursor: pointer;" onclick="questionsCollapse('collapseOne')" style="background-color: #359b9e;;">
+											<tr style="cursor: pointer;" style="background-color: #359b9e;;">
 												<td width="20%" onclick="questionsCollapse('collapseOne')">1</td>
 												<td width="20%" onclick="questionsCollapse('collapseOne')"><?php if(isset($general['created_at'])) if(!empty($general['created_at'])) echo date("m-d-Y",strtotime($general['created_at'])) ?></td>
 												<td width="20%" onclick="questionsCollapse('collapseOne')"><span><?php if(count($accutane_que)>0){ echo "Accutane"; }else if(count($topical_que)>0){ echo "Topical"; } ?></span></td>

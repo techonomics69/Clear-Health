@@ -1956,4 +1956,9 @@ for (i = 0; i < coll.length; i++) {
     border-top-left-radius: 0.27rem;
     border-top-right-radius: 0.27rem;
 }
+.myexamplemodal .status_heading{
+	style="color:#359b9e;
+	font-size: 30px;
+    font-weight: 600;
+}
 </style>

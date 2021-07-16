@@ -58,7 +58,7 @@ class CheckoutController extends BaseController
 
         if($val['medication_type'] == 1){
 
-          $followUp_data = FollowUp::where('user_id',$orderlist['user_id'])->where('case_id',$orderlist['case_id'])->get();
+          $followUp_data = FollowUp::where('user_id',$val['user_id'])->where('case_id',$val['case_id'])->get();
 
           if(!empty($followUp_data)){
 
@@ -68,7 +68,7 @@ class CheckoutController extends BaseController
            $md_case_type = "Initial";
          }
 
-
+         $orderlist[$key]->md_case_type = $md_case_type;
        }
       }
 
@@ -384,6 +384,7 @@ class CheckoutController extends BaseController
          $md_case_type = "Initial";
       }
       
+       $orderlist['md_case_type'] = $md_case_type;
 
     }else{
       $system_status = "";
@@ -391,7 +392,7 @@ class CheckoutController extends BaseController
     }
 
     $orderlist['system_status'] = $system_status;
-    $orderlist['md_case_type'] = $md_case_type;
+   
       
 
     

@@ -41,9 +41,9 @@ class MessageController extends Controller
             ->get();
         foreach ($adminMsg as $key => $value) :
             $createdAt = Carbon::parse($value->msg_time);
-            $value->msg_time =  $createdAt->format('H:i:s m/d/Y');            
-        endforeach;     
-        
+            $value->msg_time =  $createdAt->format('H:i:s m/d/Y');
+        endforeach;
+
         $user_case_management_data['user_id'] = '';
         $user_case_management_data['id'] = '';
         return view('messages.index', compact('user_case_management_data', 'mdList', 'adminMsg'));
@@ -85,11 +85,15 @@ class MessageController extends Controller
         $message = DB::table('messages')
             ->where('user_id', $data['user_id'])
             ->join('users', 'users.id', '=', 'messages.user_id')
+            ->select('users.first_name, users.last_name, messages.user_id, messages.created_at, messages.text')
             ->get();
         $username = '<b>' . $message[0]->first_name . ' ' . $message[0]->last_name . '</b>';
         $user_id = $message[0]->user_id;
         $html = '';
         foreach ($message as $key => $value) :
+            echo '<pre>';
+            print_r($value);
+            die;
             $createdAt = Carbon::parse($value->created_at);
             $time =  $createdAt->format('H:i:s m/d/Y');
             if ($value->sender == 'user') :
@@ -119,10 +123,17 @@ class MessageController extends Controller
         $data['sender'] = 'admin';
 
         $message = Messages::create($data);
-
-        if($message){
-            return true;
-        }else{
+        $createdAt = Carbon::now();
+        $time =  $createdAt->format('H:i:s m/d/Y');
+        $html = '<li class="right">
+                    <div class="time_messages"> 
+                        <p class="text_mesg">' . $data['text'] . '</p>
+                        <h5>'.$time.'</h5>
+                    </div>
+                </li>';
+        if ($message) {
+            return json_encode($html);
+        } else {
             return false;
         }
     }

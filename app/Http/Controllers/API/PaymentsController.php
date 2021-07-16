@@ -203,14 +203,14 @@ class PaymentsController extends BaseController
 
                 // echo $diffCounter;
                 // die();
-                $diffProds = array_diff_assoc($product_id, $products);
-                return $this->sendError($diffProds); 
-                if($products !== $product_id){
-                    return $this->sendError('Products are not same');    
-                }else{
-                    return $this->sendError('Can not update plan! please select new products');    
-                }
-                die();
+                // $diffProds = array_diff_assoc($product_id, $products);
+                // return $this->sendError($diffProds); 
+                // if($products !== $product_id){
+                //     return $this->sendError('Products are not same');    
+                // }else{
+                //     return $this->sendError('Can not update plan! please select new products');    
+                // }
+                // die();
             }else{
                 return $this->sendError('Subscriptions data not found');
             }

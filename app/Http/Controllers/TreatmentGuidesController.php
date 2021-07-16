@@ -26,12 +26,7 @@ class TreatmentGuidesController extends Controller
   {
      $treatmentguides = TreatmentGuides::get()->toArray();
 
-    echo "<pre>";
-    print_r(count($treatmentguides));
-    echo "<pre>";
-    exit();
-
-     if(count($treatmentguides) > 3){
+     if(count($treatmentguides) >= 3){
        toastr()->error('Max 3 Treatment Guides Can be added');
       return redirect()->route('treatmentGuides.index');
      }else{

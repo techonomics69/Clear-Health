@@ -182,19 +182,25 @@ class PaymentsController extends BaseController
             //     //Get Refund object from stripe;
             //     $refundData = $refund->jsonSerialize();
             //     $updateData['strip_refund_object'] = $refundData;
-            //     $updateData['status'] = 'cancelled';
+            
 
                 //Cancel order from ShipStations
                 
                 try{
                     $shipCancel = shipStationHelper::cancelShipstationOrder($data['shipstation_order_id']);
                     $shipStatus = json_decode(json_encode($shipCancel), true);
-
-                    dd($shipStatus['success']);
+                    dd($shipStatus);
                 }catch(\Exception $e){
-                    $apiError = $e->getMessage();
+                    $shiapiError = $e->getMessage();
                 }
 
+                // if(empty($shiapiError) && $shipStatus['success']){  
+                //     $updateData['status'] = 'cancelled';    
+                //     $updateOrder = Checkout::where('id',$data['order_id'])->update([$updateData]);
+                //     return $this->sendResponse(array(), 'Order Cancelled successfully');
+                // }else{
+                //         return $this->sendError('Error in Deleting Shipstation order : ' . $shiapiError);
+                // }
                 
 
             // }else{

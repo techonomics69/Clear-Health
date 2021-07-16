@@ -53,7 +53,7 @@ class MessageController extends Controller
     {
         $data = $request->all();
         $message = DB::table('md_messages')
-            ->where('user_id', $data['user_id'])
+            ->where('case_id', $data['case_id'])
             ->join('users', 'users.id', '=', 'md_messages.user_id')
             ->get();
         $username = '<b>' . $message[0]->first_name . ' ' . $message[0]->last_name . '</b>';
@@ -120,6 +120,10 @@ class MessageController extends Controller
 
         $message = Messages::create($data);
 
-        dd($message);
+        if($message){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

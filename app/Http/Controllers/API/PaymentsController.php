@@ -188,10 +188,14 @@ class PaymentsController extends BaseController
                 
                 try{
                     $shipCancel = shipStationHelper::cancelShipstationOrder($data['shipstation_order_id']);
-                    dd($shipCancel);
+                    $shipStatus = $shipCancel->jsonSerialize();
+
+                    dd($shipStatus);
                 }catch(\Exception $e){
                     $apiError = $e->getMessage();
                 }
+
+                
 
             // }else{
             //     return $this->sendError('Error in Refunding amount: ' . $apiError);

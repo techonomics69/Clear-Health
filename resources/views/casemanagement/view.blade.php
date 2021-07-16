@@ -1946,4 +1946,13 @@ for (i = 0; i < coll.length; i++) {
     background-color: #ffffff;
     margin-left: 0 !important;
 }
+.myexamplemodal .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 1px solid #98A4B8;
+    border-top-left-radius: 0.27rem;
+    border-top-right-radius: 0.27rem;
+}
 </style>

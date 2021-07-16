@@ -1862,7 +1862,7 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade myexamplemodal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -1911,7 +1911,7 @@ for (i = 0; i < coll.length; i++) {
 </script>
 
 <style>
-.collapsible {
+.myexamplemodal .collapsible {
   background-color: #777;
   color: white;
   cursor: pointer;
@@ -1923,11 +1923,11 @@ for (i = 0; i < coll.length; i++) {
   font-size: 15px;
 }
 
-.active, .collapsible:hover {
+.myexamplemodal .active, .collapsible:hover {
   background-color: #555;
 }
 
-.collapsible:after {
+.myexamplemodal .collapsible:after {
   content: '\002B';
   color: white;
   font-weight: bold;
@@ -1935,9 +1935,15 @@ for (i = 0; i < coll.length; i++) {
   margin-left: 5px;
 }
 
-.active:after {
+.myexamplemodal .active:after {
   content: "\2212";
 }
 
-
+.myexamplemodal .content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #f1f1f1;
+}
 </style>

@@ -196,7 +196,7 @@ class PaymentsController extends BaseController
 
                 if(empty($shiapiError) && $shipStatus['success']){  
                     $updateData['status'] = 'cancelled';    
-                    $updateOrder = Checkout::where('id',$data['order_id'])->update([$updateData]);
+                    $updateOrder = Checkout::where('id',$data['order_id'])->update($updateData);
                     return $this->sendResponse(array(), 'Order Cancelled successfully');
                 }else{
                         return $this->sendError('Error in Deleting Shipstation order : ' . $shiapiError);

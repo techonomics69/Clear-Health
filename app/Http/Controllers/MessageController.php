@@ -83,11 +83,11 @@ class MessageController extends Controller
     {
         $data = $request->all();
         $message = DB::table('messages')
-            ->where('case_id', $data['case_id'])
+            ->where('user_id', $data['user_id'])
             ->join('users', 'users.id', '=', 'messages.user_id')
             ->get();
         $username = '<b>' . $message[0]->first_name . ' ' . $message[0]->last_name . '</b>';
-
+        $user_id = $message[0]->user_id;
         $html = '';
         foreach ($message as $key => $value) :
             $createdAt = Carbon::parse($value->created_at);
@@ -107,6 +107,14 @@ class MessageController extends Controller
 
         $data['html'] = $html;
         $data['username'] = $username;
+        $data['userId'] = $user_id;
         return json_encode($data);
+    }
+    public function sendNonMedicalMessage(Request $request)
+    {
+        $data = $request->all();
+        echo '<pre>';
+        print_r($data);
+        die;
     }
 }

@@ -183,7 +183,9 @@
 
         $('#sendAdminMsg').on('click', function() {
             var text = $('#text').val();
+            var user_id = $('#userId').val();
             alert(text);
+            alert(user_id);
         });
     });
 </script>

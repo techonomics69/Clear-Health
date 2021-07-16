@@ -1872,12 +1872,11 @@
         </button>
       </div>
       <div class="modal-body">
-          
-          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+           <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
     <div class="panel panel-default">
       <div class="panel-heading" role="tab" id="headingOne">
         <h4 class="panel-title">
-        <a role="button" data-toggle="collapse in show" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
           Collapsible Group Item #1
         </a>
       </h4>
@@ -1923,6 +1922,7 @@
       </div>
     </div>
   </div>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -1933,7 +1933,8 @@
 </div>
 
 <style>
-    
+
+
 .panel-default>.panel-heading {
   color: #333;
   background-color: #fff;
@@ -2010,4 +2011,4 @@
 .accordion-option .toggle-accordion.active:before {
   content: "Collapse All";
 }
-</style>
+	</style>

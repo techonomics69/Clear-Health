@@ -320,6 +320,7 @@
 											<td width="20%"><?php echo date("m-d-Y",strtotime($fvalue->created_at)); ?></td>
 											<td width="20%"><span><?php if(count($accutane_que)>0){ echo "Accutane"; }else if(count($topical_que)>0){ echo "Topical"; } ?></span></td>
 											<td width="20%">Follow Up: {{$fvalue->follow_up_no}}</td>
+											<td width="20%"><i class="fa fa-eye"></i></td>
 										</tr>
 									</table>
 								</div>

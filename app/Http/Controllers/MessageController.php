@@ -30,7 +30,7 @@ class MessageController extends Controller
             $value->msg_time =  $createdAt->format('H:i:s m/d/Y');
         endforeach;
         //dd($mdList);               
-        $adminMsg = Messages::orderBy('id', 'DESC')->get();
+        $adminMsg = Messages::groupBy('user_id')->orderBy('id', 'DESC')->get();
         dd($adminMsg);
         
         $user_case_management_data['user_id'] = '';

@@ -1945,6 +1945,6 @@ for (i = 0; i < coll.length; i++) {
     overflow: hidden;
     transition: max-height 0.2s ease-out;
     background-color: #f1f1f1;
-    margin-left: 0;
+    margin-left: 0 !important;
 }
 </style>

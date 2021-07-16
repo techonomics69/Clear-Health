@@ -29,7 +29,7 @@ class MessageController extends Controller
             $value->msg_time =  $createdAt->format('H:i:s m/d/Y');
         endforeach;
         //dd($mdList);               
-        $msg_tab = '';
+        
         $msg_history = [];
         $user_case_management_data['user_id'] = '';
         $user_case_management_data['id'] = '';

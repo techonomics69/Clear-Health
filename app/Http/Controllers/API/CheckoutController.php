@@ -60,7 +60,7 @@ class CheckoutController extends BaseController
 
           $followUp_data = FollowUp::where('user_id',$val['user_id'])->where('case_id',$val['case_id'])->get();
 
-          if(!empty($followUp_data)){
+          if(!empty($followUp_data) && count($followUp_data)>0){
 
             $md_case_type = "Follow UP";
           }

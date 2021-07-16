@@ -315,11 +315,13 @@
 							<div class="card subcard">
 								<div class="card-header" id="headingTwo{{$findex}}">
 									<table width="100%">
-										<tr style="cursor: pointer;" onclick="questionsCollapse('collapseF{{$findex}}')" style="background-color: #359b9e;;">
-											<td width="20%">{{$findex}}</td>
+										<tr style="cursor: pointer;" >
+											<tr width="20%" onclick="questionsCollapse('collapseF{{$findex}}')" style="background-color: #359b9e;">
+												<td width="20%">{{$findex}}</td>
 											<td width="20%"><?php echo date("m-d-Y",strtotime($fvalue->created_at)); ?></td>
 											<td width="20%"><span><?php if(count($accutane_que)>0){ echo "Accutane"; }else if(count($topical_que)>0){ echo "Topical"; } ?></span></td>
 											<td width="20%">Follow Up: {{$fvalue->follow_up_no}}</td>
+											</tr>
 											<td width="20%"><i class="fa fa-file-text" aria-hidden="true" data-toggle="modal" data-target="#exampleModalCenter"></i></td>
 										</tr>
 									</table>

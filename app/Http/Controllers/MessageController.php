@@ -113,6 +113,11 @@ class MessageController extends Controller
     public function sendNonMedicalMessage(Request $request)
     {
         $data = $request->all();
+        $data['case_id'] = null;
+        $data['md_case_id'] = 0;
+        $data['users_message_type'] = 'Non-Medical';
+        $data['sender'] = 'admin';
+
         echo '<pre>';
         print_r($data);
         die;

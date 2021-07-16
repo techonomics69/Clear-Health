@@ -316,10 +316,10 @@
 								<div class="card-header" id="headingTwo{{$findex}}">
 									<table width="100%">
 										<tr style="cursor: pointer;" onclick="questionsCollapse('collapseF{{$findex}}')" style="background-color: #359b9e;;">
-											<td width="25%">{{$findex}}</td>
-											<td width="25%"><?php echo date("m-d-Y",strtotime($fvalue->created_at)); ?></td>
-											<td width="25%"><span><?php if(count($accutane_que)>0){ echo "Accutane"; }else if(count($topical_que)>0){ echo "Topical"; } ?></span></td>
-											<td width="25%">Follow Up: {{$fvalue->follow_up_no}}</td>
+											<td width="20%">{{$findex}}</td>
+											<td width="20%"><?php echo date("m-d-Y",strtotime($fvalue->created_at)); ?></td>
+											<td width="20%"><span><?php if(count($accutane_que)>0){ echo "Accutane"; }else if(count($topical_que)>0){ echo "Topical"; } ?></span></td>
+											<td width="20%">Follow Up: {{$fvalue->follow_up_no}}</td>
 										</tr>
 									</table>
 								</div>

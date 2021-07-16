@@ -194,7 +194,9 @@
                     text: text
                 },
                 success: function(result) {
-                    console.log(result);
+                   if(result != false){
+                    $('#messageDataAdmin').append(result);
+                   }
                 }
             });
         });

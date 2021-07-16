@@ -359,7 +359,7 @@ class CheckoutController extends BaseController
     }else{
 
       $system_status = "";
-      $md_case_type = "";
+      $md_case_type = "Initial";
 
     }
 

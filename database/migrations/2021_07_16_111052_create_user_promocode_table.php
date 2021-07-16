@@ -13,7 +13,7 @@ class CreateUserPromocodeTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_promocode', function (Blueprint $table) {
+        Schema::create('user_promocodes', function (Blueprint $table) {
             $table->id();
             $table->string('promocode');
             $table->string('user_id');

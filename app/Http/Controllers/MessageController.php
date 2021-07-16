@@ -33,7 +33,7 @@ class MessageController extends Controller
         $msg_history = [];
         $user_case_management_data['user_id'] = '';
         $user_case_management_data['id'] = '';
-        return view('messages.index', compact('msg_tab', 'msg_history', 'user_case_management_data', 'mdList'));
+        return view('messages.index', compact('msg_history', 'user_case_management_data', 'mdList'));
     }
 
     public function getMedicalMessage(Request $request)

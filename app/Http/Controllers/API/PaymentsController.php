@@ -191,6 +191,7 @@ class PaymentsController extends BaseController
                 }catch(\Exception $e){
                     $apiError = $e->getMessage();
                 }
+                
             // }else{
             //     return $this->sendError('Error in Refunding amount: ' . $apiError);
             // }

@@ -34,12 +34,12 @@
                                     <div class="col-md-12">
                                         <section class="card">
                                             <ul class="nav nav-tabs" id="messages-tab-menu">
-                                                <li><a class="btn @if($msg_tab != 1) active @endif" data-toggle="tab" href="#medical">Medical Messgaes</a></li>
+                                                <li><a class="btn active" data-toggle="tab" href="#medical">Medical Messgaes</a></li>
                                                 <li><a class="btn nonmedicalmsg" data-toggle="tab" href="#nonmedical" onclick="Gotobottom();">Non-Medical Messgaes</a></li>
                                                 <li><a class="btn support" data-toggle="tab" href="#support">Support</a></li>
                                             </ul>
                                             <div class="tab-content">
-                                                <div id="medical" class="tab-pane fade in @if($msg_tab != 1) active show @endif">
+                                                <div id="medical" class="tab-pane fade in active show">
                                                     <div class="row" style="padding: 10px;">
                                                         <div class="col-md-3">
                                                             <div class="right-cht">

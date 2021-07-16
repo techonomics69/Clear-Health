@@ -353,6 +353,11 @@ class CheckoutController extends BaseController
     if($orderlist['medication_type'] == 1){
       $md_case_data = Mdcases::where('case_id',$orderlist['md_case_id'])->first();
 
+      echo "<pre>";
+      print_r($md_case_data);
+      echo "<pre>";
+      exit();
+
       $system_status = $md_case_data['system_status'];
       $md_case_type = $md_case_data['case_type'];
 

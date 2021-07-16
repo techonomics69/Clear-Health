@@ -290,12 +290,12 @@
                                         {!! Form::file('image_detail', null, array('class' => 'form-control')) !!}                                        
                                     </div>
                                 </div>
-                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                {{-- <div class="col-md-4 col-sm-6 col-xs-12">
                                     <div class="form-group">
                                         <strong>URL:</strong>
                                         {!! Form::text('url', null, array('placeholder' => 'URL','class' => 'form-control')) !!}
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="col-md-4 col-sm-6 col-xs-12">   
                                     <div class="form-group">
                                         <strong>Price:</strong>

@@ -203,7 +203,7 @@ class PaymentsController extends BaseController
 
                 // echo $diffCounter;
                 // die();
-                $diffProds = array_diff_assoc($products, $product_id);
+                $diffProds = array_diff_assoc($product_id, $products);
                 return $this->sendError($diffProds); 
                 if($products !== $product_id){
                     return $this->sendError('Products are not same');    

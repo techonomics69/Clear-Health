@@ -1279,6 +1279,7 @@ function getCaseType($user_id,$case_id,$system_case_id){
     $input_data['case_status_updated_at'] = $case_data->case_status->updated_at ;
     $input_data['user_id'] = $user_id;
     $input_data['system_case_id'] = $case_id;
+    $input_data['case_type'] = "follow_up";
 
     $md_case_data = Mdcases::create($input_data);
 

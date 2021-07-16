@@ -1866,19 +1866,34 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLongTitle">Note</h2>
+        <h2 class="modal-title" id="exampleModalLongTitle" style="color:#359b9e;font-size: 30px;
+    font-weight: 600;">Notes by MD</h2>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+          <span aria-hidden="true" >&times;</span>
         </button>
       </div>
       <div class="modal-body">  
-          <button class="collapsible active">June 14,2021</button>
+          <button class="collapsible active">07/14/2021</button>
 			<div class="content" style="max-height: 267px;">
-			  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+				<span class="case_status">
+					<p class="status_heading m-0">Case Status</p>
+				     <p> Processing</p>
+				</span>		
+				<span class="case_status">
+					<p class="status_heading m-0">Reason</p>
+				     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+				</span>			
 			</div>
-			<button class="collapsible">June 15,2021</button>
+			<button class="collapsible">07/15/2021</button>
 			<div class="content">
-			  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+				<span class="case_status">
+					<p class="status_heading m-0">Case Status</p>
+				     <p> Processing</p>
+				</span>		
+				<span class="case_status">
+					<p class="status_heading m-0">Reason</p>
+				     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+				</span>	
 			</div>
       </div>
     </div>
@@ -1904,8 +1919,8 @@ for (i = 0; i < coll.length; i++) {
 
 <style>
 .myexamplemodal .collapsible {
-/*  background-color: #777;*/
-  color: white;
+  background-color: #ffffff;
+  color: black;
   cursor: pointer;
   padding: 18px;
   width: 100%;
@@ -1916,12 +1931,12 @@ for (i = 0; i < coll.length; i++) {
 }
 
 .myexamplemodal .active, .collapsible:hover {
-/*  background-color: #555;*/
+ background-color: #ffffff;
 }
 
 .myexamplemodal .collapsible:after {
   content: '\002B';
-  color: white;
+  color: black;
   font-weight: bold;
   float: right;
   margin-left: 5px;
@@ -1935,8 +1950,25 @@ for (i = 0; i < coll.length; i++) {
     padding: 0 18px;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.2s ease-out;
+    transition: max-height 0.4s ease-out;
     background-color: #ffffff;
     margin-left: 0 !important;
+}
+.myexamplemodal .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 1px solid #98A4B8;
+    border-top-left-radius: 0.27rem;
+    border-top-right-radius: 0.27rem;
+}
+.myexamplemodal .status_heading{
+	color:#359b9e;
+	font-size: 18px;
+    font-weight: 600;
+}
+.myexamplemodal .close{
+color:#359b9e;font-size:35px;opacity: 1;
 }
 </style>

@@ -118,8 +118,8 @@ class MessageController extends Controller
         $data['users_message_type'] = 'Non-Medical';
         $data['sender'] = 'admin';
 
-        echo '<pre>';
-        print_r($data);
-        die;
+        $message = Messages::create($data);
+
+        dd($message);
     }
 }

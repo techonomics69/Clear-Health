@@ -10,7 +10,7 @@ use Stripe\Charge;
 use Stripe\Stripe;
 use Stripe\Customer;
 use Stripe\PaymentMethod;
-use Stripe\Refunds;
+use Stripe\Refund;
 use Illuminate\Http\Request;
 use App\Models\Checkout;
 use App\Models\User;
@@ -170,7 +170,7 @@ class PaymentsController extends BaseController
             } 
             Stripe::setApiKey('sk_test_51J08tDJofjMgVsOdzxZs5Aqlf5A9riwPPwlxUTriC8YPiHvTjlCBoaMjgxiqdIVfvOMPcllgR9JY7EZlihr6TJHy00ixztHFtz'); 
             try {
-                $refund = \Stripe\Refunds::create(array(
+                $refund = \Stripe\Refund::create(array(
                     'charge' => $data['charge_id'],
                 ));
             } catch (Exception $e) {

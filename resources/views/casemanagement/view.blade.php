@@ -1940,10 +1940,11 @@ for (i = 0; i < coll.length; i++) {
 }
 
 .myexamplemodal .content {
-  padding: 0 18px;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
-  background-color: #f1f1f1;
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: #f1f1f1;
+    margin-left: 0;
 }
 </style>

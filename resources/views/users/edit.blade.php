@@ -108,7 +108,7 @@
                                 </div>
                             </div>
 
-                            <p class="sub-heading">Address</p>
+                           {{--  <p class="sub-heading">Address</p> --}}
                             <div class="row">
                                 <div class="col-lg-8 ">
                                     <div class="form-group">

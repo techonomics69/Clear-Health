@@ -122,7 +122,7 @@
                                                                         <input class="form-control" type="text" name="text" placeholder="Type a message..." id="text">
                                                                     </div>
                                                                     <div class="sending lastimg">
-                                                                        <button type="submit" id="btnsubmit"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
+                                                                        <button type="button" id="sendAdminMsg"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -187,7 +187,12 @@
                     }, 1000);
                 }
             });
-        })
+        });
+
+        $('#sendAdminMsg').on('click', function() {
+            var text = $('#text').val();
+            alert(text);
+        });
     });
 </script>
 @endsection

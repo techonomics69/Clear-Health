@@ -10,6 +10,7 @@ use Stripe\Charge;
 use Stripe\Stripe;
 use Stripe\Customer;
 use Stripe\PaymentMethod;
+use Stripe\Refunds;
 use Illuminate\Http\Request;
 use App\Models\Checkout;
 use App\Models\User;
@@ -149,6 +150,41 @@ class PaymentsController extends BaseController
             //session()->flash('error', 'Invalid card details: ' . $apiError);
             //return back()->withInput();
             return $this->sendResponse(back()->withInput(), 'Invalid card details:' . $apiError);
+        }
+    }
+
+    public function CancleOrder(Request $request){
+        try{
+            $data = $request->all();
+            $validator = \Validator::make($request->all(),[ 
+                'order_id'  =>  'required',
+                'charge_id' =>  'required',
+                'shipstation_order_id'  =>  'required',
+            ], [
+                'order_id.required' =>  'Request has missing order id',
+                'charge_id.required' =>  'Request has missing charge id',
+                'shipstation_order_id'  =>  'Request has missing shipstation order id',
+            ]);
+            if($validator->fails()){
+                return $this->sendError($validator->errors()->first());
+            } 
+            Stripe::setApiKey('sk_test_51J08tDJofjMgVsOdzxZs5Aqlf5A9riwPPwlxUTriC8YPiHvTjlCBoaMjgxiqdIVfvOMPcllgR9JY7EZlihr6TJHy00ixztHFtz'); 
+            try {
+                $refund = \Stripe\Refunds::create(array(
+                    'charge' => $data['charge_id'],
+                ));
+            } catch (Exception $e) {
+                $apiError = $e->getMessage();
+            }
+            if (empty($apiError) && $refund) {
+                // Retrieve charge details 
+                $refundData = $refund->jsonSerialize();
+                dd($refundData);
+            }else{
+                return $this->sendError('Error in Refunding amount: ' . $apiError);
+            }
+        }catch(\Exception $ex){
+            return $this->sendError($ex->getMessage());
         }
     }
 

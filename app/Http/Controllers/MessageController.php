@@ -53,7 +53,7 @@ class MessageController extends Controller
     {
         $data = $request->all();
         $message = DB::table('md_messages')
-            ->where('user_id', $data['user_id'])
+            ->where('case_id', $data['case_id'])
             ->join('users', 'users.id', '=', 'md_messages.user_id')
             ->get();
         $username = '<b>' . $message[0]->first_name . ' ' . $message[0]->last_name . '</b>';
@@ -113,8 +113,17 @@ class MessageController extends Controller
     public function sendNonMedicalMessage(Request $request)
     {
         $data = $request->all();
-        echo '<pre>';
-        print_r($data);
-        die;
+        $data['case_id'] = null;
+        $data['md_case_id'] = 0;
+        $data['users_message_type'] = 'Non-Medical';
+        $data['sender'] = 'admin';
+
+        $message = Messages::create($data);
+
+        if($message){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

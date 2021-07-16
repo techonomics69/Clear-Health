@@ -24,7 +24,7 @@ class TreatmentGuidesController extends Controller
 
   public function create()
   {
-     $treatmentguides = TreatmentGuides::OrderBy('id', 'DESC')->toArray();
+     $treatmentguides = TreatmentGuides::get()->toArray();
 
      if(count($treatmentguides)> 3){
        toastr()->error('Max 3 Treatment Guides Can be added');

@@ -206,11 +206,11 @@
 								<div class="card-header">
 									<table width="100%">
 										<tr>
-											<td width="25%">Sr No.</td>
-											<td width="25%">Date</td>
-											<td wisth="25%">Product</td>
-											<td width="25%">Visit type</td>
-											
+											<td width="20%">Sr No.</td>
+											<td width="20%">Date</td>
+											<td wisth="20%">Product</td>
+											<td width="20%">Visit type</td>
+											<td width="20%">Note</td>
 										</tr>
 									</table>
 								</div>
@@ -222,10 +222,12 @@
 									
 										<table width="100%">
 											<tr style="cursor: pointer;" onclick="questionsCollapse('collapseOne')" style="background-color: #359b9e;;">
-												<td width="25%">1</td>
-												<td width="25%"><?php if(isset($general['created_at'])) if(!empty($general['created_at'])) echo date("m-d-Y",strtotime($general['created_at'])) ?></td>
-												<td width="25%"><span><?php if(count($accutane_que)>0){ echo "Accutane"; }else if(count($topical_que)>0){ echo "Topical"; } ?></span></td>
-												<td width="25%">Initials</td>
+												<td width="20%">1</td>
+												<td width="20%"><?php if(isset($general['created_at'])) if(!empty($general['created_at'])) echo date("m-d-Y",strtotime($general['created_at'])) ?></td>
+												<td width="20%"><span><?php if(count($accutane_que)>0){ echo "Accutane"; }else if(count($topical_que)>0){ echo "Topical"; } ?></span></td>
+												<td width="20%">Initials</td>
+
+												<td width="20%"><i class="fa fa-file-text" aria-hidden="true" data-toggle="modal" data-target="#exampleModalCenter"></i></td>
 											</tr>
 										</table>
 									
@@ -314,10 +316,11 @@
 								<div class="card-header" id="headingTwo{{$findex}}">
 									<table width="100%">
 										<tr style="cursor: pointer;" onclick="questionsCollapse('collapseF{{$findex}}')" style="background-color: #359b9e;;">
-											<td width="25%">{{$findex}}</td>
-											<td width="25%"><?php echo date("m-d-Y",strtotime($fvalue->created_at)); ?></td>
-											<td width="25%"><span><?php if(count($accutane_que)>0){ echo "Accutane"; }else if(count($topical_que)>0){ echo "Topical"; } ?></span></td>
-											<td width="25%">Follow Up: {{$fvalue->follow_up_no}}</td>
+											<td width="20%">{{$findex}}</td>
+											<td width="20%"><?php echo date("m-d-Y",strtotime($fvalue->created_at)); ?></td>
+											<td width="20%"><span><?php if(count($accutane_que)>0){ echo "Accutane"; }else if(count($topical_que)>0){ echo "Topical"; } ?></span></td>
+											<td width="20%">Follow Up: {{$fvalue->follow_up_no}}</td>
+											<td width="20%"><i class="fa fa-file-text" aria-hidden="true" data-toggle="modal" data-target="#exampleModalCenter"></i></td>
 										</tr>
 									</table>
 								</div>
@@ -1853,9 +1856,28 @@
    
 </style>
 
-<script>
+
+<!-- modal popup design  -->
 
 
 
-
-</script>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

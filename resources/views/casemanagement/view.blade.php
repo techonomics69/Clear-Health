@@ -222,12 +222,12 @@
 									
 										<table width="100%">
 											<tr style="cursor: pointer;" onclick="questionsCollapse('collapseOne')" style="background-color: #359b9e;;">
-												<td width="20%">1</td>
-												<td width="20%"><?php if(isset($general['created_at'])) if(!empty($general['created_at'])) echo date("m-d-Y",strtotime($general['created_at'])) ?></td>
-												<td width="20%"><span><?php if(count($accutane_que)>0){ echo "Accutane"; }else if(count($topical_que)>0){ echo "Topical"; } ?></span></td>
-												<td width="20%">Initials</td>
+												<td width="20%" onclick="questionsCollapse('collapseOne')">1</td>
+												<td width="20%" onclick="questionsCollapse('collapseOne')"><?php if(isset($general['created_at'])) if(!empty($general['created_at'])) echo date("m-d-Y",strtotime($general['created_at'])) ?></td>
+												<td width="20%" onclick="questionsCollapse('collapseOne')"><span><?php if(count($accutane_que)>0){ echo "Accutane"; }else if(count($topical_que)>0){ echo "Topical"; } ?></span></td>
+												<td width="20%" onclick="questionsCollapse('collapseOne')">Initials</td>
 
-												<td width="20%"><i class="fa fa-file-text" aria-hidden="true" data-toggle="modal" data-target="#exampleModalCenter"></i></td>
+												<td width="20%" style="padding-left: 20px;"><i class="fa fa-file-text" aria-hidden="true" data-toggle="modal" data-target="#exampleModalCenter"></i></td>
 											</tr>
 										</table>
 									
@@ -320,7 +320,7 @@
 											<td width="20%" onclick="questionsCollapse('collapseF{{$findex}}')"><?php echo date("m-d-Y",strtotime($fvalue->created_at)); ?></td>
 											<td width="20%" onclick="questionsCollapse('collapseF{{$findex}}')"><span><?php if(count($accutane_que)>0){ echo "Accutane"; }else if(count($topical_que)>0){ echo "Topical"; } ?></span></td>
 											<td width="20%" onclick="questionsCollapse('collapseF{{$findex}}')">Follow Up: {{$fvalue->follow_up_no}}</td>
-											<td width="20%" style="padding-left: 15px;"><i class="fa fa-file-text" aria-hidden="true" data-toggle="modal" data-target="#exampleModalCenter"></i></td>
+											<td width="20%" style="padding-left: 20px;"><i class="fa fa-file-text" aria-hidden="true" data-toggle="modal" data-target="#exampleModalCenter"></i></td>
 										</tr>
 									</table>
 								</div>

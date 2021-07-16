@@ -227,7 +227,7 @@
 												<td width="20%"><span><?php if(count($accutane_que)>0){ echo "Accutane"; }else if(count($topical_que)>0){ echo "Topical"; } ?></span></td>
 												<td width="20%">Initials</td>
 
-												<td width="20%"><i class="fa fa-eye"></i></td>
+												<td width="20%"><i class="fa fa-file-text" aria-hidden="true" data-toggle="modal" data-target="#exampleModalCenter"></i></td>
 											</tr>
 										</table>
 									
@@ -320,7 +320,7 @@
 											<td width="20%"><?php echo date("m-d-Y",strtotime($fvalue->created_at)); ?></td>
 											<td width="20%"><span><?php if(count($accutane_que)>0){ echo "Accutane"; }else if(count($topical_que)>0){ echo "Topical"; } ?></span></td>
 											<td width="20%">Follow Up: {{$fvalue->follow_up_no}}</td>
-											<td width="20%"><i class="fa fa-eye"></i></td>
+											<td width="20%"><i class="fa fa-file-text" aria-hidden="true" data-toggle="modal" data-target="#exampleModalCenter"></i></td>
 										</tr>
 									</table>
 								</div>
@@ -1856,9 +1856,28 @@
    
 </style>
 
-<script>
+
+<!-- modal popup design  -->
 
 
 
-
-</script>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

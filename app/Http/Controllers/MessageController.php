@@ -83,7 +83,7 @@ class MessageController extends Controller
     {
         $data = $request->all();
         $message = DB::table('messages')
-            ->where('case_id', $data['case_id'])
+            ->where('user_id', $data['user_id'])
             ->join('users', 'users.id', '=', 'messages.user_id')
             ->get();
         $username = '<b>' . $message[0]->first_name . ' ' . $message[0]->last_name . '</b>';

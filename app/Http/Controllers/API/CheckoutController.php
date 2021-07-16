@@ -68,7 +68,7 @@ class CheckoutController extends BaseController
            $md_case_type = "Initial";
          }
 
-
+         $orderlist[$key]->md_case_type = $md_case_type;
        }
       }
 

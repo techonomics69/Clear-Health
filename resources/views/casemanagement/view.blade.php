@@ -210,7 +210,7 @@
 											<td width="25%">Date</td>
 											<td wisth="25%">Product</td>
 											<td width="25%">Visit type</td>
-											
+											<td width="25%">Note</td>
 										</tr>
 									</table>
 								</div>
@@ -226,6 +226,8 @@
 												<td width="25%"><?php if(isset($general['created_at'])) if(!empty($general['created_at'])) echo date("m-d-Y",strtotime($general['created_at'])) ?></td>
 												<td width="25%"><span><?php if(count($accutane_que)>0){ echo "Accutane"; }else if(count($topical_que)>0){ echo "Topical"; } ?></span></td>
 												<td width="25%">Initials</td>
+
+												<td width="25%"><i class="fa fa-eye"></i></td>
 											</tr>
 										</table>
 									

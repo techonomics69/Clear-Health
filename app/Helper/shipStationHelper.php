@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\App;
 use DB;
 use Config;
 use App\Models\Notifications;
+use Exception;
 
 class shipStationHelper {
     
@@ -258,12 +259,10 @@ class shipStationHelper {
     }
 
     public static function cancelShipstationOrder($orderId){
-        
         $app= App::getFacadeRoot();
     	$app->make('LaravelShipStation\ShipStation');
     	$shipStation = $app->make('LaravelShipStation\ShipStation');
-        $shipment = $shipStation->orders->delete([], $endpoint = $orderId);
-        dd($orderId);
+        $shipment = $shipStation->orders->delete($orderId);
         return $shipment;
     }
 

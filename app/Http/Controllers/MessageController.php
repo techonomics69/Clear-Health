@@ -92,7 +92,7 @@ class MessageController extends Controller
         foreach ($message as $key => $value) :
             $createdAt = Carbon::parse($value->created_at);
             $time =  $createdAt->format('H:i:s m/d/Y');
-            if ($value->sender == 'patient') :
+            if ($value->sender == 'user') :
                 $class =  'left';
             else :
                 $class =  'right';

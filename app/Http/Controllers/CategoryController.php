@@ -157,11 +157,11 @@ class CategoryController extends Controller
         $category->delete();
 
         // unlink or remove previous image from folder
-        $path = public_path().'/images/Categories';
+      /*  $path = public_path().'/images/Categories';
         $oldImg = $path.'/'.$category->image;
             if (File::exists($oldImg)) : 
                 unlink($oldImg);
-            endif;
+            endif;*/
             
         toastr()->success('Category deleted successfully');
         return redirect()->route('categories.index');

@@ -66,24 +66,14 @@
                                                     </div>
                                                 </div>
                                                 <div id="support" class="tab-pane fane in support"></div>
-                                                <div id="nonmedical" class="tab-pane fade in nonmedicalmsg">
-                                                    @if(isset($message_data))
-                                                    @if(count($message_data)>0)
-                                                    @php
-                                                    $lastMsg = (count($message_data) - 1);
-                                                    @endphp
-                                                    <a href="#bottomDivMsg{{$message_data[$lastMsg]['id']}}" style="display: none;" id="gotobottomdivmsg">scroll down</a>
-                                                    @else
-                                                    <a style="display: none;" id="gotobottomdivmsg">scroll down</a>
-                                                    @endif
-                                                    @endif
+                                                <div id="nonmedical" class="tab-pane fade in nonmedicalmsg">                                                   
                                                     <div class="row" style="padding: 10px;">
                                                         <div class="col-md-3">
                                                             <div class="right-cht">
                                                                 <div class="chating-section">
                                                                     <ul>
                                                                         @foreach($adminMsg as $key => $value)
-                                                                        <li class="userAdminList" data-id="{{$value->case_id}}"><strong>{{$value->first_name}} {{$value->last_name}} - Admin</strong>
+                                                                        <li class="userAdminList" data-id="{{$value->user_id}}"><strong>{{$value->first_name}} {{$value->last_name}} - Admin</strong>
                                                                             <p>{{$value->last_msg}}</p>
                                                                             <small>{{ $value->msg_time }}</small>
                                                                         </li>

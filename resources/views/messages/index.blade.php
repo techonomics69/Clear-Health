@@ -94,7 +94,6 @@
                                                         </div>
                                                         <div class="col-md-9">
                                                             <div class="right-cht">
-                                                                {!! Form::open(array('method'=>'POST', 'enctype'=>"multipart/form-data", 'id'=>"msgForm")) !!}
                                                                 <div class="chating-section nonmedicalmessages" id="chating-section">
                                                                     <h3 id="usernameLabelAdmin"></h3>
                                                                     <ul id="messageDataAdmin"></ul>
@@ -102,8 +101,7 @@
                                                                 <div class="row">
                                                                     <div class="col-lg-12">
                                                                         <div class="p-2 pl-4">
-                                                                            <img id="blah" src="#" alt="your image" style="display: none; height: 120px;
-									width: 250px;" />
+                                                                            <img id="blah" src="#" alt="your image" style="display: none; height: 120px; width: 250px;" />
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -114,30 +112,19 @@
                                                                             <div class='file'>
                                                                                 <label for='file'>
                                                                                     <img src="{{asset('public/images/paperclip.png')}}" alt="">
-
                                                                                 </label>
                                                                                 <input id="file" type="file" name="file" onchange="loadFile(event)">
-
                                                                             </div>
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="search">
-
                                                                         <input class="form-control" type="text" name="text" placeholder="Type a message..." id="text">
-                                                                        <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
-                                                                        <input type="hidden" name="user_id" value="{{$user_case_management_data['user_id']}}" id="user_id">
-                                                                        <input type="hidden" name="case_id" value="{{$user_case_management_data['id']}}" id="case_id">
-
                                                                     </div>
                                                                     <div class="sending lastimg">
                                                                         <button type="submit" id="btnsubmit"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
-                                                                        <button type="button" id="spinnerdiv" style="display:none">
-                                                                            <span class="fa fa-spinner fa-spin"></span>
-                                                                        </button>
                                                                     </div>
                                                                 </div>
-                                                                {!! Form::close() !!}
                                                             </div>
                                                         </div>
                                                     </div>

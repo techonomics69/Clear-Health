@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\App;
 use DB;
 use Config;
 use App\Models\Notifications;
+use Exception;
 
 class shipStationHelper {
     
@@ -254,6 +255,16 @@ class shipStationHelper {
     	$app->make('LaravelShipStation\ShipStation');
     	$shipStation = $app->make('LaravelShipStation\ShipStation');
         $shipment = $shipStation->shipments->get(['orderId'=>$orderId], $endpoint = '');
+        return $shipment;
+    }
+
+    public static function cancelShipstationOrder($orderId){
+        $app= App::getFacadeRoot();
+    	$app->make('LaravelShipStation\ShipStation');
+    	$shipStation = $app->make('LaravelShipStation\ShipStation');
+        $order = new LaravelShipStation\Models\Order();
+        $order->orderStatus = 'cancelled';
+        $shipment = $shipStation->orders->update($order, $orderId);
         return $shipment;
     }
 

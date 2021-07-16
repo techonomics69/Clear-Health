@@ -194,11 +194,22 @@
                     text: text
                 },
                 success: function(result) {
-                   if(result != false){
-                    $('#messageDataAdmin').append(result);
-                   }
+                    if (result != false) {
+                        $('#text').val('');
+                        $('#messageDataAdmin').append(result);
+                    }
+                    $("#messageDataAdmin").animate({
+                        scrollTop: $("#messageDataAdmin")[0].scrollHeight
+                    }, 1000);
                 }
             });
+        });
+        var input = document.getElementById("text");
+        input.addEventListener("keyup", function(event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                document.getElementById("sendAdminMsg").click();
+            }
         });
     });
 </script>

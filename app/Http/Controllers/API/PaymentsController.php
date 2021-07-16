@@ -193,19 +193,22 @@ class PaymentsController extends BaseController
                 }    
                 $storePreviousData['subscription_id'] = $previousData['id'];
                 $product_id = explode(",",$previousData['product_id']);
-                $diffCounter = 0;
-                foreach($products as $key => $value){
-                    if(in_array($value, $product_id)){
-                    }else{
-                        $diffCounter++;
-                    }
-                }
+                // $diffCounter = 0;
+                // foreach($products as $key => $value){
+                //     if(in_array($value, $product_id)){
+                //     }else{
+                //         $diffCounter++;
+                //     }
+                // }
+
                 // echo $diffCounter;
                 // die();
-                if($diffCounter>0){
+                if($products !== $product_id){
+                    return $this->sendError('Products are not same');    
                 }else{
                     return $this->sendError('Can not update plan! please select new products');    
                 }
+                die();
             }else{
                 return $this->sendError('Subscriptions data not found');
             }

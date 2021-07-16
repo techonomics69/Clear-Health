@@ -27,7 +27,7 @@ class TreatmentGuidesController extends Controller
      $treatmentguides = TreatmentGuides::get()->toArray();
 
     echo "<pre>";
-    print_r($treatmentguides);
+    print_r(count($treatmentguides));
     echo "<pre>";
     exit();
 

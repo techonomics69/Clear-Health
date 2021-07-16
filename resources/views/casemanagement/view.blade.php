@@ -1943,7 +1943,7 @@ for (i = 0; i < coll.length; i++) {
     padding: 0 18px;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.2s ease-out;
+    transition: max-height 0.4s ease-out;
     background-color: #ffffff;
     margin-left: 0 !important;
 }

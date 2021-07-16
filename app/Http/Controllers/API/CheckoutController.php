@@ -375,7 +375,10 @@ class CheckoutController extends BaseController
 
       $followUp_data = FollowUp::where('user_id',$orderlist['user_id'])->where('case_id',$orderlist['case_id'])->get();
 
-
+      echo "<pre>";
+      print_r($followUp_data);
+      echo "<pre>";
+      exit();
     if(!empty($followUp_data)){
 
         $md_case_type = "Follow UP";
@@ -383,7 +386,7 @@ class CheckoutController extends BaseController
       else{
          $md_case_type = "Initial";
       }
-      
+
        $orderlist['md_case_type'] = $md_case_type;
 
     }else{

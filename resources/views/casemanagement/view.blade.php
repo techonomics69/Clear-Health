@@ -1875,8 +1875,12 @@
           <button class="collapsible active">07/14/2021</button>
 			<div class="content" style="max-height: 267px;">
 				<span class="case_status">
-					<p class="status_heading">Case Status</p>
+					<p class="status_heading m-0">Case Status</p>
 				     <p> Processing</p>
+				</span>		
+				<span class="case_status">
+					<p class="status_heading m-0">Reason</p>
+				     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
 				</span>			
 			</div>
 			<button class="collapsible">07/15/2021</button>

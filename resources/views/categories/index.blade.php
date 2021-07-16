@@ -73,8 +73,8 @@
 							<td>{{ $category->order }}</td> --}}
 							<td>
 							<div class="d-flex">
-								<a class="icons edit-icon" href="{{ route('categories.show',$category->id) }}">
-									<i class="fa fa-eye"></i>
+								{{-- <a class="icons edit-icon" href="{{ route('categories.show',$category->id) }}">
+									<i class="fa fa-eye"></i> --}}
 								</a>		
 								@can('category-edit')					 
 								<a class="icons edit-icon" href="{{ route('categories.edit',$category->id) }}">

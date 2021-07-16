@@ -46,7 +46,7 @@
                 <div class="card-body">
                 {!! Form::model($cms, array('route' => ['cms.update',$cms->id],'method'=>'PATCH', 'enctype'=>"multipart/form-data")) !!}
                     <div class="row">
-                            <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <strong>Title:</strong>
                                     <span class="required">*</span>
@@ -81,7 +81,7 @@
                                     {!! Form::text('meta_keyword', null, array('placeholder' => 'Meta Keyword','class' => 'form-control')) !!}
                                 </div>
                                 </div> --}}
-                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <strong>Status:</strong>
                                     <span class="required">*</span>

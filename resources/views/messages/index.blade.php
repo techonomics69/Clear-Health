@@ -82,7 +82,12 @@
                                                             <div class="right-cht">
                                                                 <div class="chating-section">
                                                                     <ul>
-                                                                        <li></li>
+                                                                        @foreach($adminMsg as $key => $value)
+                                                                        <li class="userMdList" data-id="{{$name->case_id}}"><strong>{{$name->first_name}} {{$name->last_name}} - MD</strong>
+                                                                            <p>{{$name->last_msg}}</p>
+                                                                            <small>{{ $name->msg_time }}</small>
+                                                                        </li>
+                                                                        @endforeach
                                                                     </ul>
                                                                 </div>
                                                             </div>

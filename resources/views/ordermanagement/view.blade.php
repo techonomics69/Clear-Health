@@ -401,7 +401,7 @@
 		                                   <table class="table table-responsive-md table-striped table-bordered " style="width:100%;padding:20px;" >
 			                                    <thead>
 			                                        <tr>
-			                                            <th width="60%">Item</th>
+			                                            <th width="80%">Item</th>
 			                                            <th> Cost</th>
 			                                            <th>Qty</th>
 			                                            <th>Total</th>

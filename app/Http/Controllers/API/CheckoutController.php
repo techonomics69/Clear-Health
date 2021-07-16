@@ -13,6 +13,7 @@ use App\Models\CaseManagement;
 use App\Models\Fees;
 use App\Models\Mdcases;
 use App\Models\CurexaOrder;
+use App\Models\FollowUp;
 use App\Helper\shipStationHelper;
 use Validator;
 use Exception;
@@ -34,7 +35,7 @@ class CheckoutController extends BaseController
       ->join('carts', 'carts.id', '=', 'checkout.cart_id')
       ->select('checkout.id', 'checkout.order_id', 'checkout.md_status',
        'checkout.status', 'checkout.created_at', 'checkout.updated_at', 'carts.order_type', 'checkout.cart_id', 'checkout.case_id',
-       'checkout.shipstation_order_id','checkout.shipstation_order_status')
+       'checkout.shipstation_order_id','checkout.shipstation_order_status','checkout.user_id')
       ->where('checkout.user_id', $request->user_id)
       ->OrderBy('id', 'DESC')
       ->get();
@@ -52,6 +53,21 @@ class CheckoutController extends BaseController
         }
         $orderlist[$key]->product_name = implode(', ', $product_name);
         $orderlist[$key]->product_id = "[".implode(', ', $product_id)."]";
+
+        $followUp_data = FollowUp::where('user_id',$val['user_id'])->where('case_id',$val['case_id'])->get();
+
+          echo "<pre>";
+          print_r($followUp_data);
+          echo "<pre>";
+          exit();
+
+        if(!empty($followUp_data)){
+
+          $md_case_type = "Follow UP";
+        }
+        else{
+         $md_case_type = "Initial";
+       }
       }
 
 
@@ -344,6 +360,23 @@ class CheckoutController extends BaseController
       $orderlist['curexa_datail'] = array();
     }
     
+    $followUp_data = FollowUp::where('user_id',$orderlist['user_id'])->where('case_id',$orderlist['case_id'])->get();
+
+    echo "<pre>";
+    print_r($followUp_data);
+    echo "<pre>";
+    exit();
+
+    if(!empty($followUp_data)){
+
+        $md_case_type = "Follow UP";
+      }
+      else{
+         $md_case_type = "Initial";
+      }
+
+   
+
      
 
     $users_ipledge_id = getAssignedIpledgeIdToUser($orderlist['user_id'], $orderlist['case_id'], $orderlist['md_case_id']);
@@ -354,19 +387,11 @@ class CheckoutController extends BaseController
       $md_case_data = Mdcases::where('case_id',$orderlist['md_case_id'])->first();
 
       $system_status = $md_case_data['system_status'];
-
-      if(!empty($md_case_data)){
-        $md_case_type = $md_case_data['case_type'];
-      }else{
-         $md_case_type = "Initial";
-      }
       
 
     }else{
-
       $system_status = "";
-      $md_case_type = "Initial";
-
+     
     }
 
     $orderlist['system_status'] = $system_status;

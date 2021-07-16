@@ -58,6 +58,8 @@ Route::get('getAllStates', [CaseManagementController::class, 'getAllStates']);
 Route::post('stripe_webhook', [PaymentsController::class, 'stripe_webhook']);
 //webhook
 Route::post('webhookTriggers', [MdwebhooksController::class, 'webhookTriggers']);
+//MD API
+    Route::post('create_patient', [CaseManagementController::class, 'create_patient']);
 
 Route::group(['middleware' => ['auth:api']], function () {
     Route::get("getbirthcontrol/{id}", [BirthControlController::class, 'show']);
@@ -105,7 +107,6 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('ProductRecommendBasedONTretinoinFormula', [QuizAnswerController::class, 'ProductRecommendBasedONTretinoinFormula']);
     Route::post('ProductActive', [ProductController::class, 'ProductActive']);
     //MD API
-    Route::post('create_patient', [CaseManagementController::class, 'create_patient']);
     Route::post('demo', [CaseManagementController::class, 'demo']);
     Route::post('getToken', [CaseManagementController::class, 'get_token']);
     Route::post('searchStateDetail', [CaseManagementController::class, 'searchStateDetail']); //search state data

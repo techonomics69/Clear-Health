@@ -110,4 +110,11 @@ class MessageController extends Controller
         $data['userId'] = $user_id;
         return json_encode($data);
     }
+    public function sendNonMedicalMessage(Request $request)
+    {
+        $data = $request->all();
+        echo '<pre>';
+        print_r($data);
+        die;
+    }
 }

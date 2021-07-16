@@ -184,8 +184,19 @@
         $('#sendAdminMsg').on('click', function() {
             var text = $('#text').val();
             var user_id = $('#userId').val();
-            alert(text);
-            alert(user_id);
+            $.ajax({
+                url: "{{route('sendNonMedicalMessage')}}",
+                type: "post",
+                dataType: 'json',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    user_id: user_id,
+                    text: text
+                },
+                success: function(result) {
+                    console.log(result);
+                }
+            });
         });
     });
 </script>

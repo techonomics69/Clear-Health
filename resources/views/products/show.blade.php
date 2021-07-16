@@ -89,12 +89,12 @@
             <strong>Minimum Quantity Alert:</strong>
             {{ $product->min_quantity_alert }}
         </div>
-        <div class="form-group">
+      {{--   <div class="form-group">
             <strong>URL:</strong>
             <a href="{{ $product->url }}" target="_blank"> 
 	            {{ $product->url }}
 	        </a>
-        </div>
+        </div> --}}
         <div class="form-group">
             <strong>Price:</strong>            
             {{ number_format($product->price, 2, '.', ',') }}

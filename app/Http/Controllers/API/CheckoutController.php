@@ -379,6 +379,8 @@ class CheckoutController extends BaseController
       print_r($followUp_data);
       echo "<pre>";
       exit();
+
+      
     if(!empty($followUp_data)){
 
         $md_case_type = "Follow UP";

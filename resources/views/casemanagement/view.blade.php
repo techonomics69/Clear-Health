@@ -116,7 +116,7 @@
 		<section class="card">
 			<ul class="nav nav-tabs" id="casemanagement-tab-menu">
 				<li><a class="btn removemsg @if($msg_tab != 1) active @endif " data-toggle="tab" href="#profile">Profile</a></li>
-				<li><a class="btn" data-toggle="tab" href="#questions">Questions</a></li>
+				<li><a class="btn" data-toggle="tab" href="#questions">MD Cases</a></li>
 				<li><a class="btn" data-toggle="tab" href="#skincare_summary">Skincare Summary </a></li>
 				<li><a id="action_item" class="btn" data-toggle="tab" href="#action_items">Action Items </a></li>
 				<li><a class="btn nonmedicalmsg" data-toggle="tab" href="#messages">Messages</a></li>
@@ -210,7 +210,7 @@
 											<td width="20%">Date</td>
 											<td wisth="20%">Product</td>
 											<td width="20%">Visit type</td>
-											<td width="20%">Note</td>
+											<td width="20%" style="padding-left: 40px;">Note</td>
 										</tr>
 									</table>
 								</div>
@@ -221,13 +221,13 @@
 								<div class="card-header" id="headingOne">
 									
 										<table width="100%">
-											<tr style="cursor: pointer;" onclick="questionsCollapse('collapseOne')" style="background-color: #359b9e;;">
+											<tr style="cursor: pointer;" style="background-color: #359b9e;;">
 												<td width="20%" onclick="questionsCollapse('collapseOne')">1</td>
 												<td width="20%" onclick="questionsCollapse('collapseOne')"><?php if(isset($general['created_at'])) if(!empty($general['created_at'])) echo date("m-d-Y",strtotime($general['created_at'])) ?></td>
 												<td width="20%" onclick="questionsCollapse('collapseOne')"><span><?php if(count($accutane_que)>0){ echo "Accutane"; }else if(count($topical_que)>0){ echo "Topical"; } ?></span></td>
 												<td width="20%" onclick="questionsCollapse('collapseOne')">Initials</td>
 
-												<td width="20%" style="padding-left: 20px;" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-file-text" aria-hidden="true" ></i></td>
+												<td width="20%" style="padding-left: 40px;" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-file-text" aria-hidden="true" ></i></td>
 											</tr>
 										</table>
 									
@@ -320,7 +320,7 @@
 											<td width="20%" onclick="questionsCollapse('collapseF{{$findex}}')"><?php echo date("m-d-Y",strtotime($fvalue->created_at)); ?></td>
 											<td width="20%" onclick="questionsCollapse('collapseF{{$findex}}')"><span><?php if(count($accutane_que)>0){ echo "Accutane"; }else if(count($topical_que)>0){ echo "Topical"; } ?></span></td>
 											<td width="20%" onclick="questionsCollapse('collapseF{{$findex}}')">Follow Up: {{$fvalue->follow_up_no}}</td>
-											<td width="20%" style="padding-left: 20px;" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-file-text" aria-hidden="true" ></i></td>
+											<td width="20%" style="padding-left: 40px;" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-file-text" aria-hidden="true" ></i></td>
 										</tr>
 									</table>
 								</div>
@@ -1862,22 +1862,113 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade myexamplemodal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <h2 class="modal-title" id="exampleModalLongTitle" style="color:#359b9e;font-size: 30px;
+    font-weight: 600;">Notes by MD</h2>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+          <span aria-hidden="true" >&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+      <div class="modal-body">  
+          <button class="collapsible active">07/14/2021</button>
+			<div class="content" style="max-height: 267px;">
+				<span class="case_status">
+					<p class="status_heading m-0">Case Status</p>
+				     <p> Processing</p>
+				</span>		
+				<span class="case_status">
+					<p class="status_heading m-0">Reason</p>
+				     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+				</span>			
+			</div>
+			<button class="collapsible">07/15/2021</button>
+			<div class="content">
+				<span class="case_status">
+					<p class="status_heading m-0">Case Status</p>
+				     <p> Processing</p>
+				</span>		
+				<span class="case_status">
+					<p class="status_heading m-0">Reason</p>
+				     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+				</span>	
+			</div>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  });
+}
+</script>
+
+<style>
+.myexamplemodal .collapsible {
+  background-color: #ffffff;
+  color: black;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.myexamplemodal .active, .collapsible:hover {
+ background-color: #ffffff;
+}
+
+.myexamplemodal .collapsible:after {
+  content: '\002B';
+  color: black;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.myexamplemodal .active:after {
+  content: "\2212";
+}
+
+.myexamplemodal .content {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+    background-color: #ffffff;
+    margin-left: 0 !important;
+}
+.myexamplemodal .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 1px solid #98A4B8;
+    border-top-left-radius: 0.27rem;
+    border-top-right-radius: 0.27rem;
+}
+.myexamplemodal .status_heading{
+	color:#359b9e;
+	font-size: 18px;
+    font-weight: 600;
+}
+.myexamplemodal .close{
+color:#359b9e;font-size:35px;opacity: 1;
+}
+</style>

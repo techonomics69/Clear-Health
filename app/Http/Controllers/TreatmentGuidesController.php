@@ -24,7 +24,16 @@ class TreatmentGuidesController extends Controller
 
   public function create()
   {
-    return view('treatmentGuides.create');
+     $treatmentguides = TreatmentGuides::get()->toArray();
+
+     if(count($treatmentguides) >= 3){
+       toastr()->error('Max 3 Treatment Guides Can be added');
+      return redirect()->route('treatmentGuides.index');
+     }else{
+      return view('treatmentGuides.create');
+     }
+    
+    
   }
 
   public function store(Request $request)

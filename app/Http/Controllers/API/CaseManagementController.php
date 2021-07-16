@@ -649,6 +649,7 @@ public function CreateCase(Request $request){
        
 
        if(!empty( $message_data)){
+        $message_data['date'] = date("M j H:i");
         return $this->sendResponse($message_data,'Message created successfully');
       }else{
         return $this->sendResponse(array(),'Some thing went wrong.');
@@ -848,7 +849,7 @@ public function CreateCase(Request $request){
     foreach($data as $key=>$value){
     	$msg_history[$i]['message'] = $value->text;
     	$date = strtotime($value->created_at);	
-      $msg_history[$i]['msg_date'] = date('M j', $date);
+      $msg_history[$i]['msg_date'] = date('M j H:i', $date);
       $msg_history[$i]['created_at'] = $value->created_at;
       $msg_history[$i]['read_at'] = $value->created_at;
       $msg_history[$i]['messageStatus'] = 'sent';
@@ -1034,6 +1035,7 @@ public function CreateCase(Request $request){
       $message_data['file_path'] = $file_path;
       $message_data['mime_type'] = $file_mimeType;
     }
+    $message_data['date'] = date("M j H:i");
 
     return $this->sendResponse($message_data,'Message created successfully');
 
@@ -1057,7 +1059,7 @@ public function CreateCase(Request $request){
 
       $date = strtotime($value['created_at']);
 
-      $message_data[$key]['date'] = date('M j', $date);
+      $message_data[$key]['date'] = date('M j H:i', $date);
       $message_data[$key]['created_at'] = $value['created_at'];
 
       if($value['sender'] == 'admin'){

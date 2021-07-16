@@ -35,7 +35,7 @@ class CheckoutController extends BaseController
       ->join('carts', 'carts.id', '=', 'checkout.cart_id')
       ->select('checkout.id', 'checkout.order_id', 'checkout.md_status',
        'checkout.status', 'checkout.created_at', 'checkout.updated_at', 'carts.order_type', 'checkout.cart_id', 'checkout.case_id',
-       'checkout.shipstation_order_id','checkout.shipstation_order_status','checkout.user_id')
+       'checkout.shipstation_order_id','checkout.shipstation_order_status','checkout.user_id','checkout.medication_type')
       ->where('checkout.user_id', $request->user_id)
       ->OrderBy('id', 'DESC')
       ->get();
@@ -44,10 +44,7 @@ class CheckoutController extends BaseController
 
       foreach ($orderlist as $key => $val) {
 
-        echo "<pre>";
-        print_r($val);
-        echo "<pre>";
-        exit();
+      
         $cart_ids = explode(',', $val['cart_id']);
         $product_name = array();
         $product_id = array();
@@ -59,19 +56,19 @@ class CheckoutController extends BaseController
         $orderlist[$key]->product_name = implode(', ', $product_name);
         $orderlist[$key]->product_id = "[".implode(', ', $product_id)."]";
 
-        $followUp_data = FollowUp::where('user_id',$val['user_id'])->where('case_id',$val['case_id'])->get();
+        if($val['medication_type'] == 1){
 
-          echo "<pre>";
-          print_r($followUp_data);
-          echo "<pre>";
-          exit();
+          $followUp_data = FollowUp::where('user_id',$orderlist['user_id'])->where('case_id',$orderlist['case_id'])->get();
 
-        if(!empty($followUp_data)){
+          if(!empty($followUp_data)){
 
-          $md_case_type = "Follow UP";
-        }
-        else{
-         $md_case_type = "Initial";
+            $md_case_type = "Follow UP";
+          }
+          else{
+           $md_case_type = "Initial";
+         }
+
+
        }
       }
 
@@ -365,19 +362,6 @@ class CheckoutController extends BaseController
       $orderlist['curexa_datail'] = array();
     }
     
-    $followUp_data = FollowUp::where('user_id',$orderlist['user_id'])->where('case_id',$orderlist['case_id'])->get();
-
-
-    if(!empty($followUp_data)){
-
-        $md_case_type = "Follow UP";
-      }
-      else{
-         $md_case_type = "Initial";
-      }
-
-   
-
      
 
     $users_ipledge_id = getAssignedIpledgeIdToUser($orderlist['user_id'], $orderlist['case_id'], $orderlist['md_case_id']);
@@ -388,6 +372,17 @@ class CheckoutController extends BaseController
       $md_case_data = Mdcases::where('case_id',$orderlist['md_case_id'])->first();
 
       $system_status = $md_case_data['system_status'];
+
+      $followUp_data = FollowUp::where('user_id',$orderlist['user_id'])->where('case_id',$orderlist['case_id'])->get();
+
+
+    if(!empty($followUp_data)){
+
+        $md_case_type = "Follow UP";
+      }
+      else{
+         $md_case_type = "Initial";
+      }
       
 
     }else{

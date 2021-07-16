@@ -106,7 +106,7 @@
                                 </div>
                             </div>
 
-                            <p class="sub-heading">Address</p>
+                            {{-- <p class="sub-heading">Address</p> --}}
                             <div class="row">
                                 <div class="col-lg-8 ">
                                     <div class="form-group">
@@ -153,7 +153,7 @@
                             <div class="row">
                                 <div class="col-lg-12 submit-buton text-right">
                                     <a  href="{{ route('users.index') }}"><button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button></a>
-                                    <button type="submit" class="btn btn-secondry" data-dismiss="modal" id="userSubmit">Submit</button>
+                                    <button type="submit" class="btn btn-secondry" data-dismiss="modal" id="userSubmit">Save</button>
                                 </div>
                             </div>
 

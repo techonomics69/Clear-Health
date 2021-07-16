@@ -1958,7 +1958,7 @@ for (i = 0; i < coll.length; i++) {
 }
 .myexamplemodal .status_heading{
 	color:#359b9e;
-	font-size: 30px;
+	font-size: 18px;
     font-weight: 600;
 }
 </style>

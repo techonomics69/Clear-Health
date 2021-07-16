@@ -82,10 +82,10 @@ class MessageController extends Controller
     public function getNonMedicalMessage(Request $request)
     {
         $data = $request->all();
-        $message = DB::table('users')
+        $message = DB::table('messages')
             ->where('user_id', $data['user_id'])
-            ->join('users', 'users.id', '=', 'messages.user_id')
-            ->select('users.*', 'messages.*')
+            ->join('users', 'messages.user_id', '=', 'users.id')
+            ->select('users.first_name', 'users.last_name', 'messages.user_id', 'messages.created_at', 'messages.text')
             ->get();
         $username = '<b>' . $message[0]->first_name . ' ' . $message[0]->last_name . '</b>';
         $user_id = $message[0]->user_id;
@@ -128,7 +128,7 @@ class MessageController extends Controller
         $html = '<li class="right">
                     <div class="time_messages"> 
                         <p class="text_mesg">' . $data['text'] . '</p>
-                        <h5>' . $time . '</h5>
+                        <h5>'.$time.'</h5>
                     </div>
                 </li>';
         if ($message) {

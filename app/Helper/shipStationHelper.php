@@ -265,6 +265,7 @@ class shipStationHelper {
         $order = new LaravelShipStation\Models\Order();
         $order->orderStatus = 'cancelled';
         $order->orderKey = 'cf5c1725ad284f1683f6bdc789a78ec5';
+        dd($order);
         $shipment = $shipStation->orders->update($order, $orderId);
         dd($shipment);
         return $shipment;

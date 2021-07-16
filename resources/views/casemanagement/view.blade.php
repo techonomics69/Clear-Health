@@ -1869,7 +1869,7 @@
         <h2 class="modal-title" id="exampleModalLongTitle" style="color:#359b9e;font-size: 30px;
     font-weight: 600;">Note</h2>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true" style="color:#359b9e;font-size:35px;opacity: 1;">&times;</span>
+          <span aria-hidden="true" >&times;</span>
         </button>
       </div>
       <div class="modal-body">  
@@ -1960,5 +1960,8 @@ for (i = 0; i < coll.length; i++) {
 	color:#359b9e;
 	font-size: 18px;
     font-weight: 600;
+}
+.myexamplemodal .close{
+color:#359b9e;font-size:35px;opacity: 1;
 }
 </style>

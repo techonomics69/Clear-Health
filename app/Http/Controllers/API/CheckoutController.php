@@ -43,6 +43,11 @@ class CheckoutController extends BaseController
 
 
       foreach ($orderlist as $key => $val) {
+
+        echo "<pre>";
+        print_r($val);
+        echo "<pre>";
+        exit();
         $cart_ids = explode(',', $val['cart_id']);
         $product_name = array();
         $product_id = array();
@@ -362,10 +367,6 @@ class CheckoutController extends BaseController
     
     $followUp_data = FollowUp::where('user_id',$orderlist['user_id'])->where('case_id',$orderlist['case_id'])->get();
 
-    echo "<pre>";
-    print_r($followUp_data);
-    echo "<pre>";
-    exit();
 
     if(!empty($followUp_data)){
 

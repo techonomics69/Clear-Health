@@ -1904,7 +1904,7 @@ for (i = 0; i < coll.length; i++) {
 
 <style>
 .myexamplemodal .collapsible {
-  background-color: #777;
+/*  background-color: #777;*/
   color: white;
   cursor: pointer;
   padding: 18px;
@@ -1916,7 +1916,7 @@ for (i = 0; i < coll.length; i++) {
 }
 
 .myexamplemodal .active, .collapsible:hover {
-  background-color: #555;
+/*  background-color: #555;*/
 }
 
 .myexamplemodal .collapsible:after {

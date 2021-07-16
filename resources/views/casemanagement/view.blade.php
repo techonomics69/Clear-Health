@@ -1866,9 +1866,10 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLongTitle" style="color:#359b9e;">Note</h2>
+        <h2 class="modal-title" id="exampleModalLongTitle" style="color:#359b9e;font-size: 30px;
+    font-weight: 600;">Note</h2>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true" style="color:#359b9e;">&times;</span>
+          <span aria-hidden="true" style="color:#359b9e;font-size:35px;opacity: 1;">&times;</span>
         </button>
       </div>
       <div class="modal-body">  

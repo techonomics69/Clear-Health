@@ -160,6 +160,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('customer_make_direct_payment', [PaymentsController::class, 'customer_make_direct_payment']);
     Route::post('getSubscriptionByUser', [PaymentsController::class, 'getSubscriptionByUser']);
     Route::post('changePaymentMethod', [PaymentsController::class, 'changePaymentMethod']);
+    Route::post('cancleOrder',[PaymentsController::class, 'CancleOrder']);
     
 
     //Change Plan

@@ -58,7 +58,7 @@ class CheckoutController extends BaseController
 
         if($val['medication_type'] == 1){
 
-          $followUp_data = FollowUp::where('user_id',$orderlist['user_id'])->where('case_id',$orderlist['case_id'])->get();
+          $followUp_data = FollowUp::where('user_id',$val['user_id'])->where('case_id',$val['case_id'])->get();
 
           if(!empty($followUp_data)){
 

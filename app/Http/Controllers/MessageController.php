@@ -30,17 +30,22 @@ class MessageController extends Controller
             $value->msg_time =  $createdAt->format('H:i:s m/d/Y');
         endforeach;
         //dd($mdList);               
-        $adminMsg = Messages::join('users', 'users.id','=','messages.user_id')
-                    ->select(
-                        DB::raw('count(*) as user_count, messages.user_id, users.first_name, users.last_name, messages.case_id'),
-                        DB::raw('(SELECT m.text from messages as m where m.user_id=users.id order by m.id desc limit 1) as last_msg'),
-                        DB::raw('(SELECT m.created_at from messages as m where m.user_id=users.id order by m.id desc limit 1) as msg_time')
-                    )
-                    ->groupBy('messages.user_id')
-                    ->orderBy('messages.id', 'DESC')
-                    ->get();
+        $adminMsg = Messages::join('users', 'users.id', '=', 'messages.user_id')
+            ->select(
+                DB::raw('count(*) as user_count, messages.user_id, users.first_name, users.last_name, messages.case_id'),
+                DB::raw('(SELECT m.text from messages as m where m.user_id=users.id order by m.id desc limit 1) as last_msg'),
+                DB::raw('(SELECT m.created_at from messages as m where m.user_id=users.id order by m.id desc limit 1) as msg_time')
+            )
+            ->groupBy('messages.user_id')
+            ->orderBy('messages.id', 'DESC')
+            ->get();
+        foreach ($adminMsg as $key => $value) :
+            $createdAt = Carbon::parse($value->msg_time);
+            $value->msg_time =  $createdAt->format('H:i:s m/d/Y');
+            dd($value);
+        endforeach;
         dd($adminMsg);
-        
+
         $user_case_management_data['user_id'] = '';
         $user_case_management_data['id'] = '';
         return view('messages.index', compact('user_case_management_data', 'mdList'));
@@ -53,7 +58,7 @@ class MessageController extends Controller
             ->where('case_id', $data['case_id'])
             ->join('users', 'users.id', '=', 'md_messages.user_id')
             ->get();
-        $username = '<b>'.$message[0]->first_name . ' ' . $message[0]->last_name.'</b>';
+        $username = '<b>' . $message[0]->first_name . ' ' . $message[0]->last_name . '</b>';
 
         $html = '';
         foreach ($message as $key => $value) :

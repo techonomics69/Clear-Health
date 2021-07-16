@@ -110,4 +110,16 @@ class MessageController extends Controller
         $data['userId'] = $user_id;
         return json_encode($data);
     }
+    public function sendNonMedicalMessage(Request $request)
+    {
+        $data = $request->all();
+        $data['case_id'] = null;
+        $data['md_case_id'] = 0;
+        $data['users_message_type'] = 'Non-Medical';
+        $data['sender'] = 'admin';
+
+        $message = Messages::create($data);
+
+        dd($message);
+    }
 }

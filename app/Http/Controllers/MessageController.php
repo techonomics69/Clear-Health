@@ -8,6 +8,7 @@ use App\Models\MdMessages;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Reflector;
+use App\Models\Messages;
 
 class MessageController extends Controller
 {
@@ -29,11 +30,12 @@ class MessageController extends Controller
             $value->msg_time =  $createdAt->format('H:i:s m/d/Y');
         endforeach;
         //dd($mdList);               
-        $msg_tab = '';
-        $msg_history = [];
+        $adminMsg = Messages::groupBy('user_id')->orderBy('id', 'DESC')->get();
+        dd($adminMsg);
+        
         $user_case_management_data['user_id'] = '';
         $user_case_management_data['id'] = '';
-        return view('messages.index', compact('msg_tab', 'msg_history', 'user_case_management_data', 'mdList'));
+        return view('messages.index', compact('user_case_management_data', 'mdList'));
     }
 
     public function getMedicalMessage(Request $request)

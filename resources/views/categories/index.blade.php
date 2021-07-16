@@ -57,8 +57,8 @@
 						<tr>
 							<th>No</th>
 							<th>Name</th>
-							<th>Photo</th>
-							<th>Order</th>
+							{{-- <th>Photo</th>
+							<th>Order</th> --}}
 							<th>Action</th>
 						</tr>
 						</thead>
@@ -67,14 +67,14 @@
 						<tr>
 							<td>{{ ++$i }}</td>
 							<td>{{ $category->name }}</td>
-							<td>
+							{{-- <td>
 								<img src="{{ asset('public/images/Categories/'.$category->image) }}" alt="Category Image" title="Category Image" width="100px">
 							</td>
-							<td>{{ $category->order }}</td>
+							<td>{{ $category->order }}</td> --}}
 							<td>
 							<div class="d-flex">
-								<a class="icons edit-icon" href="{{ route('categories.show',$category->id) }}">
-									<i class="fa fa-eye"></i>
+								{{-- <a class="icons edit-icon" href="{{ route('categories.show',$category->id) }}">
+									<i class="fa fa-eye"></i> --}}
 								</a>		
 								@can('category-edit')					 
 								<a class="icons edit-icon" href="{{ route('categories.edit',$category->id) }}">

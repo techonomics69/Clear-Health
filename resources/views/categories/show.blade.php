@@ -44,14 +44,14 @@
             <strong>Name:</strong>
             {{ $category->name }}
         </div>
-        <div class="form-group">
+        {{-- <div class="form-group">
             <strong>Order:</strong>
             {{ $category->order }}
         </div>
         <div class="form-group">
             <strong>Image:</strong>
             <img src="{{ asset('public/images/Categories/'.$category->image) }}" alt="Category Image" title="Category Image" width="200px">            
-        </div>
+        </div> --}}
         </div>
 </section>
     </div>

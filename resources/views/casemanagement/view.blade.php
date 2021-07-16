@@ -210,7 +210,7 @@
 											<td width="20%">Date</td>
 											<td wisth="20%">Product</td>
 											<td width="20%">Visit type</td>
-											<td width="20%">Note</td>
+											<td width="20%" style="padding-left: 40px;">Note</td>
 										</tr>
 									</table>
 								</div>
@@ -227,7 +227,7 @@
 												<td width="20%" onclick="questionsCollapse('collapseOne')"><span><?php if(count($accutane_que)>0){ echo "Accutane"; }else if(count($topical_que)>0){ echo "Topical"; } ?></span></td>
 												<td width="20%" onclick="questionsCollapse('collapseOne')">Initials</td>
 
-												<td width="20%" style="padding-left: 20px;" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-file-text" aria-hidden="true" ></i></td>
+												<td width="20%" style="padding-left: 40px;" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-file-text" aria-hidden="true" ></i></td>
 											</tr>
 										</table>
 									
@@ -320,7 +320,7 @@
 											<td width="20%" onclick="questionsCollapse('collapseF{{$findex}}')"><?php echo date("m-d-Y",strtotime($fvalue->created_at)); ?></td>
 											<td width="20%" onclick="questionsCollapse('collapseF{{$findex}}')"><span><?php if(count($accutane_que)>0){ echo "Accutane"; }else if(count($topical_que)>0){ echo "Topical"; } ?></span></td>
 											<td width="20%" onclick="questionsCollapse('collapseF{{$findex}}')">Follow Up: {{$fvalue->follow_up_no}}</td>
-											<td width="20%" style="padding-left: 20px;" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-file-text" aria-hidden="true" ></i></td>
+											<td width="20%" style="padding-left: 40px;" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-file-text" aria-hidden="true" ></i></td>
 										</tr>
 									</table>
 								</div>
@@ -1862,7 +1862,7 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade myexamplemodal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -1871,8 +1871,19 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        ...
+      <div class="modal-body">  
+          <button class="collapsible active">Open Section 1</button>
+			<div class="content" style="max-height: 267px;">
+			  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+			</div>
+			<button class="collapsible">Open Section 2</button>
+			<div class="content">
+			  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+			</div>
+			<button class="collapsible">Open Section 3</button>
+			<div class="content">
+			  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+			</div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -1881,3 +1892,58 @@
     </div>
   </div>
 </div>
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  });
+}
+</script>
+
+<style>
+.myexamplemodal .collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.myexamplemodal .active, .collapsible:hover {
+  background-color: #555;
+}
+
+.myexamplemodal .collapsible:after {
+  content: '\002B';
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.myexamplemodal .active:after {
+  content: "\2212";
+}
+
+.myexamplemodal .content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #f1f1f1;
+}
+</style>

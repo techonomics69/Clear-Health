@@ -53,8 +53,8 @@ class CategoryController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|unique:categories,name|regex:/^[\pL\s\-]+$/u',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
-            'order' => 'required|numeric|min:1'            
+            /*'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
+            'order' => 'required|numeric|min:1'   */         
         ]);
         $imageName = time().'.'.$request->image->extension();
 
@@ -112,8 +112,8 @@ class CategoryController extends Controller
 
         $this->validate($request, [
             'name' => 'required|unique:categories,name,'.$category->id.'|regex:/^[\pL\s\-]+$/u',  
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5000',          
-            'order' => 'required|numeric|min:1'            
+            /*'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5000',          
+            'order' => 'required|numeric|min:1'*/            
         ]);
         
         if(!empty($request->image)):
@@ -157,11 +157,11 @@ class CategoryController extends Controller
         $category->delete();
 
         // unlink or remove previous image from folder
-        $path = public_path().'/images/Categories';
+      /*  $path = public_path().'/images/Categories';
         $oldImg = $path.'/'.$category->image;
             if (File::exists($oldImg)) : 
                 unlink($oldImg);
-            endif;
+            endif;*/
             
         toastr()->success('Category deleted successfully');
         return redirect()->route('categories.index');

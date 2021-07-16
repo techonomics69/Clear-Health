@@ -9,5 +9,5 @@ class Cms extends Model
 {
     use HasFactory;
     protected $table = 'cms_pages';
-    protected $fillable = ['title', 'description', 'url', 'meta_title', 'meta_description', 'meta_keyword', 'status'];
+    protected $fillable = ['title', 'description','status'];
 }

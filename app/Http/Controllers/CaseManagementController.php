@@ -666,7 +666,7 @@ die();*/
       echo "<pre>";
 
       echo "<pre>";
-      print_r($case_d);
+      print_r($case_id);
       echo "<pre>";
 
       echo "<pre>";

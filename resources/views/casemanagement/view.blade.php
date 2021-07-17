@@ -1890,7 +1890,12 @@
 				</span>		
 				<span class="case_status">
 					<p class="status_heading m-0">Reason</p>
-				     <p>@if($case_value['reason'] != null ||$case_value['reason'] != '' )?$case_value['reason']:'-'@endif </p>
+				     <p>
+				     @php 
+				 if($case_value['reason'] != null ||$case_value['reason'] != '' ){
+				 	echo $case_value['reason'];
+				 }else{echo '-';}
+				@endphp </p>
 				</span>			
 			</div>
 			@php

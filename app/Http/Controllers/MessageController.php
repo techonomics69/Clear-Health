@@ -55,7 +55,7 @@ class MessageController extends Controller
 
         $user_case_management_data['user_id'] = '';
         $user_case_management_data['id'] = '';
-        return view('messages.index', compact('user_case_management_data', 'mdList', 'adminMsg'));
+        return view('messages.view', compact('user_case_management_data', 'mdList', 'adminMsg'));
     }
 
     public function getMedicalMessage(Request $request)

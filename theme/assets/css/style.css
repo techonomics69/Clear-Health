@@ -1630,7 +1630,10 @@ table.table thead th {
 .right_chating .chating-section ul li {
     background: none;
 }
-
+.right_block{
+  max-width: 740px;
+  margin: 0 auto;
+}
 
 .form-group {
     margin-bottom: 0.5rem;
@@ -1662,10 +1665,11 @@ table.table thead th {
 }
 
 .imgDiv{
-  border: 1px solid;
-  position: absolute;
-  bottom: 0px;
-  padding: 0px !important;
+border: 1px solid;
+    position: absolute;
+    bottom: 6px;
+    padding: 0px !important;
+    left: 63px;
 }
 #blah{
   width: 100px;

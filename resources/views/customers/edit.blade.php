@@ -72,8 +72,8 @@
                                         <label>Gender</label><span class="required">*</span>
                                         <select id="inputState" name="gender" class="form-control">
                                             <option value="">Select Gender</option>
-                                            <option {{ old('gender') == 'male' ? "selected" : "" }} value="male">Male</option>
-                                            <option {{ old('gender') == 'female' ? "selected" : "" }} value="female">Female</option>
+                                            <option {{ old('gender') == 'male' ? "selected" : "" }} value="male" @if($user->gender == "male") selected @endif>Male</option>
+                                            <option {{ old('gender') == 'female' ? "selected" : "" }} value="female" @if($user->gender == "female") selected @endif>Female</option>
                                         </select>
                                     </div>
                                 </div>
@@ -204,6 +204,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 <script type="text/javascript">
     //$('#roles').select2();
+
+    $(document).ready(function ($) {
+        $("#dob").datepicker({
+                //numberOfMonths: 2,
+                minDate: new Date(),
+                onSelect: function (selected) {
+                    var dt = new Date(selected);
+                    dt.setDate(dt.getDate());
+                },
+                dateFormat : 'yy-mm-dd'
+            });
+    });
     function getCity(stateID){
         $.ajax({
             type:"GET",

@@ -214,9 +214,9 @@
             }
         });
 
-        function loadFile(e){
+        $('#file').on('change', function(e){
             console.log(e);
-        }
+        });        
     });
 </script>
 @endsection

@@ -29,7 +29,7 @@
                 <section class="card">
                     <div class="row" style="padding: 20px;">
                         <div class="col-md-12">
-                            {{dd($user_case_management_data)}}
+                            
                         </div>
                     </div>
                 </section>

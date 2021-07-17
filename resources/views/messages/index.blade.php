@@ -33,7 +33,7 @@
                                 <thead>
                                     <tr>
                                         <th>SR</th>
-                                        <th>Date</th>
+                                        <th>Date/Time</th>
                                         <th>CaseID</th>
                                         <th>FirstName</th>
                                         <th>LastName</th>

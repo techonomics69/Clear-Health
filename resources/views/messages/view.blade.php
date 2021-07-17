@@ -213,6 +213,10 @@
                 document.getElementById("sendAdminMsg").click();
             }
         });
+
+        $('#file').on('change', function(e){
+            console.log(e);
+        });        
     });
 </script>
 @endsection

@@ -1650,3 +1650,10 @@ table.table thead th {
     vertical-align: middle;
     padding: 10px 14px !important;
 }*/
+
+#filter1{
+  
+  position: absolute;
+    left: 0;
+    bottom: -28px;
+}

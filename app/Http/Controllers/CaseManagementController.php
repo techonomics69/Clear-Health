@@ -352,7 +352,7 @@ class CaseManagementController extends Controller
 
       $user_id = $user_case_management_data['user_id'];
       $case_id = $user_case_management_data['id'];
-      $md_case_id = $user_case_management_data['id'];
+      $md_case_id = $user_case_management_data['md_case_id'];
 
       $follow_up_data = FollowUp::where([['case_id',$user_case_management_data['id']],['follow_up_status','completed']])->get()->toArray();
 

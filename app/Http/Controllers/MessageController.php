@@ -14,6 +14,15 @@ class MessageController extends Controller
 {
     public function index(Request $request)
     {
+
+        $user_case_management_data = CaseManagement::join('users', 'case_managements.user_id', '=', 'users.id')->leftjoin('case_histories', 'case_managements.id', '=', 'case_histories.case_id')->select('case_managements.*', 'users.email', 'users.first_name', 'users.last_name', 'users.gender', 'case_histories.case_status')->OrderBy('id', 'DESC')->get();
+        //generate_ipledge, store_ipledge, verify_pregnancy, prior_auth, check_off_ipledge, trigger, blood_work
+        return view('messages.index', compact('user_case_management_data'))->with('i', ($request->input('page', 1) - 1) * 5);
+    }
+
+    public function show(Request $request)
+    {
+
         // DB::enableQueryLog();
         $mdList = DB::table('md_messages')
             ->join('users', 'users.id', '=', 'md_messages.user_id')
@@ -46,7 +55,7 @@ class MessageController extends Controller
 
         $user_case_management_data['user_id'] = '';
         $user_case_management_data['id'] = '';
-        return view('messages.index', compact('user_case_management_data', 'mdList', 'adminMsg'));
+        return view('messages.view', compact('user_case_management_data', 'mdList', 'adminMsg'));
     }
 
     public function getMedicalMessage(Request $request)
@@ -60,19 +69,22 @@ class MessageController extends Controller
 
         $html = '';
         foreach ($message as $key => $value) :
-            $createdAt = Carbon::parse($value->message_created_at);
-            $time =  $createdAt->format('H:i:s m/d/Y');
-            if ($value->from == 'patient') :
-                $class =  'left';
-            else :
-                $class =  'right';
-            endif;
-            $html .= '<li class="' . $class . '">
+            if (isset($value->text)) :
+                $createdAt = Carbon::parse($value->message_created_at);
+                //$time =  $createdAt->format('H:i:s m/d/Y');
+                $time =  $createdAt->diffForHumans();
+                if ($value->from == 'patient') :
+                    $class =  'left';
+                else :
+                    $class =  'right';
+                endif;
+                $html .= '<li class="' . $class . '">
                     <div class = "time_messages" > 
                         <p class = "text_mesg">' . $value->text . '</p>
                         <h5>' . $time . '</h5>
                     </div>
                 </li>';
+            endif;
         endforeach;
 
         $data['html'] = $html;
@@ -91,19 +103,22 @@ class MessageController extends Controller
         $user_id = $message[0]->user_id;
         $html = '';
         foreach ($message as $key => $value) :
-            $createdAt = Carbon::parse($value->created_at);
-            $time =  $createdAt->format('H:i:s m/d/Y');
-            if ($value->sender == 'user') :
-                $class =  'left';
-            else :
-                $class =  'right';
-            endif;
-            $html .= '<li class="' . $class . '">
+            if (isset($value->text)) :
+                $createdAt = Carbon::parse($value->created_at);
+               // $time =  $createdAt->format('H:i:s m/d/Y');
+               $time =  $createdAt->diffForHumans();
+                if ($value->sender == 'user') :
+                    $class =  'left';
+                else :
+                    $class =  'right';
+                endif;
+                $html .= '<li class="' . $class . '">
                     <div class = "time_messages" > 
                         <p class = "text_mesg">' . $value->text . '</p>
                         <h5>' . $time . '</h5>
                     </div>
                 </li>';
+            endif;
         endforeach;
 
         $data['html'] = $html;
@@ -121,11 +136,12 @@ class MessageController extends Controller
 
         $message = Messages::create($data);
         $createdAt = Carbon::now();
-        $time =  $createdAt->format('H:i:s m/d/Y');
+        //$time =  $createdAt->format('H:i:s m/d/Y');
+        $time =  $createdAt->diffForHumans();
         $html = '<li class="right">
                     <div class="time_messages"> 
                         <p class="text_mesg">' . $data['text'] . '</p>
-                        <h5>'.$time.'</h5>
+                        <h5>' . $time . '</h5>
                     </div>
                 </li>';
         if ($message) {

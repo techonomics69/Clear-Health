@@ -1173,6 +1173,7 @@ body.vertical-layout.vertical-menu.menu-expanded .main-menu {
   width     : 100%;
   margin    : 21px auto 0;
   box-shadow: 0px 0px 8px 5px #eaeaea;
+  height: 100%;
 }
 
 .chating-section ul {
@@ -1235,6 +1236,13 @@ body.vertical-layout.vertical-menu.menu-expanded .main-menu {
   margin-bottom: 0px;
 }
 
+ul#messageDataAdmin {
+    max-width: 740px;
+    margin: 0 auto;
+    /*border: 1px solid;*/
+    /*box-shadow: 0px 0px 8px 5px #eaeaea;*/
+}
+
 .chating-section ul li.right h5 {
   text-align: right;
   margin    : 0;
@@ -1244,6 +1252,8 @@ body.vertical-layout.vertical-menu.menu-expanded .main-menu {
   display    : flex;
   align-items: center;
   overflow   : hidden;
+  max-width: 740px;
+  margin: 0 auto;
 
 }
 
@@ -1299,9 +1309,16 @@ body.vertical-layout.vertical-menu.menu-expanded .main-menu {
   text-align: right;
   margin    : 0;
   position  : absolute;
-  bottom    : 7px;
+  bottom    : 0px;
   right     : 0;
+  top: 0;
 }
+
+/*ul#messageDataAdmin {
+    border: 1px solid #e8e4e4;
+    max-width: 800px;
+    margin: 0 auto;
+}*/
 
 .time_messages .text_mesg {
   max-width : 90%;
@@ -1633,3 +1650,4 @@ table.table thead th {
     vertical-align: middle;
     padding: 10px 14px !important;
 }*/
+

@@ -104,48 +104,48 @@
     var token = "{{ csrf_token() }}";
 		var url = "{{ route('casemanagement.showList') }}";
 
-    // var Datatable = $('#CaseManagementList').DataTable({
-    //   "dom": '<"top"if>rt<"bottom"lp><"clear">',
-    //   "bLengthChange": false,
-    //   "bInfo": false,
+   //  var Datatable = $('#CaseManagementList').DataTable({
+   //    "dom": '<"top"if>rt<"bottom"lp><"clear">',
+   //    "bLengthChange": false,
+   //    "bInfo": false,
      
       
 
 			// "paging": true,
 			// "autoWidth": true,
 			// "fixedHeader": true,
-		  //  "aoColumnDefs": [
+		 //   "aoColumnDefs": [
      
-      //       {"sWidth": "7%", "aTargets": [0]},
-      //       {"sWidth": "7%", "aTargets": [1]},
-      //       {"sWidth": "7%", "aTargets": [2]},
-      //       {"sWidth": "7%", "aTargets": [3]},
-      //       {"sWidth": "7%", "aTargets": [4]},
-      //       {"sWidth": "7%", "aTargets": [5]},
-      //       {"sWidth": "7%", "aTargets": [6]},
-      //       {"sWidth": "7%", "aTargets": [7]},
-      //       {"sWidth": "7%", "aTargets": [8]},
-      //       {"sWidth": "7%", "aTargets": [9]},
-      //       {"sWidth": "7%", "aTargets": [10]},
-      //       {"sWidth": "7%", "aTargets": [11]},
-      //       {"sWidth": "7%", "aTargets": [12]},
-      //       {"sWidth": "7%", "aTargets": [13]},
+   //          {"sWidth": "7%", "aTargets": [0]},
+   //          {"sWidth": "7%", "aTargets": [1]},
+   //          {"sWidth": "7%", "aTargets": [2]},
+   //          {"sWidth": "7%", "aTargets": [3]},
+   //          {"sWidth": "7%", "aTargets": [4]},
+   //          {"sWidth": "7%", "aTargets": [5]},
+   //          {"sWidth": "7%", "aTargets": [6]},
+   //          {"sWidth": "7%", "aTargets": [7]},
+   //          {"sWidth": "7%", "aTargets": [8]},
+   //          {"sWidth": "7%", "aTargets": [9]},
+   //          {"sWidth": "7%", "aTargets": [10]},
+   //          {"sWidth": "7%", "aTargets": [11]},
+   //          {"sWidth": "7%", "aTargets": [12]},
+   //          {"sWidth": "7%", "aTargets": [13]},
            
-      //   ],
+   //      ],
          
-        // "bAutoWidth": true,
+   //      "bAutoWidth": true,
         
-    //     "fixedHeader": {
-    //     header: true,
-    //     scrollY:        "300px",
-     // scrollX:        true,
-    //  scrollCollapse:true,
-    // },
+   //      "fixedHeader": {
+   //      header: true,
+   //      scrollY:        "300px",
+   //   scrollX:        true,
+   //   scrollCollapse:true,
+   //  },
  
-        // scrollCollapse: true,
+   //      scrollCollapse: true,
  
 
-    //  });
+   //   });
 
     /*$.ajax({
             method:"post",
@@ -164,19 +164,21 @@
         });*/
 
         
-  //  });
+   // });
   
 
   function InitilizeTable(searchValue){
     var Datatable = $('#CaseManagementList').DataTable({
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
-    
-      "bLengthChange": false,
-      //  "bAutoWidth": false,
-        "bInfo": false,
-       
+      
+
+        "bLengthChange": false,
+      "bInfo": false,
+     
+      
+
       //scrollX:  true,
-        language: {search: "", searchPlaceholder: "Search"},
+       
       'searching': true,
       'processing': true,
       'serverSide': true,
@@ -233,6 +235,8 @@
         			"processing": "Loading....."
     			},
     		"order": [[ 0, "desc" ]],  
+
+             language: {search: "", searchPlaceholder: "Search"},
 
     });
   }

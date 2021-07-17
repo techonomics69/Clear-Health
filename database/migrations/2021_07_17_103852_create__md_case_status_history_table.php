@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserPromocodeTable extends Migration
+class CreateMdCaseStatusHistoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateUserPromocodeTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_promocode', function (Blueprint $table) {
+        Schema::create('md_case_status_history', function (Blueprint $table) {
             $table->id();
-            $table->string('promocode');
             $table->string('user_id');
+            $table->string('case_id');
+            $table->string('md_case_id');
+            $table->string('case_status');
+            $table->text('reason')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ class CreateUserPromocodeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_promocode');
+        Schema::dropIfExists('_md_case_status_history');
     }
 }

@@ -98,8 +98,12 @@
                                                                 <div class="row">
                                                                     <div class="col-lg-12">
                                                                         <div class="imgDiv" id="imgDiv">
-                                                                            <img id="blah" src="#" alt="image" />
-                                                                            <i class="fa fa-close" id="clearImg"></i>
+                                                                            <div class="imgs">  <i class="fa fa-close" id="clearImg"></i></div>
+                                                                          <div class="imgs-picture">
+                                                                             <img id="blah" src="#" alt="image" />
+                                                                          </div>
+                                                                           
+                                                                            
                                                                         </div>
                                                                     </div>
 

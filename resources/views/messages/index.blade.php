@@ -48,7 +48,7 @@
                   </thead>
                   <tbody>
                     <tr>
-                        @foreach($user_case_management_data => $key as $value)
+                        @foreach($user_case_management_data as $key => $value)
                         {{dd($value)}}
                         <td>{{$key+1}}</td>
                         <td></td>

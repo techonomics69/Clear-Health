@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Reflector;
 use App\Models\Messages;
+use App\Models\MessageFiles;
 
 class MessageController extends Controller
 {
@@ -105,8 +106,8 @@ class MessageController extends Controller
         foreach ($message as $key => $value) :
             if (isset($value->text)) :
                 $createdAt = Carbon::parse($value->created_at);
-               // $time =  $createdAt->format('H:i:s m/d/Y');
-               $time =  $createdAt->diffForHumans();
+                // $time =  $createdAt->format('H:i:s m/d/Y');
+                $time =  $createdAt->diffForHumans();
                 if ($value->sender == 'user') :
                     $class =  'left';
                 else :
@@ -129,15 +130,51 @@ class MessageController extends Controller
     public function sendNonMedicalMessage(Request $request)
     {
         $data = $request->all();
-        echo '<pre>';
-        print_r($data);
-        die;
         $data['case_id'] = null;
         $data['md_case_id'] = 0;
         $data['users_message_type'] = 'Non-Medical';
         $data['sender'] = 'admin';
-
+        $documents = $request->file('file');
         $message = Messages::create($data);
+        //dd($request->file('file')->getSize());
+        if (!empty($documents)) {
+            $file =  $documents->getClientOriginalName();
+            $doc_file_name =  time() . '-' . $file;
+            $filesize = $this->convertToReadableSize($documents->getSize());
+            if (count($filesize) > 0) {
+                if ($filesize['sizin'] == "" || $filesize['sizin'] == "KB") {
+                } else if ($filesize['sizin'] == "GB" || $filesize['sizin'] == "TB") {
+                    return array("status" => false, "data" => '', "message" => "Please upload file less than 5MB");
+                    exit();
+                } else if ($filesize['sizin'] == "MB") {
+                    if ($filesize['size'] > 5) {
+                        return array("status" => false, "data" => '', "message" => "Please upload file less than 5MB");
+                        exit();
+                    }
+                }
+            }
+            $file = $request['file'];
+            if (!file_exists(public_path('/Message_files'))) {
+                File::makeDirectory(public_path('/Message_files'), 0777, true, true);
+            }
+            $destinationPath = public_path('/Message_files');
+            $documents->move($destinationPath, $doc_file_name);
+
+            chmod($destinationPath . "/" . $doc_file_name, 0777);
+
+            $file_path = 'public/Message_files/' . $doc_file_name;
+
+            $file_mimeType = $documents->getClientMimeType();
+
+            $message_file_data = array();
+            $message_file_data['file_name'] = $doc_file_name;
+            $message_file_data['file_path'] = $file_path;
+            $message_file_data['mime_type'] = $file_mimeType;
+            $message_file_data['msg_id'] = $message['id'];
+            $message_file_data = MessageFiles::create($message_file_data);
+        }
+
+
         $createdAt = Carbon::now();
         //$time =  $createdAt->format('H:i:s m/d/Y');
         $time =  $createdAt->diffForHumans();
@@ -147,10 +184,28 @@ class MessageController extends Controller
                         <h5>' . $time . '</h5>
                     </div>
                 </li>';
+        if (isset($message_file_data)) :
+            $html = '<li class="right">
+                    <div class="time_messages"> 
+                        <p class="text_mesg">Image</p>
+                        <h5>' . $time . '</h5>
+                    </div>
+                </li>';
+        endif;
+
         if ($message) {
             return json_encode($html);
         } else {
             return false;
         }
+    }
+
+    function convertToReadableSize($size)
+    {
+        $base = log($size) / log(1024);
+        $suffix = array("", "KB", "MB", "GB", "TB");
+        $f_base = floor($base);
+        $return = array("size" => round(pow(1024, $base - floor($base)), 1), "sizin" => $suffix[$f_base]);
+        return $return;
     }
 }

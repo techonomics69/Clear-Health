@@ -61,6 +61,8 @@ Route::post('webhookTriggers', [MdwebhooksController::class, 'webhookTriggers'])
 //MD API
     Route::post('create_patient', [CaseManagementController::class, 'create_patient']);
 
+     Route::post('changePreferedPharmacy', [CheckoutController::class, 'changePreferedPharmacy']);
+
 Route::group(['middleware' => ['auth:api']], function () {
     Route::get("getbirthcontrol/{id}", [BirthControlController::class, 'show']);
     Route::get('user/{id}', [UserController::class, 'show']);
@@ -96,6 +98,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('addCheckoutAddress', [CheckoutController::class, 'addCheckoutAddress']);
     Route::post('updateCheckoutAddress', [CheckoutController::class, 'updateCheckoutAddress']);
     Route::post('orderList', [CheckoutController::class, 'orderList']);
+
     Route::post('getOrderDetail', [CheckoutController::class, 'getCheckoutdetail']);
     Route::post('getCheckoutAddress', [CheckoutController::class, 'getCheckoutAddress']);
     Route::post('getTaxes', [CheckoutController::class, 'getTaxes']);

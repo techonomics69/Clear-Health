@@ -376,6 +376,21 @@ class UserController extends BaseController
         ->where("follow_up.user_id", $request['user_id'])
         ->orderBy('follow_up.id','asc')
         ->get();
+        if(count($followup_que)>0){
+          foreach($followup_que as $key => $value){
+            $left_face = asset('public/images/Users/'.$value->left_face);
+            $right_face = asset('public/images/Users/'.$value->right_face);
+            $center_face = asset('public/images/Users/'.$value->center_face);
+            $back_photo = asset('public/images/Users/'.$value->back_photo);
+            $chest_photo = asset('public/images/Users/'.$value->chest_photo);
+
+            $followup_que[$key]['left_face'] = $left_face;
+            $followup_que[$key]['right_face'] = $right_face;
+            $followup_que[$key]['center_face'] = $center_face;
+            $followup_que[$key]['back_photo'] = $back_photo;
+            $followup_que[$key]['chest_photo'] = $chest_photo;
+          }
+        }
         $return  = array('user_pic'=>$user_pic, 'follow_up'=>$followup_que);
         return $this->sendResponse($return , 'Data retrived successfully');
      }catch(\Exception $ex){

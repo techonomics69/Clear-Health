@@ -373,7 +373,8 @@ class UserController extends BaseController
         } 
         $user_pic = UserPics::where('case_id', $request['case_id'])->where('user_id', $request['user_id'])->first();
         $followup_que = FollowUp::join('users','follow_up.user_id','=','users.id')
-        ->select('follow_up.*','users.first_name','users.last_name')
+        ->select('follow_up.left_face','follow_up.right_face','follow_up.center_face',
+          'follow_up.back_photo','follow_up.chest_photo','follow_up.follow_up_no')
         ->where("follow_up.user_id", $request['user_id'])
         ->where("follow_up.case_id", $request['case_id'])->get();
         $return  = array('user_pic'=>$user_pic, 'follow_up'=>$followup_que);

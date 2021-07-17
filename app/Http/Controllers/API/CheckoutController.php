@@ -683,5 +683,120 @@ class CheckoutController extends BaseController
       return $this->sendResponse(array(), 'No Data Found.');
     }
   }
+
+  public function changePreferedPharmacy(Request $request){
+
+    $user_id = $request['user_id'];
+    //$case_id = $request['case_id'];
+    //$md_case_id = $request['md_case_id'];
+    $checkout_id = $request['order_id'];
+    $pharmacy_id =  $request['preferred_pharmacy_id'];
+
+    //$user_old_pharmacy_id = getPickupPharmacy($user_id,$case_id,$md_case_id);
+    if(isset($pharmacy_id)){
+
+      $user_data = User::where('id',$user_id)->select('md_patient_id')->first();
+
+      $md_patient_id = $user_data['md_patient_id'];
+   
+      $order_data = Checkout::where([['id', $checkout_id]])->first();
+       
+      $cart_ids = explode(',', $order_data['cart_id']);
+
+      $pharmacy_data  =  Cart::select('pharmacy_pickup')->where('user_id',$user_id)->whereIn('id',$cart_ids)->where('order_type', '!=', 'AddOn')->where('order_type', '!=', 'Non-Prescribe')->first();
+
+      //code to remove pharmacy of patient
+
+      if(!empty($pharmacy_data) && count($pharmacy_data)>0){
+
+        $user_old_pharmacy_id = $pharmacy_data['pharmacy_pickup'];
+
+      if($user_old_pharmacy_id == 'cash'){
+           $old_pharmacy_id = '13012';
+      }else{
+        $old_pharmacy_id = $user_old_pharmacy_id;
+      }
+
+      $r = get_token();
+      $token_data = json_decode($r);
+      $token = $token_data->access_token;
+
+      $curl = curl_init();
+
+      curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/patients/'.$md_patient_id.'/pharmacies/'.$old_pharmacy_id,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'DELETE',
+        CURLOPT_HTTPHEADER => array(
+          'Authorization: Bearer '.$token
+        ),
+      ));
+
+      $response = curl_exec($curl);
+
+      curl_close($curl);
+     
+     $removrd_pharmacy = json_decode($response);
+
+     echo "<pre>";
+     print_r($removrd_pharmacy);
+     echo "<pre>";
+    
+
+
+      }
+      //end of code to remove pharmacy of patient 
+
+      
+     //code to add pharmacy of patient
+
+      if($pharmacy_id == 'cash'){
+           $preferred_pharmacy_id = '13012';
+      }else{
+        $preferred_pharmacy_id = $pharmacy_id;
+      }
+
+      $curl = curl_init();
+
+      curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/patients/'.$md_patient_id.'/pharmacies/'.$old_pharmacy_id,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS =>'{
+          "set_as_primary": false
+        }',
+        CURLOPT_HTTPHEADER => array(
+          'Authorization: Bearer '.$token,
+          'Content-Type: application/json'
+        ),
+      ));
+
+      $response1 = curl_exec($curl);
+
+      curl_close($curl);
+
+      $pharmacy_added = json_decode($response1);
+
+      echo "<pre>";
+      print_r($pharmacy_added);
+      echo "<pre>";
+      exit();
+
+      //end of code to add pharmacy of patient
+
+    }
+      
+
+  }
   
 }

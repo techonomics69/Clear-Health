@@ -128,8 +128,8 @@
                                                                                     <input type="hidden" id="userId" name="user_id" value="">
                                                                                 </div>
                                                                                 <div class="sending lastimg">
-                                                                                    <button type="submit" id="sendAdminMsg"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
-                                                                                    
+                                                                                    <button type="button" id="sendAdminMsg"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
+
                                                                                 </div>
                                                                             </form>
                                                                         </div>
@@ -199,18 +199,19 @@
             });
         });
 
-        // $('#sendAdminMsg').on('click', function() {
-        //     $('#upload-image-form').submit();
-        // });
+        $('#sendAdminMsg').on('click', function() {
+            $('#upload-image-form').submit();
+        });
         $('#upload-image-form').submit(function(e) {
+            e.preventDefault();
             alert();
-            let formData = new FormData(this); 
+            let formData = new FormData(this);
             $.ajax({
                 url: "{{route('sendNonMedicalMessage')}}",
                 type: "post",
                 data: formData,
                 contentType: false,
-                processData: false,                
+                processData: false,
                 success: function(result) {
                     if (result != false) {
                         $('#text').val('');

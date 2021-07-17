@@ -51,16 +51,26 @@
                         @foreach($user_case_management_data as $key => $value)
                         {{dd($value)}}
                         <td>{{$key+1}}</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{$value->created_at}}</td>
+                        <td>{{$value->ref_id}}</td>
+                        <td>{{$value->first_name}}</td>
+                        <td>{{$value->last}}</td>                        
+                        <td>
+                            @if(empty($value->follow_up)
+                            1
+                            @else
+                            {{$value->follow_up + 1}}
+                            @endif
+                        </td>
+                        <td>{{$value->md_case_id}}</td>
+                        <td>{{$value->system_status}}</td>
+                        <td>{{$value->md_case_status}}</td>
+                        <td>@if(empty($value->follow_up)
+                            Initial
+                            @else
+                            Follow up {{$value->follow_up}}
+                            @endif</td>
+                        <td>{{$value->product_type}}</td>
                         <td></td>
                         @endforeach
                     </tr>

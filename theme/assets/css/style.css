@@ -1299,8 +1299,9 @@ body.vertical-layout.vertical-menu.menu-expanded .main-menu {
   text-align: right;
   margin    : 0;
   position  : absolute;
-  bottom    : 7px;
+  bottom    : 0px;
   right     : 0;
+  top: 0;
 }
 
 .time_messages .text_mesg {

@@ -171,17 +171,17 @@ class PaymentsController extends BaseController
                 return $this->sendError($validator->errors()->first());
             } 
             Stripe::setApiKey('sk_test_51J08tDJofjMgVsOdzxZs5Aqlf5A9riwPPwlxUTriC8YPiHvTjlCBoaMjgxiqdIVfvOMPcllgR9JY7EZlihr6TJHy00ixztHFtz'); 
-            // try {
-            //     $refund = \Stripe\Refund::create(array(
-            //         'charge' => $data['charge_id'],
-            //     ));
-            // } catch (Exception $e) {
-            //     $apiError = $e->getMessage();
-            // }
-            // if (empty($apiError) && $refund) {
-            //     //Get Refund object from stripe;
-            //     $refundData = $refund->jsonSerialize();
-            //     $updateData['strip_refund_object'] = $refundData;
+            try {
+                $refund = \Stripe\Refund::create(array(
+                    'charge' => $data['charge_id'],
+                ));
+            } catch (Exception $e) {
+                $apiError = $e->getMessage();
+            }
+            if (empty($apiError) && $refund) {
+                //Get Refund object from stripe;
+                $refundData = $refund->jsonSerialize();
+                $updateData['strip_refund_object'] = $refundData;
             
 
                 //Cancel order from ShipStations
@@ -189,23 +189,23 @@ class PaymentsController extends BaseController
                 try{
                     $shipCancel = shipStationHelper::cancelShipstationOrder($data['shipstation_order_id']);
                     $shipStatus = json_decode(json_encode($shipCancel), true);
-                    dd($shipStatus);
+                    
                 }catch(\Exception $e){
                     $shiapiError = $e->getMessage();
                 }
 
-                // if(empty($shiapiError) && $shipStatus['success']){  
-                //     $updateData['status'] = 'cancelled';    
-                //     $updateOrder = Checkout::where('id',$data['order_id'])->update([$updateData]);
-                //     return $this->sendResponse(array(), 'Order Cancelled successfully');
-                // }else{
-                //         return $this->sendError('Error in Deleting Shipstation order : ' . $shiapiError);
-                // }
+                if(empty($shiapiError) && $shipStatus['success']){  
+                    $updateData['status'] = 'cancelled';    
+                    $updateOrder = Checkout::where('id',$data['order_id'])->update($updateData);
+                    return $this->sendResponse(array(), 'Order Cancelled successfully');
+                }else{
+                        return $this->sendError('Error in Deleting Shipstation order : ' . $shiapiError);
+                }
                 
 
-            // }else{
-            //     return $this->sendError('Error in Refunding amount: ' . $apiError);
-            // }
+            }else{
+                return $this->sendError('Error in Refunding amount: ' . $apiError);
+            }
         }catch(\Exception $ex){
             return $this->sendError($ex->getMessage());
         }

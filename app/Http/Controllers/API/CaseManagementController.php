@@ -193,7 +193,9 @@ class CaseManagementController extends BaseController
      $user_id = $request['user_id'];
      $case_id = $request['case_id'];
      $order_id = $request['order_id'];
-    create_patient($user_id,$case_id,$order_id);
+    $response = create_patient($user_id,$case_id,$order_id);
+
+     return $this->sendResponse($response ,'patient data');
   }
 
   public function searchStateDetail(Request $request){

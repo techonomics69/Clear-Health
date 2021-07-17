@@ -48,8 +48,10 @@
                                         <th>Last Name</th>
                                         <th>Expertise</th>
                                         <th>Title</th>
-                                        <th>License Status</th>
+                                        <th>Education</th>
+                                        <th>License No.</th>
                                         <th>States Licensed</th>
+                                        <th>Credentials</th>
                                         <th>Photo</th>
                                         <th>Status</th>
                                         <th width="200px">Action</th>
@@ -61,13 +63,15 @@
                                     <tr>
 
                                         <td>{{ $i++ }}</td>
-                                        <td></td>
-                                        <td>{{ $mdmanagement_data->name }}</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>{{ $mdmanagement_data->md_id }}</td>
+                                        <td>{{ $mdmanagement_data->first_name }}</td>
+                                        <td>{{ $mdmanagement_data->last_name }}</td>
+                                        <td>{{ $mdmanagement_data->expertise }}</td>
+                                        <td>{{ $mdmanagement_data->title }}</td>
+                                         <td>{{ $mdmanagement_data->education }}</td>
+                                        <td>{{ $mdmanagement_data->license_number }}</td>
+                                        <td>{{ $mdmanagement_data->states_licensed_to_practice }}</td>
+                                        <td>{{ $mdmanagement_data->credentials }}</td>
                                         <td>
                                             <img src="{{ asset('public/images/Mdmanagement/'.$mdmanagement_data->image) }}" alt="Md Management Image" title="Md Management Image" width="100px">
                                         </td>

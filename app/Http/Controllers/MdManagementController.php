@@ -50,14 +50,23 @@ class MdManagementController extends Controller
     public function store(Request $request)
     {               
             $this->validate($request, [
-            'name' => 'required|unique:md_managment,name',
+            //'name' => 'required|unique:md_managment,name',
             'status' => 'required|not_in:0',
-            'language_id' => 'required|not_in:0',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',                        
+            //'language_id' => 'required|not_in:0',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000', 
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'title' => 'required',
+            'credentials' => 'required',
+            'education' => 'required',
+            'expertise' => 'required',
+            'license_number' => 'required',
+            'states_licensed_to_practice' => 'required',
+
         ]);
 
-        $language_id =  implode(",",$request->language_id);
-        $request['language_id']=$language_id;
+        //$language_id =  implode(",",$request->language_id);
+        //$request['language_id']=$language_id;
 
         $imageName = time().'.'.$request->image->extension();
 
@@ -70,11 +79,17 @@ class MdManagementController extends Controller
         $request->image->move(public_path('images/Mdmanagement'), $imageName);
 
 
-        $mdmanagement = Mdmanagement::create(['name' => $request->input('name'),'image' => $imageName,
+        /*$mdmanagement = Mdmanagement::create(['name' => $request->input('name'),'image' => $imageName,
             
             'language_id' => $request->input('language_id'),
 
-            'status' => $request->input('status'),'case_id' => $request->input('case_id')]);
+            'status' => $request->input('status'),'case_id' => $request->input('case_id')]);*/
+
+            $input_data = $request->all();
+
+            $input_data['image'] = $imageName;
+
+        $mdmanagement = Mdmanagement::create( $input_data);
             
         toastr()->success('Md created successfully');
 
@@ -114,9 +129,9 @@ class MdManagementController extends Controller
         $mdmanagement = Mdmanagement::find($id);
 
         $this->validate($request, [
-            'name' => 'required|unique:md_managment,name,'.$id,
+            //'name' => 'required|unique:md_managment,name,'.$id,
             //'status' => 'required|not_in:0',
-            'language_id' => 'required|not_in:0',
+            //'language_id' => 'required|not_in:0',
             //'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',         
         ]);
 

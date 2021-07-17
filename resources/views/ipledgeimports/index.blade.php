@@ -109,7 +109,7 @@
 											<td>@php echo (!empty($data->addon_date)) ? date("m-d-Y",strtotime($data->addon_date)) : '-'; @endphp</td>
 											<td>{{$data->addon_by}}</td>
 											<td>{{ ($data->patients_type) ==0 ? "CanNotPregnant" :"CanPregnant"}}</td>
-											<td>{{ $data->patient_name}}</td>
+											<td><?php echo $data->patient_first_name." ".$data->patient_last_name ?></td>
 											<td><?php if($data->assigned_date !=''){echo date('d-m-Y', strtotime($data->assigned_date));}else{echo "-";}  ?></td>
 											<td>{{ $data->gender}}</td>
 											

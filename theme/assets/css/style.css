@@ -1630,7 +1630,10 @@ table.table thead th {
 .right_chating .chating-section ul li {
     background: none;
 }
-
+.right_block{
+  max-width: 740px;
+  margin: 0 auto;
+}
 
 .form-group {
     margin-bottom: 0.5rem;

@@ -663,7 +663,7 @@ die();*/
 
     
 
-    $case_status_history = Mdcasestatushistory::where([['user_id',$user_d],['case_id',$system_case_id],['md_case_id',$md_case_id]])->get->toArray();
+    $case_status_history = Mdcasestatushistory::where([['user_id',$user_id],['case_id',$system_case_id],['md_case_id',$md_case_id]])->get->toArray();
 
     echo "<pre>";
     print_r($case_status_history);

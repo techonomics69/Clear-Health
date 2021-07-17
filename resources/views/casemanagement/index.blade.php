@@ -104,7 +104,7 @@
     var token = "{{ csrf_token() }}";
 		var url = "{{ route('casemanagement.showList') }}";
 
-     var Datatable = $('#CaseManagementList').DataTable({
+    // var Datatable = $('#CaseManagementList').DataTable({
     //   "dom": '<"top"if>rt<"bottom"lp><"clear">',
     //   "bLengthChange": false,
     //   "bInfo": false,
@@ -164,7 +164,7 @@
         });*/
 
         
-    });
+  //  });
   
 
   function InitilizeTable(searchValue){
@@ -176,7 +176,7 @@
         "bInfo": false,
        
       //scrollX:  true,
-         "Search":         "Search:",
+       
       'searching': true,
       'processing': true,
       'serverSide': true,

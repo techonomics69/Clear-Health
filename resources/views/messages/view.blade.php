@@ -199,6 +199,7 @@
         });
 
         $('#sendAdminMsg').on('click', function() {
+            alert();
             $('#upload-image-form').submit(function(e) {
                 let formData = new FormData(e);
                 console.log(formData);

@@ -1147,10 +1147,11 @@
         }
 
         function openIpledg() {
-            var options = {
-                "show": true
-            }
-            $("#createipledge").modal(options);
+            // var options = {
+            //     "show": true
+            // }
+            // $("#createipledge").modal(options);
+            window.location.href = "{{ route('ipledgeimports.create') }}";
         }
     </script>
 

@@ -374,15 +374,15 @@ class UserController extends BaseController
         ->select('follow_up.left_face','follow_up.right_face','follow_up.center_face',
           'follow_up.back_photo','follow_up.chest_photo','follow_up.follow_up_no')
         ->where("follow_up.user_id", $request['user_id'])
-        ->orderBy('follow_up.id','asc')
+        ->orderBy('follow_up.id','desc')
         ->get();
         if(count($followup_que)>0){
           foreach($followup_que as $key => $value){
-            $left_face = asset('public/images/Users/'.$value->left_face);
-            $right_face = asset('public/images/Users/'.$value->right_face);
-            $center_face = asset('public/images/Users/'.$value->center_face);
-            $back_photo = asset('public/images/Users/'.$value->back_photo);
-            $chest_photo = asset('public/images/Users/'.$value->chest_photo);
+            $left_face = (!empty($value->left_face)) ? asset('public/images/Users/'.$value->left_face) : asset('public/blankphoto.jpg');
+            $right_face = (!empty($value->right_face)) ? asset('public/images/Users/'.$value->right_face) : asset('public/blankphoto.jpg');
+            $center_face = (!empty($value->center_face)) ? asset('public/images/Users/'.$value->center_face) : asset('public/blankphoto.jpg');
+            $back_photo = (!empty($value->back_photo)) ? asset('public/images/Users/'.$value->back_photo) : asset('public/blankphoto.jpg');
+            $chest_photo = (!empty($value->chest_photo)) ? asset('public/images/Users/'.$value->chest_photo) : asset('public/blankphoto.jpg');
 
             $followup_que[$key]['left_face'] = $left_face;
             $followup_que[$key]['right_face'] = $right_face;

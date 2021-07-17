@@ -1627,9 +1627,8 @@ table.table thead th {
 
 }
 
-.right_chating .chating-section ul li{
- background-color: white;
-
+.right_chating .chating-section ul li {
+    background: none;
 }
 
 

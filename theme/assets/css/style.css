@@ -1235,6 +1235,12 @@ body.vertical-layout.vertical-menu.menu-expanded .main-menu {
   margin-bottom: 0px;
 }
 
+ul#messageDataAdmin {
+    max-width: 740px;
+    margin: 0 auto;
+    border: 1px solid;
+}
+
 .chating-section ul li.right h5 {
   text-align: right;
   margin    : 0;
@@ -1244,7 +1250,7 @@ body.vertical-layout.vertical-menu.menu-expanded .main-menu {
   display    : flex;
   align-items: center;
   overflow   : hidden;
-  max-width: 800px;
+  max-width: 740px;
   margin: 0 auto;
 
 }

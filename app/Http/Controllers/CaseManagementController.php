@@ -661,20 +661,13 @@ die();*/
 
     $logs = Activity_log::where('case_id',$id)->get();
 
-     echo "<pre>";
-      print_r($user_id);
-      echo "<pre>";
-
-      echo "<pre>";
-      print_r($case_id);
-      echo "<pre>";
-
-      echo "<pre>";
-      print_r($md_case_id);
-      echo "<pre>";
-      exit();
 
     $case_status_history = Mdcasestatushistory::where([['user_id',$user_d],['case_id',$case_id],['md_case_id',$md_case_id]])->get->toArray();
+
+    echo "<pre>";
+    print_r($case_status_history);
+    echo "<pre>";
+    exit();
     
     
 

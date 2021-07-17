@@ -125,10 +125,11 @@
 
                                                                                 <div class="search">
                                                                                     <input class="form-control" type="text" name="text" placeholder="Type a message..." id="text">
+                                                                                    <input type="hidden" id="userId" name="user_id" value="">
                                                                                 </div>
                                                                                 <div class="sending lastimg">
                                                                                     <button type="button" id="sendAdminMsg"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
-                                                                                    <input type="hidden" id="userId" value="">
+                                                                                    
                                                                                 </div>
                                                                             </form>
                                                                         </div>
@@ -203,25 +204,13 @@
         });
         $('#upload-image-form').submit(function(e) {
             alert();
-            let formData = new FormData(this);
-            console.log(formData);
-            return false;
-            var text = $('#text').val();
-            var image = $('#file').val();
-            console.log(image);
-            var user_id = $('#userId').val();
-
+            let formData = new FormData(this); 
             $.ajax({
                 url: "{{route('sendNonMedicalMessage')}}",
                 type: "post",
                 data: formData,
                 contentType: false,
-                processData: false,
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    user_id: user_id,
-                    text: text
-                },
+                processData: false,                
                 success: function(result) {
                     if (result != false) {
                         $('#text').val('');

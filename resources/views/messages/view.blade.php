@@ -99,8 +99,10 @@
                                                                     <div class="col-lg-12">
                                                                         <div class="imgDiv" id="imgDiv">
                                                                             <div class="imgs">  <i class="fa fa-close" id="clearImg"></i></div>
-                                                                          
-                                                                            <img id="blah" src="#" alt="image" />
+                                                                          <div class="imgs-picture">
+                                                                             <img id="blah" src="#" alt="image" />
+                                                                          </div>
+                                                                           
                                                                             
                                                                         </div>
                                                                     </div>

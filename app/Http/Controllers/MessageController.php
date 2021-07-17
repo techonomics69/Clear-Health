@@ -105,7 +105,7 @@ class MessageController extends Controller
         $user_id = $message[0]->user_id;
         $html = '';
         foreach ($message as $key => $value) :
-            if($value->file_name):
+            if(isset($value->file_name)):
                 echo '<pre>';
                 print_r($value);
                 die;

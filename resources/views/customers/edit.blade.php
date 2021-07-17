@@ -51,20 +51,20 @@
 
 
                             <div class="row">
-                                
-                                
+
+
 
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>First Name</label><span class="required">*</span>
-                                        {!! Form::text('first_name', null, array('placeholder' => 'First Name','class' => 'form-control','id'=>'email')) !!}
+                                        {!! Form::text('first_name',array('placeholder' => 'First Name','class' => 'form-control','id'=>'email')) !!}
                                     </div>
                                 </div>
 
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>Last Name</label><span class="required">*</span>
-                                        {!! Form::text('last_name', null, array('placeholder' => 'Last Name','class' => 'form-control','id'=>'email')) !!}
+                                        {!! Form::text('last_name',array('placeholder' => 'Last Name','class' => 'form-control','id'=>'email')) !!}
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6">
@@ -81,14 +81,14 @@
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>Birth Date:</label><span class="required">*</span>
-                                        {!! Form::text('dob', null, array('placeholder' => '','class' => 'form-control','id'=>'dob')) !!}
+                                        {!! Form::text('dob',array('placeholder' => '','class' => 'form-control','id'=>'dob')) !!}
                                     </div>
                                 </div>
 
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>Email</label><span class="required">*</span>
-                                        {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control','id'=>'email')) !!}
+                                        {!! Form::text('email',array('placeholder' => 'Email','class' => 'form-control','id'=>'email')) !!}
                                     </div>
                                 </div>
 
@@ -96,10 +96,10 @@
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>Address Line</label><span class="required">*</span>
-                                        {!! Form::text('address', null, array('placeholder' => 'Address','class' => 'form-control')) !!}
+                                        {!! Form::text('address',array('placeholder' => 'Address','class' => 'form-control')) !!}
                                     </div>
                                 </div>
-                                
+
                             </div>
 
 

@@ -64,6 +64,7 @@
 					{{-- @can('quiz-create')		 --}}			
 					<a href="{{ route('ipledgeimports.create') }}" class="btn btn-secondry"><i class="fa fa-plus" aria-hidden="true"></i> Upload Ipledge ID's </a>
 					{{-- @endcan	 --}}
+					
 				</div>
 			</div>
 		</div>

@@ -202,6 +202,7 @@
 @section('footerSection')
 @jquery
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+@section('scriptsection')
 <script type="text/javascript">
     //$('#roles').select2();
 

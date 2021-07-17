@@ -1305,7 +1305,7 @@ ul#messageDataAdmin {
 
 .time_messages h5 {
   font-size : 11px;
-  max-width : 10%;
+  /*max-width : 10%;*/
   text-align: right;
   margin    : 0;
   position  : absolute;
@@ -1323,8 +1323,10 @@ ul#messageDataAdmin {
 .time_messages .text_mesg {
   max-width : 90%;
   overflow  : hidden;
-  text-align: justify;
+  /*text-align: justify;*/
+  margin-top: 15px;
 }
+
 
 /* media */
 /* 2212 
@@ -1680,4 +1682,11 @@ table.table thead th {
 
   .imgs{
     text-align: right;
+  }
+  .imgs-picture{
+    border: 1px solid gray;
+  }
+
+  .userAdminList p{
+    margin: 0;
   }

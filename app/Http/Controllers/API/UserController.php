@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\CaseManagement;
 use App\Models\Checkout;
 use App\Models\Parentdetail;
+use App\Models\FollowUp;
 use Validator;
 use Exception;
 use Spatie\Permission\Models\Role;
@@ -357,4 +358,28 @@ class UserController extends BaseController
     $userpic = UserPics::where('user_id', $request['user_id'])->where('case_id', $request['case_id'])->first();
     return $this->sendResponse($userpic, 'User picture saved successfully.');
   }
+
+  public function getUserProgressPhotos(Request $request){
+     try{
+        $validator = \Validator::make($request->all(),[ 
+            'user_id' =>  'required',
+        ], [
+            'user_id.required' =>  'Request has user id',
+        ]);
+        if($validator->fails()){
+            return $this->sendError($validator->errors()->first());
+        } 
+        $user_pic = UserPics::select('left_pic','right_pic','other_pic','straight_pic')->where('user_id', $request['user_id'])->first();
+        $followup_que = FollowUp::join('users','follow_up.user_id','=','users.id')
+        ->select('follow_up.left_face','follow_up.right_face','follow_up.center_face',
+          'follow_up.back_photo','follow_up.chest_photo','follow_up.follow_up_no')
+        ->where("follow_up.user_id", $request['user_id'])
+        ->orderBy('follow_up.id','asc')
+        ->get();
+        $return  = array('user_pic'=>$user_pic, 'follow_up'=>$followup_que);
+        return $this->sendResponse($return , 'Data retrived successfully');
+     }catch(\Exception $ex){
+      return $this->sendError('Server error', $ex->getMessage());     } 
+  }
+
 }

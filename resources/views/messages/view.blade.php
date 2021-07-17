@@ -35,7 +35,7 @@
                                         <section class="card">
                                             <ul class="nav nav-tabs" id="messages-tab-menu">
                                                 <li><a class="btn active" data-toggle="tab" href="#medical">Medical Messgaes</a></li>
-                                                <li><a class="btn nonmedicalmsg" data-toggle="tab" href="#nonmedical" onclick="Gotobottom();">Non-Medical Messgaes</a></li>
+                                                <li><a class="btn nonmedicalmsg" data-toggle="tab" href="#nonmedical">Non-Medical Messgaes</a></li>
                                                 <li><a class="btn support" data-toggle="tab" href="#support">Support</a></li>
                                             </ul>
                                             <div class="tab-content">
@@ -87,60 +87,61 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-9">
-                                                           
-                                                            <div class="right-cht ">
-                                                                 <div class="right_block">
-                                                                <div class="chating-section nonmedicalmessages" id="chating-section">
-                                                                    <h3 id="usernameLabelAdmin"></h3>
-                                                                    <ul id="messageDataAdmin"></ul>
-                                                                </div>
 
-                                                                <div class="row">
-                                                                    <div class="col-lg-12">
-                                                                        <div class="imgDiv" id="imgDiv">
-                                                                            <div class="imgs">  <i class="fa fa-close" id="clearImg"></i></div>
-                                                                          <div class="imgs-picture">
-                                                                             <img id="blah" src="#" alt="image" />
-                                                                          </div>
-                                                                           
-                                                                            
-                                                                        </div>
+                                                            <div class="right-cht ">
+                                                                <div class="right_block">
+                                                                    <div class="chating-section nonmedicalmessages" id="chating-section">
+                                                                        <h3 id="usernameLabelAdmin"></h3>
+                                                                        <ul id="messageDataAdmin"></ul>
                                                                     </div>
 
-                                                                    
+                                                                    <div class="row">
+                                                                        <div class="col-lg-12">
+                                                                            <div class="imgDiv" id="imgDiv">
+                                                                                <div class="imgs"> <i class="fa fa-close" id="clearImg" style="font-size: 20px;"></i></div>
+                                                                                <div class="imgs-picture">
+                                                                                    <img id="blah" src="#" alt="image" />
+                                                                                </div>
 
-                                                                    <div id="last-typing-section" class="last-typing-section">
-                                                                        <form method="post" id="upload-image-form" enctype="multipart/form-data">
-                                                                            @csrf
-                                                                            <div class="attachment lastimg pinclip">
-                                                                                <div class="variants">
-                                                                                    <div class='file'>
-                                                                                        <label for='file'>
-                                                                                            <img src="{{asset('public/images/paperclip.png')}}" alt="">
-                                                                                        </label>
-                                                                                        <input id="file" type="file" name="file" onchange="loadFile(event)">
+
+                                                                            </div>
+                                                                        </div>
+
+
+
+                                                                        <div id="last-typing-section" class="last-typing-section">
+                                                                            <form method="post" id="upload-image-form" enctype="multipart/form-data">
+                                                                                @csrf
+                                                                                <div class="attachment lastimg pinclip">
+                                                                                    <div class="variants">
+                                                                                        <div class='file'>
+                                                                                            <label for='file'>
+                                                                                                <img src="{{asset('public/images/paperclip.png')}}" alt="">
+                                                                                            </label>
+                                                                                            <input id="file" type="file" name="file">
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
-                                                                            </div>
 
-                                                                            <div class="search">
-                                                                                <input class="form-control" type="text" name="text" placeholder="Type a message..." id="text">
-                                                                            </div>
-                                                                            <div class="sending lastimg">
-                                                                                <button type="button" id="sendAdminMsg"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
-                                                                                <input type="hidden" id="userId" value="">
-                                                                            </div>
-                                                                        </form>
+                                                                                <div class="search">
+                                                                                    <input class="form-control" type="text" name="text" placeholder="Type a message..." id="text">
+                                                                                    <input type="hidden" id="userId" name="user_id" value="">
+                                                                                </div>
+                                                                                <div class="sending lastimg">
+                                                                                    <button type="button" id="sendAdminMsg"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
+
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div id="support" class="tab-pane fane in support">
+                                                    <div id="support" class="tab-pane fane in support">
 
+                                                    </div>
                                                 </div>
-                                            </div>
                                         </section>
                                     </div>
                                 </div>
@@ -199,37 +200,30 @@
         });
 
         $('#sendAdminMsg').on('click', function() {
-            $('#upload-image-form').submit(function(e) {
-                var text = $('#text').val();
-                var image = $('#file').val();
-                console.log(image);
-                var user_id = $('#userId').val();
-                let formData = new FormData(this);
-                console.log(formData);
-                return false;
-                $.ajax({
-                    url: "{{route('sendNonMedicalMessage')}}",
-                    type: "post",
-                    data: formData,
-                    contentType: false,
-                    processData: false,
-                    data: {
-                        "_token": "{{ csrf_token() }}",
-                        user_id: user_id,
-                        text: text
-                    },
-                    success: function(result) {
-                        if (result != false) {
-                            $('#text').val('');
-                            $('#messageDataAdmin').append(result);
-                        }
-                        $("#messageDataAdmin").animate({
-                            scrollTop: $("#messageDataAdmin")[0].scrollHeight
-                        }, 1000);
+            $('#upload-image-form').submit();
+        });
+        $('#upload-image-form').submit(function(e) {
+            e.preventDefault();
+            alert();
+            let formData = new FormData(this);
+            $.ajax({
+                url: "{{route('sendNonMedicalMessage')}}",
+                type: "post",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(result) {
+                    if (result != false) {
+                        $('#text').val('');
+                        $('#messageDataAdmin').append(result);
                     }
-                });
+                    $("#messageDataAdmin").animate({
+                        scrollTop: $("#messageDataAdmin")[0].scrollHeight
+                    }, 1000);
+                }
             });
         });
+
         var input = document.getElementById("text");
         input.addEventListener("keyup", function(event) {
             if (event.keyCode === 13) {

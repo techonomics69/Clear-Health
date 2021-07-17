@@ -378,11 +378,11 @@ class UserController extends BaseController
         ->get();
         if(count($followup_que)>0){
           foreach($followup_que as $key => $value){
-            $left_face = asset('public/images/Users/'.$value->left_face);
-            $right_face = asset('public/images/Users/'.$value->right_face);
-            $center_face = asset('public/images/Users/'.$value->center_face);
-            $back_photo = asset('public/images/Users/'.$value->back_photo);
-            $chest_photo = asset('public/images/Users/'.$value->chest_photo);
+            $left_face = (!empty($value->left_face)) ? asset('public/images/Users/'.$value->left_face) : asset('public/blankphoto.jpg');
+            $right_face = (!empty($value->right_face)) ? asset('public/images/Users/'.$value->right_face) : asset('public/blankphoto.jpg');
+            $center_face = (!empty($value->center_face)) ? asset('public/images/Users/'.$value->center_face) : asset('public/blankphoto.jpg');
+            $back_photo = (!empty($value->back_photo)) ? asset('public/images/Users/'.$value->back_photo) : asset('public/blankphoto.jpg');
+            $chest_photo = (!empty($value->chest_photo)) ? asset('public/images/Users/'.$value->chest_photo) : asset('public/blankphoto.jpg');
 
             $followup_que[$key]['left_face'] = $left_face;
             $followup_que[$key]['right_face'] = $right_face;

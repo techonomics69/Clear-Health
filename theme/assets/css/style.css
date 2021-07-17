@@ -1078,10 +1078,11 @@ body.vertical-layout.vertical-menu.menu-expanded .main-menu {
     visibility: visible;
   }
 
-  .top {
-    display        : flex;
+ .top {
+    display: flex;
     justify-content: space-between;
-  }
+    margin-bottom: 15px;
+}
 
   .dataTables_wrapper .dataTables_info {
     padding-top    : 0 !important;

@@ -352,7 +352,7 @@ class CaseManagementController extends Controller
 
       $user_id = $user_case_management_data['user_id'];
       $case_id = $user_case_management_data['id'];
-      $md_case_id = $user_case_management_data['md_case_id'];
+      $md_case_id = $user_case_management_data['id'];
 
       $follow_up_data = FollowUp::where([['case_id',$user_case_management_data['id']],['follow_up_status','completed']])->get()->toArray();
 
@@ -661,7 +661,7 @@ die();*/
 
     $logs = Activity_log::where('case_id',$id)->get();
 
-      echo "<pre>";
+     echo "<pre>";
       print_r($user_id);
       echo "<pre>";
 
@@ -675,6 +675,7 @@ die();*/
       exit();
 
     $case_status_history = Mdcasestatushistory::where([['user_id',$user_d],['case_id',$case_id],['md_case_id',$md_case_id]])->get->toArray();
+    
     
 
     // dd(json_decode(json_encode($subscription_data), true));

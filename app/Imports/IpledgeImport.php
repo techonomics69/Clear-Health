@@ -82,11 +82,13 @@ class IpledgeImport implements  OnEachRow
                 $ipledge->patient_id = $row[0];
                 $ipledge->addon_date = isset($row[1]) ? date("Y-m-d",strtotime($row[1])) : null;
                 $ipledge->addon_by = isset($row[2]) ? $row[2] : "";
-                $ipledge->patient_name =  isset($row[3]) ? $row[3] : "";
+                // $ipledge->patient_name =  isset($row[3]) ? $row[3] : "";
+                $ipledge->patient_first_name = (isset($row[3])) ? $row[3] : "";
+                $ipledge->patient_last_name = (isset($row[4])) ? $row[4] : "";
                 $ipledge->patients_type = $patientstype;
-                $ipledge->gender = isset($row[4]) ? $row[4] : "";
-                $ipledge->assigned_date = isset($row[5]) ? date("Y-m-d",strtotime($row[5])) : null;
-                $ipledge->notes = isset($row[6]) ? $row[6] : "";
+                $ipledge->gender = isset($row[5]) ? $row[5] : "";
+                $ipledge->assigned_date = isset($row[6]) ? date("Y-m-d",strtotime($row[6])) : null;
+                $ipledge->notes = isset($row[7]) ? $row[7] : "";
                 $ipledge->save();
             }
         }

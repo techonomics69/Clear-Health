@@ -170,7 +170,7 @@
   function InitilizeTable(searchValue){
     var Datatable = $('#CaseManagementList').DataTable({
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
-       language: {search: "", searchPlaceholder: "Search"},
+      
 
         "bLengthChange": false,
       "bInfo": false,
@@ -235,6 +235,8 @@
         			"processing": "Loading....."
     			},
     		"order": [[ 0, "desc" ]],  
+
+        language: {search: "", searchPlaceholder: "Search"},
 
     });
   }

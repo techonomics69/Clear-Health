@@ -1037,6 +1037,11 @@ body.vertical-layout.vertical-menu.menu-expanded .main-menu {
 }
 
 @media (max-width:767px) {
+  #filter1 {
+    position: absolute;
+    left: 8px;
+    bottom: 8px;
+}
   .favourite {
     position: absolute;
     top     : -30px;

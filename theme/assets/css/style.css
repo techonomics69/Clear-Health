@@ -1037,11 +1037,6 @@ body.vertical-layout.vertical-menu.menu-expanded .main-menu {
 }
 
 @media (max-width:767px) {
-  #filter1 {
-    position: absolute !important;
-    left: 8px!important;
-    bottom: 8px!important;
-}
   .favourite {
     position: absolute;
     top     : -30px;
@@ -1078,11 +1073,10 @@ body.vertical-layout.vertical-menu.menu-expanded .main-menu {
     visibility: visible;
   }
 
- .top {
-    display: flex;
+  .top {
+    display        : flex;
     justify-content: space-between;
-    margin-bottom: 15px;
-}
+  }
 
   .dataTables_wrapper .dataTables_info {
     padding-top    : 0 !important;
@@ -1657,13 +1651,3 @@ table.table thead th {
     padding: 10px 14px !important;
 }*/
 
-#filter1{
-  
-  position: absolute;
-    left: 0;
-    bottom: -28px;
-}
-
-select.form-control:not([size]):not([multiple]) {
-    height: calc(2.2rem + 0px);
-}

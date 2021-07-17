@@ -49,7 +49,6 @@
                                 <tbody>
                                     @foreach($user_case_management_data as $key => $value)
                                     <tr>
-                                        {{dd($value)}}
                                         <td>{{$key+1}}</td>
                                         <td>{{$value->created_at}}</td>
                                         <td>{{$value->ref_id}}</td>
@@ -72,7 +71,7 @@
                                             @endif</td>
                                         <td>{{$value->product_type}}</td>
                                         <td>
-                                            <a href="">
+                                            <a href="{{route('message.view', $value->id)}}">
                                                 <i class="fa fa-envelope" aria-hidden="true"></i>
                                             </a>
                                         </td>

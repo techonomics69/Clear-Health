@@ -364,7 +364,6 @@ class UserController extends BaseController
         $validator = \Validator::make($request->all(),[ 
             'user_id' =>  'required',
         ], [
-            
             'user_id.required' =>  'Request has user id',
         ]);
         if($validator->fails()){

@@ -92,9 +92,9 @@
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-lg-12">
-                                                                        <div class="imgDiv">
+                                                                        <div class="imgDiv" id="imgDiv">
                                                                             <img id="blah" src="#" alt="image"/>
-                                                                            <i class="fa fa-close"></i>
+                                                                            <i class="fa fa-close" id="clearImg"></i>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -216,12 +216,17 @@
         });
 
         $('#file').on('change', function(e) {
+            $('#imgDiv').show();
             let reader = new FileReader();
             reader.onload = (e) => {
                 $('#blah').attr('src', e.target.result);
             }
             reader.readAsDataURL(this.files[0]);
         });
+
+        $('#clearImg').on('click', function() {
+            $('#imgDiv').hide();
+        })
     });
 </script>
 @endsection

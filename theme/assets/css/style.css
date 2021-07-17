@@ -1624,8 +1624,14 @@ table.table thead th {
 #messages .chating-section ul li{
   padding: 10px;
   border-bottom: 1px solid #e4e4e4;
-  background: none;
+
 }
+
+.right_chating .chating-section ul li{
+ background-color: white;
+
+}
+
 
 .form-group {
     margin-bottom: 0.5rem;
@@ -1655,3 +1661,14 @@ table.table thead th {
   position: absolute;
     top: 21px;
 }
+
+.imgDiv{
+  border: 1px solid;
+  position: absolute;
+  bottom: 0px;
+  padding: 0px !important;
+}
+#blah{
+  width: 100px;
+  height: 100px;
+  object-fit: contain;

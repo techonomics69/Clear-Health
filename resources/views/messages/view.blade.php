@@ -118,7 +118,7 @@
                                                                                         <label for='file'>
                                                                                             <img src="{{asset('public/images/paperclip.png')}}" alt="">
                                                                                         </label>
-                                                                                        <input id="file" type="file" name="file" onchange="loadFile(event)">
+                                                                                        <input id="file" type="file" name="file">
                                                                                     </div>
                                                                                 </div>
                                                                             </div>

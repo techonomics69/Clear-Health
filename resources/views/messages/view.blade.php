@@ -87,8 +87,9 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-9">
-                                                            <div class="errwrw">
+                                                           
                                                             <div class="right-cht ">
+                                                                 <div class="right_block">
                                                                 <div class="chating-section nonmedicalmessages" id="chating-section">
                                                                     <h3 id="usernameLabelAdmin"></h3>
                                                                     <ul id="messageDataAdmin"></ul>

@@ -87,11 +87,13 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-9">
+                                                            <div class="errwrw">
                                                             <div class="right-cht ">
                                                                 <div class="chating-section nonmedicalmessages" id="chating-section">
                                                                     <h3 id="usernameLabelAdmin"></h3>
                                                                     <ul id="messageDataAdmin"></ul>
                                                                 </div>
+
                                                                 <div class="row">
                                                                     <div class="col-lg-12">
                                                                         <div class="imgDiv" id="imgDiv">
@@ -122,6 +124,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                        </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -188,6 +191,8 @@
 
         $('#sendAdminMsg').on('click', function() {
             var text = $('#text').val();
+            var image = $('#file').val();
+            console.log(image);
             var user_id = $('#userId').val();
             $.ajax({
                 url: "{{route('sendNonMedicalMessage')}}",

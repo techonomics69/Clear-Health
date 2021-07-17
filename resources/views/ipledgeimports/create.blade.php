@@ -46,16 +46,16 @@
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="row">
                                 <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <a class="btn btn-secondry" href="#">Download for male</a>
+                                    <a class="btn btn-secondry" href="{{ asset('public/samples/iPledge_ID_Log_Male.xlsx') }}" download>iPledge ID log For Males</a>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <a class="btn btn-secondry" href="#">Download for female</a>
+                                    <a class="btn btn-secondry" href="{{ asset('public/samples/iPledge_ID_Log_Female.xlsx') }}" download>IPledge ID log for Females</a>
                                 </div>
                             </div>
                             
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6">
-                        
+
                         </div>
                     </div>
                 {!! Form::open(array('route' => 'import','method'=>'POST','enctype'=>"multipart/form-data")) !!}

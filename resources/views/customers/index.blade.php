@@ -45,9 +45,13 @@
                     <thead>
                     <tr>
                       <th>No</th>             
-                      <!-- <th>Name</th> -->
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                      <th>Gender</th>
                       <th>Email</th>
-                      <th>Roles</th> 
+                      <th>DOB</th>
+                      <th>Address</th>
+                    
                                   
                       <th width="280px">Action</th>             
                     </tr>
@@ -57,15 +61,19 @@
                     
                     <tr>
                       <td>{{ ++$i }}</td>           
-                      <!-- <td>{{ $user->name }}</td> -->
+                      <td>{{ $user->first_name }}</td>
+                      <td>{{ $user->last_name }}</td> 
+                      <td>{{ $user->gender }}</td>
                       <td>{{ $user->email }}</td>
-                      <td> 
+                      <td>{{ $user->dob }}</td>
+                      <td>{{ $user->address }}</td>
+                      {{-- <td> 
                          <label class="badge badge-success">
                           @if(!empty($user->roles->first()->name))
                           {{ $user->roles->first()->name }}
                           @endif
                         </label>                                
-                      </td>
+                      </td> --}}
                       <td>
                         <div class="d-flex">
                         <a class="icons edit-icon" href="{{ route('customers.show',$user->id) }}"><i class="fa fa-eye"></i></a>                  

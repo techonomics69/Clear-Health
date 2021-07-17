@@ -1628,8 +1628,7 @@ table.table thead th {
 }
 
 .right_chating #messages .chating-section ul li{
-  padding: 10px;
-  border-bottom: 1px solid #e4e4e4;
+ background-color: white;
 
 }
 

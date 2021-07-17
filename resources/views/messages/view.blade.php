@@ -198,9 +198,9 @@
             });
         });
 
-        $('#sendAdminMsg').on('click', function() {
-            alert();
+        $('#sendAdminMsg').on('click', function() {            
             $('#upload-image-form').submit(function(e) {
+                alert();
                 let formData = new FormData(e);
                 console.log(formData);
                 return false;

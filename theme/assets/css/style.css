@@ -1686,3 +1686,7 @@ table.table thead th {
   .imgs-picture{
     border: 1px solid gray;
   }
+
+  .userAdminList p{
+    margin: 0;
+  }

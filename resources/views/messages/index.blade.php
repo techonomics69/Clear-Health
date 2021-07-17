@@ -29,7 +29,43 @@
                 <section class="card">
                     <div class="row" style="padding: 20px;">
                         <div class="col-md-12">
-                            {{dd($user_case_management_data)}}
+                        <table class="table table-responsive table-striped table-bordered" style=" width:100%" id="CaseManagementList">
+                  <thead>
+                    <tr>
+                      <th>SR</th>
+                      <th>Date</th>
+                      <th>CaseID</th>
+                      <th>FirstName</th>
+                      <th>LastName</th>                      
+                      <th>VisitNumber</th>
+                      <th>MDCaseID</th>
+                      <th>CaseStatus</th>
+                      <th>MDStatus</th>
+                      <th>VisitType</th>
+                      <th>TreatmentPlan</th>                      
+                      <th>Action</th>                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                        @foreach($user_case_management_data as $key => $value)
+                        {{dd($value)}}
+                        <td>{{$key+1}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        @endforeach
+                    </tr>
+                  </tbody>
+                </table>
                         </div>
                     </div>
                 </section>

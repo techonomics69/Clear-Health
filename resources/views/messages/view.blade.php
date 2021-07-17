@@ -70,18 +70,18 @@
                                                     <div class="row" style="padding: 10px;">
                                                         <div class="col-md-3">
                                                             <div class="right_chating">
-                                                            <div class="right-cht">
-                                                                <div class="chating-section">
-                                                                    <ul>
-                                                                        @foreach($adminMsg as $key => $value)
-                                                                        <li class="userAdminList" data-id="{{$value->user_id}}"><strong>{{$value->first_name}} {{$value->last_name}} - Admin</strong>
-                                                                            <p>{{$value->last_msg}}</p>
-                                                                            <small>{{ $value->msg_time }}</small>
-                                                                        </li>
-                                                                        @endforeach
-                                                                    </ul>
+                                                                <div class="right-cht">
+                                                                    <div class="chating-section">
+                                                                        <ul>
+                                                                            @foreach($adminMsg as $key => $value)
+                                                                            <li class="userAdminList" data-id="{{$value->user_id}}"><strong>{{$value->first_name}} {{$value->last_name}} - Admin</strong>
+                                                                                <p>{{$value->last_msg}}</p>
+                                                                                <small>{{ $value->msg_time }}</small>
+                                                                            </li>
+                                                                            @endforeach
+                                                                        </ul>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-9">
@@ -93,7 +93,7 @@
                                                                 <div class="row">
                                                                     <div class="col-lg-12">
                                                                         <div class="p-2 pl-4">
-                                                                            <div id="blah" style="display: block; height: 120px; width: 250px;"></div>
+                                                                            <img id="blah" src="#" alt="your image" style="display: block; height: 120px; width: 250px;" />
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -214,10 +214,13 @@
             }
         });
 
-        $('#file').on('change', function(e){
-            console.log(e);
-            $('#blah').append("imgsrc='"+URL.createObjectURL(event.target.files[0])+"'>");            
-        });        
+        $('#file').on('change', function(e) {
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                $('#blah').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(this.files[0]);
+        });
     });
 </script>
 @endsection

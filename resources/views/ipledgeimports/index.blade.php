@@ -62,8 +62,9 @@
 			<div class="content-header-right col-md-6 col-12 mb-2">
 				<div class="pull-right">
 					{{-- @can('quiz-create')		 --}}			
-					<a class="btn btn-secondry" onclick="openIpledg()"  ><i class="fa fa-plus" aria-hidden="true"></i> Upload Ipledge ID's </a>
+					<a href="{{ route('ipledgeimports.create') }}" class="btn btn-secondry"><i class="fa fa-plus" aria-hidden="true"></i> Upload Ipledge ID's </a>
 					{{-- @endcan	 --}}
+					
 				</div>
 			</div>
 		</div>

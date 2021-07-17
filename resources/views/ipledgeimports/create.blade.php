@@ -42,6 +42,22 @@
                     </div>
                 </header>  -->
                 <div class="card-body">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <a class="btn btn-secondry" href="#">Download for male</a>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <a class="btn btn-secondry" href="#">Download for female</a>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                        
+                        </div>
+                    </div>
                 {!! Form::open(array('route' => 'import','method'=>'POST','enctype'=>"multipart/form-data")) !!}
                     <div class="row">
                       

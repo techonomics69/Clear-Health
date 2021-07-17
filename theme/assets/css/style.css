@@ -1662,3 +1662,14 @@ table.table thead th {
   position: absolute;
     top: 21px;
 }
+
+.imgDiv{
+  border: 1px solid;
+  position: absolute;
+  bottom: 0px;
+  padding: 0px !important;
+}
+#blah{
+  width: 100px;
+  height: 100px;
+  object-fit: contain;

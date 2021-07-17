@@ -376,16 +376,6 @@ class UserController extends BaseController
         ->where("follow_up.user_id", $request['user_id'])
         ->orderBy('follow_up.id','asc')
         ->get();
-        if(!empty($user_pic)){
-           if(!empty($user_pic['left_pic'])){
-              $image_parts = explode(";base64,", $user_pic['left_pic']);
-              $image_type_aux = explode("image/", $image_parts[0]);
-              $image_type = $image_type_aux[1];
-              $image_base64 = base64_decode($image_parts[1]);
-              dd($image_base64);
-           }
-
-        }
         $return  = array('user_pic'=>$user_pic, 'follow_up'=>$followup_que);
         return $this->sendResponse($return , 'Data retrived successfully');
      }catch(\Exception $ex){

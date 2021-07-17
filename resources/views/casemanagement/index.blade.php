@@ -176,7 +176,7 @@
         "bInfo": false,
        
       //scrollX:  true,
-         "sSearch":         "Search:",
+         "Search":         "Search:",
       'searching': true,
       'processing': true,
       'serverSide': true,

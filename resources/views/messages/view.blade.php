@@ -42,6 +42,7 @@
                                                 <div id="medical" class="tab-pane fade in active show">
                                                     <div class="row" style="padding: 10px;">
                                                         <div class="col-md-3">
+                                                             <div class="right_chating">
                                                             <div class="right-cht">
                                                                 <div class="chating-section">
                                                                     <ul>
@@ -54,6 +55,7 @@
                                                                     </ul>
                                                                 </div>
                                                             </div>
+                                                        </div>
                                                         </div>
                                                         <div class="col-md-9">
                                                             <div class="right-cht ">

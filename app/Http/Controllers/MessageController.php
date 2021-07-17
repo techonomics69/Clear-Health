@@ -16,9 +16,13 @@ class MessageController extends Controller
     {
 
         $user_case_management_data = CaseManagement::join('users', 'case_managements.user_id', '=', 'users.id')->leftjoin('case_histories', 'case_managements.id', '=', 'case_histories.case_id')->select('case_managements.*', 'users.email', 'users.first_name', 'users.last_name', 'users.gender', 'case_histories.case_status')->OrderBy('id', 'DESC')->get();
-    //generate_ipledge, store_ipledge, verify_pregnancy, prior_auth, check_off_ipledge, trigger, blood_work
-    
-  
+        //generate_ipledge, store_ipledge, verify_pregnancy, prior_auth, check_off_ipledge, trigger, blood_work
+        return view('casemanagement.index', compact('user_case_management_data'))->with('i', ($request->input('page', 1) - 1) * 5);
+    }
+
+    public function show(Request $request)
+    {
+
         // DB::enableQueryLog();
         $mdList = DB::table('md_messages')
             ->join('users', 'users.id', '=', 'md_messages.user_id')
@@ -51,8 +55,7 @@ class MessageController extends Controller
 
         $user_case_management_data['user_id'] = '';
         $user_case_management_data['id'] = '';
-       // return view('messages.index', compact('user_case_management_data', 'mdList', 'adminMsg'));
-        return view('casemanagement.index', compact('user_case_management_data'))->with('i', ($request->input('page', 1) - 1) * 5);
+        return view('messages.index', compact('user_case_management_data', 'mdList', 'adminMsg'));
     }
 
     public function getMedicalMessage(Request $request)
@@ -131,7 +134,7 @@ class MessageController extends Controller
         $html = '<li class="right">
                     <div class="time_messages"> 
                         <p class="text_mesg">' . $data['text'] . '</p>
-                        <h5>'.$time.'</h5>
+                        <h5>' . $time . '</h5>
                     </div>
                 </li>';
         if ($message) {

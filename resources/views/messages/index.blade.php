@@ -48,14 +48,14 @@
                   </thead>
                   <tbody>
                     <tr>
-                        @foreach($user_case_management_data as $key => $value):                        
+                        @foreach($user_case_management_data as $key => $value)                        
                         <td>{{$key+1}}</td>
                         <td>{{$value->created_at}}</td>
                         <td>{{$value->ref_id}}</td>
                         <td>{{$value->first_name}}</td>
                         <td>{{$value->last}}</td>                        
                         <td>
-                            @if(empty($value->follow_up):
+                            @if(empty($value->follow_up))
                             1
                             @else
                             {{$value->follow_up + 1}}
@@ -64,7 +64,7 @@
                         <td>{{$value->md_case_id}}</td>
                         <td>{{$value->system_status}}</td>
                         <td>{{$value->md_case_status}}</td>
-                        <td>@if(empty($value->follow_up):
+                        <td>@if(empty($value->follow_up))
                             Initial
                             @else
                             Follow up {{$value->follow_up}}

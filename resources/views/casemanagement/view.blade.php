@@ -210,7 +210,7 @@
 											<td width="20%">Date</td>
 											<td wisth="20%">Product</td>
 											<td width="20%">Visit type</td>
-											<td width="20%" style="padding-left: 40px;">Note</td>
+											<td width="20%" style="padding-left: 40px;">Notes</td>
 										</tr>
 									</table>
 								</div>
@@ -1872,19 +1872,31 @@
           <span aria-hidden="true" >&times;</span>
         </button>
       </div>
-      <div class="modal-body">  
-          <button class="collapsible active">07/14/2021</button>
+      <div class="modal-body"> 
+          @php 
+          foreach ($case_status_history as $case_key => $case_value) {
+
+          @endphp
+          <button class="collapsible active">
+          	@php 
+          	$var = $case_value['created_at'];
+			echo date("m-d-Y", strtotime($var) ); 
+			@endphp
+		</button>
 			<div class="content" style="max-height: 267px;">
 				<span class="case_status">
 					<p class="status_heading m-0">Case Status</p>
-				     <p> Processing</p>
+				     <p>{{$case_value['case_status']}}</p>
 				</span>		
 				<span class="case_status">
 					<p class="status_heading m-0">Reason</p>
-				     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+				     <p>{{$case_value['reason']}}</p>
 				</span>			
 			</div>
-			<button class="collapsible">07/15/2021</button>
+			@php
+			 }
+			@endphp
+		{{-- 	<button class="collapsible">07/15/2021</button>
 			<div class="content">
 				<span class="case_status">
 					<p class="status_heading m-0">Case Status</p>
@@ -1894,7 +1906,7 @@
 					<p class="status_heading m-0">Reason</p>
 				     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
 				</span>	
-			</div>
+			</div> --}}
       </div>
     </div>
   </div>

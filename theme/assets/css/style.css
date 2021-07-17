@@ -1173,19 +1173,18 @@ body.vertical-layout.vertical-menu.menu-expanded .main-menu {
   width     : 100%;
   margin    : 21px auto 0;
   box-shadow: 0px 0px 8px 5px #eaeaea;
-   height: 800px;
-     overflow-y: scroll;
+   /*height: 800px;
+     overflow-y: scroll;*/
 
 }
 
 
 
 .chating-section ul {
-  /*height: 603px;*/
+  height: 603px;
   /*overflow-y: scroll;*/
 
-  /*overflow-y: scroll;
-    height: 100%;*/
+ 
 }
 ::-webkit-scrollbar {
   width: 5px;

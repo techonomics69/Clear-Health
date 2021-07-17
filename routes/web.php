@@ -292,7 +292,7 @@ Route::group(['middleware' => ['auth:web']], function () {
 
     //Message
     Route::get('admin/message', [MessageController::class, 'index'])->name('message.index');
-    Route::get('admin/message/{id}', [MessageController::class, 'index'])->name('message.view');
+    Route::get('admin/message/{id}', [MessageController::class, 'show'])->name('message.view');
     Route::post('admin/getMedicalMessage', [MessageController::class, 'getMedicalMessage'])->name('getMedicalMessage');
     Route::post('admin/getNonMedicalMessage', [MessageController::class, 'getNonMedicalMessage'])->name('getNonMedicalMessage');
     Route::post('admin/sendNonMedicalMessage', [MessageController::class, 'sendNonMedicalMessage'])->name('sendNonMedicalMessage');

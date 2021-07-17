@@ -1650,6 +1650,12 @@ table.table thead th {
     vertical-align: middle;
     padding: 10px 14px !important;
 }*/
+
+#filter1{
+  position: absolute;
+    top: 21px;
+}
+
 .imgDiv{
   border: 1px solid;
   position: absolute;
@@ -1660,4 +1666,3 @@ table.table thead th {
   width: 100px;
   height: 100px;
   object-fit: contain;
-}

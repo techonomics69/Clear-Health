@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Models\Offers;
+use App\Models\Userpromocode;
 use Validator;
 use \Carbon\Carbon;
    
@@ -29,16 +30,27 @@ class OfferController extends BaseController
 
      public function applyGiftCard(Request $request){        
         $offer = Offers::where('promocode', $request->code)->first();
-        if(isset($offer) && !empty($offer)):
-            $date = Carbon::now();
-            $cuurentDate = $date->format('Y-m-d');
-            if(($offer->from_date <= $cuurentDate) && ($offer->to_date >= $cuurentDate)):                
+
+        if(isset($offer) && !empty($offer)){
+
+            $userpromocode = Userpromocode::where('promocode', $request->code)->first();
+
+            if(isset($userpromocode) && !empty($userpromocode)){
+               return $this->sendResponse(false,'Already used this Gift card code'); 
+           }
+           else{
+               $date = Carbon::now();
+               $cuurentDate = $date->format('Y-m-d');
+
+               if(($offer->from_date <= $cuurentDate) && ($offer->to_date >= $cuurentDate)){              
                 return $this->sendResponse($offer, 'Offers retrieved successfully.'); 
-            else:                 
+                }else{                 
                 return $this->sendResponse(false,'Invalid Gift card code'); 
-            endif;            
-        else:
-           return $this->sendResponse(false, 'Invalid Gift card code'); 
-        endif;        
-    }
+                }
+            }
+
+        }else{
+            return $this->sendResponse(false, 'Invalid Gift card code'); 
+        }       
+   }
 }

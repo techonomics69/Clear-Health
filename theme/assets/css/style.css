@@ -1665,11 +1665,11 @@ table.table thead th {
 }
 
 .imgDiv{
-border: 1px solid;
-    position: absolute;
+    border: 1px solid;
+    position: relative;
     bottom: 6px;
     padding: 0px !important;
-    left: 63px;
+    left: 50px;
 }
 #blah{
   width: 100px;

@@ -203,7 +203,7 @@
         });
         $('#upload-image-form').submit(function(e) {
             alert();
-            let formData = new FormData(e);
+            let formData = new FormData(this);
             console.log(formData);
             return false;
             var text = $('#text').val();

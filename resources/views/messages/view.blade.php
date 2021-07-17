@@ -92,7 +92,7 @@
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-lg-12">
-                                                                        <div class="imgDiv">
+                                                                        <div class="imgDiv" id="imgDiv">
                                                                             <img id="blah" src="#" alt="image"/>
                                                                             <i class="fa fa-close" id="clearImg"></i>
                                                                         </div>
@@ -216,7 +216,7 @@
         });
 
         $('#file').on('change', function(e) {
-            $('#blah').show();
+            $('#imgDiv').show();
             let reader = new FileReader();
             reader.onload = (e) => {
                 $('#blah').attr('src', e.target.result);
@@ -225,7 +225,7 @@
         });
 
         $('#clearImg').on('click', function() {
-            $('#blah').hide();
+            $('#imgDiv').hide();
         })
     });
 </script>

@@ -71,7 +71,7 @@
                                             @endif</td>
                                         <td>{{$value->product_type}}</td>
                                         <td>
-                                            <a href="{{route('message.view', $value->case_id)}}">
+                                            <a href="{{route('message.view', $value->id)}}">
                                                 <i class="fa fa-envelope" aria-hidden="true"></i>
                                             </a>
                                         </td>

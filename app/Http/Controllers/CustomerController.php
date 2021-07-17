@@ -60,7 +60,12 @@ class CustomerController extends Controller
         $validate = $this->validate($request, [
             // 'name' => 'required',            
             'email' => 'required|email|unique:users,email',            
-            'passwords' => 'required|same:confirm-password',
+            //'passwords' => 'required|same:confirm-password',
+            'first_name' => 'required',            
+            'last_name' => 'required',
+            'gender' => 'required',            
+            'address' => 'required',
+            'dob' => 'required',
         ]);        
 
         $n = 10;
@@ -74,19 +79,21 @@ class CustomerController extends Controller
     
         $input = $request->all();
         $user = User::create(array(
-            // 'name'=>$request->name,
+            'first_name'=>$request->first_name,
+            'last_name'=>$request->last_name,
             'email'=>$request->email,
-            'mobile'=>$request->mobile,
-            'password'=>Hash::make($request->passwords),
             'address'=>$request->address,
-            'state'=>$request->state,
-            'city'=>$request->city,
-            'zip'=>$request->pincode,
             'gender'=>$request->gender,
-            'role'=>$request->roles,
-            'temp_password'=>$tempPass,
-            'role'=>'19',
-            'status'=>isset($request->is_active) ? 1 : 0
+            'dob'=>$request->dob,
+            'role'=>'19'
+            //'mobile'=>$request->mobile,
+            //'password'=>Hash::make($request->passwords),
+            //'state'=>$request->state,
+            //'city'=>$request->city,
+           // 'zip'=>$request->pincode,
+            //'role'=>$request->roles,
+            //'temp_password'=>$tempPass,
+            //'status'=>isset($request->is_active) ? 1 : 0
           ));
         $user->assignRole(19);
     
@@ -135,15 +142,25 @@ class CustomerController extends Controller
         $this->validate($request, [
             // 'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$user->id,           
-            //'email' => 'required|unique:users,email,'.$user->id,           
+            //'email' => 'required|unique:users,email,'.$user->id, 
+            'first_name' => 'required',            
+            'last_name' => 'required',
+            'gender' => 'required',            
+            'address' => 'required',
+            'dob' => 'required',          
         ]);
     
         $input = $request->all();
         
         $user->update(array(
             // 'name'=>$request->name,
-            'role'=>'19',
+            'first_name'=>$request->first_name,
+            'last_name'=>$request->last_name,
             'email'=>$request->email,
+            'address'=>$request->address,
+            'gender'=>$request->gender,
+            'dob'=>$request->dob,
+            'role'=>'19'
         ));
         
        

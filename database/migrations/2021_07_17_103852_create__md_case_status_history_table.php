@@ -19,7 +19,7 @@ class CreateMdCaseStatusHistoryTable extends Migration
             $table->string('case_id');
             $table->string('md_case_id');
             $table->string('case_status');
-            $table->text('reason');
+            $table->text('reason')->nullable();
             $table->timestamps();
         });
     }

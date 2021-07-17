@@ -128,7 +128,7 @@
                                                                                     <input type="hidden" id="userId" name="user_id" value="">
                                                                                 </div>
                                                                                 <div class="sending lastimg">
-                                                                                    <button type="button" id="sendAdminMsg"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
+                                                                                    <button type="submit" id="sendAdminMsg"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
                                                                                     
                                                                                 </div>
                                                                             </form>
@@ -199,9 +199,9 @@
             });
         });
 
-        $('#sendAdminMsg').on('click', function() {
-            $('#upload-image-form').submit();
-        });
+        // $('#sendAdminMsg').on('click', function() {
+        //     $('#upload-image-form').submit();
+        // });
         $('#upload-image-form').submit(function(e) {
             alert();
             let formData = new FormData(this); 

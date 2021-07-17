@@ -216,6 +216,7 @@
 
         $('#file').on('change', function(e){
             console.log(e);
+            console.log(URL.createObjectURL(event.target.files[0]));
         });        
     });
 </script>

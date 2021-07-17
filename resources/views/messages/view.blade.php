@@ -203,8 +203,7 @@
             $('#upload-image-form').submit();
         });
         $('#upload-image-form').submit(function(e) {
-            e.preventDefault();
-            alert();
+            e.preventDefault();            
             let formData = new FormData(this);
             $.ajax({
                 url: "{{route('sendNonMedicalMessage')}}",

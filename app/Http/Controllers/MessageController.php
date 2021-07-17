@@ -98,12 +98,18 @@ class MessageController extends Controller
         $message = DB::table('messages')
             ->where('user_id', $data['user_id'])
             ->join('users', 'messages.user_id', '=', 'users.id')
-            ->select('users.first_name', 'users.last_name', 'messages.user_id', 'messages.created_at', 'messages.text', 'messages.sender')
+            ->join('message_files', 'messages.id', '=', 'message_files.msg_id')
+            ->select('users.first_name', 'users.last_name', 'messages.user_id', 'messages.created_at', 'messages.text', 'messages.sender', 'message_files.*')
             ->get();
         $username = '<b>' . $message[0]->first_name . ' ' . $message[0]->last_name . '</b>';
         $user_id = $message[0]->user_id;
         $html = '';
         foreach ($message as $key => $value) :
+            if($value->file_name):
+                echo '<pre>';
+                print_r($value);
+                die;
+            endif;
             if (isset($value->text)) :
                 $createdAt = Carbon::parse($value->created_at);
                 // $time =  $createdAt->format('H:i:s m/d/Y');

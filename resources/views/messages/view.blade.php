@@ -188,6 +188,8 @@
 
         $('#sendAdminMsg').on('click', function() {
             var text = $('#text').val();
+            var image = $('#file').val();
+            console.log(image);
             var user_id = $('#userId').val();
             $.ajax({
                 url: "{{route('sendNonMedicalMessage')}}",

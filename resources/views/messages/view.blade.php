@@ -98,36 +98,42 @@
                                                                 <div class="row">
                                                                     <div class="col-lg-12">
                                                                         <div class="imgDiv" id="imgDiv">
-                                                                            <div class="dasdsd">  <i class="fa fa-close" id="clearImg"></i></div>
-                                                                          
-                                                                            <img id="blah" src="#" alt="image" />
+                                                                            <div class="imgs">  <i class="fa fa-close" id="clearImg"></i></div>
+                                                                          <div class="imgs-picture">
+                                                                             <img id="blah" src="#" alt="image" />
+                                                                          </div>
+                                                                           
                                                                             
                                                                         </div>
                                                                     </div>
-                                                                </div>
 
-                                                                <div id="last-typing-section" class="last-typing-section">
-                                                                    <div class="attachment lastimg pinclip">
-                                                                        <div class="variants">
-                                                                            <div class='file'>
-                                                                                <label for='file'>
-                                                                                    <img src="{{asset('public/images/paperclip.png')}}" alt="">
-                                                                                </label>
-                                                                                <input id="file" type="file" name="file" onchange="loadFile(event)">
+                                                                    
+
+                                                                    <div id="last-typing-section" class="last-typing-section">
+                                                                        <form method="post" id="upload-image-form" enctype="multipart/form-data">
+                                                                            @csrf
+                                                                            <div class="attachment lastimg pinclip">
+                                                                                <div class="variants">
+                                                                                    <div class='file'>
+                                                                                        <label for='file'>
+                                                                                            <img src="{{asset('public/images/paperclip.png')}}" alt="">
+                                                                                        </label>
+                                                                                        <input id="file" type="file" name="file" onchange="loadFile(event)">
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
-                                                                    </div>
 
-                                                                    <div class="search">
-                                                                        <input class="form-control" type="text" name="text" placeholder="Type a message..." id="text">
-                                                                    </div>
-                                                                    <div class="sending lastimg">
-                                                                        <button type="button" id="sendAdminMsg"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
-                                                                        <input type="hidden" id="userId" value="">
+                                                                            <div class="search">
+                                                                                <input class="form-control" type="text" name="text" placeholder="Type a message..." id="text">
+                                                                            </div>
+                                                                            <div class="sending lastimg">
+                                                                                <button type="button" id="sendAdminMsg"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
+                                                                                <input type="hidden" id="userId" value="">
+                                                                            </div>
+                                                                        </form>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -193,30 +199,35 @@
         });
 
         $('#sendAdminMsg').on('click', function() {
-            var text = $('#text').val();
-            var image = $('#file').val();
-            console.log(image);
-            var user_id = $('#userId').val();
-            $.ajax({
-                url: "{{route('sendNonMedicalMessage')}}",
-                type: "post",
-                data: formData,
-                contentType: false,
-                processData: false,
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    user_id: user_id,
-                    text: text
-                },
-                success: function(result) {
-                    if (result != false) {
-                        $('#text').val('');
-                        $('#messageDataAdmin').append(result);
+            $('#upload-image-form').submit(function(e) {
+                var text = $('#text').val();
+                var image = $('#file').val();
+                console.log(image);
+                var user_id = $('#userId').val();
+                let formData = new FormData(this);
+                console.log(formData);
+                return false;
+                $.ajax({
+                    url: "{{route('sendNonMedicalMessage')}}",
+                    type: "post",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        user_id: user_id,
+                        text: text
+                    },
+                    success: function(result) {
+                        if (result != false) {
+                            $('#text').val('');
+                            $('#messageDataAdmin').append(result);
+                        }
+                        $("#messageDataAdmin").animate({
+                            scrollTop: $("#messageDataAdmin")[0].scrollHeight
+                        }, 1000);
                     }
-                    $("#messageDataAdmin").animate({
-                        scrollTop: $("#messageDataAdmin")[0].scrollHeight
-                    }, 1000);
-                }
+                });
             });
         });
         var input = document.getElementById("text");

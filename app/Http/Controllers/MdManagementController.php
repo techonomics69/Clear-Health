@@ -65,8 +65,8 @@ class MdManagementController extends Controller
 
         ]);
 
-        $language_id =  implode(",",$request->language_id);
-        $request['language_id']=$language_id;
+        //$language_id =  implode(",",$request->language_id);
+        //$request['language_id']=$language_id;
 
         $imageName = time().'.'.$request->image->extension();
 

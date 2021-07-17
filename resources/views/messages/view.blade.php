@@ -56,7 +56,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-9">
-                                                            <div class="right-cht right_chating">
+                                                            <div class="right-cht ">
                                                                 <div class="chating-section medicalmessages">
                                                                     <h3 id="usernameLabel"></h3>
                                                                     <ul id="messageData"></ul>
@@ -69,6 +69,7 @@
                                                 <div id="nonmedical" class="tab-pane fade in nonmedicalmsg">
                                                     <div class="row" style="padding: 10px;">
                                                         <div class="col-md-3">
+                                                            <div class="right_chating">
                                                             <div class="right-cht">
                                                                 <div class="chating-section">
                                                                     <ul>
@@ -81,9 +82,10 @@
                                                                     </ul>
                                                                 </div>
                                                             </div>
+                                                            </div>
                                                         </div>
                                                         <div class="col-md-9">
-                                                            <div class="right-cht">
+                                                            <div class="right-cht ">
                                                                 <div class="chating-section nonmedicalmessages" id="chating-section">
                                                                     <h3 id="usernameLabelAdmin"></h3>
                                                                     <ul id="messageDataAdmin"></ul>

@@ -880,7 +880,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
             $add_status_history['case_id'] = $system_case_id;
             $add_status_history['md_case_id'] = $case_id;
             $add_status_history['user_id'] = $user_id;
-            $add_status_history['status'] = $MdCaseStatus->case_status->name;
+            $add_status_history['case_status'] = $MdCaseStatus->case_status->name;
             $add_status_history['reason'] = $MdCaseStatus->case_status->reason;
 
             $add_status_history = Mdcasestatushistory::create($add_status_history);

@@ -96,6 +96,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('addCheckoutAddress', [CheckoutController::class, 'addCheckoutAddress']);
     Route::post('updateCheckoutAddress', [CheckoutController::class, 'updateCheckoutAddress']);
     Route::post('orderList', [CheckoutController::class, 'orderList']);
+    Route::post('changePreferedPharmacy', [CheckoutController::class, 'changePreferedPharmacy']);
     Route::post('getOrderDetail', [CheckoutController::class, 'getCheckoutdetail']);
     Route::post('getCheckoutAddress', [CheckoutController::class, 'getCheckoutAddress']);
     Route::post('getTaxes', [CheckoutController::class, 'getTaxes']);

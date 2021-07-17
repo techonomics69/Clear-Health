@@ -107,14 +107,7 @@
                                                                         </div>
                                                                     </div>
 
-                                                                    <div class="row">
-                                                                        <div class="col-lg-12">
-                                                                            <div class="imgDiv" id="imgDiv">
-                                                                                <img id="blah" src="#" alt="image" />
-                                                                                <i class="fa fa-close" id="clearImg"></i>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
+                                                                    
 
                                                                     <div id="last-typing-section" class="last-typing-section">
                                                                         <form method="post" id="upload-image-form" enctype="multipart/form-data">

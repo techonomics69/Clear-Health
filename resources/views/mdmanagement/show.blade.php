@@ -44,9 +44,45 @@
            
            <div class="card-body">
         <div class="form-group">
-            <strong>Name:</strong>
-            {{ $mdmanagement->name }}
+            <strong>First Name:</strong>
+            {{ $mdmanagement->first_name }}
         </div>
+
+        <div class="form-group">
+            <strong>Last Name:</strong>
+            {{ $mdmanagement->last_name }}
+        </div>
+
+        <div class="form-group">
+            <strong>Expertise:</strong>
+            {{ $mdmanagement->expertise }}
+        </div>
+
+        <div class="form-group">
+            <strong>Title:</strong>
+            {{ $mdmanagement->title }}
+        </div>
+
+         <div class="form-group">
+            <strong>Education:</strong>
+            {{ $mdmanagement->education }}
+        </div>
+
+         <div class="form-group">
+            <strong>License Number:</strong>
+            {{ $mdmanagement->license_number }}
+        </div>
+
+        <div class="form-group">
+            <strong>States Licensed to Practice In:</strong>
+            {{ $mdmanagement->states_licensed_to_practice }}
+        </div>
+
+         <div class="form-group">
+            <strong>Credentials:</strong>
+            {{ $mdmanagement->credentials}}
+        </div>
+
         <div class="form-group">
             <strong>Status:</strong>
             @if($mdmanagement->status =='1')   
@@ -55,12 +91,6 @@
                 <span class="badge badge-danger">InActive</span>
             @endif
         </div>                     
-        <div class="form-group">
-            <strong>Language:</strong>
-           @if(!empty($mdmanagement->languages))
-            {{ $mdmanagement->languages}}
-                        @endif
-        </div>
 
         <div class="form-group">
             <strong>Image:</strong>

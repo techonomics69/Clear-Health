@@ -63,6 +63,37 @@
                                     </div>
                                 </div> -->
 
+                                 <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label>First Name</label><span class="required">*</span>
+                                        {!! Form::text('first_name', null, array('placeholder' => 'First Name','class' => 'form-control','id'=>'email')) !!}
+                                    </div>
+                                </div>
+
+                                 <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Last Name</label><span class="required">*</span>
+                                        {!! Form::text('last_name', null, array('placeholder' => 'Last Name','class' => 'form-control','id'=>'email')) !!}
+                                    </div>
+                                </div>
+                                  <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Gender</label><span class="required">*</span>
+                                        <select id="inputState" name="gender" class="form-control">
+                                            <option value="">Select Gender</option>
+                                            <option {{ old('gender') == 'male' ? "selected" : "" }} value="male">Male</option>
+                                            <option {{ old('gender') == 'female' ? "selected" : "" }} value="female">Female</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                 <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Birth Date:</label><span class="required">*</span>
+                                        {!! Form::text('dob', null, array('placeholder' => '','class' => 'form-control','id'=>'dob')) !!}
+                                    </div>
+                                </div>
+
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>Email</label><span class="required">*</span>
@@ -70,9 +101,18 @@
                                     </div>
                                 </div>
 
+
+                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Address Line</label><span class="required">*</span>
+                                        {!! Form::text('address', null, array('placeholder' => 'Address','class' => 'form-control')) !!}
+                                    </div>
+                                </div>
+                          
+
                                 
                                
-                                 <div class="col-lg-4 col-md-6 col-sm-6">
+                                {{--  <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>Password</label><span class="required">*</span>
                                         {!! Form::password('passwords', array('placeholder' => 'Password','class' => 'form-control', 'maxlength' => "15","id"=>"password")) !!}
@@ -83,7 +123,7 @@
                                         <label>Confirm Password</label><span class="required">*</span>
                                         {!! Form::password('confirm-password', array('placeholder' => 'Password','class' => 'form-control', 'maxlength' => "15","id"=>"confirm_password")) !!}
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
 
                             <div class="row">
@@ -115,6 +155,18 @@
 @endsection
 @section('scriptsection')
 <script type="text/javascript">
+   $(document).ready(function ($) {
+    $("#dob").datepicker({
+                //numberOfMonths: 2,
+                minDate: new Date(),
+                onSelect: function (selected) {
+                    var dt = new Date(selected);
+                    dt.setDate(dt.getDate());
+                },
+                dateFormat : 'yy-mm-dd'
+            });
+     });
+
     $(document).on('click', '#userSubmit', function() {
             var passflag = false;
             var passregex = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,30}/;

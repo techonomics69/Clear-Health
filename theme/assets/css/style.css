@@ -1177,7 +1177,7 @@ body.vertical-layout.vertical-menu.menu-expanded .main-menu {
      overflow-y: scroll;
 
 }
-.right-cht  ::-webkit-scrollbar {
+.right-cht ::-webkit-scrollbar {
     width: 5px;
 }
 .right-chtt ::-webkit-scrollbar-track {
@@ -1198,6 +1198,8 @@ body.vertical-layout.vertical-menu.menu-expanded .main-menu {
 .chating-section ul {
   /*height: 603px;*/
   /*overflow-y: scroll;*/
+
+  
   / Track / / Handle / / Handle on hover /
 }
 

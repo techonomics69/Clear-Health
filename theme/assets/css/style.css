@@ -1239,7 +1239,8 @@ body.vertical-layout.vertical-menu.menu-expanded .main-menu {
 ul#messageDataAdmin {
     max-width: 740px;
     margin: 0 auto;
-    border: 1px solid;
+    /*border: 1px solid;*/
+    box-shadow: 0px 0px 8px 5px #eaeaea;
 }
 
 .chating-section ul li.right h5 {

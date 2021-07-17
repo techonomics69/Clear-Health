@@ -42,20 +42,20 @@
                                                 <div id="medical" class="tab-pane fade in active show">
                                                     <div class="row" style="padding: 10px;">
                                                         <div class="col-md-3">
-                                                             <div class="right_chating">
-                                                            <div class="right-cht">
-                                                                <div class="chating-section">
-                                                                    <ul>
-                                                                        @foreach($mdList as $key => $name)
-                                                                        <li class="userMdList" data-id="{{$name->case_id}}"><strong>{{$name->first_name}} {{$name->last_name}} - MD</strong>
-                                                                            <p>{{$name->last_msg}}</p>
-                                                                            <small>{{ $name->msg_time }}</small>
-                                                                        </li>
-                                                                        @endforeach
-                                                                    </ul>
+                                                            <div class="right_chating">
+                                                                <div class="right-cht">
+                                                                    <div class="chating-section">
+                                                                        <ul>
+                                                                            @foreach($mdList as $key => $name)
+                                                                            <li class="userMdList" data-id="{{$name->case_id}}"><strong>{{$name->first_name}} {{$name->last_name}} - MD</strong>
+                                                                                <p>{{$name->last_msg}}</p>
+                                                                                <small>{{ $name->msg_time }}</small>
+                                                                            </li>
+                                                                            @endforeach
+                                                                        </ul>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
                                                         </div>
                                                         <div class="col-md-9">
                                                             <div class="right-cht ">
@@ -97,7 +97,7 @@
                                                                 <div class="row">
                                                                     <div class="col-lg-12">
                                                                         <div class="imgDiv" id="imgDiv">
-                                                                            <img id="blah" src="#" alt="image"/>
+                                                                            <img id="blah" src="#" alt="image" />
                                                                             <i class="fa fa-close" id="clearImg"></i>
                                                                         </div>
                                                                     </div>
@@ -197,7 +197,9 @@
             $.ajax({
                 url: "{{route('sendNonMedicalMessage')}}",
                 type: "post",
-                dataType: 'json',
+                data: formData,
+                contentType: false,
+                processData: false,
                 data: {
                     "_token": "{{ csrf_token() }}",
                     user_id: user_id,

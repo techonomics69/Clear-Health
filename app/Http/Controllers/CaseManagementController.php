@@ -662,7 +662,7 @@ die();*/
     $logs = Activity_log::where('case_id',$id)->get();
 
 
-    $case_status_history = Mdcasestatushistory::where([['user_id',$user_id],['case_id',$case_id],['md_case_id',$md_case_id]])->get()->toArray();
+    $case_status_history = Mdcasestatushistory::where([['user_id',$user_id],['case_id',$case_id],['md_case_id',$md_case_id]])->toSql();
 
     echo "<pre>";
     print_r($case_status_history);

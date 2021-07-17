@@ -92,8 +92,8 @@
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-lg-12">
-                                                                        <div class="p-2 pl-4">
-                                                                            <img id="blah" src="#" alt="your image" style="display: block; height: 120px; width: 250px;" />
+                                                                        <div class="imgDiv">
+                                                                            <img id="blah" src="#" alt="image"/>
                                                                         </div>
                                                                     </div>
                                                                 </div>

@@ -1663,3 +1663,7 @@ table.table thead th {
     left: 0;
     bottom: -28px;
 }
+
+select.form-control:not([size]):not([multiple]) {
+    height: calc(2.2rem + 0px);
+}

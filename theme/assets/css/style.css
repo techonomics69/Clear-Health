@@ -1306,11 +1306,11 @@ body.vertical-layout.vertical-menu.menu-expanded .main-menu {
   top: 0;
 }
 
-ul#messageDataAdmin {
+/*ul#messageDataAdmin {
     border: 1px solid #e8e4e4;
     max-width: 800px;
     margin: 0 auto;
-}
+}*/
 
 .time_messages .text_mesg {
   max-width : 90%;

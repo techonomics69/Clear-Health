@@ -374,7 +374,7 @@ class UserController extends BaseController
         ->select('follow_up.left_face','follow_up.right_face','follow_up.center_face',
           'follow_up.back_photo','follow_up.chest_photo','follow_up.follow_up_no')
         ->where("follow_up.user_id", $request['user_id'])
-        ->orderBy('follow_up.id','asc')
+        ->orderBy('follow_up.id','desc')
         ->get();
         if(count($followup_que)>0){
           foreach($followup_que as $key => $value){

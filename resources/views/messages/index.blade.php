@@ -53,7 +53,7 @@
                                         <td>{{$value->created_at}}</td>
                                         <td>{{$value->ref_id}}</td>
                                         <td>{{$value->first_name}}</td>
-                                        <td>{{$value->last}}</td>
+                                        <td>{{$value->last_name}}</td>
                                         <td>
                                             @if(empty($value->follow_up))
                                             1
@@ -70,7 +70,7 @@
                                             Follow up {{$value->follow_up}}
                                             @endif</td>
                                         <td>{{$value->product_type}}</td>
-                                        <td><i class="fas fa-envelope-open-text"></i></td>
+                                        <td><i class="fa fa-envelope" aria-hidden="true"></i></td>
                                     </tr>
                                     @endforeach
                                 </tbody>

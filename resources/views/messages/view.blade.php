@@ -213,6 +213,10 @@
                 document.getElementById("sendAdminMsg").click();
             }
         });
+
+        function loadFile(e){
+            console.log(e);
+        }
     });
 </script>
 @endsection

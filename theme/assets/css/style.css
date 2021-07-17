@@ -1244,6 +1244,8 @@ body.vertical-layout.vertical-menu.menu-expanded .main-menu {
   display    : flex;
   align-items: center;
   overflow   : hidden;
+  max-width: 800px;
+  margin: 0 auto;
 
 }
 
@@ -1306,6 +1308,8 @@ body.vertical-layout.vertical-menu.menu-expanded .main-menu {
 
 ul#messageDataAdmin {
     border: 1px solid #e8e4e4;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .time_messages .text_mesg {

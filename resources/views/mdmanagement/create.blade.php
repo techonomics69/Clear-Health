@@ -41,6 +41,67 @@
                 <div class="card-body">
                 {!! Form::open(array('route' => 'mdmanagement.store','method'=>'POST', 'enctype'=>"multipart/form-data")) !!}
                     <div class="row">
+
+                     <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <strong>First Name:</strong>
+                            <span class="required">*</span>
+                            {!! Form::text('first_name', null, array('placeholder' => 'First Name','class' => 'form-control')) !!}
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <strong>Last Name:</strong>
+                            <span class="required">*</span>
+                            {!! Form::text('last_name', null, array('placeholder' => 'Last Name','class' => 'form-control')) !!}
+                        </div>
+                    </div>
+
+                     <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <strong>Title:</strong>
+                            <span class="required">*</span>
+                            {!! Form::text('title', null, array('placeholder' => 'Title','class' => 'form-control')) !!}
+                        </div>
+                    </div>
+
+                      <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <strong>Education:</strong>
+                            <span class="required">*</span>
+                            {!! Form::text('education', null, array('placeholder' => 'Education','class' => 'form-control')) !!}
+                        </div>
+                    </div>
+
+                     <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <strong>Specialty:</strong>
+                            <span class="required">*</span>
+                            {!! Form::text('expertise', null, array('placeholder' => 'Specialty','class' => 'form-control')) !!}
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <strong>Credentials:</strong>
+                            <span class="required">*</span>
+                            {!! Form::text('credentials', null, array('placeholder' => 'Credentials','class' => 'form-control')) !!}
+                        </div>
+                    </div>  
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <strong>License Number:</strong>
+                            <span class="required">*</span>
+                            {!! Form::text('license_number', null, array('placeholder' => 'License Number','class' => 'form-control')) !!}
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <strong>States Licensed to Practice In:</strong>
+                            <span class="required">*</span>
+                            {!! Form::text('states_licensed_to_practice', null, array('placeholder' => 'States Licensed to Practice In','class' => 'form-control')) !!}
+                        </div>
+                    </div>
                             <div class="col-md-4 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <strong>Status:</strong>
@@ -49,20 +110,20 @@
                                 </div>
                             </div>
                                 
-                                <div class="col-md-4 col-sm-6 col-xs-12">
+                            {{-- <div class="col-md-4 col-sm-6 col-xs-12">
                                     <div class="form-group">
                                         <strong>Name:</strong>
                                         <span class="required">*</span>
                                         {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
                                     </div>
-                                </div>
-                            <div class="col-md-4 col-sm-6 col-xs-12">
+                            </div>
+ --}}                        {{--     <div class="col-md-4 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <strong>Language:</strong>
                                     <span class="required">*</span> 
                 {!! Form::select('language_id[]', $language,null, array('class' => 'form-control','id'=>'language_id', 'multiple'=>'multiple')) !!}
                                 </div>
-                            </div>
+                            </div> --}}
                                 
                                 <div class="col-md-4 col-sm-6 col-xs-12">
                                     <div class="form-group">

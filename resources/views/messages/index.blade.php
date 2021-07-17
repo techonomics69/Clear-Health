@@ -49,6 +49,7 @@
                                 <tbody>
                                     @foreach($user_case_management_data as $key => $value)
                                     <tr>
+                                        {{dd($value)}}
                                         <td>{{$key+1}}</td>
                                         <td>{{$value->created_at}}</td>
                                         <td>{{$value->ref_id}}</td>

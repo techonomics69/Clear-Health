@@ -69,19 +69,21 @@ class MessageController extends Controller
 
         $html = '';
         foreach ($message as $key => $value) :
-            $createdAt = Carbon::parse($value->message_created_at);
-            $time =  $createdAt->format('H:i:s m/d/Y');
-            if ($value->from == 'patient') :
-                $class =  'left';
-            else :
-                $class =  'right';
-            endif;
-            $html .= '<li class="' . $class . '">
+            if (isset($value->text)) :
+                $createdAt = Carbon::parse($value->message_created_at);
+                $time =  $createdAt->format('H:i:s m/d/Y');
+                if ($value->from == 'patient') :
+                    $class =  'left';
+                else :
+                    $class =  'right';
+                endif;
+                $html .= '<li class="' . $class . '">
                     <div class = "time_messages" > 
                         <p class = "text_mesg">' . $value->text . '</p>
                         <h5>' . $time . '</h5>
                     </div>
                 </li>';
+            endif;
         endforeach;
 
         $data['html'] = $html;
@@ -100,19 +102,21 @@ class MessageController extends Controller
         $user_id = $message[0]->user_id;
         $html = '';
         foreach ($message as $key => $value) :
-            $createdAt = Carbon::parse($value->created_at);
-            $time =  $createdAt->format('H:i:s m/d/Y');
-            if ($value->sender == 'user') :
-                $class =  'left';
-            else :
-                $class =  'right';
-            endif;
-            $html .= '<li class="' . $class . '">
+            if (isset($value->text)) :
+                $createdAt = Carbon::parse($value->created_at);
+                $time =  $createdAt->format('H:i:s m/d/Y');
+                if ($value->sender == 'user') :
+                    $class =  'left';
+                else :
+                    $class =  'right';
+                endif;
+                $html .= '<li class="' . $class . '">
                     <div class = "time_messages" > 
                         <p class = "text_mesg">' . $value->text . '</p>
                         <h5>' . $time . '</h5>
                     </div>
                 </li>';
+            endif;
         endforeach;
 
         $data['html'] = $html;

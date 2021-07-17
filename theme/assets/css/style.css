@@ -1179,7 +1179,7 @@ body.vertical-layout.vertical-menu.menu-expanded .main-menu {
 }
 
 .chating-section ul {
-  /*height: 603px;*/
+  height: 603px;
   overflow-y: scroll;
   / Track / / Handle / / Handle on hover /
 }

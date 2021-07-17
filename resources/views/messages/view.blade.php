@@ -200,13 +200,14 @@
 
         $('#sendAdminMsg').on('click', function() {
             $('#upload-image-form').submit(function(e) {
+                let formData = new FormData(e);
+                console.log(formData);
+                return false;
                 var text = $('#text').val();
                 var image = $('#file').val();
                 console.log(image);
                 var user_id = $('#userId').val();
-                let formData = new FormData(this);
-                console.log(formData);
-                return false;
+                
                 $.ajax({
                     url: "{{route('sendNonMedicalMessage')}}",
                     type: "post",

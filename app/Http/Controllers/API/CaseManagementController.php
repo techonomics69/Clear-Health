@@ -190,164 +190,164 @@ class CaseManagementController extends BaseController
 
   public function create_patient(Request $request)
   {
-     $user_id = $request['user_id'];
-     $case_id = $request['case_id'];
-     $order_id = $request['order_id'];
-    $response = create_patient($user_id,$case_id,$order_id);
+   $user_id = $request['user_id'];
+   $case_id = $request['case_id'];
+   $order_id = $request['order_id'];
+   $response = create_patient($user_id,$case_id,$order_id);
 
-     return $this->sendResponse($response ,'patient data');
-  }
-
-  public function searchStateDetail(Request $request){
-    $r = get_token();
-    $token_data = json_decode($r);
-    $token = $token_data->access_token;
-
-    $search = $request['search_state'];
-
-    $curl = curl_init();
-
-    curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/metadata/states?search='.$search,
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_ENCODING => '',
-      CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 0,
-      CURLOPT_FOLLOWLOCATION => true,
-      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => 'GET',
-      CURLOPT_HTTPHEADER => array(
-        'Authorization: Bearer '.$token,
-        'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
-      ),
-    ));
-
-    $response = curl_exec($curl);
-
-    curl_close($curl);
-    return $this->sendResponse(json_decode($response),'State data recieved successfully');
-  }
-
-  public function getAllStates(){
-    $r = get_token();
-    $token_data = json_decode($r);
-    $token = $token_data->access_token;
-
-    $curl = curl_init();
-
-    curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/metadata/states',
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_ENCODING => '',
-      CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 0,
-      CURLOPT_FOLLOWLOCATION => true,
-      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => 'GET',
-      CURLOPT_HTTPHEADER => array(
-        'Authorization: Bearer '.$token,
-        'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
-      ),
-    ));
-
-    $response = curl_exec($curl);
-
-    curl_close($curl);
-    //echo $response;
-
-    return $this->sendResponse(json_decode($response),'State data recieved successfully');
-  }
-
-
-  public function SearchCitiesFromGivenState(Request $request){
-    $r = get_token();
-    $token_data = json_decode($r);
-    $token = $token_data->access_token;
-
-
-
-    $state_id = $request['state_id'];
-    $search_city = $request['search_city'];
-
-    $curl = curl_init();
-
-    curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/metadata/states/'.$state_id.'/cities?search='.$search_city,
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_ENCODING => '',
-      CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 0,
-      CURLOPT_FOLLOWLOCATION => true,
-      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => 'GET',
-      CURLOPT_HTTPHEADER => array(
-        'Authorization: Bearer '.$token,
-        'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
-      ),
-    ));
-
-    $response = curl_exec($curl);
-
-    curl_close($curl);
-    //echo $response;
-
-    return $this->sendResponse(json_decode($response),'City data recieved successfully');
-
-  }
-
-  public function getCitiesFromGivenState(Request $request){
-    $r = get_token();
-    $token_data = json_decode($r);
-    $token = $token_data->access_token;
-
-    $state_id = $request['state_id'];
-    //$search_city = $request['search_city'];
-
-    $curl = curl_init();
-
-    curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/metadata/states/'.$state_id.'/cities',
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_ENCODING => '',
-      CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 0,
-      CURLOPT_FOLLOWLOCATION => true,
-      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => 'GET',
-      CURLOPT_HTTPHEADER => array(
-        'Authorization: Bearer '.$token,
-        'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
-      ),
-    ));
-
-    $response = curl_exec($curl);
-
-    curl_close($curl);
-    //echo $response;
-
-    return $this->sendResponse(json_decode($response),'City data recieved successfully');
-
-  }
-
-  public function createCaseFile(Request $request){
-
-    $documents = $request->file('file');
-    $name = $request->name;
-    $user_id = $request->user_id;
-    $case_id = $request->case_id;
-    $system_case_id = $request->system_case_id;
-
-    $case_file_data = createCaseFile( $documents,$name,$user_id,$case_id,$system_case_id);
-
-    if(!empty($case_file_data)){
-     return $this->sendResponse($case_file_data,'File Uploaded Successfully');
-   }else{
-     return $this->sendResponse(array(),'Something Went Wrong!');
-   }
-
+   return $this->sendResponse($response ,'patient data');
  }
 
- public function getTestReport(Request $request){
+ public function searchStateDetail(Request $request){
+  $r = get_token();
+  $token_data = json_decode($r);
+  $token = $token_data->access_token;
+
+  $search = $request['search_state'];
+
+  $curl = curl_init();
+
+  curl_setopt_array($curl, array(
+    CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/metadata/states?search='.$search,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => '',
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => 'GET',
+    CURLOPT_HTTPHEADER => array(
+      'Authorization: Bearer '.$token,
+      'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+    ),
+  ));
+
+  $response = curl_exec($curl);
+
+  curl_close($curl);
+  return $this->sendResponse(json_decode($response),'State data recieved successfully');
+}
+
+public function getAllStates(){
+  $r = get_token();
+  $token_data = json_decode($r);
+  $token = $token_data->access_token;
+
+  $curl = curl_init();
+
+  curl_setopt_array($curl, array(
+    CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/metadata/states',
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => '',
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => 'GET',
+    CURLOPT_HTTPHEADER => array(
+      'Authorization: Bearer '.$token,
+      'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+    ),
+  ));
+
+  $response = curl_exec($curl);
+
+  curl_close($curl);
+    //echo $response;
+
+  return $this->sendResponse(json_decode($response),'State data recieved successfully');
+}
+
+
+public function SearchCitiesFromGivenState(Request $request){
+  $r = get_token();
+  $token_data = json_decode($r);
+  $token = $token_data->access_token;
+
+
+
+  $state_id = $request['state_id'];
+  $search_city = $request['search_city'];
+
+  $curl = curl_init();
+
+  curl_setopt_array($curl, array(
+    CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/metadata/states/'.$state_id.'/cities?search='.$search_city,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => '',
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => 'GET',
+    CURLOPT_HTTPHEADER => array(
+      'Authorization: Bearer '.$token,
+      'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+    ),
+  ));
+
+  $response = curl_exec($curl);
+
+  curl_close($curl);
+    //echo $response;
+
+  return $this->sendResponse(json_decode($response),'City data recieved successfully');
+
+}
+
+public function getCitiesFromGivenState(Request $request){
+  $r = get_token();
+  $token_data = json_decode($r);
+  $token = $token_data->access_token;
+
+  $state_id = $request['state_id'];
+    //$search_city = $request['search_city'];
+
+  $curl = curl_init();
+
+  curl_setopt_array($curl, array(
+    CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/metadata/states/'.$state_id.'/cities',
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => '',
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => 'GET',
+    CURLOPT_HTTPHEADER => array(
+      'Authorization: Bearer '.$token,
+      'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+    ),
+  ));
+
+  $response = curl_exec($curl);
+
+  curl_close($curl);
+    //echo $response;
+
+  return $this->sendResponse(json_decode($response),'City data recieved successfully');
+
+}
+
+public function createCaseFile(Request $request){
+
+  $documents = $request->file('file');
+  $name = $request->name;
+  $user_id = $request->user_id;
+  $case_id = $request->case_id;
+  $system_case_id = $request->system_case_id;
+
+  $case_file_data = createCaseFile( $documents,$name,$user_id,$case_id,$system_case_id);
+
+  if(!empty($case_file_data)){
+   return $this->sendResponse($case_file_data,'File Uploaded Successfully');
+ }else{
+   return $this->sendResponse(array(),'Something Went Wrong!');
+ }
+
+}
+
+public function getTestReport(Request $request){
   $name = $request['name'];
   $user_id = $request['user_id'];
   $case_id = $request['case_id'];
@@ -1182,53 +1182,53 @@ public function getMdDetailForMessage(Request $request){
 
     //if($check_form['abstinence_form'] == 1 && $check_form['sign_ipledge_consent'] == 1 ){
 
-      $user = User::select('gender','first_name','last_name')->where('id',$user_id)->first();
+    $user = User::select('gender','first_name','last_name')->where('id',$user_id)->first();
 
-      $u_name = $user['first_name'].' '.$user['last_name'];
+    $u_name = $user['first_name'].' '.$user['last_name'];
 
 
-      if($user['gender'] == 'male'){
-        $gen = 'M';
-      }else{
-        $gen = 'F';
-      }
+    if($user['gender'] == 'male'){
+      $gen = 'M';
+    }else{
+      $gen = 'F';
+    }
 
       //$product_type = getUserProduct($user_id,$case_id);
-      $product_type = $check_form['product_type'];
+    $product_type = $check_form['product_type'];
 
 
-      if($user['gender'] == 'male' && $product_type =='Accutane' && $check_form['sign_ipledge_consent'] == 1){
+    if($user['gender'] == 'male' && $product_type =='Accutane' && $check_form['sign_ipledge_consent'] == 1){
 
-        $iPledgeId = Ipledge::where([['patients_type','0'],['gender',$gen]])->whereNull('assigned_date')->OrderBy('id', 'ASC')->first();
-        ;
+      $iPledgeId = Ipledge::where([['patients_type','0'],['gender',$gen]])->whereNull('assigned_date')->OrderBy('id', 'ASC')->first();
+      ;
 
-        $update_ipledge_id =  CaseManagement::where([['user_id',$user_id],['id',$case_id],['md_case_id',$md_case_id]])->update(['ipledge_id' => $iPledgeId['patient_id']],['ipledge_abstinence_updated_at' => Carbon::now()]);
+      $update_ipledge_id =  CaseManagement::where([['user_id',$user_id],['id',$case_id],['md_case_id',$md_case_id]])->update(['ipledge_id' => $iPledgeId['patient_id']],['ipledge_abstinence_updated_at' => Carbon::now()]);
 
-        $assign_ipledge_id = Ipledge::where('id',$iPledgeId['id'])->update(['user_case_id' => $case_id],['assigned_date' => Carbon::now()],['patient_name' => $u_name]);
+      $assign_ipledge_id = Ipledge::where('id',$iPledgeId['id'])->update(['user_case_id' => $case_id],['assigned_date' => Carbon::now()],['patient_name' => $u_name]);
 
-        $udata['ipledge_id'] = $iPledgeId['patient_id'];
+      $udata['ipledge_id'] = $iPledgeId['patient_id'];
 
-        return $this->sendResponse($udata,'Field Updated Successfully.iPledge Id assigned is-'.$iPledgeId['patient_id']);
-        
-      }
+      return $this->sendResponse($udata,'Field Updated Successfully.iPledge Id assigned is-'.$iPledgeId['patient_id']);
 
-      if($user['gender'] == 'female' && $product_type =='Accutane' && $check_form['abstinence_form'] == 1 && $check_form['sign_ipledge_consent'] == 1){ 
+    }
+
+    if($user['gender'] == 'female' && $product_type =='Accutane' && $check_form['abstinence_form'] == 1 && $check_form['sign_ipledge_consent'] == 1){ 
 
       //if($user['gender'] == 'female' && $product_type =='Accutane' && $check_form['sign_ipledge_consent'] == 1){ 
 
 
-        $iPledgeId = Ipledge::where([['patients_type','1'],['gender',$gen]])->whereNull('assigned_date')->OrderBy('id', 'ASC')->first();
-        ;
+      $iPledgeId = Ipledge::where([['patients_type','1'],['gender',$gen]])->whereNull('assigned_date')->OrderBy('id', 'ASC')->first();
+      ;
 
-        $update_ipledge_id =  CaseManagement::where([['user_id',$user_id],['id',$case_id],['md_case_id',$md_case_id]])->update(['ipledge_id' => $iPledgeId['patient_id']],['ipledge_abstinence_updated_at' => Carbon::now()]);
+      $update_ipledge_id =  CaseManagement::where([['user_id',$user_id],['id',$case_id],['md_case_id',$md_case_id]])->update(['ipledge_id' => $iPledgeId['patient_id']],['ipledge_abstinence_updated_at' => Carbon::now()]);
 
-        $assign_ipledge_id = Ipledge::where('id',$iPledgeId['id'])->update(['user_case_id' => $case_id,'assigned_date' => Carbon::now(),'patient_name' => $u_name]);
+      $assign_ipledge_id = Ipledge::where('id',$iPledgeId['id'])->update(['user_case_id' => $case_id,'assigned_date' => Carbon::now(),'patient_name' => $u_name]);
 
-        $udata['ipledge_id'] = $iPledgeId['patient_id'];
+      $udata['ipledge_id'] = $iPledgeId['patient_id'];
 
-        return $this->sendResponse($udata,'Field Updated Successfully.iPledge Id assigned is-'.$iPledgeId['patient_id']);
-        
-      }
+      return $this->sendResponse($udata,'Field Updated Successfully.iPledge Id assigned is-'.$iPledgeId['patient_id']);
+
+    }
 
 
     //}
@@ -1236,6 +1236,24 @@ public function getMdDetailForMessage(Request $request){
 
   }
 
- 
+  public function setNonMedicalMessageAsRead(Request $request){
+
+    $now = Carbon::now();
+    $today_date = $now->toDateTimeString();
+
+    $read_at = $today_date;
+
+
+    $caseUpdate  =  Messages::where('user_id',$request['user_id'])->where('case_id',$case_id)->update(['read_at' => $read_at]);
+
+    if($caseUpdate == 1){
+      return $this->sendResponse($data,'Message set as read successfully');
+    }else{
+      return $this->sendResponse(array(),'Something went wrong');
+    }
+
+  }
+
+
 
 }

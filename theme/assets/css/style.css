@@ -1177,10 +1177,9 @@ body.vertical-layout.vertical-menu.menu-expanded .main-menu {
 overflow-y: scroll;
 
 }
-.right-chtt::-webkit-scrollbar {
-  width: 5px;
+.right-cht::-webkit-scrollbar {
+    width: 5px;
 }
-
 .right-chtt::-webkit-scrollbar-track {
   box-shadow   : inset 0 0 5px #e4dede;
   border-radius: 0px;

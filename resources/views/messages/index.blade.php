@@ -29,7 +29,7 @@
                 <section class="card">
                     <div class="row" style="padding: 20px;">
                         <div class="col-md-12">
-                            <table class="table table-responsive table-striped table-bordered" style=" width:100%" id="CaseManagementList">
+                            <table class="table table-responsive table-striped table-bordered" style=" width:100%" id="CaseList">
                                 <thead>
                                     <tr>
                                         <th>SR</th>
@@ -82,3 +82,27 @@
         </div>
     </div>
 </div>
+@endsection
+@section('scriptsection')
+
+<script>
+    $.noConflict();
+    jQuery(document).ready(function($) {
+        $('#CaseList').DataTable({
+            "dom": '<"top"if>rt<"bottom"lp><"clear">',
+            "oSearch": {
+                "bSmart": false,
+                "bRegex": true
+            },
+            "paging": true,
+            "bLengthChange": false,
+            "bAutoWidth": true,
+            "bInfo": false,
+            language: {
+                search: "",
+                searchPlaceholder: "Search"
+            },
+        });
+    });
+</script>
+@endsection

@@ -70,7 +70,7 @@
                                             Follow up {{$value->follow_up}}
                                             @endif</td>
                                         <td>{{$value->product_type}}</td>
-                                        <td></td>
+                                        <td><i class="fas fa-envelope-open-text"></i></td>
                                     </tr>
                                     @endforeach
                                 </tbody>

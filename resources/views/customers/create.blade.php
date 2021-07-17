@@ -163,7 +163,7 @@
                     var dt = new Date(selected);
                     dt.setDate(dt.getDate());
                 },
-                dateFormat : 'yyyy-mm-dd'
+                dateFormat : 'yy-mm-dd'
             });
      });
 

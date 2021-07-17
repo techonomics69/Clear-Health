@@ -39,11 +39,8 @@
                 <h3 class="main-title-heading">Users Management</h3> 
               </header> -->
           <div class="row" style="padding: 20px;">
-         
-          </div>    
-          <div class="row" style="padding: 20px;">
-            <div class="col-md-12">
-                    <div class="col-md-4">
+            <div class="col-md-4">
+
                 <select id="filter1" class="form-control">
                     <option value="">--SELECT ACTION--</option>
                     <option value="All">All</option>
@@ -51,9 +48,12 @@
                     <option value="Action by Patient">Action by Patient</option>
                     <option value="No action required">No action required</option>
                 </select>
-              </div>
-                <table class="table table-responsive table-striped table-bordered" style=" width:100%" id="CaseManagementList">
+            </div>
+          </div>    
+          <div class="row" style="padding: 20px;">
+            <div class="col-md-12">
             
+                <table class="table table-responsive table-striped table-bordered" style=" width:100%" id="CaseManagementList">
                   <thead>
                     <tr>
                       <th>SR</th>
@@ -236,7 +236,7 @@
     			},
     		"order": [[ 0, "desc" ]],  
 
-        language: {search: "", searchPlaceholder: "Search"},
+             language: {search: "", searchPlaceholder: "Search"},
 
     });
   }

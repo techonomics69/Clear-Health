@@ -71,7 +71,8 @@ class MessageController extends Controller
         foreach ($message as $key => $value) :
             if (isset($value->text)) :
                 $createdAt = Carbon::parse($value->message_created_at);
-                $time =  $createdAt->format('H:i:s m/d/Y');
+                //$time =  $createdAt->format('H:i:s m/d/Y');
+                $time =  $createdAt->diffForHumans();
                 if ($value->from == 'patient') :
                     $class =  'left';
                 else :
@@ -135,7 +136,8 @@ class MessageController extends Controller
 
         $message = Messages::create($data);
         $createdAt = Carbon::now();
-        $time =  $createdAt->format('H:i:s m/d/Y');
+        //$time =  $createdAt->format('H:i:s m/d/Y');
+        $time =  $createdAt->diffForHumans();
         $html = '<li class="right">
                     <div class="time_messages"> 
                         <p class="text_mesg">' . $data['text'] . '</p>

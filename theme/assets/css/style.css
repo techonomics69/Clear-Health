@@ -1174,17 +1174,34 @@ body.vertical-layout.vertical-menu.menu-expanded .main-menu {
   margin    : 21px auto 0;
   box-shadow: 0px 0px 8px 5px #eaeaea;
      height: 800px;
-overflow-y: scroll;
+     overflow-y: scroll;
 
 }
+.right-cht  ::-webkit-scrollbar {
+    width: 5px;
+}
+.right-chtt ::-webkit-scrollbar-track {
+  box-shadow   : inset 0 0 5px #e4dede;
+  border-radius: 0px;
+}
+
+ .right-chtt ::-webkit-scrollbar-thumb {
+  background   : #e4e4e4;
+  border-radius: 10px;
+}
+
+ .right-chtt ::-webkit-scrollbar-thumb:hover {
+  background: black;
+}
+
 
 .chating-section ul {
-  height: 603px;
-  overflow-y: scroll;
+  /*height: 603px;*/
+  /*overflow-y: scroll;*/
   / Track / / Handle / / Handle on hover /
 }
 
-.chating-section ul::-webkit-scrollbar {
+/*.chating-section ul::-webkit-scrollbar {
   width: 5px;
 }
 
@@ -1201,7 +1218,7 @@ overflow-y: scroll;
 .chating-section ul::-webkit-scrollbar-thumb:hover {
   background: black;
 }
-
+*/
 .chating-section ul {
   padding   : 0;
   list-style: none;

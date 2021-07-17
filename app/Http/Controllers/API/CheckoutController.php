@@ -693,6 +693,8 @@ class CheckoutController extends BaseController
     $pharmacy_id =  $request['preferred_pharmacy_id'];
 
     //$user_old_pharmacy_id = getPickupPharmacy($user_id,$case_id,$md_case_id);
+    if(isset($pharmacy_id)){
+
       $user_data = User::where('id',$user_id)->select('md_patient_id')->first();
 
       $md_patient_id = $user_data['md_patient_id'];
@@ -703,7 +705,11 @@ class CheckoutController extends BaseController
 
       $pharmacy_data  =  Cart::select('pharmacy_pickup')->where('user_id',$user_id)->whereIn('id',$cart_ids)->where('order_type', '!=', 'AddOn')->where('order_type', '!=', 'Non-Prescribe')->first();
 
-      $user_old_pharmacy_id = $pharmacy_data['pharmacy_pickup'];
+      //code to remove pharmacy of patient
+
+      if(!empty($pharmacy_data) && count($pharmacy_data)>0){
+
+        $user_old_pharmacy_id = $pharmacy_data['pharmacy_pickup'];
 
       if($user_old_pharmacy_id == 'cash'){
            $old_pharmacy_id = '13012';
@@ -742,12 +748,17 @@ class CheckoutController extends BaseController
      echo "<pre>";
     
 
+
+      }
+      //end of code to remove pharmacy of patient 
+
+      
      //code to add pharmacy of patient
 
       if($pharmacy_id == 'cash'){
            $preferred_pharmacy_id = '13012';
       }else{
-        $preferred_pharmacy_id = $pharmacy_id
+        $preferred_pharmacy_id = $pharmacy_id;
       }
 
       $curl = curl_init();
@@ -783,6 +794,8 @@ class CheckoutController extends BaseController
 
       //end of code to add pharmacy of patient
 
+    }
+      
 
   }
   

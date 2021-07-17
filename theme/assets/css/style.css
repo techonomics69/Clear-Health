@@ -1678,6 +1678,6 @@ table.table thead th {
   height: 100px;
   object-fit: contain;}
 
-  imgs{
+  .imgs{
     text-align: right;
   }

@@ -35,7 +35,7 @@
                                         <section class="card">
                                             <ul class="nav nav-tabs" id="messages-tab-menu">
                                                 <li><a class="btn active" data-toggle="tab" href="#medical">Medical Messgaes</a></li>
-                                                <li><a class="btn nonmedicalmsg" data-toggle="tab" href="#nonmedical" onclick="Gotobottom();">Non-Medical Messgaes</a></li>
+                                                <li><a class="btn nonmedicalmsg" data-toggle="tab" href="#nonmedical">Non-Medical Messgaes</a></li>
                                                 <li><a class="btn support" data-toggle="tab" href="#support">Support</a></li>
                                             </ul>
                                             <div class="tab-content">
@@ -98,7 +98,7 @@
                                                                 <div class="row">
                                                                     <div class="col-lg-12">
                                                                         <div class="imgDiv" id="imgDiv">
-                                                                            <div class="imgs">  <i class="fa fa-close" id="clearImg"></i></div>
+                                                                            <div class="imgs">  <i class="fa fa-close" id="clearImg" style="font-size: 20px;"></i></div>
                                                                           <div class="imgs-picture">
                                                                              <img id="blah" src="#" alt="image" />
                                                                           </div>
@@ -118,7 +118,7 @@
                                                                                         <label for='file'>
                                                                                             <img src="{{asset('public/images/paperclip.png')}}" alt="">
                                                                                         </label>
-                                                                                        <input id="file" type="file" name="file" onchange="loadFile(event)">
+                                                                                        <input id="file" type="file" name="file">
                                                                                     </div>
                                                                                 </div>
                                                                             </div>

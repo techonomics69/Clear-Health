@@ -53,7 +53,7 @@
                                         <td>{{$value->created_at}}</td>
                                         <td>{{$value->ref_id}}</td>
                                         <td>{{$value->first_name}}</td>
-                                        <td>{{$value->last}}</td>
+                                        <td>{{$value->last_name}}</td>
                                         <td>
                                             @if(empty($value->follow_up))
                                             1

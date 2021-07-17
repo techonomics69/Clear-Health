@@ -190,4 +190,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     //BirthControl
     Route::post("createBirthControl", [BirthControlController::class, 'store']);
     Route::get("getbirthcontrol/{id}", [BirthControlController::class, 'show']);
+
+    //GetProgressPhotos
+    Route::get("getprogressphotos",[UserController::class, 'getUserProgressPhotos']);
 });

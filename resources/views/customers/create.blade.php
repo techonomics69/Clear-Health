@@ -66,14 +66,14 @@
                                  <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>First Name</label><span class="required">*</span>
-                                        {!! Form::text('first_name', null, array('placeholder' => 'First Name','class' => 'form-control','id'=>'email')) !!}
+                                        {!! Form::text('first_name', null, array('placeholder' => 'First Name','class' => 'form-control')) !!}
                                     </div>
                                 </div>
 
                                  <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>Last Name</label><span class="required">*</span>
-                                        {!! Form::text('last_name', null, array('placeholder' => 'Last Name','class' => 'form-control','id'=>'email')) !!}
+                                        {!! Form::text('last_name', null, array('placeholder' => 'Last Name','class' => 'form-control')) !!}
                                     </div>
                                 </div>
                                   <div class="col-lg-4 col-md-6 col-sm-6">

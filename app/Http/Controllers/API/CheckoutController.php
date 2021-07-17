@@ -792,6 +792,8 @@ class CheckoutController extends BaseController
       echo "<pre>";
       exit();
 
+      return $this->sendResponse($pharmacy_added, 'Pharmacy changed successfully.');
+
       //end of code to add pharmacy of patient
 
     }

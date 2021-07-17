@@ -665,17 +665,13 @@ die();*/
 
     $case_status_history = Mdcasestatushistory::where([['user_id',$user_id],['case_id',$system_case_id],['md_case_id',$md_case_id]])->get()->toArray();
 
-    echo "<pre>";
-    print_r($case_status_history);
-    echo "<pre>";
-    exit();
     
     
 
     // dd(json_decode(json_encode($subscription_data), true));
 
   
-    return view('casemanagement.view', compact('user_case_management_data', 'category','general', 'general_que', 'accutane_que', 'topical_que', 'skincare_summary', 'message_data', 'message_details', 'msg_history', 'followup_que', 'prescribe_shipments', 'checkout', 'user_pic','subscription_data','logs'));
+    return view('casemanagement.view', compact('user_case_management_data', 'category','general', 'general_que', 'accutane_que', 'topical_que', 'skincare_summary', 'message_data', 'message_details', 'msg_history', 'followup_que', 'prescribe_shipments', 'checkout', 'user_pic','subscription_data','logs','case_status_history'));
   }
 
   

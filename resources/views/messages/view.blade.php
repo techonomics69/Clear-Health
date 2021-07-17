@@ -94,6 +94,7 @@
                                                                     <div class="col-lg-12">
                                                                         <div class="imgDiv">
                                                                             <img id="blah" src="#" alt="image"/>
+                                                                            <i class="fa fa-close"></i>
                                                                         </div>
                                                                     </div>
                                                                 </div>

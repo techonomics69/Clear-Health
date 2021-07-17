@@ -21,6 +21,7 @@ use App\Models\Mdpatient;
 use App\Models\CurexaOrder;
 use App\Models\Mdcases;
 use App\Models\CaseHistory;
+use App\Models\Mdcasestatushistory;
 
 use App\Models\Triggers;
 use App\Models\Notifications;
@@ -874,6 +875,15 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
 
             $md_cases  =  Mdcases::where('case_id',$case_id)->update(['status' =>$MdCaseStatus->case_status->name,'system_status'=> $system_status,'case_status_reason' =>$MdCaseStatus->case_status->reason,'case_status_updated_at' =>$MdCaseStatus->case_status->updated_at]);
+
+            $add_status_history = array();
+            $add_status_history['case_id'] = $system_case_id;
+            $add_status_history['md_case_id'] = $case_id;
+            $add_status_history['user_id'] = $user_id;
+            $add_status_history['status'] = $MdCaseStatus->case_status->name;
+            $add_status_history['reason'] = $MdCaseStatus->case_status->reason;
+
+            $add_status_history = Mdcasestatushistory::create($add_status_history);
 
               //if($follow_up_data['follow_up_no'] == 0 && $MdCaseStatus->case_status->reason != null){
             if(empty($follow_up_data) && $MdCaseStatus->case_status->reason != null){

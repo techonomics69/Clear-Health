@@ -98,7 +98,7 @@
                                                                 <div class="row">
                                                                     <div class="col-lg-12">
                                                                         <div class="imgDiv" id="imgDiv">
-                                                                            <div class="dasdsd">  <i class="fa fa-close" id="clearImg"></i></div>
+                                                                            <div class="imgs">  <i class="fa fa-close" id="clearImg"></i></div>
                                                                           
                                                                             <img id="blah" src="#" alt="image" />
                                                                             

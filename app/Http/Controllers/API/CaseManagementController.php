@@ -1254,6 +1254,4 @@ public function getMdDetailForMessage(Request $request){
 
   }
 
-
-
 }

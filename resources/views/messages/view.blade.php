@@ -212,7 +212,7 @@
                 contentType: false,
                 processData: false,
                 success: function(result) {
-                    console.log(result);
+                    console.log(result.text);
                     if (result != false) {
                         $('#text').val('');
                         $('#messageDataAdmin').append(

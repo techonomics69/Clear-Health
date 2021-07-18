@@ -134,7 +134,7 @@ class MessageController extends Controller
                 endif;
                 $html .= '<li class="' . $class . '">
                     <div class = "time_messages" > 
-                        <p class = "text_mesg">{{ url('.$value->file_path.') }}</p>
+                        <p class = "text_mesg">'. url()->full().$value->file_path.'</p>
                         <h5>' . $time . '</h5>
                     </div>
                 </li>';

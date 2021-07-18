@@ -161,6 +161,7 @@ class MessageController extends Controller
         $documents = $request->file('file');
         $message = Messages::create($data);
         //dd($request->file('file')->getSize());
+        $file_path = '';
         if (!empty($documents)) {
             $file =  $documents->getClientOriginalName();
             $doc_file_name =  time() . '-' . $file;
@@ -209,18 +210,22 @@ class MessageController extends Controller
         //                 <h5>' . $time . '</h5>
         //             </div>
         //         </li>';
+        
         // if (isset($message_file_data) && !empty($message_file_data)) :
-            
-            $html = '<li class="right">
-                        <div class="time_messages"> 
-                            <p class="text_mesg">img</p>
-                            <h5>' . $time . '</h5>
-                        </div>
-                    </li>';
+        //     $html = '<li class="right">
+        //             <div class="time_messages"> 
+        //                 <p class="text_mesg">
+        //                 <a href="'.url('').'/'.$file_path.'" target="_blank">
+        //                 <img src="'.url('').'/'.$file_path.'" style="width:50px; height:50px; object-fit: contain;">
+        //                 </p>
+        //                 <h5>' . $time . '</h5>
+        //             </div>
+        //         </li>';
         // endif;
-
+        $data['time'] = $time;
+        $data['file'] = $file_path;
         if ($message) {
-            return json_encode($html);
+            return json_encode($data);
         } else {
             return false;
         }

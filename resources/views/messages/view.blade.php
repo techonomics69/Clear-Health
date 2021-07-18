@@ -203,7 +203,7 @@
             $('#upload-image-form').submit();
         });
         $('#upload-image-form').submit(function(e) {
-            e.preventDefault();            
+            e.preventDefault();
             let formData = new FormData(this);
             $.ajax({
                 url: "{{route('sendNonMedicalMessage')}}",
@@ -214,7 +214,27 @@
                 success: function(result) {
                     if (result != false) {
                         $('#text').val('');
-                        $('#messageDataAdmin').append(result);
+                        $('#messageDataAdmin').append(
+                            '<li class="right">' +
+                            +'<div class="time_messages"> ' +
+                            +'<p class="text_mesg">' + result.text + '</p>' +
+                            +'<h5>' + result.time + '</h5>' +
+                            +'</div>' +
+                            +'</li>'
+                        );
+                        if (result.file) {
+                            $('#messageDataAdmin').append(
+                                '<li class="right">' +
+                                +'<div class="time_messages"> ' +
+                                +'<p class="text_mesg">' +
+                                +'<a href="' + url('') + '/' + result.file + '" target="_blank"> ' +
+                                +'<img src="' + url('') + '/' + result.file + '" style="width:50px; height:50px; object-fit: contain;">' +
+                                +'</p>' +
+                                +'<h5>' + result.time + '</h5>' +
+                                +'</div>' +
+                                +'</li>'
+                            )
+                        }
                     }
                     $("#messageDataAdmin").animate({
                         scrollTop: $("#messageDataAdmin")[0].scrollHeight

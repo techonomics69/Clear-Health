@@ -127,9 +127,6 @@ class MessageController extends Controller
                 $createdAt = Carbon::parse($value->created_at);
                 // $time =  $createdAt->format('H:i:s m/d/Y');
                 $time =  $createdAt->diffForHumans();
-                echo '<pre>';
-                print_r(url());
-                die;
                 if ($value->sender == 'user') :
                     $class =  'left';
                 else :
@@ -137,7 +134,7 @@ class MessageController extends Controller
                 endif;
                 $html .= '<li class="' . $class . '">
                     <div class = "time_messages" > 
-                        <p class = "text_mesg">'. '/'.$value->file_path.'</p>
+                        <p class = "text_mesg">'. url('/').$value->file_path.'</p>
                         <h5>' . $time . '</h5>
                     </div>
                 </li>';

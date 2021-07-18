@@ -214,8 +214,7 @@ class MessageController extends Controller
                     <div class="time_messages"> 
                         <p class="text_mesg">
                         <a href="'.url('').'/'.$file_path.'" target="_blank">
-                        <img src="'.url('').'/'.$file_path.'" style="width:50px; height:50px; object-fit: contain;
-                    }">
+                        <img src="'.url('').'/'.$file_path.'" style="width:50px; height:50px; object-fit: contain;">
                         </p>
                         <h5>' . $time . '</h5>
                     </div>

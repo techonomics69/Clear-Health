@@ -135,8 +135,9 @@ class MessageController extends Controller
                 $html .= '<li class="' . $class . '">
                     <div class = "time_messages" > 
                         <p class = "text_mesg">
-                            <a href='.url('').'/'.$value->file_path.'>
-                            <img src='.url('').'/'.$value->file_path.' style="with:100px; height:100px">
+                            <a href='.url('').'/'.$value->file_path.' target="_blank">
+                            <img src='.url('').'/'.$value->file_path.' style="with:50px; height:50px; object-fit: contain;
+                        }">
                             </a>
                         </p>
                         <h5>' . $time . '</h5>
@@ -207,10 +208,14 @@ class MessageController extends Controller
                         <h5>' . $time . '</h5>
                     </div>
                 </li>';
-        if (isset($message_file_data)) :
+        if (isset($message_file_data) && !empty($message_file_data)) :
             $html = '<li class="right">
                     <div class="time_messages"> 
-                        <p class="text_mesg">Image</p>
+                        <p class="text_mesg">
+                        <a href='.url('').'/'.$file_path.' target="_blank">
+                        <img src='.url('').'/'.$file_path.' style="with:50px; height:50px; object-fit: contain;
+                    }">
+                        </p>
                         <h5>' . $time . '</h5>
                     </div>
                 </li>';

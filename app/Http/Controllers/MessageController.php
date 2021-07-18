@@ -136,7 +136,7 @@ class MessageController extends Controller
                     <div class = "time_messages" > 
                         <p class = "text_mesg">
                             <a href='.url('').'/'.$value->file_path.' target="_blank">
-                            <img src='.url('').'/'.$value->file_path.' style="with:50px; height:50px; object-fit: contain;
+                            <img src='.url('').'/'.$value->file_path.' style="width:50px; height:50px; object-fit: contain;
                         }">
                             </a>
                         </p>
@@ -202,18 +202,19 @@ class MessageController extends Controller
         $createdAt = Carbon::now();
         //$time =  $createdAt->format('H:i:s m/d/Y');
         $time =  $createdAt->diffForHumans();
-        $html = '<li class="right">
+        $html = '';
+        $html .= '<li class="right">
                     <div class="time_messages"> 
                         <p class="text_mesg">' . $data['text'] . '</p>
                         <h5>' . $time . '</h5>
                     </div>
                 </li>';
         if (isset($message_file_data) && !empty($message_file_data)) :
-            $html = '<li class="right">
+            $html .= '<li class="right">
                     <div class="time_messages"> 
                         <p class="text_mesg">
                         <a href='.url('').'/'.$file_path.' target="_blank">
-                        <img src='.url('').'/'.$file_path.' style="with:50px; height:50px; object-fit: contain;
+                        <img src='.url('').'/'.$file_path.' style="width:50px; height:50px; object-fit: contain;
                     }">
                         </p>
                         <h5>' . $time . '</h5>

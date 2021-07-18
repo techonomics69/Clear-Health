@@ -134,7 +134,7 @@ class MessageController extends Controller
                 endif;
                 $html .= '<li class="' . $class . '">
                     <div class = "time_messages" > 
-                        <p class = "text_mesg">Image</p>
+                        <p class = "text_mesg">'.$value->file_path.'</p>
                         <h5>' . $time . '</h5>
                     </div>
                 </li>';

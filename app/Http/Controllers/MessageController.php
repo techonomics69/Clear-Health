@@ -123,7 +123,7 @@ class MessageController extends Controller
                 </li>';
             endif;
 
-            if(isset($value->file_path)):
+            if(isset($value->file_path) && !empty($value->file_path)):
                 $createdAt = Carbon::parse($value->created_at);
                 // $time =  $createdAt->format('H:i:s m/d/Y');
                 $time =  $createdAt->diffForHumans();

@@ -209,7 +209,7 @@ class MessageController extends Controller
         //                 <h5>' . $time . '</h5>
         //             </div>
         //         </li>';
-        if (isset($message_file_data) && !empty($message_file_data)) :
+        // if (isset($message_file_data) && !empty($message_file_data)) :
             
             $html = '<li class="right">
                         <div class="time_messages"> 
@@ -217,7 +217,7 @@ class MessageController extends Controller
                             <h5>' . $time . '</h5>
                         </div>
                     </li>';
-        endif;
+        // endif;
 
         if ($message) {
             return json_encode($html);

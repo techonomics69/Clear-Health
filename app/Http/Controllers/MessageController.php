@@ -134,7 +134,11 @@ class MessageController extends Controller
                 endif;
                 $html .= '<li class="' . $class . '">
                     <div class = "time_messages" > 
-                        <p class = "text_mesg">'. url('').'/'.$value->file_path.'</p>
+                        <p class = "text_mesg">
+                            <a href='.url('').'/'.$value->file_path.'>
+                            <img src='.url('').'/'.$value->file_path.' style="with:100px; height:100px">
+                            </a>
+                        </p>
                         <h5>' . $time . '</h5>
                     </div>
                 </li>';

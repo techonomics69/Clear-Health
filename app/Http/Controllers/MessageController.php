@@ -202,15 +202,15 @@ class MessageController extends Controller
         $createdAt = Carbon::now();
         //$time =  $createdAt->format('H:i:s m/d/Y');
         $time =  $createdAt->diffForHumans();
-        $html = '';
-        $html .= '<li class="right">
-                    <div class="time_messages"> 
-                        <p class="text_mesg">' . $data['text'] . '</p>
-                        <h5>' . $time . '</h5>
-                    </div>
-                </li>';
+        // $html = '';
+        // $html .= '<li class="right">
+        //             <div class="time_messages"> 
+        //                 <p class="text_mesg">' . $data['text'] . '</p>
+        //                 <h5>' . $time . '</h5>
+        //             </div>
+        //         </li>';
         if (isset($message_file_data) && !empty($message_file_data)) :
-            $html .= '<li class="right">
+            $html = '<li class="right">
             <div class="time_messages"> 
                 <p class="text_mesg">' . $message_file_data . '</p>
                 <h5>' . $time . '</h5>

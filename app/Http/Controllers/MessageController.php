@@ -210,7 +210,7 @@ class MessageController extends Controller
                     </div>
                 </li>';
         if (isset($message_file_data) && !empty($message_file_data)) :
-            $html .= '<li class="right">
+            $html .= '<li class=right>
                     <div class="time_messages"> 
                         <p class="text_mesg">
                         <a href='.url('').'/'.$file_path.' target="_blank">

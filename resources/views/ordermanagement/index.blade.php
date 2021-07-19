@@ -67,7 +67,7 @@
                                             <td><?php
                                                 if($order_data->cancel_request == true){
                                             ?>
-                                            <a class="btn btn-info btn-sm">Cancel Order</a>
+                                            <a href="{{ route('ordermanagement.showCancelOrder',[$order_data->id])}}" class="btn btn-info btn-sm">Cancel Order</a>
                                             <?php        
                                                 }
                                             ?></td>

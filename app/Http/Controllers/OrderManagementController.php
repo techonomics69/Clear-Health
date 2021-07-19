@@ -136,7 +136,38 @@ public function showCancelOrder($id){
        ->select('checkout.*','users.email','checkout.case_id','checkout.created_at','checkout.order_id','checkout.medication_type','checkout.id','checkout.cart_id','carts.product_price','users.first_name','users.last_name','users.email','users.mobile','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode','carts.quantity')->orderBy('checkout.id', 'DESC')
        ->where('checkout.id',$id)
        ->get();
+
+       $app= App::getFacadeRoot();
+       $app->make('LaravelShipStation\ShipStation');
+       $shipStation = $app->make('LaravelShipStation\ShipStation');
+       if($order_non_prescribed[0]->shipstation_order_id !='' || $order_non_prescribed[0]->shipstation_order_id !=null){
+        $getOrder = $shipStation->orders->get([], $endpoint = $order_non_prescribed[0]->shipstation_order_id);
+        $trackOrder = $shipStation->shipments->get(['orderId'=>$order_non_prescribed[0]->shipstation_order_id], $endpoint = '');
+       }else{
+        $getOrder = array();
+        $trackOrder = array();
+       }
        
+
+       foreach($order_non_prescribed as $key=>$val)
+       {
+            $cart_ids = explode(',', $val['cart_id']);
+            $product_name = array();
+            $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name')->get()->toArray();
+            foreach($product_details as $product_key=>$product_value){
+                $product_name[] = $product_value['product_name'];   
+            }   
+            
+           
+            $order_non_prescribed[$key]->shipstation = $getOrder;
+            $order_non_prescribed[$key]->shipments = $trackOrder;
+            $order_non_prescribed[$key]->product_name = implode(', ' ,$product_name);    
+        }
+
+
+  
+   return view('ordermanagement.cancelorder',compact('order_non_prescribed'));   
+
 }
 
 }

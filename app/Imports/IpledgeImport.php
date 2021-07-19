@@ -97,13 +97,13 @@ class IpledgeImport implements  OnEachRow
             }
         }
 
-        $group = Group::firstOrCreate([
-            'name' => $row[1],
-        ]);
+        // $group = Group::firstOrCreate([
+        //     'name' => $row[1],
+        // ]);
     
-        $group->users()->create([
-            'name' => $row[0],
-        ]);
+        // $group->users()->create([
+        //     'name' => $row[0],
+        // ]);
     }
 
     public function getRowCount(): int

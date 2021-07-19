@@ -482,8 +482,9 @@
 		                                   <table class="table table-responsive-md table-striped table-bordered " style="width:100%;padding:20px;" >
 			                                    <thead>
 			                                        <tr>
-			                                            <th width="80%">Product item </th>
-			                                            <th> Cost</th>
+			                                            <th width="80%">Product Name </th>
+														<th>Status</th>
+			                                            <th>Cost</th>
 			                                            <th>Qty</th>
 			                                            <th>Total</th>
 			                                        </tr>
@@ -491,6 +492,7 @@
 			                                    <tbody>
 			                                    	<tr>
 			                                    		<td>Cleansing</td>
+														<td></td>
 			                                    		<td>$150.00</td>
 			                                    		<td>2</td>
 			                                    		<td>$150.00</td>

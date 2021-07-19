@@ -20,7 +20,7 @@
 
 	<?php
 	echo "<pre>";
-	print_r($order_data);
+	print_r($order_non_prescribed);
 	echo "<pre>";
 	exit();
 	?>

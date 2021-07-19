@@ -255,6 +255,7 @@
 
         $('#clearImg').on('click', function() {
             $('#imgDiv').hide();
+            $('#file').val('');
         })
     });
 </script>

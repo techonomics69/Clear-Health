@@ -706,6 +706,9 @@ class PaymentsController extends BaseController
         				'cvc' => $cvc
         			],
         		]);
+                echo '<pre>';
+                print_r($create);
+                die;
 
         		$payment_method_id = $create->id;
         		$customer_id = $customer_id; //Take From Database

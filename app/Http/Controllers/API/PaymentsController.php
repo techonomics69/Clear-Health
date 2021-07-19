@@ -689,6 +689,9 @@ class PaymentsController extends BaseController
 
     public function changePaymentMethod(Request $request)
     {
+        echo '<pre>';
+        print_r($request->all());
+        die;
         $customer_id = request('customer');
         $number = request('number');
         $exp = explode("/",request('exp'));

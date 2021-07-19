@@ -362,6 +362,10 @@ class CheckoutController extends BaseController
     }else{
       $orderlist['curexa_datail'] = array();
     }
+
+    if(!empty($orderlist['transaction_complete_details'])){
+      $orderlist['transaction_complete_details'] = json_decode($orderlist['transaction_complete_details']);
+    }
     
      
 

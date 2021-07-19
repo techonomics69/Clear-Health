@@ -213,6 +213,7 @@
                 processData: false,
                 success: function(result) {
                     console.log(result);
+                    console.log(JSON.parse(result));
                     if (result != false) {
                         $('#text').val('');
                         $('#messageDataAdmin').append(

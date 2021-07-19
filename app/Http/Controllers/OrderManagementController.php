@@ -113,7 +113,9 @@ class OrderManagementController extends Controller
            
             $order_non_prescribed[$key]->shipstation = $getOrder;
             $order_non_prescribed[$key]->shipments = $trackOrder;
-            $order_non_prescribed[$key]->product_name = implode(', ' ,$product_name); 
+            $order_non_prescribed[$key]->product_name = implode(', ' ,$product_name);  
+
+            $order_non_prescribed[$key]->product_details = $product_details; 
 
              $shipping_address = Checkoutaddress::select('*')
         ->where('checkout_address.order_id', $val['id'])

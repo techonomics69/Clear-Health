@@ -234,6 +234,7 @@
 								<!-- End 2nd tab-->
 							<!-- </div>  -->
 								<div class="row">
+									{{dd($order_data)}}
 								<div class="col-md-6 col-lg-4">
 									<section class="card">
 												

@@ -156,7 +156,7 @@ public function cancelOrder(Request $request){
         if(count($chargeId) > 0){
             if(!empty($chargeId[0]->transaction_complete_details)){
                 $charge = json_decode($chargeId[0]->transaction_complete_details);
-                print_r($charge);    
+                print_r($charge->id);    
                 die();
                 $chId = $charge['id'];
                 Stripe::setApiKey('sk_test_51J08tDJofjMgVsOdzxZs5Aqlf5A9riwPPwlxUTriC8YPiHvTjlCBoaMjgxiqdIVfvOMPcllgR9JY7EZlihr6TJHy00ixztHFtz'); 

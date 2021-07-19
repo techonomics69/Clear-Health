@@ -165,7 +165,9 @@ public function showCancelOrder($id){
             $cart_ids = explode(',', $order_non_prescribed[0]->cart_id);
             $product_name = array();
             $productData = array();
-            $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name')->get()->toArray();
+            $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)
+                        ->select('products.*','products.name AS product_name')
+                        ->get()->toArray();
             foreach($product_details as $product_key=>$product_value){
                 $product_name[] = $product_value['product_name'];   
                 $productData[] = $product_details[$product_key];

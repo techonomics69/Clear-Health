@@ -132,7 +132,7 @@ class IpledgeimportsController extends Controller
     
     $Validate = new HeadingValidation;
     Excel::import($Validate, $request->file('files'));
-    dd('Row count: ' . $Validate->getRowCount());
+    // dd('Row count: ' . $Validate->getRowCount());
 
 
 

@@ -166,7 +166,9 @@ public function showCancelOrder($id){
             $product_name = array();
             $productData = array();
             $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)
-                        ->select('products.*','products.name AS product_name')
+                        ->select('products.id',
+                        'products.name AS product_name',
+                        'products.discount_price')
                         ->get()->toArray();
             foreach($product_details as $product_key=>$product_value){
                 $product_name[] = $product_value['product_name'];   
@@ -181,7 +183,7 @@ public function showCancelOrder($id){
 
         // }
 
-        dd($order_non_prescribed[0]);
+        // dd($order_non_prescribed[0]);
        
   
    return view('ordermanagement.cancelorder',compact('order_non_prescribed'));   

@@ -107,22 +107,6 @@ class MessageController extends Controller
         $user_id = $message[0]->user_id;
         $html = '';
         foreach ($message as $key => $value) :
-            if (isset($value->text)) :
-                $createdAt = Carbon::parse($value->created_at);
-                // $time =  $createdAt->format('H:i:s m/d/Y');
-                $time =  $createdAt->diffForHumans();
-                if ($value->sender == 'user') :
-                    $class =  'left';
-                else :
-                    $class =  'right';
-                endif;
-                $html .= '<li class="' . $class . '">
-                    <div class = "time_messages" > 
-                        <p class = "text_mesg">' . $value->text . '</p>
-                        <h5>' . $time . '</h5>
-                    </div>
-                </li>';
-            endif;
 
             if (isset($value->file_path) && !empty($value->file_path)) :
                 $createdAt = Carbon::parse($value->created_at);
@@ -145,6 +129,24 @@ class MessageController extends Controller
                     </div>
                 </li>';
             endif;
+            if (isset($value->text)) :
+                $createdAt = Carbon::parse($value->created_at);
+                // $time =  $createdAt->format('H:i:s m/d/Y');
+                $time =  $createdAt->diffForHumans();
+                if ($value->sender == 'user') :
+                    $class =  'left';
+                else :
+                    $class =  'right';
+                endif;
+                $html .= '<li class="' . $class . '">
+                    <div class = "time_messages" > 
+                        <p class = "text_mesg">' . $value->text . '</p>
+                        <h5>' . $time . '</h5>
+                    </div>
+                </li>';
+            endif;
+
+            
         endforeach;
 
         $data['html'] = $html;

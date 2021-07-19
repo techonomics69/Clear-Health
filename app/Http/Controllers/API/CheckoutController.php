@@ -787,7 +787,7 @@ class CheckoutController extends BaseController
 
       $pharmacy_added = json_decode($response1);
 
-      echo "<pre>";
+      echo "<pre>dfgdfgdfg";
       print_r($pharmacy_added);
       echo "<pre>";
       exit();

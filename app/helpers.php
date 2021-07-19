@@ -998,7 +998,7 @@ function getCaseType($user_id,$case_id,$system_case_id){
   $product_type = getUserProduct($user_id,$case_id);
 
 
-  echo "<pre>";
+  echo "<pre>product ";
   print_r($product_type);
   echo "<pre>";
   exit();

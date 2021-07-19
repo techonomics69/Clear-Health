@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Messages extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id', 'case_id', 'md_case_id','users_message_type','sender','text'];
+    protected $fillable = ['user_id', 'case_id', 'md_case_id','users_message_type','sender','text', 'read_at'];
 }

@@ -928,6 +928,11 @@ body.vertical-layout.vertical-menu.menu-expanded .main-menu {
   margin : 16px 0;
   padding: 20px;
 }
+.mt32{
+  margin-top: 32px;
+  margin-bottom: 10px;
+
+}
 
 /* .ps-scrollbar-y{
   background-color: red!important;

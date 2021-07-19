@@ -1025,9 +1025,6 @@ public function CreateCase(Request $request){
     $input_data['read_at'] = 'false';
     $input_data['users_message_type'] = $users_message_type;
     $input_data['sender'] = $sender;
-    echo '<pre>';
-    print_r($input_data);
-    die;
     $message_data = Messages::create($input_data);
 
     $message_file_data = array();

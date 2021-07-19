@@ -45,11 +45,13 @@ class MessageController extends Controller
             ->select(
                 DB::raw('count(*) as user_count, messages.user_id, users.first_name, users.last_name, messages.case_id'),
                 DB::raw('(SELECT m.text from messages as m where m.user_id=users.id order by m.id desc limit 1) as last_msg'),
+                DB::raw('(SELECT count(m.read_at) from messages as m where m.user_id=users.id and m.read_at="false" ) as new_msg'),
                 DB::raw('(SELECT m.created_at from messages as m where m.user_id=users.id order by m.id desc limit 1) as msg_time'),
             )
             ->groupBy('messages.user_id')
             ->orderBy('msg_time', 'DESC')
             ->get();
+           
         foreach ($adminMsg as $key => $value) :
             $createdAt = Carbon::parse($value->msg_time);
             $value->msg_time =  $createdAt->format('H:i:s m/d/Y');

@@ -744,13 +744,6 @@ class CheckoutController extends BaseController
       curl_close($curl);
      
      $removrd_pharmacy = json_decode($response);
-
-     echo "<pre>";
-     print_r($removrd_pharmacy);
-     echo "<pre>";
-    
-
-
       }
       //end of code to remove pharmacy of patient 
 
@@ -788,11 +781,6 @@ class CheckoutController extends BaseController
       curl_close($curl);
 
       $pharmacy_added = json_decode($response1);
-
-      echo "<pre>dfgdfgdfg";
-      print_r($pharmacy_added);
-      echo "<pre>";
-      exit();
 
       return $this->sendResponse($pharmacy_added, 'Pharmacy changed successfully.');
 

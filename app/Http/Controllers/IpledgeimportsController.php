@@ -123,12 +123,7 @@ class IpledgeimportsController extends Controller
         
       ]);
 
-      $isError = false;
-
-      $headings = (new IpledgeImport)->toArray($request->file('files'));
-      print_r($headings);
-
-     die();   
+     
 
          Excel::import(new IpledgeImport($request->patients_type),$request->file('files'));  
 

@@ -253,6 +253,7 @@ Route::group(['middleware' => ['auth:web']], function () {
     //Order Management
     Route::get('admin/ordermanagement', [OrderManagementController::class, 'index'])->name('ordermanagement.index');
     Route::get('admin/ordermanagement/show/{id}', [OrderManagementController::class, 'show'])->name('ordermanagement.show');
+    Route::get('admin/ordermanagement/cancleorder/{id}',[OrderManagementController::class, 'showCancelOrder'])->name('ordermanagement.showCancelOrder');
 
     //TreatmentGuides
     Route::get('admin/treatmentGuides', [TreatmentGuidesController::class, 'index'])->name('treatmentGuides.index');

@@ -523,19 +523,24 @@
 			                                  <div class="product_detail">
 			                                  	  <div class="product_linedetail">
 			                                  	  	<p>Subtotal</p>
-			                                  	  	<p class="rate_price">$1,180.00</p>
+			                                  	  	<p class="rate_price">{{$order_data->total_amount}}</p>
 			                                  	  </div>
 			                                  	   <div class="product_linedetail">
 			                                  	  	<p>Discount</p>
-			                                  	  	<p class="rate_price">$177.00</p>
+			                                  	  	<p class="rate_price">{{$order_data->gift_code_discount}}</p>
 			                                  	  </div>
 			                                  	   <div class="product_linedetail">
 			                                  	  	<p>Taxes</p>
-			                                  	  	<p class="rate_price">$100.30</p>
+			                                  	  	<p class="rate_price">{{$order_data->tax}}</p>
 			                                  	  </div>
 			                                  	   <div class="product_linedetail">
 			                                  	  	<p>Total</p>
-			                                  	  	<p class="rate_price">$1163.00</p>
+			                                  	  	<p class="rate_price">
+			                                  	  		@php
+			                                  	  		$grand_total = $order_data->total_amount+$order_data->gift_code_discount+$order_data->tax;
+			                                  	  		echo $grand_total;
+			                                  	  		@endphp
+			                                  	  	</p>
 			                                  	  </div>
 			                                  </div>
 			                                </div>

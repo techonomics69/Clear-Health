@@ -719,7 +719,6 @@ class PaymentsController extends BaseController
 	              );
         		return $this->sendResponse($update, 'success');
         	} catch (\Stripe\Exception\CardException $e) {
-                $e->getError()->message
 	            return $this->sendResponse($e->getError()->message, 'error');
 	        }
 

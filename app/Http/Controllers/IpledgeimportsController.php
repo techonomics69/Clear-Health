@@ -128,10 +128,10 @@ class IpledgeimportsController extends Controller
 
     $import = Excel::import(new IpledgeImport($request->patients_type),$request->file('files'));  
 
-    dd($import);
+    dd('Row count: ' . $import->getRowCount());
 
 
-    
+
          
 
         if(!empty($documents)){

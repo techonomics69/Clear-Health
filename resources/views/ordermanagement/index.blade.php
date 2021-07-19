@@ -65,13 +65,21 @@
                                             <!-- <td>{{ $order_data->created_at }}</td> -->
                                             <td>{{ $order_data->product_name }}</td>
                                             <td><?php
-                                                if($order_data->cancel_request == true){
+                                                if($order_data->cancel_request == true && $order_data->status !='cancelled'){
                                             ?>
                                             <a href="{{ route('ordermanagement.showCancelOrder',[$order_data->id])}}" class="btn btn-info btn-sm">Cancel Order</a>
                                             <?php        
+                                                }else if($order_data->cancel_request == true && $order_data->status =='cancelled'){
+                                            ?>
+                                            <p></p>
+                                            <?php        
                                                 }
                                             ?></td>
-                                            <td></td>
+                                            <td><?php
+                                            if($order_data->cancel_request == true && $order_data->status =='cancelled'){
+                                                echo "cancelled";
+                                            }    
+                                            ?></td>
                                             <!-- <td>{{ $order_data->product_price }}</td>  -->
                                             <td><?php if($order_data->medication_type == 1){
                                                 echo "Prescribed";

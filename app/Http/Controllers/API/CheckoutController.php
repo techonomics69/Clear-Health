@@ -348,7 +348,8 @@ class CheckoutController extends BaseController
         'checkout.cart_amount',
         'checkout.gift_code_discount',
         'checkout.shipstation_order_id',
-        'checkout.medication_type'
+        'checkout.medication_type',
+        'checkout.transaction_complete_details'
       )
       ->where('checkout.id', $request->id)
       ->OrderBy('id', 'DESC')
@@ -360,6 +361,10 @@ class CheckoutController extends BaseController
       $orderlist['curexa_datail'] = $curexa_data; 
     }else{
       $orderlist['curexa_datail'] = array();
+    }
+
+    if(!empty($orderlist['transaction_complete_details'])){
+      $orderlist['transaction_complete_details'] = json_decode($orderlist['transaction_complete_details']);
     }
     
      

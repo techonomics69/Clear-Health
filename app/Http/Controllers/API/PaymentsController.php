@@ -161,11 +161,11 @@ class PaymentsController extends BaseController
             $validator = \Validator::make($request->all(),[ 
                 'order_id'  =>  'required',
                 'charge_id' =>  'required',
-                'shipstation_order_id'  =>  'required',
+                // 'shipstation_order_id'  =>  'required',
             ], [
                 'order_id.required' =>  'Request has missing order id',
                 'charge_id.required' =>  'Request has missing charge id',
-                'shipstation_order_id'  =>  'Request has missing shipstation order id',
+                // 'shipstation_order_id'  =>  'Request has missing shipstation order id',
             ]);
             if($validator->fails()){
                 return $this->sendError($validator->errors()->first());
@@ -186,21 +186,21 @@ class PaymentsController extends BaseController
 
                 //Cancel order from ShipStations
                 
-                try{
-                    $shipCancel = shipStationHelper::cancelShipstationOrder($data['shipstation_order_id']);
-                    $shipStatus = json_decode(json_encode($shipCancel), true);
+                // try{
+                //     $shipCancel = shipStationHelper::cancelShipstationOrder($data['shipstation_order_id']);
+                //     $shipStatus = json_decode(json_encode($shipCancel), true);
                     
-                }catch(\Exception $e){
-                    $shiapiError = $e->getMessage();
-                }
+                // }catch(\Exception $e){
+                //     $shiapiError = $e->getMessage();
+                // }
 
-                if(empty($shiapiError) && $shipStatus['success']){  
+                // if(empty($shiapiError) && $shipStatus['success']){  
                     $updateData['status'] = 'cancelled';    
                     $updateOrder = Checkout::where('id',$data['order_id'])->update($updateData);
                     return $this->sendResponse(array(), 'Order Cancelled successfully');
-                }else{
-                        return $this->sendError('Error in Deleting Shipstation order : ' . $shiapiError);
-                }
+                // }else{
+                //         return $this->sendError('Error in Deleting Shipstation order : ' . $shiapiError);
+                // }
                 
 
             }else{

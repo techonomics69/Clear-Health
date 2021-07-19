@@ -78,7 +78,7 @@
                                                                         <ul>
                                                                             @foreach($adminMsg as $key => $value)
                                                                             <li class="userAdminList" data-id="{{$value->user_id}}"><strong>{{$value->first_name}} {{$value->last_name}} - Admin</strong>
-                                                                                <span class="badge badge-danger">{{$name->new_msg}}</span>
+                                                                                <span class="badge badge-danger">{{$value->new_msg}}</span>
                                                                                 <p>{{$value->last_msg}}</p>
                                                                                 <small>{{ $value->msg_time }}</small>
                                                                             </li>

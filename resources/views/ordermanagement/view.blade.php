@@ -492,7 +492,7 @@
 			                                    <tbody>
 			                                    	<tr>
 			                                    		<td>Cleansing</td>
-														<td></td>
+														<td>Pending</td>
 			                                    		<td>$150.00</td>
 			                                    		<td>2</td>
 			                                    		<td>$150.00</td>
@@ -504,24 +504,20 @@
 		                                  <div class="pro_block"  style="padding:20px;">
 			                                  <div class="product_detail">
 			                                  	  <div class="product_linedetail">
-			                                  	  	<p>Shipping</p>
-			                                  	  	<p class="rate_price">$0</p>
+			                                  	  	<p>Subtotal</p>
+			                                  	  	<p class="rate_price">$1,180.00</p>
 			                                  	  </div>
 			                                  	   <div class="product_linedetail">
-			                                  	  	<p>Item</p>
-			                                  	  	<p class="rate_price">1</p>
+			                                  	  	<p>Discount</p>
+			                                  	  	<p class="rate_price">$177.00</p>
+			                                  	  </div>
+			                                  	   <div class="product_linedetail">
+			                                  	  	<p>Taxes</p>
+			                                  	  	<p class="rate_price">$100.30</p>
 			                                  	  </div>
 			                                  	   <div class="product_linedetail">
 			                                  	  	<p>Total</p>
-			                                  	  	<p class="rate_price">$106</p>
-			                                  	  </div>
-			                                  	   <div class="product_linedetail">
-			                                  	  	<p>Shipping Payout</p>
-			                                  	  	<p class="rate_price">$0</p>
-			                                  	  </div>
-			                                  	   <div class="product_linedetail">
-			                                  	  	<p>Total payout</p>
-			                                  	  	<p class="rate_price">$106</p>
+			                                  	  	<p class="rate_price">$1163.00</p>
 			                                  	  </div>
 			                                  </div>
 			                                </div>

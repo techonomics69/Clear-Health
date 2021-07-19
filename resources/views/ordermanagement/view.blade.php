@@ -274,7 +274,7 @@
 								</div>
 								<div class="col-md-6 col-lg-8">
                                     <div class="row">
-									<div class="col-md-6 col-lg-4">
+									<div class="col-md-6 col-lg-6">
 									<section class="card">
 												
 													<div class=" mtb32">
@@ -329,7 +329,7 @@
 												
 									</section>
 								</div>
-								<div class="col-md-6 col-lg-4">
+								<div class="col-md-6 col-lg-6">
 									<section class="card">
 												
 													<div class=" mtb32">

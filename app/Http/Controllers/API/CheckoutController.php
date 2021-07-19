@@ -480,6 +480,8 @@ class CheckoutController extends BaseController
 
     $tax = ($orderlist['tax'] != '' || $orderlist['tax'] != null) ? $orderlist['tax'] : 0;
 
+    $isAccutaneBuy = 0;
+
     foreach ($product_details as $product_key => $product_value) {
 
       $product_name[] = $product_value['product_name'];
@@ -492,6 +494,10 @@ class CheckoutController extends BaseController
       $products[$product_key]['quantity'] = $product_value['quantity'];
       $products[$product_key]['discount_price'] = $product_value['discount_price'];
       $products[$product_key]['order_type'] = $product_value['order_type'];
+
+      if($product_value['product_category'] == 3 && $product_value['product_id']==33){
+        $isAccutaneBuy++;
+      }
 
       //$pro_amount = $pro_amount + $product_value['quantity'] * $product_value['price'];
 
@@ -536,6 +542,12 @@ class CheckoutController extends BaseController
         //$products[$product_key]['pharmacy_pickup'] = '';
       }
     }
+    if($isAccutaneBuy > 0){
+      $orderlist['isAccutaneBuy'] = true;
+    }else{
+      $orderlist['isAccutaneBuy'] = false;
+    }
+
     $orderlist['product_name'] = implode(', ', $product_name);
     $orderlist['product_id'] = "[".implode(', ', $product_id)."]";
 

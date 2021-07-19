@@ -51,13 +51,13 @@ class MessageController extends Controller
             ->groupBy('messages.user_id')
             ->orderBy('msg_time', 'DESC')
             ->get();
-           
+
         foreach ($adminMsg as $key => $value) :
             $createdAt = Carbon::parse($value->msg_time);
             $value->msg_time =  $createdAt->format('H:i:s m/d/Y');
         endforeach;
 
-        
+
         $user_case_management_data['user_id'] = '';
         $user_case_management_data['id'] = '';
         return view('messages.view', compact('user_case_management_data', 'mdList', 'adminMsg', 'case_id'));
@@ -106,7 +106,8 @@ class MessageController extends Controller
             ->select('users.first_name', 'users.last_name', 'messages.user_id', 'messages.created_at', 'messages.text', 'messages.sender', 'message_files.file_path', 'message_files.mime_type')
             ->orderBy('messages.id')
             ->get();
-        $updateMsg = DB::table('messages')->where('user_id', $data['user_id'])->update('read_at', 'true');    
+        $update['read_at'] = 'true';
+        $updateMsg = DB::table('messages')->where('user_id', $data['user_id'])->update($update);
         $username = '<b>' . $message[0]->first_name . ' ' . $message[0]->last_name . '</b>';
         $user_id = $message[0]->user_id;
         $html = '';
@@ -150,7 +151,7 @@ class MessageController extends Controller
                 </li>';
             endif;
 
-            
+
         endforeach;
 
         $data['html'] = $html;
@@ -231,7 +232,7 @@ class MessageController extends Controller
         $result['time'] = $time;
         $result['file'] = $file_path;
         $result['text'] = $data['text'];
-        $result['url'] = url('').'/';
+        $result['url'] = url('') . '/';
         if ($message) {
             return json_encode($result);
         } else {

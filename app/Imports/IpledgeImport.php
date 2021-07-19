@@ -9,12 +9,13 @@ use Maatwebsite\Excel\Concerns\WithStartRow;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Row;
 use Maatwebsite\Excel\Concerns\OnEachRow;
-use Maatwebsite\Excel\Concerns\ToArray;
 
-class IpledgeImport implements  OnEachRow, ToArray
+
+class IpledgeImport implements  OnEachRow
 
 //class IpledgeImport implements ToModel
 {
+    private $rows = 0;
     /**
     * @param array $row
     *
@@ -69,7 +70,7 @@ class IpledgeImport implements  OnEachRow, ToArray
     public function onRow(Row $row)
     {
 
-        return 0;
+        ++$this->rows;
         // $rowIndex = $row->getIndex();
         // $row      = $row->toArray();
         
@@ -103,6 +104,11 @@ class IpledgeImport implements  OnEachRow, ToArray
         // $group->users()->create([
         //     'name' => $row[0],
         // ]);
+    }
+
+    public function getRowCount(): int
+    {
+        return $this->rows;
     }
 
     

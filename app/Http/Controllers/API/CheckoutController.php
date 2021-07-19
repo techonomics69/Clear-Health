@@ -799,9 +799,7 @@ class CheckoutController extends BaseController
        }else{
         return $this->sendError('Some thing went wrong!');
        }
-
       //end of code to add pharmacy of patient
-
       }else{
         return $this->sendError('MD Patient is not created yet.');
       }

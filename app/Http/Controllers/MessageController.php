@@ -51,9 +51,7 @@ class MessageController extends Controller
             ->groupBy('messages.user_id')
             ->orderBy('msg_time', 'DESC')
             ->get();
-            echo '<pre>';
-            print_r($adminMsg);
-            die;
+           dd($adminMsg);
         foreach ($adminMsg as $key => $value) :
             $createdAt = Carbon::parse($value->msg_time);
             $value->msg_time =  $createdAt->format('H:i:s m/d/Y');

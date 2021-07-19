@@ -54,7 +54,7 @@ class MessageController extends Controller
             $value->msg_time =  $createdAt->format('H:i:s m/d/Y');
         endforeach;
 
-        $url = $_SERVER[REQUEST_URI];
+        $url = $request->fullUrl();
         $url = explode("/", $url);
         $case_id = $url[count($url) - 1];
         echo $case_id;

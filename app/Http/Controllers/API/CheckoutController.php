@@ -690,7 +690,7 @@ class CheckoutController extends BaseController
     //$case_id = $request['case_id'];
     //$md_case_id = $request['md_case_id'];
     $checkout_id = $request['order_id'];
-    $pharmacy_id =  $request['preferred_pharmacy_id'];
+    $pharmacy_id =  $request['pharmacy_id'];
 
     //$user_old_pharmacy_id = getPickupPharmacy($user_id,$case_id,$md_case_id);
     if(isset($pharmacy_id)){
@@ -698,16 +698,26 @@ class CheckoutController extends BaseController
       $user_data = User::where('id',$user_id)->select('md_patient_id')->first();
 
       $md_patient_id = $user_data['md_patient_id'];
+
    
-      $order_data = Checkout::where([['id', $checkout_id]])->first();
+      $order_data = Checkout::where('id', $checkout_id)->first();
+
        
       $cart_ids = explode(',', $order_data['cart_id']);
+     
 
       $pharmacy_data  =  Cart::select('pharmacy_pickup')->where('user_id',$user_id)->whereIn('id',$cart_ids)->where('order_type', '!=', 'AddOn')->where('order_type', '!=', 'Non-Prescribe')->first();
 
-      //code to remove pharmacy of patient
 
-      if(!empty($pharmacy_data) && count($pharmacy_data)>0){
+      $r = get_token();
+      $token_data = json_decode($r);
+      $token = $token_data->access_token;
+
+      if(isset($md_patient_id) && $md_patient_id != ''){
+
+        //code to remove pharmacy of patient
+
+      if(!empty($pharmacy_data)){
 
         $user_old_pharmacy_id = $pharmacy_data['pharmacy_pickup'];
 
@@ -717,9 +727,6 @@ class CheckoutController extends BaseController
         $old_pharmacy_id = $user_old_pharmacy_id;
       }
 
-      $r = get_token();
-      $token_data = json_decode($r);
-      $token = $token_data->access_token;
 
       $curl = curl_init();
 
@@ -742,13 +749,6 @@ class CheckoutController extends BaseController
       curl_close($curl);
      
      $removrd_pharmacy = json_decode($response);
-
-     echo "<pre>";
-     print_r($removrd_pharmacy);
-     echo "<pre>";
-    
-
-
       }
       //end of code to remove pharmacy of patient 
 
@@ -764,7 +764,7 @@ class CheckoutController extends BaseController
       $curl = curl_init();
 
       curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/patients/'.$md_patient_id.'/pharmacies/'.$old_pharmacy_id,
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/patients/'.$md_patient_id.'/pharmacies/'.$preferred_pharmacy_id,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
@@ -787,14 +787,14 @@ class CheckoutController extends BaseController
 
       $pharmacy_added = json_decode($response1);
 
-      echo "<pre>";
-      print_r($pharmacy_added);
-      echo "<pre>";
-      exit();
-
       return $this->sendResponse($pharmacy_added, 'Pharmacy changed successfully.');
 
       //end of code to add pharmacy of patient
+
+      }else{
+        return $this->sendError('MD Patient is not created yet.');
+      }
+      
 
     }
       

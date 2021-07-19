@@ -74,16 +74,16 @@ class CheckoutController extends BaseController
          $caseManage = CaseManagement::select("id","md_case_status")->where('id',$val['case_id'])->get();
          if(count($caseManage) > 0){
             if(!empty($caseManage[0]->md_case_status)){
-              $orderlist[$key]['md_case_status'] = $caseManage[0]->md_case_status;
+              $orderlist[$key]->md_case_status = $caseManage[0]->md_case_status;
             }else{
-              $orderlist[$key]['md_case_status'] = "";  
+              $orderlist[$key]->md_case_status = "";  
             }
          }else{
-              $orderlist[$key]['md_case_status'] = "";
+              $orderlist[$key]->md_case_status = "";
          }
        }else{
-          $orderlist[$key]['md_case_status'] = "";
-          
+          $orderlist[$key]->md_case_status = "";
+
        }
 
       }

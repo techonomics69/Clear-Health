@@ -567,7 +567,9 @@
 			});
 
             $("#cancelButton").on('click',function(){
-                alert();
+               if(confirm('Are you sure want to cancel order?')){
+                   $("#cancelOrderForm").submit();
+               }
             });
 
 		</script>

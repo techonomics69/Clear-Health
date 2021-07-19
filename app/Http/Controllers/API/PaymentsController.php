@@ -696,7 +696,7 @@ class PaymentsController extends BaseController
 
         
         	Stripe::setApiKey("sk_test_51J08tDJofjMgVsOdzxZs5Aqlf5A9riwPPwlxUTriC8YPiHvTjlCBoaMjgxiqdIVfvOMPcllgR9JY7EZlihr6TJHy00ixztHFtz");
-        	// try{
+        	try{
         		$create = \Stripe\PaymentMethod::create([
         			'type' => 'card',
         			'card' => [
@@ -706,9 +706,6 @@ class PaymentsController extends BaseController
         				'cvc' => $cvc
         			],
         		]);
-                echo '<pre>';
-                print_r($create);
-                die;
 
         		$payment_method_id = $create->id;
         		$customer_id = $customer_id; //Take From Database
@@ -720,13 +717,11 @@ class PaymentsController extends BaseController
 	                $customer_id,
 	                ['invoice_settings' => ['default_payment_method' => $payment_method_id]]
 	              );
-                  echo '<pre>';
-                  print_r($update);
-                  die;
-        	// 	return $this->sendResponse($update, 'success');
-        	// } catch (\Stripe\Exception\CardException $e) {
-	        //     return $this->sendResponse($e, 'error');
-	        // }
+        		return $this->sendResponse($update, 'success');
+        	} catch (\Stripe\Exception\CardException $e) {
+                $e->getError()->message
+	            return $this->sendResponse($e->getError()->message, 'error');
+	        }
 
     }
 

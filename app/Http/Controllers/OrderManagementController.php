@@ -91,65 +91,61 @@ class OrderManagementController extends Controller
        ->get()->first();
 
 
-        echo "<pre>";
-        print_r($order_non_prescribed);
-        echo "<pre>";
-        exit();
-
        $app= App::getFacadeRoot();
        $app->make('LaravelShipStation\ShipStation');
        $shipStation = $app->make('LaravelShipStation\ShipStation');
-       if($order_non_prescribed[0]->shipstation_order_id !='' || $order_non_prescribed[0]->shipstation_order_id !=null){
-        $getOrder = $shipStation->orders->get([], $endpoint = $order_non_prescribed[0]->shipstation_order_id);
-        $trackOrder = $shipStation->shipments->get(['orderId'=>$order_non_prescribed[0]->shipstation_order_id], $endpoint = '');
+       if($order_non_prescribed['shipstation_order_id'] !='' || $order_non_prescribed['shipstation_order_id'] !=null){
+        $getOrder = $shipStation->orders->get([], $endpoint = $order_non_prescribed['shipstation_order_id'];
+        $trackOrder = $shipStation->shipments->get(['orderId'=>$order_non_prescribed['shipstation_order_id']], $endpoint = '');
        }else{
         $getOrder = array();
         $trackOrder = array();
        }
        
 
-       foreach($order_non_prescribed as $key=>$val)
-       {
-            $cart_ids = explode(',', $val['cart_id']);
+       /*foreach($order_non_prescribed as $key=>$val)
+       {*/
+            $cart_ids = explode(',', $order_non_prescribed['cart_id']);
             $product_name = array();
-            $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name')->get()->toArray();
+            $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','carts.product_price','carts.quantity')->get()->toArray();
             foreach($product_details as $product_key=>$product_value){
                 $product_name[] = $product_value['product_name'];   
             }   
             
            
-            $order_non_prescribed[$key]->shipstation = $getOrder;
-            $order_non_prescribed[$key]->shipments = $trackOrder;
-            $order_non_prescribed[$key]->product_name = implode(', ' ,$product_name);    
-        }
+            $order_non_prescribed['shipstation'] = $getOrder;
+            $order_non_prescribed['shipments'] = $trackOrder;
+            $order_non_prescribed['product_name'] = implode(', ' ,$product_name); 
+            $order_non_prescribed['product_details'] =  $product_details;    
+        //}
 
         $shipping_address = Checkoutaddress::select('*')
-        ->where('checkout_address.order_id', $order_non_prescribed[0]['id'])
+        ->where('checkout_address.order_id', $order_non_prescribed['id'])
         ->where('checkout_address.address_type', 1)
         ->OrderBy('id', 'DESC')
         ->first();
 
         if ($shipping_address != '' || $shipping_address != NULL) {
-          $order_non_prescribed[0]['shipping_address'] = $shipping_address;
+          $order_non_prescribed['shipping_address'] = $shipping_address;
         } else {
-           $order_non_prescribed[0] = new \stdClass();
+           $order_non_prescribed['shipping_address'] = array());
         }
 
         $billing_address = Checkoutaddress::select('*')
-        ->where('checkout_address.order_id', $order_non_prescribed[0]['id'])
+        ->where('checkout_address.order_id', $order_non_prescribed['id'])
         ->where('checkout_address.address_type', 2)
         ->OrderBy('id', 'DESC')
         ->first();
 
         if ($billing_address != '' || $billing_address != NULL) {
-           $order_non_prescribed[0]['billing_address'] = $billing_address;
+           $order_non_prescribed['billing_address'] = $billing_address;
         } else {
-           $order_non_prescribed[0]['billing_address'] = $shipping_address;
+           $order_non_prescribed['billing_address'] = $shipping_address;
         }
 
 
 echo "<pre>";
-print_r($order_non_prescribed[0]);
+print_r($order_non_prescribed);
 echo "<pre>";
 exit();
 

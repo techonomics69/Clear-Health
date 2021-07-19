@@ -705,7 +705,7 @@ class CheckoutController extends BaseController
 
       $pharmacy_data  =  Cart::select('pharmacy_pickup')->where('user_id',$user_id)->whereIn('id',$cart_ids)->where('order_type', '!=', 'AddOn')->where('order_type', '!=', 'Non-Prescribe')->first();
 
-      if(isset($md_patient_id) $$ $md_patient_id != ''){
+      if(isset($md_patient_id) && $md_patient_id != ''){
 
         //code to remove pharmacy of patient
 

@@ -47,7 +47,7 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<section class="card" >
-                            @if($order_non_prescribed[0]->cancel_request == true && $order_non_prescribed[0]->status !=='cancelled')
+                            <?php if($order_non_prescribed[0]->cancel_request == true && $order_non_prescribed[0]->status !=='cancelled'){ ?>
                             <form action="{{ route('ordermanagement.orderCancel') }}" method="post" id="cancelOrderForm">
                             @csrf
                             <input type="hidden" name="order_id" value="<?php echo $order_non_prescribed[0]->checkoutId; ?>">    
@@ -57,7 +57,7 @@
 								<li><a class="btn" data-toggle="tab" href="#shipments_shipping_details">Shipments & shipping details</a></li> -->
 							</ul>
                             </form>
-                            @else if($order_non_prescribed[0]->cancel_request == true && $order_non_prescribed[0]->status =='cancelled')
+                            <?php }else if($order_non_prescribed[0]->cancel_request == true && $order_non_prescribed[0]->status =='cancelled'){ ?>
                               
 							<ul class="nav nav-tabs" id="casemanagement-tab-menu">
                                 <span> Order Cancelled</span>
@@ -66,7 +66,7 @@
 								<li><a class="btn" data-toggle="tab" href="#shipments_shipping_details">Shipments & shipping details</a></li> -->
 							</ul>
                            
-                            @endif
+                            <?php } ?>
 						<!-- 	<div class="tab-content">
 								start 1st tab-->
 

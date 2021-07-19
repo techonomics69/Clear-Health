@@ -700,7 +700,7 @@ class CheckoutController extends BaseController
       $md_patient_id = $user_data['md_patient_id'];
 
    
-      $order_data = Checkout::where('id', $checkout_id)->toSql();
+      $order_data = Checkout::where('id', $checkout_id)->first();
 
        
       $cart_ids = explode(',', $order_data['cart_id']);

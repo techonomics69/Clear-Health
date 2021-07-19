@@ -125,7 +125,7 @@ class IpledgeimportsController extends Controller
 
       $isError = false;
 
-      $headings = (new HeadingRowImport)->toArray($request->file('files'));
+      $headings = (new IpledgeImport)->toArray($request->file('files'));
       print_r($headings);
 
      die();   

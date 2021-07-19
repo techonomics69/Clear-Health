@@ -102,7 +102,6 @@ class OrderManagementController extends Controller
         $trackOrder = array();
        }
        
-
        /*foreach($order_non_prescribed as $key=>$val)
        {*/
             $cart_ids = explode(',', $order_non_prescribed['cart_id']);
@@ -128,7 +127,7 @@ class OrderManagementController extends Controller
         if ($shipping_address != '' || $shipping_address != NULL) {
           $order_non_prescribed['shipping_address'] = $shipping_address;
         } else {
-           $order_non_prescribed['shipping_address'] = array());
+           $order_non_prescribed['shipping_address'] = array();
         }
 
         $billing_address = Checkoutaddress::select('*')

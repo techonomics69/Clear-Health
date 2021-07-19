@@ -43,11 +43,7 @@ class OfferController extends BaseController
                $cuurentDate = $date->format('Y-m-d');
 
                if(($offer->from_date <= $cuurentDate) && ($offer->to_date >= $cuurentDate)){ 
-                    $promocode_data = array();
-                    $promocode_data['user_id'] = $request->user_id;
-                    $promocode_data['promocode'] = $request->code;
-
-                    $userpromocode = Userpromocode::create($promocode_data);             
+                              
                     return $this->sendResponse($offer, 'Offers retrieved successfully.'); 
                }else{                 
                 return $this->sendResponse(false,'Invalid Gift card code'); 

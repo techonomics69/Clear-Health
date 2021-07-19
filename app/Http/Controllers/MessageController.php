@@ -57,10 +57,9 @@ class MessageController extends Controller
         $url = $request->fullUrl();
         $url = explode("/", $url);
         $case_id = $url[count($url) - 1];
-        echo $case_id;
         $user_case_management_data['user_id'] = '';
         $user_case_management_data['id'] = '';
-        return view('messages.view', compact('user_case_management_data', 'mdList', 'adminMsg'));
+        return view('messages.view', compact('user_case_management_data', 'mdList', 'adminMsg', 'case_id'));
     }
 
     public function getMedicalMessage(Request $request)

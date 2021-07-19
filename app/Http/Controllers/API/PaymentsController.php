@@ -160,28 +160,28 @@ class PaymentsController extends BaseController
             $updateData = array();
             $validator = \Validator::make($request->all(),[ 
                 'order_id'  =>  'required',
-                'charge_id' =>  'required',
+                // 'charge_id' =>  'required',
                 // 'shipstation_order_id'  =>  'required',
             ], [
                 'order_id.required' =>  'Request has missing order id',
-                'charge_id.required' =>  'Request has missing charge id',
+                // 'charge_id.required' =>  'Request has missing charge id',
                 // 'shipstation_order_id'  =>  'Request has missing shipstation order id',
             ]);
             if($validator->fails()){
                 return $this->sendError($validator->errors()->first());
             } 
-            Stripe::setApiKey('sk_test_51J08tDJofjMgVsOdzxZs5Aqlf5A9riwPPwlxUTriC8YPiHvTjlCBoaMjgxiqdIVfvOMPcllgR9JY7EZlihr6TJHy00ixztHFtz'); 
-            try {
-                $refund = \Stripe\Refund::create(array(
-                    'charge' => $data['charge_id'],
-                ));
-            } catch (Exception $e) {
-                $apiError = $e->getMessage();
-            }
-            if (empty($apiError) && $refund) {
-                //Get Refund object from stripe;
-                $refundData = $refund->jsonSerialize();
-                $updateData['strip_refund_object'] = $refundData;
+            // Stripe::setApiKey('sk_test_51J08tDJofjMgVsOdzxZs5Aqlf5A9riwPPwlxUTriC8YPiHvTjlCBoaMjgxiqdIVfvOMPcllgR9JY7EZlihr6TJHy00ixztHFtz'); 
+            // try {
+            //     $refund = \Stripe\Refund::create(array(
+            //         'charge' => $data['charge_id'],
+            //     ));
+            // } catch (Exception $e) {
+            //     $apiError = $e->getMessage();
+            // }
+            // if (empty($apiError) && $refund) {
+            //     //Get Refund object from stripe;
+            //     $refundData = $refund->jsonSerialize();
+            //     $updateData['strip_refund_object'] = $refundData;
             
 
                 //Cancel order from ShipStations
@@ -195,7 +195,7 @@ class PaymentsController extends BaseController
                 // }
 
                 // if(empty($shiapiError) && $shipStatus['success']){  
-                    $updateData['status'] = 'cancelled';    
+                    $updateData['cancel_request'] = "true";    
                     $updateOrder = Checkout::where('id',$data['order_id'])->update($updateData);
                     return $this->sendResponse(array(), 'Order Cancelled successfully');
                 // }else{
@@ -203,9 +203,9 @@ class PaymentsController extends BaseController
                 // }
                 
 
-            }else{
-                return $this->sendError('Error in Refunding amount: ' . $apiError);
-            }
+            // }else{
+            //     return $this->sendError('Error in Refunding amount: ' . $apiError);
+            // }
         }catch(\Exception $ex){
             return $this->sendError($ex->getMessage());
         }

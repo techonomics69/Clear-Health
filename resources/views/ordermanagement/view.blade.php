@@ -492,7 +492,7 @@
 			                                    </thead>
 			                                    <tbody>
 			                                    	@php
-			                                    	foreach($order_data->product_details as $p_key=>$p_val)
+			                                    	foreach($order_data->product_details as $p_key=>$p_val){
 			                                    	@endphp
 			                                    		<tr>
 			                                    		<td>{{$p_val['product_name']}}</td>
@@ -510,7 +510,7 @@
 			                                    		<td>$ @php $p_val['product_price'] * $p_val['quantity'] @endphp</td>
 			                                    	</tr>
 			                                        @php
-			                                    	@endforeach
+			                                    	}
 			                                    	@endphp
 			                                    	
 			                                    </tbody>

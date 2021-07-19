@@ -703,7 +703,21 @@ class CheckoutController extends BaseController
        
       $cart_ids = explode(',', $order_data['cart_id']);
 
-      $pharmacy_data  =  Cart::select('pharmacy_pickup')->where('user_id',$user_id)->whereIn('id',$cart_ids)->where('order_type', '!=', 'AddOn')->where('order_type', '!=', 'Non-Prescribe')->first();
+      echo "<pre>";
+      print_r($user_id);
+      echo "<pre>";
+
+      echo "<pre>";
+      print_r($cart_ids);
+      echo "<pre>";
+     
+
+      $pharmacy_data  =  Cart::select('pharmacy_pickup')->where('user_id',$user_id)->whereIn('id',$cart_ids)->where('order_type', '!=', 'AddOn')->where('order_type', '!=', 'Non-Prescribe')->toSql();
+
+      echo "<pre>";
+      print_r($pharmacy_data);
+      echo "<pre>";
+      exit();
 
 
 

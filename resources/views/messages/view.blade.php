@@ -212,7 +212,7 @@
                 contentType: false,
                 processData: false,
                 success: function(data) {
-                    var result = JSON.parse(data);
+                    var result = JSON.stringify(data);
                     console.log(result.text);
                     if (result != false) {
                         $('#text').val('');

@@ -21,13 +21,9 @@ class MessageController extends Controller
         return view('messages.index', compact('user_case_management_data'))->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
-    public function show($id, Request $request)
+    public function show($case_id, Request $request)
     {
-        dd($id);
-        $url = $request->fullUrl();
-        $url = explode("/", $url);
-        $case_id = $url[count($url) - 1];
-
+        dd($case_id);
         // DB::enableQueryLog();
         $mdList = DB::table('md_messages')
             ->join('users', 'users.id', '=', 'md_messages.user_id')

@@ -47,11 +47,11 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<section class="card" >
-							<ul class="nav nav-tabs" id="casemanagement-tab-menu">
-								<li><button type="button" class="btn active">Cancel</a></li>
+							<!-- <ul class="nav nav-tabs" id="casemanagement-tab-menu"> -->
+								<button type="button" class="btn active">Cancel</a>
 								<!-- <li><a class="btn" data-toggle="tab" href="#order_summary">Order Summary</a></li>
 								<li><a class="btn" data-toggle="tab" href="#shipments_shipping_details">Shipments & shipping details</a></li> -->
-							</ul>
+							<!-- </ul> -->
 						<!-- 	<div class="tab-content">
 								start 1st tab-->
 

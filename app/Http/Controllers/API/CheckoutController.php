@@ -698,8 +698,18 @@ class CheckoutController extends BaseController
       $user_data = User::where('id',$user_id)->select('md_patient_id')->first();
 
       $md_patient_id = $user_data['md_patient_id'];
+
+      echo "<pre>";
+      print_r($checkout_id);
+      echo "<pre>";
    
-      $order_data = Checkout::where([['id', $checkout_id]])->first();
+      $order_data = Checkout::where('id', $checkout_id)->toSql();
+
+       echo "<pre>";
+      print_r($order_data);
+      echo "<pre>";
+
+
        
       $cart_ids = explode(',', $order_data['cart_id']);
 

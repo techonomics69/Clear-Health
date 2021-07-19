@@ -83,6 +83,7 @@ class CheckoutController extends BaseController
          }
        }else{
           $orderlist[$key]['md_case_status'] = "";
+          
        }
 
       }

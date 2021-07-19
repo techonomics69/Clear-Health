@@ -201,7 +201,7 @@
                     $("#messageDataAdmin").animate({
                         scrollTop: $("#messageDataAdmin")[0].scrollHeight
                     }, 1000);
-                    $(this).children("msg_count").hide();
+                    $(this).children(".msg_count").hide();
                 }
             });
         });

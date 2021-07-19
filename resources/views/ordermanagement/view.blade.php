@@ -17,7 +17,14 @@
 		}
 
 	</style>
-{{dd($order_data)}}
+
+	<?php
+	echo "<pre>";
+	print_r($order_data);
+	echo "<pre>";
+	exit();
+	?>
+
 
 	<div class="content-wrapper">
 		<div class="content-header row">

@@ -9,8 +9,9 @@ use Maatwebsite\Excel\Concerns\WithStartRow;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Row;
 use Maatwebsite\Excel\Concerns\OnEachRow;
+use Maatwebsite\Excel\Concerns\ToArray;
 
-class IpledgeImport implements  OnEachRow
+class IpledgeImport implements  OnEachRow, ToArray
 
 //class IpledgeImport implements ToModel
 {

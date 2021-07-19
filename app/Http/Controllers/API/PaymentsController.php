@@ -713,11 +713,14 @@ class PaymentsController extends BaseController
 	            $payment_method = \Stripe\PaymentMethod::retrieve($payment_method_id);
 	            $payment_method->attach(['customer' => $customer_id]);
 
-	            \Stripe\Customer::update(
+	            $update = \Stripe\Customer::update(
 	                $customer_id,
 	                ['invoice_settings' => ['default_payment_method' => $payment_method_id]]
 	              );
-        		return $this->sendResponse($create, 'success');
+                  echo '<pre>';
+                  print_r($update);
+                  die;
+        		return $this->sendResponse($update, 'success');
         	} catch (\Stripe\Exception\CardException $e) {
 	            return $this->sendResponse($e, 'error');
 	        }

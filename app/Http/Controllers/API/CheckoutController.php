@@ -723,6 +723,15 @@ class CheckoutController extends BaseController
         $old_pharmacy_id = $user_old_pharmacy_id;
       }
 
+      echo "<pre>";
+      print_r($md_patient_id);
+      echo "<pre>";
+
+       echo "<pre>";
+      print_r($old_pharmacy_id);
+      echo "<pre>";
+      exit();
+
       $curl = curl_init();
 
       curl_setopt_array($curl, array(

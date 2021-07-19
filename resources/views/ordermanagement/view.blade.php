@@ -338,7 +338,7 @@
 									<section class="card">
 												
 													<div class="">
-														<h3 class=""><span class="text-underline">Billing Address</span></h3>
+														<h3 class="font_add"><span class="text-underline">Billing Address</span></h3>
 														<p>[Recipient Name]</p>
 														<p>[Company Name]</p>
 														<p>[Street Address]</p>
@@ -401,7 +401,7 @@
 									<section class="card">
 												
 													<div class=" ">
-														<h3 class=""><span class="text-underline">Shipping Address</span></h3>
+														<h3 class="font_add"><span class="text-underline">Shipping Address</span></h3>
 														<p>[Recipient Name]</p>
 														<p>[Company Name]</p>
 														<p>[Street Address]</p>

@@ -18,18 +18,11 @@
 
 	</style>
 
-	<?php
-	echo "<pre>";
-	print_r($order_non_prescribed);
-	echo "<pre>";
-	exit();
-	?>
-
 
 	<div class="content-wrapper">
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-12 mb-2">
-				<h3 class="content-header-title mb-0">Order Management</h3>
+				<h3 class="content-header-title mb-0">Cancel Order</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-12 d-flex">
 						<ol class="breadcrumb">
@@ -50,16 +43,30 @@
 				</div>
 				
 
-				@foreach ($order_non_prescribed as $key => $order_data)
-				@endforeach 
+				
 				<div class="row">
 					<div class="col-lg-12">
 						<section class="card" >
-							<!-- <ul class="nav nav-tabs" id="casemanagement-tab-menu">
-								<li><a class="btn active " data-toggle="tab" href="#profile">Profile</a></li>
-								<li><a class="btn" data-toggle="tab" href="#order_summary">Order Summary</a></li>
-								<li><a class="btn" data-toggle="tab" href="#shipments_shipping_details">Shipments & shipping details</a></li>
-							</ul> -->
+                            <?php if($order_non_prescribed[0]->cancel_request == true && $order_non_prescribed[0]->status !=='cancelled'){ ?>
+                            <form action="{{ route('ordermanagement.orderCancel') }}" method="post" id="cancelOrderForm">
+                            @csrf
+                            <input type="hidden" name="order_id" value="<?php echo $order_non_prescribed[0]->checkoutId; ?>">    
+							<ul class="nav nav-tabs" id="casemanagement-tab-menu">
+								<li><button type="button" id="cancelButton" class="btn btn-primary active">Cancel this order</button></li>
+								<!-- <li><a class="btn" data-toggle="tab" href="#order_summary">Order Summary</a></li>
+								<li><a class="btn" data-toggle="tab" href="#shipments_shipping_details">Shipments & shipping details</a></li> -->
+							</ul>
+                            </form>
+                            <?php }else if($order_non_prescribed[0]->cancel_request == true && $order_non_prescribed[0]->status =='cancelled'){ ?>
+                              
+							<ul class="nav nav-tabs" id="casemanagement-tab-menu">
+                                <span> Order Cancelled</span>
+								<!-- <li><button type="button" id="cancelButton" class="btn btn-primary active">Cancel this order</button></li> -->
+								<!-- <li><a class="btn" data-toggle="tab" href="#order_summary">Order Summary</a></li>
+								<li><a class="btn" data-toggle="tab" href="#shipments_shipping_details">Shipments & shipping details</a></li> -->
+							</ul>
+                           
+                            <?php } ?>
 						<!-- 	<div class="tab-content">
 								start 1st tab-->
 
@@ -73,31 +80,31 @@
 
 														<div class="col-md-6  form-group">
 															<strong>First Name : </strong>
-															{{$order_data->first_name}}
+															{{$order_non_prescribed[0]->first_name}}
 														</div>
 
 														<div class="col-md-6 form-group">
 															<strong>Last Name : </strong>
-															{{$order_data->last_name}}
+															{{$order_non_prescribed[0]->last_name}}
 														</div>
 
 														<div class="col-md-6 form-group">
 															<strong>Email : </strong>
-															{{$order_data->email}}
+															{{$order_non_prescribed[0]->email}}
 														</div>
 
 														<div class="col-md-6 form-group">
 															<strong>Phone no : </strong>
-															{{$order_data->mobile}}
+															{{$order_non_prescribed[0]->mobile}}
 														</div>
 
 														<div class="col-md-6 form-group">
 															<strong>Address : </strong>
-															{{$order_data->addressline1.','}}
-															{{$order_data->addressline2.','}}
-															{{$order_data->city.','}}
-															{{$order_data->state.','}}
-															{{$order_data->zipcode}}
+															{{$order_non_prescribed[0]->addressline1.','}}
+															{{$order_non_prescribed[0]->addressline2.','}}
+															{{$order_non_prescribed[0]->city.','}}
+															{{$order_non_prescribed[0]->state.','}}
+															{{$order_non_prescribed[0]->zipcode}}
 														</div>
 
 													</div>
@@ -119,12 +126,12 @@
 
 														<div class="col-md-6  form-group">
 															<strong>Product Name : </strong>
-															{{$order_data->product_name}}
+															{{$order_non_prescribed[0]->product_name}}
 														</div>
 
 														<div class="col-md-6 form-group">
 															<strong>Product Type : </strong>
-															<?php if($order_data->medication_type == 1){
+															<?php if($order_non_prescribed[0]->medication_type == 1){
 																echo "Prescribed";
 															}else{
 																echo "Non Prescribed";
@@ -133,25 +140,25 @@
 
 														<div class="col-md-6 form-group">
 															<strong>Quantity : </strong>
-															{{$order_data->quantity}}
+															{{$order_non_prescribed[0]->quantity}}
 														</div>
 
 														<div class="col-md-6 form-group">
 															<strong>Date : </strong>
-															{{($order_data->created_at)->format('d/m/Y')}}
+															{{($order_non_prescribed[0]->created_at)->format('d/m/Y')}}
 														</div>
 
 														<div class="col-md-6 form-group">
 															<strong>Shipping Fees : </strong>
-															$ {{$order_data->shipping_fee}}
+															$ {{$order_non_prescribed[0]->shipping_fee}}
 														</div>
 														<?php
-																if(isset($order_data['gift_code_discount']) && $order_data['gift_code_discount']!="" || $order_data['gift_code_discount']!=null){
+																if(isset($order_non_prescribed[0]['gift_code_discount']) && $order_non_prescribed[0]['gift_code_discount']!="" || $order_non_prescribed[0]['gift_code_discount']!=null){
 															?>
 															<div class="col-md-6  form-group">
 																<strong>Discount :</strong>
-																<?php if(isset($order_data['gift_code_discount']) && $order_data['gift_code_discount'] != '')  { ?>
-																	$ {{$order_data['gift_code_discount']}} 
+																<?php if(isset($order_non_prescribed[0]['gift_code_discount']) && $order_non_prescribed[0]['gift_code_discount'] != '')  { ?>
+																	$ {{$order_non_prescribed[0]['gift_code_discount']}} 
 																<?php } ?>
 															</div>
 															<?php		
@@ -160,7 +167,7 @@
 
 														<div class="col-md-6 form-group">
 															<strong>Total Order Amount : </strong>
-															$ {{$order_data->total_amount}}
+															$ {{$order_non_prescribed[0]->total_amount}}
 														</div>
 
 													</div>
@@ -181,9 +188,9 @@
 																	<h3 class="font-weight-bold"><span class="text-underline">Shipments Shipping Details</span></h3>
 																	
 																	<?php
-																	if($order_data->shipstation_order_id !=''){
-																		if($order_data->shipstation!=''){
-																			$shipStationOrder = json_decode(json_encode($order_data->shipstation), true);
+																	if($order_non_prescribed[0]->shipstation_order_id !=''){
+																		if($order_non_prescribed[0]->shipstation!=''){
+																			$shipStationOrder = json_decode(json_encode($order_non_prescribed[0]->shipstation), true);
 																	?>
 																	<div class="col-md-6  form-group">
 																		<strong>Shipstation OrderId : </strong>
@@ -217,7 +224,7 @@
 																		<?php echo date("d-m-Y",strtotime($shipStationOrder['shipDate'])); ?>
 																	</div>	
 																	<?php			
-																		$tracking = json_decode(json_encode($order_data->shipments), true);
+																		$tracking = json_decode(json_encode($order_non_prescribed[0]->shipments), true);
 																		if(isset($tracking['shipments'][0])){
 																	?>
 																	<div class="col-md-6  form-group">
@@ -249,29 +256,29 @@
 
 														<div class="  form-group">
 															<strong>First Name : </strong>
-															{{$order_data->first_name}}
+															{{$order_non_prescribed[0]->first_name}}
 														</div>
 
 														<div class=" form-group">
 															<strong>Last Name : </strong>
-															{{$order_data->last_name}}
+															{{$order_non_prescribed[0]->last_name}}
 														</div>
 
 														<div class=" form-group">
 															<strong>Email : </strong>
-															{{$order_data->email}}
+															{{$order_non_prescribed[0]->email}}
 														</div>
 
 														<div class=" form-group">
 															<strong>Phone no : </strong>
-															{{$order_data->mobile}}
+															{{$order_non_prescribed[0]->mobile}}
 														</div>
 
 	
 														<?php
-														if($order_data->shipstation_order_id !=''){
-															if($order_data->shipstation!=''){
-																$shipStationOrder = json_decode(json_encode($order_data->shipstation), true);
+														if($order_non_prescribed[0]->shipstation_order_id !=''){
+															if($order_non_prescribed[0]->shipstation!=''){
+																$shipStationOrder = json_decode(json_encode($order_non_prescribed[0]->shipstation), true);
 														?>
 														<div class=" form-group">
 															<strong>Shipstation OrderId : </strong>
@@ -305,7 +312,7 @@
 															<?php echo date("d-m-Y",strtotime($shipStationOrder['shipDate'])); ?>
 														</div>	
 														<?php			
-															$tracking = json_decode(json_encode($order_data->shipments), true);
+															$tracking = json_decode(json_encode($order_non_prescribed[0]->shipments), true);
 															if(isset($tracking['shipments'][0])){
 														?>
 														<div class=" form-group">
@@ -323,11 +330,11 @@
 
 														<!-- <div class=" form-group">
 															<strong>Address : </strong>
-															{{$order_data->addressline1.','}}
-															{{$order_data->addressline2.','}}
-															{{$order_data->city.','}}
-															{{$order_data->state.','}}
-															{{$order_data->zipcode}}
+															{{$order_non_prescribed[0]->addressline1.','}}
+															{{$order_non_prescribed[0]->addressline2.','}}
+															{{$order_non_prescribed[0]->city.','}}
+															{{$order_non_prescribed[0]->state.','}}
+															{{$order_non_prescribed[0]->zipcode}}
 														</div> -->
 													</div>
 												
@@ -346,7 +353,7 @@
 												
 													<div class="">
 														<h3 class="font_add"><span class="text-underline">Billing Address</span></h3>
-														<p>[{{$order_data->first_name}} {{$order_data->last_name}}]</p>
+														<p>[Recipient Name]</p>
 														<p>[Company Name]</p>
 														<p>[Street Address]</p>
 														<p>[City,State,Zip Code]</p>
@@ -357,12 +364,12 @@
 
 														<!-- <div class="  form-group">
 															<strong>Product Name : </strong>
-															{{$order_data->product_name}}
+															{{$order_non_prescribed[0]->product_name}}
 														</div>
 
 														<div class=" form-group">
 															<strong>Product Type : </strong>
-															<?php if($order_data->medication_type == 1){
+															<?php if($order_non_prescribed[0]->medication_type == 1){
 																echo "Prescribed";
 															}else{
 																echo "Non Prescribed";
@@ -371,25 +378,25 @@
 
 														<div class=" form-group">
 															<strong>Quantity : </strong>
-															{{$order_data->quantity}}
+															{{$order_non_prescribed[0]->quantity}}
 														</div>
 
 														<div class=" form-group">
 															<strong>Date : </strong>
-															{{($order_data->created_at)->format('d/m/Y')}}
+															{{($order_non_prescribed[0]->created_at)->format('d/m/Y')}}
 														</div>
 
 														<div class=" form-group">
 															<strong>Shipping Fees : </strong>
-															$ {{$order_data->shipping_fee}}
+															$ {{$order_non_prescribed[0]->shipping_fee}}
 														</div>
 														<?php
-																if(isset($order_data['gift_code_discount']) && $order_data['gift_code_discount']!="" || $order_data['gift_code_discount']!=null){
+																if(isset($order_non_prescribed[0]['gift_code_discount']) && $order_non_prescribed[0]['gift_code_discount']!="" || $order_non_prescribed[0]['gift_code_discount']!=null){
 															?>
 															<div class="  form-group">
 																<strong>Discount :</strong>
-																<?php if(isset($order_data['gift_code_discount']) && $order_data['gift_code_discount'] != '')  { ?>
-																	$ {{$order_data['gift_code_discount']}} 
+																<?php if(isset($order_non_prescribed[0]['gift_code_discount']) && $order_non_prescribed[0]['gift_code_discount'] != '')  { ?>
+																	$ {{$order_non_prescribed[0]['gift_code_discount']}} 
 																<?php } ?>
 															</div>
 															<?php		
@@ -398,7 +405,7 @@
 
 														<div class=" form-group">
 															<strong>Total Order Amount : </strong>
-															$ {{$order_data->total_amount}}
+															$ {{$order_non_prescribed[0]->total_amount}}
 														</div> -->
 													</div>
 												
@@ -419,9 +426,9 @@
 <!-- 														
 	
 														<?php
-														if($order_data->shipstation_order_id !=''){
-															if($order_data->shipstation!=''){
-																$shipStationOrder = json_decode(json_encode($order_data->shipstation), true);
+														if($order_non_prescribed[0]->shipstation_order_id !=''){
+															if($order_non_prescribed[0]->shipstation!=''){
+																$shipStationOrder = json_decode(json_encode($order_non_prescribed[0]->shipstation), true);
 														?>
 														<div class=" form-group">
 															<strong>Shipstation OrderId : </strong>
@@ -455,7 +462,7 @@
 															<?php echo date("d-m-Y",strtotime($shipStationOrder['shipDate'])); ?>
 														</div>	
 														<?php			
-															$tracking = json_decode(json_encode($order_data->shipments), true);
+															$tracking = json_decode(json_encode($order_non_prescribed[0]->shipments), true);
 															if(isset($tracking['shipments'][0])){
 														?>
 														<div class=" form-group">
@@ -489,21 +496,29 @@
 		                                   <table class="table table-responsive-md table-striped table-bordered " style="width:100%;padding:20px;" >
 			                                    <thead>
 			                                        <tr>
-			                                            <th width="80%">Product Name </th>
-														<th>Status</th>
-			                                            <th>Cost</th>
+			                                            <th width="80%">Product item </th>
+			                                            <th> Cost</th>
 			                                            <th>Qty</th>
 			                                            <th>Total</th>
 			                                        </tr>
 			                                    </thead>
 			                                    <tbody>
-			                                    	<tr>
-			                                    		<td>Cleansing</td>
-														<td>Pending</td>
-			                                    		<td>$150.00</td>
-			                                    		<td>2</td>
-			                                    		<td>$150.00</td>
-			                                    	</tr>
+			                                    	<?php
+                                                        $iTotal = 0;
+                                                        if(count($order_non_prescribed[0]->productData)>0){
+                                                           foreach($order_non_prescribed[0]->productData as $key => $value){
+                                                    ?>
+                                                    <tr>
+                                                        <td>{{$value['product_name']}}</td>
+                                                        <td>$ {{$value['cprice']}}</td>
+                                                        <td>{{$value['cqty']}}</td>
+                                                        <td>$ <?php echo ($value['cprice'] * $value['cqty']); ?></td>    
+                                                    </tr>
+                                                    <?php      
+                                                            $iTotal +=($value['cprice'] * $value['cqty']);     
+                                                           } 
+                                                        }
+                                                    ?>
 			                                    </tbody>
 		                                    
 		                                  </table>
@@ -511,20 +526,24 @@
 		                                  <div class="pro_block"  style="padding:20px;">
 			                                  <div class="product_detail">
 			                                  	  <div class="product_linedetail">
-			                                  	  	<p>Subtotal</p>
-			                                  	  	<p class="rate_price">$1,180.00</p>
+			                                  	  	<p>Shipping</p>
+			                                  	  	<p class="rate_price">$ {{$order_non_prescribed[0]->shipping_fee}}</p>
 			                                  	  </div>
 			                                  	   <div class="product_linedetail">
-			                                  	  	<p>Discount</p>
-			                                  	  	<p class="rate_price">$177.00</p>
-			                                  	  </div>
-			                                  	   <div class="product_linedetail">
-			                                  	  	<p>Taxes</p>
-			                                  	  	<p class="rate_price">$100.30</p>
+			                                  	  	<p>Item</p>
+			                                  	  	<p class="rate_price"><?php echo count($order_non_prescribed[0]->productData) ?></p>
 			                                  	  </div>
 			                                  	   <div class="product_linedetail">
 			                                  	  	<p>Total</p>
-			                                  	  	<p class="rate_price">$1163.00</p>
+			                                  	  	<p class="rate_price">${{$iTotal}}</p>
+			                                  	  </div>
+			                                  	   <div class="product_linedetail">
+			                                  	  	<p>Shipping Payout</p>
+			                                  	  	<p class="rate_price">$0</p>
+			                                  	  </div>
+			                                  	   <div class="product_linedetail">
+			                                  	  	<p>Total payout</p>
+			                                  	  	<p class="rate_price">${{$iTotal}}</p>
 			                                  	  </div>
 			                                  </div>
 			                                </div>
@@ -539,6 +558,7 @@
 		                            	</div>
 		                        	</div>
 		                    </section>
+                            
 					<div>
 				</div>
 			</div>
@@ -557,6 +577,12 @@
 				});
 			});
 
+            $("#cancelButton").on('click',function(){
+               if(confirm('Are you sure want to cancel order?')){
+                   $("#cancelOrderForm").submit();
+               }
+            });
+
 		</script>
 
 
@@ -573,6 +599,7 @@
 				width: 100%;
 
 			}
+            
 		</style>
 
 

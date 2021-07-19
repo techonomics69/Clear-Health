@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Ipledge;
 use App\Models\Ipledgehistory;
 use App\Imports\IpledgeImport;
+use App\Imports\HeadingValidation;
 use Maatwebsite\Excel\Facades\Excel;
 use Session;
 
@@ -123,9 +124,20 @@ class IpledgeimportsController extends Controller
         
       ]);
 
-        
+    
+      $Validate = new HeadingValidation;
+      Excel::import($Validate, $request->file('files'));
 
-         Excel::import(new IpledgeImport($request->patients_type),$request->file('files'));  
+      if($Validate->getRowCount() > 0){
+        $import = Excel::import(new IpledgeImport($request->patients_type),$request->file('files'));
+      }else{
+        toastr()->error('Heading columns does not matched with our systems');
+        return redirect()->back();
+      }
+
+  
+
+
 
          
 

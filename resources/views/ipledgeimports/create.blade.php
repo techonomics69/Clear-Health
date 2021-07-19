@@ -42,6 +42,11 @@
                     </div>
                 </header>  -->
                 <div class="card-body">
+                <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <p>Kindly download the sample csv for male and female.</p>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="row">
@@ -56,6 +61,14 @@
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6">
 
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            &nbsp;
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            &nbsp;     
                         </div>
                     </div>
                 {!! Form::open(array('route' => 'import','method'=>'POST','enctype'=>"multipart/form-data")) !!}

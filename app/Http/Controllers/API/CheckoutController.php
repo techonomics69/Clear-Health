@@ -14,6 +14,7 @@ use App\Models\Fees;
 use App\Models\Mdcases;
 use App\Models\CurexaOrder;
 use App\Models\FollowUp;
+use App\Models\Userpromocode;
 use App\Helper\shipStationHelper;
 use Validator;
 use Exception;
@@ -155,6 +156,13 @@ class CheckoutController extends BaseController
       $addToshipstation = shipStationHelper::createOrder_prescribed($data);
     } else {
       $addToshipstation = "";
+    }
+
+    if(isset($data['code'])){
+      $promocode_data = array();
+      $promocode_data['user_id'] = $data['user_id'];
+      $promocode_data['promocode'] = $data['code'];
+      $userpromocode = Userpromocode::create($promocode_data);  
     }
 
     //end of code to insert data in checkout table
@@ -344,7 +352,6 @@ class CheckoutController extends BaseController
         'checkout.telemedicine_fee',
         'checkout.handling_fee',
         'checkout.tax',
-        'checkout.address_type',
         'checkout.cart_amount',
         'checkout.gift_code_discount',
         'checkout.shipstation_order_id',

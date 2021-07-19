@@ -142,6 +142,11 @@ class OrderManagementController extends Controller
         }
 
 
+echo "<pre>";
+print_r($order_non_prescribed[0]);
+echo "<pre>";
+exit();
+
   
    return view('ordermanagement.view',compact('order_non_prescribed'));
 }

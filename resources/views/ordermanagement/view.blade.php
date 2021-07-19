@@ -260,19 +260,21 @@
 															{{$order_data->mobile}}
 														</div>
 
-														<div class=" form-group">
+														<!-- <div class=" form-group">
 															<strong>Address : </strong>
 															{{$order_data->addressline1.','}}
 															{{$order_data->addressline2.','}}
 															{{$order_data->city.','}}
 															{{$order_data->state.','}}
 															{{$order_data->zipcode}}
-														</div>
+														</div> -->
 													</div>
 												
 											</section>
 								</div>
-								<div class="col-md-6 col-lg-4">
+								<div class="col-md-6 col-lg-8">
+                                    <div class="row">
+									<div class="col-md-6 col-lg-4">
 									<section class="card">
 												
 													<div class=" mtb32">
@@ -387,6 +389,9 @@
 												
 											</section>
 								</div>
+									</div>
+								</div>
+								
 							</div>
 						</section>
 					</div>

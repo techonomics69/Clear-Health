@@ -54,6 +54,10 @@ class MessageController extends Controller
             $value->msg_time =  $createdAt->format('H:i:s m/d/Y');
         endforeach;
 
+        $url = $_SERVER[REQUEST_URI];
+        $url = explode("/", $url);
+        $case_id = $url[count($url) - 1];
+        echo $case_id;
         $user_case_management_data['user_id'] = '';
         $user_case_management_data['id'] = '';
         return view('messages.view', compact('user_case_management_data', 'mdList', 'adminMsg'));
@@ -101,11 +105,11 @@ class MessageController extends Controller
             ->join('message_files', 'messages.id', '=', 'message_files.msg_id')
             ->select('users.first_name', 'users.last_name', 'messages.user_id', 'messages.created_at', 'messages.text', 'messages.sender', 'message_files.file_path', 'message_files.mime_type')
             ->get();
-          
+
         $username = '<b>' . $message[0]->first_name . ' ' . $message[0]->last_name . '</b>';
         $user_id = $message[0]->user_id;
         $html = '';
-        foreach ($message as $key => $value) :            
+        foreach ($message as $key => $value) :
             if (isset($value->text)) :
                 $createdAt = Carbon::parse($value->created_at);
                 // $time =  $createdAt->format('H:i:s m/d/Y');
@@ -123,7 +127,7 @@ class MessageController extends Controller
                 </li>';
             endif;
 
-            if(isset($value->file_path) && !empty($value->file_path)):
+            if (isset($value->file_path) && !empty($value->file_path)) :
                 $createdAt = Carbon::parse($value->created_at);
                 // $time =  $createdAt->format('H:i:s m/d/Y');
                 $time =  $createdAt->diffForHumans();
@@ -135,8 +139,8 @@ class MessageController extends Controller
                 $html .= '<li class="' . $class . '">
                     <div class = "time_messages" > 
                         <p class = "text_mesg">
-                            <a href='.url('').'/'.$value->file_path.' target="_blank">
-                            <img src='.url('').'/'.$value->file_path.' style="width:50px; height:50px; object-fit: contain;
+                            <a href=' . url('') . '/' . $value->file_path . ' target="_blank">
+                            <img src=' . url('') . '/' . $value->file_path . ' style="width:50px; height:50px; object-fit: contain;
                         }">
                             </a>
                         </p>
@@ -209,7 +213,7 @@ class MessageController extends Controller
         //                 <h5>' . $time . '</h5>
         //             </div>
         //         </li>';
-        
+
         // if (isset($message_file_data) && !empty($message_file_data)) :
         //     $html = '<li class="right">
         //             <div class="time_messages"> 

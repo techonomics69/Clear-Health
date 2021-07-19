@@ -274,12 +274,12 @@
 								</div>
 								<div class="col-md-6 col-lg-8">
 								<div class="row">
-								    <div class="col-lg-12">
-									    <p>Order Summary</p>
-									</div>
+								  
 								</div>
                                     <div class="row">
-
+									<div class="col-lg-12">
+									    <p>Order Summary</p>
+									</div>
 									<div class="col-md-6 col-lg-6">
 									<section class="card">
 												

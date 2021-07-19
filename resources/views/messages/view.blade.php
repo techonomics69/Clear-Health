@@ -161,7 +161,7 @@
     $.noConflict();
     jQuery(document).ready(function($) {
         $('.userMdList').on('click', function() {
-            var case_id = $(this).attr('data-id');            
+            var case_id = $(this).attr('data-id');
             $.ajax({
                 url: "{{route('getMedicalMessage')}}",
                 type: "post",
@@ -180,7 +180,7 @@
             });
         });
         $('.userAdminList').on('click', function() {
-            console.log(window.location.origin);
+
             var user_id = $(this).attr('data-id');
             $.ajax({
                 url: "{{route('getNonMedicalMessage')}}",
@@ -214,20 +214,22 @@
                 contentType: false,
                 processData: false,
                 success: function(data) {
-                  let result = JSON.parse(data)
+                    let result = JSON.parse(data)
                     console.log(result);
                     if (result != false) {
                         $('#text').val('');
-                        $('#messageDataAdmin').append(
-                            '<li class="right"><div class="time_messages"><p class="text_mesg">' + result.text + '</p><h5>' + result.time + '</h5></div></li>'
-                        );
+                        if (result.text) {
+                            $('#messageDataAdmin').append(
+                                '<li class="right"><div class="time_messages"><p class="text_mesg">' + result.text + '</p><h5>' + result.time + '</h5></div></li>'
+                            );
+                        }
                         if (result.file) {
                             $('#messageDataAdmin').append(
                                 '<li class="right">' +
                                 +'<div class="time_messages"> ' +
                                 +'<p class="text_mesg">' +
-                                +'<a href="' + url('') + '/' + result.file + '" target="_blank"> ' +
-                                +'<img src="' + url('') + '/' + result.file + '" style="width:50px; height:50px; object-fit: contain;">' +
+                                +'<a href="' + result.url + result.file + '" target="_blank"> ' +
+                                +'<img src="' + result.url + result.file + '" style="width:50px; height:50px; object-fit: contain;">' +
                                 +'</p>' +
                                 +'<h5>' + result.time + '</h5>' +
                                 +'</div>' +

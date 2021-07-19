@@ -228,6 +228,7 @@ class MessageController extends Controller
         $result['time'] = $time;
         $result['file'] = $file_path;
         $result['text'] = $data['text'];
+        $result['url'] = url('').'/';
         if ($message) {
             return json_encode($result);
         } else {

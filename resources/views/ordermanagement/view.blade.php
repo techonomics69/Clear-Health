@@ -18,14 +18,6 @@
 
 	</style>
 
-	<?php
-	echo "<pre>";
-	print_r($order_non_prescribed);
-	echo "<pre>";
-	exit();
-	?>
-
-
 	<div class="content-wrapper">
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-12 mb-2">

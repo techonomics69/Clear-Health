@@ -47,11 +47,11 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<section class="card" >
-                            <form action="{{ route('ordermanagement.orderCancel') }}" method="post">
+                            <form action="{{ route('ordermanagement.orderCancel') }}" method="post" id="cancelOrderForm">
                             @csrf
                             <input type="hidden" name="order_id" value="<?php echo $order_non_prescribed[0]->checkoutId; ?>">    
 							<ul class="nav nav-tabs" id="casemanagement-tab-menu">
-								<li><button type="submit" class="btn btn-primary active">Cancel this order</button></li>
+								<li><button type="button" id="cancelButton" class="btn btn-primary active">Cancel this order</button></li>
 								<!-- <li><a class="btn" data-toggle="tab" href="#order_summary">Order Summary</a></li>
 								<li><a class="btn" data-toggle="tab" href="#shipments_shipping_details">Shipments & shipping details</a></li> -->
 							</ul>
@@ -566,6 +566,10 @@
 				});
 			});
 
+            $("cancelButton").on('click',function(){
+                alert();
+            });
+
 		</script>
 
 
@@ -582,6 +586,7 @@
 				width: 100%;
 
 			}
+            
 		</style>
 
 

@@ -1018,17 +1018,12 @@ die();*/
   {
     $follow_up = FollowUp::find($request->id);
 
-    echo "<pre>";
-    print_r($follow_up);
-    echo "<pre>";
-    exit();
-
     $data['pregnancy_test_verify'] = 'true';
     
     //code for md case
-    $user_id = $request['user_id'];
-    $case_id = $request['case_id'];
-    $followup_no = $request['follow_up_no'];
+    $user_id = $follow_up['user_id'];
+    $case_id = $follow_up['case_id'];
+    $followup_no = $follow_up['follow_up_no'];
     $preferred_pharmacy_id = getPickupPharmacy($user_id,$case_id);
     $order_data = Checkout::where([['user_id', $user_id],['case_id', $case_id]])->select('id','order_id')->first();
 

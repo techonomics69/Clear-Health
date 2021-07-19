@@ -489,12 +489,20 @@
 			                                        </tr>
 			                                    </thead>
 			                                    <tbody>
-			                                    	<tr>
-			                                    		<td>Cleansing</td>
-			                                    		<td>$150.00</td>
-			                                    		<td>2</td>
-			                                    		<td>$150.00</td>
-			                                    	</tr>
+			                                    	<?php
+                                                        if(count($order_non_prescribed[0]->productData)>0){
+                                                           foreach($order_non_prescribed[0]->productData as $key => $value){
+                                                    ?>
+                                                    <tr>
+                                                        <td>{{$value->product_name}}</td>
+                                                        <td>$ {{$value->cprice}}</td>
+                                                        <td>{{$value->cqty}}</td>
+                                                        <td>$ <?php echo ($value->cprice * $value->cqty); ?></td>    
+                                                    </tr>
+                                                    <?php           
+                                                           } 
+                                                        }
+                                                    ?>
 			                                    </tbody>
 		                                    
 		                                  </table>

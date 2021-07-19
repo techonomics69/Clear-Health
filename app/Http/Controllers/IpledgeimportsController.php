@@ -123,7 +123,26 @@ class IpledgeimportsController extends Controller
         
       ]);
 
-        
+    //   $isError = false;
+
+    //   Excel::load($request->file('files'), function($reader) use (&$isError) {
+
+    //     $firstrow = $reader->first()->toArray();
+
+    //     if (isset($firstrow['firstname']) && isset($firstrow['lastname']) && isset($firstrow['username'])) {
+    //         $rows = $reader->all();
+    //         foreach ($rows as $row) {
+    //             echo $row->firstname.' '.$row->lastname.' '.$row->username."<br />";
+    //         }
+    //     }
+    //     else {
+    //         $isError = true;
+
+    //     }
+
+    // });
+
+    //  die();   
 
          Excel::import(new IpledgeImport($request->patients_type),$request->file('files'));  
 

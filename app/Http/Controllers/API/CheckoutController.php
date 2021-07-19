@@ -484,6 +484,7 @@ class CheckoutController extends BaseController
 
       $product_name[] = $product_value['product_name'];
       $product_id[] = $product_value['product_id'];
+      $products[$product_key]['product_id'] = $product_value['product_id'];
       $products[$product_key]['name'] = $product_value['product_name'];
       $products[$product_key]['price'] = $product_value['price'];
       $products[$product_key]['image'] = $product_value['image'];

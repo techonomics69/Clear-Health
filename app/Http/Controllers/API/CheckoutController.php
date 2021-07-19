@@ -705,6 +705,10 @@ class CheckoutController extends BaseController
 
       $pharmacy_data  =  Cart::select('pharmacy_pickup')->where('user_id',$user_id)->whereIn('id',$cart_ids)->where('order_type', '!=', 'AddOn')->where('order_type', '!=', 'Non-Prescribe')->first();
 
+      $r = get_token();
+      $token_data = json_decode($r);
+      $token = $token_data->access_token;
+
       if(isset($md_patient_id) && $md_patient_id != ''){
 
         //code to remove pharmacy of patient
@@ -718,10 +722,6 @@ class CheckoutController extends BaseController
       }else{
         $old_pharmacy_id = $user_old_pharmacy_id;
       }
-
-      $r = get_token();
-      $token_data = json_decode($r);
-      $token = $token_data->access_token;
 
       $curl = curl_init();
 

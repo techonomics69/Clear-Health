@@ -78,7 +78,9 @@
                                                                         <ul>
                                                                             @foreach($adminMsg as $key => $value)
                                                                             <li class="userAdminList" data-id="{{$value->user_id}}"><strong>{{$value->first_name}} {{$value->last_name}} - Admin</strong>
-                                                                                <span class="badge badge-danger">{{$value->new_msg}}</span>
+                                                                                @if($value->new_msg > 0)
+                                                                                <span class="badge badge-danger msg_count">{{$value->new_msg}}</span>
+                                                                                @endif
                                                                                 <p>{{$value->last_msg}}</p>
                                                                                 <small>{{ $value->msg_time }}</small>
                                                                             </li>
@@ -199,6 +201,7 @@
                     $("#messageDataAdmin").animate({
                         scrollTop: $("#messageDataAdmin")[0].scrollHeight
                     }, 1000);
+                    $(this).children(".msg_count").hide();
                 }
             });
         });

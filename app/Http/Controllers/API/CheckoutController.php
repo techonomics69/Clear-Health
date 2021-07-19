@@ -766,7 +766,7 @@ class CheckoutController extends BaseController
       $curl = curl_init();
 
       curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/patients/'.$md_patient_id.'/pharmacies/'.$old_pharmacy_id,
+        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/patients/'.$md_patient_id.'/pharmacies/'.$preferred_pharmacy_id,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,

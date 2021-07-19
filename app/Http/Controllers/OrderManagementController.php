@@ -168,7 +168,9 @@ public function showCancelOrder($id){
             $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)
                         ->select('products.id',
                         'products.name AS product_name',
-                        'products.discount_price')
+                        'products.discount_price',
+                        'carts.quantity as cqty',
+                        'carts.product_price as cprice')
                         ->get()->toArray();
             foreach($product_details as $product_key=>$product_value){
                 $product_name[] = $product_value['product_name'];   

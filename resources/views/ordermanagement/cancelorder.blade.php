@@ -43,7 +43,7 @@
 				</div>
 				
 
-				@foreach ($order_non_prescribed[0] as $key => $order_data)
+				@foreach ($order_non_prescribed as $key => $order_data)
 				@endforeach 
 				<div class="row">
 					<div class="col-lg-12">

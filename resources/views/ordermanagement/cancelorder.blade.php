@@ -65,31 +65,31 @@
 
 														<div class="col-md-6  form-group">
 															<strong>First Name : </strong>
-															{{$order_data->first_name}}
+															{{$order_non_prescribed[0]->first_name}}
 														</div>
 
 														<div class="col-md-6 form-group">
 															<strong>Last Name : </strong>
-															{{$order_data->last_name}}
+															{{$order_non_prescribed[0]->last_name}}
 														</div>
 
 														<div class="col-md-6 form-group">
 															<strong>Email : </strong>
-															{{$order_data->email}}
+															{{$order_non_prescribed[0]->email}}
 														</div>
 
 														<div class="col-md-6 form-group">
 															<strong>Phone no : </strong>
-															{{$order_data->mobile}}
+															{{$order_non_prescribed[0]->mobile}}
 														</div>
 
 														<div class="col-md-6 form-group">
 															<strong>Address : </strong>
-															{{$order_data->addressline1.','}}
-															{{$order_data->addressline2.','}}
-															{{$order_data->city.','}}
-															{{$order_data->state.','}}
-															{{$order_data->zipcode}}
+															{{$order_non_prescribed[0]->addressline1.','}}
+															{{$order_non_prescribed[0]->addressline2.','}}
+															{{$order_non_prescribed[0]->city.','}}
+															{{$order_non_prescribed[0]->state.','}}
+															{{$order_non_prescribed[0]->zipcode}}
 														</div>
 
 													</div>
@@ -111,7 +111,7 @@
 
 														<div class="col-md-6  form-group">
 															<strong>Product Name : </strong>
-															{{$order_data->product_name}}
+															{{$order_non_prescribed[0]->product_name}}
 														</div>
 
 														<div class="col-md-6 form-group">

@@ -23,9 +23,9 @@ class MessageController extends Controller
 
     public function show($case_id, Request $request)
     {
-        dd($case_id);
         // DB::enableQueryLog();
         $mdList = DB::table('md_messages')
+            ->where('case_id', $case_id)
             ->join('users', 'users.id', '=', 'md_messages.user_id')
             ->select(
                 DB::raw('count(*) as user_count, md_messages.user_id, users.first_name, users.last_name, md_messages.case_id'),
@@ -41,6 +41,7 @@ class MessageController extends Controller
         endforeach;
         //dd($mdList);               
         $adminMsg = Messages::join('users', 'users.id', '=', 'messages.user_id')
+            ->where('case_id', $case_id)
             ->select(
                 DB::raw('count(*) as user_count, messages.user_id, users.first_name, users.last_name, messages.case_id'),
                 DB::raw('(SELECT m.text from messages as m where m.user_id=users.id order by m.id desc limit 1) as last_msg'),

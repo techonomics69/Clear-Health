@@ -124,12 +124,11 @@ class IpledgeimportsController extends Controller
       ]);
 
     
-    $validate = $headings = (new IpledgeImport)->toArray($request->file('files'));  
-     
-    dd($validate);  
+   
 
     $import = Excel::import(new IpledgeImport($request->patients_type),$request->file('files'));  
 
+    dd($import);
          
 
         if(!empty($documents)){

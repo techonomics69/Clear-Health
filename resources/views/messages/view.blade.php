@@ -48,6 +48,7 @@
                                                                         <ul>
                                                                             @foreach($mdList as $key => $name)
                                                                             <li class="userMdList" data-id="{{$name->case_id}}"><strong>{{$name->first_name}} {{$name->last_name}} - MD</strong>
+                                                                            <span class="badge badge-danger">{{$name->new_msg}}</span>
                                                                                 <p>{{$name->last_msg}}</p>
                                                                                 <small>{{ $name->msg_time }}</small>
                                                                             </li>

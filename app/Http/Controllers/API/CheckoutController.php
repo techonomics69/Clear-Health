@@ -349,7 +349,8 @@ class CheckoutController extends BaseController
         'checkout.gift_code_discount',
         'checkout.shipstation_order_id',
         'checkout.medication_type',
-        'checkout.transaction_complete_details'
+        'checkout.transaction_complete_details',
+        'checkout.cancel_request'
       )
       ->where('checkout.id', $request->id)
       ->OrderBy('id', 'DESC')
@@ -711,7 +712,12 @@ class CheckoutController extends BaseController
       $cart_ids = explode(',', $order_data['cart_id']);
      
 
-      $pharmacy_data  =  Cart::select('pharmacy_pickup')->where('user_id',$user_id)->whereIn('id',$cart_ids)->where('order_type', '!=', 'AddOn')->where('order_type', '!=', 'Non-Prescribe')->first();
+      $pharmacy_data  =  Cart::select('pharmacy_pickup','id')->where('user_id',$user_id)->whereIn('id',$cart_ids)->where('order_type', '!=', 'AddOn')->where('order_type', '!=', 'Non-Prescribe')->first();
+
+      echo "<pre>";
+      print_r($pharmacy_data);
+      echo "<pre>";
+      exit();
 
 
       $r = get_token();

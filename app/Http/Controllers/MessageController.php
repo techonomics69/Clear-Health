@@ -45,21 +45,19 @@ class MessageController extends Controller
             ->select(
                 DB::raw('count(*) as user_count, messages.user_id, users.first_name, users.last_name, messages.case_id'),
                 DB::raw('(SELECT m.text from messages as m where m.user_id=users.id order by m.id desc limit 1) as last_msg'),
-                DB::raw('(SELECT m.read_at from messages as m where m.user_id=users.id order by m.id desc limit 1) as new_msg'),
+                DB::raw('(SELECT count(m.read_at) from messages as m where m.user_id=users.id and m.read_at="false" ) as new_msg'),
                 DB::raw('(SELECT m.created_at from messages as m where m.user_id=users.id order by m.id desc limit 1) as msg_time'),
             )
             ->groupBy('messages.user_id')
             ->orderBy('msg_time', 'DESC')
             ->get();
-            echo '<pre>';
-            print_r($adminMsg);
-            die;
+
         foreach ($adminMsg as $key => $value) :
             $createdAt = Carbon::parse($value->msg_time);
             $value->msg_time =  $createdAt->format('H:i:s m/d/Y');
         endforeach;
 
-        
+
         $user_case_management_data['user_id'] = '';
         $user_case_management_data['id'] = '';
         return view('messages.view', compact('user_case_management_data', 'mdList', 'adminMsg', 'case_id'));
@@ -108,6 +106,8 @@ class MessageController extends Controller
             ->select('users.first_name', 'users.last_name', 'messages.user_id', 'messages.created_at', 'messages.text', 'messages.sender', 'message_files.file_path', 'message_files.mime_type')
             ->orderBy('messages.id')
             ->get();
+        $update['read_at'] = 'true';
+        $updateMsg = DB::table('messages')->where('user_id', $data['user_id'])->update($update);
         $username = '<b>' . $message[0]->first_name . ' ' . $message[0]->last_name . '</b>';
         $user_id = $message[0]->user_id;
         $html = '';
@@ -151,7 +151,7 @@ class MessageController extends Controller
                 </li>';
             endif;
 
-            
+
         endforeach;
 
         $data['html'] = $html;
@@ -232,7 +232,7 @@ class MessageController extends Controller
         $result['time'] = $time;
         $result['file'] = $file_path;
         $result['text'] = $data['text'];
-        $result['url'] = url('').'/';
+        $result['url'] = url('') . '/';
         if ($message) {
             return json_encode($result);
         } else {

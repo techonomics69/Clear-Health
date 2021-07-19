@@ -48,6 +48,7 @@
                                                                         <ul>
                                                                             @foreach($mdList as $key => $name)
                                                                             <li class="userMdList" data-id="{{$name->case_id}}"><strong>{{$name->first_name}} {{$name->last_name}} - MD</strong>
+
                                                                                 <p>{{$name->last_msg}}</p>
                                                                                 <small>{{ $name->msg_time }}</small>
                                                                             </li>
@@ -77,6 +78,9 @@
                                                                         <ul>
                                                                             @foreach($adminMsg as $key => $value)
                                                                             <li class="userAdminList" data-id="{{$value->user_id}}"><strong>{{$value->first_name}} {{$value->last_name}} - Admin</strong>
+                                                                                @if($value->new_msg > 0)
+                                                                                <span class="badge badge-danger msg_count">{{$value->new_msg}}</span>
+                                                                                @endif
                                                                                 <p>{{$value->last_msg}}</p>
                                                                                 <small>{{ $value->msg_time }}</small>
                                                                             </li>
@@ -197,6 +201,7 @@
                     $("#messageDataAdmin").animate({
                         scrollTop: $("#messageDataAdmin")[0].scrollHeight
                     }, 1000);
+                    $(this).children("msg_count").hide();
                 }
             });
         });

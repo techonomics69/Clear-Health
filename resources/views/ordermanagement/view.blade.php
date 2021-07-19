@@ -338,9 +338,17 @@
 									<section class="card">
 												
 													<div class="">
-														<h3 class=""><span class="text-underline">Order Summary</span></h3>
+														<h3 class=""><span class="text-underline">Billing Address</span></h3>
+														<p>[Recipient Name]</p>
+														<p>[Company Name]</p>
+														<p>[Street Address]</p>
+														<p>[City,State,Zip Code]</p>
+														<p>[Phone]</p>
 
-														<div class="  form-group">
+
+
+
+														<!-- <div class="  form-group">
 															<strong>Product Name : </strong>
 															{{$order_data->product_name}}
 														</div>
@@ -384,7 +392,7 @@
 														<div class=" form-group">
 															<strong>Total Order Amount : </strong>
 															$ {{$order_data->total_amount}}
-														</div>
+														</div> -->
 													</div>
 												
 									</section>
@@ -393,8 +401,16 @@
 									<section class="card">
 												
 													<div class=" ">
-														<h3 class=""><span class="text-underline">Shipments Shipping Details</span></h3>
+														<h3 class=""><span class="text-underline">Shipping Address</span></h3>
+														<p>[Recipient Name]</p>
+														<p>[Company Name]</p>
+														<p>[Street Address]</p>
+														<p>[City,State,Zip Code]</p>
+														<p>[Phone]</p>
+
+
 <!-- 														
+	
 														<?php
 														if($order_data->shipstation_order_id !=''){
 															if($order_data->shipstation!=''){

@@ -180,6 +180,7 @@
             });
         });
         $('.userAdminList').on('click', function() {
+            console.log(window.location.origin);
             var user_id = $(this).attr('data-id');
             $.ajax({
                 url: "{{route('getNonMedicalMessage')}}",

@@ -65,7 +65,7 @@
                                             <!-- <td>{{ $order_data->created_at }}</td> -->
                                             <td>{{ $order_data->product_name }}</td>
                                             <td><?php
-                                                if($order_data->cancel_request == true && $order_data->status !='cancelled'){
+                                                if($order_data->cancel_request == true && $order_data->orderstatus !='cancelled'){
                                             ?>
                                             <a href="{{ route('ordermanagement.showCancelOrder',[$order_data->id])}}" class="btn btn-info btn-sm">Cancel Order</a>
                                             <?php        
@@ -76,7 +76,7 @@
                                                 }
                                             ?></td>
                                             <td><?php
-                                            if($order_data->cancel_request == true && $order_data->status =='cancelled'){
+                                            if($order_data->cancel_request == true && $order_data->orderstatus =='cancelled'){
                                                 echo "cancelled";
                                             }    
                                             ?></td>

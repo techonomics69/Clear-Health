@@ -317,11 +317,11 @@
 
 														<!-- <div class=" form-group">
 															<strong>Address : </strong>
-															{{$order_data->addressline1.','}}
+															{{-- {{$order_data->addressline1.','}}
 															{{$order_data->addressline2.','}}
 															{{$order_data->city.','}}
 															{{$order_data->state.','}}
-															{{$order_data->zipcode}}
+															{{$order_data->zipcode}} --}}
 														</div> -->
 													</div>
 												
@@ -340,10 +340,10 @@
 												
 													<div class="">
 														<h3 class="font_add"><span class="text-underline">Billing Address</span></h3>
-														<p>[Recipient Name]</p>
+														<p>[{{$order_data->first_name}} {{$order_data->last_name}} ]</p>
 														<p>[Company Name]</p>
-														<p>[Street Address]</p>
-														<p>[City,State,Zip Code]</p>
+														<p>[{{$order_data->billing_address['addressline2']}} ]</p>
+														<p>[{{$order_data->billing_address['city']}},{{$order_data->billing_address['state']}},{{$order_data->billing_address['zipcode']}}]</p>
 														<p>[Phone]</p>
 
 

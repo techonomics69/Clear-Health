@@ -342,7 +342,7 @@ class CheckoutController extends BaseController
       ->select(
         'checkout.id',
         'checkout.user_id',
-        'checkout.case_id',
+        'checkout.case_id as caseId',
         'checkout.md_case_id',
         'checkout_address.patient_firstname',
         'checkout_address.patient_lastname',
@@ -414,9 +414,20 @@ class CheckoutController extends BaseController
 
        $orderlist['md_case_type'] = $md_case_type;
 
+       $caseManage = CaseManagement::select("id","md_case_status")->where('id',$orderlist['caseId'])->get();
+         if(count($caseManage) > 0){
+            if(!empty($caseManage[0]->md_case_status)){
+              $orderlist['md_case_status'] = $caseManage[0]->md_case_status;
+            }else{
+              $orderlist['md_case_status'] = "";  
+            }
+         }else{
+              $orderlist['md_case_status'] = "";
+         }
+
     }else{
       $system_status = "";
-     
+      $orderlist['md_case_status'] = "";
     }
 
     $orderlist['system_status'] = $system_status;

@@ -22,7 +22,7 @@
 	<div class="content-wrapper">
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-12 mb-2">
-				<h3 class="content-header-title mb-0">Order Management</h3>
+				<h3 class="content-header-title mb-0">Cancel Order</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-12 d-flex">
 						<ol class="breadcrumb">
@@ -48,9 +48,9 @@
 					<div class="col-lg-12">
 						<section class="card" >
 							<ul class="nav nav-tabs" id="casemanagement-tab-menu">
-								<li><a class="btn active " data-toggle="tab" href="#profile">Profile</a></li>
-								<li><a class="btn" data-toggle="tab" href="#order_summary">Order Summary</a></li>
-								<li><a class="btn" data-toggle="tab" href="#shipments_shipping_details">Shipments & shipping details</a></li>
+								<li><button type="button" class="btn active">Cancel</a></li>
+								<!-- <li><a class="btn" data-toggle="tab" href="#order_summary">Order Summary</a></li>
+								<li><a class="btn" data-toggle="tab" href="#shipments_shipping_details">Shipments & shipping details</a></li> -->
 							</ul>
 						<!-- 	<div class="tab-content">
 								start 1st tab-->

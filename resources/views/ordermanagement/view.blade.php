@@ -338,7 +338,7 @@
 												
 													<div class="">
 														<h3 class="font_add"><span class="text-underline">Billing Address</span></h3>
-														<p>[{{$order_data->first_name}} {{$order_data->last_name}}]</p>
+														<p>[{{$order_data['first_name']}} {{$order_data['last_name']}}]</p>
 														<p>[Company Name]</p>
 														<p>[Street Address]</p>
 														<p>[City,State,Zip Code]</p>

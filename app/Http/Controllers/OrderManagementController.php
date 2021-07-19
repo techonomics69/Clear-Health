@@ -146,6 +146,8 @@ public function showCancelOrder($id){
        ->where('checkout.id',$id)
        ->get();
 
+       dd($order_non_prescribed[0]);
+
        $app= App::getFacadeRoot();
        $app->make('LaravelShipStation\ShipStation');
        $shipStation = $app->make('LaravelShipStation\ShipStation');
@@ -177,7 +179,7 @@ public function showCancelOrder($id){
 
         }
 
-        dd($order_non_prescribed);
+       
   
    return view('ordermanagement.cancelorder',compact('order_non_prescribed'));   
 

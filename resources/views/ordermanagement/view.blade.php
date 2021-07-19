@@ -340,11 +340,11 @@
 												
 													<div class="">
 														<h3 class="font_add"><span class="text-underline">Billing Address</span></h3>
-														<p>[{{$order_data->first_name}} {{$order_data->last_name}} ]</p>
+														<p>[{{$order_data->billing_address['patient_firstname']}} {{$order_data->billing_address['patient_lastname']}} ]</p>
 														<p>[Company Name]</p>
 														<p>[{{$order_data->billing_address['addressline2']}} ]</p>
 														<p>[{{$order_data->billing_address['city']}},{{$order_data->billing_address['state']}},{{$order_data->billing_address['zipcode']}}]</p>
-														<p>[Phone]</p>
+														<p>[{{$order_data->billing_address['phone']}}]</p>
 
 
 
@@ -403,11 +403,11 @@
 												
 													<div class=" ">
 														<h3 class="font_add"><span class="text-underline">Shipping Address</span></h3>
-														<p>[Recipient Name]</p>
+														<p>[{{$order_data->shipping_address['patient_firstname']}} {{$order_data->shipping_address['patient_lastname']}} ]</p>
 														<p>[Company Name]</p>
-														<p>[Street Address]</p>
-														<p>[City,State,Zip Code]</p>
-														<p>[Phone]</p>
+														<p>[{{$order_data->shipping_address['addressline2']}} ]</p>
+														<p>[{{$order_data->shipping_address['city']}},{{$order_data->shipping_address['state']}},{{$order_data->shipping_address['zipcode']}}]</p>
+														<p>[{{$order_data->shipping_address['phone']}}]</p>
 
 
 <!-- 														

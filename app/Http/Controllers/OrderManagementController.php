@@ -185,7 +185,7 @@ public function showCancelOrder($id){
 
         // }
 
-        dd($order_non_prescribed[0]);
+        // dd($order_non_prescribed[0]);
        
   
    return view('ordermanagement.cancelorder',compact('order_non_prescribed'));   

@@ -16,6 +16,12 @@ use GuzzleHttp\Guzzle;
 use LaravelShipStation;
 use LaravelShipStation\ShipStation;
 use Illuminate\Support\Facades\App;
+use Stripe\Charge;
+use Stripe\Stripe;
+use Stripe\Customer;
+use Stripe\PaymentMethod;
+use Stripe\Refund;
+use App\Models\Notifications;
 
 
 //use Illuminate\Support\Facades\File;
@@ -129,6 +135,59 @@ public function destroy($id)
 
 }
 
+public function cancelOrder(Request $request){
+    try{
+        $data = $request->all();
+        $updateData = array();
+        $validator = \Validator::make($request->all(),[ 
+            'order_id'  =>  'required',
+            // 'charge_id' =>  'required',
+            // 'shipstation_order_id'  =>  'required',
+        ], [
+            'order_id.required' =>  'Request has missing order id',
+            // 'charge_id.required' =>  'Request has missing charge id',
+            // 'shipstation_order_id'  =>  'Request has missing shipstation order id',
+        ]);
+        if($validator->fails()){
+            toastr()->error($validator->errors()->first());
+            return redirect()->back();
+        }
+        $chargeId = Checkout::select('transaction_complete_details')->where('id',$request->order_id)->get();
+        if(count($chargeId) > 0){
+            if(!empty($chargeId[0]->transaction_complete_details)){
+                $charge = json_decode($chargeId[0]->transaction_complete_details);
+                $chId = $charge['id'];
+                Stripe::setApiKey('sk_test_51J08tDJofjMgVsOdzxZs5Aqlf5A9riwPPwlxUTriC8YPiHvTjlCBoaMjgxiqdIVfvOMPcllgR9JY7EZlihr6TJHy00ixztHFtz'); 
+                    
+                $refund = \Stripe\Refund::create(array(
+                    'charge' => $chId,
+                ));
+            
+                $refundData = $refund->jsonSerialize();
+                $updateData['strip_refund_object'] = $refundData;
+
+                $updateData['status'] = 'cancelled';
+                $updateData['cancelled_date'] = date("Y-m-d h:i:s");    
+                $updateOrder = Checkout::where('id',$data['order_id'])->update($updateData);
+                toastr()->success('Order Cancelled Successfully');
+
+                return redirect()->back();
+                                        
+            }else{
+                toastr()->error("Something went wrong! please try again");
+                return redirect()->back();
+            }
+        }else{
+            toastr()->error("Something went wrong! please try again");
+            return redirect()->back();
+        } 
+        
+    }catch(\Exception $ex){
+        toastr()->error($ex->getMessage());
+        return redirect()->back();
+    }
+}
+
 public function showCancelOrder($id){
     $order_non_prescribed =  checkout::join('users', 'users.id', '=', 'checkout.user_id')
        ->join('carts','carts.id', '=', 'checkout.cart_id')
@@ -136,7 +195,7 @@ public function showCancelOrder($id){
        ->select('checkout.*','users.email',
        'checkout.case_id','checkout.created_at',
        'checkout.order_id','checkout.medication_type',
-       'checkout.id','checkout.cart_id',
+       'checkout.id as checkoutId','checkout.cart_id',
        'carts.product_price',
        'users.first_name','users.last_name','users.email',
        'users.mobile','checkout_address.addressline1','checkout_address.addressline2',

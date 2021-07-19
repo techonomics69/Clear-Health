@@ -47,11 +47,15 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<section class="card" >
+                            <form action="{{ route('ordermanagement.orderCancel') }}" method="post">
+                            @csrf
+                            <input type="text" name="order_id" value="<?php echo order_non_prescribed[0]->checkoutId; ?>">    
 							<ul class="nav nav-tabs" id="casemanagement-tab-menu">
-								<li><button type="button" class="btn btn-primary active">Cancel</button></li>
+								<li><button type="submit" class="btn btn-primary active">Cancel this order</button></li>
 								<!-- <li><a class="btn" data-toggle="tab" href="#order_summary">Order Summary</a></li>
 								<li><a class="btn" data-toggle="tab" href="#shipments_shipping_details">Shipments & shipping details</a></li> -->
 							</ul>
+                            </form>
 						<!-- 	<div class="tab-content">
 								start 1st tab-->
 

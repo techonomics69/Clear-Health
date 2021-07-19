@@ -4,14 +4,19 @@ namespace App\Imports;
 
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
+use Maatwebsite\Excel\Concerns\ToModel;
 
-class HeadingValidation implements ToCollection
+class HeadingValidation implements ToModel
 {
-    /**
-    * @param Collection $collection
-    */
-    public function collection(Collection $collection)
+    private $rows = 0;
+
+    public function model(array $row)
     {
-        //
+        ++$this->rows;
+    }
+
+    public function getRowCount(): int
+    {
+        return $this->rows;
     }
 }

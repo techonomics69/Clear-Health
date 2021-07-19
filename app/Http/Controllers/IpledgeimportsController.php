@@ -125,14 +125,17 @@ class IpledgeimportsController extends Controller
       ]);
 
     
-    //   $import = new IpledgeImport;
-    //   Excel::import($import, $request->file('files'));
+      $Validate = new HeadingValidation;
+      Excel::import($Validate, $request->file('files'));
 
-   // $import = Excel::import(new IpledgeImport($request->patients_type),$request->file('files'));
-    
-    $Validate = new HeadingValidation;
-    Excel::import($Validate, $request->file('files'));
-    // dd('Row count: ' . $Validate->getRowCount());
+      if($Validate->getRowCount() > 0){
+        $import = Excel::import(new IpledgeImport($request->patients_type),$request->file('files'));
+      }else{
+        toastr()->error('Heading columns does not matched with our systems');
+        return redirect()->back();
+      }
+
+  
 
 
 

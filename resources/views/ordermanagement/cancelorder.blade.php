@@ -566,7 +566,7 @@
 				});
 			});
 
-            $("cancelButton").on('click',function(){
+            $("#cancelButton").on('click',function(){
                 alert();
             });
 

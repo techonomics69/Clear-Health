@@ -125,22 +125,8 @@ class IpledgeimportsController extends Controller
 
       $isError = false;
 
-      Excel::load($request->file('files'), function($reader) use (&$isError) {
-
-        $firstrow = $reader->first()->toArray();
-        print_r($firstrow)."<br>";
-
-        // if (isset($firstrow['firstname']) && isset($firstrow['lastname']) && isset($firstrow['username'])) {
-        //     $rows = $reader->all();
-        //     foreach ($rows as $row) {
-        //         echo $row->firstname.' '.$row->lastname.' '.$row->username."<br />";
-        //     }
-        // }
-        // else {
-        //     $isError = true;
-
-        // }
-        });
+      $headings = (new HeadingRowImport)->toArray($request->file('files'));
+      print_r($headings);
 
      die();   
 

@@ -211,8 +211,9 @@
                 data: formData,
                 contentType: false,
                 processData: false,
-                success: function(result) {
+                success: function(data) {
                     console.log(result.text);
+                    var result = JSON.parse(data);
                     if (result != false) {
                         $('#text').val('');
                         $('#messageDataAdmin').append(

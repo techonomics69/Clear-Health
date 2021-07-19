@@ -88,7 +88,13 @@ class OrderManagementController extends Controller
        //->select('checkout.*','users.email','checkout.case_id','checkout.created_at','checkout.order_id','checkout.medication_type','checkout.id','checkout.cart_id','carts.product_price','users.first_name','users.last_name','users.email','users.mobile','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode','carts.quantity')->orderBy('checkout.id', 'DESC')
         ->select('checkout.*','users.email','checkout.case_id','checkout.created_at','checkout.order_id','checkout.medication_type','checkout.id','checkout.cart_id','carts.product_price','users.first_name','users.last_name','users.email','users.mobile','carts.quantity')->orderBy('checkout.id', 'DESC')
        ->where('checkout.id',$id)
-       ->get();
+       ->get()->first();
+
+
+        echo "<pre>";
+        print_r($order_non_prescribed);
+        echo "<pre>";
+        exit();
 
        $app= App::getFacadeRoot();
        $app->make('LaravelShipStation\ShipStation');

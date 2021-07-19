@@ -283,7 +283,7 @@
 									<div class="col-md-6 col-lg-6">
 									<section class="card">
 												
-													<div class=" mtb32">
+													<div class="">
 														<h3 class="font-weight-bold"><span class="text-underline">Order Summary</span></h3>
 
 														<div class="  form-group">
@@ -338,7 +338,7 @@
 								<div class="col-md-6 col-lg-6">
 									<section class="card">
 												
-													<div class=" mtb32">
+													<div class=" ">
 														<h3 class="font-weight-bold"><span class="text-underline">Shipments Shipping Details</span></h3>
 														
 														<?php

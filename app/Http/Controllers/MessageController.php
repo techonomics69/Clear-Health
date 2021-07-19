@@ -23,6 +23,10 @@ class MessageController extends Controller
 
     public function show(Request $request)
     {
+        dd($request);
+        $url = $request->fullUrl();
+        $url = explode("/", $url);
+        $case_id = $url[count($url) - 1];
 
         // DB::enableQueryLog();
         $mdList = DB::table('md_messages')
@@ -54,9 +58,7 @@ class MessageController extends Controller
             $value->msg_time =  $createdAt->format('H:i:s m/d/Y');
         endforeach;
 
-        $url = $request->fullUrl();
-        $url = explode("/", $url);
-        $case_id = $url[count($url) - 1];
+        
         $user_case_management_data['user_id'] = '';
         $user_case_management_data['id'] = '';
         return view('messages.view', compact('user_case_management_data', 'mdList', 'adminMsg', 'case_id'));

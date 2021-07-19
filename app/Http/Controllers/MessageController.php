@@ -21,9 +21,9 @@ class MessageController extends Controller
         return view('messages.index', compact('user_case_management_data'))->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
-    public function show(Request $request)
+    public function show($id, Request $request)
     {
-        dd($request);
+        dd($id);
         $url = $request->fullUrl();
         $url = explode("/", $url);
         $case_id = $url[count($url) - 1];

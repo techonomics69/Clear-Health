@@ -142,12 +142,6 @@ class OrderManagementController extends Controller
            $order_non_prescribed['billing_address'] = $shipping_address;
         }
 
-
-echo "<pre>";
-print_r($order_non_prescribed);
-echo "<pre>";
-exit();
-
   
    return view('ordermanagement.view',compact('order_non_prescribed'));
 }

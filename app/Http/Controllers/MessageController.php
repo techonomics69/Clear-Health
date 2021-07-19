@@ -159,6 +159,9 @@ class MessageController extends Controller
         $data['users_message_type'] = 'Non-Medical';
         $data['sender'] = 'admin';
         $documents = $request->file('file');
+        echo '<pre>';
+        print_r($data);
+        die;
         $message = Messages::create($data);
         //dd($request->file('file')->getSize());
         $file_path = '';

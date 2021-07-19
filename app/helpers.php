@@ -813,13 +813,8 @@ function getCaseType($user_id,$case_id,$system_case_id){
          /*$recommended_product = CaseManagement::select('recommended_product')->where('id',$case_id)->where('user_id',$user_id)->first();
          $recommended_product = $recommended_product['recommended_product'];*/
 
-         $product_type = CaseManagement::select('product_type')->where('id',$case_id)->where('user_id',$user_id)->toSql();
-         //$product_type = $product_type['product_type'];
-
-         echo "<pre>";
-         print_r($product_type);
-         echo "<pre>";
-         exit();
+         $product_type = CaseManagement::select('product_type')->where('id',$case_id)->where('user_id',$user_id)->first();
+         $product_type = $product_type['product_type'];
 
          return $product_type;
 
@@ -1001,12 +996,6 @@ function getCaseType($user_id,$case_id,$system_case_id){
 
 
   $product_type = getUserProduct($user_id,$case_id);
-
-
-  echo "<pre>product ";
-  print_r($product_type);
-  echo "<pre>";
-  exit();
 
 
   if($product_type == 'Topical_low'){

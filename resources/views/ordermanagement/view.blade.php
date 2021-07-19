@@ -332,7 +332,7 @@
 								</div>
                                     <div class="row">
 									<div class="col-lg-12 mt32">
-									<h3 class="font-weight-bold"><span class="text-underline">Order Summary</span></h3>
+									<h3 class="font-weight-bold text-center"><span class="text-underline">Order Summary</span></h3>
 									</div>
 									<div class="col-md-6 col-lg-6">
 									<section class="card">

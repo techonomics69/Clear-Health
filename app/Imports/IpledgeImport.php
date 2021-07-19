@@ -9,8 +9,9 @@ use Maatwebsite\Excel\Concerns\WithStartRow;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Row;
 use Maatwebsite\Excel\Concerns\OnEachRow;
+use Maatwebsite\Excel\Concerns\ToArray;
 
-class IpledgeImport implements  OnEachRow
+class IpledgeImport implements  OnEachRow, ToArray
 
 //class IpledgeImport implements ToModel
 {
@@ -67,31 +68,33 @@ class IpledgeImport implements  OnEachRow
 
     public function onRow(Row $row)
     {
-        $rowIndex = $row->getIndex();
-        $row      = $row->toArray();
+
+        return 0;
+        // $rowIndex = $row->getIndex();
+        // $row      = $row->toArray();
         
-        if($rowIndex > 4){
-            $ipledge_data = Ipledge::where('patient_id',$row[0])->get(); 
+        // if($rowIndex > 4){
+        //     $ipledge_data = Ipledge::where('patient_id',$row[0])->get(); 
 
-            $patientstype = $this->patients_type;
+        //     $patientstype = $this->patients_type;
 
-            if(!empty($ipledge_data) && count($ipledge_data)>0){
+        //     if(!empty($ipledge_data) && count($ipledge_data)>0){
                     
-            }else{
-                $ipledge = new Ipledge();
-                $ipledge->patient_id = $row[0];
-                $ipledge->addon_date = isset($row[1]) ? date("Y-m-d",strtotime($row[1])) : null;
-                $ipledge->addon_by = isset($row[2]) ? $row[2] : "";
-                // $ipledge->patient_name =  isset($row[3]) ? $row[3] : "";
-                $ipledge->patient_first_name = (isset($row[3])) ? $row[3] : "";
-                $ipledge->patient_last_name = (isset($row[4])) ? $row[4] : "";
-                $ipledge->patients_type = $patientstype;
-                $ipledge->gender = isset($row[5]) ? $row[5] : "";
-                $ipledge->assigned_date = isset($row[6]) ? date("Y-m-d",strtotime($row[6])) : null;
-                $ipledge->notes = isset($row[7]) ? $row[7] : "";
-                $ipledge->save();
-            }
-        }
+        //     }else{
+        //         $ipledge = new Ipledge();
+        //         $ipledge->patient_id = $row[0];
+        //         $ipledge->addon_date = isset($row[1]) ? date("Y-m-d",strtotime($row[1])) : null;
+        //         $ipledge->addon_by = isset($row[2]) ? $row[2] : "";
+        //         // $ipledge->patient_name =  isset($row[3]) ? $row[3] : "";
+        //         $ipledge->patient_first_name = (isset($row[3])) ? $row[3] : "";
+        //         $ipledge->patient_last_name = (isset($row[4])) ? $row[4] : "";
+        //         $ipledge->patients_type = $patientstype;
+        //         $ipledge->gender = isset($row[5]) ? $row[5] : "";
+        //         $ipledge->assigned_date = isset($row[6]) ? date("Y-m-d",strtotime($row[6])) : null;
+        //         $ipledge->notes = isset($row[7]) ? $row[7] : "";
+        //         $ipledge->save();
+        //     }
+        // }
 
         // $group = Group::firstOrCreate([
         //     'name' => $row[1],

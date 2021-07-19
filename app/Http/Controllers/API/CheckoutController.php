@@ -717,7 +717,7 @@ class CheckoutController extends BaseController
 
         //code to remove pharmacy of patient
 
-      if(!empty($pharmacy_data) && count($pharmacy_data)>0){
+      if(!empty($pharmacy_data)){
 
         $user_old_pharmacy_id = $pharmacy_data['pharmacy_pickup'];
 

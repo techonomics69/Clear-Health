@@ -99,9 +99,9 @@ class MessageController extends Controller
         $data = $request->all();
         $message = DB::table('messages')
             ->where('user_id', $data['user_id'])
-            ->join('users', 'messages.user_id', '=', 'users.id')
-            ->join('message_files', 'messages.id', '=', 'message_files.msg_id')
-            ->select('users.first_name', 'users.last_name', 'messages.user_id', 'messages.created_at', 'messages.text', 'messages.sender', 'message_files.file_path', 'message_files.mime_type')
+            //->join('users', 'messages.user_id', '=', 'users.id')
+            //->join('message_files', 'messages.id', '=', 'message_files.msg_id')
+            //->select('users.first_name', 'users.last_name', 'messages.user_id', 'messages.created_at', 'messages.text', 'messages.sender', 'message_files.file_path', 'message_files.mime_type')
             ->get();
         echo '<pre>';
         print_r($message);

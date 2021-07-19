@@ -814,7 +814,7 @@ function getCaseType($user_id,$case_id,$system_case_id){
          $recommended_product = $recommended_product['recommended_product'];*/
 
          $product_type = CaseManagement::select('product_type')->where('id',$case_id)->where('user_id',$user_id)->toSql();
-         $product_type = $product_type['product_type'];
+         //$product_type = $product_type['product_type'];
 
          echo "<pre>";
          print_r($product_type);

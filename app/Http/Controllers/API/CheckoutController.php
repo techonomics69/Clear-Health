@@ -349,7 +349,8 @@ class CheckoutController extends BaseController
         'checkout.gift_code_discount',
         'checkout.shipstation_order_id',
         'checkout.medication_type',
-        'checkout.transaction_complete_details'
+        'checkout.transaction_complete_details',
+        'checkout.cancel_request'
       )
       ->where('checkout.id', $request->id)
       ->OrderBy('id', 'DESC')

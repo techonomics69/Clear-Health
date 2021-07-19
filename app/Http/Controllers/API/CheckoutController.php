@@ -352,7 +352,6 @@ class CheckoutController extends BaseController
         'checkout.telemedicine_fee',
         'checkout.handling_fee',
         'checkout.tax',
-        'checkout.address_type',
         'checkout.cart_amount',
         'checkout.gift_code_discount',
         'checkout.shipstation_order_id',

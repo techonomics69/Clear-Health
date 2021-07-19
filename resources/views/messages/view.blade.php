@@ -211,9 +211,7 @@
                 data: formData,
                 contentType: false,
                 processData: false,
-                success: function(data) {
-                    console.log(data);
-                    var result = JSON.stringify(data);
+                success: function(result) {
                     console.log(result);
                     if (result != false) {
                         $('#text').val('');

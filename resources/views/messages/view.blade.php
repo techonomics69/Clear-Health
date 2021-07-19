@@ -78,7 +78,9 @@
                                                                         <ul>
                                                                             @foreach($adminMsg as $key => $value)
                                                                             <li class="userAdminList" data-id="{{$value->user_id}}"><strong>{{$value->first_name}} {{$value->last_name}} - Admin</strong>
-                                                                                <span class="badge badge-danger">{{$value->new_msg}}</span>
+                                                                                @if($value->new_msg > 0)
+                                                                                <span class="badge badge-danger msg_count">{{$value->new_msg}}</span>
+                                                                                @endif
                                                                                 <p>{{$value->last_msg}}</p>
                                                                                 <small>{{ $value->msg_time }}</small>
                                                                             </li>
@@ -184,6 +186,7 @@
         $('.userAdminList').on('click', function() {
 
             var user_id = $(this).attr('data-id');
+            $(this).find(".msg_count").hide('slow');
             $.ajax({
                 url: "{{route('getNonMedicalMessage')}}",
                 type: "post",
@@ -198,7 +201,7 @@
                     $('#userId').val(result.userId);
                     $("#messageDataAdmin").animate({
                         scrollTop: $("#messageDataAdmin")[0].scrollHeight
-                    }, 1000);
+                    }, 1000);                    
                 }
             });
         });

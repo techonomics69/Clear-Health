@@ -714,11 +714,6 @@ class CheckoutController extends BaseController
 
       $pharmacy_data  =  Cart::select('pharmacy_pickup','id')->where('user_id',$user_id)->whereIn('id',$cart_ids)->where('order_type', '!=', 'AddOn')->where('order_type', '!=', 'Non-Prescribe')->first();
 
-      echo "<pre>";
-      print_r($pharmacy_data);
-      echo "<pre>";
-      exit();
-
 
       $r = get_token();
       $token_data = json_decode($r);
@@ -798,10 +793,13 @@ class CheckoutController extends BaseController
 
       $pharmacy_added = json_decode($response1);
 
-      return $this->sendResponse($pharmacy_added, 'Pharmacy changed successfully.');
-
+       $update_pharmacy = Cart::where('id',$pharmacy_data['id'])->update(['pharmacy_pickup'=>$pharmacy_id]);
+       if($update_pharmacy){
+         return $this->sendResponse($pharmacy_added, 'Pharmacy changed successfully.');
+       }else{
+        return $this->sendError('Some thing went wrong!');
+       }
       //end of code to add pharmacy of patient
-
       }else{
         return $this->sendError('MD Patient is not created yet.');
       }

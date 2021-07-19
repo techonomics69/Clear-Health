@@ -709,6 +709,8 @@ class CheckoutController extends BaseController
       print_r($order_data);
       echo "<pre>";
 
+      exit();
+
 
        
       $cart_ids = explode(',', $order_data['cart_id']);

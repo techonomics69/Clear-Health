@@ -692,11 +692,6 @@ class CheckoutController extends BaseController
     $checkout_id = $request['order_id'];
     $pharmacy_id =  $request['preferred_pharmacy_id'];
 
-    echo "<pre>";
-    print_r($request->all());
-    echo "<pre>";
-    exit();
-
     //$user_old_pharmacy_id = getPickupPharmacy($user_id,$case_id,$md_case_id);
     if(isset($pharmacy_id)){
 
@@ -709,6 +704,19 @@ class CheckoutController extends BaseController
       $cart_ids = explode(',', $order_data['cart_id']);
 
       $pharmacy_data  =  Cart::select('pharmacy_pickup')->where('user_id',$user_id)->whereIn('id',$cart_ids)->where('order_type', '!=', 'AddOn')->where('order_type', '!=', 'Non-Prescribe')->first();
+
+      echo "<pre>";
+      print_r($user_data);
+      echo "<pre>";
+
+      echo "<pre>";
+      print_r($md_patient_id);
+      echo "<pre>";
+
+      echo "<pre>";
+      print_r(  $pharmacy_data);
+      echo "<pre>";
+      exit();
 
       //code to remove pharmacy of patient
 

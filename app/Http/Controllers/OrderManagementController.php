@@ -146,7 +146,7 @@ public function showCancelOrder($id){
        ->where('checkout.id',$id)
        ->get();
 
-       dd($order_non_prescribed[0]);
+       
 
        $app= App::getFacadeRoot();
        $app->make('LaravelShipStation\ShipStation');
@@ -160,9 +160,9 @@ public function showCancelOrder($id){
        }
        
 
-       foreach($order_non_prescribed as $key=>$val)
-       {
-            $cart_ids = explode(',', $val['cart_id']);
+    //    foreach($order_non_prescribed[0] as $key=>$val)
+    //    {
+            $cart_ids = explode(',', $order_non_prescribed[0]->cart_id);
             $product_name = array();
             $productData = array();
             $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name')->get()->toArray();
@@ -172,13 +172,14 @@ public function showCancelOrder($id){
             }   
             
            
-            $order_non_prescribed[$key]->shipstation = $getOrder;
-            $order_non_prescribed[$key]->shipments = $trackOrder;
-            $order_non_prescribed[$key]->product_name = implode(', ' ,$product_name);
-            $order_non_prescribed[$key]->productData = $productData;
+            $order_non_prescribed[0]->shipstation = $getOrder;
+            $order_non_prescribed[0]->shipments = $trackOrder;
+            $order_non_prescribed[0]->product_name = implode(', ' ,$product_name);
+            $order_non_prescribed[0]->productData = $productData;
 
-        }
+        // }
 
+        dd($order_non_prescribed[0]);
        
   
    return view('ordermanagement.cancelorder',compact('order_non_prescribed'));   

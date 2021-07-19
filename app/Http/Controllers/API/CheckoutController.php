@@ -690,7 +690,7 @@ class CheckoutController extends BaseController
     //$case_id = $request['case_id'];
     //$md_case_id = $request['md_case_id'];
     $checkout_id = $request['order_id'];
-    $pharmacy_id =  $request['preferred_pharmacy_id'];
+    $pharmacy_id =  $request['pharmacy_id'];
 
     //$user_old_pharmacy_id = getPickupPharmacy($user_id,$case_id,$md_case_id);
     if(isset($pharmacy_id)){

@@ -998,6 +998,12 @@ function getCaseType($user_id,$case_id,$system_case_id){
   $product_type = getUserProduct($user_id,$case_id);
 
 
+  echo "<pre>";
+  print_r($product_type);
+  echo "<pre>";
+  exit();
+
+
   if($product_type == 'Topical_low'){
 
    $product_name = "Topical Low";

@@ -217,12 +217,7 @@
                     if (result != false) {
                         $('#text').val('');
                         $('#messageDataAdmin').append(
-                            '<li class="right">' +
-                            +'<div class="time_messages"> ' +
-                            +'<p class="text_mesg">' + result.text + '</p>' +
-                            +'<h5>' + result.time + '</h5>' +
-                            +'</div>' +
-                            +'</li>'
+                            '<li class="right"><div class="time_messages"><p class="text_mesg">' + result.text + '</p><h5>' + result.time + '</h5></div></li>'
                         );
                         if (result.file) {
                             $('#messageDataAdmin').append(

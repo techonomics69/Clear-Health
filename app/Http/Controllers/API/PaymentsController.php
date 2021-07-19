@@ -690,7 +690,9 @@ class PaymentsController extends BaseController
     {
         $customer_id = request('customer');
         $number = request('number');
-        $exp = explode("/",request('exp'));
+        //$exp = explode("/",request('exp'));
+        $exp = explode("/",str_split(request('exp'), 2));
+        dd($exp);
         $cvc = request('cvc');
 
         

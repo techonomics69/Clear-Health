@@ -696,7 +696,7 @@ class PaymentsController extends BaseController
 
         
         	Stripe::setApiKey("sk_test_51J08tDJofjMgVsOdzxZs5Aqlf5A9riwPPwlxUTriC8YPiHvTjlCBoaMjgxiqdIVfvOMPcllgR9JY7EZlihr6TJHy00ixztHFtz");
-        	try{
+        	// try{
         		$create = \Stripe\PaymentMethod::create([
         			'type' => 'card',
         			'card' => [
@@ -720,10 +720,10 @@ class PaymentsController extends BaseController
                   echo '<pre>';
                   print_r($update);
                   die;
-        		return $this->sendResponse($update, 'success');
-        	} catch (\Stripe\Exception\CardException $e) {
-	            return $this->sendResponse($e, 'error');
-	        }
+        	// 	return $this->sendResponse($update, 'success');
+        	// } catch (\Stripe\Exception\CardException $e) {
+	        //     return $this->sendResponse($e, 'error');
+	        // }
 
     }
 

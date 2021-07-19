@@ -102,6 +102,7 @@ class MessageController extends Controller
             ->join('users', 'messages.user_id', '=', 'users.id')
             ->leftjoin('message_files', 'messages.id', '=', 'message_files.msg_id')
             ->select('users.first_name', 'users.last_name', 'messages.user_id', 'messages.created_at', 'messages.text', 'messages.sender', 'message_files.file_path', 'message_files.mime_type')
+            ->orderBy('messages.id')
             ->get();
         $username = '<b>' . $message[0]->first_name . ' ' . $message[0]->last_name . '</b>';
         $user_id = $message[0]->user_id;

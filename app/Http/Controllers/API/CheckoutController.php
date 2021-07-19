@@ -705,20 +705,9 @@ class CheckoutController extends BaseController
 
       $pharmacy_data  =  Cart::select('pharmacy_pickup')->where('user_id',$user_id)->whereIn('id',$cart_ids)->where('order_type', '!=', 'AddOn')->where('order_type', '!=', 'Non-Prescribe')->first();
 
-      echo "<pre>";
-      print_r($user_data);
-      echo "<pre>";
+      if(isset($md_patient_id) $$ $md_patient_id != ''){
 
-      echo "<pre>";
-      print_r($md_patient_id);
-      echo "<pre>";
-
-      echo "<pre>";
-      print_r(  $pharmacy_data);
-      echo "<pre>";
-      exit();
-
-      //code to remove pharmacy of patient
+        //code to remove pharmacy of patient
 
       if(!empty($pharmacy_data) && count($pharmacy_data)>0){
 
@@ -808,6 +797,11 @@ class CheckoutController extends BaseController
       return $this->sendResponse($pharmacy_added, 'Pharmacy changed successfully.');
 
       //end of code to add pharmacy of patient
+
+      }else{
+        return $this->sendError('MD Patient is not created yet.');
+      }
+      
 
     }
       

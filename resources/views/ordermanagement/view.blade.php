@@ -507,7 +507,9 @@
 															} ?></td>
 			                                    		<td>${{$p_val['product_price']}}</td>
 			                                    		<td>{{$p_val['quantity']}}</td>
-			                                    		<td>$ @php $p_val['product_price'] * $p_val['quantity'] @endphp</td>
+			                                    		<td>$ @php $total = $p_val['product_price'] * $p_val['quantity'];
+			                                    		echo $total;
+			                                    		 @endphp</td>
 			                                    	</tr>
 			                                        @php
 			                                    	}

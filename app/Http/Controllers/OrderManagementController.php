@@ -84,17 +84,10 @@ class OrderManagementController extends Controller
 
        $order_non_prescribed =  checkout::join('users', 'users.id', '=', 'checkout.user_id')
        ->join('carts','carts.id', '=', 'checkout.cart_id')
-       //->join('checkout_address', 'checkout_address.user_id', '=','checkout.user_id')
-       //->select('checkout.*','users.email','checkout.case_id','checkout.created_at','checkout.order_id','checkout.medication_type','checkout.id','checkout.cart_id','carts.product_price','users.first_name','users.last_name','users.email','users.mobile','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode','carts.quantity')->orderBy('checkout.id', 'DESC')
-        ->select('checkout.*','users.email','checkout.case_id','checkout.created_at','checkout.order_id','checkout.medication_type','checkout.id','checkout.cart_id','carts.product_price','users.first_name','users.last_name','users.email','users.mobile','carts.quantity')->orderBy('checkout.id', 'DESC')
+       ->join('checkout_address', 'checkout_address.user_id', '=','checkout.user_id')
+       ->select('checkout.*','users.email','checkout.case_id','checkout.created_at','checkout.order_id','checkout.medication_type','checkout.id','checkout.cart_id','carts.product_price','users.first_name','users.last_name','users.email','users.mobile','checkout_address.addressline1','checkout_address.addressline2','checkout_address.city','checkout_address.state','checkout_address.zipcode','carts.quantity')->orderBy('checkout.id', 'DESC')
        ->where('checkout.id',$id)
-       ->get()->first();
-
-
-        echo "<pre>";
-        print_r($order_non_prescribed);
-        echo "<pre>";
-        exit();
+       ->get();
 
        $app= App::getFacadeRoot();
        $app->make('LaravelShipStation\ShipStation');
@@ -112,7 +105,7 @@ class OrderManagementController extends Controller
        {
             $cart_ids = explode(',', $val['cart_id']);
             $product_name = array();
-            $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name')->get()->toArray();
+            $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','carts.product_price','carts.quantity')->get()->toArray();
             foreach($product_details as $product_key=>$product_value){
                 $product_name[] = $product_value['product_name'];   
             }   
@@ -120,38 +113,38 @@ class OrderManagementController extends Controller
            
             $order_non_prescribed[$key]->shipstation = $getOrder;
             $order_non_prescribed[$key]->shipments = $trackOrder;
-            $order_non_prescribed[$key]->product_name = implode(', ' ,$product_name);    
-        }
+            $order_non_prescribed[$key]->product_name = implode(', ' ,$product_name);  
 
-        $shipping_address = Checkoutaddress::select('*')
-        ->where('checkout_address.order_id', $order_non_prescribed[0]['id'])
+            $order_non_prescribed[$key]->product_details = $product_details; 
+
+             $shipping_address = Checkoutaddress::select('*')
+        ->where('checkout_address.order_id', $val['id'])
         ->where('checkout_address.address_type', 1)
         ->OrderBy('id', 'DESC')
         ->first();
 
         if ($shipping_address != '' || $shipping_address != NULL) {
-          $order_non_prescribed[0]['shipping_address'] = $shipping_address;
+          $order_non_prescribed[$key]->shipping_address = $shipping_address;
         } else {
-           $order_non_prescribed[0] = new \stdClass();
+           $order_non_prescribed[$key]->shipping_address = array();
         }
 
         $billing_address = Checkoutaddress::select('*')
-        ->where('checkout_address.order_id', $order_non_prescribed[0]['id'])
+        ->where('checkout_address.order_id', $val['id'])
         ->where('checkout_address.address_type', 2)
         ->OrderBy('id', 'DESC')
         ->first();
 
         if ($billing_address != '' || $billing_address != NULL) {
-           $order_non_prescribed[0]['billing_address'] = $billing_address;
+           $order_non_prescribed[$key]->billing_address = $billing_address;
         } else {
-           $order_non_prescribed[0]['billing_address'] = $shipping_address;
+           $order_non_prescribed[$key]->billing_address = $shipping_address;
+        }
+   
         }
 
 
-echo "<pre>";
-print_r($order_non_prescribed[0]);
-echo "<pre>";
-exit();
+
 
   
    return view('ordermanagement.view',compact('order_non_prescribed'));

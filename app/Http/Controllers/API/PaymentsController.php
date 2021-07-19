@@ -195,8 +195,7 @@ class PaymentsController extends BaseController
                 // }
 
                 // if(empty($shiapiError) && $shipStatus['success']){  
-                    $updateData['cancel_request'] = true;
-                    $updateData['cancel_request_date'] = date("Y-m-d h:i:s");    
+                    $updateData['cancel_request'] = true;    
                     $updateOrder = Checkout::where('id',$data['order_id'])->update($updateData);
                     return $this->sendResponse(array(), 'Order Cancelled successfully');
                 // }else{
@@ -689,9 +688,6 @@ class PaymentsController extends BaseController
 
     public function changePaymentMethod(Request $request)
     {
-        echo '<pre>';
-        print_r($request->all());
-        die;
         $customer_id = request('customer');
         $number = request('number');
         $exp = explode("/",request('exp'));

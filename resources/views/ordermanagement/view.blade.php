@@ -65,31 +65,31 @@
 
 														<div class="col-md-6  form-group">
 															<strong>First Name : </strong>
-															{{$order_data->first_name}}
+															{{-- {{$order_data->first_name}} --}}
 														</div>
 
 														<div class="col-md-6 form-group">
 															<strong>Last Name : </strong>
-															{{$order_data->last_name}}
+															{{-- {{$order_data->last_name}} --}}
 														</div>
 
 														<div class="col-md-6 form-group">
 															<strong>Email : </strong>
-															{{$order_data->email}}
+															{{-- {{$order_data->email}} --}}
 														</div>
 
 														<div class="col-md-6 form-group">
 															<strong>Phone no : </strong>
-															{{$order_data->mobile}}
+															{{-- {{$order_data->mobile}} --}}
 														</div>
 
 														<div class="col-md-6 form-group">
 															<strong>Address : </strong>
-															{{$order_data->addressline1.','}}
+															{{-- {{$order_data->addressline1.','}}
 															{{$order_data->addressline2.','}}
 															{{$order_data->city.','}}
 															{{$order_data->state.','}}
-															{{$order_data->zipcode}}
+															{{$order_data->zipcode}} --}}
 														</div>
 
 													</div>
@@ -111,48 +111,48 @@
 
 														<div class="col-md-6  form-group">
 															<strong>Product Name : </strong>
-															{{$order_data->product_name}}
+															{{-- {{$order_data->product_name}} --}}
 														</div>
 
 														<div class="col-md-6 form-group">
 															<strong>Product Type : </strong>
-															<?php if($order_data->medication_type == 1){
+															{{-- <?php if($order_data->medication_type == 1){
 																echo "Prescribed";
 															}else{
 																echo "Non Prescribed";
-															} ?>
+															} ?> --}}
 														</div>
 
 														<div class="col-md-6 form-group">
 															<strong>Quantity : </strong>
-															{{$order_data->quantity}}
+															{{-- {{$order_data->quantity}} --}}
 														</div>
 
 														<div class="col-md-6 form-group">
 															<strong>Date : </strong>
-															{{($order_data->created_at)->format('d/m/Y')}}
+															{{-- {{($order_data->created_at)->format('d/m/Y')}} --}}
 														</div>
 
 														<div class="col-md-6 form-group">
 															<strong>Shipping Fees : </strong>
-															$ {{$order_data->shipping_fee}}
+															$ {{-- {{$order_data->shipping_fee}} --}}
 														</div>
-														<?php
+														{{-- <?php
 																if(isset($order_data['gift_code_discount']) && $order_data['gift_code_discount']!="" || $order_data['gift_code_discount']!=null){
-															?>
+															?> --}}
 															<div class="col-md-6  form-group">
 																<strong>Discount :</strong>
-																<?php if(isset($order_data['gift_code_discount']) && $order_data['gift_code_discount'] != '')  { ?>
-																	$ {{$order_data['gift_code_discount']}} 
-																<?php } ?>
+																{{-- <?php if(isset($order_data['gift_code_discount']) && $order_data['gift_code_discount'] != '')  { ?> --}}
+																	$ {{-- {{$order_data['gift_code_discount']}} --}} 
+																{{-- <?php } ?> --}}
 															</div>
-															<?php		
+															{{-- <?php		
 																}
 															?>
-
+ --}}
 														<div class="col-md-6 form-group">
 															<strong>Total Order Amount : </strong>
-															$ {{$order_data->total_amount}}
+															$ {{-- {{$order_data->total_amount}} --}}
 														</div>
 
 													</div>
@@ -172,26 +172,26 @@
 																<div class="box-block mtb32">
 																	<h3 class="font-weight-bold"><span class="text-underline">Shipments Shipping Details</span></h3>
 																	
-																	<?php
+																	{{-- <?php
 																	if($order_data->shipstation_order_id !=''){
 																		if($order_data->shipstation!=''){
 																			$shipStationOrder = json_decode(json_encode($order_data->shipstation), true);
-																	?>
+																	?> --}}
 																	<div class="col-md-6  form-group">
 																		<strong>Shipstation OrderId : </strong>
-																		<?php echo $shipStationOrder['orderId'] ?>
+																		{{-- <?php echo $shipStationOrder['orderId'] ?> --}}
 																	</div>
 																	<div class="col-md-6  form-group">
 																		<strong>Order Number : </strong>
-																		<?php echo $shipStationOrder['orderNumber'] ?>
+																		{{-- <?php echo $shipStationOrder['orderNumber'] ?> --}}
 																	</div>
 																	<div class="col-md-6  form-group">
 																		<strong>Order Date : </strong>
-																		<?php echo date("d-m-Y",strtotime($shipStationOrder['orderDate'])); ?>
+																	{{-- 	<?php echo date("d-m-Y",strtotime($shipStationOrder['orderDate'])); ?> --}}
 																	</div>
 																	<div class="col-md-6  form-group">
 																		<strong>Order Status : </strong>
-																		<?php if($shipStationOrder['orderStatus']=='awaiting_payment'){
+																		{{-- <?php if($shipStationOrder['orderStatus']=='awaiting_payment'){
 																			echo "Order Processing";
 																		}else if($shipStationOrder['orderStatus']=='awaiting_shipment'){
 																			echo "Awaiting shipment";
@@ -199,29 +199,29 @@
 																			echo "Shipped";
 																		}else{
 																			
-																		} ?>
+																		} ?> --}}
 																	</div>
-																	<?php
+																	{{-- <?php
 																		if($shipStationOrder['orderStatus'] == 'shipped'){
-																	?>
+																	?> --}}
 																	<div class="col-md-6  form-group">
 																		<strong>Ship date : </strong>
-																		<?php echo date("d-m-Y",strtotime($shipStationOrder['shipDate'])); ?>
+																		{{-- <?php echo date("d-m-Y",strtotime($shipStationOrder['shipDate'])); ?> --}}
 																	</div>	
-																	<?php			
+																	{{-- <?php			
 																		$tracking = json_decode(json_encode($order_data->shipments), true);
 																		if(isset($tracking['shipments'][0])){
-																	?>
+																	?> --}}
 																	<div class="col-md-6  form-group">
 																		<strong> Tracking No: </strong>
-																		<a href="https://tools.usps.com/go/TrackConfirmAction.action?tLabels=<?php echo $tracking['shipments'][0]['trackingNumber']; ?>" target="_blank"><?php echo $tracking['shipments'][0]['trackingNumber']; ?></a>
+																		<a href="https://tools.usps.com/go/TrackConfirmAction.action?tLabels={{-- <? ?> --}}</a>
 																	</div>
-																	<?php
+																	{{-- <?php
 																				}
 																			}
 																		}
 																	}
-																	?>
+																	?> --}}
 																	
 
 																</div>
@@ -241,29 +241,29 @@
 
 														<div class="  form-group">
 															<strong>First Name : </strong>
-															{{$order_data->first_name}}
+															{{$order_data['first_name']}}
 														</div>
 
 														<div class=" form-group">
 															<strong>Last Name : </strong>
-															{{$order_data->last_name}}
+															{{$order_data['last_name']}}
 														</div>
 
 														<div class=" form-group">
 															<strong>Email : </strong>
-															{{$order_data->email}}
+															{{$order_data['email']}}
 														</div>
 
 														<div class=" form-group">
 															<strong>Phone no : </strong>
-															{{$order_data->mobile}}
+															{{$order_data['mobile']}}
 														</div>
 
 	
 														<?php
-														if($order_data->shipstation_order_id !=''){
-															if($order_data->shipstation!=''){
-																$shipStationOrder = json_decode(json_encode($order_data->shipstation), true);
+														if($order_data['shipstation_order_id']!=''){
+															if($order_data['shipstation']!=''){
+																$shipStationOrder = json_decode(json_encode($order_data['shipstation']), true);
 														?>
 														<div class=" form-group">
 															<strong>Shipstation OrderId : </strong>
@@ -315,11 +315,11 @@
 
 														<!-- <div class=" form-group">
 															<strong>Address : </strong>
-															{{$order_data->addressline1.','}}
+															{{-- {{$order_data->addressline1.','}}
 															{{$order_data->addressline2.','}}
 															{{$order_data->city.','}}
 															{{$order_data->state.','}}
-															{{$order_data->zipcode}}
+															{{$order_data->zipcode}} --}}
 														</div> -->
 													</div>
 												

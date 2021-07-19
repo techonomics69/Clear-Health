@@ -126,7 +126,7 @@
                                                                                 <div class="search">
                                                                                     <input class="form-control" type="text" name="text" placeholder="Type a message..." id="text">
                                                                                     <input type="hidden" id="userId" name="user_id" value="">
-                                                                                    <input type="hidden" id="case_id" name="case_id" value="{{case_id}}">
+                                                                                    <input type="hidden" id="case_id" name="case_id" value="{{$case_id}}">
                                                                                 </div>
                                                                                 <div class="sending lastimg">
                                                                                     <button type="button" id="sendAdminMsg"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>

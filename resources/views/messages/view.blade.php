@@ -186,6 +186,7 @@
         $('.userAdminList').on('click', function() {
 
             var user_id = $(this).attr('data-id');
+            $(this).find(".msg_count").hide('slow');
             $.ajax({
                 url: "{{route('getNonMedicalMessage')}}",
                 type: "post",
@@ -200,8 +201,7 @@
                     $('#userId').val(result.userId);
                     $("#messageDataAdmin").animate({
                         scrollTop: $("#messageDataAdmin")[0].scrollHeight
-                    }, 1000);
-                    $(this).find(".msg_count").hide('slow');
+                    }, 1000);                    
                 }
             });
         });

@@ -222,10 +222,11 @@ class MessageController extends Controller
         //             </div>
         //         </li>';
         // endif;
-        $data['time'] = $time;
-        $data['file'] = $file_path;
+        $result['time'] = $time;
+        $result['file'] = $file_path;
+        $result['text'] = $file_path;
         if ($message) {
-            return json_encode($data);
+            return json_encode($result);
         } else {
             return false;
         }

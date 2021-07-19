@@ -490,6 +490,7 @@
 			                                    </thead>
 			                                    <tbody>
 			                                    	<?php
+                                                        $iTotal = 0;
                                                         if(count($order_non_prescribed[0]->productData)>0){
                                                            foreach($order_non_prescribed[0]->productData as $key => $value){
                                                     ?>
@@ -499,7 +500,8 @@
                                                         <td>{{$value['cqty']}}</td>
                                                         <td>$ <?php echo ($value['cprice'] * $value['cqty']); ?></td>    
                                                     </tr>
-                                                    <?php           
+                                                    <?php      
+                                                            $iTotal +=($value['cprice'] * $value['cqty']);     
                                                            } 
                                                         }
                                                     ?>
@@ -511,15 +513,15 @@
 			                                  <div class="product_detail">
 			                                  	  <div class="product_linedetail">
 			                                  	  	<p>Shipping</p>
-			                                  	  	<p class="rate_price">$0</p>
+			                                  	  	<p class="rate_price">$ {{$order_non_prescribed[0]->shipping_fee}}</p>
 			                                  	  </div>
 			                                  	   <div class="product_linedetail">
 			                                  	  	<p>Item</p>
-			                                  	  	<p class="rate_price">1</p>
+			                                  	  	<p class="rate_price"><?php echo count($order_non_prescribed[0]->productData) ?></p>
 			                                  	  </div>
 			                                  	   <div class="product_linedetail">
 			                                  	  	<p>Total</p>
-			                                  	  	<p class="rate_price">$106</p>
+			                                  	  	<p class="rate_price">${{$iTotal}}</p>
 			                                  	  </div>
 			                                  	   <div class="product_linedetail">
 			                                  	  	<p>Shipping Payout</p>
@@ -527,7 +529,7 @@
 			                                  	  </div>
 			                                  	   <div class="product_linedetail">
 			                                  	  	<p>Total payout</p>
-			                                  	  	<p class="rate_price">$106</p>
+			                                  	  	<p class="rate_price">${{$iTotal}}</p>
 			                                  	  </div>
 			                                  </div>
 			                                </div>

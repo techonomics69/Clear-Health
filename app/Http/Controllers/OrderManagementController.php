@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Checkout;
+use App\Models\Checkoutaddress;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Cart;
@@ -104,7 +105,7 @@ class OrderManagementController extends Controller
        {
             $cart_ids = explode(',', $val['cart_id']);
             $product_name = array();
-            $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name')->get()->toArray();
+            $product_details  = Cart::join('products', 'products.id', '=', 'carts.product_id')->whereIn('carts.id', $cart_ids)->select('products.name AS product_name','carts.product_price','carts.quantity')->get()->toArray();
             foreach($product_details as $product_key=>$product_value){
                 $product_name[] = $product_value['product_name'];   
             }   
@@ -112,8 +113,37 @@ class OrderManagementController extends Controller
            
             $order_non_prescribed[$key]->shipstation = $getOrder;
             $order_non_prescribed[$key]->shipments = $trackOrder;
-            $order_non_prescribed[$key]->product_name = implode(', ' ,$product_name);    
+            $order_non_prescribed[$key]->product_name = implode(', ' ,$product_name);  
+
+            $order_non_prescribed[$key]->product_details = $product_details; 
+
+             $shipping_address = Checkoutaddress::select('*')
+        ->where('checkout_address.order_id', $val['id'])
+        ->where('checkout_address.address_type', 1)
+        ->OrderBy('id', 'DESC')
+        ->first();
+
+        if ($shipping_address != '' || $shipping_address != NULL) {
+          $order_non_prescribed[$key]->shipping_address = $shipping_address;
+        } else {
+           $order_non_prescribed[$key]->shipping_address = array();
         }
+
+        $billing_address = Checkoutaddress::select('*')
+        ->where('checkout_address.order_id', $val['id'])
+        ->where('checkout_address.address_type', 2)
+        ->OrderBy('id', 'DESC')
+        ->first();
+
+        if ($billing_address != '' || $billing_address != NULL) {
+           $order_non_prescribed[$key]->billing_address = $billing_address;
+        } else {
+           $order_non_prescribed[$key]->billing_address = $shipping_address;
+        }
+   
+        }
+
+
 
 
   

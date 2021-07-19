@@ -717,6 +717,9 @@ class PaymentsController extends BaseController
 	                $customer_id,
 	                ['invoice_settings' => ['default_payment_method' => $payment_method_id]]
 	              );
+                  echo '<pre>';
+                  print_r($update);
+                  die;
         		return $this->sendResponse($update, 'success');
         	} catch (\Stripe\Exception\CardException $e) {
 	            return $this->sendResponse($e, 'error');

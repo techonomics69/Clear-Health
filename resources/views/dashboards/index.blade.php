@@ -104,7 +104,7 @@
          <div class="col-xl-3 col-lg-6 col-12">
           <div class="card">
             <div class="card-content">
-              <a href="{{-- {{ route('customers.index') }} --}}">
+              <a href="{{ route('casemanagement.index') }}">
               <div class="media align-items-stretch">
                 <div class="p-2 text-center bg-danger bg-darken-2" style="background-color: #323232 !important;">
                   <i class="icon-user font-large-2 white"></i>
@@ -122,7 +122,7 @@
         <div class="col-xl-3 col-lg-6 col-12">
           <div class="card">
             <div class="card-content">
-              <a href="{{-- {{ route('customers.index') }} --}}">
+              <a href="{{ route('ordermanagement.index') }}">
               <div class="media align-items-stretch">
                 <div class="p-2 text-center bg-danger bg-darken-2" style="background-color: #323232 !important;">
                   <i class="icon-user font-large-2 white"></i>

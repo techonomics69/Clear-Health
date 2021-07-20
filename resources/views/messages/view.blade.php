@@ -145,7 +145,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div id="support" class="tab-pane fane in support">
+                                                <div id="supportMsg" class="tab-pane fane in support">
                                                     hello
                                                 </div>
                                             </div>

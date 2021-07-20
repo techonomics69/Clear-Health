@@ -49,6 +49,7 @@ class CaseManagementController extends Controller
   {
     $user_case_management_data = CaseManagement::join('users', 'case_managements.user_id', '=', 'users.id')->leftjoin('case_histories', 'case_managements.id', '=', 'case_histories.case_id')->select('case_managements.*', 'users.email', 'users.first_name', 'users.last_name', 'users.gender', 'case_histories.case_status')->OrderBy('id', 'DESC')->get();
     //generate_ipledge, store_ipledge, verify_pregnancy, prior_auth, check_off_ipledge, trigger, blood_work
+    dd($user_case_management_data);
     return view('casemanagement.index', compact('user_case_management_data'))->with('i', ($request->input('page', 1) - 1) * 5);
   }
 
@@ -947,6 +948,7 @@ die();*/
   public function generateiPledge(Request $request)
   {
     $input_data['case_status'] = 'store_ipledge';
+    $input_data['action_by'] = 'admin';
     $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
     return redirect()->back();
   }
@@ -1093,6 +1095,7 @@ die();*/
 
       CaseManagement::whereId($request['case_id'])->update($input);
       $input_data['case_status'] = 'check_off_ipledge';
+      $input_data['action_by'] = 'admin';
       $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
 
       $userRole = DB::table('users')->join('roles','users.role','=','roles.id')->select('users.id as userId','roles.name as roleName')
@@ -1238,6 +1241,7 @@ die();*/
           CaseManagement::whereId($request['case_id'])->update($input);
           $input_data = array();
           $input_data['case_status'] = 'trigger';
+          $input_data['action_by'] = 'admin';
           $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
           $add_Activity = activityHelper::insertActivity($activityLog);
           toastr()->success('Notification sent successfully.');

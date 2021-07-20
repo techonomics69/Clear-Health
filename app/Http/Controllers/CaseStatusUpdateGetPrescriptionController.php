@@ -231,6 +231,7 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
             $support_reason = $MdCaseStatus->case_status->reason;
 
             $input_data['case_status'] = 'generate_ipledge';
+            $input_data['action_by'] = 'admin';
             $caseHistory = CaseHistory::where('case_id', $system_case_id)->update($input_data);
 
           }

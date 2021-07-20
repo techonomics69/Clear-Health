@@ -187,6 +187,7 @@ class FollowupController extends BaseController
             $case_data['follow_up'] = $followUpAns['follow_up_no'];
             $caseSave = $caseManage->update($case_data);
             $input_data['case_status'] = 'prior_auth';
+            $input_data['action_by'] = 'admin';
             $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
 
             $noti_input_data = array();

@@ -487,7 +487,19 @@
 															</tr>
 														</thead>
 														<tbody class="list_view_outer">
-															
+															<?php
+																if(count($pharma_change)>0){
+																	foreach($pharma_change as $pkey => $pval){
+															?>
+																<tr>
+																	<td><?php echo date("m-d-Y H:i:s a",strtotime($pval->updated_at)); ?></td>
+																	<td><?php echo $pval->Productname; ?> ?></td>
+																	<td><?php echo $pval->pharmacy_pickup; ?></td>
+																</tr>
+															<?php			
+																	}	
+																}
+															?>
 														</tbody>
 													</table>
 												</div>

@@ -482,7 +482,7 @@
 														<thead>
 															<tr>
 																<th scope="col">Date</th>
-																<th scope="col">Item</th>
+																
 																<th scope="col">Pharmacy</th>
 															</tr>
 														</thead>
@@ -494,7 +494,7 @@
 															?>
 																<tr>
 																	<td><?php echo date("m-d-Y H:i:s a",strtotime($pval->updated_at)); ?></td>
-																	<td><?php echo $pval->Productname; ?></td>
+																	
 																	<td><?php echo $pval->pharmacy_pickup; ?></td>
 																</tr>
 															<?php			

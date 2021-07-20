@@ -551,7 +551,7 @@ class CheckoutController extends BaseController
           $response = curl_exec($curl);
           curl_close($curl);
           $response1 = json_decode($response);
-          dd($response1);  
+            
           if(isset($response1)){
            /* if(is_array($response1)){
               if(count($response1)>0){*/

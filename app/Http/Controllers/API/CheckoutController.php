@@ -383,12 +383,25 @@ class CheckoutController extends BaseController
 
     $transaction_complete_details = json_decode($orderlist['transaction_complete_details']);
 
+    
+
+    $timestamp = $transaction_complete_details->created;
+    $dateFormat = 'F d,Y';
+    $timeFormat = 'g a';
+
+    $date = new \DateTime();
+    // If you must have use time zones
+  // $date = new \DateTime('now', new \DateTimeZone('Europe/Helsinki'));
+    $date->setTimestamp($timestamp);
+   $created_at_date =  $date->format($dateFormat);
+   $created_at_time =  $date->format($timeFormat);
+
+    $payment_method = "Payment via".$transaction_complete_details->payment_method_details->card->brand." ".$transaction_complete_details->payment_method_details->type." (".$transaction_complete_details->id."). Paid On ". $created_at_date." @ ".$created_at_time;
+
     echo "<pre>";
-    print_r($transaction_complete_details);
+    print_r($payment_method );
     echo "<pre>";
     exit();
-
-    $payment_method = 
 
 
     $curexa_data = CurexaOrder::where('order_id',$orderlist['order_id'])->first();

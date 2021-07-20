@@ -446,8 +446,10 @@ class CaseManagementController extends Controller
         }
       }
     }
+
+    $pharma_change = $LogCartId;
     
-    dd($LogCartId);
+    
 
     if (isset($skincare_summary['shipstation_order_id'])) {
       $app = App::getFacadeRoot();

@@ -15,6 +15,15 @@ class CreateSupportMessagesFilesTable extends Migration
     {
         Schema::create('support_messages_files', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
+            $table->integer('case_id');
+            $table->string('md_case_id');
+            $table->string('system_file')->nullable();
+            $table->string('name')->nullable();
+            $table->string('url')->nullable();
+            $table->string('url_thumbnail')->nullable();
+            $table->string('file_id')->nullable();
+            $table->string('mime_type')->nullable();            
             $table->timestamps();
         });
     }

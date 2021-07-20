@@ -168,11 +168,24 @@ class CartController extends BaseController
 
     }
 
+    public function getCartByUserPresPurchased($id){
+        try{
+            $cart = Cart::where('user_id', $id)->where('order_type','Prescribed')->where('status','purchased')->OrderBy('id','desc')->first();
+            if(isset($cart))
+            {
+                $cart->product_name=$cart->product->name;
+                $cart->product_price=$cart->product->price;
+            }
+            return $this->sendResponse($cart, 'Item retrieved successfully.');
+        }catch(\Exception $ex){
+            return $this->sendError('Server error', array($ex->getMessage()));
+        }
+    }
+
     public function getCartByUserPrescribed($id)
     {
         try{
             $cart = Cart::where('user_id', $id)->where('order_type','Prescribed')->where('status','pending')->OrderBy('id','desc')->first();
-            
             if(isset($cart))
             {
                 $cart->product_name=$cart->product->name;

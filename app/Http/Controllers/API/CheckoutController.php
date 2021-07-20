@@ -335,7 +335,7 @@ class CheckoutController extends BaseController
 
   public function getCheckoutdetail(Request $request)
   {
-    //try{
+    try{
     $orderlist = checkout::join('users', 'users.id', '=', 'checkout.user_id')
       ->join('carts', 'carts.id', '=', 'checkout.cart_id')
       ->join('checkout_address', 'checkout_address.order_id', '=', 'checkout.id')
@@ -372,11 +372,35 @@ class CheckoutController extends BaseController
         'checkout.shipstation_order_id',
         'checkout.medication_type',
         'checkout.transaction_complete_details',
+        'checkout.payment_method',
+        'checkout.payment_status',
         'checkout.cancel_request'
       )
       ->where('checkout.id', $request->id)
       ->OrderBy('id', 'DESC')
       ->first();
+
+
+    $transaction_complete_details = json_decode($orderlist['transaction_complete_details']);
+
+    
+   if(isset($transaction_complete_details) && !empty($transaction_complete_details)){
+    $timestamp = $transaction_complete_details->created;
+    $dateFormat = 'F d,Y';
+    $timeFormat = 'g a';
+
+    $date = new \DateTime();
+    // If you must have use time zones
+  // $date = new \DateTime('now', new \DateTimeZone('Europe/Helsinki'));
+    $date->setTimestamp($timestamp);
+   $created_at_date =  $date->format($dateFormat);
+   $created_at_time =  $date->format($timeFormat);
+
+    $payment_method = "Payment via".$transaction_complete_details->payment_method_details->card->brand." ".$transaction_complete_details->payment_method_details->type." (".$transaction_complete_details->id."). Paid On ". $created_at_date." @".$created_at_time;
+
+    $orderlist['payment_method_display_msg'] = $payment_method;
+   }
+    
 
     $curexa_data = CurexaOrder::where('order_id',$orderlist['order_id'])->first();
 
@@ -579,9 +603,9 @@ class CheckoutController extends BaseController
       return $this->sendResponse($orderlist = array(), 'No Data Found.');
     }
 
-    //}catch(\Exception $ex){
-    // return $this->sendError('Server error', array($ex->getMessage()));
-    //}
+    }catch(\Exception $ex){
+    return $this->sendError('Server error', array($ex->getMessage()));
+    }
 
   }
 

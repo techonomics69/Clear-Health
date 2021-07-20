@@ -434,7 +434,7 @@ class CaseManagementController extends Controller
     if(is_array($cart_ids)){
       if(count($cart_ids) > 0){
         foreach($cart_ids as $ck => $cval){
-          $CartData = DB::table("carts as c")->leftJoin("pharmacy_change_log p",'p.cart_id','=','c.id')
+          $CartData = DB::table("carts as c")->leftJoin("pharmacy_change_log as  p",'p.cart_id','=','c.id')
                   ->select("p.*","c.order_type","c.status")
                   ->where("c.status",'purchased')
                   ->where('c.order_type','Prescribed')

@@ -250,7 +250,7 @@ class MessageController extends Controller
     
         //validation 
         $data = $request->all(); 
-        $data->from = 'support';
+        $data['from'] = 'support';
         $validator = Validator::make($data, [
           'user_id' => 'required',
           'case_id' => 'required',

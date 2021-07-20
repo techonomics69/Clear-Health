@@ -429,8 +429,24 @@ class CaseManagementController extends Controller
       
 
     $cart_ids = explode(',', $skincare_summary['cart_id']);
-
-    dd($cart_ids);
+    
+    $LogCartId = array();
+    if(is_array($cart_ids)){
+      if(count($cart_ids) > 0){
+        foreach($cart_ids as $ck => $cval){
+          $CartData = DB::table("carts as c")->leftJoin("pharmacy_change_log p",'p.cart_id','=','c.id')
+                  ->select("p.*","c.order_type","c.status")
+                  ->where("c.status",'purchased')
+                  ->where('c.order_type','Prescribed')
+                  ->where('c.id',$cval)->get();
+          if(count($CartData)>0){
+            array_push($LogCartId, $CartData[0]);
+          }
+        }
+      }
+    }
+    
+    dd($LogCartId);
 
     if (isset($skincare_summary['shipstation_order_id'])) {
       $app = App::getFacadeRoot();

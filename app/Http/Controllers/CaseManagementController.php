@@ -48,276 +48,314 @@ class CaseManagementController extends Controller
   public function index(Request $request)
   {
     $user_case_management_data = CaseManagement::join('users', 'case_managements.user_id', '=', 'users.id')
-                                  ->leftjoin('case_histories', 'case_managements.id', '=', 'case_histories.case_id')
-                                  ->select('case_managements.*', 'users.email', 'users.first_name', 'users.last_name', 'users.gender', 'case_histories.case_status', 'case_histories.action_by')
-                                  ->OrderBy('id', 'DESC')->get();
+      ->leftjoin('case_histories', 'case_managements.id', '=', 'case_histories.case_id')
+      ->select('case_managements.*', 'users.email', 'users.first_name', 'users.last_name', 'users.gender', 'case_histories.case_status', 'case_histories.action_by')
+      ->OrderBy('id', 'DESC')->get();
     //generate_ipledge, store_ipledge, verify_pregnancy, prior_auth, check_off_ipledge, trigger, blood_work
     //dd($user_case_management_data);
     return view('casemanagement.index', compact('user_case_management_data'))->with('i', ($request->input('page', 1) - 1) * 5);
   }
 
-  public function showList(Request $request){
-        $draw = $request->draw;
-        $row = $request->start;
-        $rowperpage = $request->length; // Rows display per page
-        $columnIndex = $_POST['order'][0]['column']; // Column index
-        $columnName = $_POST['columns'][$columnIndex]['data']; // Column name
-        $columnSortOrder = $_POST['order'][0]['dir']; // asc or desc
-        $totalRecords = CaseManagement::join('users', 'case_managements.user_id', '=', 'users.id')
-                      ->leftjoin('case_histories', 'case_managements.id', '=', 'case_histories.case_id')
-                      ->count();
-        $filterValue = $request->filterValue;
-        switch($filterValue){
-          case 'All':
-                $filterIn = array();
-                break;
-          case 'Action by admin':
-                $filterIn = array('generate_ipledge','store_ipledge','verify_pregnancy',
-                            'prior_auth','check_off_ipledge','trigger','blood_work',
-                            'low_income_program');
-                break;
-          case 'Action by Patient':
-                $filterIn = array();
-                break;
-          case 'No action required':
-                $filterIn = array('NULL','finish');
-                break;
-          default:
-                $filterIn = array();
-                break;
-        }  
-        
-        switch($columnName){
-          case 'srno':
-                $columnName = 'cm.id';
-                break;
-          case 'date':
-                $columnName = 'cm.created_at';
-                break;
-          case 'caseid':
-                $columnName = 'cm.ref_id';
-                break;
-          case 'firstname':
-                $columnName = 'u.first_name';
-                break;
-          case 'lastname':
-                $columnName = 'u.last_name';
-                break;
-          case 'gender':
-                $columnName = 'u.gender';
-                break;
-          case 'mdcaseid':
-                $columnName = 'cm.md_case_id';
-                break;
-          default:
-              $columnName = $columnName;
-              break;
+  public function showList(Request $request)
+  {
+    $draw = $request->draw;
+    $row = $request->start;
+    $rowperpage = $request->length; // Rows display per page
+    $columnIndex = $_POST['order'][0]['column']; // Column index
+    $columnName = $_POST['columns'][$columnIndex]['data']; // Column name
+    $columnSortOrder = $_POST['order'][0]['dir']; // asc or desc
+    $totalRecords = CaseManagement::join('users', 'case_managements.user_id', '=', 'users.id')
+      ->leftjoin('case_histories', 'case_managements.id', '=', 'case_histories.case_id')
+      ->count();
+    $filterValue = $request->filterValue;
+    switch ($filterValue) {
+      case 'All':
+        $filterIn = array();
+        break;
+      case 'Action by admin':
+        $filterIn = array(
+          'generate_ipledge', 'store_ipledge', 'verify_pregnancy',
+          'prior_auth', 'check_off_ipledge', 'trigger', 'blood_work',
+          'low_income_program'
+        );
+        break;
+      case 'Action by Patient':
+        $filterIn = array('submission_of_iPledge', 'complete_follow_up', 'picks_up_medication', 'complete_bloodwork');
+        break;
+      case 'No action required':
+        $filterIn = array('NULL', 'finish');
+        break;
+      default:
+        $filterIn = array();
+        break;
+    }
+
+    switch ($columnName) {
+      case 'srno':
+        $columnName = 'cm.id';
+        break;
+      case 'date':
+        $columnName = 'cm.created_at';
+        break;
+      case 'caseid':
+        $columnName = 'cm.ref_id';
+        break;
+      case 'firstname':
+        $columnName = 'u.first_name';
+        break;
+      case 'lastname':
+        $columnName = 'u.last_name';
+        break;
+      case 'gender':
+        $columnName = 'u.gender';
+        break;
+      case 'mdcaseid':
+        $columnName = 'cm.md_case_id';
+        break;
+      default:
+        $columnName = $columnName;
+        break;
+    }
+
+    if ($columnName == 'srno') {
+      $columnName = 'cm.id';
+    } else {
+      $columnName = $columnName;
+    }
+
+    $data = array();
+    $searchValue = $_POST['search']['value']; // search in date, caseid, firstname, lastname, gender, md caseid, 
+    // DB::enableQueryLog();
+
+    $user_case_management_data = DB::table('case_managements as cm')->join('users as u', 'cm.user_id', '=', 'u.id')
+      ->leftjoin('case_histories as ch', 'cm.id', '=', 'ch.case_id')
+      ->select(
+        'cm.*',
+        'u.email',
+        'u.first_name',
+        'u.last_name',
+        'u.gender',
+        'ch.case_status as caseStatus'
+      );
+
+
+
+    if ($columnName == 'action') {
+      if ($searchValue != '') {
+        $user_case_management_data = $user_case_management_data->where('cm.created_at', 'like', "%{$searchValue}%")
+          ->orWhere('cm.ref_id', 'like', "%{$searchValue}%")->orWhere('u.first_name', 'like', "%{$searchValue}%")
+          ->orWhere('u.last_name', 'like', "%{$searchValue}%")->orWhere('u.gender', 'like', "%{$searchValue}%")
+          ->orWhere('cm.md_case_id', 'like', "%{$searchValue}%");
+
+
+
+        $usercase_count = DB::table('case_managements as cm')->join('users as u', 'cm.user_id', '=', 'u.id')
+          ->leftjoin('case_histories as ch', 'cm.id', '=', 'ch.case_id')
+          ->select(
+            'cm.*',
+            'u.email',
+            'u.first_name',
+            'u.last_name',
+            'u.gender',
+            'ch.case_status as caseStatus'
+          )->where('cm.created_at', 'like', "%{$searchValue}%")
+          ->orWhere('cm.ref_id', 'like', "%{$searchValue}%")->orWhere('u.first_name', 'like', "%{$searchValue}%")
+          ->orWhere('u.last_name', 'like', "%{$searchValue}%")->orWhere('u.gender', 'like', "%{$searchValue}%")
+          ->orWhere('cm.md_case_id', 'like', "%{$searchValue}%");
+
+        if (!empty($filterValue)) {
+          if (count($filterIn)) {
+            $user_case_management_data = $user_case_management_data->whereIn('ch.case_status', $filterIn);
+            $usercase_count = $usercase_count->whereIn('ch.case_status', $filterIn);
+          }
         }
 
-        if($columnName == 'srno'){
-          $columnName = 'cm.id';
-        }else{
-          $columnName = $columnName;
-        }              
-        
-        $data = array();
-        $searchValue = $_POST['search']['value']; // search in date, caseid, firstname, lastname, gender, md caseid, 
-        // DB::enableQueryLog();
-        
-        $user_case_management_data = DB::table('case_managements as cm')->join('users as u', 'cm.user_id', '=', 'u.id')
-                    ->leftjoin('case_histories as ch', 'cm.id', '=', 'ch.case_id')
-                    ->select('cm.*', 'u.email', 'u.first_name', 'u.last_name',
-                    'u.gender', 'ch.case_status as caseStatus');
-        
-       
+        $usercase_count = $usercase_count->get()->count();
+      } else {
+        $usercase_count = DB::table('case_managements as cm')->join('users as u', 'cm.user_id', '=', 'u.id')
+          ->leftjoin('case_histories as ch', 'cm.id', '=', 'ch.case_id')
+          ->select(
+            'cm.*',
+            'u.email',
+            'u.first_name',
+            'u.last_name',
+            'u.gender',
+            'ch.case_status as caseStatus'
+          );
 
-        if($columnName == 'action'){
-          if($searchValue!=''){
-            $user_case_management_data = $user_case_management_data->where('cm.created_at','like',"%{$searchValue}%")
-                                        ->orWhere('cm.ref_id','like',"%{$searchValue}%")->orWhere('u.first_name','like',"%{$searchValue}%")
-                                        ->orWhere('u.last_name','like',"%{$searchValue}%")->orWhere('u.gender','like',"%{$searchValue}%")
-                                        ->orWhere('cm.md_case_id','like',"%{$searchValue}%");
-            
-                                                   
-
-            $usercase_count = DB::table('case_managements as cm')->join('users as u', 'cm.user_id', '=', 'u.id')
-            ->leftjoin('case_histories as ch', 'cm.id', '=', 'ch.case_id')
-            ->select('cm.*', 'u.email', 'u.first_name', 'u.last_name',
-            'u.gender', 'ch.case_status as caseStatus')->where('cm.created_at','like',"%{$searchValue}%")
-                            ->orWhere('cm.ref_id','like',"%{$searchValue}%")->orWhere('u.first_name','like',"%{$searchValue}%")
-                            ->orWhere('u.last_name','like',"%{$searchValue}%")->orWhere('u.gender','like',"%{$searchValue}%")
-                            ->orWhere('cm.md_case_id','like',"%{$searchValue}%");
-            
-            if(!empty($filterValue)){
-              if(count($filterIn)){
-                $user_case_management_data = $user_case_management_data->whereIn('ch.case_status',$filterIn);
-                $usercase_count = $usercase_count->whereIn('ch.case_status',$filterIn);
-              }
-            } 
-                            
-            $usercase_count = $usercase_count->get()->count();                            
-
-          }else{
-            $usercase_count = DB::table('case_managements as cm')->join('users as u', 'cm.user_id', '=', 'u.id')
-            ->leftjoin('case_histories as ch', 'cm.id', '=', 'ch.case_id')
-            ->select('cm.*', 'u.email', 'u.first_name', 'u.last_name',
-            'u.gender', 'ch.case_status as caseStatus');
-
-            if(!empty($filterValue)){
-              if(count($filterIn)){
-                $user_case_management_data = $user_case_management_data->whereIn('ch.case_status',$filterIn);
-                $usercase_count = $usercase_count->whereIn('ch.case_status',$filterIn);
-              }
-            } 
-            
-            $usercase_count = $usercase_count->get()->count();                            
+        if (!empty($filterValue)) {
+          if (count($filterIn)) {
+            $user_case_management_data = $user_case_management_data->whereIn('ch.case_status', $filterIn);
+            $usercase_count = $usercase_count->whereIn('ch.case_status', $filterIn);
           }
-          $user_case_management_data = $user_case_management_data->orderBy('ch.case_status', $columnSortOrder)
-                                      ->offset($row)->limit($rowperpage)->get();
-                                      
-         
-
-        }else{
-          if($searchValue!=''){
-            $user_case_management_data = $user_case_management_data->where('cm.created_at','like',"%{$searchValue}%")
-                                        ->orWhere('cm.ref_id','like',"%{$searchValue}%")->orWhere('u.first_name','like',"%{$searchValue}%")
-                                        ->orWhere('u.last_name','like',"%{$searchValue}%")->orWhere('u.gender','like',"%{$searchValue}%")
-                                        ->orWhere('cm.md_case_id','like',"%{$searchValue}%");
-
-            $usercase_count = DB::table('case_managements as cm')->join('users as u', 'cm.user_id', '=', 'u.id')
-            ->leftjoin('case_histories as ch', 'cm.id', '=', 'ch.case_id')
-            ->select('cm.*', 'u.email', 'u.first_name', 'u.last_name',
-            'u.gender', 'ch.case_status as caseStatus')->where('cm.created_at','like',"%{$searchValue}%")
-                            ->orWhere('cm.ref_id','like',"%{$searchValue}%")->orWhere('u.first_name','like',"%{$searchValue}%")
-                            ->orWhere('u.last_name','like',"%{$searchValue}%")->orWhere('u.gender','like',"%{$searchValue}%")
-                            ->orWhere('cm.md_case_id','like',"%{$searchValue}%");
-
-            if(!empty($filterValue)){
-              if(count($filterIn)){
-                $user_case_management_data = $user_case_management_data->whereIn('ch.case_status',$filterIn);
-                $usercase_count = $usercase_count->whereIn('ch.case_status',$filterIn);
-              }
-            } 
-            
-            $usercase_count = $usercase_count->get()->count();
-          }else{
-            $usercase_count = DB::table('case_managements as cm')->join('users as u', 'cm.user_id', '=', 'u.id')
-            ->leftjoin('case_histories as ch', 'cm.id', '=', 'ch.case_id')
-            ->select('cm.*', 'u.email', 'u.first_name', 'u.last_name',
-            'u.gender', 'ch.case_status as caseStatus');
-
-            if(!empty($filterValue)){
-              if(count($filterIn)){
-                $user_case_management_data = $user_case_management_data->whereIn('ch.case_status',$filterIn);
-                $usercase_count = $usercase_count->whereIn('ch.case_status',$filterIn);
-              }
-            } 
-            
-            $usercase_count = $usercase_count->get()->count();
-          }
-          $user_case_management_data = $user_case_management_data->orderBy($columnName, $columnSortOrder)
-                                      ->offset($row)->limit($rowperpage)->get();
-
-          
         }
 
-        // dd(DB::getQueryLog());
-        // print_r(DB::getQueryLog());
-        // die();
+        $usercase_count = $usercase_count->get()->count();
+      }
+      $user_case_management_data = $user_case_management_data->orderBy('ch.case_status', $columnSortOrder)
+        ->offset($row)->limit($rowperpage)->get();
+    } else {
+      if ($searchValue != '') {
+        $user_case_management_data = $user_case_management_data->where('cm.created_at', 'like', "%{$searchValue}%")
+          ->orWhere('cm.ref_id', 'like', "%{$searchValue}%")->orWhere('u.first_name', 'like', "%{$searchValue}%")
+          ->orWhere('u.last_name', 'like', "%{$searchValue}%")->orWhere('u.gender', 'like', "%{$searchValue}%")
+          ->orWhere('cm.md_case_id', 'like', "%{$searchValue}%");
 
-        foreach($user_case_management_data as $key => $value){
-          $value = json_decode(json_encode($value), true);
-          if ($value['md_status'] == 0) {
-            $mdStatus = 'pending ';
-          } else if ($value['md_status'] == 1) {
-            $mdStatus = 'support';
-          } else {
-            $mdStatus = 'accepted';
+        $usercase_count = DB::table('case_managements as cm')->join('users as u', 'cm.user_id', '=', 'u.id')
+          ->leftjoin('case_histories as ch', 'cm.id', '=', 'ch.case_id')
+          ->select(
+            'cm.*',
+            'u.email',
+            'u.first_name',
+            'u.last_name',
+            'u.gender',
+            'ch.case_status as caseStatus'
+          )->where('cm.created_at', 'like', "%{$searchValue}%")
+          ->orWhere('cm.ref_id', 'like', "%{$searchValue}%")->orWhere('u.first_name', 'like', "%{$searchValue}%")
+          ->orWhere('u.last_name', 'like', "%{$searchValue}%")->orWhere('u.gender', 'like', "%{$searchValue}%")
+          ->orWhere('cm.md_case_id', 'like', "%{$searchValue}%");
+
+        if (!empty($filterValue)) {
+          if (count($filterIn)) {
+            $user_case_management_data = $user_case_management_data->whereIn('ch.case_status', $filterIn);
+            $usercase_count = $usercase_count->whereIn('ch.case_status', $filterIn);
           }
+        }
 
-          switch($value['caseStatus']){
-              case 'generate_ipledge':
-                    $action1 = ' <a href="https://www.ipledgeprogram.com/iPledgeUI/home.u" target="_blank">
+        $usercase_count = $usercase_count->get()->count();
+      } else {
+        $usercase_count = DB::table('case_managements as cm')->join('users as u', 'cm.user_id', '=', 'u.id')
+          ->leftjoin('case_histories as ch', 'cm.id', '=', 'ch.case_id')
+          ->select(
+            'cm.*',
+            'u.email',
+            'u.first_name',
+            'u.last_name',
+            'u.gender',
+            'ch.case_status as caseStatus'
+          );
+
+        if (!empty($filterValue)) {
+          if (count($filterIn)) {
+            $user_case_management_data = $user_case_management_data->whereIn('ch.case_status', $filterIn);
+            $usercase_count = $usercase_count->whereIn('ch.case_status', $filterIn);
+          }
+        }
+
+        $usercase_count = $usercase_count->get()->count();
+      }
+      $user_case_management_data = $user_case_management_data->orderBy($columnName, $columnSortOrder)
+        ->offset($row)->limit($rowperpage)->get();
+    }
+
+    // dd(DB::getQueryLog());
+    // print_r(DB::getQueryLog());
+    // die();
+
+    foreach ($user_case_management_data as $key => $value) {
+      $value = json_decode(json_encode($value), true);
+      if ($value['md_status'] == 0) {
+        $mdStatus = 'pending ';
+      } else if ($value['md_status'] == 1) {
+        $mdStatus = 'support';
+      } else {
+        $mdStatus = 'accepted';
+      }
+
+      switch ($value['caseStatus']) {
+        case 'generate_ipledge':
+          $action1 = ' <a href="https://www.ipledgeprogram.com/iPledgeUI/home.u" target="_blank">
                                   <span class="badge badge-info">Generate iPledge Credentials</span>
                                 </a>';
-                    break;
-              case 'store_ipledge':
-                    $action1 = ' <a href="'.route('casemanagement.show',[$value['id'], 'active'=>'action_items']).'"?active=action_items">
+          break;
+        case 'store_ipledge':
+          $action1 = ' <a href="' . route('casemanagement.show', [$value['id'], 'active' => 'action_items']) . '"?active=action_items">
                                   <span class="badge badge-info">Register Ipledge</span>
                                 </a>';
-                    break;
-              case 'verify_pregnancy':
-                    $action1 = '<a href="'.route('casemanagement.show',[$value['id'], 'active'=>'pregnancy_test']).'"?active=pregnancy_test">
+          break;
+        case 'verify_pregnancy':
+          $action1 = '<a href="' . route('casemanagement.show', [$value['id'], 'active' => 'pregnancy_test']) . '"?active=pregnancy_test">
                                   <span class="badge badge-info">Review  Pregnancy Test & send case to MD</span>
                                 </a>';
-                    break;
-              case 'prior_auth':
-                    $action1 = '<a href="'.route('casemanagement.show',[$value['id'], 'active'=>'prior_auth']).'"?active=prior_auth">
+          break;
+        case 'prior_auth':
+          $action1 = '<a href="' . route('casemanagement.show', [$value['id'], 'active' => 'prior_auth']) . '"?active=prior_auth">
                                   <span class="badge badge-info">Complete Prior Authorization</span>
                                 </a>';
-                    break;
-              case 'check_off_ipledge':
-                    $action1 = ' <a href="https://www.ipledgeprogram.com/iPledgeUI/home.u" target="_blank">
+          break;
+        case 'check_off_ipledge':
+          $action1 = ' <a href="https://www.ipledgeprogram.com/iPledgeUI/home.u" target="_blank">
                                   <span class="badge badge-info">Check Off Admin iPledge.com Items</span>
                                 </a>';
-                    break;
-              case 'trigger':
-                    $action1 = '<a href="'.route('casemanagement.show',[$value['id'], 'active'=>'triggers']).'"?active=triggers">
+          break;
+        case 'trigger':
+          $action1 = '<a href="' . route('casemanagement.show', [$value['id'], 'active' => 'triggers']) . '"?active=triggers">
                                   <span class="badge badge-info">Send Prescription Pickup Notification</span>
                                 </a>';
-                    break;
-              case 'blood_work':
-                    $action1 = '<a href="'.route('casemanagement.show',[$value['id'], 'active'=>'blood_work']).'"?active=blood_work">
+          break;
+        case 'blood_work':
+          $action1 = '<a href="' . route('casemanagement.show', [$value['id'], 'active' => 'blood_work']) . '"?active=blood_work">
                                   <span class="badge badge-info">Upload Bloodwork Results</span>
                                 </a>';
-                    break;
-              case 'low_income_program':
-                    $action1 = '<a href="'.route('casemanagement.show',[$value['id'], 'active'=>'blood_work']).'"?active=blood_work">
+          break;
+        case 'low_income_program':
+          $action1 = '<a href="' . route('casemanagement.show', [$value['id'], 'active' => 'blood_work']) . '"?active=blood_work">
                                   <span class="badge badge-info">Enroll Absorica Patient Assistance Program</span>
                                 </a>';
-                    break;
-              case 'finish':
-                    $action1 = '<span class="badge badge-info">Finish</span>';
-                    break;
-              default:  
-                    $action1 = '<span class="badge badge-secondary">Action pending from patient</span>';
-                    break;      
-          }
-          if($columnSortOrder=="asc"){
-              $counter = ($row==0) ? ($usercase_count - ($key)) : ($usercase_count - ($key+$row));    
-          }else{
-              $counter = ($row==0) ? ($key+1) : (($key+1)+$row);
-          }
-          $data[] = array(
-            'srno' => $counter,
-            'date' => date("d/m/Y",strtotime($value['created_at'])),
-            'caseid' => $value['ref_id'],
-            'firstname' => $value['first_name'],
-            'lastname' => $value['last_name'],
-            'gender' => (!empty($value['gender'])) ? strtoupper($value['gender'][0]) : '',
-            'visitnumber' => (empty($value['follow_up'])) ? 1 : ($value['follow_up'] + 1),
-            'mdcaseid' => $value['md_case_id'],
-            'casestatus' => $value['md_case_status'],
-            'mdstatus' => $mdStatus,
-            'visittype' => (empty($value['follow_up'])) ? 'Initial' : 'FollowUp',
-            'treatmentplan' => '',
-            'pharmacy' => '',
-            'action1' => '<div class="d-flex">
-                      <a class="icons edit-icon" href="'.route('casemanagement.show',$value['id']).'"><i class="fa fa-eye"></i></a>
+          break;
+        case 'finish':
+          $action1 = '<span class="badge badge-info">Finish</span>';
+          break;
+        case 'submission_of_iPledge':
+          $action1 = '<span class="badge badge-secondary">Submission of iPledge & Birth control forms</span>';
+          break;
+        case 'complete_follow_up':
+          $action1 = '<span class="badge badge-secondary">Complete Follow Up process</span>';
+          break;
+        case 'picks_up_medication':
+          $action1 = '<span class="badge badge-secondary">User complete iPledge stuff & picks Up medication</span>';
+          break;
+        case 'complete_bloodwork':
+          $action1 = '<span class="badge badge-secondary">Complete bloodwork</span>';
+          break;
+        default:
+          $action1 = '<span class="badge badge-secondary">Action pending from patient</span>';
+          break;
+      }
+      if ($columnSortOrder == "asc") {
+        $counter = ($row == 0) ? ($usercase_count - ($key)) : ($usercase_count - ($key + $row));
+      } else {
+        $counter = ($row == 0) ? ($key + 1) : (($key + 1) + $row);
+      }
+      $data[] = array(
+        'srno' => $counter,
+        'date' => date("d/m/Y", strtotime($value['created_at'])),
+        'caseid' => $value['ref_id'],
+        'firstname' => $value['first_name'],
+        'lastname' => $value['last_name'],
+        'gender' => (!empty($value['gender'])) ? strtoupper($value['gender'][0]) : '',
+        'visitnumber' => (empty($value['follow_up'])) ? 1 : ($value['follow_up'] + 1),
+        'mdcaseid' => $value['md_case_id'],
+        'casestatus' => $value['md_case_status'],
+        'mdstatus' => $mdStatus,
+        'visittype' => (empty($value['follow_up'])) ? 'Initial' : 'FollowUp',
+        'treatmentplan' => '',
+        'pharmacy' => '',
+        'action1' => '<div class="d-flex">
+                      <a class="icons edit-icon" href="' . route('casemanagement.show', $value['id']) . '"><i class="fa fa-eye"></i></a>
                       </div>',
-            'action' => $action1, 
-          );
-        }
+        'action' => $action1,
+      );
+    }
 
-        $response = array(
-            "draw" => intval($draw),
-            "iTotalRecords" => $totalRecords,
-            "iTotalDisplayRecords" => $usercase_count,
-            "aaData" => $data
-        );
+    $response = array(
+      "draw" => intval($draw),
+      "iTotalRecords" => $totalRecords,
+      "iTotalDisplayRecords" => $usercase_count,
+      "aaData" => $data
+    );
 
-        echo json_encode($response);
-
+    echo json_encode($response);
   }
 
   /**
@@ -354,16 +392,16 @@ class CaseManagementController extends Controller
       ->select('case_managements.*', 'users.first_name', 'users.last_name', 'users.email', 'users.mobile', 'users.gender')
       ->where('case_managements.id', $id)->first();
 
-      $user_id = $user_case_management_data['user_id'];
-      $system_case_id = $user_case_management_data['id'];
-      $md_case_id = $user_case_management_data['md_case_id'];
+    $user_id = $user_case_management_data['user_id'];
+    $system_case_id = $user_case_management_data['id'];
+    $md_case_id = $user_case_management_data['md_case_id'];
 
-      $follow_up_data = FollowUp::where([['case_id',$user_case_management_data['id']],['follow_up_status','completed']])->get()->toArray();
+    $follow_up_data = FollowUp::where([['case_id', $user_case_management_data['id']], ['follow_up_status', 'completed']])->get()->toArray();
 
 
-      $user_case_management_data['follow_up_data'] = (!empty($follow_up_data))?$follow_up_data:array();
- 
-  
+    $user_case_management_data['follow_up_data'] = (!empty($follow_up_data)) ? $follow_up_data : array();
+
+
     $skincare_summary = CaseManagement::join('users', 'case_managements.user_id', '=', 'users.id')
       ->join('checkout', 'checkout.case_id', '=', 'case_managements.id')
       ->join('carts', 'checkout.cart_id', '=', 'carts.id')
@@ -415,8 +453,8 @@ class CaseManagementController extends Controller
     $product_name = array();
     $addon_product = array();
 
-    
-    
+
+
     foreach ($product_details as $product_key => $product_value) {
       //$products[$product_key]['order_type'] = $product_value['order_type'];
       //$skincare_summary['order_type'] = $product_value['order_type'];
@@ -473,7 +511,7 @@ class CaseManagementController extends Controller
 
     $general = Answers::where('case_id', $user_case_management_data['id'])->where('user_id', $user_case_management_data['user_id'])->where('category_id', 7)->first();
 
-    
+
     if (isset($general)) {
       $general_que = json_decode($general->answer);
     } else {
@@ -498,8 +536,8 @@ class CaseManagementController extends Controller
       $topical_que = [];
     }
 
-    $followup_que = FollowUp::join('users','follow_up.user_id','=','users.id')
-      ->select('follow_up.*','users.first_name','users.last_name')
+    $followup_que = FollowUp::join('users', 'follow_up.user_id', '=', 'users.id')
+      ->select('follow_up.*', 'users.first_name', 'users.last_name')
       ->where("follow_up.user_id", $user_case_management_data['user_id'])
       ->where("follow_up.case_id", $user_case_management_data['id'])->get();
 
@@ -627,58 +665,62 @@ die();*/
       $prescribe_shipments =  array();
     }
     $checkout = Checkout::where('case_id', $user_case_management_data['id'])->where('user_id', $user_case_management_data['user_id'])
-                ->orderBy("updated_at","desc")->get();
+      ->orderBy("updated_at", "desc")->get();
     $user_pic = UserPics::where('case_id', $user_case_management_data['id'])->where('user_id', $user_case_management_data['user_id'])->first();
-    
-    $subscription_data = Subscription::join('case_managements','subscription.case_id','=','case_managements.id')
-                        ->select('subscription.*')
-                        ->where('subscription.case_id',$id)
-                        ->where('subscription.user_id',$user_case_management_data['user_id'])
-                        ->orderBy('subscription.id','desc')
-                        ->get();
+
+    $subscription_data = Subscription::join('case_managements', 'subscription.case_id', '=', 'case_managements.id')
+      ->select('subscription.*')
+      ->where('subscription.case_id', $id)
+      ->where('subscription.user_id', $user_case_management_data['user_id'])
+      ->orderBy('subscription.id', 'desc')
+      ->get();
     $checkout_array = array();
     $sub_array = array();
-    if(count($checkout)>0){
-      foreach($checkout as $ck => $cval){
-        $ckarr1 = array("updated_at"=>$cval->updated_at,"order_id"=>$cval->order_id,"transaction_id"=>$cval->transaction_id,
-                "total_amount"=>$cval->total_amount,"payment_status"=>$cval->payment_status);
-        array_push($checkout_array, $ckarr1);        
+    if (count($checkout) > 0) {
+      foreach ($checkout as $ck => $cval) {
+        $ckarr1 = array(
+          "updated_at" => $cval->updated_at, "order_id" => $cval->order_id, "transaction_id" => $cval->transaction_id,
+          "total_amount" => $cval->total_amount, "payment_status" => $cval->payment_status
+        );
+        array_push($checkout_array, $ckarr1);
       }
     }
-    if(count($subscription_data)>0){
-      foreach($subscription_data as $sk => $sval){
-        $skarr1 = array("updated_at"=>$sval->created_at,"order_id"=>'',"transaction_id"=>'',
-                "total_amount"=>$sval->plan_amount,"payment_status"=>$sval->status);
-        array_push($sub_array, $skarr1);        
+    if (count($subscription_data) > 0) {
+      foreach ($subscription_data as $sk => $sval) {
+        $skarr1 = array(
+          "updated_at" => $sval->created_at, "order_id" => '', "transaction_id" => '',
+          "total_amount" => $sval->plan_amount, "payment_status" => $sval->status
+        );
+        array_push($sub_array, $skarr1);
       }
     }
 
-    if((count($checkout_array)>0) && (count($sub_array)>0)){
-      $subscription_data = array_merge($checkout_array, $sub_array);   
-    }else if((count($checkout_array)>0) && (count($sub_array)<0)){
-      $subscription_data = $checkout_array;   
-    }else if((count($checkout_array)<0) && (count($sub_array)>0)){
-      $subscription_data = $sub_array;   
-    }else{
-      $subscription_data = array();   
+    if ((count($checkout_array) > 0) && (count($sub_array) > 0)) {
+      $subscription_data = array_merge($checkout_array, $sub_array);
+    } else if ((count($checkout_array) > 0) && (count($sub_array) < 0)) {
+      $subscription_data = $checkout_array;
+    } else if ((count($checkout_array) < 0) && (count($sub_array) > 0)) {
+      $subscription_data = $sub_array;
+    } else {
+      $subscription_data = array();
     }
 
-    $logs = Activity_log::where('case_id',$id)->get();
+    $logs = Activity_log::where('case_id', $id)->get();
 
-    
 
-    $case_status_history = Mdcasestatushistory::where([['user_id',$user_id],['case_id',$system_case_id],['md_case_id',$md_case_id]])->get()->toArray();
 
-    
-    
+    $case_status_history = Mdcasestatushistory::where([['user_id', $user_id], ['case_id', $system_case_id], ['md_case_id', $md_case_id]])->get()->toArray();
+
+
+
 
     // dd(json_decode(json_encode($subscription_data), true));
 
-  
-    return view('casemanagement.view', compact('user_case_management_data', 'category','general', 'general_que', 'accutane_que', 'topical_que', 'skincare_summary', 'message_data', 'message_details', 'msg_history', 'followup_que', 'prescribe_shipments', 'checkout', 'user_pic','subscription_data','logs','case_status_history'));
+
+    return view('casemanagement.view', compact('user_case_management_data', 'category', 'general', 'general_que', 'accutane_que', 'topical_que', 'skincare_summary', 'message_data', 'message_details', 'msg_history', 'followup_que', 'prescribe_shipments', 'checkout', 'user_pic', 'subscription_data', 'logs', 'case_status_history'));
   }
 
-  
+
 
   /**
    * Show the form for editing the specified resource.
@@ -720,7 +762,7 @@ die();*/
 
     $documents = $request->file('pregnancy_test');
 
-    $validator = \Validator::make($request->all(),[  
+    $validator = \Validator::make($request->all(), [
       'pregnancy_test' => 'required|mimes:jpg,jpeg,png,pdf',
     ], [
       'pregnancy_test.required' => 'Pregnancy Test file field is required.',
@@ -728,10 +770,10 @@ die();*/
 
     ]);
 
-    if($validator->fails()){
+    if ($validator->fails()) {
       toastr()->error($validator->errors()->first());
       return redirect()->back();
-    } 
+    }
 
 
 
@@ -768,7 +810,7 @@ die();*/
 
     $documents = $request->file('blood_work');
 
-    $validator = \Validator::make($request->all(),[  
+    $validator = \Validator::make($request->all(), [
       'blood_work' => 'required|mimes:jpg,jpeg,png,pdf',
     ], [
       'blood_work.required' => 'Blood Work Test file field is required.',
@@ -776,10 +818,10 @@ die();*/
 
     ]);
 
-    if($validator->fails()){
+    if ($validator->fails()) {
       toastr()->error($validator->errors()->first());
       return redirect()->back();
-    } 
+    }
 
 
     if (!empty($documents)) {
@@ -958,19 +1000,19 @@ die();*/
 
   public function saveiPledgeCredentials(Request $request)
   {
-    
+
     $case_data['ipledge_username'] = $request['email'];
     $case_data['ipledge_password'] = $request['password'];
     $case = CaseManagement::find($request['case_id']);
 
     if ($case) :
-      
-      $updateCase = CaseManagement::where('id',$request['case_id'])->update($case_data);
 
-      
+      $updateCase = CaseManagement::where('id', $request['case_id'])->update($case_data);
+
+
       //Store in activity
-      $userRole = DB::table('users')->join('roles','users.role','=','roles.id')->select('users.id as userId','roles.name as roleName')
-                  ->where('users.id',Auth::user()->id)->get();
+      $userRole = DB::table('users')->join('roles', 'users.role', '=', 'roles.id')->select('users.id as userId', 'roles.name as roleName')
+        ->where('users.id', Auth::user()->id)->get();
 
       $activityLog = array();
       $activityLog['user_type'] = $userRole[0]->roleName;
@@ -982,33 +1024,33 @@ die();*/
       $add_Activity = activityHelper::insertActivity($activityLog);
 
       //send sms to user
-        $case = CaseManagement::find($request['case_id']);
+      $case = CaseManagement::find($request['case_id']);
 
-        $user_data = User::where('id', $case['user_id'])->first();
-        $user_phone = $user_data['mobile'];
+      $user_data = User::where('id', $case['user_id'])->first();
+      $user_phone = $user_data['mobile'];
 
-        $user_data['gender'] = 'female';
-        $case['product_type'] = 'Accutane';
+      $user_data['gender'] = 'female';
+      $case['product_type'] = 'Accutane';
 
-        if(($user_data['gender'] == 'male' || $user_data['gender'] == 'female' ) && $case['product_type'] == 'Accutane'){
-           $smsdata = array();
+      if (($user_data['gender'] == 'male' || $user_data['gender'] == 'female') && $case['product_type'] == 'Accutane') {
+        $smsdata = array();
 
-          //$user = array($user_phone);
-          $user = array('+917874257069');
-          $smsdata['users'] = $user;
-          $smsdata['body'] = "Your iPledge ID:".$case['ipledge_id']." iPledge Username:".$case['iledge_username']."iPledge Password:".$case['ipledge_password'];
-          $sms_sent = sendsms($smsdata);
+        //$user = array($user_phone);
+        $user = array('+917874257069');
+        $smsdata['users'] = $user;
+        $smsdata['body'] = "Your iPledge ID:" . $case['ipledge_id'] . " iPledge Username:" . $case['iledge_username'] . "iPledge Password:" . $case['ipledge_password'];
+        $sms_sent = sendsms($smsdata);
 
 
-          $ipledge_credentials_input = array();
-          $ipledge_credentials_input['user_id'] = $case['user_id'];
-          $ipledge_credentials_input['case_id'] = $request['case_id'];
-          $ipledge_credentials_input['md_case_id'] = $case['md_case_id'];
-          $ipledge_credentials_input['name'] = "ipledge_credentials_sent_notification";
-          $ipledge_credentials_input['month'] = 1;
+        $ipledge_credentials_input = array();
+        $ipledge_credentials_input['user_id'] = $case['user_id'];
+        $ipledge_credentials_input['case_id'] = $request['case_id'];
+        $ipledge_credentials_input['md_case_id'] = $case['md_case_id'];
+        $ipledge_credentials_input['name'] = "ipledge_credentials_sent_notification";
+        $ipledge_credentials_input['month'] = 1;
 
-          $ipledge_credentials_input_data = Triggers::create($ipledge_credentials_input);
-        }
+        $ipledge_credentials_input_data = Triggers::create($ipledge_credentials_input);
+      }
 
       //end of code to send smas to user
       toastr()->success('Credentials saved');
@@ -1024,25 +1066,25 @@ die();*/
     $follow_up = FollowUp::find($request->id);
 
     $data['pregnancy_test_verify'] = 'true';
-    
+
     //code for md case
     $user_id = $follow_up['user_id'];
     $case_id = $follow_up['case_id'];
     $followup_no = $follow_up['follow_up_no'];
-    $preferred_pharmacy_id = getPickupPharmacy($user_id,$case_id);
-    $order_data = Checkout::where([['user_id', $user_id],['case_id', $case_id]])->select('id','order_id')->first();
+    $preferred_pharmacy_id = getPickupPharmacy($user_id, $case_id);
+    $order_data = Checkout::where([['user_id', $user_id], ['case_id', $case_id]])->select('id', 'order_id')->first();
 
-    $response = CreateFollowUPCase($user_id,$case_id,$preferred_pharmacy_id,$order_data['order_id'],$followup_no);
+    $response = CreateFollowUPCase($user_id, $case_id, $preferred_pharmacy_id, $order_data['order_id'], $followup_no);
 
     //end of code to create md case
 
-  
+
     $update = $follow_up->update($data);
-    
+
     if ($update) :
-      
-      $userRole = DB::table('users')->join('roles','users.role','=','roles.id')->select('users.id as userId','roles.name as roleName')
-                  ->where('users.id',Auth::user()->id)->get();
+
+      $userRole = DB::table('users')->join('roles', 'users.role', '=', 'roles.id')->select('users.id as userId', 'roles.name as roleName')
+        ->where('users.id', Auth::user()->id)->get();
 
       $activityLog = array();
       $activityLog['user_type'] = $userRole[0]->roleName;
@@ -1053,7 +1095,7 @@ die();*/
       $activityLog['ref_id'] = $request->id;
       $activityLog['case_id'] = $follow_up['case_id'];
       $add_Activity = activityHelper::insertActivity($activityLog);
-      
+
       toastr()->success('Verified Successfully');
     else :
       toastr()->error('Verification Failed');
@@ -1067,7 +1109,7 @@ die();*/
   {
     $documents = $request->file('file');
 
-    $validator = \Validator::make($request->all(),[  
+    $validator = \Validator::make($request->all(), [
       'file' => 'required|mimes:jpg,jpeg,png,pdf',
     ], [
       'file.required' => 'Prior Auth Test file field is required.',
@@ -1075,10 +1117,10 @@ die();*/
 
     ]);
 
-    if($validator->fails()){
+    if ($validator->fails()) {
       toastr()->error($validator->errors()->first());
       return redirect()->back();
-    }  
+    }
 
 
     if (!empty($documents)) {
@@ -1101,8 +1143,8 @@ die();*/
       $input_data['action_by'] = 'admin';
       $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
 
-      $userRole = DB::table('users')->join('roles','users.role','=','roles.id')->select('users.id as userId','roles.name as roleName')
-                  ->where('users.id',Auth::user()->id)->get();
+      $userRole = DB::table('users')->join('roles', 'users.role', '=', 'roles.id')->select('users.id as userId', 'roles.name as roleName')
+        ->where('users.id', Auth::user()->id)->get();
 
       $activityLog = array();
       $activityLog['user_type'] = $userRole[0]->roleName;
@@ -1127,155 +1169,157 @@ die();*/
   public function trigger(Request $request)
   {
 
-    $userRole = DB::table('users')->join('roles','users.role','=','roles.id')->select('users.id as userId','roles.name as roleName')
-                  ->where('users.id',Auth::user()->id)->get();
+    $userRole = DB::table('users')->join('roles', 'users.role', '=', 'roles.id')->select('users.id as userId', 'roles.name as roleName')
+      ->where('users.id', Auth::user()->id)->get();
 
-      $activityLog = array();
-      $activityLog['user_type'] = $userRole[0]->roleName;
-      $activityLog['action_module'] = config('activity.action_module.case_management.action_items.triggers');
-      $activityLog['action']  = config('activity.action.insert');
-      $activityLog['user_id'] = $userRole[0]->userId;
-      $activityLog['description'] = 'Triggers created';
-      $activityLog['case_id'] = $request->case_id;
-      $activityLog['md_case_id'] = $request->md_case_id;
-      
-    
+    $activityLog = array();
+    $activityLog['user_type'] = $userRole[0]->roleName;
+    $activityLog['action_module'] = config('activity.action_module.case_management.action_items.triggers');
+    $activityLog['action']  = config('activity.action.insert');
+    $activityLog['user_id'] = $userRole[0]->userId;
+    $activityLog['description'] = 'Triggers created';
+    $activityLog['case_id'] = $request->case_id;
+    $activityLog['md_case_id'] = $request->md_case_id;
+
+
 
     // if(isset($request->send_nitification)){
-         
-
-         $user_id = $request->user_id;
-         $case_id = $request->case_id;
-         $md_case_id = $request->md_case_id;
-         $follow_up = $request->follow_up;
-         $follow_up_id = $request->follow_up_id;
-      
-        //  dd($request->follow_ipledge);
 
 
-      $user_case_management_data = CaseManagement::join('users', 'case_managements.user_id', '=', 'users.id')
+    $user_id = $request->user_id;
+    $case_id = $request->case_id;
+    $md_case_id = $request->md_case_id;
+    $follow_up = $request->follow_up;
+    $follow_up_id = $request->follow_up_id;
+
+    //  dd($request->follow_ipledge);
+
+
+    $user_case_management_data = CaseManagement::join('users', 'case_managements.user_id', '=', 'users.id')
       ->select('case_managements.*', 'users.first_name', 'users.last_name', 'users.email', 'users.mobile', 'users.gender')
-      ->where('case_managements.id',$case_id)->first();
-
-      
-
-       $preferred_pharmacy_id = getPickupPharmacy($user_id,$case_id,$md_case_id);
-
-
-         $noti_input_data = array();
-         $noti_input_data['user_id'] = $user_id;
-         $noti_input_data['case_id'] = $case_id;
-         $noti_input_data['md_case_id'] = $md_case_id;
-
-         $noti_input_data['noti_message'] = getNotificationMessageFromKey('pickup_medication_notification_for_female');
-         $noti_input_data['for_month'] = $follow_up;
-
-         $trigger_input = array();
-         $trigger_input['user_id'] = $user_id;
-         $trigger_input['case_id'] = $case_id;
-         $trigger_input['md_case_id'] = $md_case_id;
-         $trigger_input['name'] = "pickup_medication_notification";
-         $trigger_input['month'] = $follow_up;
+      ->where('case_managements.id', $case_id)->first();
 
 
 
-       if($user_case_management_data['product_type']== "Accutane"){
-
-        // dd('here 1');
-
-        if($user_case_management_data['gender']=="female"  && $preferred_pharmacy_id !='13012' && $user_case_management_data['prior_auth_date']!= NULL){
-
-          if(isset($follow_up_id)){
-
-            // dd('here 2');
-            
-            //$follow_up_data = FollowUp::where([['case_id',$user_case_management_data['id'],['id',$follow_up_id]],['follow_up_status','completed']])->get()->toArray();
-
-            $iPledge_items = $request->follow_ipledge;
-          }else{
-            $iPledge_items = $user_case_management_data['ipledge_items'];
-          }
-
-          // dd('here 3');
-
-          
-
-          if($iPledge_items == 'on') {
-
-            // dd('here 4');
-             $noti_data = Notifications::create($noti_input_data);
-
-              $trigger_data = Triggers::create($trigger_input);
-
-              $add_Activity = activityHelper::insertActivity($activityLog);
-
-              toastr()->success('Notification sent successfully.');
-              return redirect()->back();
-          }else{
-
-            toastr()->error('Please verify ipledge items first.');
-            return redirect()->back();
-          }
-             
-        }
+    $preferred_pharmacy_id = getPickupPharmacy($user_id, $case_id, $md_case_id);
 
 
-        if($user_case_management_data['gender']=="male"  && $preferred_pharmacy_id !='13012' && $user_case_management_data['prior_auth_date']!= NULL){
-          // dd('here 5');
-             $noti_data = Notifications::create($noti_input_data);
+    $noti_input_data = array();
+    $noti_input_data['user_id'] = $user_id;
+    $noti_input_data['case_id'] = $case_id;
+    $noti_input_data['md_case_id'] = $md_case_id;
 
-              $trigger_data = Triggers::create($trigger_input);
-              $add_Activity = activityHelper::insertActivity($activityLog);
+    $noti_input_data['noti_message'] = getNotificationMessageFromKey('pickup_medication_notification_for_female');
+    $noti_input_data['for_month'] = $follow_up;
 
-              toastr()->success('Notification sent successfully.');
-              return redirect()->back();
-          }
-             
-        }
+    $trigger_input = array();
+    $trigger_input['user_id'] = $user_id;
+    $trigger_input['case_id'] = $case_id;
+    $trigger_input['md_case_id'] = $md_case_id;
+    $trigger_input['name'] = "pickup_medication_notification";
+    $trigger_input['month'] = $follow_up;
 
-        if(isset($request->prior_auth) || isset($request->ipledge)){
-          if ($request->prior_auth) :
-            $input['verify_prior_auth'] = $request->prior_auth;
-          endif;
-          if ($request->ipledge) :
-            $input['ipledge_items'] = $request->ipledge;
-          endif;
-          
-          CaseManagement::whereId($request['case_id'])->update($input);
-          $input_data = array();
-          $input_data['case_status'] = 'trigger';
-          $input_data['action_by'] = 'admin';
-          $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
-          $add_Activity = activityHelper::insertActivity($activityLog);
-          toastr()->success('Notification sent successfully.');
-          return redirect()->back();
-        }
 
-        if(isset($follow_up_id)){
-          
+
+    if ($user_case_management_data['product_type'] == "Accutane") {
+
+      // dd('here 1');
+
+      if ($user_case_management_data['gender'] == "female"  && $preferred_pharmacy_id != '13012' && $user_case_management_data['prior_auth_date'] != NULL) {
+
+        if (isset($follow_up_id)) {
+
+          // dd('here 2');
+
+          //$follow_up_data = FollowUp::where([['case_id',$user_case_management_data['id'],['id',$follow_up_id]],['follow_up_status','completed']])->get()->toArray();
+
           $iPledge_items = $request->follow_ipledge;
-          $updateFollowup = FollowUp::where('id',$follow_up_id)->update(['ipledge_items'=>$iPledge_items]);
+        } else {
+          $iPledge_items = $user_case_management_data['ipledge_items'];
+        }
+
+        // dd('here 3');
+
+
+
+        if ($iPledge_items == 'on') {
+
+          // dd('here 4');
           $noti_data = Notifications::create($noti_input_data);
 
-              $trigger_data = Triggers::create($trigger_input);
-              $add_Activity = activityHelper::insertActivity($activityLog);
+          $trigger_data = Triggers::create($trigger_input);
+
+          $add_Activity = activityHelper::insertActivity($activityLog);
+
           toastr()->success('Notification sent successfully.');
           return redirect()->back();
-        }else{
+        } else {
+
+          toastr()->error('Please verify ipledge items first.');
           return redirect()->back();
         }
-
-        // dd('here 6');
-        
-        // return redirect()->back();
-
-        
-
-        
+      }
 
 
-      //  }
-          
+      if ($user_case_management_data['gender'] == "male"  && $preferred_pharmacy_id != '13012' && $user_case_management_data['prior_auth_date'] != NULL) {
+        // dd('here 5');
+        $noti_data = Notifications::create($noti_input_data);
+
+        $trigger_data = Triggers::create($trigger_input);
+        $add_Activity = activityHelper::insertActivity($activityLog);
+
+        toastr()->success('Notification sent successfully.');
+        return redirect()->back();
+      }
+    }
+
+    if (isset($request->prior_auth) || isset($request->ipledge)) {
+      if ($request->prior_auth) :
+        $input['verify_prior_auth'] = $request->prior_auth;
+      endif;
+      if ($request->ipledge) :
+        $input['ipledge_items'] = $request->ipledge;
+      endif;
+
+      CaseManagement::whereId($request['case_id'])->update($input);
+      $input_data = array();
+      $input_data['case_status'] = 'trigger';
+      $input_data['action_by'] = 'admin';
+      $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
+      $add_Activity = activityHelper::insertActivity($activityLog);
+      toastr()->success('Notification sent successfully.');
+      return redirect()->back();
+    }
+
+    if (isset($follow_up_id)) {
+
+      $iPledge_items = $request->follow_ipledge;
+      $updateFollowup = FollowUp::where('id', $follow_up_id)->update(['ipledge_items' => $iPledge_items]);
+      $noti_data = Notifications::create($noti_input_data);
+
+      $trigger_data = Triggers::create($trigger_input);
+      $add_Activity = activityHelper::insertActivity($activityLog);
+
+      $input_data['case_status'] = 'picks_up_medication';
+      $input_data['action_by'] = 'user';
+      $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
+      toastr()->success('Notification sent successfully.');
+      return redirect()->back();
+    } else {
+      return redirect()->back();
+    }
+
+    // dd('here 6');
+
+    // return redirect()->back();
+
+
+
+
+
+
+    //  }
+
 
     // }else{
     //   if ($request->prior_auth) :
@@ -1298,7 +1342,7 @@ die();*/
     // $input_data['case_status'] = 'blood_work';
     // $caseHistory = CaseHistory::whereId($request['id'])->update($input_data);
     // }
-    
+
   }
   public function bloodWork(Request $request)
   {
@@ -1306,7 +1350,7 @@ die();*/
 
     $documents = $request->file('file');
 
-    $validator = \Validator::make($request->all(),[
+    $validator = \Validator::make($request->all(), [
       'file' => 'required|max:5000|mimes:jpg,jpeg,png,pdf',
     ], [
       'file.required' => 'Blood Work Test file field is required.',
@@ -1315,10 +1359,10 @@ die();*/
 
     ]);
 
-    if($validator->fails()){
-        toastr()->error($validator->errors()->first());
-        return redirect()->back();
-    }  
+    if ($validator->fails()) {
+      toastr()->error($validator->errors()->first());
+      return redirect()->back();
+    }
 
 
     if (!empty($documents)) {
@@ -1343,8 +1387,8 @@ die();*/
 
       CaseManagement::whereId($request['case_id'])->update($input);
 
-      $userRole = DB::table('users')->join('roles','users.role','=','roles.id')->select('users.id as userId','roles.name as roleName')
-                  ->where('users.id',Auth::user()->id)->get();
+      $userRole = DB::table('users')->join('roles', 'users.role', '=', 'roles.id')->select('users.id as userId', 'roles.name as roleName')
+        ->where('users.id', Auth::user()->id)->get();
 
       $activityLog = array();
       $activityLog['user_type'] = $userRole[0]->roleName;

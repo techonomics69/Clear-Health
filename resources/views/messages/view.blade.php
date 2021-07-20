@@ -68,7 +68,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div id="support" class="tab-pane fane in support"></div>
+                                                
                                                 <div id="nonmedical" class="tab-pane fade in nonmedicalmsg">
                                                     <div class="row" style="padding: 10px;">
                                                         <div class="col-md-3">
@@ -144,7 +144,7 @@
                                                         </div>
                                                     </div>
                                                     <div id="support" class="tab-pane fane in support">
-
+                                                        hello
                                                     </div>
                                                 </div>
                                         </section>

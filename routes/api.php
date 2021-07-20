@@ -96,6 +96,9 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('addCheckoutAddress', [CheckoutController::class, 'addCheckoutAddress']);
     Route::post('updateCheckoutAddress', [CheckoutController::class, 'updateCheckoutAddress']);
     Route::post('orderList', [CheckoutController::class, 'orderList']);
+    // daxit
+    Route::get("cart/getpresproducts/{id}",[CartController::class, 'getCartByUserPresPurchased']);
+    // daxit
 
     Route::post('getOrderDetail', [CheckoutController::class, 'getCheckoutdetail']);
     Route::post('getCheckoutAddress', [CheckoutController::class, 'getCheckoutAddress']);

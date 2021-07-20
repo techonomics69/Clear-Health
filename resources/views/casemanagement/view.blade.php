@@ -477,9 +477,27 @@
 										<h3 class="font-weight-bold"><span class="text-underline">Pharmacy Preference</span></h3>
 
 										<div class="col-md-6  form-group">
-											<?php if (isset($skincare_summary['pharmacy_pickup']) && $skincare_summary['pharmacy_pickup'] != '') { ?>
-												{{$skincare_summary['pharmacy_pickup']}}
-											<?php } ?>
+										<div class="ipledge_outer_design mt24">
+													<table class="table table-responsive-md table-striped no-footer">
+														<thead>
+															<tr>
+																<th scope="col">Date</th>
+																<th scope="col">Item</th>
+																<th scope="col">Pharmacy</th>
+															</tr>
+														</thead>
+														<tbody class="list_view_outer">
+															
+														</tbody>
+													</table>
+												</div>
+											<?php 
+											// if (isset($skincare_summary['pharmacy_pickup']) && $skincare_summary['pharmacy_pickup'] != '') { ?>
+												<!-- {{$skincare_summary['pharmacy_pickup']}} -->
+											<?php 
+											// } 
+											
+											?>
 
 										</div>
 

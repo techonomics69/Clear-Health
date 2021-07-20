@@ -468,9 +468,9 @@ class CaseManagementController extends Controller
                   curl_close($curl);
                   $res1 = json_decode($res);
                   if (isset($res1)) {
-                    if (count($res1) > 0) {
+                    // if (count($res1) > 0) {
                       $LogData[$lk]->pharmacy_pickup =  $res1->name;
-                    }
+                    // }
                   }
                 } else {
                   $LogData[$lk]->pharmacy_pickup = 'Clear Health Pharmacy Network';
@@ -546,8 +546,10 @@ class CaseManagementController extends Controller
           curl_close($curl);
           $response1 = json_decode($response);
           if (isset($response1)) {
-            if (count($response1) > 0) {
-              $skincare_summary['pharmacy_pickup'] =  $response1->name;
+            if(is_array($response1)){
+              if (count($response1) > 0) {
+                $skincare_summary['pharmacy_pickup'] =  $response1->name;
+              }
             }
           }
         } else {

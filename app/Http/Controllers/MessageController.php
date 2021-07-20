@@ -208,27 +208,7 @@ class MessageController extends Controller
 
 
         $createdAt = Carbon::now();
-        //$time =  $createdAt->format('H:i:s m/d/Y');
-        $time =  $createdAt->diffForHumans();
-        // $html = '';
-        // $html .= '<li class="right">
-        //             <div class="time_messages"> 
-        //                 <p class="text_mesg">' . $data['text'] . '</p>
-        //                 <h5>' . $time . '</h5>
-        //             </div>
-        //         </li>';
-
-        // if (isset($message_file_data) && !empty($message_file_data)) :
-        //     $html = '<li class="right">
-        //             <div class="time_messages"> 
-        //                 <p class="text_mesg">
-        //                 <a href="'.url('').'/'.$file_path.'" target="_blank">
-        //                 <img src="'.url('').'/'.$file_path.'" style="width:50px; height:50px; object-fit: contain;">
-        //                 </p>
-        //                 <h5>' . $time . '</h5>
-        //             </div>
-        //         </li>';
-        // endif;
+        $time =  $createdAt->diffForHumans();     
         $result['time'] = $time;
         $result['file'] = $file_path;
         $result['text'] = $data['text'];
@@ -248,4 +228,178 @@ class MessageController extends Controller
         $return = array("size" => round(pow(1024, $base - floor($base)), 1), "sizin" => $suffix[$f_base]);
         return $return;
     }
+
+
+    public function sendSupportMessage(Request $request){
+        $r = get_token();
+        $token_data = json_decode($r);
+        $token = $token_data->access_token;
+    
+        echo '<pre>';
+        print_r($token_data);       
+        $documents = $request->file('file');
+        $name = $request->name;
+        $user_id = $request->user_id;
+        $case_id = $request->case_id;
+        $system_case_id = $request->system_case_id;
+    
+        //validation 
+        $data = $request->all(); 
+        $validator = Validator::make($data, [
+          'user_id' => 'required',
+          'case_id' => 'required',
+          'system_case_id' => 'required',
+          'text' => 'required',
+          'from' => 'required',
+        ]);
+        if($validator->fails()){
+          return $this->sendError('Validation Error.', $validator->errors()->all());       
+        }
+        //end of validation
+        if(!empty($documents)){
+          $file =  $documents->getClientOriginalName();
+          $doc_file_name =  time().'-'.$file;
+          
+          if (!file_exists(public_path('/Message_files'))) {
+            File::makeDirectory(public_path('/Message_files'),0777,true,true);
+          }
+          $destinationPath = public_path('/Message_files');
+          $documents->move($destinationPath, $doc_file_name);
+    
+          chmod($destinationPath."/".$doc_file_name, 0777);
+    
+          $file_path = 'public/Message_files/' .$file;
+    
+          $fields = [
+            'name' => $name,
+            'file' => new \CurlFile($destinationPath."/".$doc_file_name)
+          ];
+    
+    
+          $input_data = $request->all();
+    
+    
+          $curl = curl_init();
+    
+          curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/files',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS =>  $fields,
+            CURLOPT_HTTPHEADER => array(
+              'Content: multipart/form-data;',
+              'Authorization: Bearer '.$token,
+              'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+            ),
+          ));
+    
+          $response = curl_exec($curl);
+    
+          $message_file_data = json_decode($response);
+          $input_data = array();
+    
+          $input_data['md_case_id'] = $case_id;
+          $input_data['system_file'] = $file_path;
+          $input_data['user_id'] = $user_id;
+          $input_data['case_id'] = $system_case_id;
+          $input_data['name'] = $message_file_data->name;
+          $input_data['mime_type'] = $message_file_data->mime_type;
+          $input_data['url'] = $message_file_data->url;
+          $input_data['url_thumbnail'] = $message_file_data->url_thumbnail;
+          $input_data['file_id'] = $message_file_data->file_id;
+    
+          $message_file_data = MdMessageFiles::create($input_data);
+    
+        //create message
+    
+        }
+    
+    
+    
+        //code to get files ids
+    
+        $file_ids = array();
+    
+        if(!empty($message_file_data) && $message_file_data->file_id !=''){
+          $file_ids[] = $message_file_data->file_id;
+        }
+        // end of code to get files ids
+    
+        $postfields = array();
+        $postfields['from'] = $request->from;
+        $postfields['text'] = $request->text; 
+        if($request->prioritized == "true"){
+          $postfields['prioritized'] =  true;
+        }else{
+          $postfields['prioritized'] =  false;
+        }
+        $postfields['prioritized_reason'] = $request->prioritized_reason;
+        $postfields['message_files'] = $file_ids;
+    
+        $postfields = json_encode($postfields);
+    
+        $curl = curl_init();
+    
+    
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/messages',
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => '',
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 0,
+          CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => 'POST',
+          CURLOPT_POSTFIELDS =>$postfields,
+          CURLOPT_HTTPHEADER => array(
+            'Content-Type: application/json',
+            'Authorization: Bearer '.$token,
+            'Cookie: __cfduid=da01d92d82d19a6cccebfdc9852303eb81620627650'
+          ),
+        ));
+    
+        $response = curl_exec($curl);
+    
+        curl_close($curl);
+    
+        $message_data = json_decode($response);
+        $input_data1 = array();
+    
+        $input_data1['md_case_id'] = $case_id;
+        $input_data1['user_id'] = $user_id;
+        $input_data1['case_id'] = $system_case_id;
+        $input_data1['text'] = $message_data->text;
+        $input_data1['from'] = $message_data->from;
+        $input_data1['channel'] = $message_data->channel;
+        $input_data1['prioritized_at'] = $message_data->prioritized_at;
+        $input_data1['prioritized_reason'] = $message_data->prioritized_reason;
+            $input_data1['read_at'] = NULL ;//$message_data->read_at;
+            $input_data1['message_created_at'] = $message_data->created_at;
+            $input_data1['case_message_id'] = $message_data->case_message_id;
+            //$input_data['message_files_ids'] = json_encode($file_ids);
+            $input_data1['clinician  '] = $message_data->clinician ;
+            $message_data = MdMessages::create($input_data1);
+            if(isset($message_file_data) && !empty($message_file_data)){
+             $message_data['message_file_data'] = $message_file_data;
+           }
+           
+    
+           if(!empty( $message_data)){
+            $message_data['date'] = date("M j H:i");
+            return $this->sendResponse($message_data,'Message created successfully');
+          }else{
+            return $this->sendResponse(array(),'Some thing went wrong.');
+          }
+    
+    
+        //end of create message
+    
+    
+    
+        }
 }

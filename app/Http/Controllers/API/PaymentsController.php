@@ -693,6 +693,7 @@ class PaymentsController extends BaseController
         //$exp = explode("/",request('exp'));       
         $exp = str_split(request('exp'), 2);        
         $cvc = request('cvc');
+        $name = request('name');
 
         
         	Stripe::setApiKey("sk_test_51J08tDJofjMgVsOdzxZs5Aqlf5A9riwPPwlxUTriC8YPiHvTjlCBoaMjgxiqdIVfvOMPcllgR9JY7EZlihr6TJHy00ixztHFtz");
@@ -717,12 +718,11 @@ class PaymentsController extends BaseController
 	                $customer_id,
 	                ['invoice_settings' => ['default_payment_method' => $payment_method_id]]
 	              );
-                  echo '<pre>';
-                  print_r($update);
-                  die;
+                $data['card_name'] = $name;  
+                $checkout = Checkout::where('customer', $customer_id)->update($data);  
         		return $this->sendResponse($update, 'success');
         	} catch (\Stripe\Exception\CardException $e) {
-	            return $this->sendResponse($e, 'error');
+	            return $this->sendResponse($e->getError()->message, 'error');
 	        }
 
     }

@@ -279,7 +279,7 @@
 															<strong>Order Date : </strong>
 															<?php echo date("d-m-Y",strtotime($shipStationOrder['orderDate'])); ?>
 														</div>
-														<div class=" form-group">
+													{{-- 	<div class=" form-group">
 															<strong>Order Status : </strong>
 															<?php if($shipStationOrder['orderStatus']=='awaiting_payment'){
 																echo "Order Processing";
@@ -290,7 +290,7 @@
 															}else{
 																
 															} ?>
-														</div>
+														</div> --}}
 														<?php
 															if($shipStationOrder['orderStatus'] == 'shipped'){
 														?>
@@ -341,7 +341,7 @@
 													<div class="">
 														<h3 class="font_add"><span class="text-underline">Billing Address</span></h3>
 														<p>[{{$order_data->billing_address['patient_firstname']}} {{$order_data->billing_address['patient_lastname']}} ]</p>
-														<p>[Company Name]</p>
+														
 														<p>[{{$order_data->billing_address['addressline2']}} ]</p>
 														<p>[{{$order_data->billing_address['city']}},{{$order_data->billing_address['state']}},{{$order_data->billing_address['zipcode']}}]</p>
 														<p>[{{$order_data->billing_address['phone']}}]</p>
@@ -404,7 +404,7 @@
 													<div class=" ">
 														<h3 class="font_add"><span class="text-underline">Shipping Address</span></h3>
 														<p>[{{$order_data->shipping_address['patient_firstname']}} {{$order_data->shipping_address['patient_lastname']}} ]</p>
-														<p>[Company Name]</p>
+					
 														<p>[{{$order_data->shipping_address['addressline2']}} ]</p>
 														<p>[{{$order_data->shipping_address['city']}},{{$order_data->shipping_address['state']}},{{$order_data->shipping_address['zipcode']}}]</p>
 														<p>[{{$order_data->shipping_address['phone']}}]</p>
@@ -491,13 +491,30 @@
 			                                        </tr>
 			                                    </thead>
 			                                    <tbody>
-			                                    	<tr>
-			                                    		<td>Cleansing</td>
-														<td>Pending</td>
-			                                    		<td>$150.00</td>
-			                                    		<td>2</td>
-			                                    		<td>$150.00</td>
+			                                    	@php
+			                                    	foreach($order_data->product_details as $p_key=>$p_val){
+			                                    	@endphp
+			                                    		<tr>
+			                                    		<td>{{$p_val['product_name']}}</td>
+														<td><?php if($shipStationOrder['orderStatus']=='awaiting_payment'){
+																echo "Order Processing";
+															}else if($shipStationOrder['orderStatus']=='awaiting_shipment'){
+																echo "Awaiting shipment";
+															}else if($shipStationOrder['orderStatus']=='shipped'){
+																echo "Shipped";
+															}else{
+																
+															} ?></td>
+			                                    		<td>${{$p_val['product_price']}}</td>
+			                                    		<td>{{$p_val['quantity']}}</td>
+			                                    		<td>$ @php $total = $p_val['product_price'] * $p_val['quantity'];
+			                                    		echo $total;
+			                                    		 @endphp</td>
 			                                    	</tr>
+			                                        @php
+			                                    	}
+			                                    	@endphp
+			                                    	
 			                                    </tbody>
 		                                    
 		                                  </table>
@@ -506,19 +523,24 @@
 			                                  <div class="product_detail">
 			                                  	  <div class="product_linedetail">
 			                                  	  	<p>Subtotal</p>
-			                                  	  	<p class="rate_price">$1,180.00</p>
+			                                  	  	<p class="rate_price">${{$order_data->total_amount}}</p>
 			                                  	  </div>
 			                                  	   <div class="product_linedetail">
 			                                  	  	<p>Discount</p>
-			                                  	  	<p class="rate_price">$177.00</p>
+			                                  	  	<p class="rate_price">${{$order_data->gift_code_discount}}</p>
 			                                  	  </div>
 			                                  	   <div class="product_linedetail">
 			                                  	  	<p>Taxes</p>
-			                                  	  	<p class="rate_price">$100.30</p>
+			                                  	  	<p class="rate_price">${{$order_data->tax}}</p>
 			                                  	  </div>
 			                                  	   <div class="product_linedetail">
 			                                  	  	<p>Total</p>
-			                                  	  	<p class="rate_price">$1163.00</p>
+			                                  	  	<p class="rate_price">
+			                                  	  		@php
+			                                  	  		$grand_total = $order_data->total_amount+$order_data->gift_code_discount+$order_data->tax;
+			                                  	  		echo "$".$grand_total;
+			                                  	  		@endphp
+			                                  	  	</p>
 			                                  	  </div>
 			                                  </div>
 			                                </div>

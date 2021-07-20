@@ -441,6 +441,43 @@ class CaseManagementController extends Controller
                   ->where('c.id',$cval)->get();
           if(count($CartData)>0){
             $LogData = DB::table("pharmacy_change_log")->where('cart_id',$CartData[0]->id)->get();
+            if(count($LogData)>0){
+              foreach($LogData as $lk => $lval){
+                if ($LogData[0]['pharmacy_pickup'] != "cash") {
+                  $r = get_token();
+                  $token_data = json_decode($r);
+                  $token = $token_data->access_token;
+                  $pharmacy_id = $lval->pharmacy_pickup;
+        
+                  $curl = curl_init();
+                  curl_setopt_array($curl, array(
+                    CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/pharmacies/' . $pharmacy_id,
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_ENCODING => '',
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 0,
+                    CURLOPT_FOLLOWLOCATION => true,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => 'GET',
+                    CURLOPT_HTTPHEADER => array(
+                      'Authorization: Bearer ' . $token,
+                    ),
+                  ));
+        
+                  $res = curl_exec($curl);
+                  curl_close($curl);
+                  $res1 = json_decode($res);
+                  if (isset($res1)) {
+                    if (count($res1) > 0) {
+                      $LogData[$lk]->pharmacy_pickup =  $res1->name;
+                    }
+                  }
+                } else {
+                  $LogData[$lk]->pharmacy_pickup = 'Clear Health Pharmacy Network';
+                }
+              }
+            }
+           
             array_push($LogCartId, $LogData);
           }
         }

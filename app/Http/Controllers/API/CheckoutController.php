@@ -398,7 +398,7 @@ class CheckoutController extends BaseController
 
     $payment_method = "Payment via".$transaction_complete_details->payment_method_details->card->brand." ".$transaction_complete_details->payment_method_details->type." (".$transaction_complete_details->id."). Paid On ". $created_at_date." @".$created_at_time;
 
-    $orderlist['payment_method'] = $payment_method;
+    $orderlist['payment_method_display_msg'] = $payment_method;
 
     $curexa_data = CurexaOrder::where('order_id',$orderlist['order_id'])->first();
 

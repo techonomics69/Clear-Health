@@ -426,8 +426,11 @@ class CaseManagementController extends Controller
     
     //  print_r($skincare_summary);   
       // die();
+      
 
     $cart_ids = explode(',', $skincare_summary['cart_id']);
+
+    dd($cart_ids);
 
     if (isset($skincare_summary['shipstation_order_id'])) {
       $app = App::getFacadeRoot();

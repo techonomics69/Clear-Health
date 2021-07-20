@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\User;
+use App\Models\Checkout;
 use Carbon\Carbon;
 
 class HomeController extends Controller
@@ -40,7 +41,20 @@ class HomeController extends Controller
             ->whereMonth('created_at', Carbon::now()->month)
             ->where('verified_by_vouch','pending')
             ->count();
+
+        $prescribed_orders = Checkout::select('*')
+            ->whereMonth('created_at', Carbon::now()->month)
+            ->where('medication_type',1)
+            ->count();
+
+        $non_prescribed_orders = Checkout::select('*')
+            ->whereMonth('created_at', Carbon::now()->month)
+            ->where('medication_type',2)
+            ->count();
+
+            
         
-        return view('dashboards.index',compact('users', 'customer','monthly_customers'));
+
+        return view('dashboards.index',compact('users', 'customer','monthly_customers','monthly_sign_up','prescribed_orders','non_prescribed_orders'));
     }
 }

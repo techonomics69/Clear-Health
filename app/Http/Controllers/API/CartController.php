@@ -6,6 +6,7 @@ use App\Http\Controllers\API\BaseController as BaseController;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\PharmacyLog;
 use Validator;
 use Exception;
 use Lcobucci\JWT\Parser;
@@ -64,7 +65,7 @@ class CartController extends BaseController
         if(!empty($cart)):
             $newQuantity['quantity'] = $cart->quantity + $data['quantity'];                
             $cartUpdate = Cart::where('id',$cart->id)->update($newQuantity);
-
+            
         else:
             $quizAns = Cart::create($data);
         endif;
@@ -108,11 +109,17 @@ class CartController extends BaseController
         $data = $request->all();
         try{
             $cart = Cart::find($id); 
-            if(!empty($cart)):
+            if(!empty($cart)){
                 $cart = Cart::where('id',$id)->update($data);
-            else:
+                if(isset($data['pharmacy_pickup'])){
+                    $cartData = Cart::select('id','user_id','product_id','pharmacy_pickup')->where('id',$id)->first();
+                    $logArr = array('cart_id'=>$id,'user_id'=>$cartData['id'],'product_id'=>$cartData['product_id'],
+                                'pharmacy_pickup'=>$cartData['pharmacy_pickup']);
+                    $Log = PharmacyLog::create($logArr);
+                }
+            }else{
                 return $this->sendError('Server error', array('Item Not Found'));
-            endif;
+            }
             return $this->sendResponse(array(), 'Cart Updated Successfully');
         }catch(\Exception $ex){
             return $this->sendError('Server error',array($ex->getMessage()));

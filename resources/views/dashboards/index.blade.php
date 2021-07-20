@@ -93,7 +93,7 @@
                 </div>
                 <div class="p-2  white media-body" style="background-color: #323232 !important;">
                   <h5>Monthly Sign Up </h5>
-                  <h5>{{ $customer }}</h5>
+                  <h5>{{ $monthly_sign_up }}</h5>
                 </div>
               </div>
             </a>
@@ -104,14 +104,14 @@
          <div class="col-xl-3 col-lg-6 col-12">
           <div class="card">
             <div class="card-content">
-              <a href="{{-- {{ route('customers.index') }} --}}">
+              <a href="{{ route('casemanagement.index') }}">
               <div class="media align-items-stretch">
                 <div class="p-2 text-center bg-danger bg-darken-2" style="background-color: #323232 !important;">
                   <i class="icon-user font-large-2 white"></i>
                 </div>
                 <div class="p-2  white media-body" style="background-color: #323232 !important;">
                   <h5>Prescribed orders  </h5>
-                  <h5>{{ $customer }}</h5>
+                  <h5>{{ $prescribed_orders }}</h5>
                 </div>
               </div>
             </a>
@@ -122,14 +122,14 @@
         <div class="col-xl-3 col-lg-6 col-12">
           <div class="card">
             <div class="card-content">
-              <a href="{{-- {{ route('customers.index') }} --}}">
+              <a href="{{ route('ordermanagement.index') }}">
               <div class="media align-items-stretch">
                 <div class="p-2 text-center bg-danger bg-darken-2" style="background-color: #323232 !important;">
                   <i class="icon-user font-large-2 white"></i>
                 </div>
                 <div class="p-2  white media-body" style="background-color: #323232 !important;">
                   <h5>Non-Prescribed orders</h5>
-                  <h5>{{ $customer }}</h5>
+                  <h5>{{ $non_prescribed_orders }}</h5>
                 </div>
               </div>
             </a>

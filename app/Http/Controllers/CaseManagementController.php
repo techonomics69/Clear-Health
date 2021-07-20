@@ -468,9 +468,9 @@ class CaseManagementController extends Controller
                   curl_close($curl);
                   $res1 = json_decode($res);
                   if (isset($res1)) {
-                    if (count($res1) > 0) {
+                    // if (count($res1) > 0) {
                       $LogData[$lk]->pharmacy_pickup =  $res1->name;
-                    }
+                    // }
                   }
                 } else {
                   $LogData[$lk]->pharmacy_pickup = 'Clear Health Pharmacy Network';

@@ -55,6 +55,6 @@ class HomeController extends Controller
             
         
 
-        return view('dashboards.index',compact('users', 'customer','monthly_customers','monthly_sign_up'));
+        return view('dashboards.index',compact('users', 'customer','monthly_customers','monthly_sign_up','prescribed_orders','non_prescribed_orders'));
     }
 }

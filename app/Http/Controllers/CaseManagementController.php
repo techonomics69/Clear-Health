@@ -947,6 +947,7 @@ die();*/
   public function generateiPledge(Request $request)
   {
     $input_data['case_status'] = 'store_ipledge';
+    $input_data['action_by'] = 'admin';
     $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
     return redirect()->back();
   }
@@ -1093,6 +1094,7 @@ die();*/
 
       CaseManagement::whereId($request['case_id'])->update($input);
       $input_data['case_status'] = 'check_off_ipledge';
+      $input_data['action_by'] = 'admin';
       $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
 
       $userRole = DB::table('users')->join('roles','users.role','=','roles.id')->select('users.id as userId','roles.name as roleName')
@@ -1238,6 +1240,7 @@ die();*/
           CaseManagement::whereId($request['case_id'])->update($input);
           $input_data = array();
           $input_data['case_status'] = 'trigger';
+          $input_data['action_by'] = 'admin';
           $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
           $add_Activity = activityHelper::insertActivity($activityLog);
           toastr()->success('Notification sent successfully.');

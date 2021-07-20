@@ -25,7 +25,7 @@ class MessageController extends Controller
     {
         // DB::enableQueryLog();
         $case = CaseManagement::find($case_id);
-        dd($case);
+        dd($case->md_case_id);
         $mdList = DB::table('md_messages')
             ->where('case_id', $case_id)
             ->join('users', 'users.id', '=', 'md_messages.user_id')

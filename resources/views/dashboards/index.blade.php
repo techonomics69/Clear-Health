@@ -75,7 +75,7 @@
                 </div>
                 <div class="p-2  white media-body" style="background-color: #323232 !important;">
                   <h5>Monthly Customers </h5>
-                  <h5>{{ $customer }}</h5>
+                  <h5>{{ $monthly_customers }}</h5>
                 </div>
               </div>
             </a>

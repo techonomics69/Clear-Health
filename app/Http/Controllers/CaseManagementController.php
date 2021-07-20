@@ -443,7 +443,7 @@ class CaseManagementController extends Controller
             $LogData = DB::table("pharmacy_change_log")->where('cart_id',$CartData[0]->id)->get();
             if(count($LogData)>0){
               foreach($LogData as $lk => $lval){
-                if ($LogData[0]['pharmacy_pickup'] != "cash") {
+                if ($LogData[0]->pharmacy_pickup != "cash") {
                   $r = get_token();
                   $token_data = json_decode($r);
                   $token = $token_data->access_token;

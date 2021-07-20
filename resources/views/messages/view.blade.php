@@ -99,7 +99,7 @@
                                                                         <ul id="messageDataAdmin"></ul>
                                                                     </div>
 
-                                                                    <div class="row">
+                                                                    <div class="">
                                                                         <div class="col-lg-12">
                                                                             <div class="imgDiv" id="imgDiv" style="display: none;">
                                                                                 <div class="imgs"> <i class="fa fa-close" id="clearImg" style="font-size: 20px;"></i></div>

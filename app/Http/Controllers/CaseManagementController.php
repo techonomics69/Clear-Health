@@ -385,7 +385,9 @@ class CaseManagementController extends Controller
         'checkout.shipstation_order_id'
       )
       ->where('case_managements.id', $id)->first();
-
+    
+     print_r($skincare_summary);   
+      die();
 
     $cart_ids = explode(',', $skincare_summary['cart_id']);
 

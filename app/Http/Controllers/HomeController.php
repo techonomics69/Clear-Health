@@ -41,7 +41,7 @@ class HomeController extends Controller
             ->where('verified_by_vouch','pending')
             ->count();
         
-        
-        return view('dashboards.index',compact('users', 'customer','monthly_customers'));
+
+        return view('dashboards.index',compact('users', 'customer','monthly_customers','monthly_sign_up'));
     }
 }

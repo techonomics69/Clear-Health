@@ -440,10 +440,13 @@ class CaseManagementController extends Controller
                   ->where('c.order_type','Prescribed')
                   ->where('c.id',$cval)->get();
           if(count($CartData)>0){
-            $LogData = DB::table("pharmacy_change_log")->where('cart_id',$CartData[0]->id)->get();
+            $LogData = DB::table("pharmacy_change_log as p")->leftJoin("products as pr","p.product_id",'=','pr.id')
+                      ->select("p.*","pr.name as Productname")
+                      ->where('cart_id',$CartData[0]->id)->get();
             if(count($LogData)>0){
               foreach($LogData as $lk => $lval){
                 if ($LogData[0]->pharmacy_pickup != "cash") {
+                  
                   $r = get_token();
                   $token_data = json_decode($r);
                   $token = $token_data->access_token;
@@ -546,8 +549,10 @@ class CaseManagementController extends Controller
           curl_close($curl);
           $response1 = json_decode($response);
           if (isset($response1)) {
-            if (count($response1) > 0) {
-              $skincare_summary['pharmacy_pickup'] =  $response1->name;
+            if(is_array($response1)){
+              if (count($response1) > 0) {
+                $skincare_summary['pharmacy_pickup'] =  $response1->name;
+              }
             }
           }
         } else {

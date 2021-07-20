@@ -476,13 +476,40 @@
 									<div class="box-block mtb32">
 										<h3 class="font-weight-bold"><span class="text-underline">Pharmacy Preference</span></h3>
 
-										<div class="col-md-6  form-group">
+										<div class="col-md-8  form-group">
+										<div class="ipledge_outer_design mt24">
+													<table class="table table-responsive-md table-striped no-footer">
+														<thead>
+															<tr>
+																<th scope="col">Date</th>
+																<th scope="col">Item</th>
+																<th scope="col">Pharmacy</th>
+															</tr>
+														</thead>
+														<tbody class="list_view_outer">
+															<?php
+																if(count($pharma_change)>0){
+																	
+																	foreach($pharma_change[0] as $pkey => $pval){
+															?>
+																<tr>
+																	<td><?php echo date("m-d-Y H:i:s a",strtotime($pval->updated_at)); ?></td>
+																	<td><?php echo $pval->Productname; ?></td>
+																	<td><?php echo $pval->pharmacy_pickup; ?></td>
+																</tr>
+															<?php			
+																	}	
+																}
+															?>
+														</tbody>
+													</table>
+												</div>
 											<?php 
 											// if (isset($skincare_summary['pharmacy_pickup']) && $skincare_summary['pharmacy_pickup'] != '') { ?>
 												<!-- {{$skincare_summary['pharmacy_pickup']}} -->
 											<?php 
 											// } 
-											print_r($pharma_change);
+											
 											?>
 
 										</div>

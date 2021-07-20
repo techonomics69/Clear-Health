@@ -404,8 +404,8 @@ class CaseManagementController extends Controller
 
     $skincare_summary = CaseManagement::join('users', 'case_managements.user_id', '=', 'users.id')
       ->leftjoin('checkout', 'checkout.case_id', '=', 'case_managements.id')
-      // ->join('carts', 'checkout.cart_id', '=', 'carts.id')
-      // ->join('products', 'products.id', '=', 'carts.product_id')
+      ->leftjoin('carts', 'checkout.cart_id', '=', 'carts.id')
+      ->leftjoin('products', 'products.id', '=', 'carts.product_id')
       ->leftjoin('checkout_address', 'checkout_address.order_id', '=', 'checkout.order_id')
       ->select(
         'checkout.order_id',
@@ -424,8 +424,8 @@ class CaseManagementController extends Controller
       )
       ->where('case_managements.id', $id)->first();
     
-     print_r($skincare_summary);   
-      die();
+    //  print_r($skincare_summary);   
+      // die();
 
     $cart_ids = explode(',', $skincare_summary['cart_id']);
 

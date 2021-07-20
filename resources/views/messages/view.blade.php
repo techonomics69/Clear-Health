@@ -205,6 +205,7 @@
                                                                                     <input class="form-control" type="text" name="text" placeholder="Type a message..." id="supportText">
                                                                                     <input type="hidden" id="supportUserId" name="user_id" value="">
                                                                                     <input type="hidden" id="supportCase_id" name="case_id" value="{{$case_id}}">
+                                                                                    <input type="hidden" id="supportMd_case_id" name="md_case_id" value="{{$md_case_id}}">
                                                                                 </div>
                                                                                 <div class="sending lastimg">
                                                                                     <button type="button" id="sendSupportMsg"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
@@ -333,7 +334,43 @@
         $('#clearImg').on('click', function() {
             $('#imgDiv').hide();
             $('#file').val('');
-        })
+        });
+
+        $('#sendSupportMsg').on('click', function() {           
+            $('#support-upload-image-form').submit();
+        });
+
+        $('#support-upload-image-form').submit(function(e) {
+            e.preventDefault();
+            let formData = new FormData(this);
+            $.ajax({
+                url: "{{route('sendSupportMessage')}}",
+                type: "post",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    // let result = JSON.parse(data)
+                    // console.log(result);
+                    // if (result != false) {
+                    //     $('#text').val('');
+                    //     if (result.text) {
+                    //         $('#messageDataAdmin').append(
+                    //             '<li class="right"><div class="time_messages"><p class="text_mesg">' + result.text + '</p><h5>' + result.time + '</h5></div></li>'
+                    //         );
+                    //     }
+                    //     if (result.file) {
+                    //         $('#messageDataAdmin').append(
+                    //             '<li class="right"><div class="time_messages"><p class="text_mesg"><a href="' + result.url + result.file + '" target="_blank"><img src="' + result.url + result.file + '" style="width:50px; height:50px; object-fit: contain;"></p><h5>' + result.time + '</h5></div></li>'
+                    //         )
+                    //     }
+                    // }
+                    // $("#messageDataAdmin").animate({
+                    //     scrollTop: $("#messageDataAdmin")[0].scrollHeight
+                    // }, 1000);
+                }
+            });
+        });
     });
 </script>
 @endsection

@@ -10,6 +10,10 @@ use Carbon\Carbon;
 use Reflector;
 use App\Models\Messages;
 use App\Models\MessageFiles;
+use App\Models\SupportMessages;
+use App\Models\SupportMessagesFiles;
+use Illuminate\Support\Facades\Validator;
+
 
 class MessageController extends Controller
 {
@@ -24,6 +28,8 @@ class MessageController extends Controller
     public function show($case_id, Request $request)
     {
         // DB::enableQueryLog();
+        $case = CaseManagement::find($case_id);
+        $md_case_id = $case->md_case_id;
         $mdList = DB::table('md_messages')
             ->where('case_id', $case_id)
             ->join('users', 'users.id', '=', 'md_messages.user_id')
@@ -60,7 +66,7 @@ class MessageController extends Controller
 
         $user_case_management_data['user_id'] = '';
         $user_case_management_data['id'] = '';
-        return view('messages.view', compact('user_case_management_data', 'mdList', 'adminMsg', 'case_id'));
+        return view('messages.view', compact('user_case_management_data', 'mdList', 'adminMsg', 'case_id', 'md_case_id'));
     }
 
     public function getMedicalMessage(Request $request)
@@ -235,8 +241,7 @@ class MessageController extends Controller
         $token_data = json_decode($r);
         $token = $token_data->access_token;
     
-        echo '<pre>';
-        print_r($token_data);       
+               
         $documents = $request->file('file');
         $name = $request->name;
         $user_id = $request->user_id;
@@ -313,7 +318,7 @@ class MessageController extends Controller
           $input_data['url_thumbnail'] = $message_file_data->url_thumbnail;
           $input_data['file_id'] = $message_file_data->file_id;
     
-          $message_file_data = MdMessageFiles::create($input_data);
+          $message_file_data = SupportMessagesFiles::create($input_data);
     
         //create message
     
@@ -383,7 +388,7 @@ class MessageController extends Controller
             $input_data1['case_message_id'] = $message_data->case_message_id;
             //$input_data['message_files_ids'] = json_encode($file_ids);
             $input_data1['clinician  '] = $message_data->clinician ;
-            $message_data = MdMessages::create($input_data1);
+            $message_data = SupportMessages::create($input_data1);
             if(isset($message_file_data) && !empty($message_file_data)){
              $message_data['message_file_data'] = $message_file_data;
            }

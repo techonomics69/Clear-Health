@@ -461,11 +461,14 @@ function CreateCase($user_id,$case_id,$preferred_pharmacy_id,$patient_id,$order_
 
 
 
-  if($value->options_type == "radio"){
-   $userquestion[$key]['type']= "boolean";
- }else{
-   $userquestion[$key]['type']= "string";
- }
+  
+  if($value->options_type == "radio" || $value->options_type == "checkbox" ){
+    $userquestion[$key]['type']= "boolean";
+  }elseif($value->options_type == "number " ){
+    $userquestion[$key]['type']= "number";
+  }else{
+    $userquestion[$key]['type']= "string";
+  }
 
  $userquestion[$key]['important']= true;
 
@@ -1057,9 +1060,12 @@ function getCaseType($user_id,$case_id,$system_case_id){
 
 
 
-          if($value->options_type == "radio"){
+          if($value->options_type == "radio" || $value->options_type == "checkbox" ){
            $userquestion[$key]['type']= "boolean";
-         }else{
+         }elseif($value->options_type == "number " ){
+          $userquestion[$key]['type']= "number";
+        }
+         else{
            $userquestion[$key]['type']= "string";
          }
 
@@ -1226,12 +1232,12 @@ function getCaseType($user_id,$case_id,$system_case_id){
     }
     $medication_compound_data = json_encode($medication_compound_data);
 
-   /* $input_md_data = '{"patient_id": '.$patient_id.',"case_files": [],"case_prescriptions": '.$medication_compound_data.',"case_questions": '.$userquestion.'}';
+    $input_md_data = '{"patient_id": '.$patient_id.',"case_files": [],"case_prescriptions": '.$medication_compound_data.',"case_questions": '.$userquestion.'}';
 
     echo "<pre>";
     print_r($input_md_data);
     echo "<pre>";
-    exit();*/
+    exit();
 
     $curl = curl_init();
 

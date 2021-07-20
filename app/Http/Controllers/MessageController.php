@@ -250,7 +250,7 @@ class MessageController extends Controller
     
         //validation 
         $data = $request->all(); 
-        $data['from'] = 'support';
+        //$data['from'] = 'support';
         $validator = Validator::make($data, [
           'user_id' => 'required',
           'case_id' => 'required',
@@ -259,7 +259,7 @@ class MessageController extends Controller
           'from' => 'required',
         ]);
         if($validator->fails()){
-          return $this->sendError('Validation Error.', $validator->errors()->all());       
+          //return $this->sendError('Validation Error.', $validator->errors()->all());       
         }
         //end of validation
         if(!empty($documents)){

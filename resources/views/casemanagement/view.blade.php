@@ -477,12 +477,14 @@
 										<h3 class="font-weight-bold"><span class="text-underline">Pharmacy Preference</span></h3>
 
 										<div class="col-md-6  form-group">
+											<table >
+											</table>
 											<?php 
 											// if (isset($skincare_summary['pharmacy_pickup']) && $skincare_summary['pharmacy_pickup'] != '') { ?>
 												<!-- {{$skincare_summary['pharmacy_pickup']}} -->
 											<?php 
 											// } 
-											print_r($pharma_change);
+											
 											?>
 
 										</div>

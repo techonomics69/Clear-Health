@@ -24,6 +24,8 @@ class MessageController extends Controller
     public function show($case_id, Request $request)
     {
         // DB::enableQueryLog();
+        $case = CaseManagement::find($case_id);
+        dd($case);
         $mdList = DB::table('md_messages')
             ->where('case_id', $case_id)
             ->join('users', 'users.id', '=', 'md_messages.user_id')
@@ -235,8 +237,7 @@ class MessageController extends Controller
         $token_data = json_decode($r);
         $token = $token_data->access_token;
     
-        echo '<pre>';
-        print_r($token_data);       
+               
         $documents = $request->file('file');
         $name = $request->name;
         $user_id = $request->user_id;

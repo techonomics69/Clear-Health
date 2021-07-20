@@ -36,7 +36,7 @@
                                             <ul class="nav nav-tabs" id="messages-tab-menu">
                                                 <li><a class="btn active" data-toggle="tab" href="#medical">Medical Messgaes</a></li>
                                                 <li><a class="btn nonmedicalmsg" data-toggle="tab" href="#nonmedical">Non-Medical Messgaes</a></li>
-                                                <li><a class="btn support" data-toggle="tab" href="#support">Support</a></li>
+                                                <li><a class="btn support" data-toggle="tab" href="#supportMsg">Support</a></li>
                                             </ul>
                                             <div class="tab-content">
                                                 <div id="medical" class="tab-pane fade in active show">
@@ -68,7 +68,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div id="support" class="tab-pane fane in support"></div>
+
                                                 <div id="nonmedical" class="tab-pane fade in nonmedicalmsg">
                                                     <div class="row" style="padding: 10px;">
                                                         <div class="col-md-3">
@@ -143,10 +143,12 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div id="support" class="tab-pane fane in support">
-
-                                                    </div>
                                                 </div>
+
+                                                <div id="support" class="tab-pane fane in support">
+                                                    hello
+                                                </div>
+                                            </div>
                                         </section>
                                     </div>
                                 </div>
@@ -201,7 +203,7 @@
                     $('#userId').val(result.userId);
                     $("#messageDataAdmin").animate({
                         scrollTop: $("#messageDataAdmin")[0].scrollHeight
-                    }, 1000);                    
+                    }, 1000);
                 }
             });
         });

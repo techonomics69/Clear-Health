@@ -73,6 +73,9 @@ class FollowupController extends BaseController
         $followUpAns = $followUpAns->update($data);
       else :
         $followUpAns = FollowUp::create($data);
+        $input_data['case_status'] = 'complete_follow_up';
+        $input_data['action_by'] = 'user';
+        $caseHistory = CaseHistory::where('case_id', $data['case_id'])->update($input_data);
       endif;
 
       return $this->sendResponse($followUpAns, 'Follow Up Answer Submitted Successfully');
@@ -107,87 +110,138 @@ class FollowupController extends BaseController
     $md_case_id = $request['md_case_id'];
 
     //try {
-      $validator = Validator::make($data, [
-        'user_id' => 'required',
-        'case_id' => 'required',
-        //'answer' => 'required',
-      ]);
+    $validator = Validator::make($data, [
+      'user_id' => 'required',
+      'case_id' => 'required',
+      //'answer' => 'required',
+    ]);
 
-      if ($validator->fails()) {
-        return $this->sendError('Validation Error.', $validator->errors()->all());
-      }
+    if ($validator->fails()) {
+      return $this->sendError('Validation Error.', $validator->errors()->all());
+    }
 
-      $destinationPath = public_path('/images/Users');
-      //$userGender = User::find($user_id)->gender;
-      $userGender = User::select('gender')->where('id', $data['user_id'])->first();
-      $userGender = $userGender['gender'];
+    $destinationPath = public_path('/images/Users');
+    //$userGender = User::find($user_id)->gender;
+    $userGender = User::select('gender')->where('id', $data['user_id'])->first();
+    $userGender = $userGender['gender'];
 
-      $followUpAns = FollowUp::where('user_id', $data['user_id'])
-        ->where('case_id', $data['case_id'])
-        ->where('follow_up_status', '<>', 'completed')
-        ->first();
-      if ($request['left_face'] != '') {
-        $left_face = $request['left_face'];
-        $left_face_file_name =  $user_id . '_left_face_' . time() . '.jpeg';
-        $img_destinationPath = $this->createImage($left_face, $left_face_file_name);
-        $data['left_face'] = $left_face_file_name;
+    $followUpAns = FollowUp::where('user_id', $data['user_id'])
+      ->where('case_id', $data['case_id'])
+      ->where('follow_up_status', '<>', 'completed')
+      ->first();
+    if ($request['left_face'] != '') {
+      $left_face = $request['left_face'];
+      $left_face_file_name =  $user_id . '_left_face_' . time() . '.jpeg';
+      $img_destinationPath = $this->createImage($left_face, $left_face_file_name);
+      $data['left_face'] = $left_face_file_name;
 
-        $documents =  $img_destinationPath;
-        $name = 'left_face';
-        $file_id = createFollowupCaseFile($documents,$name,$user_id,$md_case_id,$case_id);
-        $data['left_face_file_id'] = $file_id;
-      }
+      $documents =  $img_destinationPath;
+      $name = 'left_face';
+      $file_id = createFollowupCaseFile($documents, $name, $user_id, $md_case_id, $case_id);
+      $data['left_face_file_id'] = $file_id;
+    }
 
-      if ($request['right_face'] != '') {
-        $right_face = $request['right_face'];
-        $right_face_file_name =  $user_id . '_right_face_' . time() . '.jpeg';
-        $img_destinationPath = $this->createImage($right_face, $right_face_file_name);
-        $data['right_face'] = $right_face_file_name;
+    if ($request['right_face'] != '') {
+      $right_face = $request['right_face'];
+      $right_face_file_name =  $user_id . '_right_face_' . time() . '.jpeg';
+      $img_destinationPath = $this->createImage($right_face, $right_face_file_name);
+      $data['right_face'] = $right_face_file_name;
 
-        $documents =  $img_destinationPath;
-        $name = 'right_face';
-        $file_id = createFollowupCaseFile($documents,$name,$user_id,$md_case_id,$case_id);
-        $data['right_face_file_id'] = $file_id;
-      }
+      $documents =  $img_destinationPath;
+      $name = 'right_face';
+      $file_id = createFollowupCaseFile($documents, $name, $user_id, $md_case_id, $case_id);
+      $data['right_face_file_id'] = $file_id;
+    }
 
 
-      if ($request['center_face'] != '') {
-        $center_face = $request['center_face'];
-        $center_face_file_name =  $user_id . '_center_face_' . time() . '.jpeg';
-        $img_destinationPath =$this->createImage($center_face, $center_face_file_name);
-        $data['center_face'] = $center_face_file_name;
+    if ($request['center_face'] != '') {
+      $center_face = $request['center_face'];
+      $center_face_file_name =  $user_id . '_center_face_' . time() . '.jpeg';
+      $img_destinationPath = $this->createImage($center_face, $center_face_file_name);
+      $data['center_face'] = $center_face_file_name;
 
-        $documents =  $img_destinationPath;
-        $name = 'center_face';
-        $file_id = createFollowupCaseFile($documents,$name,$user_id,$md_case_id,$case_id);
-        $data['center_face_file_id'] = $file_id;
-      }
+      $documents =  $img_destinationPath;
+      $name = 'center_face';
+      $file_id = createFollowupCaseFile($documents, $name, $user_id, $md_case_id, $case_id);
+      $data['center_face_file_id'] = $file_id;
+    }
 
-      if ($request['back_photo'] != '') {
-        $back_photo = $request['back_photo'];
-        $back_photo_file_name =  $user_id . 'back_photo' . time() . '.jpeg';
-        $img_destinationPath = $this->createImage($back_photo, $back_photo_file_name);
-        $data['back_photo'] = $back_photo_file_name;
+    if ($request['back_photo'] != '') {
+      $back_photo = $request['back_photo'];
+      $back_photo_file_name =  $user_id . 'back_photo' . time() . '.jpeg';
+      $img_destinationPath = $this->createImage($back_photo, $back_photo_file_name);
+      $data['back_photo'] = $back_photo_file_name;
 
-        $documents =  $img_destinationPath;
-        $name = 'back_photo';
-        $file_id = createFollowupCaseFile($documents,$name,$user_id,$md_case_id,$case_id);
-        $data['back_photo_file_id'] = $file_id;
-      }
+      $documents =  $img_destinationPath;
+      $name = 'back_photo';
+      $file_id = createFollowupCaseFile($documents, $name, $user_id, $md_case_id, $case_id);
+      $data['back_photo_file_id'] = $file_id;
+    }
 
-      if ($request['chest_photo'] != '') {
-        $chest_photo = $request['chest_photo'];
-        $chest_photo_file_name =  $user_id . 'chest_photo' . time() . '.jpeg';
-        $img_destinationPath = $this->createImage($chest_photo, $chest_photo_file_name);
-        $data['chest_photo'] = $chest_photo_file_name;
-        if ($userGender == 'male') :
+    if ($request['chest_photo'] != '') {
+      $chest_photo = $request['chest_photo'];
+      $chest_photo_file_name =  $user_id . 'chest_photo' . time() . '.jpeg';
+      $img_destinationPath = $this->createImage($chest_photo, $chest_photo_file_name);
+      $data['chest_photo'] = $chest_photo_file_name;
+      if ($userGender == 'male') :
+        $data['follow_up_status'] = 'completed';
+        $caseManage = CaseManagement::find($case_id);
+        if ($caseManage) :
+          $case_data['follow_up'] = $followUpAns['follow_up_no'];
+          $caseSave = $caseManage->update($case_data);
+          $input_data['case_status'] = 'prior_auth';
+          $input_data['action_by'] = 'admin';
+          $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
+
+          $noti_input_data = array();
+          $noti_input_data['user_id'] = $user_id;
+          $noti_input_data['case_id'] = $case_id;
+          $noti_input_data['md_case_id'] = $md_case_id;
+          $noti_input_data['noti_message'] = getNotificationMessageFromKey('follow_up_case_submitted');
+          $noti_input_data['for_month'] = $followUpAns['follow_up_no'] + 1;
+
+          $noti_data = Notifications::create($noti_input_data);
+        endif;
+      endif;
+
+      $documents =  $img_destinationPath;
+      $name = 'chest_photo';
+      $file_id = createFollowupCaseFile($documents, $name, $user_id, $md_case_id, $case_id);
+      $data['chest_photo_file_id'] = $file_id;
+    }
+
+    if ($request->file('pregnancy_test') != '') {
+      $pregnancy_test = $request->file('pregnancy_test');
+      if (!empty($pregnancy_test)) {
+        $pregnancy_test_file =  $pregnancy_test->getClientOriginalName();
+        $pregnancy_test_file_name =  time() . '-' . $pregnancy_test_file;
+
+        if (!file_exists(public_path('/images/Users'))) {
+          File::makeDirectory(public_path('/images/Users'), 0777, true, true);
+        }
+
+        $pregnancy_test->move($destinationPath, $pregnancy_test_file_name);
+
+        chmod($destinationPath . "/" . $pregnancy_test_file_name, 0777);
+
+        $data['pregnancy_test'] = $pregnancy_test_file_name;
+
+        $documents =  $destinationPath . "/" . $pregnancy_test_file_name;
+        $name = 'pregnancy_test';
+        $file_id = createFollowupCaseFile($documents, $name, $user_id, $md_case_id, $case_id);
+        $data['pregnancy_test_file_id'] = $file_id;
+
+
+        if ($userGender == 'female') :
           $data['follow_up_status'] = 'completed';
           $caseManage = CaseManagement::find($case_id);
           if ($caseManage) :
+            // echo '<pre>';
+            // print_r($followUpAns);
+            // die;
             $case_data['follow_up'] = $followUpAns['follow_up_no'];
             $caseSave = $caseManage->update($case_data);
-            $input_data['case_status'] = 'prior_auth';
-            $input_data['action_by'] = 'admin';
+            $input_data['case_status'] = 'verify_pregnancy';
             $caseHistory = CaseHistory::where('case_id', $request['case_id'])->update($input_data);
 
             $noti_input_data = array();
@@ -195,71 +249,20 @@ class FollowupController extends BaseController
             $noti_input_data['case_id'] = $case_id;
             $noti_input_data['md_case_id'] = $md_case_id;
             $noti_input_data['noti_message'] = getNotificationMessageFromKey('follow_up_case_submitted');
-            $noti_input_data['for_month'] = $followUpAns['follow_up_no']+1;
+            $noti_input_data['for_month'] = $followUpAns['follow_up_no'] + 1;
 
             $noti_data = Notifications::create($noti_input_data);
           endif;
         endif;
-
-        $documents =  $img_destinationPath;
-        $name = 'chest_photo';
-        $file_id = createFollowupCaseFile($documents,$name,$user_id,$md_case_id,$case_id);
-        $data['chest_photo_file_id'] = $file_id;
       }
+    }
 
-      if ($request->file('pregnancy_test') != '') {
-        $pregnancy_test = $request->file('pregnancy_test');
-        if (!empty($pregnancy_test)) {
-          $pregnancy_test_file =  $pregnancy_test->getClientOriginalName();
-          $pregnancy_test_file_name =  time() . '-' . $pregnancy_test_file;
+    if (!empty($followUpAns)) :
+      $followUpAns = $followUpAns->update($data);
 
-          if (!file_exists(public_path('/images/Users'))) {
-            File::makeDirectory(public_path('/images/Users'), 0777, true, true);
-          }
+    endif;
 
-          $pregnancy_test->move($destinationPath, $pregnancy_test_file_name);
-
-          chmod($destinationPath . "/" . $pregnancy_test_file_name, 0777);
-
-          $data['pregnancy_test'] = $pregnancy_test_file_name;
-
-        $documents =  $destinationPath . "/" . $pregnancy_test_file_name;
-        $name = 'pregnancy_test';
-        $file_id = createFollowupCaseFile($documents,$name,$user_id,$md_case_id,$case_id);
-        $data['pregnancy_test_file_id'] = $file_id;
-
-
-          if ($userGender == 'female') :
-            $data['follow_up_status'] = 'completed';
-            $caseManage = CaseManagement::find($case_id);
-            if ($caseManage) :
-              // echo '<pre>';
-              // print_r($followUpAns);
-              // die;
-              $case_data['follow_up'] = $followUpAns['follow_up_no'];
-              $caseSave = $caseManage->update($case_data);
-              $input_data['case_status'] = 'verify_pregnancy';
-              $caseHistory = CaseHistory:: where('case_id', $request['case_id'])->update($input_data);
-
-              $noti_input_data = array();
-              $noti_input_data['user_id'] = $user_id;
-              $noti_input_data['case_id'] = $case_id;
-              $noti_input_data['md_case_id'] = $md_case_id;
-              $noti_input_data['noti_message'] = getNotificationMessageFromKey('follow_up_case_submitted');
-              $noti_input_data['for_month'] = $followUpAns['follow_up_no']+1;
-
-              $noti_data = Notifications::create($noti_input_data);
-            endif;
-          endif;
-        }
-      }
-
-      if (!empty($followUpAns)) :
-        $followUpAns = $followUpAns->update($data);
-
-      endif;
-
-      return $this->sendResponse($followUpAns, 'Follow Up Data Updated Successfully');
+    return $this->sendResponse($followUpAns, 'Follow Up Data Updated Successfully');
     /*} catch (\Exception $ex) {
       return $this->sendError('Server error', array($ex->getMessage()));
     }*/
@@ -289,20 +292,20 @@ class FollowupController extends BaseController
     return  $destinationPath;
   }
 
-  public function createFollowUpMDCase(request $request){
-      $user_id = $request['user_id'];
-      $case_id = $request['case_id'];
-      $followup_no = $request['follow_up_no'];
-      $preferred_pharmacy_id = getPickupPharmacy($user_id,$case_id);
-      $order_data = Checkout::where([['user_id', $user_id],['case_id', $case_id]])->select('id','order_id')->first();
+  public function createFollowUpMDCase(request $request)
+  {
+    $user_id = $request['user_id'];
+    $case_id = $request['case_id'];
+    $followup_no = $request['follow_up_no'];
+    $preferred_pharmacy_id = getPickupPharmacy($user_id, $case_id);
+    $order_data = Checkout::where([['user_id', $user_id], ['case_id', $case_id]])->select('id', 'order_id')->first();
 
-      $response = CreateFollowUPCase($user_id,$case_id,$preferred_pharmacy_id,$order_data['order_id'],$followup_no);
+    $response = CreateFollowUPCase($user_id, $case_id, $preferred_pharmacy_id, $order_data['order_id'], $followup_no);
 
-      if(!empty($response)){
-        return $this->sendResponse($response, 'MD Case Created Successfully');
-      }else{
-         return $this->sendError(array(),'something went wrong!');
-      }
-     
- }
+    if (!empty($response)) {
+      return $this->sendResponse($response, 'MD Case Created Successfully');
+    } else {
+      return $this->sendError(array(), 'something went wrong!');
+    }
+  }
 }

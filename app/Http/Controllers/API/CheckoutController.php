@@ -383,10 +383,10 @@ class CheckoutController extends BaseController
 
     $transaction_complete_details = json_decode($orderlist['transaction_complete_details']);
 
-    echo "<pre>";
-    print_r($transaction_complete_details);
-    echo "<pre>";
-    exit();
+    // echo "<pre>";
+    // print_r($transaction_complete_details);
+    // echo "<pre>";
+    // exit();
 
     $payment_method = 
 

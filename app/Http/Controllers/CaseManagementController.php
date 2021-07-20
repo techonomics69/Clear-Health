@@ -403,10 +403,10 @@ class CaseManagementController extends Controller
 
 
     $skincare_summary = CaseManagement::join('users', 'case_managements.user_id', '=', 'users.id')
-      ->join('checkout', 'checkout.case_id', '=', 'case_managements.id')
-      ->join('carts', 'checkout.cart_id', '=', 'carts.id')
-      ->join('products', 'products.id', '=', 'carts.product_id')
-      ->join('checkout_address', 'checkout_address.order_id', '=', 'checkout.order_id')
+      ->leftjoin('checkout', 'checkout.case_id', '=', 'case_managements.id')
+      ->leftjoin('carts', 'checkout.cart_id', '=', 'carts.id')
+      ->leftjoin('products', 'products.id', '=', 'carts.product_id')
+      ->leftjoin('checkout_address', 'checkout_address.order_id', '=', 'checkout.order_id')
       ->select(
         'checkout.order_id',
         'checkout.cart_id',
@@ -418,14 +418,75 @@ class CaseManagementController extends Controller
         'checkout_address.city',
         'checkout_address.state',
         'checkout_address.zipcode',
-        'products.price',
+        // 'products.price',
         'checkout.gift_code_discount',
         'checkout.shipstation_order_id'
       )
       ->where('case_managements.id', $id)->first();
-
+    
+    //  print_r($skincare_summary);   
+      // die();
+      
 
     $cart_ids = explode(',', $skincare_summary['cart_id']);
+    
+    $LogCartId = array();
+    if(is_array($cart_ids)){
+      if(count($cart_ids) > 0){
+        foreach($cart_ids as $ck => $cval){
+          $CartData = DB::table("carts as c")->leftJoin("pharmacy_change_log as  p",'p.cart_id','=','c.id')
+                  ->select("c.id")
+                  ->where("c.status",'purchased')
+                  ->where('c.order_type','Prescribed')
+                  ->where('c.id',$cval)->get();
+          if(count($CartData)>0){
+            $LogData = DB::table("pharmacy_change_log")->where('cart_id',$CartData[0]->id)->get();
+            if(count($LogData)>0){
+              foreach($LogData as $lk => $lval){
+                if ($LogData[0]->pharmacy_pickup != "cash") {
+                  $r = get_token();
+                  $token_data = json_decode($r);
+                  $token = $token_data->access_token;
+                  $pharmacy_id = $lval->pharmacy_pickup;
+        
+                  $curl = curl_init();
+                  curl_setopt_array($curl, array(
+                    CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/pharmacies/' . $pharmacy_id,
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_ENCODING => '',
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 0,
+                    CURLOPT_FOLLOWLOCATION => true,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => 'GET',
+                    CURLOPT_HTTPHEADER => array(
+                      'Authorization: Bearer ' . $token,
+                    ),
+                  ));
+        
+                  $res = curl_exec($curl);
+                  curl_close($curl);
+                  $res1 = json_decode($res);
+                  if (isset($res1)) {
+                    if (count($res1) > 0) {
+                      $LogData[$lk]->pharmacy_pickup =  $res1->name;
+                    }
+                  }
+                } else {
+                  $LogData[$lk]->pharmacy_pickup = 'Clear Health Pharmacy Network';
+                }
+              }
+            }
+           
+            array_push($LogCartId, $LogData);
+          }
+        }
+      }
+    }
+
+    $pharma_change = $LogCartId;
+    
+    
 
     if (isset($skincare_summary['shipstation_order_id'])) {
       $app = App::getFacadeRoot();
@@ -717,7 +778,7 @@ die();*/
     // dd(json_decode(json_encode($subscription_data), true));
 
 
-    return view('casemanagement.view', compact('user_case_management_data', 'category', 'general', 'general_que', 'accutane_que', 'topical_que', 'skincare_summary', 'message_data', 'message_details', 'msg_history', 'followup_que', 'prescribe_shipments', 'checkout', 'user_pic', 'subscription_data', 'logs', 'case_status_history'));
+    return view('casemanagement.view', compact('user_case_management_data', 'category', 'general', 'general_que', 'accutane_que', 'topical_que', 'skincare_summary', 'message_data', 'message_details', 'msg_history', 'followup_que', 'prescribe_shipments', 'checkout', 'user_pic', 'subscription_data', 'logs', 'case_status_history','pharma_change'));
   }
 
 

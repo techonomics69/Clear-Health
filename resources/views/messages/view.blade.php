@@ -145,9 +145,80 @@
                                                     </div>
                                                 </div>
 
-                                                <div id="support" class="tab-pane fane in support">
-                                                    hello
+                                                <div id="supportMsg" class="tab-pane fane in support">
+                                                    <div class="row" style="padding: 10px;">
+                                                        <div class="col-md-3">
+                                                            <div class="right_chating">
+                                                                <div class="right-cht">
+                                                                    <div class="chating-section">
+                                                                        <ul>                                                                           
+                                                                            <li class="mdSupport"><strong>MD Support</strong>
+                                                                               
+                                                                                <span class="badge badge-danger support_msg_count">1</span>
+                                                                                
+                                                                                <p>last msg</p>
+                                                                                <small>msg time</small>
+                                                                            </li>                                                                            
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-9">
+
+                                                            <div class="right-cht ">
+                                                                <div class="right_block">
+                                                                    <div class="chating-section supportmessages" id="chating-section">
+                                                                        <h3>MD Support</h3>
+                                                                        <ul id="messageDataSupport"></ul>
+                                                                    </div>
+
+                                                                    <div class="row">
+                                                                        <div class="col-lg-12">
+                                                                            <div class="imgDiv" id="supportImgDiv" style="display: none;">
+                                                                                <div class="imgs"> <i class="fa fa-close" id="clearImg" style="font-size: 20px;"></i></div>
+                                                                                <div class="imgs-picture">
+                                                                                    <img id="supportBlah" src="#" alt="image" />
+                                                                                </div>
+
+
+                                                                            </div>
+                                                                        </div>
+
+
+
+                                                                        <div id="last-typing-section" class="last-typing-section">
+                                                                            <form method="post" id="support-upload-image-form" enctype="multipart/form-data">
+                                                                                @csrf
+                                                                                <div class="attachment lastimg pinclip">
+                                                                                    <div class="variants">
+                                                                                        <div class='file'>
+                                                                                            <label for='file'>
+                                                                                                <img src="{{asset('public/images/paperclip.png')}}" alt="">
+                                                                                            </label>
+                                                                                            <input id="supportFile" type="file" name="file">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="search">
+                                                                                    <input class="form-control" type="text" name="text" placeholder="Type a message..." id="supportText">
+                                                                                    <input type="hidden" id="supportUserId" name="user_id" value="">
+                                                                                    <input type="hidden" id="supportCase_id" name="case_id" value="{{$case_id}}">
+                                                                                </div>
+                                                                                <div class="sending lastimg">
+                                                                                    <button type="button" id="sendSupportMsg"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
+
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
+                                            </div>
                                         </section>
                                     </div>
                                 </div>

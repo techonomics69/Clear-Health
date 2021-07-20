@@ -113,7 +113,7 @@ class CartController extends BaseController
                 $cart = Cart::where('id',$id)->update($data);
                 if(isset($data['pharmacy_pickup'])){
                     $cartData = Cart::select('id','user_id','product_id','pharmacy_pickup')->where('id',$id)->first();
-                    $logArr = array('cart_id'=>$id,'user_id'=>$cartData['id'],'product_id'=>$cartData['product_id'],
+                    $logArr = array('cart_id'=>$id,'user_id'=>$cartData['user_id'],'product_id'=>$cartData['product_id'],
                                 'pharmacy_pickup'=>$cartData['pharmacy_pickup']);
                     $Log = PharmacyLog::create($logArr);
                 }

@@ -372,11 +372,24 @@ class CheckoutController extends BaseController
         'checkout.shipstation_order_id',
         'checkout.medication_type',
         'checkout.transaction_complete_details',
+        'checkout.payment_method',
+        'checkout.payment_status',
         'checkout.cancel_request'
       )
       ->where('checkout.id', $request->id)
       ->OrderBy('id', 'DESC')
       ->first();
+
+
+    $transaction_complete_details = json_decode($orderlist['transaction_complete_details']);
+
+    echo "<pre>";
+    print_r($transaction_complete_details);
+    echo "<pre>";
+    exit();
+
+    $payment_method = 
+
 
     $curexa_data = CurexaOrder::where('order_id',$orderlist['order_id'])->first();
 

@@ -148,6 +148,7 @@
                                                 <div id="support" class="tab-pane fane in support">
                                                     hello
                                                 </div>
+                                            </div>
                                         </section>
                                     </div>
                                 </div>

@@ -12,6 +12,7 @@ use App\Models\Messages;
 use App\Models\MessageFiles;
 use App\Models\SupportMessages;
 use App\Models\SupportMessagesFiles;
+use Illuminate\Support\Facades\Validator;
 
 
 class MessageController extends Controller

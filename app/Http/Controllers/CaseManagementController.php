@@ -446,7 +446,7 @@ class CaseManagementController extends Controller
             if(count($LogData)>0){
               foreach($LogData as $lk => $lval){
                 if ($LogData[0]->pharmacy_pickup != "cash") {
-                  $prod = Product::
+                  
                   $r = get_token();
                   $token_data = json_decode($r);
                   $token = $token_data->access_token;

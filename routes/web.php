@@ -298,6 +298,7 @@ Route::group(['middleware' => ['auth:web']], function () {
     Route::post('admin/getMedicalMessage', [MessageController::class, 'getMedicalMessage'])->name('getMedicalMessage');
     Route::post('admin/getNonMedicalMessage', [MessageController::class, 'getNonMedicalMessage'])->name('getNonMedicalMessage');
     Route::post('admin/sendNonMedicalMessage', [MessageController::class, 'sendNonMedicalMessage'])->name('sendNonMedicalMessage');
+    Route::post('admin/sendSupportMessage', [MessageController::class, 'sendSupportMessage'])->name('sendSupportMessage');
 });
 
 //Strip Payment APIs

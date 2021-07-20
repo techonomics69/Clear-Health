@@ -270,6 +270,16 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                     if($support_reason != NULL && empty($follow_up_data)){
 
+                      /*to manage patient action*/
+
+                      $input_data['case_status'] = 'submission_of_iPledge';
+                      $input_data['action_by'] = 'user';
+                      $caseHistory = CaseHistory::where('case_id',$system_case_id)->update($input_data);
+
+                      /*end of code to manage patient action */
+
+
+
                       $email_data = array();
 
                 $email_data['email'] = $user_email;//'itqatester12@gmail.com';
@@ -1041,6 +1051,13 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
         //bloodwork sms
         $sms_sent = sendsms($bloodworksmsdata);
 
+        /*track patient action*/
+        $input_data['case_status'] = 'complete_bloodwork';
+        $input_data['action_by'] = 'user';
+        $caseHistory = CaseHistory::where('case_id', $system_case_id)->update($input_data);
+
+        /*end of code to track patient action*/
+
       }
 
       if($preferred_pharmacy_id !='13012' && $pickup_medication_difference == 60){
@@ -1049,6 +1066,13 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
         //welcome sms
         $sms_sent = sendsms($bloodworksmsdata);
+
+        /*track patient action*/
+        $input_data['case_status'] = 'complete_bloodwork';
+        $input_data['action_by'] = 'user';
+        $caseHistory = CaseHistory::where('case_id', $system_case_id)->update($input_data);
+
+        /*end of code to track patient action*/
       }
 
       //end of bloodwork notification
@@ -1112,6 +1136,13 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
                   //welcome sms
         $sms_sent = sendsms($bloodworksmsdata);
 
+        /*track patient action*/
+        $input_data['case_status'] = 'complete_bloodwork';
+        $input_data['action_by'] = 'user';
+        $caseHistory = CaseHistory::where('case_id', $system_case_id)->update($input_data);
+
+        /*end of code to track patient action*/
+
       }
 
       if($preferred_pharmacy_id !='13012' && $pickup_medication_difference == 60){
@@ -1120,6 +1151,13 @@ class CaseStatusUpdateGetPrescriptionController extends Controller
 
                   //welcome sms
         $sms_sent = sendsms($bloodworksmsdata);
+
+        /*track patient action*/
+        $input_data['case_status'] = 'complete_bloodwork';
+        $input_data['action_by'] = 'user';
+        $caseHistory = CaseHistory::where('case_id', $system_case_id)->update($input_data);
+
+        /*end of code to track patient action*/
       }
 
                 //end of bloodwork notification

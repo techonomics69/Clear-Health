@@ -116,6 +116,7 @@ class CartController extends BaseController
                     $logArr = array('cart_id'=>$id,'user_id'=>$cartData['user_id'],'product_id'=>$cartData['product_id'],
                                 'pharmacy_pickup'=>$cartData['pharmacy_pickup']);
                     $Log = PharmacyLog::create($logArr);
+                    
                 }
             }else{
                 return $this->sendError('Server error', array('Item Not Found'));

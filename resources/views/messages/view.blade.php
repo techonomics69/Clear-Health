@@ -208,7 +208,7 @@
                                                                                     <input type="hidden" id="supportMd_case_id" name="md_case_id" value="{{$md_case_id}}">
                                                                                     <input type="hidden" name="prioritized" value="true">
                                                                                     <input type="hidden" name="prioritized_reason" value="He needs the prescription for tomorrow.">
-                                                                                    <input type="hidden" name="from" value="admin">
+                                                                                    <input type="hidden" name="from" value="support">
                                                                                 </div>
                                                                                 <div class="sending lastimg">
                                                                                     <button type="button" id="sendSupportMsg"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
@@ -364,7 +364,7 @@
                         }
                         if (result.file) {
                             $('#messageDataSupport').append(
-                                '<li class="right"><div class="time_messages"><p class="text_mesg"><a href="' + result.url + result.file + '" target="_blank"><img src="' + result.url + result.file + '" style="width:50px; height:50px; object-fit: contain;"></p><h5>' + result.time + '</h5></div></li>'
+                                '<li class="right"><div class="time_messages"><p class="text_mesg"><a href="' + result.url + '" target="_blank"><img src="' + result.file + '" style="width:50px; height:50px; object-fit: contain;"></p><h5>' + result.time + '</h5></div></li>'
                             )
                         }
                     }
@@ -374,8 +374,7 @@
                 }
             });
         });
-        $(document).on('change', '#supportFile', function(e) {
-            alert();
+        $(document).on('change', '#supportFile', function(e) {            
             $('#supportImgDiv').show();
             let reader = new FileReader();
             reader.onload = (e) => {

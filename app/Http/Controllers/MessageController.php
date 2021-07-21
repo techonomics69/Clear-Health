@@ -353,7 +353,7 @@ class MessageController extends Controller
         $postfields['prioritized_reason'] = $request['prioritized_reason'];
         $postfields['message_files'] = $file_ids;
 
-        echo '<pre>'; print_r($postfields); die;
+       
         $postfields = json_encode($postfields);
 
         $curl = curl_init();
@@ -377,7 +377,7 @@ class MessageController extends Controller
         ));
 
         $response = curl_exec($curl);
-        echo '<pre>'; print_r($response); die;
+        
         $message_data = json_decode($response);
 
         $input_data1 = array();
@@ -404,9 +404,10 @@ class MessageController extends Controller
         $createdAt = Carbon::now();
         $time =  $createdAt->diffForHumans();
         $result['time'] = $time;
-        $result['file'] = $file_path;
+        $result['file'] = $message_file_data->url_thumbnail;
+        $result['url'] = $message_file_data->url;;
         $result['text'] = $message_data['text'];
-        $result['url'] = url('') . '/';
+        //$result['url'] = url('') . '/';
         if ($message_data) {
             return json_encode($result);
         } else {

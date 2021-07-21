@@ -50,7 +50,7 @@
 						<section class="card" >
 							
 							<ul class="nav nav-tabs" id="casemanagement-tab-menu">
-								<li><a class="btn " data-toggle="tab" ><span>@if($order_data['status'] == "cancelled") Order cancelled @endif</span> </a></li>
+								<li><a class="btn " data-toggle="tab" >@if($order_data['status'] == "cancelled") Order cancelled @endif</a></li>
 							   <!-- <a class="btn" data-toggle="tab" href="#shipments">Shipments </a> -->
 
 							

@@ -1462,38 +1462,38 @@ function UpdateCasePrescriptions($user_id,$case_id,$md_case_id,$preferred_pharma
   $token = $token_data->access_token;
 
 
-    $product_type = getUserProduct($user_id,$case_id);
+  $product_type = getUserProduct($user_id,$case_id);
 
-    if($product_type == 'Topical_low'){
+  if($product_type == 'Topical_low'){
 
-     $product_name = "Low Tretinoin 0.04% Topical";
+   $product_name = "Low Tretinoin 0.04% Topical";
 
-   }
+ }
 
-   if($product_type == 'Topical_high'){
+ if($product_type == 'Topical_high'){
 
-     $product_name = "High Tretinoin 0.09% Topical";
+   $product_name = "High Tretinoin 0.09% Topical";
 
-   }
+ }
 
-   if($product_type == 'Azelaic_Acid'){
+ if($product_type == 'Azelaic_Acid'){
 
-     $product_name = "Azelaic Acid 5% Topical";
+   $product_name = "Azelaic Acid 5% Topical";
 
-   }
-   if($product_type == 'Accutane'){
+ }
+ if($product_type == 'Accutane'){
 
-     $product_name = "ISOtretinoin (oral - capsule)";
+   $product_name = "ISOtretinoin (oral - capsule)";
 
-   }
+ }
 
-   $removed_space_pro_name = str_replace(" ","%20",$product_name);
+ $removed_space_pro_name = str_replace(" ","%20",$product_name);
 
  
 
-   $accutan_strength = 30;
+ $accutan_strength = 30;
 
-if($product_type !="Accutane"){
+ if($product_type !="Accutane"){
 
   $days_supply = "60";
   $refills = "11";
@@ -1606,14 +1606,6 @@ if($product_type !="Accutane"){
     }
     $medication_compound_data = json_encode($medication_compound_data);
 
-    echo "<pre>";
-    print_r($medication_compound_data);
-    echo "<pre>";
-
-     echo "<pre>";
-    print_r('https://api.mdintegrations.xyz/v1/partner/cases/'.$md_case_id.'/prescriptions');
-    echo "<pre>";
-    exit();
 
     //$input_md_data = '{"case_prescriptions": '.$medication_compound_data.'}';
 
@@ -1622,7 +1614,7 @@ if($product_type !="Accutane"){
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$md_case_id.'/prescriptions',
+      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/04b3b23c-d0de-4302-a245-5a6eb1d5b870/prescriptions',
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => '',
       CURLOPT_MAXREDIRS => 10,
@@ -1631,15 +1623,15 @@ if($product_type !="Accutane"){
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => 'PATCH',
       CURLOPT_POSTFIELDS =>$medication_compound_data,
-    CURLOPT_HTTPHEADER => array(
-      'Content-Type: application/json'
-    ),
-  ));
+      CURLOPT_HTTPHEADER => array(
+        'Content-Type: application/json',
+        'Authorization: Bearer '.$token
+      ),
+    ));
 
     $response = curl_exec($curl);
 
     curl_close($curl);
-   /* echo $response;*/
 
     echo "<pre>";
     print_r($response);
@@ -1675,11 +1667,11 @@ if($product_type !="Accutane"){
     $update_order_data  =  Checkout::where('case_id',$case_id)->where('user_id',$user_id)->where('id',$order_id)->update(['md_case_id' => $case_data->case_id]);*/
 
 
- 
+
 
   //return $response;
-}
+  }
 
 
 
-?>
+  ?>

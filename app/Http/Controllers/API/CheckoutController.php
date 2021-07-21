@@ -783,6 +783,11 @@ class CheckoutController extends BaseController
    
       $order_data = Checkout::where('id', $checkout_id)->first();
 
+      echo "<pre>";
+      print_r($order_data);
+      echo "<pre>";
+      exit();
+
        
       $cart_ids = explode(',', $order_data['cart_id']);
      

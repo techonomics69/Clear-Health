@@ -341,7 +341,7 @@ class MessageController extends Controller
             $file_ids[] = $message_file_data->file_id;
         }
         // end of code to get files ids
-        echo '<pre>'; print_r($file_ids);
+        
         $postfields = array();
         $postfields['from'] = $request['from'];
         $postfields['text'] = $request['text'];
@@ -353,6 +353,7 @@ class MessageController extends Controller
         $postfields['prioritized_reason'] = $request['prioritized_reason'];
         $postfields['message_files'] = $file_ids;
 
+        echo '<pre>'; print_r($postfields); die;
         $postfields = json_encode($postfields);
 
         $curl = curl_init();
@@ -365,8 +366,8 @@ class MessageController extends Controller
             CURLOPT_TIMEOUT => 0,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            //CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POST => TRUE,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            //CURLOPT_POST => TRUE,
             CURLOPT_POSTFIELDS => $postfields,
             CURLOPT_HTTPHEADER => array(
                 'Content-Type: application/json',

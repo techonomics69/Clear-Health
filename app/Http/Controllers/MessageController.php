@@ -70,7 +70,7 @@ class MessageController extends Controller
             ->join('users', 'users.id', '=', 'support_messages.user_id')
             ->select(
                 DB::raw('count(*) as user_count, support_messages.user_id, users.first_name, users.last_name, support_messages.case_id'),
-                DB::raw('(SELECT m.text from support_messages as m where m.user_id=users.id order by m.id desc limit 1) as last_msg'),
+                DB::raw('(SELECT m.text m.md_case_id from support_messages as m where m.user_id=users.id order by m.id desc limit 1) as last_msg'),
                 DB::raw('(SELECT m.created_at from support_messages as m where m.user_id=users.id order by m.id desc limit 1) as msg_time')
             )
             ->groupBy('support_messages.user_id')

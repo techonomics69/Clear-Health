@@ -165,13 +165,13 @@ class CustomerController extends Controller
             }
 
             $action1 = '<div class="d-flex">
-                <a class="icons edit-icon" href="{{'. route('customers.show',$user->id).'}}"><i class="fa fa-eye"></i></a> <a class="icons edit-icon" href="{{'. route('customers.edit',$user->id) .'}}"><i class="fa fa-edit"></i></a>{!! Form::open(["method" => "DELETE","route" => ["customers.destroy", $user->id],"style"=>"display:inline"]) !!}<a class="icons edit-icon customer_delete" href="#" id="{{$user->id}}" onclick="deleteCustomer({{$user->id}})"><i class="fa fa-trash" aria-hidden="true"></i></a><button type="submit" class="btn_delete{{$user->id}}" style="display:none;"></button>{!! Form::close() !!}
+                <a class="icons edit-icon" href="'. route('customers.show',$value['id']).'"><i class="fa fa-eye"></i></a> <a class="icons edit-icon" href="'. route('customers.edit',$value['id']) .'"><i class="fa fa-edit"></i></a><a class="icons edit-icon customer_delete" href="#" id="{{value["id"]}}" onclick="deleteCustomer({{value["id"]}})"><i class="fa fa-trash" aria-hidden="true"></i></a><button type="submit" class="btn_delete{{value["id"]}}" style="display:none;"></button>
                     </div>';
             $data[] = array(
                 'no' => $counter,
                 'firstname' => $value['first_name'],
                 'lastname' => $value['last_name'],
-                'gender' => (!empty($value['gender'])) ? strtoupper($value['gender'][0]) : '',
+                'gender' => (!empty($value['gender'])) ? strtoupper($value['gender']) : '',
                 'email' => $value['email'],
                 'dob' => $value['dob'],
                 'address' => $value['address'],

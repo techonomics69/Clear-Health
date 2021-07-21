@@ -38,7 +38,7 @@
           <!-- <header class="card-header top-heading">                
                 <h3 class="main-title-heading">Users Management</h3> 
               </header> -->
-          <div class="row" style="">
+          <div class="row" style="padding: 20px; cursor:pointer;">
             <div class="col-md-4">
                 <div class="form-group">
                 <select id="filter1" class="form-control" style="cursor:pointer;">

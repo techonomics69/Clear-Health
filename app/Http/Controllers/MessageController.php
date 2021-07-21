@@ -323,7 +323,7 @@ class MessageController extends Controller
         // //create message
     
         // }
-        $request->except('_token');    
+        $request = $request->except('_token');    
        
         echo '<pre>';
         print_r($request->all());

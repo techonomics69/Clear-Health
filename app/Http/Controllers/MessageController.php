@@ -85,7 +85,7 @@ class MessageController extends Controller
 
         $user_case_management_data['user_id'] = '';
         $user_case_management_data['id'] = '';
-        dd($supportList);
+       
         return view('messages.view', compact('user_case_management_data', 'mdList', 'adminMsg', 'case_id', 'md_case_id', 'user_id', 'supportList'));
     }
 

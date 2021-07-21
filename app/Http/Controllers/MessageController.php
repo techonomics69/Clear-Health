@@ -215,7 +215,7 @@ class MessageController extends Controller
 
 
         $createdAt = Carbon::now();
-        $time =  $createdAt->diffForHumans();     
+        $time =  $createdAt->diffForHumans();
         $result['time'] = $time;
         $result['file'] = $file_path;
         $result['text'] = $data['text'];
@@ -237,19 +237,20 @@ class MessageController extends Controller
     }
 
 
-    public function sendSupportMessage(Request $request){
-        
+    public function sendSupportMessage(Request $request)
+    {
+
         $r = get_token();
         $token_data = json_decode($r);
-        $token = $token_data->access_token;       
+        $token = $token_data->access_token;
         $documents = $request->file('file');
         $name = $request->name;
         $user_id = $request->user_id;
         $case_id = $request->md_case_id;
         $system_case_id = $request->case_id;
-    
+        $file_path = '';
         //validation 
-        $data = $request->all(); 
+        $data = $request->all();
         //$data['from'] = 'support';
         // $validator = Validator::make($data, [
         //   'user_id' => 'required',
@@ -265,28 +266,28 @@ class MessageController extends Controller
         // if(!empty($documents)){
         //   $file =  $documents->getClientOriginalName();
         //   $doc_file_name =  time().'-'.$file;
-          
+
         //   if (!file_exists(public_path('/Message_files'))) {
         //     File::makeDirectory(public_path('/Message_files'),0777,true,true);
         //   }
         //   $destinationPath = public_path('/Message_files');
         //   $documents->move($destinationPath, $doc_file_name);
-    
+
         //   chmod($destinationPath."/".$doc_file_name, 0777);
-    
+
         //   $file_path = 'public/Message_files/' .$file;
-    
+
         //   $fields = [
         //     'name' => $name,
         //     'file' => new \CurlFile($destinationPath."/".$doc_file_name)
         //   ];
-    
-    
+
+
         //   $input_data = $request->all();
-    
-    
+
+
         //   $curl = curl_init();
-    
+
         //   curl_setopt_array($curl, array(
         //     CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/files',
         //     CURLOPT_RETURNTRANSFER => true,
@@ -303,12 +304,12 @@ class MessageController extends Controller
         //       'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
         //     ),
         //   ));
-    
+
         //   $response = curl_exec($curl);
-    
+
         //   $message_file_data = json_decode($response);
         //   $input_data = array();
-    
+
         //   $input_data['md_case_id'] = $case_id;
         //   $input_data['system_file'] = $file_path;
         //   $input_data['user_id'] = $user_id;
@@ -318,63 +319,63 @@ class MessageController extends Controller
         //   $input_data['url'] = $message_file_data->url;
         //   $input_data['url_thumbnail'] = $message_file_data->url_thumbnail;
         //   $input_data['file_id'] = $message_file_data->file_id;
-    
+
         //   $message_file_data = SupportMessagesFiles::create($input_data);
-    
+
         // //create message
-    
+
         // }
-        $request = $request->except('_token');    
-       
-      
+        $request = $request->except('_token');
+
+
         //code to get files ids
-    
+
         $file_ids = array();
-    
-        if(!empty($message_file_data) && $message_file_data->file_id !=''){
-          $file_ids[] = $message_file_data->file_id;
+
+        if (!empty($message_file_data) && $message_file_data->file_id != '') {
+            $file_ids[] = $message_file_data->file_id;
         }
         // end of code to get files ids
-    
+
         $postfields = array();
         $postfields['from'] = $request['from'];
-        $postfields['text'] = $request['text']; 
-        if($request['prioritized'] == "true"){
-          $postfields['prioritized'] =  true;
-        }else{
-          $postfields['prioritized'] =  false;
+        $postfields['text'] = $request['text'];
+        if ($request['prioritized'] == "true") {
+            $postfields['prioritized'] =  true;
+        } else {
+            $postfields['prioritized'] =  false;
         }
         $postfields['prioritized_reason'] = $request['prioritized_reason'];
         $postfields['message_files'] = $file_ids;
-    
+
         $postfields = json_encode($postfields);
-     
-        $curl = curl_init();        
-        
+
+        $curl = curl_init();
+
         curl_setopt_array($curl, array(
-          CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/messages',
-          CURLOPT_RETURNTRANSFER => true,
-          CURLOPT_ENCODING => '',
-          CURLOPT_MAXREDIRS => 10,
-          CURLOPT_TIMEOUT => 0,
-          CURLOPT_FOLLOWLOCATION => true,
-          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-          //CURLOPT_CUSTOMREQUEST => 'POST',
-          CURLOPT_POST => TRUE,
-          CURLOPT_POSTFIELDS =>$postfields,
-          CURLOPT_HTTPHEADER => array(
-            'Content-Type: application/json',
-            'Authorization: Bearer '.$token,
-            'Cookie: __cfduid=da01d92d82d19a6cccebfdc9852303eb81620627650'
-          ),
+            CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/' . $case_id . '/messages',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            //CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POST => TRUE,
+            CURLOPT_POSTFIELDS => $postfields,
+            CURLOPT_HTTPHEADER => array(
+                'Content-Type: application/json',
+                'Authorization: Bearer ' . $token,
+                'Cookie: __cfduid=da01d92d82d19a6cccebfdc9852303eb81620627650'
+            ),
         ));
-    
+
         $response = curl_exec($curl);
-       
+
         $message_data = json_decode($response);
-        
+
         $input_data1 = array();
-    
+
         $input_data1['md_case_id'] = $case_id;
         $input_data1['user_id'] = $user_id;
         $input_data1['case_id'] = $system_case_id;
@@ -383,28 +384,40 @@ class MessageController extends Controller
         $input_data1['channel'] = $message_data->channel;
         $input_data1['prioritized_at'] = $message_data->prioritized_at;
         $input_data1['prioritized_reason'] = $message_data->prioritized_reason;
-            $input_data1['read_at'] = NULL ;//$message_data->read_at;
-            $input_data1['message_created_at'] = $message_data->created_at;
-            $input_data1['case_message_id'] = $message_data->case_message_id;
-            //$input_data['message_files_ids'] = json_encode($file_ids);
-            $input_data1['clinician  '] = $message_data->clinician ;
-            $message_data = SupportMessage::create($input_data1);
-            if(isset($message_file_data) && !empty($message_file_data)){
-             $message_data['message_file_data'] = $message_file_data;
-           }
-           
-    
-           if(!empty( $message_data)){
-            $message_data['date'] = date("M j H:i");
-            return $this->sendResponse($message_data,'Message created successfully');
-          }else{
-            return $this->sendResponse(array(),'Some thing went wrong.');
-          }
-    
-    
-        //end of create message
-    
-    
-    
+        $input_data1['read_at'] = NULL; //$message_data->read_at;
+        $input_data1['message_created_at'] = $message_data->created_at;
+        $input_data1['case_message_id'] = $message_data->case_message_id;
+        //$input_data['message_files_ids'] = json_encode($file_ids);
+        $input_data1['clinician  '] = $message_data->clinician;
+        $message_data = SupportMessage::create($input_data1);
+        if (isset($message_file_data) && !empty($message_file_data)) {
+            $message_data['message_file_data'] = $message_file_data;
         }
+
+
+        $createdAt = Carbon::now();
+        $time =  $createdAt->diffForHumans();
+        $result['time'] = $time;
+        $result['file'] = $file_path;
+        $result['text'] = $message_data['text'];
+        $result['url'] = url('') . '/';
+        if ($message_data) {
+            return json_encode($result);
+        } else {
+            return false;
+        }
+
+        // if (!empty($message_data)) {
+        //     $message_data['date'] = date("M j H:i");
+        //     return $this->sendResponse($message_data, 'Message created successfully');
+        // } else {
+        //     return $this->sendResponse(array(), 'Some thing went wrong.');
+        // }
+
+
+        //end of create message
+
+
+
+    }
 }

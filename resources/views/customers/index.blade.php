@@ -139,7 +139,7 @@
   });*/
 
    function InitilizeTable(searchValue){
-    alert('hello');
+
     var Datatable = $('#customerList').DataTable({
       // "dom": '<"top"if>rt<"bottom"lp><"clear">',
       "dom" : "<'row mb-2'<'col-sm-12 col-md-4 pl-4 actinc'l><'col-sm-12 col-md-8'f>>" +
@@ -205,7 +205,7 @@
             ],aoColumnDefs: [
               {
                 bSortable: false,
-                aTargets: [ 6,8,9,10,11,12 ]
+                //aTargets: [ 6,8,9,10,11,12 ]
               }
         ],
         language: {
@@ -263,7 +263,7 @@
             ],aoColumnDefs: [
               {
                 bSortable: false,
-                aTargets: [ 6,8,9,10,11,12 ]
+                //aTargets: [ 6,8,9,10,11,12 ]
               }
         ],
         language: {

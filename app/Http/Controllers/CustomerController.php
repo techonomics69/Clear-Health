@@ -132,8 +132,8 @@ class CustomerController extends Controller
 
         if (!empty($filterValue)) {
           //if (count($filterIn)) {
-            $user_data = $user_data->whereBetween('created_at',[$dateS,$dateE]);
-            $usercase_count = $usercase_count->whereBetween('created_at',[$dateS,$dateE]);
+            $user_data = $user_data->whereBetween('created_at',[$dateS->toDateString(),$dateE->toDateString()]);
+            $usercase_count = $usercase_count->whereBetween('created_at',[$dateS->toDateString(),$dateE->toDateString()]);
           //}
         }
 
@@ -143,21 +143,8 @@ class CustomerController extends Controller
 
         if (!empty($filterValue)) {
           //if (count($filterIn)) {
-            $user_data = $user_data->whereBetween('created_at',[$dateS,$dateE])->toSql();
+            $user_data = $user_data->whereBetween('created_at',[$dateS->toDateString(),$dateE->toDateString()])->toSql();
 
-
-             echo "<pre>";
-            print_r($dateS->format('Y-m-d H:i:s'));
-            echo "<pre>";
-
-             echo "<pre>";
-            print_r($dateE->format('Y-m-d H:i:s'));
-            echo "<pre>";
-
-            echo "<pre>";
-            print_r($user_data);
-            echo "<pre>";
-            exit();
             $usercase_count = $usercase_count->whereBetween('created_at',[$dateS->toDateString(),$dateE->toDateString()]);
           //}
         }

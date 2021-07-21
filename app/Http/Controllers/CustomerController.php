@@ -116,7 +116,7 @@ class CustomerController extends Controller
       $data = array();
       $searchValue = $_POST['search']['value'];
 
-      $user_data =User::where('role', '19')->orderBy('id','DESC')->get();
+      $user_data = DB::table('users')->where('role', '19');
 
       if ($searchValue != '') {
         $user_data = $user_data->where('role', '19')->where('id', 'like', "%{$searchValue}%")
@@ -156,10 +156,6 @@ class CustomerController extends Controller
 
         foreach ($user_data as $key => $value) {
 
-            echo "<pre>";
-            print_r($value);
-            echo "<pre>";
-            exit();
             $value = json_decode(json_encode($value), true);
 
             if ($columnSortOrder == "asc") {

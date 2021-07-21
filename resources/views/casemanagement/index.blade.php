@@ -41,7 +41,7 @@
           <div class="row" style="padding: 20px;">
             <div class="col-md-4">
 
-                <select id="filter1" class="form-control">
+                <select id="filter1" class="form-control" style="cursor:pointer;">
                     <option value="">--SELECT ACTION--</option>
                     <option value="All">All</option>
                     <option value="Action by admin" selected>Action by admin</option>

@@ -186,7 +186,7 @@ class CustomerController extends Controller
          $response = array(
       "draw" => intval($draw),
       "iTotalRecords" => $totalRecords,
-      "iTotalDisplayRecords" => $usercase_count,
+      "iTotalDisplayRecords" => $user_count,
       "aaData" => $data
     );
 

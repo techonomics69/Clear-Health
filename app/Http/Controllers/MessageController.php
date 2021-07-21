@@ -347,7 +347,9 @@ class MessageController extends Controller
         $postfields['message_files'] = $file_ids;
     
         $postfields = json_encode($postfields);
-    
+     echo '<pre>'; 
+        print_r($postfields);
+        die;
         $curl = curl_init();
     
        
@@ -372,7 +374,7 @@ class MessageController extends Controller
         $response = curl_exec($curl);
     
        
-        // $message_data = json_decode($response);
+        $message_data = json_decode($response);
         // echo '<pre>'; 
         // print_r($message_data);
         // die;

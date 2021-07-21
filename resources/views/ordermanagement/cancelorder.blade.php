@@ -61,7 +61,7 @@
                               
 							<ul class="nav nav-tabs" id="casemanagement-tab-menu">
                                <li><a class="btn " data-toggle="tab" style="background-color: #359b9e;
-    color: #ffffff;" > Order Cancelled</abstract></li> 
+    color: #ffffff;" > Order Cancelled</a></li> 
 
 							
 								<!-- <li><button type="button" id="cancelButton" class="btn btn-primary active">Cancel this order</button></li> -->

@@ -244,8 +244,8 @@ class MessageController extends Controller
         $documents = $request->file('file');
         $name = $request->name;
         $user_id = $request->user_id;
-        $case_id = $request->case_id;
-        $system_case_id = $request->system_case_id;
+        $case_id = $request->md_case_id;
+        $system_case_id = $request->case_id;
     
         //validation 
         $data = $request->all(); 

@@ -120,7 +120,14 @@
 
     $(document).ready(function() {
 
-    $("#filter1").change(function() {
+    $("#filter1").on('change', function(){    
+      alert("helloo");
+    // 2nd (A)
+    // do your code here
+    // It will specifically called on change of your element
+    });
+
+    /*$("#filter1").change(function() {
        alert('helloo');
         if ($(this).val() === 'Custome Dates'){ 
             $('input[name=from_date]').show();
@@ -129,7 +136,7 @@
             $('input[name=from_date]').hide();
             $('input[name=to_date]').hide(); 
         }
-    });
+    });*/
 });
 
        $(document).ready(function ($) {

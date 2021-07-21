@@ -453,6 +453,8 @@ class MessageController extends Controller
         $message = DB::table('support_messages')
             ->where('md_case_id', $data['md_case_id'])
             ->join('users', 'users.id', '=', 'support_messages.user_id')
+            ->leftjoin('message_files', 'support_messages.id', '=', 'support_messages_files.msg_id')
+            ->select('users.first_name', 'users.last_name', 'support_messages.user_id', 'support_messages.created_at', 'support_messages.text', 'support_messages.sender', 'support_messages_files.file_path', 'support_messages_files.mime_type')
             ->get();
         $username = '<b> MD Support</b>';
 

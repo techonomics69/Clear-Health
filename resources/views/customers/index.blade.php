@@ -40,14 +40,14 @@
               </header> -->
               <div class="row"  style="padding: 20px;">
                 <div class="col-md-12">
-
+{{-- 
                   <select id="filter1" class="form-control">
                     <option value="">--SELECT--</option>
                     <option value="Current Month">Current Month</option>
                     <option value="Last 3 Months">Last 3 Months</option>
                     <option value="Last 6 Months">Last 6 Months</option>
                     <option value="Custome Dates">Custome Dates</option>
-                </select>
+                </select> --}}
                 <div class="">
                   <table class="table  table-responsive table-striped table-bordered" style="width:100%" id="customerList">
                     <thead>
@@ -221,6 +221,114 @@
 
     });
   }
+
+    InitilizeTable('Action by admin');
+   
+   $(document).on('change','#filter1', function(){
+    
+    var filter_value = $(this).val();
+    $("#customerList").DataTable().destroy();
+
+    var Datatable = $('#customerList').DataTable({
+      "dom" : "<'row mb-2'<'col-sm-12 col-md-4 pl-4 actinc'l><'col-sm-12 col-md-8'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+      "bLengthChange": false,
+      "bInfo": false,
+
+      initComplete: function () {
+      var Select = '<select id="filter1" class="form-control" style="cursor:pointer;">';
+           Select +='<option value="">--SELECT--</option>';
+          Select +='<option value="Current Month" selected>Current Month</option>'
+          Select +='<option value="Last 3 Months">Last 3 Months</option>'
+          Select +='<option value="Last 6 Months">Last 6 Months</option>'
+          Select +='<option value="Custome Dates">Custome Dates</option>'
+          Select += '</select>';   
+      $(".actinc").append(Select);
+      },
+      'searching': true,
+      'processing': true,
+      'serverSide': true,
+      'serverMethod': 'post',
+      "filter": true,
+      'ajax': {
+          'url':url,
+          'data': {_token:token, filterValue:filter_value},
+      },
+      'columns': [
+            { data: 'srno', "sWidth": "15%","aTargets": [0] },
+            { data: 'date' },
+            { data: 'caseid' },
+            { data: 'firstname' },
+            { data: 'lastname' },
+            { data: 'gender' },
+            { data: 'visitnumber' },
+            { data: 'mdcaseid' },
+            { data: 'casestatus' },
+            { data: 'mdstatus' },
+            { data: 'visittype' },
+            { data: 'treatmentplan' },
+            { data: 'pharmacy' },
+            { data: 'action1' },
+            { data: 'action' },
+            ],aoColumnDefs: [
+              {
+                bSortable: false,
+                aTargets: [ 6,8,9,10,11,12 ]
+              }
+        ],
+        language: {
+              "processing": "Loading....."
+          },
+        "order": [[ 0, "desc" ]],  
+    });
+    
+      // var Datatable = $('#CaseManagementList').DataTable({
+      //   "dom": '<"top"if>rt<"bottom"lp><"clear">',
+      //   "bLengthChange": false,
+      //   "bInfo": false,
+      //     language: {search: "", searchPlaceholder: "Search"},
+      //   'searching': true,
+      //   'processing': true,
+      //   'serverSide': true,
+      //   'serverMethod': 'post',
+      //   "lengthChange": false,
+      //   "filter": true,
+      //     //"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, 'All']],
+
+      //   'ajax': {
+      //       'url':url,
+      //       'data': {_token:token, filterValue:filter_value},
+      //   },
+      //   'columns': [
+      //         { data: 'srno' },
+      //         { data: 'date' },
+      //         { data: 'caseid' },
+      //         { data: 'firstname' },
+      //         { data: 'lastname' },
+      //         { data: 'gender' },
+      //         { data: 'visitnumber' },
+      //         { data: 'mdcaseid' },
+      //         { data: 'mdstatus' },
+      //         { data: 'visittype' },
+      //         { data: 'treatmentplan' },
+      //         { data: 'pharmacy' },
+      //         { data: 'action1' },
+      //         { data: 'action' },
+      //         ],aoColumnDefs: [
+      //           {
+      //             bSortable: false,
+      //             aTargets: [ 6,8,9,10,11,12 ]
+      //           }
+      //     ],
+      //     language: {
+      //           "processing": "Loading....."
+      //       },
+      //     "order": [[ 0, "desc" ]],  
+
+      // });
+    
+  });
   
   function deleteCustomer(e){
      swal({

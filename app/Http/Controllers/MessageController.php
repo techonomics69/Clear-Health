@@ -452,7 +452,7 @@ class MessageController extends Controller
         $data = $request->all();
         $message = DB::table('support_messages')
             ->where('md_case_id', $data['md_case_id'])
-            ->join('users', 'users.id', '=', 'md_messages.user_id')
+            ->join('users', 'users.id', '=', 'support_messages.user_id')
             ->get();
         $username = '<b> MD Support</b>';
 

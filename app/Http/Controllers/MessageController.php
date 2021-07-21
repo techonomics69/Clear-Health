@@ -325,7 +325,7 @@ class MessageController extends Controller
     
     
         echo '<pre>';
-        print_r($request);
+        print_r($request->all());
         die;
         //code to get files ids
     

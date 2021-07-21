@@ -194,7 +194,7 @@
       "bInfo": false,
 
       initComplete: function () {
-      var Select = '<select id="filter1" class="form-control append_date_range" style="cursor:pointer;">';
+      var Select = '<select id="filter1" class="form-control append_date_range" style="cursor:pointer;" onchange="changeFunc();">';
           Select +='<option value="">--SELECT--</option>';
           Select +='<option value="Current Month" selected>Current Month</option>'
           Select +='<option value="Last 3 Months">Last 3 Months</option>'
@@ -283,7 +283,7 @@
       "bInfo": false,
 
       initComplete: function () {
-      var Select = '<select id="filter1" class="form-control append_date_range" style="cursor:pointer;">';
+      var Select = '<select id="filter1" class="form-control append_date_range" style="cursor:pointer;"> onchange="changeFunc();"';
            Select +='<option value="">--SELECT--</option>';
           Select +='<option value="Current Month" selected>Current Month</option>'
           Select +='<option value="Last 3 Months">Last 3 Months</option>'
@@ -373,6 +373,21 @@
       // });
     
   });
+
+
+   function changeFunc() {
+
+    alert('hello');
+    /*var selectBox = document.getElementById("selectBox");
+    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+    if (selectedValue=="not_listed"){
+      $('#textboxes').show();
+    }
+    else {
+      alert("Error");
+      $('#textboxes').hide();
+    }*/
+  }
   
   function deleteCustomer(e){
      swal({

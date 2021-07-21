@@ -1400,6 +1400,83 @@
 							</section>
 						</div>
 					</div>
+
+					<div class="row refundede">
+		                                <div class="col-md-12">
+		                                   <table class="table table-responsive-md table-striped table-bordered " style="width:100%;padding:20px;" >
+			                                    <thead>
+			                                        <tr>
+			                                            <th width="80%">Product Name </th>
+														<th>Status</th>
+			                                            <th>Cost</th>
+			                                            <th>Qty</th>
+			                                            <th>Total</th>
+			                                        </tr>
+			                                    </thead>
+			                                    <tbody>
+			                                    	@php
+			                                    	foreach($order_data->product_details as $p_key=>$p_val){
+			                                    	@endphp
+			                                    		<tr>
+			                                    		<td>{{$p_val['product_name']}}</td>
+														<td><?php if($shipStationOrder['orderStatus']=='awaiting_payment'){
+																echo "Order Processing";
+															}else if($shipStationOrder['orderStatus']=='awaiting_shipment'){
+																echo "Awaiting shipment";
+															}else if($shipStationOrder['orderStatus']=='shipped'){
+																echo "Shipped";
+															}else{
+																
+															} ?></td>
+			                                    		<td>${{$p_val['product_price']}}</td>
+			                                    		<td>{{$p_val['quantity']}}</td>
+			                                    		<td>$ @php $total = $p_val['product_price'] * $p_val['quantity'];
+			                                    		echo $total;
+			                                    		 @endphp</td>
+			                                    	</tr>
+			                                        @php
+			                                    	}
+			                                    	@endphp
+			                                    	
+			                                    </tbody>
+		                                    
+		                                  </table>
+		                                  <hr>
+		                                  <div class="pro_block"  style="padding:20px;">
+			                                  <div class="product_detail">
+			                                  	  <div class="product_linedetail">
+			                                  	  	<p>Subtotal</p>
+			                                  	  	<p class="rate_price">${{$order_data->total_amount}}</p>
+			                                  	  </div>
+			                                  	   <div class="product_linedetail">
+			                                  	  	<p>Discount</p>
+			                                  	  	<p class="rate_price">${{$order_data->gift_code_discount}}</p>
+			                                  	  </div>
+			                                  	   <div class="product_linedetail">
+			                                  	  	<p>Taxes</p>
+			                                  	  	<p class="rate_price">${{$order_data->tax}}</p>
+			                                  	  </div>
+			                                  	   <div class="product_linedetail">
+			                                  	  	<p>Total</p>
+			                                  	  	<p class="rate_price">
+			                                  	  		@php
+			                                  	  		$grand_total = $order_data->total_amount+$order_data->gift_code_discount+$order_data->tax;
+			                                  	  		echo "$".$grand_total;
+			                                  	  		@endphp
+			                                  	  	</p>
+			                                  	  </div>
+			                                  </div>
+			                                </div>
+			                                <hr>
+			                             <!--    <div class="longer_product" style="padding:20px;">
+			                                	<div class="inner_longer">
+			                                		<button>Refund</button>
+			                                		<p>This order is no longer editable</p>
+			                                	</div>
+
+			                                </div> -->
+		                            	</div>
+		                        	</div>
 				</div>
 
 				<div id="activity" class="tab-pane fade in ">

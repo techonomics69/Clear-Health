@@ -374,7 +374,7 @@
                 }
             });
         });
-        $('#supportFile').on('change', function(e) {
+        $(document).on('change', '#supportFile', function(e) {
             alert();
             $('#supportImgDiv').show();
             let reader = new FileReader();

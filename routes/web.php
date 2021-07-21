@@ -185,6 +185,7 @@ Route::group(['middleware' => ['auth:web']], function () {
     Route::get('admin/customer/edit/{id}', [CustomerController::class, 'edit'])->name('customers.edit');
     Route::patch('admin/customer/update/{id}', [CustomerController::class, 'update'])->name('customers.update');
     Route::delete('admin/customer/destroy/{id}', [CustomerController::class, 'destroy'])->name('customers.destroy');
+    Route::post('admin/customer',[CaseManagementController::class,'showList'])->name('customer.showList');
 
 
     // Change password Routes

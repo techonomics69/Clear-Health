@@ -325,10 +325,7 @@ class MessageController extends Controller
         // }
         $request = $request->except('_token');    
        
-        echo '<pre>';
-        print_r($request);
-        print_r($request['from']);
-        die;
+      
         //code to get files ids
     
         $file_ids = array();
@@ -339,14 +336,14 @@ class MessageController extends Controller
         // end of code to get files ids
     
         $postfields = array();
-        $postfields['from'] = $request->from;
-        $postfields['text'] = $request->text; 
-        if($request->prioritized == "true"){
+        $postfields['from'] = $request['from'];
+        $postfields['text'] = $request['text']; 
+        if($request['prioritized'] == "true"){
           $postfields['prioritized'] =  true;
         }else{
           $postfields['prioritized'] =  false;
         }
-        $postfields['prioritized_reason'] = $request->prioritized_reason;
+        $postfields['prioritized_reason'] = $request['prioritized_reason'];
         $postfields['message_files'] = $file_ids;
     
         $postfields = json_encode($postfields);
@@ -376,6 +373,9 @@ class MessageController extends Controller
     
        
         $message_data = json_decode($response);
+        echo '<pre>'; 
+        print_r($message_data);
+        die;
         $input_data1 = array();
     
         $input_data1['md_case_id'] = $case_id;

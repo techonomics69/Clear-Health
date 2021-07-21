@@ -115,29 +115,8 @@
 <script src="https://kendo.cdn.telerik.com/2020.1.219/js/kendo.all.min.js"></script>
 <script>
   $.noConflict();
-  var token = "{{ csrf_token() }}";
+    var token = "{{ csrf_token() }}";
     var url = "{{ route('customer.showList') }}";
-
-    $(document).ready(function() {
-
-    $("#filter1").on('change', function(){    
-      alert("helloo");
-    // 2nd (A)
-    // do your code here
-    // It will specifically called on change of your element
-    });
-
-    /*$("#filter1").change(function() {
-       alert('helloo');
-        if ($(this).val() === 'Custome Dates'){ 
-            $('input[name=from_date]').show();
-            $('input[name=to_date]').show();   
-        } else {
-            $('input[name=from_date]').hide();
-            $('input[name=to_date]').hide(); 
-        }
-    });*/
-});
 
        $(document).ready(function ($) {
         
@@ -378,15 +357,14 @@
    function changeFunc() {
 
     alert('hello');
-    /*var selectBox = document.getElementById("selectBox");
-    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-    if (selectedValue=="not_listed"){
-      $('#textboxes').show();
+    if ($(this).val() === 'Custome Dates'){ 
+      $('input[name=from_date]').show();
+      $('input[name=to_date]').show();   
+    } else {
+      alert('in else');
+      $('input[name=from_date]').hide();
+      $('input[name=to_date]').hide(); 
     }
-    else {
-      alert("Error");
-      $('#textboxes').hide();
-    }*/
   }
   
   function deleteCustomer(e){

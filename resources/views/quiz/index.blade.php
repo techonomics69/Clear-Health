@@ -94,7 +94,7 @@
 												<td>{{ $data->question }}</td>
 
 												<!-- <input type="hidden" id="{{ $data->id }}" value="{{ $data->order }}" class="orderval">  -->
-												<td><input type="text" id="{{ $data->id }}" value="{{ $data->order}}" class="order" /></td>												
+												<td><input type="text" id="{{ $data->id }}" value="{{ $data->order}}" class="order"  /></td>												
 												<td>
 												<div class="d-flex">
 													<a class="icons edit-icon" href="{{ route('quiz.show',$data->id) }}">

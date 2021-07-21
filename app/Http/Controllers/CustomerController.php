@@ -165,7 +165,7 @@ class CustomerController extends Controller
             }
 
             $action1 = '<div class="d-flex">
-                <a class="icons edit-icon" href="'. route('customers.show',$value['id']).'"><i class="fa fa-eye"></i></a> <a class="icons edit-icon" href="'. route('customers.edit',$value['id']) .'"><i class="fa fa-edit"></i></a>{!! Form::open(["method" => "DELETE","route" => ["customers.destroy", value["id"]],"style"=>"display:inline"]) !!}<a class="icons edit-icon customer_delete" href="#" id="{{value["id"]}}" onclick="deleteCustomer({{value["id"]}})"><i class="fa fa-trash" aria-hidden="true"></i></a><button type="submit" class="btn_delete{{value["id"]}}" style="display:none;"></button>{!! Form::close() !!}
+                <a class="icons edit-icon" href="'. route('customers.show',$value['id']).'"><i class="fa fa-eye"></i></a> <a class="icons edit-icon" href="'. route('customers.edit',$value['id']) .'"><i class="fa fa-edit"></i></a><a class="icons edit-icon customer_delete" href="#" id="{{value["id"]}}" onclick="deleteCustomer({{value["id"]}})"><i class="fa fa-trash" aria-hidden="true"></i></a><button type="submit" class="btn_delete{{value["id"]}}" style="display:none;"></button>
                     </div>';
             $data[] = array(
                 'no' => $counter,

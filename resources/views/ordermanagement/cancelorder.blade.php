@@ -62,8 +62,7 @@
 							<ul class="nav nav-tabs" id="casemanagement-tab-menu">
                                <li><span> Order Cancelled</span></li> 
 
-							   <!-- <a class="btn" data-toggle="tab" href="#shipments">Shipments </a> -->
-
+							
 								<!-- <li><button type="button" id="cancelButton" class="btn btn-primary active">Cancel this order</button></li> -->
 								<!-- <li><a class="btn" data-toggle="tab" href="#order_summary">Order Summary</a></li>
 								<li><a class="btn" data-toggle="tab" href="#shipments_shipping_details">Shipments & shipping details</a></li> -->

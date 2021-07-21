@@ -1605,8 +1605,13 @@ if($product_type !="Accutane"){
     }
     $medication_compound_data = json_encode($medication_compound_data);
 
-   /* $input_md_data = '{"patient_id": '.$patient_id.',"case_files": [],"case_prescriptions": '.$medication_compound_data.',"case_questions": '.$userquestion.'}';
-*/
+    $input_md_data = '{"case_prescriptions": '.$medication_compound_data.'}';
+
+    echo "<pre>";
+    print_r($input_md_data);
+    echo "<pre>";
+    exit();
+
 
     /*update prescription(to update pharmacy of user)*/
 
@@ -1663,7 +1668,7 @@ if($product_type !="Accutane"){
 
  
 
-  return $response;
+  //return $response;
 }
 
 

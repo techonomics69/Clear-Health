@@ -145,6 +145,15 @@ class CustomerController extends Controller
           //if (count($filterIn)) {
             $user_data = $user_data->whereBetween('created_at',[$dateS,$dateE])->toSql();
 
+
+             echo "<pre>";
+            print_r($dateS);
+            echo "<pre>";
+            
+             echo "<pre>";
+            print_r($dateE);
+            echo "<pre>";
+
             echo "<pre>";
             print_r($user_data);
             echo "<pre>";

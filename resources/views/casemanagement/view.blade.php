@@ -1400,6 +1400,63 @@
 							</section>
 						</div>
 					</div>
+
+					<div class="row refundede">
+		                                <div class="col-md-12">
+		                                   <table class="table table-responsive-md table-striped table-bordered " style="width:100%;padding:20px;" >
+			                                    <thead>
+			                                        <tr>
+			                                            <th width="80%">Product Name </th>
+			                                            <th>Product Type</th>
+														<th>Status</th>
+			                                            <th>Pharmacy</th>
+			                                            <th>Total</th>
+			                                        </tr>
+			                                    </thead>
+			                                    <tbody>
+			                                    
+			                                    		<tr>
+			                                    		<td>product_name</td>
+														<td></td>
+			                                    		<td></td>
+			                                    		<td></td>
+			                                    		<td></td>
+			                                    	</tr>
+			                                    
+			                                    </tbody>
+		                                    
+		                                  </table>
+		                                  <hr>
+		                                  <div class="pro_block"  style="padding:20px;">
+			                                  <div class="product_detail">
+			                                  	  <div class="product_linedetail">
+			                                  	  	<p>Subtotal</p>
+			                                  	  	<p class="rate_price">$125.00</p>
+			                                  	  </div>
+			                                  	   <div class="product_linedetail">
+			                                  	  	<p>Discount</p>
+														<p class="rate_price">10%</p>
+			                                  	  </div>
+			                                  	   <div class="product_linedetail">
+			                                  	  	<p>Taxes</p>
+													<p class="rate_price">$125.00</p>
+			                                  	  </div>
+			                                  	   <div class="product_linedetail">
+			                                  	  	<p>Total</p>
+			                                  	  	<p class="rate_price">$100.00</p>
+			                                  	  </div>
+			                                  </div>
+			                                </div>
+			                                <hr>
+			                             <!--    <div class="longer_product" style="padding:20px;">
+			                                	<div class="inner_longer">
+			                                		<button>Refund</button>
+			                                		<p>This order is no longer editable</p>
+			                                	</div>
+
+			                                </div> -->
+		                            	</div>
+		                        	</div>
 				</div>
 
 				<div id="activity" class="tab-pane fade in ">

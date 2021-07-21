@@ -244,10 +244,10 @@ class MessageController extends Controller
         $token_data = json_decode($r);
         $token = $token_data->access_token;
         $documents = $request->file('file');
-        echo '<pre>';
-        print_r($documents);
-        die;
-        $name = $request['name'];
+        // echo '<pre>';
+        // print_r($documents);
+        // die;
+        $name = 'file';
         $user_id = $request->user_id;
         $case_id = $request->md_case_id;
         $system_case_id = $request->case_id;
@@ -285,9 +285,9 @@ class MessageController extends Controller
             'file' => new \CurlFile($destinationPath."/".$doc_file_name)
           ];
 
-          echo '<pre>';
-          print_r($fields);
-          die;
+        //   echo '<pre>';
+        //   print_r($fields);
+        //   die;
           $input_data = $request->all();
 
 
@@ -311,7 +311,9 @@ class MessageController extends Controller
           ));
 
           $response = curl_exec($curl);
-
+          echo '<pre>';
+          print_r($response);
+          die;
           $message_file_data = json_decode($response);
           $input_data = array();
 

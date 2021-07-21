@@ -285,9 +285,9 @@ class MessageController extends Controller
             'file' => new \CurlFile($destinationPath."/".$doc_file_name)
           ];
 
-          echo '<pre>';
-          print_r($fields);
-          die;
+        //   echo '<pre>';
+        //   print_r($fields);
+        //   die;
           $input_data = $request->all();
 
 

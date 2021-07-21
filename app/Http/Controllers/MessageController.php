@@ -30,6 +30,7 @@ class MessageController extends Controller
         // DB::enableQueryLog();
         $case = CaseManagement::find($case_id);
         $md_case_id = $case->md_case_id;
+        $user_id = $case->user_id;
         $mdList = DB::table('md_messages')
             ->where('case_id', $case_id)
             ->join('users', 'users.id', '=', 'md_messages.user_id')
@@ -66,7 +67,7 @@ class MessageController extends Controller
 
         $user_case_management_data['user_id'] = '';
         $user_case_management_data['id'] = '';
-        return view('messages.view', compact('user_case_management_data', 'mdList', 'adminMsg', 'case_id', 'md_case_id'));
+        return view('messages.view', compact('user_case_management_data', 'mdList', 'adminMsg', 'case_id', 'md_case_id', 'user_id'));
     }
 
     public function getMedicalMessage(Request $request)

@@ -237,6 +237,7 @@ class MessageController extends Controller
 
 
     public function sendSupportMessage(Request $request){
+
         $r = get_token();
         $token_data = json_decode($r);
         $token = $token_data->access_token;
@@ -280,11 +281,6 @@ class MessageController extends Controller
             'name' => $name,
             'file' => new \CurlFile($destinationPath."/".$doc_file_name)
           ];
-    
-        echo "<pre>";
-        print_r($fields);
-        echo "<pre>";
-        exit();
     
           $input_data = $request->all();
     
@@ -352,6 +348,15 @@ class MessageController extends Controller
         $postfields['message_files'] = $file_ids;
     
         $postfields = json_encode($postfields);
+
+        echo "<pre>";
+        print_r($postfields);
+        echo "<pre>";
+
+        echo "<pre>";
+        print_r($case_id);
+        echo "<pre>";
+        exit();
     
         $curl = curl_init();
     

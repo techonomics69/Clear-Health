@@ -237,6 +237,7 @@ class MessageController extends Controller
 
 
     public function sendSupportMessage(Request $request){
+        
         $r = get_token();
         $token_data = json_decode($r);
         $token = $token_data->access_token;       
@@ -323,7 +324,7 @@ class MessageController extends Controller
     
         // }
     
-    
+        $request = array_except($request->all(), ['_token']);
         echo '<pre>';
         print_r($request->all());
         die;

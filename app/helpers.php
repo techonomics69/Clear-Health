@@ -1605,7 +1605,7 @@ if($product_type !="Accutane"){
     }
     $medication_compound_data = json_encode($medication_compound_data);
 
-    $input_md_data = '{"case_prescriptions": '.$medication_compound_data.'}';
+    //$input_md_data = '{"case_prescriptions": '.$medication_compound_data.'}';
 
     /*update prescription(to update pharmacy of user)*/
 
@@ -1629,7 +1629,12 @@ if($product_type !="Accutane"){
     $response = curl_exec($curl);
 
     curl_close($curl);
-    echo $response;
+   /* echo $response;*/
+
+    echo "<pre>";
+    print_r();
+    echo "<pre>";
+    exit($response);
 
     /*end of api for update prescription */
 /*

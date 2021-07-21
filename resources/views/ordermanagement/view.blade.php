@@ -48,11 +48,15 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<section class="card" >
-							<!-- <ul class="nav nav-tabs" id="casemanagement-tab-menu">
-								<li><a class="btn active " data-toggle="tab" href="#profile">Profile</a></li>
-								<li><a class="btn" data-toggle="tab" href="#order_summary">Order Summary</a></li>
-								<li><a class="btn" data-toggle="tab" href="#shipments_shipping_details">Shipments & shipping details</a></li>
-							</ul> -->
+							
+							<ul class="nav nav-tabs" id="casemanagement-tab-menu">
+								<li><a class="btn"><span>@if($order_data['status'] == "cancelled") Order cancelled @endif</span> </a></li>
+							   <!-- <a class="btn" data-toggle="tab" href="#shipments">Shipments </a> -->
+
+							
+								<!-- <li><a class="btn" data-toggle="tab" href="#order_summary">Order Summary</a></li>
+								<li><a class="btn" data-toggle="tab" href="#shipments_shipping_details">Shipments & shipping details</a></li> -->
+							</ul>
 						<!-- 	<div class="tab-content">
 								start 1st tab-->
 

@@ -37,19 +37,7 @@
       <div class="col-lg-12">
         <section class="card">
           <header class="card-header top-heading">                
-          <div class="row" style="cursor:pointer;">
-              <div class="col-md-4">
-                  <div class="form-group">
-                  <select id="filter1" class="form-control" style="cursor:pointer;">
-                      <option value="">--SELECT ACTION--</option>
-                      <option value="All">All</option>
-                      <option value="Action by admin" selected>Action by admin</option>
-                      <option value="Action by Patient">Action by Patient</option>
-                      <option value="No action required">No action required</option>
-                  </select>
-                  </div>
-              </div>
-          </div>
+          
           </header>
               
           <div class="row" style="padding: 20px;">
@@ -177,6 +165,17 @@
             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
       "bLengthChange": false,
       "bInfo": false,
+
+      initComplete: function () {
+      var Select = '<select id="filter1" class="form-control" style="cursor:pointer;">';
+          Select +='<option value="">--SELECT ACTION--</option>';
+          Select +='<option value="All">All</option>'
+          Select +='<option value="Action by admin" selected>Action by admin</option>'
+          Select +='<option value="Action by Patient">Action by Patient</option>'
+          Select +='<option value="No action required">No action required</option>'
+          Select += '</select>';   
+      $(".actinc").append(Select);
+      },
      
       
 

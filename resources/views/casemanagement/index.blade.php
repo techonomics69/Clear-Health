@@ -32,13 +32,7 @@
 </div>
 <div class="content-body">
   <section class="basic-elements">
-    <div class="row">
-      <div class="col-lg-12">
-        <section class="card">
-          <!-- <header class="card-header top-heading">                
-                <h3 class="main-title-heading">Users Management</h3> 
-              </header> -->
-          <div class="row" style="padding: 20px; cursor:pointer;">
+  <div class="row" style="padding: 20px; cursor:pointer;">
             <div class="col-md-4">
                 <div class="form-group">
                 <select id="filter1" class="form-control" style="cursor:pointer;">
@@ -50,7 +44,14 @@
                 </select>
                 </div>
             </div>
-          </div>    
+          </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <section class="card">
+          <!-- <header class="card-header top-heading">                
+                <h3 class="main-title-heading">Users Management</h3> 
+              </header> -->
+              
           <div class="row" style="padding: 20px;">
             <div class="col-md-12">
             

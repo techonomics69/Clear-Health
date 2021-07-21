@@ -139,7 +139,7 @@ class CustomerController extends Controller
 
         $user_count = $usercase_count->get()->count();
       } else {
-        $usercase_count = User::where('role', '19')->orderBy('id','DESC')->get();
+        $usercase_count = User::where('role', '19');
 
         if (!empty($filterValue)) {
           //if (count($filterIn)) {

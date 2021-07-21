@@ -234,7 +234,7 @@
     			},
     		"order": [[ 0, "desc" ]],  
 
-             language: {search: "", searchPlaceholder: "Search"},
+        // language: {search: "", searchPlaceholder: "Search"},
 
     });
   }
@@ -249,6 +249,41 @@
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
       "bLengthChange": false,
       "bInfo": false,
+      'searching': true,
+      'processing': true,
+      'serverSide': true,
+      'serverMethod': 'post',
+      "filter": true,
+      'ajax': {
+          'url':url,
+          'data': {_token:token, filterValue:filter_value},
+      },
+      'columns': [
+		      	{ data: 'srno' },
+            { data: 'date' },
+            { data: 'caseid' },
+            { data: 'firstname' },
+            { data: 'lastname' },
+            { data: 'gender' },
+            { data: 'visitnumber' },
+            { data: 'mdcaseid' },
+            { data: 'casestatus' },
+            { data: 'mdstatus' },
+            { data: 'visittype' },
+            { data: 'treatmentplan' },
+            { data: 'pharmacy' },
+            { data: 'action1' },
+            { data: 'action' },
+            ],aoColumnDefs: [
+              {
+                bSortable: false,
+                aTargets: [ 6,8,9,10,11,12 ]
+              }
+				],
+				language: {
+        			"processing": "Loading....."
+    			},
+    		"order": [[ 0, "desc" ]],  
     });
     
       // var Datatable = $('#CaseManagementList').DataTable({

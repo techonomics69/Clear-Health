@@ -323,10 +323,10 @@ class MessageController extends Controller
         // //create message
     
         // }
-        $request = $request->except('_token');    
+        $request1 = $request->except('_token');    
        
         echo '<pre>';
-        print_r($request->all());
+        print_r($request1->all());
         die;
         //code to get files ids
     

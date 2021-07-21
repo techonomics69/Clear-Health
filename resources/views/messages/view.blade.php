@@ -181,7 +181,7 @@
 
                                                                     <div class="row">
                                                                         <div class="col-lg-12">
-                                                                            <div class="imgDiv" id="supportImgDiv" style="display: block;">
+                                                                            <div class="imgDiv" id="supportImgDiv" style="display: none;">
                                                                                 <div class="imgs"> <i class="fa fa-close" id="clearImg" style="font-size: 20px;"></i></div>
                                                                                 <div class="imgs-picture">
                                                                                     <img id="supportBlah" src="#" alt="image" />
@@ -214,7 +214,7 @@
                                                                                     <input type="hidden" id="supportMd_case_id" name="md_case_id" value="{{$md_case_id}}">
                                                                                     <input type="hidden" name="prioritized" value="true">
                                                                                     <input type="hidden" name="prioritized_reason" value="He needs the prescription for tomorrow.">
-                                                                                    <input type="hidden" name="from" value="support">
+                                                                                    <input type="hidden" name="from" value="patient">
                                                                                 </div>
                                                                                 <div class="sending lastimg">
                                                                                     <button type="button" id="sendSupportMsg"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>

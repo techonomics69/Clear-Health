@@ -193,7 +193,7 @@
                                                                                 <div class="attachment lastimg pinclip">
                                                                                     <div class="variants">
                                                                                         <div class='file'>
-                                                                                            <label for='file'>
+                                                                                            <label for='supportFile'>
                                                                                                 <img src="{{asset('public/images/paperclip.png')}}" alt="">
                                                                                             </label>
                                                                                             <input id="supportFile" type="file" name="file">

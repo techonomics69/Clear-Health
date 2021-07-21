@@ -152,7 +152,10 @@
                                                                 <div class="right-cht">
                                                                     <div class="chating-section">
                                                                         <ul>
-                                                                            <li class="mdSupport"><strong>MD Support</strong>
+                                                                            <li class="mdSupport">
+                                                                                <strong>
+                                                                                   MD Support
+                                                                                </strong>
 
                                                                                 <span class="badge badge-danger support_msg_count">1</span>
 
@@ -169,7 +172,7 @@
                                                             <div class="right-cht ">
                                                                 <div class="right_block">
                                                                     <div class="chating-section supportmessages" id="chating-section">
-                                                                        <h3>MD Support</h3>
+                                                                        <h3 id="supportnameLabel">MD Support</h3>
                                                                         <ul id="messageDataSupport"></ul>
                                                                     </div>
 
@@ -208,7 +211,7 @@
                                                                                     <input type="hidden" id="supportMd_case_id" name="md_case_id" value="{{$md_case_id}}">
                                                                                     <input type="hidden" name="prioritized" value="true">
                                                                                     <input type="hidden" name="prioritized_reason" value="He needs the prescription for tomorrow.">
-                                                                                    <input type="hidden" name="from" value="admin">
+                                                                                    <input type="hidden" name="from" value="support">
                                                                                 </div>
                                                                                 <div class="sending lastimg">
                                                                                     <button type="button" id="sendSupportMsg"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
@@ -277,6 +280,26 @@
                     $('#userId').val(result.userId);
                     $("#messageDataAdmin").animate({
                         scrollTop: $("#messageDataAdmin")[0].scrollHeight
+                    }, 1000);
+                }
+            });
+        });
+
+        $('.supportMdList').on('click', function() {
+            var md_case_id = $(this).attr('data-id');
+            $.ajax({
+                url: "{{route('getSupportMessage')}}",
+                type: "post",
+                dataType: 'json',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    md_case_id: md_case_id
+                },
+                success: function(result) {
+                    $('#supportnameLabel').html(result.username);
+                    $('#messageDataSupport').html(result.html);
+                    $("#messageDataSupport").animate({
+                        scrollTop: $("#messageDataSupport")[0].scrollHeight
                     }, 1000);
                 }
             });
@@ -364,7 +387,7 @@
                         }
                         if (result.file) {
                             $('#messageDataSupport').append(
-                                '<li class="right"><div class="time_messages"><p class="text_mesg"><a href="' + result.url + result.file + '" target="_blank"><img src="' + result.url + result.file + '" style="width:50px; height:50px; object-fit: contain;"></p><h5>' + result.time + '</h5></div></li>'
+                                '<li class="right"><div class="time_messages"><p class="text_mesg"><a href="' + result.url + '" target="_blank"><img src="' + result.file + '" style="width:50px; height:50px; object-fit: contain;"></p><h5>' + result.time + '</h5></div></li>'
                             )
                         }
                     }
@@ -375,7 +398,6 @@
             });
         });
         $(document).on('change', '#supportFile', function(e) {
-            alert();
             $('#supportImgDiv').show();
             let reader = new FileReader();
             reader.onload = (e) => {

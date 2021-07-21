@@ -111,6 +111,8 @@
 @endsection
 
 @section('scriptsection')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://kendo.cdn.telerik.com/2020.1.219/js/kendo.all.min.js"></script>
 <script>
   $.noConflict();
   var token = "{{ csrf_token() }}";
@@ -137,6 +139,7 @@
   });*/
 
    function InitilizeTable(searchValue){
+
     var Datatable = $('#customerList').DataTable({
       // "dom": '<"top"if>rt<"bottom"lp><"clear">',
       "dom" : "<'row mb-2'<'col-sm-12 col-md-4 pl-4 actinc'l><'col-sm-12 col-md-8'f>>" +
@@ -192,24 +195,17 @@
         // ],
       'columns': [
             { data: 'no', "sWidth": "15%","aTargets": [0] },
-            { data: 'date' },
-            { data: 'caseid' },
             { data: 'firstname' },
             { data: 'lastname' },
             { data: 'gender' },
-            { data: 'visitnumber' },
-            { data: 'mdcaseid' },
-            { data: 'casestatus' },
-            { data: 'mdstatus' },
-            { data: 'visittype' },
-            { data: 'treatmentplan' },
-            { data: 'pharmacy' },
-            { data: 'action1' },
+            { data: 'email' },
+            { data: 'dob' },
+            { data: 'address' },
             { data: 'action' },
             ],aoColumnDefs: [
               {
                 bSortable: false,
-                aTargets: [ 6,8,9,10,11,12 ]
+                //aTargets: [ 6,8,9,10,11,12 ]
               }
         ],
         language: {
@@ -222,7 +218,7 @@
     });
   }
 
-    InitilizeTable('Action by admin');
+    InitilizeTable('Current Month');
    
    $(document).on('change','#filter1', function(){
     
@@ -256,25 +252,18 @@
           'data': {_token:token, filterValue:filter_value},
       },
       'columns': [
-            { data: 'srno', "sWidth": "15%","aTargets": [0] },
-            { data: 'date' },
-            { data: 'caseid' },
+             { data: 'no', "sWidth": "15%","aTargets": [0] },
             { data: 'firstname' },
             { data: 'lastname' },
             { data: 'gender' },
-            { data: 'visitnumber' },
-            { data: 'mdcaseid' },
-            { data: 'casestatus' },
-            { data: 'mdstatus' },
-            { data: 'visittype' },
-            { data: 'treatmentplan' },
-            { data: 'pharmacy' },
-            { data: 'action1' },
+            { data: 'email' },
+            { data: 'dob' },
+            { data: 'address' },
             { data: 'action' },
             ],aoColumnDefs: [
               {
                 bSortable: false,
-                aTargets: [ 6,8,9,10,11,12 ]
+                //aTargets: [ 6,8,9,10,11,12 ]
               }
         ],
         language: {

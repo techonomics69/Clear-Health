@@ -65,9 +65,28 @@ class MessageController extends Controller
         endforeach;
 
 
+        $supportList = DB::table('support_messages')
+            ->where('case_id', $case_id)
+            ->join('users', 'users.id', '=', 'support_messages.user_id')
+            ->select(
+                DB::raw('count(*) as user_count, support_messages.user_id, support_messages.md_case_id, users.first_name, users.last_name, support_messages.case_id'),
+                DB::raw('(SELECT m.text from support_messages as m where m.user_id=users.id order by m.id desc limit 1) as last_msg'),
+                DB::raw('(SELECT m.created_at from support_messages as m where m.user_id=users.id order by m.id desc limit 1) as msg_time'),
+                
+            )
+            ->groupBy('support_messages.user_id')
+            ->orderBy('msg_time', 'desc')
+            ->get();
+        foreach ($supportList as $key => $value) :
+            $createdAt = Carbon::parse($value->msg_time);
+            $value->msg_time =  $createdAt->format('H:i:s m/d/Y');
+        endforeach;
+
+
         $user_case_management_data['user_id'] = '';
         $user_case_management_data['id'] = '';
-        return view('messages.view', compact('user_case_management_data', 'mdList', 'adminMsg', 'case_id', 'md_case_id', 'user_id'));
+        dd($supportList);
+        return view('messages.view', compact('user_case_management_data', 'mdList', 'adminMsg', 'case_id', 'md_case_id', 'user_id', 'supportList'));
     }
 
     public function getMedicalMessage(Request $request)
@@ -244,17 +263,17 @@ class MessageController extends Controller
         $token_data = json_decode($r);
         $token = $token_data->access_token;
         $documents = $request->file('file');
-        echo '<pre>';
-        print_r($documents);
-        die;
-        $name = $request->name;
+        // echo '<pre>';
+        // print_r($documents);
+        // die;
+        $name = 'file';
         $user_id = $request->user_id;
         $case_id = $request->md_case_id;
         $system_case_id = $request->case_id;
         $file_path = '';
         //validation 
         // $data = $request->all();
-        
+
         // $validator = Validator::make($data, [
         //   'user_id' => 'required',
         //   'case_id' => 'required',
@@ -266,66 +285,68 @@ class MessageController extends Controller
         //   return $this->sendError('Validation Error.', $validator->errors()->all());       
         // }
         //end of validation
-        if(!empty($documents)){
-          $file =  $documents->getClientOriginalName();
-          $doc_file_name =  time().'-'.$file;
+        if (!empty($documents)) {
+            $file =  $documents->getClientOriginalName();
+            $doc_file_name =  time() . '-' . $file;
 
-          if (!file_exists(public_path('/Message_files'))) {
-            File::makeDirectory(public_path('/Message_files'),0777,true,true);
-          }
-          $destinationPath = public_path('/Message_files');
-          $documents->move($destinationPath, $doc_file_name);
+            if (!file_exists(public_path('/Message_files'))) {
+                File::makeDirectory(public_path('/Message_files'), 0777, true, true);
+            }
+            $destinationPath = public_path('/Message_files');
+            $documents->move($destinationPath, $doc_file_name);
 
-          chmod($destinationPath."/".$doc_file_name, 0777);
+            chmod($destinationPath . "/" . $doc_file_name, 0777);
 
-          $file_path = 'public/Message_files/' .$file;
+            $file_path = 'public/Message_files/' . $file;
 
-          $fields = [
-            'name' => $name,
-            'file' => new \CurlFile($destinationPath."/".$doc_file_name)
-          ];
+            $fields = [
+                'name' => $name,
+                'file' => new \CurlFile($destinationPath . "/" . $doc_file_name)
+            ];
+
+            //   echo '<pre>';
+            //   print_r($fields);
+            //   die;
+            $input_data = $request->all();
 
 
-          $input_data = $request->all();
+            $curl = curl_init();
 
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/files',
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'POST',
+                CURLOPT_POSTFIELDS =>  $fields,
+                CURLOPT_HTTPHEADER => array(
+                    'Content: multipart/form-data;',
+                    'Authorization: Bearer ' . $token,
+                    'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+                ),
+            ));
 
-          $curl = curl_init();
+            $response = curl_exec($curl);
 
-          curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/files',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS =>  $fields,
-            CURLOPT_HTTPHEADER => array(
-              'Content: multipart/form-data;',
-              'Authorization: Bearer '.$token,
-              'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
-            ),
-          ));
+            $message_file_data = json_decode($response);
+            $input_data = array();
 
-          $response = curl_exec($curl);
+            $input_data['md_case_id'] = $case_id;
+            $input_data['system_file'] = $file_path;
+            $input_data['user_id'] = $user_id;
+            $input_data['case_id'] = $system_case_id;
+            $input_data['name'] = $message_file_data->name;
+            $input_data['mime_type'] = $message_file_data->mime_type;
+            $input_data['url'] = $message_file_data->url;
+            $input_data['url_thumbnail'] = $message_file_data->url_thumbnail;
+            $input_data['file_id'] = $message_file_data->file_id;
 
-          $message_file_data = json_decode($response);
-          $input_data = array();
+            $message_file_data = SupportMessagesFiles::create($input_data);
 
-          $input_data['md_case_id'] = $case_id;
-          $input_data['system_file'] = $file_path;
-          $input_data['user_id'] = $user_id;
-          $input_data['case_id'] = $system_case_id;
-          $input_data['name'] = $message_file_data->name;
-          $input_data['mime_type'] = $message_file_data->mime_type;
-          $input_data['url'] = $message_file_data->url;
-          $input_data['url_thumbnail'] = $message_file_data->url_thumbnail;
-          $input_data['file_id'] = $message_file_data->file_id;
-
-          $message_file_data = SupportMessagesFiles::create($input_data);
-
-        //create message
+            //create message
 
         }
         $request = $request->except('_token');
@@ -351,6 +372,7 @@ class MessageController extends Controller
         $postfields['prioritized_reason'] = $request['prioritized_reason'];
         $postfields['message_files'] = $file_ids;
 
+
         $postfields = json_encode($postfields);
 
         $curl = curl_init();
@@ -363,8 +385,8 @@ class MessageController extends Controller
             CURLOPT_TIMEOUT => 0,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            //CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POST => TRUE,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            //CURLOPT_POST => TRUE,
             CURLOPT_POSTFIELDS => $postfields,
             CURLOPT_HTTPHEADER => array(
                 'Content-Type: application/json',
@@ -401,9 +423,10 @@ class MessageController extends Controller
         $createdAt = Carbon::now();
         $time =  $createdAt->diffForHumans();
         $result['time'] = $time;
-        $result['file'] = $file_path;
+        $result['file'] = $message_file_data->url_thumbnail;
+        $result['url'] = $message_file_data->url;;
         $result['text'] = $message_data['text'];
-        $result['url'] = url('') . '/';
+        //$result['url'] = url('') . '/';
         if ($message_data) {
             return json_encode($result);
         } else {
@@ -422,5 +445,39 @@ class MessageController extends Controller
 
 
 
+    }
+
+    public function getSupportMessage(Request $request)
+    {
+        $data = $request->all();
+        $message = DB::table('support_messages')
+            ->where('md_case_id', $data['md_case_id'])
+            ->join('users', 'users.id', '=', 'md_messages.user_id')
+            ->get();
+        $username = '<b> MD Support</b>';
+
+        $html = '';
+        foreach ($message as $key => $value) :
+            if (isset($value->text)) :
+                $createdAt = Carbon::parse($value->message_created_at);
+                //$time =  $createdAt->format('H:i:s m/d/Y');
+                $time =  $createdAt->diffForHumans();
+                if ($value->from == 'patient') :
+                    $class =  'left';
+                else :
+                    $class =  'right';
+                endif;
+                $html .= '<li class="' . $class . '">
+                    <div class = "time_messages" > 
+                        <p class = "text_mesg">' . $value->text . '</p>
+                        <h5>' . $time . '</h5>
+                    </div>
+                </li>';
+            endif;
+        endforeach;
+
+        $data['html'] = $html;
+        $data['username'] = $username;
+        return json_encode($data);
     }
 }

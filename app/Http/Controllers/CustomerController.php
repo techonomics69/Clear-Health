@@ -10,6 +10,7 @@ use DB;
 use Hash;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class CustomerController extends Controller
 {
@@ -40,6 +41,7 @@ class CustomerController extends Controller
 
     public function showList(Request $request)
     {
+
         $draw = $request->draw;
         $row = $request->start;
         $rowperpage = $request->length; // Rows display per page
@@ -49,32 +51,28 @@ class CustomerController extends Controller
         $totalRecords = User::where('role', '19')->count();
         $filterValue = $request->filterValue;
 
-        //$now = Carbon::now();
-
-        $dateS = Carbon::now()->startOfMonth()->subMonth(3);
-        $dateE = Carbon::now()->startOfMonth();
-
 
         /*filters*/
         switch ($filterValue) {
           case 'Current Month':
-          $filterIn = $now->month;
+            $dateS = Carbon::now()->startOfMonth();
+            $dateE = Carbon::now()->endOfMonth();
           break;
-          case 'Action by admin':
-          $filterIn = array(
-              'generate_ipledge', 'store_ipledge', 'verify_pregnancy',
-              'prior_auth', 'check_off_ipledge', 'trigger', 'blood_work',
-              'low_income_program'
-          );
+          case 'Last 3 Months':
+           $dateS = Carbon::now()->startOfMonth()->subMonth(3);
+            $dateE = Carbon::now()->endOfMonth();
           break;
-          case 'Action by Patient':
-          $filterIn = array('submission_of_iPledge', 'complete_follow_up', 'picks_up_medication', 'complete_bloodwork');
+          case 'Last 6 Months':
+           $dateS = Carbon::now()->startOfMonth()->subMonth(6);
+           $dateE = Carbon::now()->endOfMonth();
           break;
-          case 'No action required':
-          $filterIn = array('NULL', 'finish');
+          case 'Custome Dates':
+           $dateS = Carbon::now()->startOfMonth()->subMonth(2);
+           $dateE = Carbon::now()->endOfMonth();
           break;
           default:
-          $filterIn = array();
+           $dateS = Carbon::now()->startOfMonth();
+           $dateE = Carbon::now()->endOfMonth();
           break;
       }
       /*end filters*/
@@ -118,57 +116,46 @@ class CustomerController extends Controller
       $data = array();
       $searchValue = $_POST['search']['value'];
 
-      $user_data =User::where('role', '19')->orderBy('id','DESC')->get();
+      $user_data = DB::table('users')->where('role', '19');
 
       if ($searchValue != '') {
-        $user_data = $user_data->where('id', 'like', "%{$searchValue}%")
+        $user_data = $user_data->where('role', '19')->where('id', 'like', "%{$searchValue}%")
           ->orWhere('first_name', 'like', "%{$searchValue}%")->orWhere('last_name', 'like', "%{$searchValue}%")
           ->orWhere('gender', 'like', "%{$searchValue}%")->orWhere('email', 'like', "%{$searchValue}%")
           ->orWhere('dob', 'like', "%{$searchValue}%")->orWhere('address', 'like', "%{$searchValue}%");
 
-        /*$usercase_count = DB::table('case_managements as cm')->join('users as u', 'cm.user_id', '=', 'u.id')
-          ->leftjoin('case_histories as ch', 'cm.id', '=', 'ch.case_id')
-          ->select(
-            'cm.*',
-            'u.email',
-            'u.first_name',
-            'u.last_name',
-            'u.gender',
-            'ch.case_status as caseStatus'
-          )->where('cm.created_at', 'like', "%{$searchValue}%")
-          ->orWhere('cm.ref_id', 'like', "%{$searchValue}%")->orWhere('u.first_name', 'like', "%{$searchValue}%")
-          ->orWhere('u.last_name', 'like', "%{$searchValue}%")->orWhere('u.gender', 'like', "%{$searchValue}%")
-          ->orWhere('cm.md_case_id', 'like', "%{$searchValue}%");*/
+        $usercase_count = DB::table('users')->where('role', '19')
+          ->where('id', 'like', "%{$searchValue}%")
+          ->orWhere('first_name', 'like', "%{$searchValue}%")->orWhere('last_name', 'like', "%{$searchValue}%")
+          ->orWhere('gender', 'like', "%{$searchValue}%")->orWhere('email', 'like', "%{$searchValue}%")
+          ->orWhere('dob', 'like', "%{$searchValue}%")->orWhere('address', 'like', "%{$searchValue}%");
 
         if (!empty($filterValue)) {
-          if (count($filterIn)) {
-            $user_data = $user_data->whereIn('created_at', $filterIn);
-            //$usercase_count = $usercase_count->whereIn('ch.case_status', $filterIn);
-          }
+          //if (count($filterIn)) {
+            $user_data = $user_data->whereBetween('created_at',[$dateS,$dateE]);
+            $usercase_count = $usercase_count->whereBetween('created_at',[$dateS,$dateE]);
+          //}
         }
 
-        $user_count = $user_data->get()->count();
+        $user_count = $usercase_count->get()->count();
       } else {
-        $user_count = User::where('role', '19')->orderBy('id','DESC')->get();
+        $usercase_count = User::where('role', '19');
 
         if (!empty($filterValue)) {
-          if (count($filterIn)) {
-            $user_data = $user_data->whereIn('created_at', $filterIn);
-            //$usercase_count = $usercase_count->whereIn('ch.case_status', $filterIn);
-          }
+          //if (count($filterIn)) {
+            $user_data = $user_data->whereBetween('created_at',[$dateS,$dateE]);
+            $usercase_count = $usercase_count->whereBetween('created_at',[$dateS,$dateE]);
+          //}
         }
 
         $user_count = $usercase_count->get()->count();
       }
+
       $user_data = $user_data->orderBy($columnName, $columnSortOrder)
         ->offset($row)->limit($rowperpage)->get();
 
-        foreach ($user_case_management_data as $key => $value) {
+        foreach ($user_data as $key => $value) {
 
-            echo "<pre>";
-            print_r($value);
-            echo "<pre>";
-            exit();
             $value = json_decode(json_encode($value), true);
 
             if ($columnSortOrder == "asc") {
@@ -185,6 +172,9 @@ class CustomerController extends Controller
                 'firstname' => $value['first_name'],
                 'lastname' => $value['last_name'],
                 'gender' => (!empty($value['gender'])) ? strtoupper($value['gender'][0]) : '',
+                'email' => $value['email'],
+                'dob' => $value['dob'],
+                'address' => $value['address'],
 
                /* 'action1' => '<div class="d-flex">
                 <a class="icons edit-icon" href="' . route('casemanagement.show', $value['id']) . '"><i class="fa fa-eye"></i></a>

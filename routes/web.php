@@ -179,13 +179,14 @@ Route::group(['middleware' => ['auth:web']], function () {
 
     // Customer Routes
     Route::get('admin/customer', [CustomerController::class, 'index'])->name('customers.index');
+    Route::post('admin/customer',[CustomerController::class,'showList'])->name('customer.showList');
     Route::get('admin/customer/create', [CustomerController::class, 'create'])->name('customers.create');
     Route::post('admin/customer/store', [CustomerController::class, 'store'])->name('customers.store');
     Route::get('admin/customer/show/{id}', [CustomerController::class, 'show'])->name('customers.show');
     Route::get('admin/customer/edit/{id}', [CustomerController::class, 'edit'])->name('customers.edit');
     Route::patch('admin/customer/update/{id}', [CustomerController::class, 'update'])->name('customers.update');
     Route::delete('admin/customer/destroy/{id}', [CustomerController::class, 'destroy'])->name('customers.destroy');
-    Route::post('admin/customer',[CaseManagementController::class,'showList'])->name('customer.showList');
+
 
 
     // Change password Routes
@@ -298,6 +299,7 @@ Route::group(['middleware' => ['auth:web']], function () {
     Route::get('admin/message/{id}', [MessageController::class, 'show'])->name('message.view');
     Route::post('admin/getMedicalMessage', [MessageController::class, 'getMedicalMessage'])->name('getMedicalMessage');
     Route::post('admin/getNonMedicalMessage', [MessageController::class, 'getNonMedicalMessage'])->name('getNonMedicalMessage');
+    Route::post('admin/getSupportMessage', [MessageController::class, 'getSupportMessage'])->name('getSupportMessage');
     Route::post('admin/sendNonMedicalMessage', [MessageController::class, 'sendNonMedicalMessage'])->name('sendNonMedicalMessage');
     Route::post('admin/sendSupportMessage', [MessageController::class, 'sendSupportMessage'])->name('sendSupportMessage');
 });

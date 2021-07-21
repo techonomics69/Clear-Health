@@ -40,7 +40,7 @@
               </header> -->
           <div class="row" style="padding: 20px;">
             <div class="col-md-4">
-
+                <div class="form-group">
                 <select id="filter1" class="form-control" style="cursor:pointer;">
                     <option value="">--SELECT ACTION--</option>
                     <option value="All">All</option>
@@ -48,6 +48,7 @@
                     <option value="Action by Patient">Action by Patient</option>
                     <option value="No action required">No action required</option>
                 </select>
+                </div>
             </div>
           </div>    
           <div class="row" style="padding: 20px;">

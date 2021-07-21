@@ -54,7 +54,7 @@ class CustomerController extends Controller
         //$now = Carbon::now();
 
         $dateS = Carbon::now()->startOfMonth()->subMonth(3);
-        $dateE = Carbon::now()->startOfMonth();
+        $dateE = Carbon::now()->endOfMonth();
 
         echo "<pre>";
         print_r($dateS );

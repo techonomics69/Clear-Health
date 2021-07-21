@@ -404,9 +404,9 @@ class MessageController extends Controller
         $createdAt = Carbon::now();
         $time =  $createdAt->diffForHumans();
         $result['time'] = $time;
-        $result['file'] = $file_path;
+        $result['file'] = $message_file_data->url_thumbnail;
         $result['text'] = $message_data['text'];
-        $result['url'] = url('') . '/';
+        //$result['url'] = url('') . '/';
         if ($message_data) {
             return json_encode($result);
         } else {

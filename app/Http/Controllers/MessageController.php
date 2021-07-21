@@ -354,6 +354,7 @@ class MessageController extends Controller
         echo '<pre>';
         print_r($postfields);
         die;
+        curl_setopt_array($curl, array(
           CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/messages',
           CURLOPT_RETURNTRANSFER => true,
           CURLOPT_ENCODING => '',

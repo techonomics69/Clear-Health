@@ -40,6 +40,14 @@
               </header> -->
               <div class="row"  style="padding: 20px;">
                 <div class="col-md-12">
+
+                  <select id="filter1" class="form-control">
+                    <option value="">--SELECT--</option>
+                    <option value="Current Month" selected>Current Month</option>
+                    <option value="Last 3 Months">Last 3 Months</option>
+                    <option value="Last 6 Months">Last 6 Months</option>
+                    <option value="Custome Dates">Custome Dates</option>
+                </select>
                 <div class="">
                   <table class="table  table-responsive table-striped table-bordered" style="width:100%" id="customerList">
                     <thead>
@@ -50,14 +58,12 @@
                       <th>Gender</th>
                       <th>Email</th>
                       <th>DOB</th>
-                      <th>Address</th>
-                    
-                                  
+                      <th>Address</th>           
                       <th width="280px">Action</th>             
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($data as $key => $user)
+                  {{--   @foreach ($data as $key => $user)
                     
                     <tr>
                       <td>{{ ++$i }}</td>           
@@ -67,13 +73,6 @@
                       <td>{{ $user->email }}</td>
                       <td>{{ $user->dob }}</td>
                       <td>{{ $user->address }}</td>
-                      {{-- <td> 
-                         <label class="badge badge-success">
-                          @if(!empty($user->roles->first()->name))
-                          {{ $user->roles->first()->name }}
-                          @endif
-                        </label>                                
-                      </td> --}}
                       <td>
                         <div class="d-flex">
                         <a class="icons edit-icon" href="{{ route('customers.show',$user->id) }}"><i class="fa fa-eye"></i></a>                  
@@ -92,7 +91,7 @@
                         </div>
                       </td>
                     </tr>
-                    @endforeach
+                    @endforeach --}}
                     </tbody>
                   </table>
                 </div>

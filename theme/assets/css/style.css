@@ -1380,30 +1380,30 @@ table.table tbody td {
 }
 
 .all_screen_section .btn-secondry {
-  background-color: #359b9e; !important;
-  color           : #fff !important;
-  border          : 1px solid #359b9e; !important;
+  background-color: #359b9e !important;
+  color           : #fff ;
+  border          : 1px solid #359b9e !important;
   margin-left     : 12px;
 }
 
 .all_screen_section .btn-secondry:hover {
   background-color: #ffffff !important;
-  color           : #359b9e; !important;
-  border          : 1px solid #359b9e; !important;
+  color           : #359b9e !important;
+  border          : 1px solid #359b9e !important;
   margin-left     : 12px;
 }
 
 .all_screen_section .btn-primary {
   background-color: #ffffff !important;
-  color           : #359b9e; !important;
-  border          : 1px solid #359b9e; !important;
+  color           : #359b9e!important;
+  border          : 1px solid #359b9e !important;
   margin-left     : 12px;
 }
 
 .all_screen_section .btn-primary:hover {
-  background-color: #359b9e; !important;
+  background-color: #359b9e !important;
   color           : #fff !important;
-  border          : 1px solid #359b9e; !important;
+  border          : 1px solid #359b9e !important;
   margin-left     : 12px;
 }
 

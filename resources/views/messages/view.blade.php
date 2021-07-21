@@ -374,17 +374,15 @@
                 }
             });
         });
-
-
-    });
-    $('#supportFile').on('change', function(e) {
-        alert();
-        $('#supportImgDiv').show();
-        let reader = new FileReader();
-        reader.onload = (e) => {
-            $('#supportBlah').attr('src', e.target.result);
-        }
-        reader.readAsDataURL(this.files[0]);
+        $('#supportFile').on('change', function(e) {
+            alert();
+            $('#supportImgDiv').show();
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                $('#supportBlah').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(this.files[0]);
+        });
     });
 </script>
 @endsection

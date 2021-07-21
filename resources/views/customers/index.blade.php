@@ -173,7 +173,7 @@
       "bInfo": false,
 
       initComplete: function () {
-      var Select = '<select id="filter1" class="form-control append_date_range" style="cursor:pointer;" onchange="changeFunc();">';
+      var Select = '<select id="filter1" class="form-control append_date_range" style="cursor:pointer;" onchange="changeFunc(this);">';
           Select +='<option value="">--SELECT--</option>';
           Select +='<option value="Current Month" selected>Current Month</option>'
           Select +='<option value="Last 3 Months">Last 3 Months</option>'
@@ -354,9 +354,9 @@
   });
 
 
-   function changeFunc() {
+   function changeFunc(e) {
 
-    alert('hello'+ $(this).val());
+    alert('hello');
     if ($(this).val() === 'Custome Dates'){ 
       $('input[name=from_date]').show();
       $('input[name=to_date]').show();   

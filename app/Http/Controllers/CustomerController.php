@@ -51,41 +51,28 @@ class CustomerController extends Controller
         $totalRecords = User::where('role', '19')->count();
         $filterValue = $request->filterValue;
 
-        //$now = Carbon::now();
-
-        $dateS = Carbon::now()->startOfMonth()->subMonth(3);
-        $dateE = Carbon::now()->endOfMonth();
-
-        echo "<pre>";
-        print_r($dateS );
-        echo "<pre>";
-
-        echo "<pre>";
-        print_r($dateE );
-        echo "<pre>";
-        exit();
-
 
         /*filters*/
         switch ($filterValue) {
           case 'Current Month':
-          $filterIn = $now->month;
+            $dateS = Carbon::now()->startOfMonth();
+            $dateE = Carbon::now()->endOfMonth();
           break;
-          case 'Action by admin':
-          $filterIn = array(
-              'generate_ipledge', 'store_ipledge', 'verify_pregnancy',
-              'prior_auth', 'check_off_ipledge', 'trigger', 'blood_work',
-              'low_income_program'
-          );
+          case 'Last 3 Months':
+           $dateS = Carbon::now()->startOfMonth()->subMonth(3);
+            $dateE = Carbon::now()->endOfMonth();
           break;
-          case 'Action by Patient':
-          $filterIn = array('submission_of_iPledge', 'complete_follow_up', 'picks_up_medication', 'complete_bloodwork');
+          case 'Last 6 Months':
+           $dateS = Carbon::now()->startOfMonth()->subMonth(6);
+           $dateE = Carbon::now()->endOfMonth();
           break;
-          case 'No action required':
-          $filterIn = array('NULL', 'finish');
+          case 'Custome Dates':
+           $dateS = Carbon::now()->startOfMonth()->subMonth(2);
+           $dateE = Carbon::now()->endOfMonth();
           break;
           default:
-          $filterIn = array();
+           $dateS = Carbon::now()->startOfMonth();
+           $dateE = Carbon::now()->endOfMonth();
           break;
       }
       /*end filters*/
@@ -152,10 +139,10 @@ class CustomerController extends Controller
           ->orWhere('cm.md_case_id', 'like', "%{$searchValue}%");*/
 
         if (!empty($filterValue)) {
-          if (count($filterIn)) {
-            $user_data = $user_data->whereIn('created_at', $filterIn);
+          //if (count($filterIn)) {
+            $user_data = $user_data->whereBetween('created_at',[$dateS,$dateE]);
             //$usercase_count = $usercase_count->whereIn('ch.case_status', $filterIn);
-          }
+          //}
         }
 
         $user_count = $user_data->get()->count();
@@ -163,18 +150,19 @@ class CustomerController extends Controller
         $user_count = User::where('role', '19')->orderBy('id','DESC')->get();
 
         if (!empty($filterValue)) {
-          if (count($filterIn)) {
-            $user_data = $user_data->whereIn('created_at', $filterIn);
+          //if (count($filterIn)) {
+            $user_data = $user_data->whereBetween('created_at',[$dateS,$dateE]);
             //$usercase_count = $usercase_count->whereIn('ch.case_status', $filterIn);
-          }
+          //}
         }
 
         $user_count = $usercase_count->get()->count();
       }
+      
       $user_data = $user_data->orderBy($columnName, $columnSortOrder)
         ->offset($row)->limit($rowperpage)->get();
 
-        foreach ($user_case_management_data as $key => $value) {
+        foreach ($user_data as $key => $value) {
 
             echo "<pre>";
             print_r($value);

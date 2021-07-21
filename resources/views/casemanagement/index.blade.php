@@ -208,7 +208,7 @@
            
         // ],
       'columns': [
-		      	{ data: 'srno' },
+		      	{ data: 'srno', "sWidth": "15%","aTargets": [0] },
             { data: 'date' },
             { data: 'caseid' },
             { data: 'firstname' },
@@ -259,7 +259,7 @@
           'data': {_token:token, filterValue:filter_value},
       },
       'columns': [
-		      	{ data: 'srno' },
+		      	{ data: 'srno', "sWidth": "15%","aTargets": [0] },
             { data: 'date' },
             { data: 'caseid' },
             { data: 'firstname' },

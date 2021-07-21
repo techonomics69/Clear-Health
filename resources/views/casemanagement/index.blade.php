@@ -245,14 +245,28 @@
 
   InitilizeTable('Action by admin');
    
-   $('#filter1').on('change', function(){
+   $(document).on('change','#filter1', function(){
+    
     var filter_value = $(this).val();
     $("#CaseManagementList").DataTable().destroy();
 
     var Datatable = $('#CaseManagementList').DataTable({
-      "dom": '<"top"if>rt<"bottom"lp><"clear">',
+      "dom" : "<'row mb-2'<'col-sm-12 col-md-4 pl-4 actinc'l><'col-sm-12 col-md-8'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
       "bLengthChange": false,
       "bInfo": false,
+
+      initComplete: function () {
+      var Select = '<select id="filter1" class="form-control" style="cursor:pointer;">';
+          Select +='<option value="">--SELECT ACTION--</option>';
+          Select +='<option value="All">All</option>'
+          Select +='<option value="Action by admin" selected>Action by admin</option>'
+          Select +='<option value="Action by Patient">Action by Patient</option>'
+          Select +='<option value="No action required">No action required</option>'
+          Select += '</select>';   
+      $(".actinc").append(Select);
+      },
       'searching': true,
       'processing': true,
       'serverSide': true,

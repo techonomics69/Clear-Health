@@ -258,9 +258,9 @@ class MessageController extends Controller
           'text' => 'required',
           'from' => 'required',
         ]);
-        // if($validator->fails()){
-        //   return $this->sendError('Validation Error.', $validator->errors()->all());       
-        // }
+        if($validator->fails()){
+          //return $this->sendError('Validation Error.', $validator->errors()->all());       
+        }
         //end of validation
         if(!empty($documents)){
           $file =  $documents->getClientOriginalName();
@@ -351,7 +351,8 @@ class MessageController extends Controller
     
         $curl = curl_init();
     
-       
+        echo '<pre>';
+        print_r($token);
         
         curl_setopt_array($curl, array(
           CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/messages',
@@ -372,7 +373,8 @@ class MessageController extends Controller
     
         $response = curl_exec($curl);
     
-       
+        curl_close($curl);
+    
         $message_data = json_decode($response);
         $input_data1 = array();
     

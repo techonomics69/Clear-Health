@@ -164,7 +164,7 @@
                                                                                 <p>{{$list->last_msg}}</p>
                                                                                 <small>{{$list->time}}</small>
                                                                             </li>
-                                                                            @endif;
+                                                                            @endforeach;
                                                                         </ul>
                                                                     </div>
                                                                 </div>

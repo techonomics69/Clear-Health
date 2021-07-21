@@ -206,6 +206,7 @@
                                                                                     <input type="hidden" id="supportUserId" name="user_id" value="">
                                                                                     <input type="hidden" id="supportCase_id" name="case_id" value="{{$case_id}}">
                                                                                     <input type="hidden" id="supportMd_case_id" name="md_case_id" value="{{$md_case_id}}">
+                                                                                    <input type="hidden" name="prioritized" value="true">
                                                                                     <input type="hidden" name="from" value="support">
                                                                                 </div>
                                                                                 <div class="sending lastimg">

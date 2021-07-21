@@ -162,7 +162,7 @@
                                                                                 <span class="badge badge-danger support_msg_count">1</span>
 
                                                                                 <p>{{$list->last_msg}}</p>
-                                                                                <small>{{$list->time}}</small>
+                                                                                <small>{{$list->msg_time}}</small>
                                                                             </li>
                                                                             @endforeach;
                                                                         </ul>

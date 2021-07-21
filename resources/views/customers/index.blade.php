@@ -117,6 +117,42 @@
   $.noConflict();
   var token = "{{ csrf_token() }}";
     var url = "{{ route('customer.showList') }}";
+
+    jQuery(document).ready(function() {
+    jQuery("#filter1").change(function() {
+        if (jQuery(this).val() === 'Custome Dates'){ 
+            jQuery('input[name=from_date]').show();
+            jQuery('input[name=to_date]').show();   
+        } else {
+            jQuery('input[name=from_date]').hide();
+            jQuery('input[name=to_date]').hide(); 
+        }
+    });
+});
+
+       $(document).ready(function ($) {
+        
+            $("#from_date").datepicker({
+                //numberOfMonths: 2,
+                minDate: new Date(),
+                onSelect: function (selected) {
+                    var dt = new Date(selected);
+                    dt.setDate(dt.getDate());
+                    $("#to_date").datepicker("option", "minDate", dt);
+                },
+                dateFormat : 'yy-mm-dd'
+            });
+            $("#to_date").datepicker({
+                //numberOfMonths: 2,
+                minDate: new Date(),
+                onSelect: function (selected) {
+                    var dt = new Date(selected);
+                    dt.setDate(dt.getDate());
+                    $("#from_date").datepicker("option", "maxDate", dt);
+                },
+                dateFormat : 'yy-mm-dd'
+            });
+        });
 /*  jQuery( document ).ready(function( $ ) {
       $('#customerList').DataTable({
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
@@ -149,14 +185,19 @@
       "bInfo": false,
 
       initComplete: function () {
-      var Select = '<select id="filter1" class="form-control" style="cursor:pointer;">';
+      var Select = '<select id="filter1" class="form-control append_date_range" style="cursor:pointer;">';
           Select +='<option value="">--SELECT--</option>';
           Select +='<option value="Current Month" selected>Current Month</option>'
           Select +='<option value="Last 3 Months">Last 3 Months</option>'
           Select +='<option value="Last 6 Months">Last 6 Months</option>'
           Select +='<option value="Custome Dates">Custome Dates</option>'
-          Select += '</select>';   
+          Select += '</select>';
+      var start_date = '<input placeholder="" class="form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="text">'; 
+      var end_date = '<input placeholder="" class="form-control from_date hasDatepicker" id="to_date" name="to_date" type="text">'; 
+
       $(".actinc").append(Select);
+      $(".append_date_range").append(start_date);
+      $(".start_date").append(end_date)   
       },
      
       
@@ -233,14 +274,19 @@
       "bInfo": false,
 
       initComplete: function () {
-      var Select = '<select id="filter1" class="form-control" style="cursor:pointer;">';
+      var Select = '<select id="filter1" class="form-control append_date_range" style="cursor:pointer;">';
            Select +='<option value="">--SELECT--</option>';
           Select +='<option value="Current Month" selected>Current Month</option>'
           Select +='<option value="Last 3 Months">Last 3 Months</option>'
           Select +='<option value="Last 6 Months">Last 6 Months</option>'
           Select +='<option value="Custome Dates">Custome Dates</option>'
-          Select += '</select>';   
+          Select += '</select>'; 
+      var start_date = '<input placeholder="" class="form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="text">'; 
+      var end_date = '<input placeholder="" class="form-control from_date hasDatepicker" id="to_date" name="to_date" type="text">'; 
+
       $(".actinc").append(Select);
+      $(".append_date_range").append(start_date);
+      $(".start_date").append(end_date);
       },
       'searching': true,
       'processing': true,

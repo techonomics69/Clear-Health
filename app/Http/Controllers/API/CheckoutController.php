@@ -874,6 +874,11 @@ class CheckoutController extends BaseController
 
       /*update pharmacy id to MD*/
        $update_prescription_data = UpdateCasePrescriptions($user_id,$case_id,$md_case_id,$preferred_pharmacy_id,$checkout_id);
+
+      echo "<pre>";
+      print_r($update_prescription_data);
+      echo "<pre>";
+      exit();
       /*end of update pharmacy id to MD*/
 
        $update_pharmacy = Cart::where('id',$pharmacy_data['id'])->update(['pharmacy_pickup'=>$pharmacy_id]);

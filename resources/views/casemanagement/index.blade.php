@@ -244,6 +244,8 @@
    $('#filter1').on('change', function(){
     var filter_value = $(this).val();
     $("#CaseManagementList").DataTable().destroy();
+
+    var Datatable = $('#CaseManagementList').DataTable({});
     
       // var Datatable = $('#CaseManagementList').DataTable({
       //   "dom": '<"top"if>rt<"bottom"lp><"clear">',

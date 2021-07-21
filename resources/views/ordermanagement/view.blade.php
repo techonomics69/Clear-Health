@@ -54,8 +54,8 @@
 							   <!-- <a class="btn" data-toggle="tab" href="#shipments">Shipments </a> -->
 
 							
-								<!-- <li><a class="btn" data-toggle="tab" href="#order_summary">Order Summary</a></li>
-								<li><a class="btn" data-toggle="tab" href="#shipments_shipping_details">Shipments & shipping details</a></li> -->
+							 <li><a class="btn" >Order Summary</a></li>
+									<!--<li><a class="btn" data-toggle="tab" href="#shipments_shipping_details">Shipments & shipping details</a></li> -->
 							</ul>
 						<!-- 	<div class="tab-content">
 								start 1st tab-->

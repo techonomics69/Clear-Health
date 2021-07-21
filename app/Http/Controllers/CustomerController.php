@@ -10,6 +10,7 @@ use DB;
 use Hash;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class CustomerController extends Controller
 {
@@ -40,7 +41,7 @@ class CustomerController extends Controller
 
     public function showList(Request $request)
     {
-        
+
         $draw = $request->draw;
         $row = $request->start;
         $rowperpage = $request->length; // Rows display per page
@@ -54,6 +55,15 @@ class CustomerController extends Controller
 
         $dateS = Carbon::now()->startOfMonth()->subMonth(3);
         $dateE = Carbon::now()->startOfMonth();
+
+        echo "<pre>";
+        print_r($dateS );
+        echo "<pre>";
+
+        echo "<pre>";
+        print_r($dateE );
+        echo "<pre>";
+        exit();
 
 
         /*filters*/

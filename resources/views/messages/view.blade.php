@@ -376,6 +376,7 @@
         });
 
         $('#supportFile').on('change', function(e) {
+            alert();
             $('#supportImgDiv').show();
             let reader = new FileReader();
             reader.onload = (e) => {

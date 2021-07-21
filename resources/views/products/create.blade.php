@@ -262,28 +262,28 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="col-md-3 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <strong>Quantity:</strong>
                                     <span class="required">*</span>
                                     {!! Form::number('quantity', null, array('placeholder' => 'Quantity','class' => 'form-control')) !!}
                                 </div>
                             </div>
-                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="col-md-3 col-sm-6 col-xs-12">
                                     <div class="form-group">
                                         <strong>Minimum Quantity Alert:</strong>
                                         <span class="required">*</span>
                                         {!! Form::number('min_quantity_alert', null, array('placeholder' => 'Minimum Quantity Alert','class' => 'form-control')) !!}
                                     </div>
                                 </div>
-                                <div class="col-md-2 col-sm-3 col-xs-6">
+                                <div class="col-md-3 col-sm-3 col-xs-6">
                                     <div class="form-group">
                                         <strong>Image [List]:</strong>
                                         <span class="required">*</span><br>
                                         {!! Form::file('image', null, array('class' => 'form-control')) !!}
                                     </div>
                                 </div>
-                                <div class="col-md-2 col-sm-3 col-xs-6">
+                                <div class="col-md-3 col-sm-3 col-xs-6">
                                     <div class="form-group">
                                         <strong>Image [Detail]:</strong>
                                         <span class="required">*</span>

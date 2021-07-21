@@ -244,9 +244,9 @@ class MessageController extends Controller
         $token_data = json_decode($r);
         $token = $token_data->access_token;
         $documents = $request->file('file');
-        echo '<pre>';
-        print_r($documents);
-        die;
+        // echo '<pre>';
+        // print_r($documents);
+        // die;
         $name = $request->name;
         $user_id = $request->user_id;
         $case_id = $request->md_case_id;

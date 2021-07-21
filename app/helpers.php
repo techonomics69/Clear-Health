@@ -1455,104 +1455,43 @@ function findNotificationtriggered($user_id,$case_id,$trigger_name,$month){
   return $trigger_data ;
 }
 
-function UpdateCasePrescriptions($user_id,$case_id,$preferred_pharmacy_id,$order_id){
+function UpdateCasePrescriptions($user_id,$case_id,$md_case_id,$preferred_pharmacy_id,$order_id){
+
   $r = get_token();
   $token_data = json_decode($r);
   $token = $token_data->access_token;
 
 
-    $product_type = getUserProduct($user_id,$case_id);
+  $product_type = getUserProduct($user_id,$case_id);
 
-    if($product_type == 'Topical_low'){
+ /* if($product_type == 'Topical_low'){
 
-     $product_name = "Low Tretinoin 0.04% Topical";
+   $product_name = "Low Tretinoin 0.04% Topical";
 
-   }
+ }
 
-   if($product_type == 'Topical_high'){
+ if($product_type == 'Topical_high'){
 
-     $product_name = "High Tretinoin 0.09% Topical";
+   $product_name = "High Tretinoin 0.09% Topical";
 
-   }
+ }
 
-   if($product_type == 'Azelaic_Acid'){
+ if($product_type == 'Azelaic_Acid'){
 
-     $product_name = "Azelaic Acid 5% Topical";
+   $product_name = "Azelaic Acid 5% Topical";
 
-   }
-   if($product_type == 'Accutane'){
+ }*/
+ if($product_type == 'Accutane'){
 
-     $product_name = "ISOtretinoin (oral - capsule)";
+   $product_name = "ISOtretinoin (oral - capsule)";
 
-   }
+ }
 
-   $removed_space_pro_name = str_replace(" ","%20",$product_name);
+ $removed_space_pro_name = str_replace(" ","%20",$product_name);
 
  
 
-   $accutan_strength = 30;
-
-if($product_type !="Accutane"){
-
-  $days_supply = "60";
-  $refills = "11";
-  $directions = "Twice per day.Take one at the morning and another before bed";
-  //$no_substitutions = false;
-  //$pharmacy_notes =  "";
-  $quantity = 30;
-  $preferred_pharmacy_id =13012;//pharmacy id of curexa=13012
-
-
-      /*$DispensUnitId = $this->getDispensUnitId();
-
-      $DispensUnitId = json_decode($DispensUnitId);
-      
-      $DispensUnitId= $DispensUnitId[0]->dispense_unit_id;*/
-
-      $DispensUnitId = 8;
-
-
-
-      $curl = curl_init();
-
-      curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/compounds/search?name='.$removed_space_pro_name,
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => '',
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => 'GET',
-        CURLOPT_HTTPHEADER => array(
-          'Authorization: Bearer '.$token,
-          'Cookie: __cfduid=da01d92d82d19a6cccebfdc9852303eb81620627650'
-        ),
-      ));
-
-      $response = curl_exec($curl);
-
-      curl_close($curl);
-
-      $compounds= $response;
-
-
-      $compounds = json_decode($compounds);
-
-      $partner_compound_id = $compounds[0]->partner_compound_id;
-
-      $medication_compound_data = array();
-      $medication_compound_data[0]['partner_compound_id'] = $partner_compound_id;
-      $medication_compound_data[0]['refills'] = $refills;
-      $medication_compound_data[0]['quantity'] = $quantity;
-      $medication_compound_data[0]['days_supply'] = $days_supply;
-      $medication_compound_data[0]['directions'] = $directions;
-      $medication_compound_data[0]['dispense_unit_id'] = $DispensUnitId;
-      $medication_compound_data[0]['pharmacy_id'] = $preferred_pharmacy_id;
-     //$medication_compound_data[0]['no_substitutions'] = $no_substitutions;
-      //$medication_compound_data[0]['pharmacy_notes'] = $pharmacy_notes;
-
-    }else{
+      $accutan_strength = 30;
       $days_supply = "30";
       $refills = "0";
       $directions = "Twice per day.Take one at the morning and another before bed";
@@ -1566,7 +1505,6 @@ if($product_type !="Accutane"){
 
       curl_setopt_array($curl, array(
         CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name='.$removed_space_pro_name.'&strength='.$strength,
-        //CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name=ISOtretinoin%20(oral%20-%20capsule)&strength=30%20mg',
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
@@ -1601,24 +1539,16 @@ if($product_type !="Accutane"){
       $medication_compound_data[0]['pharmacy_id'] = ($preferred_pharmacy_id == 'cash')?13012:$preferred_pharmacy_id;
      // $medication_compound_data[0]['no_substitutions'] = $no_substitutions;
       //$medication_compound_data[0]['pharmacy_notes'] = $pharmacy_notes;
-
-    }
     $medication_compound_data = json_encode($medication_compound_data);
-
-    $input_md_data = '{"case_prescriptions": '.$medication_compound_data.'}';
-
-    echo "<pre>";
-    print_r($input_md_data);
-    echo "<pre>";
-    exit();
-
+    
+    //$input_md_data = '{"case_prescriptions": '.$medication_compound_data.'}';
 
     /*update prescription(to update pharmacy of user)*/
 
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/prescriptions',
+      CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/04b3b23c-d0de-4302-a245-5a6eb1d5b870/prescriptions',
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => '',
       CURLOPT_MAXREDIRS => 10,
@@ -1627,50 +1557,21 @@ if($product_type !="Accutane"){
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => 'PATCH',
       CURLOPT_POSTFIELDS =>$medication_compound_data,
-    CURLOPT_HTTPHEADER => array(
-      'Content-Type: application/json'
-    ),
-  ));
+      CURLOPT_HTTPHEADER => array(
+        'Content-Type: application/json',
+        'Authorization: Bearer '.$token
+      ),
+    ));
 
     $response = curl_exec($curl);
 
     curl_close($curl);
-    echo $response;
 
     /*end of api for update prescription */
-/*
-    $case_data = json_decode($response);
+
+  return $response;
+  }
 
 
 
-    $input_data['prioritized_at'] = $case_data->prioritized_at;
-    $input_data['prioritized_reason'] = $case_data->prioritized_reason;
-    $input_data['cancelled_at'] = $case_data->prioritized_reason;
-    
-    if(isset($case_data->case_assignment) && $case_data->case_assignment != null){
-      $input_data['md_created_at'] = $case_data->case_assignment->created_at;
-    }else{
-      $input_data['md_created_at'] = $case_data->created_at;
-    }
-
-    //$input_data['support_reason'] = $case_data->support_reason;
-    $input_data['case_id'] = $case_data->case_id;
-    $input_data['status'] = $case_data->case_status->name ;
-    $input_data['case_status_reason'] = $case_data->case_status->reason ;
-    $input_data['case_status_updated_at'] = $case_data->case_status->updated_at ;
-    $input_data['user_id'] = $user_id;
-    $input_data['system_case_id'] = $case_id;
-
- 
-
-    $update_order_data  =  Checkout::where('case_id',$case_id)->where('user_id',$user_id)->where('id',$order_id)->update(['md_case_id' => $case_data->case_id]);*/
-
-
- 
-
-  //return $response;
-}
-
-
-
-?>
+  ?>

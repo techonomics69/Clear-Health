@@ -352,7 +352,7 @@ class MessageController extends Controller
         $curl = curl_init();
     
         echo '<pre>';
-        print_r($postfields);
+        print_r($token);
         
         curl_setopt_array($curl, array(
           CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/messages',
@@ -364,11 +364,11 @@ class MessageController extends Controller
           CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
           CURLOPT_CUSTOMREQUEST => 'POST',
           CURLOPT_POSTFIELDS =>$postfields,
-          CURLOPT_HTTPHEADER => array(
-            'Content-Type: application/json',
-            'Authorization: Bearer '.$token,
-            'Cookie: __cfduid=da01d92d82d19a6cccebfdc9852303eb81620627650'
-          ),
+        //   CURLOPT_HTTPHEADER => array(
+        //     'Content-Type: application/json',
+        //     'Authorization: Bearer '.$token,
+        //     'Cookie: __cfduid=da01d92d82d19a6cccebfdc9852303eb81620627650'
+        //   ),
         ));
     
         $response = curl_exec($curl);

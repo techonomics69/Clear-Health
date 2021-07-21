@@ -259,7 +259,7 @@ class MessageController extends Controller
           'from' => 'required',
         ]);
         if($validator->fails()){
-          //return $this->sendError('Validation Error.', $validator->errors()->all());       
+          return $this->sendResponse([], $validator->errors()->all());       
         }
         //end of validation
         if(!empty($documents)){

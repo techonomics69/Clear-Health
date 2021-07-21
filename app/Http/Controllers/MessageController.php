@@ -244,14 +244,17 @@ class MessageController extends Controller
         $token_data = json_decode($r);
         $token = $token_data->access_token;
         $documents = $request->file('file');
+        echo '<pre>';
+        print_r($documents);
+        die;
         $name = $request->name;
         $user_id = $request->user_id;
         $case_id = $request->md_case_id;
         $system_case_id = $request->case_id;
         $file_path = '';
         //validation 
-        $data = $request->all();
-        //$data['from'] = 'support';
+        // $data = $request->all();
+        
         // $validator = Validator::make($data, [
         //   'user_id' => 'required',
         //   'case_id' => 'required',
@@ -263,68 +266,68 @@ class MessageController extends Controller
         //   return $this->sendError('Validation Error.', $validator->errors()->all());       
         // }
         //end of validation
-        // if(!empty($documents)){
-        //   $file =  $documents->getClientOriginalName();
-        //   $doc_file_name =  time().'-'.$file;
+        if(!empty($documents)){
+          $file =  $documents->getClientOriginalName();
+          $doc_file_name =  time().'-'.$file;
 
-        //   if (!file_exists(public_path('/Message_files'))) {
-        //     File::makeDirectory(public_path('/Message_files'),0777,true,true);
-        //   }
-        //   $destinationPath = public_path('/Message_files');
-        //   $documents->move($destinationPath, $doc_file_name);
+          if (!file_exists(public_path('/Message_files'))) {
+            File::makeDirectory(public_path('/Message_files'),0777,true,true);
+          }
+          $destinationPath = public_path('/Message_files');
+          $documents->move($destinationPath, $doc_file_name);
 
-        //   chmod($destinationPath."/".$doc_file_name, 0777);
+          chmod($destinationPath."/".$doc_file_name, 0777);
 
-        //   $file_path = 'public/Message_files/' .$file;
+          $file_path = 'public/Message_files/' .$file;
 
-        //   $fields = [
-        //     'name' => $name,
-        //     'file' => new \CurlFile($destinationPath."/".$doc_file_name)
-        //   ];
-
-
-        //   $input_data = $request->all();
+          $fields = [
+            'name' => $name,
+            'file' => new \CurlFile($destinationPath."/".$doc_file_name)
+          ];
 
 
-        //   $curl = curl_init();
+          $input_data = $request->all();
 
-        //   curl_setopt_array($curl, array(
-        //     CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/files',
-        //     CURLOPT_RETURNTRANSFER => true,
-        //     CURLOPT_ENCODING => '',
-        //     CURLOPT_MAXREDIRS => 10,
-        //     CURLOPT_TIMEOUT => 0,
-        //     CURLOPT_FOLLOWLOCATION => true,
-        //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        //     CURLOPT_CUSTOMREQUEST => 'POST',
-        //     CURLOPT_POSTFIELDS =>  $fields,
-        //     CURLOPT_HTTPHEADER => array(
-        //       'Content: multipart/form-data;',
-        //       'Authorization: Bearer '.$token,
-        //       'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
-        //     ),
-        //   ));
 
-        //   $response = curl_exec($curl);
+          $curl = curl_init();
 
-        //   $message_file_data = json_decode($response);
-        //   $input_data = array();
+          curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/files',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS =>  $fields,
+            CURLOPT_HTTPHEADER => array(
+              'Content: multipart/form-data;',
+              'Authorization: Bearer '.$token,
+              'Cookie: __cfduid=db3bdfa9cd5de377331fced06a838a4421617781226'
+            ),
+          ));
 
-        //   $input_data['md_case_id'] = $case_id;
-        //   $input_data['system_file'] = $file_path;
-        //   $input_data['user_id'] = $user_id;
-        //   $input_data['case_id'] = $system_case_id;
-        //   $input_data['name'] = $message_file_data->name;
-        //   $input_data['mime_type'] = $message_file_data->mime_type;
-        //   $input_data['url'] = $message_file_data->url;
-        //   $input_data['url_thumbnail'] = $message_file_data->url_thumbnail;
-        //   $input_data['file_id'] = $message_file_data->file_id;
+          $response = curl_exec($curl);
 
-        //   $message_file_data = SupportMessagesFiles::create($input_data);
+          $message_file_data = json_decode($response);
+          $input_data = array();
 
-        // //create message
+          $input_data['md_case_id'] = $case_id;
+          $input_data['system_file'] = $file_path;
+          $input_data['user_id'] = $user_id;
+          $input_data['case_id'] = $system_case_id;
+          $input_data['name'] = $message_file_data->name;
+          $input_data['mime_type'] = $message_file_data->mime_type;
+          $input_data['url'] = $message_file_data->url;
+          $input_data['url_thumbnail'] = $message_file_data->url_thumbnail;
+          $input_data['file_id'] = $message_file_data->file_id;
 
-        // }
+          $message_file_data = SupportMessagesFiles::create($input_data);
+
+        //create message
+
+        }
         $request = $request->except('_token');
 
 

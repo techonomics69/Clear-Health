@@ -118,14 +118,15 @@
   var token = "{{ csrf_token() }}";
     var url = "{{ route('customer.showList') }}";
 
-    jQuery(document).ready(function() {
-    jQuery("#filter1").change(function() {
-        if (jQuery(this).val() === 'Custome Dates'){ 
-            jQuery('input[name=from_date]').show();
-            jQuery('input[name=to_date]').show();   
+    $(document).ready(function() {
+      alert('helloo');
+    $("#filter1").change(function() {
+        if ($(this).val() === 'Custome Dates'){ 
+            $('input[name=from_date]').show();
+            $('input[name=to_date]').show();   
         } else {
-            jQuery('input[name=from_date]').hide();
-            jQuery('input[name=to_date]').hide(); 
+            $('input[name=from_date]').hide();
+            $('input[name=to_date]').hide(); 
         }
     });
 });

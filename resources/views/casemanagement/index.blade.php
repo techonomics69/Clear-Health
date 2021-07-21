@@ -245,7 +245,7 @@
 
   InitilizeTable('Action by admin');
    
-   $('#filter1').on('change', function(){
+   $(document).on('change','#filter1', function(){
     alert(); 
     var filter_value = $(this).val();
     $("#CaseManagementList").DataTable().destroy();

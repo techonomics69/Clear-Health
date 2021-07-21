@@ -245,7 +245,11 @@
     var filter_value = $(this).val();
     $("#CaseManagementList").DataTable().destroy();
 
-    var Datatable = $('#CaseManagementList').DataTable({});
+    var Datatable = $('#CaseManagementList').DataTable({
+      "dom": '<"top"if>rt<"bottom"lp><"clear">',
+      "bLengthChange": false,
+      "bInfo": false,
+    });
     
       // var Datatable = $('#CaseManagementList').DataTable({
       //   "dom": '<"top"if>rt<"bottom"lp><"clear">',

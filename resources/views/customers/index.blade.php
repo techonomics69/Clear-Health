@@ -111,6 +111,8 @@
 @endsection
 
 @section('scriptsection')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://kendo.cdn.telerik.com/2020.1.219/js/kendo.all.min.js"></script>
 <script>
   $.noConflict();
   var token = "{{ csrf_token() }}";

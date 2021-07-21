@@ -347,8 +347,7 @@ class MessageController extends Controller
         $postfields['message_files'] = $file_ids;
     
         $postfields = json_encode($postfields);
-     dd($postfields);
-        die;
+     
         $curl = curl_init();
     
        
@@ -363,11 +362,11 @@ class MessageController extends Controller
           CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
           CURLOPT_CUSTOMREQUEST => 'POST',
           CURLOPT_POSTFIELDS =>$postfields,
-        //   CURLOPT_HTTPHEADER => array(
-        //     'Content-Type: application/json',
-        //     'Authorization: Bearer '.$token,
-        //     'Cookie: __cfduid=da01d92d82d19a6cccebfdc9852303eb81620627650'
-        //   ),
+          CURLOPT_HTTPHEADER => array(
+            'Content-Type: application/json',
+            'Authorization: Bearer '.$token,
+            'Cookie: __cfduid=da01d92d82d19a6cccebfdc9852303eb81620627650'
+          ),
         ));
     
         $response = curl_exec($curl);

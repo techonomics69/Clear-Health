@@ -405,6 +405,7 @@ class MessageController extends Controller
         $time =  $createdAt->diffForHumans();
         $result['time'] = $time;
         $result['file'] = $message_file_data->url_thumbnail;
+        $result['url'] = $message_file_data->url;;
         $result['text'] = $message_data['text'];
         //$result['url'] = url('') . '/';
         if ($message_data) {

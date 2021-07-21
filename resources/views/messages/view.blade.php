@@ -364,7 +364,7 @@
                         }
                         if (result.file) {
                             $('#messageDataSupport').append(
-                                '<li class="right"><div class="time_messages"><p class="text_mesg"><a href="' + result.file + '" target="_blank"><img src="' + result.file + '" style="width:50px; height:50px; object-fit: contain;"></p><h5>' + result.time + '</h5></div></li>'
+                                '<li class="right"><div class="time_messages"><p class="text_mesg"><a href="' + result.url + '" target="_blank"><img src="' + result.file + '" style="width:50px; height:50px; object-fit: contain;"></p><h5>' + result.time + '</h5></div></li>'
                             )
                         }
                     }

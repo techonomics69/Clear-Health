@@ -1661,7 +1661,7 @@ if($product_type !="Accutane"){
     $update_order_data  =  Checkout::where('case_id',$case_id)->where('user_id',$user_id)->where('id',$order_id)->update(['md_case_id' => $case_data->case_id]);*/
 
 
-   curl_close($curl);
+ 
 
   return $response;
 }

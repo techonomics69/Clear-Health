@@ -185,6 +185,9 @@ class CustomerController extends Controller
                 'firstname' => $value['first_name'],
                 'lastname' => $value['last_name'],
                 'gender' => (!empty($value['gender'])) ? strtoupper($value['gender'][0]) : '',
+                'email' => $value['email'],
+                'dob' => $value['dob'],
+                'address' => $value['address'],
 
                /* 'action1' => '<div class="d-flex">
                 <a class="icons edit-icon" href="' . route('casemanagement.show', $value['id']) . '"><i class="fa fa-eye"></i></a>

@@ -92,7 +92,7 @@ class QuizController extends Controller
 
         $this->validate($request, [
             'question' => 'required',
-            'option' => 'required',
+            // 'option' => 'required',
             'status' => 'required|not_in:0',
             'category_id' => 'required|not_in:0', 
             //'category' => 'required',

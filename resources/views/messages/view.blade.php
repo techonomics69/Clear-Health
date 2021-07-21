@@ -151,14 +151,14 @@
                                                             <div class="right_chating">
                                                                 <div class="right-cht">
                                                                     <div class="chating-section">
-                                                                        <ul>                                                                           
+                                                                        <ul>
                                                                             <li class="mdSupport"><strong>MD Support</strong>
-                                                                               
+
                                                                                 <span class="badge badge-danger support_msg_count">1</span>
-                                                                                
+
                                                                                 <p>last msg</p>
                                                                                 <small>msg time</small>
-                                                                            </li>                                                                            
+                                                                            </li>
                                                                         </ul>
                                                                     </div>
                                                                 </div>
@@ -339,7 +339,7 @@
             $('#file').val('');
         });
 
-        $('#sendSupportMsg').on('click', function() {           
+        $('#sendSupportMsg').on('click', function() {
             $('#support-upload-image-form').submit();
         });
 
@@ -375,15 +375,16 @@
             });
         });
 
-        $('#supportFile').on('change', function(e) {
-            alert();
-            $('#supportImgDiv').show();
-            let reader = new FileReader();
-            reader.onload = (e) => {
-                $('#supportBlah').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(this.files[0]);
-        });
+
+    });
+    $('#supportFile').on('change', function(e) {
+        alert();
+        $('#supportImgDiv').show();
+        let reader = new FileReader();
+        reader.onload = (e) => {
+            $('#supportBlah').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(this.files[0]);
     });
 </script>
 @endsection

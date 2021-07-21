@@ -156,10 +156,6 @@ class CustomerController extends Controller
 
         foreach ($user_data as $key => $value) {
 
-            echo "<pre>";
-            print_r($value);
-            echo "<pre>";
-            exit();
             $value = json_decode(json_encode($value), true);
 
             if ($columnSortOrder == "asc") {

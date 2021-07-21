@@ -1632,9 +1632,9 @@ if($product_type !="Accutane"){
    /* echo $response;*/
 
     echo "<pre>";
-    print_r();
+    print_r($response);
     echo "<pre>";
-    exit($response);
+    exit();
 
     /*end of api for update prescription */
 /*

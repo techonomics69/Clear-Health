@@ -147,11 +147,11 @@ class CustomerController extends Controller
 
 
              echo "<pre>";
-            print_r($dateS->toDateString());
+            print_r($dateS->format('Y-m-d H:i:s'));
             echo "<pre>";
 
              echo "<pre>";
-            print_r($dateE->toDateString());
+            print_r($dateE->format('Y-m-d H:i:s'));
             echo "<pre>";
 
             echo "<pre>";

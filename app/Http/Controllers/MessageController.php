@@ -374,7 +374,9 @@ class MessageController extends Controller
         $response = curl_exec($curl);
     
         curl_close($curl);
-    
+    echo '<pre>';
+    print_r($response);
+    die;
         $message_data = json_decode($response);
         $input_data1 = array();
     

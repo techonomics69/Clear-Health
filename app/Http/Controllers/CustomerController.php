@@ -144,7 +144,7 @@ class CustomerController extends Controller
         if (!empty($filterValue)) {
           //if (count($filterIn)) {
             $user_data = $user_data->whereBetween('created_at',[$dateS,$dateE]);
-            $usercase_count = $usercase_count->whereBetween('created_at',[$dateS,$dateE])
+            $usercase_count = $usercase_count->whereBetween('created_at',[$dateS,$dateE]);
           //}
         }
 

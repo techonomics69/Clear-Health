@@ -10,7 +10,7 @@ use Carbon\Carbon;
 use Reflector;
 use App\Models\Messages;
 use App\Models\MessageFiles;
-use App\Models\SupportMessages;
+use App\Models\SupportMessage;
 use App\Models\SupportMessagesFiles;
 use Illuminate\Support\Facades\Validator;
 
@@ -387,7 +387,7 @@ class MessageController extends Controller
             $input_data1['case_message_id'] = $message_data->case_message_id;
             //$input_data['message_files_ids'] = json_encode($file_ids);
             $input_data1['clinician  '] = $message_data->clinician ;
-            $message_data = SupportMessages::create($input_data1);
+            $message_data = SupportMessage::create($input_data1);
             if(isset($message_file_data) && !empty($message_file_data)){
              $message_data['message_file_data'] = $message_file_data;
            }

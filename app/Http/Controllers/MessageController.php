@@ -258,9 +258,9 @@ class MessageController extends Controller
           'text' => 'required',
           'from' => 'required',
         ]);
-        if($validator->fails()){
-          return $this->sendResponse([], $validator->errors()->all());       
-        }
+        // if($validator->fails()){
+        //   return $this->sendError('Validation Error.', $validator->errors()->all());       
+        // }
         //end of validation
         if(!empty($documents)){
           $file =  $documents->getClientOriginalName();

@@ -1456,6 +1456,7 @@ function findNotificationtriggered($user_id,$case_id,$trigger_name,$month){
 }
 
 function UpdateCasePrescriptions($user_id,$case_id,$md_case_id,$preferred_pharmacy_id,$order_id){
+
   $r = get_token();
   $token_data = json_decode($r);
   $token = $token_data->access_token;
@@ -1604,6 +1605,15 @@ if($product_type !="Accutane"){
 
     }
     $medication_compound_data = json_encode($medication_compound_data);
+
+    echo "<pre>";
+    print_r($medication_compound_data);
+    echo "<pre>";
+
+     echo "<pre>";
+    print_r('https://api.mdintegrations.xyz/v1/partner/cases/'.$md_case_id.'/prescriptions');
+    echo "<pre>";
+    exit();
 
     //$input_md_data = '{"case_prescriptions": '.$medication_compound_data.'}';
 

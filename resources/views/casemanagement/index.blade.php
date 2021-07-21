@@ -32,24 +32,26 @@
 </div>
 <div class="content-body">
   <section class="basic-elements">
+  
     <div class="row">
       <div class="col-lg-12">
         <section class="card">
-          <!-- <header class="card-header top-heading">                
-                <h3 class="main-title-heading">Users Management</h3> 
-              </header> -->
-          <div class="row" style="padding: 20px;">
-            <div class="col-md-4">
-
-                <select id="filter1" class="form-control">
-                    <option value="">--SELECT ACTION--</option>
-                    <option value="All">All</option>
-                    <option value="Action by admin" selected>Action by admin</option>
-                    <option value="Action by Patient">Action by Patient</option>
-                    <option value="No action required">No action required</option>
-                </select>
-            </div>
-          </div>    
+          <header class="card-header top-heading">                
+          <div class="row" style="cursor:pointer;">
+              <div class="col-md-4">
+                  <div class="form-group">
+                  <select id="filter1" class="form-control" style="cursor:pointer;">
+                      <option value="">--SELECT ACTION--</option>
+                      <option value="All">All</option>
+                      <option value="Action by admin" selected>Action by admin</option>
+                      <option value="Action by Patient">Action by Patient</option>
+                      <option value="No action required">No action required</option>
+                  </select>
+                  </div>
+              </div>
+          </div>
+          </header>
+              
           <div class="row" style="padding: 20px;">
             <div class="col-md-12">
             
@@ -208,7 +210,7 @@
            
         // ],
       'columns': [
-		      	{ data: 'srno' },
+		      	{ data: 'srno', "sWidth": "15%","aTargets": [0] },
             { data: 'date' },
             { data: 'caseid' },
             { data: 'firstname' },
@@ -259,7 +261,7 @@
           'data': {_token:token, filterValue:filter_value},
       },
       'columns': [
-		      	{ data: 'srno' },
+		      	{ data: 'srno', "sWidth": "15%","aTargets": [0] },
             { data: 'date' },
             { data: 'caseid' },
             { data: 'firstname' },

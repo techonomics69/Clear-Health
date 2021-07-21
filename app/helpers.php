@@ -1464,7 +1464,7 @@ function UpdateCasePrescriptions($user_id,$case_id,$md_case_id,$preferred_pharma
 
   $product_type = getUserProduct($user_id,$case_id);
 
-  if($product_type == 'Topical_low'){
+ /* if($product_type == 'Topical_low'){
 
    $product_name = "Low Tretinoin 0.04% Topical";
 
@@ -1480,7 +1480,7 @@ function UpdateCasePrescriptions($user_id,$case_id,$md_case_id,$preferred_pharma
 
    $product_name = "Azelaic Acid 5% Topical";
 
- }
+ }*/
  if($product_type == 'Accutane'){
 
    $product_name = "ISOtretinoin (oral - capsule)";
@@ -1491,69 +1491,7 @@ function UpdateCasePrescriptions($user_id,$case_id,$md_case_id,$preferred_pharma
 
  
 
- $accutan_strength = 30;
-
- if($product_type !="Accutane"){
-
-  $days_supply = "60";
-  $refills = "11";
-  $directions = "Twice per day.Take one at the morning and another before bed";
-  //$no_substitutions = false;
-  //$pharmacy_notes =  "";
-  $quantity = 30;
-  $preferred_pharmacy_id =13012;//pharmacy id of curexa=13012
-
-
-      /*$DispensUnitId = $this->getDispensUnitId();
-
-      $DispensUnitId = json_decode($DispensUnitId);
-      
-      $DispensUnitId= $DispensUnitId[0]->dispense_unit_id;*/
-
-      $DispensUnitId = 8;
-
-
-
-      $curl = curl_init();
-
-      curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/compounds/search?name='.$removed_space_pro_name,
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => '',
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => 'GET',
-        CURLOPT_HTTPHEADER => array(
-          'Authorization: Bearer '.$token,
-          'Cookie: __cfduid=da01d92d82d19a6cccebfdc9852303eb81620627650'
-        ),
-      ));
-
-      $response = curl_exec($curl);
-
-      curl_close($curl);
-
-      $compounds= $response;
-
-
-      $compounds = json_decode($compounds);
-
-      $partner_compound_id = $compounds[0]->partner_compound_id;
-
-      $medication_compound_data = array();
-      $medication_compound_data[0]['partner_compound_id'] = $partner_compound_id;
-      $medication_compound_data[0]['refills'] = $refills;
-      $medication_compound_data[0]['quantity'] = $quantity;
-      $medication_compound_data[0]['days_supply'] = $days_supply;
-      $medication_compound_data[0]['directions'] = $directions;
-      $medication_compound_data[0]['dispense_unit_id'] = $DispensUnitId;
-      $medication_compound_data[0]['pharmacy_id'] = $preferred_pharmacy_id;
-     //$medication_compound_data[0]['no_substitutions'] = $no_substitutions;
-      //$medication_compound_data[0]['pharmacy_notes'] = $pharmacy_notes;
-
-    }else{
+      $accutan_strength = 30;
       $days_supply = "30";
       $refills = "0";
       $directions = "Twice per day.Take one at the morning and another before bed";
@@ -1567,7 +1505,6 @@ function UpdateCasePrescriptions($user_id,$case_id,$md_case_id,$preferred_pharma
 
       curl_setopt_array($curl, array(
         CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name='.$removed_space_pro_name.'&strength='.$strength,
-        //CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/medications/select?name=ISOtretinoin%20(oral%20-%20capsule)&strength=30%20mg',
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
@@ -1602,11 +1539,8 @@ function UpdateCasePrescriptions($user_id,$case_id,$md_case_id,$preferred_pharma
       $medication_compound_data[0]['pharmacy_id'] = ($preferred_pharmacy_id == 'cash')?13012:$preferred_pharmacy_id;
      // $medication_compound_data[0]['no_substitutions'] = $no_substitutions;
       //$medication_compound_data[0]['pharmacy_notes'] = $pharmacy_notes;
-
-    }
     $medication_compound_data = json_encode($medication_compound_data);
-
-
+    
     //$input_md_data = '{"case_prescriptions": '.$medication_compound_data.'}';
 
     /*update prescription(to update pharmacy of user)*/
@@ -1633,43 +1567,9 @@ function UpdateCasePrescriptions($user_id,$case_id,$md_case_id,$preferred_pharma
 
     curl_close($curl);
 
-    echo "<pre>";
-    print_r($response);
-    echo "<pre>";
-    exit();
-
     /*end of api for update prescription */
-/*
-    $case_data = json_decode($response);
 
-
-
-    $input_data['prioritized_at'] = $case_data->prioritized_at;
-    $input_data['prioritized_reason'] = $case_data->prioritized_reason;
-    $input_data['cancelled_at'] = $case_data->prioritized_reason;
-    
-    if(isset($case_data->case_assignment) && $case_data->case_assignment != null){
-      $input_data['md_created_at'] = $case_data->case_assignment->created_at;
-    }else{
-      $input_data['md_created_at'] = $case_data->created_at;
-    }
-
-    //$input_data['support_reason'] = $case_data->support_reason;
-    $input_data['case_id'] = $case_data->case_id;
-    $input_data['status'] = $case_data->case_status->name ;
-    $input_data['case_status_reason'] = $case_data->case_status->reason ;
-    $input_data['case_status_updated_at'] = $case_data->case_status->updated_at ;
-    $input_data['user_id'] = $user_id;
-    $input_data['system_case_id'] = $case_id;
-
- 
-
-    $update_order_data  =  Checkout::where('case_id',$case_id)->where('user_id',$user_id)->where('id',$order_id)->update(['md_case_id' => $case_data->case_id]);*/
-
-
-
-
-  //return $response;
+  return $response;
   }
 
 

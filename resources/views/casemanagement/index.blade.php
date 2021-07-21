@@ -37,9 +37,9 @@
       <div class="col-lg-12">
         <section class="card">
           <header class="card-header top-heading">                
-          <!-- <div class="row" style="padding: 20px; cursor:pointer;"> -->
-              <!-- <div class="col-md-4"> -->
-                  <!-- <div class="form-group"> -->
+          <div class="row" style="padding: 20px; cursor:pointer;">
+              <div class="col-md-4">
+                  <div class="form-group">
                   <select id="filter1" class="form-control" style="cursor:pointer;">
                       <option value="">--SELECT ACTION--</option>
                       <option value="All">All</option>
@@ -47,9 +47,9 @@
                       <option value="Action by Patient">Action by Patient</option>
                       <option value="No action required">No action required</option>
                   </select>
-                  <!-- </div> -->
-              <!-- </div> -->
-          <!-- </div> -->
+                  </div>
+              </div>
+          </div>
           </header>
               
           <div class="row" style="padding: 20px;">

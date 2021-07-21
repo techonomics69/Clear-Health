@@ -356,11 +356,11 @@
 
    function changeFunc() {
 
-    alert('hello');
+    alert('hello'+ $(this).val());
     if ($(this).val() === 'Custome Dates'){ 
       $('input[name=from_date]').show();
       $('input[name=to_date]').show();   
-    } else {
+    }else {
       alert('in else');
       $('input[name=from_date]').hide();
       $('input[name=to_date]').hide(); 

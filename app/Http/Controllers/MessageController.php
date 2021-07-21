@@ -326,7 +326,7 @@ class MessageController extends Controller
         $request1 = $request->except('_token');    
        
         echo '<pre>';
-        print_r($request1->all());
+        print_r($request1);
         die;
         //code to get files ids
     

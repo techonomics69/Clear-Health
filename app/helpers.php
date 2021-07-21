@@ -1633,43 +1633,9 @@ function UpdateCasePrescriptions($user_id,$case_id,$md_case_id,$preferred_pharma
 
     curl_close($curl);
 
-    echo "<pre>";
-    print_r($response);
-    echo "<pre>";
-    exit();
-
     /*end of api for update prescription */
-/*
-    $case_data = json_decode($response);
 
-
-
-    $input_data['prioritized_at'] = $case_data->prioritized_at;
-    $input_data['prioritized_reason'] = $case_data->prioritized_reason;
-    $input_data['cancelled_at'] = $case_data->prioritized_reason;
-    
-    if(isset($case_data->case_assignment) && $case_data->case_assignment != null){
-      $input_data['md_created_at'] = $case_data->case_assignment->created_at;
-    }else{
-      $input_data['md_created_at'] = $case_data->created_at;
-    }
-
-    //$input_data['support_reason'] = $case_data->support_reason;
-    $input_data['case_id'] = $case_data->case_id;
-    $input_data['status'] = $case_data->case_status->name ;
-    $input_data['case_status_reason'] = $case_data->case_status->reason ;
-    $input_data['case_status_updated_at'] = $case_data->case_status->updated_at ;
-    $input_data['user_id'] = $user_id;
-    $input_data['system_case_id'] = $case_id;
-
- 
-
-    $update_order_data  =  Checkout::where('case_id',$case_id)->where('user_id',$user_id)->where('id',$order_id)->update(['md_case_id' => $case_data->case_id]);*/
-
-
-
-
-  //return $response;
+  return $response;
   }
 
 

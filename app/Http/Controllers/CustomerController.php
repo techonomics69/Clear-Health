@@ -156,7 +156,7 @@ class CustomerController extends Controller
           //}
         }
 
-        $user_count = $usercase_count->get()->count();
+        $user_count = $user_data->get()->count();
       }
       
       $user_data = $user_data->orderBy($columnName, $columnSortOrder)

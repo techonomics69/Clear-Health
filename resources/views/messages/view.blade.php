@@ -151,14 +151,14 @@
                                                             <div class="right_chating">
                                                                 <div class="right-cht">
                                                                     <div class="chating-section">
-                                                                        <ul>                                                                           
+                                                                        <ul>
                                                                             <li class="mdSupport"><strong>MD Support</strong>
-                                                                               
+
                                                                                 <span class="badge badge-danger support_msg_count">1</span>
-                                                                                
+
                                                                                 <p>last msg</p>
                                                                                 <small>msg time</small>
-                                                                            </li>                                                                            
+                                                                            </li>
                                                                         </ul>
                                                                     </div>
                                                                 </div>
@@ -175,7 +175,7 @@
 
                                                                     <div class="row">
                                                                         <div class="col-lg-12">
-                                                                            <div class="imgDiv" id="supportImgDiv" style="display: none;">
+                                                                            <div class="imgDiv" id="supportImgDiv" style="display: block;">
                                                                                 <div class="imgs"> <i class="fa fa-close" id="clearImg" style="font-size: 20px;"></i></div>
                                                                                 <div class="imgs-picture">
                                                                                     <img id="supportBlah" src="#" alt="image" />
@@ -193,7 +193,7 @@
                                                                                 <div class="attachment lastimg pinclip">
                                                                                     <div class="variants">
                                                                                         <div class='file'>
-                                                                                            <label for='file'>
+                                                                                            <label for='supportFile'>
                                                                                                 <img src="{{asset('public/images/paperclip.png')}}" alt="">
                                                                                             </label>
                                                                                             <input id="supportFile" type="file" name="file">
@@ -339,7 +339,7 @@
             $('#file').val('');
         });
 
-        $('#sendSupportMsg').on('click', function() {           
+        $('#sendSupportMsg').on('click', function() {
             $('#support-upload-image-form').submit();
         });
 
@@ -374,8 +374,7 @@
                 }
             });
         });
-
-        $('#supportFile').on('change', function(e) {
+        $(document).on('change', '#supportFile', function(e) {
             alert();
             $('#supportImgDiv').show();
             let reader = new FileReader();

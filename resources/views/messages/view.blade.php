@@ -208,7 +208,7 @@
                                                                                     <input type="hidden" id="supportMd_case_id" name="md_case_id" value="{{$md_case_id}}">
                                                                                     <input type="hidden" name="prioritized" value="true">
                                                                                     <input type="hidden" name="prioritized_reason" value="He needs the prescription for tomorrow.">
-                                                                                    <input type="hidden" name="from" value="support">
+                                                                                    <input type="hidden" name="from" value="admin">
                                                                                 </div>
                                                                                 <div class="sending lastimg">
                                                                                     <button type="button" id="sendSupportMsg"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>

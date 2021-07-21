@@ -119,8 +119,9 @@
     var url = "{{ route('customer.showList') }}";
 
     $(document).ready(function() {
-      alert('helloo');
+
     $("#filter1").change(function() {
+       alert('helloo');
         if ($(this).val() === 'Custome Dates'){ 
             $('input[name=from_date]').show();
             $('input[name=to_date]').show();   

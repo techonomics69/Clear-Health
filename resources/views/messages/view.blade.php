@@ -152,7 +152,10 @@
                                                                 <div class="right-cht">
                                                                     <div class="chating-section">
                                                                         <ul>
-                                                                            <li class="mdSupport"><strong>MD Support</strong>
+                                                                            <li class="mdSupport">
+                                                                                <strong>
+                                                                                   MD Support
+                                                                                </strong>
 
                                                                                 <span class="badge badge-danger support_msg_count">1</span>
 
@@ -169,7 +172,7 @@
                                                             <div class="right-cht ">
                                                                 <div class="right_block">
                                                                     <div class="chating-section supportmessages" id="chating-section">
-                                                                        <h3>MD Support</h3>
+                                                                        <h3 id="supportnameLabel">MD Support</h3>
                                                                         <ul id="messageDataSupport"></ul>
                                                                     </div>
 
@@ -282,6 +285,26 @@
             });
         });
 
+        $('.supportMdList').on('click', function() {
+            var md_case_id = $(this).attr('data-id');
+            $.ajax({
+                url: "{{route('getSupportMessage')}}",
+                type: "post",
+                dataType: 'json',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    md_case_id: md_case_id
+                },
+                success: function(result) {
+                    $('#supportnameLabel').html(result.username);
+                    $('#messageDataSupport').html(result.html);
+                    $("#messageDataSupport").animate({
+                        scrollTop: $("#messageDataSupport")[0].scrollHeight
+                    }, 1000);
+                }
+            });
+        });
+
         $('#sendAdminMsg').on('click', function() {
             $('#upload-image-form').submit();
         });
@@ -374,7 +397,7 @@
                 }
             });
         });
-        $(document).on('change', '#supportFile', function(e) {            
+        $(document).on('change', '#supportFile', function(e) {
             $('#supportImgDiv').show();
             let reader = new FileReader();
             reader.onload = (e) => {

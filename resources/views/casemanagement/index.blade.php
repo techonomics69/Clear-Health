@@ -53,7 +53,7 @@
           <div class="row" style="padding: 20px;">
             <div class="col-md-12">
             
-                <table class="table table-responsive table-striped table-bordered" style=" width:100%" id="CaseManagementList">
+                <table class="table table-responsive table-striped table-bordered" style="width:100%" id="CaseManagementList">
                   <thead>
                     <tr>
                       <th>SR</th>
@@ -170,9 +170,7 @@
   function InitilizeTable(searchValue){
     var Datatable = $('#CaseManagementList').DataTable({
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
-      
-
-        "bLengthChange": false,
+      "bLengthChange": false,
       "bInfo": false,
      
       
@@ -210,7 +208,7 @@
            
         // ],
       'columns': [
-		      	{ data: 'srno', "sWidth": "15%","aTargets": [0] },
+		      	{ data: 'srno' },
             { data: 'date' },
             { data: 'caseid' },
             { data: 'firstname' },

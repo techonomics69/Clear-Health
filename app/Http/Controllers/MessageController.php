@@ -341,7 +341,7 @@ class MessageController extends Controller
             $file_ids[] = $message_file_data->file_id;
         }
         // end of code to get files ids
-
+        echo '<pre>'; print_r($file_ids);
         $postfields = array();
         $postfields['from'] = $request['from'];
         $postfields['text'] = $request['text'];

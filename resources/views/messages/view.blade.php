@@ -187,7 +187,7 @@
 
 
 
-                                                                        <div id="last-typing-section" class="last-typing-section">
+                                                                        <div id="last-typing-section-support" class="last-typing-section">
                                                                             <form method="post" id="support-upload-image-form" enctype="multipart/form-data">
                                                                                 @csrf
                                                                                 <div class="attachment lastimg pinclip">
@@ -203,7 +203,7 @@
 
                                                                                 <div class="search">
                                                                                     <input class="form-control" type="text" name="text" placeholder="Type a message..." id="supportText">
-                                                                                    <input type="hidden" id="supportUserId" name="user_id" value="">
+                                                                                    <input type="hidden" id="supportUserId" name="user_id" value="{{$user_id}}">
                                                                                     <input type="hidden" id="supportCase_id" name="case_id" value="{{$case_id}}">
                                                                                     <input type="hidden" id="supportMd_case_id" name="md_case_id" value="{{$md_case_id}}">
                                                                                     <input type="hidden" name="prioritized" value="true">
@@ -353,26 +353,36 @@
                 contentType: false,
                 processData: false,
                 success: function(data) {
-                    // let result = JSON.parse(data)
-                    // console.log(result);
-                    // if (result != false) {
-                    //     $('#text').val('');
-                    //     if (result.text) {
-                    //         $('#messageDataAdmin').append(
-                    //             '<li class="right"><div class="time_messages"><p class="text_mesg">' + result.text + '</p><h5>' + result.time + '</h5></div></li>'
-                    //         );
-                    //     }
-                    //     if (result.file) {
-                    //         $('#messageDataAdmin').append(
-                    //             '<li class="right"><div class="time_messages"><p class="text_mesg"><a href="' + result.url + result.file + '" target="_blank"><img src="' + result.url + result.file + '" style="width:50px; height:50px; object-fit: contain;"></p><h5>' + result.time + '</h5></div></li>'
-                    //         )
-                    //     }
-                    // }
-                    // $("#messageDataAdmin").animate({
-                    //     scrollTop: $("#messageDataAdmin")[0].scrollHeight
-                    // }, 1000);
+                    let result = JSON.parse(data)
+                    console.log(result);
+                    if (result != false) {
+                        $('#supportText').val('');
+                        if (result.text) {
+                            $('#messageDataSupport').append(
+                                '<li class="right"><div class="time_messages"><p class="text_mesg">' + result.text + '</p><h5>' + result.time + '</h5></div></li>'
+                            );
+                        }
+                        if (result.file) {
+                            $('#messageDataSupport').append(
+                                '<li class="right"><div class="time_messages"><p class="text_mesg"><a href="' + result.url + result.file + '" target="_blank"><img src="' + result.url + result.file + '" style="width:50px; height:50px; object-fit: contain;"></p><h5>' + result.time + '</h5></div></li>'
+                            )
+                        }
+                    }
+                    $("#messageDataSupport").animate({
+                        scrollTop: $("#messageDataSupport")[0].scrollHeight
+                    }, 1000);
                 }
             });
+        });
+
+        $('#supportFile').on('change', function(e) {
+            alert();
+            $('#supportImgDiv').show();
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                $('#supportBlah').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(this.files[0]);
         });
     });
 </script>

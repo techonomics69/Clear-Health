@@ -65,9 +65,27 @@ class MessageController extends Controller
         endforeach;
 
 
+        $supportList = DB::table('support_messages')
+            ->where('case_id', $case_id)
+            ->join('users', 'users.id', '=', 'support_messages.user_id')
+            ->select(
+                DB::raw('count(*) as user_count, support_messages.user_id, users.first_name, users.last_name, support_messages.case_id'),
+                DB::raw('(SELECT m.text from support_messages as m where m.user_id=users.id order by m.id desc limit 1) as last_msg'),
+                DB::raw('(SELECT m.created_at from support_messages as m where m.user_id=users.id order by m.id desc limit 1) as msg_time')
+            )
+            ->groupBy('support_messages.user_id')
+            ->orderBy('msg_time', 'desc')
+            ->get();
+        foreach ($supportList as $key => $value) :
+            $createdAt = Carbon::parse($value->msg_time);
+            $value->msg_time =  $createdAt->format('H:i:s m/d/Y');
+        endforeach;
+
+
         $user_case_management_data['user_id'] = '';
         $user_case_management_data['id'] = '';
-        return view('messages.view', compact('user_case_management_data', 'mdList', 'adminMsg', 'case_id', 'md_case_id', 'user_id'));
+        dd($supportList);
+        return view('messages.view', compact('user_case_management_data', 'mdList', 'adminMsg', 'case_id', 'md_case_id', 'user_id', 'supportList'));
     }
 
     public function getMedicalMessage(Request $request)

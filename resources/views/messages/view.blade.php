@@ -175,7 +175,7 @@
 
                                                                     <div class="row">
                                                                         <div class="col-lg-12">
-                                                                            <div class="imgDiv" id="supportImgDiv" style="display: none;">
+                                                                            <div class="imgDiv" id="supportImgDiv" style="display: block;">
                                                                                 <div class="imgs"> <i class="fa fa-close" id="clearImg" style="font-size: 20px;"></i></div>
                                                                                 <div class="imgs-picture">
                                                                                     <img id="supportBlah" src="#" alt="image" />

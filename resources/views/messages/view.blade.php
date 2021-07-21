@@ -203,7 +203,7 @@
 
                                                                                 <div class="search">
                                                                                     <input class="form-control" type="text" name="text" placeholder="Type a message..." id="supportText">
-                                                                                    <input type="hidden" id="supportUserId" name="user_id" value="">
+                                                                                    <input type="hidden" id="supportUserId" name="user_id" value="{{$user_id}}">
                                                                                     <input type="hidden" id="supportCase_id" name="case_id" value="{{$case_id}}">
                                                                                     <input type="hidden" id="supportMd_case_id" name="md_case_id" value="{{$md_case_id}}">
                                                                                     <input type="hidden" name="prioritized" value="true">

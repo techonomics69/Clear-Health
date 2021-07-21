@@ -782,12 +782,10 @@ class CheckoutController extends BaseController
    
       $order_data = Checkout::where('id', $checkout_id)->first();
 
-      echo "<pre>";
-      print_r($order_data);
-      echo "<pre>";
-      exit();
+   
 
-      $md_case_id = $order_data['md_case_id'];
+      //$md_case_id = $order_data['md_case_id'];
+      $case_id = $order_data['case_id'];
        
       $cart_ids = explode(',', $order_data['cart_id']);
      
@@ -875,7 +873,7 @@ class CheckoutController extends BaseController
 
 
       /*update pharmacy id to MD*/
-       $update_prescription_data = UpdateCasePrescriptions($user_id,$md_case_id,$preferred_pharmacy_id,$checkout_id);
+       $update_prescription_data = UpdateCasePrescriptions($user_id,$case_id,$preferred_pharmacy_id,$checkout_id);
       /*end of update pharmacy id to MD*/
 
        $update_pharmacy = Cart::where('id',$pharmacy_data['id'])->update(['pharmacy_pickup'=>$pharmacy_id]);

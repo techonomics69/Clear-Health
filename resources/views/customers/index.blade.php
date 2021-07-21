@@ -139,6 +139,7 @@
   });*/
 
    function InitilizeTable(searchValue){
+    alert('hello');
     var Datatable = $('#customerList').DataTable({
       // "dom": '<"top"if>rt<"bottom"lp><"clear">',
       "dom" : "<'row mb-2'<'col-sm-12 col-md-4 pl-4 actinc'l><'col-sm-12 col-md-8'f>>" +
@@ -217,7 +218,7 @@
     });
   }
 
-    InitilizeTable('Action by admin');
+    InitilizeTable('Current Month');
    
    $(document).on('change','#filter1', function(){
     

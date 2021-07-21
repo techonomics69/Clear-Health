@@ -119,12 +119,12 @@ class CustomerController extends Controller
       $user_data =User::where('role', '19')->orderBy('id','DESC')->get();
 
       if ($searchValue != '') {
-        $user_data = $user_data->where('id', 'like', "%{$searchValue}%")
+        $user_data = $user_data->where('role', '19')->where('id', 'like', "%{$searchValue}%")
           ->orWhere('first_name', 'like', "%{$searchValue}%")->orWhere('last_name', 'like', "%{$searchValue}%")
           ->orWhere('gender', 'like', "%{$searchValue}%")->orWhere('email', 'like', "%{$searchValue}%")
           ->orWhere('dob', 'like', "%{$searchValue}%")->orWhere('address', 'like', "%{$searchValue}%");
 
-        $usercase_count = DB::table('users')
+        $usercase_count = DB::table('users')->where('role', '19')
           ->where('id', 'like', "%{$searchValue}%")
           ->orWhere('first_name', 'like', "%{$searchValue}%")->orWhere('last_name', 'like', "%{$searchValue}%")
           ->orWhere('gender', 'like', "%{$searchValue}%")->orWhere('email', 'like', "%{$searchValue}%")
@@ -139,7 +139,7 @@ class CustomerController extends Controller
 
         $user_count = $usercase_count->get()->count();
       } else {
-        $user_count = User::where('role', '19')->orderBy('id','DESC')->get();
+        $usercase_count = User::where('role', '19')->orderBy('id','DESC')->get();
 
         if (!empty($filterValue)) {
           //if (count($filterIn)) {

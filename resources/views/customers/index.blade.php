@@ -41,13 +41,13 @@
               <div class="row"  style="padding: 20px;">
                 <div class="col-md-12">
 
-                  <select id="filter1" class="form-control">
+                  {{-- <select id="filter1" class="form-control">
                     <option value="">--SELECT--</option>
                     <option value="Current Month selected">Current Month</option>
                     <option value="Last 3 Months">Last 3 Months</option>
                     <option value="Last 6 Months">Last 6 Months</option>
                     <option value="Custome Dates">Custome Dates</option>
-                </select>
+                </select> --}}
                 <div class="">
                   <table class="table  table-responsive table-striped table-bordered" style="width:100%" id="customerList">
                     <thead>

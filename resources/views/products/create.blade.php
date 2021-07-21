@@ -125,7 +125,7 @@
 
                             <div class="col-md-6 col-sm-6 col-xs-6">
                                 <div class="form-group">
-                                    <strong>Section 2 Image:</strong>
+                                    <strong>Section 2 Image:</strong><br>
                                     <!-- <span class="required">*</span> -->
                                     {!! Form::file('section1_image', null, array('class' => 'form-control')) !!}
                                 </div>
@@ -140,7 +140,7 @@
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <strong>Show Section 2 Button:</strong><br>
+                                    <strong>Show Section 2 Button:</strong>
                                     <!-- <span class="required">*</span> -->
                                     {!! Form::checkbox('section1_button_show', 'true', '') !!}
                                 </div>
@@ -178,7 +178,7 @@
 
                             <div class="col-md-6 col-sm-6 col-xs-6">
                                 <div class="form-group">
-                                    <strong>Section 3 Image:</strong>
+                                    <strong>Section 3 Image:</strong><br>
                                     <!-- <span class="required">*</span> -->
                                     {!! Form::file('section2_image', null, array('class' => 'form-control')) !!}
                                 </div>
@@ -224,7 +224,7 @@
 
                             <div class="col-md-6 col-sm-6 col-xs-6">
                                 <div class="form-group">
-                                    <strong>Section 4 Image:</strong>
+                                    <strong>Section 4 Image:</strong><br>
                                     <!-- <span class="required">*</span> -->
                                     {!! Form::file('section3_image', null, array('class' => 'form-control')) !!}
                                 </div>
@@ -262,28 +262,28 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="col-md-3 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <strong>Quantity:</strong>
                                     <span class="required">*</span>
                                     {!! Form::number('quantity', null, array('placeholder' => 'Quantity','class' => 'form-control')) !!}
                                 </div>
                             </div>
-                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="col-md-3 col-sm-6 col-xs-12">
                                     <div class="form-group">
                                         <strong>Minimum Quantity Alert:</strong>
                                         <span class="required">*</span>
                                         {!! Form::number('min_quantity_alert', null, array('placeholder' => 'Minimum Quantity Alert','class' => 'form-control')) !!}
                                     </div>
                                 </div>
-                                <div class="col-md-2 col-sm-3 col-xs-6">
+                                <div class="col-md-3 col-sm-3 col-xs-6">
                                     <div class="form-group">
                                         <strong>Image [List]:</strong>
                                         <span class="required">*</span><br>
                                         {!! Form::file('image', null, array('class' => 'form-control')) !!}
                                     </div>
                                 </div>
-                                <div class="col-md-2 col-sm-3 col-xs-6">
+                                <div class="col-md-3 col-sm-3 col-xs-6">
                                     <div class="form-group">
                                         <strong>Image [Detail]:</strong>
                                         <span class="required">*</span>

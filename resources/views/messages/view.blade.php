@@ -151,14 +151,14 @@
                                                             <div class="right_chating">
                                                                 <div class="right-cht">
                                                                     <div class="chating-section">
-                                                                        <ul>                                                                           
+                                                                        <ul>
                                                                             <li class="mdSupport"><strong>MD Support</strong>
-                                                                               
+
                                                                                 <span class="badge badge-danger support_msg_count">1</span>
-                                                                                
+
                                                                                 <p>last msg</p>
                                                                                 <small>msg time</small>
-                                                                            </li>                                                                            
+                                                                            </li>
                                                                         </ul>
                                                                     </div>
                                                                 </div>
@@ -175,7 +175,7 @@
 
                                                                     <div class="row">
                                                                         <div class="col-lg-12">
-                                                                            <div class="imgDiv" id="supportImgDiv" style="display: none;">
+                                                                            <div class="imgDiv" id="supportImgDiv" style="display: block;">
                                                                                 <div class="imgs"> <i class="fa fa-close" id="clearImg" style="font-size: 20px;"></i></div>
                                                                                 <div class="imgs-picture">
                                                                                     <img id="supportBlah" src="#" alt="image" />
@@ -187,13 +187,13 @@
 
 
 
-                                                                        <div id="last-typing-section" class="last-typing-section">
+                                                                        <div id="last-typing-section-support" class="last-typing-section">
                                                                             <form method="post" id="support-upload-image-form" enctype="multipart/form-data">
                                                                                 @csrf
                                                                                 <div class="attachment lastimg pinclip">
                                                                                     <div class="variants">
                                                                                         <div class='file'>
-                                                                                            <label for='file'>
+                                                                                            <label for='supportFile'>
                                                                                                 <img src="{{asset('public/images/paperclip.png')}}" alt="">
                                                                                             </label>
                                                                                             <input id="supportFile" type="file" name="file">
@@ -203,10 +203,12 @@
 
                                                                                 <div class="search">
                                                                                     <input class="form-control" type="text" name="text" placeholder="Type a message..." id="supportText">
-                                                                                    <input type="hidden" id="supportUserId" name="user_id" value="">
+                                                                                    <input type="hidden" id="supportUserId" name="user_id" value="{{$user_id}}">
                                                                                     <input type="hidden" id="supportCase_id" name="case_id" value="{{$case_id}}">
                                                                                     <input type="hidden" id="supportMd_case_id" name="md_case_id" value="{{$md_case_id}}">
-                                                                                    <input type="hidden" name="from" value="support">
+                                                                                    <input type="hidden" name="prioritized" value="true">
+                                                                                    <input type="hidden" name="prioritized_reason" value="He needs the prescription for tomorrow.">
+                                                                                    <input type="hidden" name="from" value="admin">
                                                                                 </div>
                                                                                 <div class="sending lastimg">
                                                                                     <button type="button" id="sendSupportMsg"><img src="{{asset('public/images/telegram.png')}}" alt=""></button>
@@ -337,7 +339,7 @@
             $('#file').val('');
         });
 
-        $('#sendSupportMsg').on('click', function() {           
+        $('#sendSupportMsg').on('click', function() {
             $('#support-upload-image-form').submit();
         });
 
@@ -351,26 +353,35 @@
                 contentType: false,
                 processData: false,
                 success: function(data) {
-                    // let result = JSON.parse(data)
-                    // console.log(result);
-                    // if (result != false) {
-                    //     $('#text').val('');
-                    //     if (result.text) {
-                    //         $('#messageDataAdmin').append(
-                    //             '<li class="right"><div class="time_messages"><p class="text_mesg">' + result.text + '</p><h5>' + result.time + '</h5></div></li>'
-                    //         );
-                    //     }
-                    //     if (result.file) {
-                    //         $('#messageDataAdmin').append(
-                    //             '<li class="right"><div class="time_messages"><p class="text_mesg"><a href="' + result.url + result.file + '" target="_blank"><img src="' + result.url + result.file + '" style="width:50px; height:50px; object-fit: contain;"></p><h5>' + result.time + '</h5></div></li>'
-                    //         )
-                    //     }
-                    // }
-                    // $("#messageDataAdmin").animate({
-                    //     scrollTop: $("#messageDataAdmin")[0].scrollHeight
-                    // }, 1000);
+                    let result = JSON.parse(data)
+                    console.log(result);
+                    if (result != false) {
+                        $('#supportText').val('');
+                        if (result.text) {
+                            $('#messageDataSupport').append(
+                                '<li class="right"><div class="time_messages"><p class="text_mesg">' + result.text + '</p><h5>' + result.time + '</h5></div></li>'
+                            );
+                        }
+                        if (result.file) {
+                            $('#messageDataSupport').append(
+                                '<li class="right"><div class="time_messages"><p class="text_mesg"><a href="' + result.url + result.file + '" target="_blank"><img src="' + result.url + result.file + '" style="width:50px; height:50px; object-fit: contain;"></p><h5>' + result.time + '</h5></div></li>'
+                            )
+                        }
+                    }
+                    $("#messageDataSupport").animate({
+                        scrollTop: $("#messageDataSupport")[0].scrollHeight
+                    }, 1000);
                 }
             });
+        });
+        $(document).on('change', '#supportFile', function(e) {
+            alert();
+            $('#supportImgDiv').show();
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                $('#supportBlah').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(this.files[0]);
         });
     });
 </script>

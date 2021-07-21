@@ -60,7 +60,8 @@
                             <?php }else if($order_non_prescribed[0]->cancel_request == true && $order_non_prescribed[0]->status =='cancelled'){ ?>
                               
 							<ul class="nav nav-tabs" id="casemanagement-tab-menu">
-                               <li><span> Order Cancelled</span></li> 
+                               <li><a class="btn " data-toggle="tab" style="background-color: #359b9e;
+    color: #ffffff;" > Order Cancelled</a></li> 
 
 							
 								<!-- <li><button type="button" id="cancelButton" class="btn btn-primary active">Cancel this order</button></li> -->

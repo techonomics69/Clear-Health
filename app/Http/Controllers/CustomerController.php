@@ -164,30 +164,31 @@ class CustomerController extends Controller
         ->offset($row)->limit($rowperpage)->get();
 
         foreach ($user_case_management_data as $key => $value) {
+
+            echo "<pre>";
+            print_r($value);
+            echo "<pre>";
+            exit();
             $value = json_decode(json_encode($value), true);
-            
+
             if ($columnSortOrder == "asc") {
                 $counter = ($row == 0) ? ($usercase_count - ($key)) : ($usercase_count - ($key + $row));
             } else {
                 $counter = ($row == 0) ? ($key + 1) : (($key + 1) + $row);
             }
+
+            $action1 = '<div class="d-flex">
+                <a class="icons edit-icon" href="{{'. route('customers.show',$user->id).'}}"><i class="fa fa-eye"></i></a> <a class="icons edit-icon" href="{{'. route('customers.edit',$user->id) .'}}"><i class="fa fa-edit"></i></a>{!! Form::open(["method" => "DELETE","route" => ["customers.destroy", $user->id],"style"=>"display:inline"]) !!}<a class="icons edit-icon customer_delete" href="#" id="{{$user->id}}" onclick="deleteCustomer({{$user->id}})"><i class="fa fa-trash" aria-hidden="true"></i></a><button type="submit" class="btn_delete{{$user->id}}" style="display:none;"></button>{!! Form::close() !!}
+                    </div>';
             $data[] = array(
-                'srno' => $counter,
-                'date' => date("d/m/Y", strtotime($value['created_at'])),
-                'caseid' => $value['ref_id'],
+                'no' => $counter,
                 'firstname' => $value['first_name'],
                 'lastname' => $value['last_name'],
                 'gender' => (!empty($value['gender'])) ? strtoupper($value['gender'][0]) : '',
-                'visitnumber' => (empty($value['follow_up'])) ? 1 : ($value['follow_up'] + 1),
-                'mdcaseid' => $value['md_case_id'],
-                'casestatus' => $value['md_case_status'],
-                'mdstatus' => $mdStatus,
-                'visittype' => (empty($value['follow_up'])) ? 'Initial' : 'FollowUp',
-                'treatmentplan' => '',
-                'pharmacy' => '',
-                'action1' => '<div class="d-flex">
+
+               /* 'action1' => '<div class="d-flex">
                 <a class="icons edit-icon" href="' . route('casemanagement.show', $value['id']) . '"><i class="fa fa-eye"></i></a>
-                </div>',
+                </div>',*/
                 'action' => $action1,
             );
         }

@@ -184,8 +184,8 @@
       var end_date = '<input placeholder="" class="form-control from_date hasDatepicker" id="to_date" name="to_date" type="text">'; 
 
       $(".actinc").append(Select);
-      $(".append_date_range").append(start_date);
-      $(".start_date").append(end_date)   
+      $(".actinc").append(start_date);
+      $(".actinc").append(end_date)   
       },
      
       
@@ -273,8 +273,8 @@
       var end_date = '<input placeholder="" class="form-control from_date hasDatepicker" id="to_date" name="to_date" type="text">'; 
 
       $(".actinc").append(Select);
-      $(".append_date_range").append(start_date);
-      $(".start_date").append(end_date);
+      $(".actinc").append(start_date);
+      $(".actinc").append(end_date);
       },
       'searching': true,
       'processing': true,
@@ -355,11 +355,9 @@
 
 
    function changeFunc(e) {
-
-    alert('hello');
     var selectedValue = e.value;
-    alert(selectedValue);
-    if ($(e).val() === 'Custome Dates'){ 
+
+    if (selectedValue === 'Custome Dates'){ 
       $('input[name=from_date]').show();
       $('input[name=to_date]').show();   
     }else {

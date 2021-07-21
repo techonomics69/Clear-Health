@@ -181,13 +181,11 @@
           Select +='<option value="Custome Dates">Custome Dates</option>'
           Select += '</select>';
       var start_date = '<input placeholder="" class="form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="text">'; 
-      var end_date = '<input placeholder="" class="form-control from_date hasDatepicker" id="to_date" name="to_date" type="text">';
-
-      $( '<input placeholder="" class="form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="text" />' ).insertAfter( ".append_date_range" ); 
+      var end_date = '<input placeholder="" class="form-control from_date hasDatepicker" id="to_date" name="to_date" type="text">'; 
 
       $(".actinc").append(Select);
-     // $(".append_date_range").append(start_date);
-     // $(".start_date").append(end_date)   
+      $(".append_date_range").append(start_date);
+      $(".start_date").append(end_date)   
       },
      
       
@@ -271,15 +269,14 @@
           Select +='<option value="Last 6 Months">Last 6 Months</option>'
           Select +='<option value="Custome Dates">Custome Dates</option>'
           Select += '</select>'; 
-
       var start_date = '<input placeholder="" class="form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="text" />'; 
       var end_date = '<input placeholder="" class="form-control from_date hasDatepicker" id="to_date" name="to_date" type="text" />'; 
 
-      $( '<input placeholder="" class="form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="text" />' ).insertAfter( ".append_date_range" );
+      //$( "<p>Test</p>" ).insertAfter( ".inner" );
 
       $(".actinc").append(Select);
-      //$(".append_date_range").append(start_date);
-      //$(".start_date").append(end_date);
+      $(".append_date_range").append(start_date);
+      $(".start_date").append(end_date);
       },
       'searching': true,
       'processing': true,

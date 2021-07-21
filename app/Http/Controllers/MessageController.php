@@ -252,13 +252,13 @@ class MessageController extends Controller
         //validation 
         $data = $request->all(); 
         //$data['from'] = 'support';
-        $validator = Validator::make($data, [
+        /*$validator = Validator::make($data, [
           'user_id' => 'required',
           'case_id' => 'required',
           'system_case_id' => 'required',
           'text' => 'required',
           'from' => 'required',
-        ]);
+        ]);*/
         // if($validator->fails()){
         //   return $this->sendError('Validation Error.', $validator->errors()->all());       
         // }
@@ -325,7 +325,10 @@ class MessageController extends Controller
     
         }
     
-    
+        echo "<pre>";
+        print_r("innn");
+        echo "<pre>";
+        exit();
     
         //code to get files ids
     

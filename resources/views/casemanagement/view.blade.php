@@ -1277,21 +1277,21 @@
 											<div class=" mtb32">
 												<h3 class="font-weight-bold"><span class="text-underline">Prescribed products shippments</span></h3>
 	
-												<div class="col-md-12  form-group">
+												<div class="  form-group">
 													<strong>Order ID :</strong>
 													<?php if (isset($skincare_summary['order_id']) && $skincare_summary['order_id'] != '') { ?>
 														{{$skincare_summary['order_id']}}
 													<?php } ?>
 												</div>
 	
-												<div class="col-md-12  form-group">
+												<div class="  form-group">
 													<strong>Product Name:</strong>
 	
 													{{$skincare_summary['product_name']}}
 	
 												</div>
 	
-												<div class="col-md-12  form-group">
+												<div class="  form-group">
 													<strong>Order Status:</strong>
 													<?php
 													if (count($prescribe_shipments) > 0) {
@@ -1312,7 +1312,7 @@
 													?>
 												</div>
 	
-												<div class="col-md-12  form-group">
+												<div class="  form-group">
 													<strong>Shipped date:</strong>
 													<?php
 													if (count($prescribe_shipments) > 0) {
@@ -1338,19 +1338,19 @@
 														if ($skincare_summary['getOrder'] != '') {
 															$shipStationOrder = json_decode(json_encode($skincare_summary['getOrder']), true);
 												?>
-															<div class="col-md-12  form-group">
+															<div class="  form-group">
 																<strong>Shipstation OrderId : </strong>
 																<?php echo $shipStationOrder['orderId'] ?>
 															</div>
-															<div class="col-md-12  form-group">
+															<div class="  form-group">
 																<strong>Order Number : </strong>
 																<?php echo $shipStationOrder['orderNumber'] ?>
 															</div>
-															<div class="col-md-12  form-group">
+															<div class="  form-group">
 																<strong>Order Date : </strong>
 																<?php echo date("d-m-Y", strtotime($shipStationOrder['orderDate'])); ?>
 															</div>
-															<div class="col-md-12  form-group">
+															<div class="  form-group">
 																<strong>Order Status : </strong>
 																<?php
 																if ($shipStationOrder['orderStatus'] == 'awaiting_payment') {
@@ -1367,7 +1367,7 @@
 															<?php
 															if ($shipStationOrder['orderStatus'] == 'shipped') {
 															?>
-																<div class="col-md-12  form-group">
+																<div class="  form-group">
 																	<strong>Estimated ship date : </strong>
 																	<?php echo date("d-m-Y", strtotime($shipStationOrder['shipDate'])); ?>
 																</div>
@@ -1377,7 +1377,7 @@
 																$tracking = json_decode(json_encode($skincare_summary['trackOrder']), true);
 																if (isset($tracking['shipments'][0])) {
 																?>
-																	<div class="col-md-12  form-group">
+																	<div class="  form-group">
 																		<strong> Tracking No: </strong>
 																		<a href="https://tools.usps.com/go/TrackConfirmAction.action?tLabels=<?php echo $tracking['shipments'][0]['trackingNumber']; ?>" target="_blank"><?php echo $tracking['shipments'][0]['trackingNumber']; ?></a>
 																	</div>

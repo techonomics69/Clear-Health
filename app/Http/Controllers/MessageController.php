@@ -237,16 +237,11 @@ class MessageController extends Controller
 
 
     public function sendSupportMessage(Request $request){
-
         $r = get_token();
         $token_data = json_decode($r);
         $token = $token_data->access_token;
     
-                 echo "<pre>";
-        print_r("innn");
-        echo "<pre>";
-        exit();
-    
+               
         $documents = $request->file('file');
         $name = $request->name;
         $user_id = $request->user_id;
@@ -256,16 +251,16 @@ class MessageController extends Controller
         //validation 
         $data = $request->all(); 
         //$data['from'] = 'support';
-        /*$validator = Validator::make($data, [
+        $validator = Validator::make($data, [
           'user_id' => 'required',
           'case_id' => 'required',
           'system_case_id' => 'required',
           'text' => 'required',
           'from' => 'required',
-        ]);*/
-        // if($validator->fails()){
-        //   return $this->sendError('Validation Error.', $validator->errors()->all());       
-        // }
+        ]);
+        if($validator->fails()){
+          //return $this->sendError('Validation Error.', $validator->errors()->all());       
+        }
         //end of validation
         if(!empty($documents)){
           $file =  $documents->getClientOriginalName();
@@ -285,6 +280,7 @@ class MessageController extends Controller
             'name' => $name,
             'file' => new \CurlFile($destinationPath."/".$doc_file_name)
           ];
+    
     
           $input_data = $request->all();
     
@@ -329,10 +325,7 @@ class MessageController extends Controller
     
         }
     
-        echo "<pre>";
-        print_r("innn");
-        echo "<pre>";
-        exit();
+    
     
         //code to get files ids
     
@@ -355,19 +348,11 @@ class MessageController extends Controller
         $postfields['message_files'] = $file_ids;
     
         $postfields = json_encode($postfields);
-
-        echo "<pre>";
-        print_r($postfields);
-        echo "<pre>";
-
-        echo "<pre>";
-        print_r($case_id);
-        echo "<pre>";
-        exit();
     
         $curl = curl_init();
     
-       
+        echo '<pre>';
+        print_r($token);
         
         curl_setopt_array($curl, array(
           CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/messages',
@@ -388,7 +373,8 @@ class MessageController extends Controller
     
         $response = curl_exec($curl);
     
-       
+        curl_close($curl);
+    
         $message_data = json_decode($response);
         $input_data1 = array();
     

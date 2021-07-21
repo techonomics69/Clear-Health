@@ -152,16 +152,19 @@
                                                                 <div class="right-cht">
                                                                     <div class="chating-section">
                                                                         <ul>
-                                                                            <li class="mdSupport">
+                                                                            @foreach($supportList => $key as $list)
+                                                                            <li class="supportMdList" data-id="{{$list->md_case_id}}">
                                                                                 <strong>
-                                                                                   MD Support
+                                                                                    MD Support
+                                                                                    <small>{{$list->md_case_id}}</small>
                                                                                 </strong>
 
                                                                                 <span class="badge badge-danger support_msg_count">1</span>
 
-                                                                                <p>last msg</p>
-                                                                                <small>msg time</small>
+                                                                                <p>{{$list->last_msg}}</p>
+                                                                                <small>{{$list->time}}</small>
                                                                             </li>
+                                                                            @endif;
                                                                         </ul>
                                                                     </div>
                                                                 </div>

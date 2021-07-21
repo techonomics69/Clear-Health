@@ -370,12 +370,12 @@ class MessageController extends Controller
         ));
     
         $response = curl_exec($curl);
-    
+        echo '<pre>'; 
+        print_r($response);
+        die;
        
         $message_data = json_decode($response);
-        // echo '<pre>'; 
-        // print_r($message_data);
-        // die;
+        
         $input_data1 = array();
     
         $input_data1['md_case_id'] = $case_id;

@@ -353,7 +353,7 @@ class MessageController extends Controller
         $postfields['prioritized_reason'] = $request['prioritized_reason'];
         $postfields['message_files'] = $file_ids;
 
-        echo '<pre>'; print_r($postfields); die;
+       
         $postfields = json_encode($postfields);
 
         $curl = curl_init();

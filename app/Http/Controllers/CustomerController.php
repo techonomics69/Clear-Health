@@ -179,7 +179,7 @@ class CustomerController extends Controller
 
             $action1 = '<div class="d-flex">
                 <a class="icons edit-icon" href="{{'. route('customers.show',$user->id).'}}"><i class="fa fa-eye"></i></a> <a class="icons edit-icon" href="{{'. route('customers.edit',$user->id) .'}}"><i class="fa fa-edit"></i></a>{!! Form::open(["method" => "DELETE","route" => ["customers.destroy", $user->id],"style"=>"display:inline"]) !!}<a class="icons edit-icon customer_delete" href="#" id="{{$user->id}}" onclick="deleteCustomer({{$user->id}})"><i class="fa fa-trash" aria-hidden="true"></i></a><button type="submit" class="btn_delete{{$user->id}}" style="display:none;"></button>{!! Form::close() !!}
-                    </div>'
+                    </div>';
             $data[] = array(
                 'no' => $counter,
                 'firstname' => $value['first_name'],

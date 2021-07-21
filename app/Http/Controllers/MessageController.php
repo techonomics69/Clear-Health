@@ -348,9 +348,7 @@ class MessageController extends Controller
     
         $postfields = json_encode($postfields);
      
-        $curl = curl_init();
-    
-        echo $case_id;
+        $curl = curl_init();        
         
         curl_setopt_array($curl, array(
           CURLOPT_URL => 'https://api.mdintegrations.xyz/v1/partner/cases/'.$case_id.'/messages',
@@ -371,9 +369,6 @@ class MessageController extends Controller
         ));
     
         $response = curl_exec($curl);
-        echo '<pre>'; 
-        print_r($response);
-        die;
        
         $message_data = json_decode($response);
         

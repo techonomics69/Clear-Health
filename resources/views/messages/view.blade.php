@@ -187,7 +187,7 @@
 
 
 
-                                                                        <div id="last-typing-section" class="last-typing-section">
+                                                                        <div id="last-typing-section-support" class="last-typing-section">
                                                                             <form method="post" id="support-upload-image-form" enctype="multipart/form-data">
                                                                                 @csrf
                                                                                 <div class="attachment lastimg pinclip">

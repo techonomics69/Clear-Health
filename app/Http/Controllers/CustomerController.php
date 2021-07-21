@@ -147,18 +147,18 @@ class CustomerController extends Controller
 
 
              echo "<pre>";
-            print_r($dateS->date);
+            print_r($dateS->toDateString());
             echo "<pre>";
 
              echo "<pre>";
-            print_r($dateE->date);
+            print_r($dateE->toDateString());
             echo "<pre>";
 
             echo "<pre>";
             print_r($user_data);
             echo "<pre>";
             exit();
-            $usercase_count = $usercase_count->whereBetween('created_at',[$dateS->date,$dateE->date]);
+            $usercase_count = $usercase_count->whereBetween('created_at',[$dateS->toDateString(),$dateE->toDateString()]);
           //}
         }
 

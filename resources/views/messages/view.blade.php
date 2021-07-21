@@ -152,7 +152,7 @@
                                                                 <div class="right-cht">
                                                                     <div class="chating-section">
                                                                         <ul>
-                                                                            @foreach($supportList => $key as $list)
+                                                                            @foreach($supportList as $key => $list)
                                                                             <li class="supportMdList" data-id="{{$list->md_case_id}}">
                                                                                 <strong>
                                                                                     MD Support
@@ -164,7 +164,7 @@
                                                                                 <p>{{$list->last_msg}}</p>
                                                                                 <small>{{$list->time}}</small>
                                                                             </li>
-                                                                            @endif;
+                                                                            @endforeach;
                                                                         </ul>
                                                                     </div>
                                                                 </div>

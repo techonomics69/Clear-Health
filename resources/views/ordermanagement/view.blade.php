@@ -48,6 +48,7 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<section class="card" >
+							{{$order_data['cancel_request']}}
 							<!-- <ul class="nav nav-tabs" id="casemanagement-tab-menu">
 								<li><a class="btn active " data-toggle="tab" href="#profile">Profile</a></li>
 								<li><a class="btn" data-toggle="tab" href="#order_summary">Order Summary</a></li>

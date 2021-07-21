@@ -311,9 +311,7 @@ class MessageController extends Controller
           ));
 
           $response = curl_exec($curl);
-          echo '<pre>';
-          print_r($response);
-          die;
+         
           $message_file_data = json_decode($response);
           $input_data = array();
 
@@ -378,7 +376,7 @@ class MessageController extends Controller
         ));
 
         $response = curl_exec($curl);
-
+        echo '<pre>'; print_r($response); die;
         $message_data = json_decode($response);
 
         $input_data1 = array();

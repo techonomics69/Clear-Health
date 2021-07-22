@@ -198,4 +198,8 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     //GetProgressPhotos
     Route::get("getprogressphotos",[UserController::class, 'getUserProgressPhotos']);
+
+    //Daxit routes
+    // For getting birth control questions
+    Route::get("getBirthControlQuestion",[QuizController::class, 'getBirthControlQuestions']);
 });

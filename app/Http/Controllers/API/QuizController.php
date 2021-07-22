@@ -49,4 +49,15 @@ class QuizController extends BaseController
         
         return $this->sendResponse($quiz, 'General Question retrieved successfully.');
     }
+
+    public function getBirthControlQuestions(Request $request){
+        $quiz = Quiz::where('status','1')->where('category_id',14);
+        if(isset($request->mainq)){
+            if(!empty($request->mainq)){
+                $quiz = $quiz->where('id',$request->mainq);
+            }
+        }   
+        $quiz = $quiz->get();
+        return $this->sendResponse($quiz, 'Quiz retrieved successfully.');
+    }
 }

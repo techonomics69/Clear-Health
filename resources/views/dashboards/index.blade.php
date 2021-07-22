@@ -102,14 +102,14 @@
         </div>
 
          <div class="col-xl-4 col-lg-4 col-md-6 col-12">
-          <div class="card">
+          <div class="card bg-arielle-smile">
             <div class="card-content">
               <a href="{{ route('casemanagement.index') }}">
               <div class="media align-items-stretch">
-                <div class="p-2 text-center bg-danger bg-darken-2" style="background-color: #323232 !important;">
+                <div class="p-2 text-center">
                   <i class="icon-user font-large-2 white"></i>
                 </div>
-                <div class="p-2  white media-body" style="background-color: #323232 !important;">
+                <div class="p-2  white media-body" >
                   <h5>Prescribed orders  </h5>
                   <h5>{{ $prescribed_orders }}</h5>
                 </div>

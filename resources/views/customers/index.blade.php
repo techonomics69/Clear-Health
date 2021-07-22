@@ -382,6 +382,8 @@
    function changeFunc(e) {
     var selectedValue = e.value;
 
+    $('#filter1 option[value='+selectedValue'+]').attr('selected','selected');
+
     if (selectedValue == 'Custome Dates'){ 
       $('.form_date_div').show();
       $('.to_date_div').show(); 

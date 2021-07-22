@@ -167,7 +167,7 @@
       "bInfo": false,
 
       initComplete: function () {
-      var Select = '<select id="filter1" class="form-control" style="cursor:pointer;">';
+      var Select = '<select id="filter1" class="form-control casefilter" style="cursor:pointer;">';
           Select +='<option value="">--SELECT ACTION--</option>';
           Select +='<option value="All">All</option>'
           Select +='<option value="Action by admin" selected>Action by admin</option>'

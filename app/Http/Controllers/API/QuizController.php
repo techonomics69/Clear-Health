@@ -7,6 +7,7 @@ use App\Http\Controllers\API\BaseController as BaseController;
 use App\Models\Quiz;
 use App\Models\QuizCategory;
 use Validator;
+use Exception;
 
    
 class QuizController extends BaseController
@@ -62,5 +63,9 @@ class QuizController extends BaseController
         }   
         $quiz = $quiz->get();
         return $this->sendResponse($quiz, 'Quiz retrieved successfully.');
+    }
+
+    public function StoreBirthControlAnswer(Request $request){
+
     }
 }

@@ -247,7 +247,7 @@
           },
         "order": [[ 0, "desc" ]],  
 
-        // language: {search: "", searchPlaceholder: "Search"},
+       language: {search: "", searchPlaceholder: "Search"},
 
     });
   }

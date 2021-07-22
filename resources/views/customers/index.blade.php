@@ -360,6 +360,9 @@
     alert('in if'); 
       $('#from_date').show();
       $('#to_date').show(); 
+
+      $('.from_date').show();
+      $('.to_date').show(); 
      /* $('.from_date').css('display','block');
       $('.to_date').css('display','block');  */
     }else {

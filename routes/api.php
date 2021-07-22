@@ -200,6 +200,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get("getprogressphotos",[UserController::class, 'getUserProgressPhotos']);
 
     //Daxit routes
-    // For getting birth control questions
+    // Birthcontrol routes
     Route::get("getBirthControlQuestion",[QuizController::class, 'getBirthControlQuestions']);
+    Route::post("StoreBirthControlAnswer",[QuizController::class, "StoreBirthControlAnswer"]);
 });

@@ -368,8 +368,10 @@
     alert(selectedValue);
 
     if (selectedValue == 'Custome Dates'){ 
-      $('#from_date').show();
-      $('#to_date').show();   
+      //$('#from_date').show();
+      //$('#to_date').show(); 
+      $('#from_date').css('display','block');
+      $('#to_date').css('display','block');  
     }else {
       alert('in else');
      $('#from_date').hide();

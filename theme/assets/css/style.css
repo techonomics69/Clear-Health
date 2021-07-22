@@ -1730,6 +1730,6 @@ table.table thead th {
   background-repeat: repeat-x!important;
 }
 .bg-midnight-bloom {
-  background-image: linear-gradient(to right, #2b5876 0%, #4e4376 100%) !important;
+  background-image: linear-gradient(to right, #4e4376 0%, #2b5876 100%) !important;
   background-repeat: repeat-x!important;
 }

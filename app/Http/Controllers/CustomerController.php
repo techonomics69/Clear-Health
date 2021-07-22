@@ -42,7 +42,7 @@ class CustomerController extends Controller
     public function showList(Request $request)
     {
 
-        if($filterValue == 'Custome Dates'){
+        if($request->filterValue == 'Custome Dates'){
             echo "<pre>";
         print_r();
         echo "<pre>";

@@ -1678,6 +1678,9 @@ table.table thead th {
 .append_date_range {
     max-width: 280px;
 }
+.date_piker{
+  height: 41px;
+}
 
 .imgDiv{
     /*border: 1px solid;*/

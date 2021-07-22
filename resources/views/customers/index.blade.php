@@ -180,17 +180,7 @@
           Select +='<option value="Last 6 Months">Last 6 Months</option>'
           Select +='<option value="Custome Dates">Custome Dates</option>'
           Select += '</select><div class="add_input pl-4 d-flex"></div>';
-
-     /* var add_inputs = '<input placeholder="" class="form-control mr-2 date_piker from_date hasDatepicker start_date" id="from_date1" name="from_date" type="text"  style="display:none;"/>'; 
-          add_inputs += '<input placeholder="" class="form-control date_piker to_date hasDatepicker" id="to_date1" name="to_date" type="text"  style="display:none;" />'; */
-      /*var start_date = '<input placeholder="" class="form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="text">'; 
-      var end_date = '<input placeholder="" class="form-control from_date hasDatepicker" id="to_date" name="to_date" type="text">'; */
-
       $(".actinc").append(Select);
-     /* $(".add_input").append(add_inputs);*/
-    
-
-      console.log(Select);
       },
      
       
@@ -277,8 +267,7 @@
 
       var add_inputs = '<input placeholder="" class="date_piker mr-2 form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="text"  style="display:none;"/>'; 
           add_inputs += '<input placeholder="" class="date_piker form-control to_date hasDatepicker" id="to_date" name="to_date" type="text"  style="display:none;"/>'; 
-      /*var start_date = '<input placeholder="" class="form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="text">'; 
-      var end_date = '<input placeholder="" class="form-control from_date hasDatepicker" id="to_date" name="to_date" type="text">'; */
+   
 
       $(".actinc").append(Select);
       $(".add_input").append(add_inputs);

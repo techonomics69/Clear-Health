@@ -173,13 +173,13 @@
       "bInfo": false,
 
       initComplete: function () {
-      var Select = '<div><select id="filter1" class="form-control append_date_range" style="cursor:pointer;" onchange="changeFunc(this);">';
+      var Select = '<select id="filter1" class="form-control append_date_range" style="cursor:pointer;" onchange="changeFunc(this);">';
           Select +='<option value="">--SELECT--</option>';
           Select +='<option value="Current Month" selected>Current Month</option>'
           Select +='<option value="Last 3 Months">Last 3 Months</option>'
           Select +='<option value="Last 6 Months">Last 6 Months</option>'
           Select +='<option value="Custome Dates">Custome Dates</option>'
-          Select += '</select></div><div class="add_input"></div>';
+          Select += '</select><div class="add_input"></div>';
 
       var add_inputs = '<input placeholder="" class="form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="text" />'; 
           add_inputs += '<input placeholder="" class="form-control from_date hasDatepicker" id="to_date" name="to_date" type="text" />'; 
@@ -267,13 +267,13 @@
       "bInfo": false,
 
       initComplete: function () {
-       var Select = '<div><select id="filter1" class="form-control append_date_range" style="cursor:pointer;" onchange="changeFunc(this);">';
+       var Select = '<select id="filter1" class="form-control append_date_range" style="cursor:pointer;" onchange="changeFunc(this);">';
           Select +='<option value="">--SELECT--</option>';
           Select +='<option value="Current Month" selected>Current Month</option>'
           Select +='<option value="Last 3 Months">Last 3 Months</option>'
           Select +='<option value="Last 6 Months">Last 6 Months</option>'
           Select +='<option value="Custome Dates">Custome Dates</option>'
-          Select += '</select></div><div class="add_input"></div>';
+          Select += '</select><div class="add_input"></div>';
 
       var add_inputs = '<input placeholder="" class="form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="text" />'; 
           add_inputs += '<input placeholder="" class="form-control from_date hasDatepicker" id="to_date" name="to_date" type="text" />'; 

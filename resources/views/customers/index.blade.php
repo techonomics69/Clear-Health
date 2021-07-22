@@ -367,7 +367,7 @@
       $('.to_date').css('display','block');  */
     }else {
       alert('in else');
-     $('#from_date').hide();
+      $('#from_date').hide();
       $('#to_date').hide();  
     }
   }

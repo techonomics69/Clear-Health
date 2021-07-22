@@ -30,7 +30,7 @@
           </div>
         </div> -->
         <div class="col-xl-4 col-lg-4 col-md-6 col-12">
-          <div class="card" style="background-image: -webkit-linear-gradient(90deg #3f5efb 0%, #fc466b 100%);">
+          <div class="card" style="background-image: -webkit-linear-gradient(90deg #3f5efb 0%, #fc466b 100%) !important;">
             <div class="card-content">
               <a href="{{ route('users.index') }}">
               <div class="media align-items-stretch">

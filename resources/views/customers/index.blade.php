@@ -38,12 +38,6 @@
               <!-- <header class="card-header top-heading">                
                 <h3 class="main-title-heading">Users Management</h3> 
               </header> -->
-
-
-                <input placeholder="" class="date_piker mr-2 form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="text"  style="display:none;"/>
-
-                <input placeholder="" class="date_piker form-control to_date hasDatepicker" id="to_date" name="to_date" type="text"  style="display:none;"/>
-                
               <div class="row"  style="padding: 20px;">
                 <div class="col-md-12">
 
@@ -55,6 +49,9 @@
                     <option value="Custome Dates">Custome Dates</option>
                 </select> --}}
 
+                <input placeholder="" class="date_piker mr-2 form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="text"  style="display:none;"/>
+
+                <input placeholder="" class="date_piker form-control to_date hasDatepicker" id="to_date" name="to_date" type="text"  style="display:none;"/>
 
                 <div class="">
                   <table class="table  table-responsive table-striped table-bordered" style="width:100%" id="customerList">

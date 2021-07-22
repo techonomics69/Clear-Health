@@ -48,7 +48,7 @@
         </div>
 
         <div class="col-xl-4 col-lg-4 col-md-6 col-12">
-          <div class="card">
+          <div class="card bg-gradient-x-danger">
             <div class="card-content">
               <a href="{{ route('customers.index') }}">
               <div class="media align-items-stretch">

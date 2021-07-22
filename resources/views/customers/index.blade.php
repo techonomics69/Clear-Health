@@ -48,6 +48,11 @@
                     <option value="Last 6 Months">Last 6 Months</option>
                     <option value="Custome Dates">Custome Dates</option>
                 </select> --}}
+
+                <input placeholder="" class="date_piker mr-2 form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="text"  style="display:none;"/>'; 
+
+                <input placeholder="" class="date_piker form-control to_date hasDatepicker" id="to_date" name="to_date" type="text"  style="display:none;"/>
+                
                 <div class="">
                   <table class="table  table-responsive table-striped table-bordered" style="width:100%" id="customerList">
                     <thead>
@@ -265,12 +270,12 @@
           Select +='<option value="Custome Dates">Custome Dates</option>'
           Select += '</select><div class="add_input pl-4 d-flex"></div>';
 
-      var add_inputs = '<input placeholder="" class="date_piker mr-2 form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="text"  style="display:none;"/>'; 
-          add_inputs += '<input placeholder="" class="date_piker form-control to_date hasDatepicker" id="to_date" name="to_date" type="text"  style="display:none;"/>'; 
+     /* var add_inputs = '<input placeholder="" class="date_piker mr-2 form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="text"  style="display:none;"/>'; 
+          add_inputs += '<input placeholder="" class="date_piker form-control to_date hasDatepicker" id="to_date" name="to_date" type="text"  style="display:none;"/>';*/ 
    
 
       $(".actinc").append(Select);
-      $(".add_input").append(add_inputs);
+      //$(".add_input").append(add_inputs);
     
       },
       'searching': true,

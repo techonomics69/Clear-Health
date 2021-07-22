@@ -385,9 +385,9 @@
    function changedate(e) {
     alert('on date change');
     var from_date = $('#form_date').val();
-    var Todate = $('#to_date').val();
+    var To_date = $('#to_date').val();
 
-    InitilizeTable(searchValue,from_date,Todate)
+    InitilizeTable('Custome Dates',from_date,To_date);
 
     
   }

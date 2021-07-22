@@ -42,13 +42,13 @@
                 <div class="col-md-12">
 
                   @php
-                  $query_date = date("Y-m-d");
+                  $query_date = date("d-m-Y");
 
                   // First day of the month.
-                  $fdate =  date('Y-m-01', strtotime($query_date));
+                  $fdate =  date('01-m-Y', strtotime($query_date));
 
                   // Last day of the month.
-                  $ldate = date('Y-m-t', strtotime($query_date));
+                  $ldate = date('t-m-Y', strtotime($query_date));
                   @endphp
 
                 <div class="col-md-8 form_date_div" style="display:none;">

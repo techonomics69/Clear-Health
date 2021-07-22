@@ -214,7 +214,7 @@ table.dataTable thead.thead {
 }
 
 .dataTables_wrapper .dataTables_filter input {
-  height     : 30px;
+  height     : 41px;
   outline    : none;
   max-width  : 310px;
   width      : 245px;

@@ -50,20 +50,20 @@
                   // Last day of the month.
                   $ldate = date('t-m-Y', strtotime($query_date));
 
-                  echo "<pre>ff";
+              /*    echo "<pre>ff";
                   print_r($fdate);
                   echo "<pre>";
 
                   echo "<pre>";
                   print_r($ldate);
                   echo "<pre>";
-                  exit();
+                  exit();*/
                   @endphp
 
                 <div class="col-md-8 form_date_div" style="display:none;">
                 <label class="col-md-2">From Date</label>
 
-                <input  class="col-md-6 date_piker mr-2 form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="date"   placeholder="From Date" onchange="changedate(this);" value={{$fdate}}/>
+                <input  class="col-md-6 date_piker mr-2 form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="date"   placeholder="From Date" onchange="changedate(this);" value="2018-07-22"/>
                </div>
                <div class="col-md-8 to_date_div" style="display:none;">
                 <label class="col-md-2">To Date</label>

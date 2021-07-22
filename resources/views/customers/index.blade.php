@@ -41,10 +41,12 @@
               <div class="row"  style="padding: 20px;">
                 <div class="col-md-12">
 
-                <div class="col-md-8">
+                <div class="col-md-8 form-control">
+                  <label>From Date</label>
                 <input placeholder="" class="date_piker mr-2 form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="date"  style="display:none;" placeholder="From Date" />
                </div>
-               <div class="col-md-8">
+               <div class="col-md-8 form-control">
+                  <label>To Date</label>
                 <input placeholder="" class="date_piker form-control to_date hasDatepicker" id="to_date" name="to_date" type="date"  style="display:none;" placeholder="To Date" />
               </div>
 

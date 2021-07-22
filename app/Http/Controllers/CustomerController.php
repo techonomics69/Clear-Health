@@ -44,7 +44,7 @@ class CustomerController extends Controller
 
         if($request->filterValue == 'Custome Dates'){
             echo "<pre>";
-        print_r();
+        print_r($request->all());
         echo "<pre>";
         exit();
         }

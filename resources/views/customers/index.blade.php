@@ -173,22 +173,22 @@
       "bInfo": false,
 
       initComplete: function () {
-      var Select = '<select id="filter1" class="form-control append_date_range" style="cursor:pointer;" onchange="changeFunc(this);">';
+      var Select = '<div><select id="filter1" class="form-control append_date_range" style="cursor:pointer;" onchange="changeFunc(this);">';
           Select +='<option value="">--SELECT--</option>';
           Select +='<option value="Current Month" selected>Current Month</option>'
           Select +='<option value="Last 3 Months">Last 3 Months</option>'
           Select +='<option value="Last 6 Months">Last 6 Months</option>'
           Select +='<option value="Custome Dates">Custome Dates</option>'
-          Select += '</select>';
+          Select += '</select></div><div class="add_input"></div>';
 
-          Select += '<input placeholder="" class="form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="text" />'; 
-       Select += '<input placeholder="" class="form-control from_date hasDatepicker" id="to_date" name="to_date" type="text" />'; 
+      var add_inputs = '<input placeholder="" class="form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="text" />'; 
+          add_inputs += '<input placeholder="" class="form-control from_date hasDatepicker" id="to_date" name="to_date" type="text" />'; 
       /*var start_date = '<input placeholder="" class="form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="text">'; 
       var end_date = '<input placeholder="" class="form-control from_date hasDatepicker" id="to_date" name="to_date" type="text">'; */
 
       $(".actinc").append(Select);
-     /* $(".append_date_range").append(start_date);
-      $(".start_date").append(end_date)  */ 
+      $(".add_input").append(add_inputs);
+    
 
       console.log(Select);
       },
@@ -267,22 +267,22 @@
       "bInfo": false,
 
       initComplete: function () {
-      var Select = '<select id="filter1" class="form-control append_date_range" style="cursor:pointer;"> onchange="changeFunc();"';
-           Select +='<option value="">--SELECT--</option>';
+       var Select = '<div><select id="filter1" class="form-control append_date_range" style="cursor:pointer;" onchange="changeFunc(this);">';
+          Select +='<option value="">--SELECT--</option>';
           Select +='<option value="Current Month" selected>Current Month</option>'
           Select +='<option value="Last 3 Months">Last 3 Months</option>'
           Select +='<option value="Last 6 Months">Last 6 Months</option>'
           Select +='<option value="Custome Dates">Custome Dates</option>'
-          Select += '</select>'; 
+          Select += '</select></div><div class="add_input"></div>';
 
-       Select += '<input placeholder="" class="form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="text" />'; 
-       Select += '<input placeholder="" class="form-control from_date hasDatepicker" id="to_date" name="to_date" type="text" />'; 
-
-      //$( "<p>Test</p>" ).insertAfter( ".inner" );
+      var add_inputs = '<input placeholder="" class="form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="text" />'; 
+          add_inputs += '<input placeholder="" class="form-control from_date hasDatepicker" id="to_date" name="to_date" type="text" />'; 
+      /*var start_date = '<input placeholder="" class="form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="text">'; 
+      var end_date = '<input placeholder="" class="form-control from_date hasDatepicker" id="to_date" name="to_date" type="text">'; */
 
       $(".actinc").append(Select);
-      //$(".append_date_range").append(start_date);
-      //$(".start_date").append(end_date);
+      $(".add_input").append(add_inputs);
+    
       },
       'searching': true,
       'processing': true,

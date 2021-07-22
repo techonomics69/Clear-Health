@@ -32,6 +32,7 @@ class CreateChangeTreatmentsTable extends Migration
             $table->string('chest_photo')->nullable();
             $table->string('chest_photo_file_id')->nullable();
             $table->string('status')->default('pending');
+            $table->string('last_step')->nullable();
             $table->timestamps();
         });
     }

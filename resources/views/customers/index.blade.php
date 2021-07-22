@@ -214,7 +214,7 @@
 
       'ajax': {
           'url':url,
-          'data': {_token:token, filterValue:searchValue},
+          'data': {_token:token, filterValue:searchValue, from_date:from_date,to_date:to_date },
       },
         //     "aoColumnDefs": [
      
@@ -298,7 +298,7 @@
       "filter": true,
       'ajax': {
           'url':url,
-          'data': {_token:token, filterValue:filter_value},
+          'data': {_token:token, filterValue:filter_value,from_date:from_date,to_date:to_date },
       },
       'columns': [
              { data: 'no', "sWidth": "15%","aTargets": [0] },

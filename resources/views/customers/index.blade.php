@@ -383,6 +383,7 @@
   }
 
    function changedate(e) {
+    alert('on date change');
     var from_date = $('#form_date').val();
     var Todate = $('#to_date').val();
 

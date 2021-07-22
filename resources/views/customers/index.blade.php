@@ -116,8 +116,8 @@
 @endsection
 
 @section('scriptsection')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://kendo.cdn.telerik.com/2020.1.219/js/kendo.all.min.js"></script>
+{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://kendo.cdn.telerik.com/2020.1.219/js/kendo.all.min.js"></script> --}}
 <script>
   $.noConflict();
     var token = "{{ csrf_token() }}";
@@ -126,23 +126,10 @@
        $(document).ready(function ($) {
         
             $("#from_date").datepicker({
-                //numberOfMonths: 2,
-                minDate: new Date(),
-                onSelect: function (selected) {
-                    var dt = new Date(selected);
-                    dt.setDate(dt.getDate());
-                    $("#to_date").datepicker("option", "minDate", dt);
-                },
                 dateFormat : 'yy-mm-dd'
             });
+
             $("#to_date").datepicker({
-                //numberOfMonths: 2,
-                minDate: new Date(),
-                onSelect: function (selected) {
-                    var dt = new Date(selected);
-                    dt.setDate(dt.getDate());
-                    $("#from_date").datepicker("option", "maxDate", dt);
-                },
                 dateFormat : 'yy-mm-dd'
             });
         });

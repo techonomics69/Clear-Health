@@ -41,14 +41,24 @@
               <div class="row"  style="padding: 20px;">
                 <div class="col-md-12">
 
+                  @php
+                  $query_date = date("Y-m-d");
+
+                  // First day of the month.
+                  $fdate =  date('Y-m-01', strtotime($query_date));
+
+                  // Last day of the month.
+                  $ldate = date('Y-m-t', strtotime($query_date));
+                  @endphp
+
                 <div class="col-md-8 form_date_div" style="display:none;">
                 <label class="col-md-2">From Date</label>
 
-                <input  class="col-md-6 date_piker mr-2 form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="date"   placeholder="From Date" onchange="changedate(this);"/>
+                <input  class="col-md-6 date_piker mr-2 form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="date"   placeholder="From Date" onchange="changedate(this);" value={{$fdate}}/>
                </div>
                <div class="col-md-8 to_date_div" style="display:none;">
                 <label class="col-md-2">To Date</label>
-                <input class="col-md-6 date_piker form-control to_date hasDatepicker" id="to_date" name="to_date" type="date"   placeholder="To Date" onchange="changedate(this);"/>
+                <input class="col-md-6 date_piker form-control to_date hasDatepicker" id="to_date" name="to_date" type="date"   placeholder="To Date" onchange="changedate(this);" value={{$ldate}}/>
               </div>
 
                 <div class="">
@@ -214,7 +224,7 @@
 
       'ajax': {
           'url':url,
-          'data': {_token:token, filterValue:searchValue},
+          'data': {_token:token, filterValue:searchValue, from_date:from_date,to_date:to_date },
       },
         //     "aoColumnDefs": [
      
@@ -298,7 +308,7 @@
       "filter": true,
       'ajax': {
           'url':url,
-          'data': {_token:token, filterValue:filter_value},
+          'data': {_token:token, filterValue:filter_value,from_date:from_date,to_date:to_date },
       },
       'columns': [
              { data: 'no', "sWidth": "15%","aTargets": [0] },
@@ -383,10 +393,13 @@
   }
 
    function changedate(e) {
-    var from_date = $('#form_date').val();
-    var Todate = $('#to_date').val();
 
-    InitilizeTable(searchValue,from_date,Todate)
+    $("#customerList").DataTable().destroy();
+
+    var from_date = $('#from_date').val();
+    var To_date = $('#to_date').val();
+
+    InitilizeTable('Custome Dates',from_date,To_date);
 
     
   }

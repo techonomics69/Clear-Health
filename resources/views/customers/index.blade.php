@@ -166,7 +166,7 @@
 
     var Datatable = $('#customerList').DataTable({
       // "dom": '<"top"if>rt<"bottom"lp><"clear">',
-      "dom" : "<'row mb-2'<'col-sm-12 col-md-7 pl-4 actinc'l><'col-sm-12 col-md-5'f>>" +
+      "dom" : "<'row mb-2'<'col-sm-12 col-md-7 pl-4 d-flex actinc'l><'col-sm-12 col-md-5'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
       "bLengthChange": false,

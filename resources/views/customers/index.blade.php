@@ -41,13 +41,13 @@
               <div class="row"  style="padding: 20px;">
                 <div class="col-md-12">
 
-                <div class="col-md-8">
-                  <label>From Date</label>
-                <input placeholder="" class="date_piker mr-2 form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="date"  style="display:none;" placeholder="From Date" />
+                <div class="col-md-8 form_date_div">
+                <label class="col-md-2">From Date</label>
+                <input  class="col-md-6 date_piker mr-2 form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="date"  style="display:none;" placeholder="From Date" />
                </div>
-               <div class="col-md-8">
-                  <label>To Date</label>
-                <input placeholder="" class="date_piker form-control to_date hasDatepicker" id="to_date" name="to_date" type="date"  style="display:none;" placeholder="To Date" />
+               <div class="col-md-8 to_date_div">
+                <label class="col-md-2">To Date</label>
+                <input class="col-md-6 date_piker form-control to_date hasDatepicker" id="to_date" name="to_date" type="date"  style="display:none;" placeholder="To Date" />
               </div>
 
                 <div class="">
@@ -120,7 +120,7 @@
     var token = "{{ csrf_token() }}";
     var url = "{{ route('customer.showList') }}";
 
-        $(document).ready(function() {
+        /*$(document).ready(function() {
         $(function () {
             $('.from_date').datepicker();
         });
@@ -129,7 +129,7 @@
             $('.to_date').datepicker();
         });
 
-    });
+    });*/
 
        /*$(document).ready(function ($) {
         
@@ -369,19 +369,13 @@
 
     alert(selectedValue);
 
-    if (selectedValue == 'Custome Dates'){
-    alert('in if'); 
-      $('#from_date').show();
-      $('#to_date').show(); 
+    if (selectedValue == 'Custome Dates'){ 
+      $('.form_date_div').show();
+      $('.to_date_div').show(); 
 
-      $('.from_date').show();
-      $('.to_date').show(); 
-     /* $('.from_date').css('display','block');
-      $('.to_date').css('display','block');  */
     }else {
-      alert('in else');
-      $('#from_date').hide();
-      $('#to_date').hide();  
+      $('.form_date_div').hide();
+      $('.to_date_div').hide();   
     }
   }
   

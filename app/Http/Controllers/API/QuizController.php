@@ -51,7 +51,7 @@ class QuizController extends BaseController
     }
 
     public function getBirthControlQuestions(Request $request){
-        dd($request->all());
+        
         $quiz = Quiz::where('status','1')->where('category_id',14);
         if(isset($request->mainq)){
             if(!empty($request->mainq)){

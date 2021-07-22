@@ -29,7 +29,7 @@
             </div>
           </div>
         </div> -->
-        <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-12">
           <div class="card bg-gradient-x-primary" >
             <div class="card-content">
               <a href="{{ route('users.index') }}">
@@ -47,7 +47,7 @@
           </div>
         </div>
 
-        <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-12">
           <div class="card bg-gradient-x-danger">
             <div class="card-content">
               <a href="{{ route('customers.index') }}">
@@ -65,7 +65,7 @@
           </div>
         </div>
 
-         <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+         <div class="col-xl-4 col-lg-4 col-md-6 col-12">
           <div class="card bg-gradient-x-warning">
             <div class="card-content">
               <a href="{{ route('customers.index') }}">
@@ -83,7 +83,7 @@
           </div>
         </div>
 
-          <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+          <div class="col-xl-4 col-lg-4 col-md-6 col-12">
             <div class="card bg-gradient-x-success">
               <div class="card-content">
                 <a href="{{ route('customers.index') }}">
@@ -101,7 +101,7 @@
             </div>
         </div>
 
-         <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+         <div class="col-xl-4 col-lg-4 col-md-6 col-12">
           <div class="card bg-arielle-smile">
             <div class="card-content">
               <a href="{{ route('casemanagement.index') }}">
@@ -119,7 +119,7 @@
           </div>
         </div>
 
-        <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-12">
           <div class="card bg-midnight-bloom">
             <div class="card-content">
               <a href="{{ route('ordermanagement.index') }}">
@@ -137,7 +137,7 @@
           </div>
         </div>
 
-          <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+          <div class="col-xl-4 col-lg-4 col-md-6 col-12">
             <div class="card bg-orange-light">
               <div class="card-content">
                 <a href="{{-- {{ route('customers.index') }} --}}">

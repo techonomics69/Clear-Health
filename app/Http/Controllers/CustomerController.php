@@ -131,10 +131,13 @@ class CustomerController extends Controller
           ->orWhere('dob', 'like', "%{$searchValue}%")->orWhere('address', 'like', "%{$searchValue}%");
 
         if (!empty($filterValue)) {
-          //if (count($filterIn)) {
-            $user_data = $user_data->whereBetween('created_at',[$dateS->toDateString(),$dateE->toDateString()]);
+          if($filterValue == 'Custome Dates'){
+                 $user_data = $user_data->whereBetween('created_at',[$dateS,$dateE]);
+                $usercase_count = $usercase_count->whereBetween('created_at',[$dateS,$dateE]);
+            }else{
+                 $user_data = $user_data->whereBetween('created_at',[$dateS->toDateString(),$dateE->toDateString()]);
             $usercase_count = $usercase_count->whereBetween('created_at',[$dateS->toDateString(),$dateE->toDateString()]);
-          //}
+            }
         }
         $user_count = $usercase_count->get()->count();
       } else {

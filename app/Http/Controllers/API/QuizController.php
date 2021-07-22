@@ -54,7 +54,7 @@ class QuizController extends BaseController
         $quiz = Quiz::where('status','1')->where('category_id',14);
         if(isset($request->mainq)){
             if(!empty($request->mainq)){
-                $quiz = $quiz->where('id',$request->mainq);
+                $quiz = $quiz->whereIn('id',$request->mainq);
             }
         }   
         $quiz = $quiz->get();

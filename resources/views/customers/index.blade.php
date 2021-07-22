@@ -260,7 +260,7 @@
     $("#customerList").DataTable().destroy();
 
     var Datatable = $('#customerList').DataTable({
-      "dom" : "<'row mb-2'<'col-sm-12 col-md-4 pl-4 actinc pl-4 d-flex'l><'col-sm-12 col-md-8'f>>" +
+      "dom" : "<'row mb-2'<'col-sm-12 col-md-8 d-flex actinc pl-4 d-flex'l><'col-sm-12 col-md-8'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
       "bLengthChange": false,

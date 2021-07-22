@@ -1675,6 +1675,9 @@ table.table thead th {
   position: absolute;
     top: 21px;
 }
+.append_date_range {
+    max-width: 280px;
+}
 
 .imgDiv{
     /*border: 1px solid;*/

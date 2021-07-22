@@ -368,7 +368,6 @@
     alert(selectedValue);
 
     if (selectedValue == 'Custome Dates'){ 
-      alert('in if');
       $('#from_date').show();
       $('#to_date').show();   
     }else {

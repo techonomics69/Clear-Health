@@ -359,7 +359,10 @@
    function changeFunc(e) {
     var selectedValue = e.value;
 
-    if (selectedValue === 'Custome Dates'){ 
+    alert(selectedValue);
+
+    if (selectedValue == 'Custome Dates'){ 
+      alert('in if');
       $('input[name=from_date]').show();
       $('input[name=to_date]').show();   
     }else {

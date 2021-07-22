@@ -41,13 +41,15 @@
               <div class="row"  style="padding: 20px;">
                 <div class="col-md-12">
 
-                  {{-- <select id="filter1" class="form-control">
-                    <option value="">--SELECT--</option>
-                    <option value="Current Month selected">Current Month</option>
-                    <option value="Last 3 Months">Last 3 Months</option>
-                    <option value="Last 6 Months">Last 6 Months</option>
-                    <option value="Custome Dates">Custome Dates</option>
-                </select> --}}
+                <div class="col-md-8">
+                  <label>From Date</label>
+                <input placeholder="" class="date_piker mr-2 form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="date"  style="display:none;" placeholder="From Date" />
+               </div>
+               <div class="col-md-8">
+                  <label>To Date</label>
+                <input placeholder="" class="date_piker form-control to_date hasDatepicker" id="to_date" name="to_date" type="date"  style="display:none;" placeholder="To Date" />
+              </div>
+
                 <div class="">
                   <table class="table  table-responsive table-striped table-bordered" style="width:100%" id="customerList">
                     <thead>
@@ -118,7 +120,18 @@
     var token = "{{ csrf_token() }}";
     var url = "{{ route('customer.showList') }}";
 
-       $(document).ready(function ($) {
+        $(document).ready(function() {
+        $(function () {
+            $('.from_date').datepicker();
+        });
+
+        $(function () {
+            $('.to_date').datepicker();
+        });
+
+    });
+
+       /*$(document).ready(function ($) {
         
             $("#from_date").datepicker({
                 //numberOfMonths: 2,
@@ -140,7 +153,7 @@
                 },
                 dateFormat : 'yy-mm-dd'
             });
-        });
+        });*/
 /*  jQuery( document ).ready(function( $ ) {
       $('#customerList').DataTable({
       "dom": '<"top"if>rt<"bottom"lp><"clear">',
@@ -265,12 +278,12 @@
           Select +='<option value="Custome Dates">Custome Dates</option>'
           Select += '</select><div class="add_input pl-4 d-flex"></div>';
 
-      var add_inputs = '<input placeholder="" class="date_piker mr-2 form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="text"  style="display:none;"/>'; 
-          add_inputs += '<input placeholder="" class="date_piker form-control to_date hasDatepicker" id="to_date" name="to_date" type="text"  style="display:none;"/>'; 
+     /* var add_inputs = '<input placeholder="" class="date_piker mr-2 form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="text"  style="display:none;"/>'; 
+          add_inputs += '<input placeholder="" class="date_piker form-control to_date hasDatepicker" id="to_date" name="to_date" type="text"  style="display:none;"/>';*/ 
    
 
       $(".actinc").append(Select);
-      $(".add_input").append(add_inputs);
+      //$(".add_input").append(add_inputs);
     
       },
       'searching': true,
@@ -367,7 +380,7 @@
       $('.to_date').css('display','block');  */
     }else {
       alert('in else');
-     $('#from_date').hide();
+      $('#from_date').hide();
       $('#to_date').hide();  
     }
   }

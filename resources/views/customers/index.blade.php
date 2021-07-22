@@ -49,6 +49,15 @@
 
                   // Last day of the month.
                   $ldate = date('t-m-Y', strtotime($query_date));
+
+                  echo "<pre>ff";
+                  print_r($fdate);
+                  echo "<pre>";
+
+                  echo "<pre>";
+                  print_r($ldate);
+                  echo "<pre>";
+                  exit();
                   @endphp
 
                 <div class="col-md-8 form_date_div" style="display:none;">

@@ -42,23 +42,23 @@
                 <div class="col-md-12">
 
                   @php
-                  $query_date = date("d-m-Y");
+                  $query_date = date("Y-m-d");
 
                   // First day of the month.
-                  $fdate =  date('01-m-Y', strtotime($query_date));
+                  $fdate =  date('Y-m-01', strtotime($query_date));
 
                   // Last day of the month.
-                  $ldate = date('t-m-Y', strtotime($query_date));
+                  $ldate = date('Y-m-t', strtotime($query_date));
                   @endphp
 
                 <div class="col-md-8 form_date_div" style="display:none;">
                 <label class="col-md-2">From Date</label>
 
-                <input  class="col-md-6 date_piker mr-2 form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="date"   placeholder="From Date" onchange="changedate(this);" value={{$fdate}}/>
+                <input  class="col-md-6 date_piker mr-2 form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="date"   placeholder="From Date" onchange="changedate(this);" value="{{$fdate}}"/>
                </div>
                <div class="col-md-8 to_date_div" style="display:none;">
                 <label class="col-md-2">To Date</label>
-                <input class="col-md-6 date_piker form-control to_date hasDatepicker" id="to_date" name="to_date" type="date"   placeholder="To Date" onchange="changedate(this);" value={{$ldate}}/>
+                <input class="col-md-6 date_piker form-control to_date hasDatepicker" id="to_date" name="to_date" type="date"   placeholder="To Date" onchange="changedate(this);" value="{{$ldate}}"/>
               </div>
 
                 <div class="">

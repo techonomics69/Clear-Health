@@ -42,13 +42,6 @@ class CustomerController extends Controller
     public function showList(Request $request)
     {
 
-        if($request->filterValue == 'Custome Dates'){
-            echo "<pre>";
-        print_r($request->all());
-        echo "<pre>";
-        exit();
-        }
-        
         $draw = $request->draw;
         $row = $request->start;
         $rowperpage = $request->length; // Rows display per page
@@ -74,8 +67,8 @@ class CustomerController extends Controller
            $dateE = Carbon::now()->endOfMonth();
           break;
           case 'Custome Dates':
-           $dateS = $from_date;
-           $dateE = $todate;
+           $dateS = $request->from_date;
+           $dateE = $request->to_date;
           break;
           default:
            $dateS = Carbon::now()->startOfMonth();

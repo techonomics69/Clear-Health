@@ -182,7 +182,7 @@
           Select += '</select><div class="add_input pl-4 d-flex"></div>';
 
       var add_inputs = '<input placeholder="" class="form-control mr-2 date_piker from_date hasDatepicker start_date" id="from_date" name="from_date" type="text"  style="display:none;"/>'; 
-          add_inputs += '<input placeholder="" class="form-control date_piker from_date hasDatepicker" id="to_date" name="to_date" type="text"  style="display:none;" />'; 
+          add_inputs += '<input placeholder="" class="form-control date_piker to_date hasDatepicker" id="to_date" name="to_date" type="text"  style="display:none;" />'; 
       /*var start_date = '<input placeholder="" class="form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="text">'; 
       var end_date = '<input placeholder="" class="form-control from_date hasDatepicker" id="to_date" name="to_date" type="text">'; */
 
@@ -276,7 +276,7 @@
           Select += '</select><div class="add_input pl-4 d-flex"></div>';
 
       var add_inputs = '<input placeholder="" class="date_piker mr-2 form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="text"  style="display:none;"/>'; 
-          add_inputs += '<input placeholder="" class="date_piker form-control from_date hasDatepicker" id="to_date" name="to_date" type="text"  style="display:none;"/>'; 
+          add_inputs += '<input placeholder="" class="date_piker form-control to_date hasDatepicker" id="to_date" name="to_date" type="text"  style="display:none;"/>'; 
       /*var start_date = '<input placeholder="" class="form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="text">'; 
       var end_date = '<input placeholder="" class="form-control from_date hasDatepicker" id="to_date" name="to_date" type="text">'; */
 
@@ -370,8 +370,8 @@
     if (selectedValue == 'Custome Dates'){ 
       //$('#from_date').show();
       //$('#to_date').show(); 
-      $('#from_date').css('display','block');
-      $('#to_date').css('display','block');  
+      $('.from_date').css('display','block');
+      $('.to_date').css('display','block');  
     }else {
       alert('in else');
      $('#from_date').hide();

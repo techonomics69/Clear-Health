@@ -1715,3 +1715,8 @@ table.table thead th {
   background-image: linear-gradient(to right, #FF6275 0%, #FF9EAC 100%)!important;
   background-repeat: repeat-x!important;
 }
+
+.bg-gradient-x-warning {
+  background-image: linear-gradient(to right, #FF976A 0%, #FFC2A4 100%)!important;
+  background-repeat: repeat-x!important;
+}

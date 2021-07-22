@@ -1670,11 +1670,11 @@ table.table thead th {
     vertical-align: middle;
     padding: 10px 14px !important;
 }*/
-/* 
-#filter1{
+
+.casefilter{
   position: absolute;
     top: 21px;
-} */
+}
 
 .imgDiv{
     /*border: 1px solid;*/

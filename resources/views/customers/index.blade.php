@@ -181,8 +181,8 @@
           Select +='<option value="Custome Dates">Custome Dates</option>'
           Select += '</select><div class="add_input pl-4 d-flex"></div>';
 
-      var add_inputs = '<input placeholder="" class="form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="text" />'; 
-          add_inputs += '<input placeholder="" class="form-control from_date hasDatepicker" id="to_date" name="to_date" type="text" />'; 
+      var add_inputs = '<input placeholder="" class="form-control date_piker from_date hasDatepicker start_date" id="from_date" name="from_date" type="text" />'; 
+          add_inputs += '<input placeholder="" class="form-control date_piker from_date hasDatepicker" id="to_date" name="to_date" type="text" />'; 
       /*var start_date = '<input placeholder="" class="form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="text">'; 
       var end_date = '<input placeholder="" class="form-control from_date hasDatepicker" id="to_date" name="to_date" type="text">'; */
 
@@ -275,8 +275,8 @@
           Select +='<option value="Custome Dates">Custome Dates</option>'
           Select += '</select><div class="add_input pl-4 d-flex"></div>';
 
-      var add_inputs = '<input placeholder="" class="form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="text" />'; 
-          add_inputs += '<input placeholder="" class="form-control from_date hasDatepicker" id="to_date" name="to_date" type="text" />'; 
+      var add_inputs = '<input placeholder="" class="date_piker form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="text" />'; 
+          add_inputs += '<input placeholder="" class="date_piker form-control from_date hasDatepicker" id="to_date" name="to_date" type="text" />'; 
       /*var start_date = '<input placeholder="" class="form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="text">'; 
       var end_date = '<input placeholder="" class="form-control from_date hasDatepicker" id="to_date" name="to_date" type="text">'; */
 

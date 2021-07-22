@@ -179,7 +179,7 @@
           Select +='<option value="Last 3 Months">Last 3 Months</option>'
           Select +='<option value="Last 6 Months">Last 6 Months</option>'
           Select +='<option value="Custome Dates">Custome Dates</option>'
-          Select += '</select><div class="add_input d-flex"></div>';
+          Select += '</select><div class="add_input pl-4 d-flex"></div>';
 
       var add_inputs = '<input placeholder="" class="form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="text" />'; 
           add_inputs += '<input placeholder="" class="form-control from_date hasDatepicker" id="to_date" name="to_date" type="text" />'; 

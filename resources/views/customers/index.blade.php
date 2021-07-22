@@ -43,11 +43,12 @@
 
                 <div class="col-md-8 form_date_div" style="display:none;">
                 <label class="col-md-2">From Date</label>
-                <input  class="col-md-6 date_piker mr-2 form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="date"   placeholder="From Date" />
+
+                <input  class="col-md-6 date_piker mr-2 form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="date"   placeholder="From Date" onchange="changedate(this);"/>
                </div>
                <div class="col-md-8 to_date_div" style="display:none;">
                 <label class="col-md-2">To Date</label>
-                <input class="col-md-6 date_piker form-control to_date hasDatepicker" id="to_date" name="to_date" type="date"   placeholder="To Date" />
+                <input class="col-md-6 date_piker form-control to_date hasDatepicker" id="to_date" name="to_date" type="date"   placeholder="To Date" onchange="changedate(this);"/>
               </div>
 
                 <div class="">
@@ -120,6 +121,9 @@
     var token = "{{ csrf_token() }}";
     var url = "{{ route('customer.showList') }}";
 
+    var from_date = '';
+    var to_date = '';
+
         /*$(document).ready(function() {
         $(function () {
             $('.from_date').datepicker();
@@ -175,7 +179,7 @@
     
   });*/
 
-   function InitilizeTable(searchValue){
+   function InitilizeTable(searchValue,from_date,to_date){
 
     var Datatable = $('#customerList').DataTable({
       // "dom": '<"top"if>rt<"bottom"lp><"clear">',
@@ -255,12 +259,13 @@
     });
   }
 
-    InitilizeTable('Current Month');
+    InitilizeTable('Current Month',from_date,to_date);
    
    $(document).on('change','#filter1', function(){
     
     var filter_value = $(this).val();
     $("#customerList").DataTable().destroy();
+
 
     var Datatable = $('#customerList').DataTable({
       "dom" : "<'row mb-2'<'col-sm-12 col-md-8 d-flex actinc d-flex'l><'col-sm-12 col-md-4'f>>" +
@@ -367,8 +372,6 @@
    function changeFunc(e) {
     var selectedValue = e.value;
 
-    alert(selectedValue);
-
     if (selectedValue == 'Custome Dates'){ 
       $('.form_date_div').show();
       $('.to_date_div').show(); 
@@ -377,6 +380,15 @@
       $('.form_date_div').hide();
       $('.to_date_div').hide();   
     }
+  }
+
+   function changedate(e) {
+    var from_date = $('#form_date').val();
+    var Todate = $('#to_date').val();
+
+    InitilizeTable(searchValue,from_date,Todate)
+
+    
   }
   
   function deleteCustomer(e){

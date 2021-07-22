@@ -120,6 +120,9 @@
     var token = "{{ csrf_token() }}";
     var url = "{{ route('customer.showList') }}";
 
+    var from_date = '';
+    var to_date = '';
+
         /*$(document).ready(function() {
         $(function () {
             $('.from_date').datepicker();
@@ -175,7 +178,7 @@
     
   });*/
 
-   function InitilizeTable(searchValue){
+   function InitilizeTable(searchValue,from_date,to_date){
 
     var Datatable = $('#customerList').DataTable({
       // "dom": '<"top"if>rt<"bottom"lp><"clear">',
@@ -255,12 +258,13 @@
     });
   }
 
-    InitilizeTable('Current Month');
+    InitilizeTable('Current Month',from_date,to_date);
    
    $(document).on('change','#filter1', function(){
     
     var filter_value = $(this).val();
     $("#customerList").DataTable().destroy();
+
 
     var Datatable = $('#customerList').DataTable({
       "dom" : "<'row mb-2'<'col-sm-12 col-md-8 d-flex actinc d-flex'l><'col-sm-12 col-md-4'f>>" +
@@ -367,8 +371,6 @@
    function changeFunc(e) {
     var selectedValue = e.value;
 
-    alert(selectedValue);
-
     if (selectedValue == 'Custome Dates'){ 
       $('.form_date_div').show();
       $('.to_date_div').show(); 
@@ -377,6 +379,15 @@
       $('.form_date_div').hide();
       $('.to_date_div').hide();   
     }
+  }
+
+   function changedate(e) {
+    var from_date = $('#form_date').val();
+    var Todate = $('#to_date').val();
+
+    InitilizeTable(searchValue,from_date,Todate)
+
+    
   }
   
   function deleteCustomer(e){

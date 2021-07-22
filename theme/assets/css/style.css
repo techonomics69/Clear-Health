@@ -1733,3 +1733,8 @@ table.table thead th {
   background-image: linear-gradient(to right, #4e4376 0%, #2b5876 100%) !important;
   background-repeat: repeat-x!important;
 }
+
+.bg-orange-light{
+background-image: linear-gradient(to right, #ee0979 0%, #ff6a00 100%)!important;
+background-repeat: repeat-x!important;
+}

@@ -260,7 +260,7 @@
     $("#customerList").DataTable().destroy();
 
     var Datatable = $('#customerList').DataTable({
-      "dom" : "<'row mb-2'<'col-sm-12 col-md-4 pl-4 actinc'l><'col-sm-12 col-md-8'f>>" +
+      "dom" : "<'row mb-2'<'col-sm-12 col-md-4 pl-4 actinc pl-4 d-flex'l><'col-sm-12 col-md-8'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
       "bLengthChange": false,
@@ -273,7 +273,7 @@
           Select +='<option value="Last 3 Months">Last 3 Months</option>'
           Select +='<option value="Last 6 Months">Last 6 Months</option>'
           Select +='<option value="Custome Dates">Custome Dates</option>'
-          Select += '</select><div class="add_input"></div>';
+          Select += '</select><div class="add_input pl-4 d-flex"></div>';
 
       var add_inputs = '<input placeholder="" class="form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="text" />'; 
           add_inputs += '<input placeholder="" class="form-control from_date hasDatepicker" id="to_date" name="to_date" type="text" />'; 

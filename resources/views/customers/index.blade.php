@@ -189,6 +189,8 @@
       $(".actinc").append(Select);
      /* $(".append_date_range").append(start_date);
       $(".start_date").append(end_date)  */ 
+
+      console.log(Select);
       },
      
       

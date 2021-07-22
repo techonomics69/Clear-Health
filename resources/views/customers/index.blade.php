@@ -384,6 +384,7 @@
 
    function changedate(e) {
     alert('on date change');
+     $("#customerList").DataTable().destroy();
     var from_date = $('#form_date').val();
     var To_date = $('#to_date').val();
 

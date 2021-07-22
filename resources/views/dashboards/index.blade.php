@@ -30,7 +30,7 @@
           </div>
         </div> -->
         <div class="col-xl-4 col-lg-4 col-md-6 col-12">
-          <div class="card" style="background-color: #323232 !important;">
+          <div class="card" >
             <div class="card-content">
               <a href="{{ route('users.index') }}">
               <div class="media align-items-stretch">

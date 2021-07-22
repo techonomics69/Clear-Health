@@ -369,12 +369,12 @@
 
     if (selectedValue == 'Custome Dates'){ 
       alert('in if');
-      $('input[name=from_date]').show();
-      $('input[name=to_date]').show();   
+      $('#from_date').show();
+      $('#to_date').show();   
     }else {
       alert('in else');
-      $('input[name=from_date]').hide();
-      $('input[name=to_date]').hide(); 
+     $('#from_date').hide();
+      $('#to_date').hide();  
     }
   }
   

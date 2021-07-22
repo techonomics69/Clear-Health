@@ -43,11 +43,12 @@
 
                 <div class="col-md-8 form_date_div" style="display:none;">
                 <label class="col-md-2">From Date</label>
-                <input  class="col-md-6 date_piker mr-2 form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="date"   placeholder="From Date" />
+
+                <input  class="col-md-6 date_piker mr-2 form-control from_date hasDatepicker start_date" id="from_date" name="from_date" type="date"   placeholder="From Date" onchange="changedate(this);"/>
                </div>
                <div class="col-md-8 to_date_div" style="display:none;">
                 <label class="col-md-2">To Date</label>
-                <input class="col-md-6 date_piker form-control to_date hasDatepicker" id="to_date" name="to_date" type="date"   placeholder="To Date" />
+                <input class="col-md-6 date_piker form-control to_date hasDatepicker" id="to_date" name="to_date" type="date"   placeholder="To Date" onchange="changedate(this);"/>
               </div>
 
                 <div class="">

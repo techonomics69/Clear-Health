@@ -123,7 +123,18 @@
     var token = "{{ csrf_token() }}";
     var url = "{{ route('customer.showList') }}";
 
-       $(document).ready(function ($) {
+        $(document).ready(function() {
+        $(function () {
+            $('.from_date').datepicker();
+        });
+
+        $(function () {
+            $('.to_date').datepicker();
+        });
+
+    });
+
+       /*$(document).ready(function ($) {
         
             $("#from_date").datepicker({
                 //numberOfMonths: 2,
@@ -145,7 +156,7 @@
                 },
                 dateFormat : 'yy-mm-dd'
             });
-        });
+        });*/
 /*  jQuery( document ).ready(function( $ ) {
       $('#customerList').DataTable({
       "dom": '<"top"if>rt<"bottom"lp><"clear">',

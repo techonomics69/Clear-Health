@@ -1708,6 +1708,6 @@ table.table thead th {
   }
 
   .bg-gradient-x-primary {
-    background-image: linear-gradient(to right, #00A5A8 0%, #4DCBCD 100%);
-    background-repeat: repeat-x;
+    background-image: linear-gradient(to right, #00A5A8 0%, #4DCBCD 100%) !important;
+    background-repeat: repeat-x !important;
 }
